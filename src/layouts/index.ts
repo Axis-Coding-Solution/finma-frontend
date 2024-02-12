@@ -1,0 +1,1 @@
+// ** this folder is for the common layouts of the application for betting code handling and reduce the repeating code.
