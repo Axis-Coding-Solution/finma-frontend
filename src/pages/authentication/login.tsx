@@ -1,5 +1,10 @@
-function Login() {
-  return <div>Login</div>;
+
+const LoginPage = () => {
+  return (
+    <div className="text-white">
+      log in
+    </div>
+  )
 }
 
-export default Login;
+export default LoginPage

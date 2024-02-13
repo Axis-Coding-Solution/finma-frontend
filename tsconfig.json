@@ -25,9 +25,10 @@
       "@/*": ["./src/*"],
       "@/assets/*": ["./src/assets/*"],
       "@/components/*": ["./src/components/*"],
-      "@/store/*": ["./src/store/*"]
+      "@/store/*": ["./src/store/*"],
+      "@/pages/*": ["./src/pages/*"]
     }
   },
-  "include": ["src", "main.tsx"],
+  "include": ["src", "src/main.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

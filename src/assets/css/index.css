@@ -1,6 +1,9 @@
 /* ! 1. setup tailwind css in the project */
 
 /* entry point of the application css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
