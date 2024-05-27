@@ -1,13 +1,13 @@
-import { Button } from "@/components/ui/button"
-
+import { Button } from "@/components/ui/button";
+import { Outlet } from "react-router-dom";
 
 const BlankLayout = () => {
   return (
     <div>
-      BlankLayout
-      <Button variant="link">Click me</Button>
+      <Outlet />
+      <Button variant="default">Click me</Button>
     </div>
-  )
-}
+  );
+};
 
-export default BlankLayout
+export default BlankLayout;
