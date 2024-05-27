@@ -1,56 +1,67 @@
-// ** it is used for main routing for the app with scalable folder structure according to the project requirements
-import { useAppRoutes } from "@/utils/hooks";
-import Authentication from "./Authentication";
-import { RoutesType } from "@/definitions/types";
-import Dashboard from "./Dashboard";
+import { useRoutes } from "react-router-dom";
+
 import BlankLayout from "@/layouts/BlankLayout";
-import DashboardLayout from "@/layouts/DashboardLayout";
+import MainLayout from "@/layouts/MainLayout";
 
-const Routes = [
-  /// all routes gather here
-  ...Authentication,
-  ...Dashboard,
-];
+import AuthenticationRoutes from "./Authentication";
+import MainRoutes from "./Main";
+import { ProtectedRoutes, PublicRoutes } from "@/components/core";
+import { RoutesType } from "@/definitions/types";
 
-type LayoutsType = {
-  [key: string]: JSX.Element;
-};
+const mergedRoutes: RoutesType[] = [...AuthenticationRoutes, ...MainRoutes];
 
-const mergeRouteWithLayouts = (layout: string) => {
-  const LayoutRoutes: RoutesType[] = [];
-  Routes.filter((route: RoutesType) => {
-    if (
-      route.meta &&
-      route.meta.layout &&
-      route.meta.layout === "blank" &&
-      layout === "blank"
-    ) {
-      LayoutRoutes.push(route);
-    } else if (layout === "default") {
-      LayoutRoutes.push(route);
+const getRoutesForLayout = (layout: string) => {
+  const matchedRoutes: RoutesType[] = [];
+
+  mergedRoutes.forEach((route: RoutesType) => {
+    let matchedWithLayout = false;
+
+    if (!route.meta && layout === "main") matchedWithLayout = true;
+    else if (route.meta && route.meta.layout && route.meta.layout === layout)
+      matchedWithLayout = true;
+
+    let isRestrictedRoute = false;
+
+    if (matchedWithLayout) {
+      if (route.meta && route.meta.isRestrictedRoute) isRestrictedRoute = true;
+
+      const RouteTag = isRestrictedRoute ? PublicRoutes : ProtectedRoutes;
+      route.element = (
+        <RouteTag {...(isRestrictedRoute ? { route } : {})}>
+          {route.element}
+        </RouteTag>
+      );
+
+      matchedRoutes.push(route);
     }
   });
-  return LayoutRoutes;
+  return matchedRoutes;
 };
-const getLayouts: LayoutsType = {
-  blank: <BlankLayout />,
-  default: <DashboardLayout />,
-};
-const AppRouter = () => {
-  const layouts: string[] = ["blank", "default"];
-  const allRoutes: RoutesType[] = [];
 
-  layouts.filter((layout: string) => {
-    const layoutRoutes: RoutesType[] = mergeRouteWithLayouts(layout);
-    allRoutes.push({
-      element: getLayouts[layout],
+const layouts = {
+  blank: <BlankLayout />,
+  main: <MainLayout />,
+};
+
+const layoutsArr = Object.keys(layouts);
+
+type LayoutKeyType = keyof typeof layouts;
+
+const Router = () => {
+  const allRoutesWithLayouts = layoutsArr.map((layout: string) => {
+    const routesWithLayout = getRoutesForLayout(layout);
+    const Layout = layouts[layout as LayoutKeyType];
+
+    return {
       path: "/",
-      children: layoutRoutes,
-    });
+      element: Layout,
+      children: routesWithLayout,
+    };
   });
 
-  const routes = useAppRoutes(allRoutes);
+  const Routes = useRoutes([...allRoutesWithLayouts]);
 
-  return routes;
+  return Routes;
 };
-export default AppRouter;
+
+export default Router;

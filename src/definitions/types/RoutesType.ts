@@ -6,6 +6,6 @@ export type RoutesType = {
   children?: RoutesType[];
   meta?: {
     layout?: string;
-    protectedRoute?: boolean;
+    isRestrictedRoute?: boolean;
   };
 };
