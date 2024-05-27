@@ -26,3 +26,4 @@ dist-ssr
 # lock-files
 yarn.lock
 yarn-error.lock
+pnpm-lock.yaml
