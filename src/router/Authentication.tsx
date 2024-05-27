@@ -1,19 +1,45 @@
-import LoginPage from "@/pages/authentication/login";
-import RegisterPage from "@/pages/authentication/register";
+
+import { lazy } from "react";
+
+const ForgetPasswordPage = lazy(() => import("@/pages/authentication/forget-password"));
+const LoginPage = lazy(() => import("@/pages/authentication/login"));
+const ResetPasswordPage = lazy(() => import("@/pages/authentication/reset-password"));
+const SignUpPage = lazy(() => import("@/pages/authentication/sign-up"));
+
+
+
+
+
 
 export default [
   {
-    element: <LoginPage />,
-    path: "/app/login",
-    meta: {
-      layout: 'blank',
-    }
-  },
-  {
-    element: <RegisterPage />,
-    path: "/app/register",
+    element: <ForgetPasswordPage/>,
+    path: "/auth/forget-password",
     meta: {
       layout: 'blank'
     }
   },
+  {
+    element: <LoginPage/>,
+    path: "/auth/login",
+    meta: {
+      layout: 'blank'
+    }
+  },
+  {
+    element: <ResetPasswordPage/>,
+    path: "/auth/reset-password",
+    meta: {
+      layout: 'blank'
+    }
+  },
+  
+  {
+    element: <SignUpPage/>,
+    path: "/auth/sign-up",
+    meta: {
+      layout: 'blank'
+    }
+  },
+  
 ];
