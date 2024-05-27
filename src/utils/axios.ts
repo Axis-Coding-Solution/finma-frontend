@@ -6,7 +6,7 @@ import {
   InternalAxiosRequestConfig,
   default as axios,
 } from "axios";
-import { getUserAuthStatus } from "./utils";
+import { getUserAuthStatus } from ".";
 
 const baseURL = import.meta.env.VITE_BACKEND_URL;
 
@@ -16,7 +16,7 @@ const axiosInstance: AxiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   async (config): Promise<InternalAxiosRequestConfig> => {
-    if (config.authorization !== false) {
+    if (config?.authorization !== false) {
       const { token, status } = getUserAuthStatus();
       if (token && status) {
         config.headers.Authorization = `BEARER ${token}`;
