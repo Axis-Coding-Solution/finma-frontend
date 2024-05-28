@@ -12,7 +12,7 @@ const SignUp = () => {
   return (
     <div className="flex flex-col ">
 
-      <Checkbox/>
+      {/* <Checkbox/> */}
 
       <MainHeading heading="Sign Up" paragraph="   Join our community of entrepreneurs, and let's make your startup dreams
         a reality!" />
@@ -24,7 +24,7 @@ const SignUp = () => {
         </Button>
         <Button variant="outline" size="lg">
           <img src={MessageIcon} className="w-5 h-5" />
-          <span>Sign Up With email</span>
+         <Link to="/auth/sign-up/google-form"> <span>Sign Up With email</span></Link>
         </Button>
       </div>
       <div className="flex justify-center mt-10">
