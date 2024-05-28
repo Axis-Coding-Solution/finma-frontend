@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const ResetPassword = () => {
   return (
-    <div className="flex flex-col gap-3">
+    <>
       <MainHeading
         heading="Reset Password"
         paragraph="Enter your new password below"
@@ -21,9 +21,11 @@ const ResetPassword = () => {
         placeholder="Re-enter your new password"
       />
       <div>
-       <Link title="Go to changed password" to="/auth/changed-password"> <Button variant="secondary">Reset Password</Button></Link>
+        <Link title="Go to changed password" to="/auth/changed-password">
+          <Button variant="secondary">Reset Password</Button>
+        </Link>
       </div>
-    </div>
+    </>
   );
 };
 
