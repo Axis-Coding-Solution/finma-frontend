@@ -1,11 +1,19 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { appLogoPath, startImgPath } from "@/assets/images";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "@/assets/icons";
 import ArrowPic from "@/assets/images/arrow-pic.png";
 
-
 const BlankLayout = () => {
+  const handleGoBack = () => {
+    const { state } = window.history;
+    if (state && state.idx > 0) {
+      navigate(-1);
+    } else {
+      navigate("/auth/login", { replace: true });
+    }
+  };
+  const navigate = useNavigate();
   return (
     <div className="container flex flex-col gap-5">
       <header className="flex justify-between items-center h-24">
@@ -24,13 +32,13 @@ const BlankLayout = () => {
         </nav>
       </header>
       <main className="h-[calc(100vh-11rem)]">
-        <Button variant="link" className="!p-0">
+        <Button variant="link" className="!p-0" onClick={handleGoBack}>
           <ArrowLeft size="20" />
           <span>Back</span>
         </Button>
         <div className="rounded-lg p-5 h-full bg-muted mt-0.5">
           <div className=" flex gap-16 bg-background h-full rounded-lg px-3 py-2 items-center">
-            <img src={ArrowPic} className="w-96 h-96 mt-20"/>
+            <img src={ArrowPic} className="w-96 h-96 mt-20" />
             <Outlet />
           </div>
         </div>

@@ -1,14 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { MainHeading } from "@/pages/components/common";
 
 const ForgetPassword = () => {
   return (
     <div className=" ">
-      <h1 className="text-[70px] font-bold">Forgot password?</h1>
-      <p className="text-[16px]">
-        Enter your email address and we’ll send you a link to reset your
-        password
-      </p>
+     
+      <MainHeading heading="Forgot password?" paragraph="   Enter your email address and we’ll send you a link to reset your
+        password" />
 
       <div className="mt-3">
         <Input
