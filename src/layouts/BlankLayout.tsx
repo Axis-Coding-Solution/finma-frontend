@@ -1,5 +1,5 @@
 import { Outlet, useNavigate } from "react-router-dom";
-import { appLogoPath, starImgPath, ArrowPic } from "@/assets/images";
+import { appLogoPath, starImgPath } from "@/assets/images";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "@/assets/icons";
 
@@ -37,12 +37,7 @@ const BlankLayout = () => {
           <span>Back</span>
         </Button>
         <div className="rounded-lg p-5 h-full bg-muted mt-0.5">
-          <div className=" flex gap-16 bg-background h-full rounded-lg px-3 py-2 items-center">
-            <img src={ArrowPic} className="w-96 h-96 mt-20" />
-            <section className="flex flex-col gap-5 w-1/2">
-              <Outlet />
-            </section>
-          </div>
+          <Outlet />
         </div>
       </main>
     </div>
