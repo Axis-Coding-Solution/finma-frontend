@@ -1,5 +1,6 @@
 import AuthLayout from "@/layouts/AuthLayout";
 import ResetPassword from "@/pages/authentication/reset-password";
+import SignUpWithGoogle from "@/pages/authentication/sign-up";
 import SignUpWithEmail from "@/pages/authentication/sign-up/email";
 import { PasswordChange } from "@/pages/components/auth/changed-password/password-change";
 import { PersonalInfo } from "@/pages/components/auth/personal-Information/personal-info";
@@ -35,27 +36,28 @@ export default [
 
       {
         element: <SignUpPage />,
-        path: "sign-up",
+        path: "/auth/sign-up",
       },
       {
         element: <SignUpWithEmail />,
-        path: "sign-up/email",
+        path: "/auth/sign-up/email",
+      },
+      {
+        element: <SignUpWithGoogle />,
+        path: "/auth/sign-up/google",
       },
       {
         element: <ResetPassword />,
-        path: "reset-password",
+        path: "/auth/reset-password",
       },
       {
         element: <PasswordChange />,
-        path: "changed-password",
+        path: "/auth/reset-password/completed",
       },
       {
         element: <PersonalInfo />,
-        path: "personal-info",
+        path: "/auth/personal-info",
       },
     ],
-    meta: {
-      layout: "blank",
-    },
   },
 ];
