@@ -1,10 +1,11 @@
 import { Outlet, useNavigate } from "react-router-dom";
-import { appLogoPath, startImgPath } from "@/assets/images";
+import { appLogoPath, starImgPath, ArrowPic } from "@/assets/images";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "@/assets/icons";
-import ArrowPic from "@/assets/images/arrow-pic.png";
 
 const BlankLayout = () => {
+  const navigate = useNavigate();
+
   const handleGoBack = () => {
     const { state } = window.history;
     if (state && state.idx > 0) {
@@ -13,7 +14,6 @@ const BlankLayout = () => {
       navigate("/auth/login", { replace: true });
     }
   };
-  const navigate = useNavigate();
   return (
     <div className="container flex flex-col gap-5">
       <header className="flex justify-between items-center h-24">
@@ -24,7 +24,7 @@ const BlankLayout = () => {
             <li>About Us</li>
             <li className="flex font-bold">
               <span>Get Free founder Toolkit</span>
-              <img src={startImgPath} className="w-5" />
+              <img src={starImgPath} className="w-5" />
             </li>
             <li>Blog</li>
           </ul>

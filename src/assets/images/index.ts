@@ -1,9 +1,9 @@
 // ** file for common / consistent imports of images
 import appLogoPath from "./app-logo.png";
-import startImgPath from "./star.png";
+import starImgPath from "./star.png";
 import Vector from "./Vector.png";
 import ArrowPic from "./arrow-pic.png";
-import GoogleIcon from "./googleicon.png";
-import MessageIcon from "./icon.png";
+import GoogleIcon from "./google-icon.png";
+import MessageIcon from "./message-icon.png";
 
-export { appLogoPath, startImgPath,Vector,ArrowPic,GoogleIcon,MessageIcon  };
+export { appLogoPath, starImgPath, Vector, ArrowPic, GoogleIcon, MessageIcon };
