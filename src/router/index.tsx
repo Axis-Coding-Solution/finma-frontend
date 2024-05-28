@@ -4,11 +4,17 @@ import BlankLayout from "@/layouts/BlankLayout";
 import MainLayout from "@/layouts/MainLayout";
 
 import AuthenticationRoutes from "./Authentication";
+import OnboardingRoutes from "./Onboarding";
 import MainRoutes from "./Main";
+
 import { ProtectedRoutes, PublicRoutes } from "@/components/core";
 import { RoutesType } from "@/definitions/types";
 
-const mergedRoutes: RoutesType[] = [...AuthenticationRoutes, ...MainRoutes];
+const mergedRoutes: RoutesType[] = [
+  ...AuthenticationRoutes,
+  ...MainRoutes,
+  ...OnboardingRoutes,
+];
 
 const getRoutesForLayout = (layout: string) => {
   const matchedRoutes: RoutesType[] = [];
