@@ -21,7 +21,7 @@ const ResetPassword = () => {
         placeholder="Re-enter your new password"
       />
       <div>
-        <Link title="Go to changed password" to="/auth/changed-password">
+        <Link title="Go to changed password" to="/auth/reset-password/completed">
           <Button variant="secondary">Reset Password</Button>
         </Link>
       </div>

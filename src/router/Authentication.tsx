@@ -59,5 +59,8 @@ export default [
         path: "/auth/personal-info",
       },
     ],
+    meta: {
+      layout: "blank",
+    },
   },
 ];
