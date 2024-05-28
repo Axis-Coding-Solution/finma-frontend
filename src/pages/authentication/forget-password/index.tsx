@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { MainHeading } from "@/pages/components/common";
+import { Link } from "react-router-dom";
 
 const ForgetPassword = () => {
   return (
@@ -20,7 +21,7 @@ const ForgetPassword = () => {
 
       <div className="flex justify-between gap-10 mt-10">
         <Button variant="secondary" size="lg" className="">
-          <span>Continue</span>
+          <Link to="/auth/reset-password"><span>Continue</span></Link>
         </Button>
       </div>
     </div>
