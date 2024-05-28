@@ -1,8 +1,8 @@
 import ResetPassword from "@/pages/authentication/reset-password";
+import SignUpWithGoogle from "@/pages/authentication/sign-up";
 import SignUpWithEmail from "@/pages/authentication/sign-up/email";
 import { PasswordChange } from "@/pages/components/auth/changed-password/password-change";
 import { PersonalInfo } from "@/pages/components/auth/personal-Information/personal-info";
-import { GoogleForm } from "@/pages/components/auth/sign-up/google-form";
 import { lazy } from "react";
 
 const ForgetPasswordPage = lazy(
@@ -47,6 +47,13 @@ export default [
 {
     element: <SignUpWithEmail />,
     path: "/auth/sign-up/email",
+    meta: {
+      layout: "blank",
+    },
+  },
+{
+    element: <SignUpWithGoogle />,
+    path: "/auth/sign-up/google",
     meta: {
       layout: "blank",
     },
