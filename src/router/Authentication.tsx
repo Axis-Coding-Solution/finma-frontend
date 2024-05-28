@@ -1,4 +1,5 @@
 import ResetPassword from "@/pages/authentication/reset-password";
+import SignUpWithEmail from "@/pages/authentication/sign-up/email";
 import { PasswordChange } from "@/pages/components/auth/changed-password/password-change";
 import { PersonalInfo } from "@/pages/components/auth/personal-Information/personal-info";
 import { GoogleForm } from "@/pages/components/auth/sign-up/google-form";
@@ -44,8 +45,8 @@ export default [
     },
   },
 {
-    element: <GoogleForm />,
-    path: "/auth/sign-up/google-form",
+    element: <SignUpWithEmail />,
+    path: "/auth/sign-up/email",
     meta: {
       layout: "blank",
     },
