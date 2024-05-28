@@ -31,7 +31,7 @@ const BlankLayout = () => {
           <Button variant="default">Sign in</Button>
         </nav>
       </header>
-      <main className="h-[calc(100vh-11rem)]">
+      <main className="h-full">
         <Button variant="link" className="!p-0" onClick={handleGoBack}>
           <ArrowLeft size="20" />
           <span>Back</span>

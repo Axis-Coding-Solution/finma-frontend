@@ -6,8 +6,8 @@ type PropTypes = {
 export const MainHeading = ({ heading, paragraph }: PropTypes) => {
   return (
     <div>
-      <h1 className="text-6xl leading-snug font-bold">{heading}</h1>
-      <p>{paragraph}</p>
+      <h1 className="text-4xl leading-tight font-bold">{heading}</h1>
+      <p className="mt-1">{paragraph}</p>
     </div>
   );
 };
