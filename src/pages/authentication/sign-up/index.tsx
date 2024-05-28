@@ -7,7 +7,7 @@ import { MainHeading } from "@/pages/components/common";
 
 // const ArrowPic = lazy(() => import("@/assets/images/arrow-pic.png"));
 
-const SignUpWithGoogle = () => {
+const SignUp = () => {
   return (
     <>
       <MainHeading
@@ -38,7 +38,8 @@ const SignUpWithGoogle = () => {
         </p>
       </div>
     </>
+    // <div>Sign UP With Google</div>
   );
 };
 
-export default SignUpWithGoogle;
+export default SignUp;
