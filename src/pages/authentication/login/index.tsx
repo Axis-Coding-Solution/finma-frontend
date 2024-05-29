@@ -14,15 +14,12 @@ const Login = () => {
           <Button variant="link">Forget Password?</Button>
         </Link>
       </div>
-
       <div className="text-end "></div>
       <div className="flex flex-col md:flex-row justify-between gap-10 ">
         <Button variant="default" size="lg">
           <span>Log In</span>
         </Button>
-
         <span className="items-center">
-
           Don’t have an account?
           <Link to="/auth/sign-up" className="ms-1 font-bold underline">
             Sign Up
