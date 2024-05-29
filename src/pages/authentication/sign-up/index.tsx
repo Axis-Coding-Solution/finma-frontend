@@ -7,7 +7,7 @@ import { MainHeading } from "@/pages/components/common";
 
 // const ArrowPic = lazy(() => import("@/assets/images/arrow-pic.png"));
 
-const SignUpWithGoogle = () => {
+const SignUp = () => {
   return (
     <>
       <MainHeading
@@ -15,16 +15,16 @@ const SignUpWithGoogle = () => {
         paragraph="Join our community of entrepreneurs, and let's make your startup dreams
         a reality!"
       />
-      <div className="w-1/2 flex flex-col gap-2">
-        <div className="w-full">
-          <Link to="/auth/sign-up/google" className="w-full">
+      <div className=" w-full lg:w-1/2 flex flex-col gap-2">
+        <div className="">
+          <Link to="/auth/sign-up/google" >
             <Button variant="default" size="lg" className="w-full">
               <img src={GoogleIcon} className="w-5 h-5" />
               <span>Sign Up With Google</span>
             </Button>
           </Link>
         </div>
-        <Link to="/auth/sign-up/email" className="w-full">
+        <Link to="/auth/sign-up/email" >
           <Button variant="outline" size="lg" className="w-full">
             <img src={MessageIcon} className="w-5 h-5" />
             <span>Sign Up With email</span>
@@ -38,7 +38,8 @@ const SignUpWithGoogle = () => {
         </p>
       </div>
     </>
+    // <div>Sign UP With Google</div>
   );
 };
 
-export default SignUpWithGoogle;
+export default SignUp;

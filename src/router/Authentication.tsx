@@ -1,6 +1,6 @@
 import AuthLayout from "@/layouts/AuthLayout";
 import ResetPassword from "@/pages/authentication/reset-password";
-import SignUpWithGoogle from "@/pages/authentication/sign-up";
+import SignUpWithGoogle from "@/pages/authentication/sign-up/google";
 import SignUpWithEmail from "@/pages/authentication/sign-up/email";
 import { PasswordChange } from "@/pages/components/auth/changed-password/password-change";
 import { PersonalInfo } from "@/pages/components/auth/personal-Information/personal-info";
@@ -59,5 +59,8 @@ export default [
         path: "/auth/personal-info",
       },
     ],
+    meta: {
+      layout: "blank",
+    },
   },
 ];
