@@ -28,5 +28,4 @@ function IdeaClaritySolutionPage() {
     </div>
   </div>;
 }
-
 export default IdeaClaritySolutionPage;
