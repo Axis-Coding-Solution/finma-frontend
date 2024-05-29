@@ -1,4 +1,5 @@
 // import { Select } from "@radix-ui/react-select"
+import { countriesOptions } from "@/utils/constants";
 import { MainHeading } from "../../common";
 import {
   Select,
@@ -19,13 +20,12 @@ export const PersonalInfo = () => {
         <SelectTrigger>
           <SelectValue placeholder="i live in" />
         </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="light">Afghanistan</SelectItem>
-          <SelectItem value="dark">Albania</SelectItem>
-          <SelectItem value="system">Azerbaijan</SelectItem>
-          <SelectItem value="system">Armenia</SelectItem>
-          <SelectItem value="system">Austria</SelectItem>
-          <SelectItem value="system">Algeria</SelectItem>
+        <SelectContent side="bottom">
+          {countriesOptions.map((country) => (
+            <SelectItem key={country.value} value={country.value}>
+              {country.label}
+            </SelectItem>
+          ))}
         </SelectContent>
       </Select>
 
