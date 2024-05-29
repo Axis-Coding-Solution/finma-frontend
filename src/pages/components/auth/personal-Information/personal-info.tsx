@@ -10,16 +10,16 @@ import {
 
 export const PersonalInfo = () => {
   return (
-    <div>
+    <div className="flex flex-col gap-4 h-auto">
       <MainHeading
         heading="Almost there..."
         paragraph="Please provide your personal data to help us understand you better :)"
       />
       <Select>
-        <SelectTrigger className="">
+        <SelectTrigger className="relative">
           <SelectValue placeholder="i live in  " />
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent className="absolute">
           <SelectItem value="light">Afghanistan</SelectItem>
           <SelectItem value="dark">Albania</SelectItem>
           <SelectItem value="system">Azerbaijan</SelectItem>
@@ -30,10 +30,10 @@ export const PersonalInfo = () => {
       </Select>
 
       <Select>
-        <SelectTrigger className="">
+        <SelectTrigger className="relative">
           <SelectValue placeholder="My professional status " />
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent className="absolute overflow-auto h-28">
           <SelectItem value="light">Employed(Full TIme job)</SelectItem>
           <SelectItem value="dark">Contemplating to quit my job</SelectItem>
           <SelectItem value="system">I left my job already (Unemployed)</SelectItem>
@@ -43,34 +43,34 @@ export const PersonalInfo = () => {
           <SelectItem value="system">other </SelectItem>
         </SelectContent>
       </Select>
+
       <Select>
-        <SelectTrigger className="">
-          <SelectValue placeholder="My professional status " />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="light">Employed(Full TIme job)</SelectItem>
-          <SelectItem value="dark">Contemplating to quit my job</SelectItem>
-          <SelectItem value="system">I left my job already (Unemployed)</SelectItem>
-          <SelectItem value="system">I own a business</SelectItem>
-          <SelectItem value="system">I work part-time</SelectItem>
-          <SelectItem value="system">Retired </SelectItem>
-          <SelectItem value="system">other </SelectItem>
+        <SelectTrigger className="relative">
+          <SelectValue placeholder="My Financial status " />
+        </SelectTrigger >
+        <SelectContent className="absolute overflow-auto h-28">
+          <SelectItem value="light">I am debt free</SelectItem>
+          <SelectItem value="dark">i pay a mortgage</SelectItem>
+          <SelectItem value="system">I receive technical support</SelectItem>
+          <SelectItem value="system">I am able to save money</SelectItem>
+          <SelectItem value="system">I am investing in other ventures </SelectItem>
+          <SelectItem value="system">i am investing in financial market</SelectItem>
         </SelectContent>
       </Select>
-      <Select>
-        <SelectTrigger className="">
-          <SelectValue placeholder="My professional status " />
+
+
+      <Select >
+        <SelectTrigger className="relative">
+          <SelectValue placeholder="My family status " />
         </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="light">Employed(Full TIme job)</SelectItem>
-          <SelectItem value="dark">Contemplating to quit my job</SelectItem>
-          <SelectItem value="system">I left my job already (Unemployed)</SelectItem>
-          <SelectItem value="system">I own a business</SelectItem>
-          <SelectItem value="system">I work part-time</SelectItem>
-          <SelectItem value="system">Retired </SelectItem>
-          <SelectItem value="system">other </SelectItem>
-        </SelectContent>
+        <SelectContent className="absolute overflow-auto h-24">
+          <SelectItem value="light">i am single</SelectItem>
+          <SelectItem value="dark">i am in a relationship</SelectItem>
+          <SelectItem value="system">I have kids</SelectItem>
+          <SelectItem value="system">Other</SelectItem>
+          </SelectContent>
       </Select>
+      
     </div>
   );
 };
