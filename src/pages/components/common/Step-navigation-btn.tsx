@@ -11,8 +11,8 @@ type PropTypes = {
 export const StepNavigationBtn = (props: PropTypes) => {
     const { nextStep = '#', prevStep = '#', showNextStep = true, showPrevStep = true } = props
     return (
-        <div className="flex justify-between items-center">
-            {showPrevStep && <Link to={prevStep}>
+        <div className={ showPrevStep ? 'flex justify-between items-center': 'flex justify-end items-center'}>
+            {showPrevStep && <Link to={prevStep} >
                 <Button variant="outline">Back</Button>
             </Link>}
             {showNextStep && <Link to={nextStep}>
