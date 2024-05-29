@@ -1,5 +1,4 @@
 import { cn } from "@/utils";
-import path from "path";
 import { Link, Outlet, useLocation } from "react-router-dom";
 
 const sidebarLinks = [
