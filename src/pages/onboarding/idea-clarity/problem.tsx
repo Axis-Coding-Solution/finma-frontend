@@ -12,7 +12,7 @@ function IdeaClarityProblemPage() {
         <Textarea showIcon={true} rows={10} />
       </div>
       <div className="mt-5">
-       <StepNavigationBtn/>
+        <StepNavigationBtn nextStep='/onboarding/idea-clarity/solution' showPrevStep={false} />
       </div>
     </div>
   </div>;

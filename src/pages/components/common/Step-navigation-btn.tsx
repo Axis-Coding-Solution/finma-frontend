@@ -1,15 +1,28 @@
 import { Button } from "@/components/ui/button"
 import { Link } from "react-router-dom"
 
-export const StepNavigationBtn = () => {
+type PropTypes = {
+    nextStep?: string,
+    showNextStep?: boolean,
+    prevStep?: string,
+    showPrevStep?: boolean
+}
+
+export const StepNavigationBtn = (props: PropTypes) => {
+    const { nextStep = '#', prevStep = '#', showNextStep = true, showPrevStep = true } = props
     return (
         <div className="flex justify-between items-center">
-            <Link to="/onboarding/idea-clarity/solution">
+            {showPrevStep && <Link to={prevStep}>
                 <Button variant="outline">Back</Button>
-            </Link>
-            <Link to="/">
+            </Link>}
+            {showNextStep && <Link to={nextStep}>
                 <Button variant="default">Next</Button>
-            </Link>
+            </Link>}
+            {
+                showNextStep || <Link to={nextStep}>
+                    <Button variant="default">Finish</Button>
+                </Link>
+            }
         </div>
     )
 }

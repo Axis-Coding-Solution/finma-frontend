@@ -3,7 +3,7 @@ import { MainHeading } from "@/pages/components/common";
 import { StepNavigationBtn } from "@/pages/components/common/Step-navigation-btn";
 
 function IdeaClaritySolutionPage() {
-  return<div>
+  return <div>
     <MainHeading
       heading='The Solution' paragraph='Has your solution been tested, and does it show clear evidence of effectively solving the problem?' />
     <div className="mt-5">
@@ -11,7 +11,7 @@ function IdeaClaritySolutionPage() {
         <Textarea showIcon={true} rows={10} />
       </div>
       <div className="mt-5">
-       <StepNavigationBtn/>
+        <StepNavigationBtn prevStep="/onboarding/idea-clarity/problem" nextStep="/onboarding/idea-clarity/targeted-audience" />
       </div>
     </div>
   </div>;
