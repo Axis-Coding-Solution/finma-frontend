@@ -6,11 +6,20 @@ import IdeaClarityProblemPage from "@/pages/onboarding/idea-clarity/problem";
 import IdeaClaritySolutionPage from "@/pages/onboarding/idea-clarity/solution";
 import IdeaClarityTargetedAudiencePage from "@/pages/onboarding/idea-clarity/targeted-audience";
 import { Navigate } from "react-router-dom";
+import IdeaClarityCompletedPage from "@/pages/onboarding/idea-clarity/completed";
+import RiskScorePage from "@/pages/onboarding/Risk-Score";
 
 export default [
   {
     element: <StartOnboardingPage />,
     path: "/start-onboarding",
+    meta: {
+      layout: "blank",
+    },
+  },
+  {
+    element: <RiskScorePage />,
+    path: "/risk-score",
     meta: {
       layout: "blank",
     },
@@ -46,6 +55,10 @@ export default [
           {
             element: <IdeaClarityCompetitorsPage />,
             path: "competitors",
+          },
+          {
+            element: <IdeaClarityCompletedPage />,
+            path: "completed",
           },
         ],
       },
