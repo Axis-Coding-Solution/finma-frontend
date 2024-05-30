@@ -44,7 +44,7 @@ function DashboardLayout() {
   const { pathname } = useLocation();
   return (
     <div className="grid min-h-screen w-full lg:grid-cols-[280px_1fr]">
-      <div className="hidden w-full border-r bg-background lg:block  h-full max-h-screen">
+      <div className="sticky top-0 left-0 hidden w-full border-r bg-background lg:block  h-full max-h-screen">
         <nav className="mt-24 grid items-start gap-8 px-2 text-lg font-medium lg:px-4">
           <section>
             <h6 className="px-4 text-muted-foreground text-sm tracking-wider mb-2">
@@ -54,7 +54,8 @@ function DashboardLayout() {
               to="/dashboard/overview"
               className={cn(
                 "flex items-center gap-5 rounded-lg px-4 py-3 text-foreground transition hover:bg-success/10 hover:text-success",
-                pathname === "/dashboard/overview" && "bg-success text-success"
+                pathname === "/dashboard/overview" &&
+                  "bg-success/10 text-success"
               )}
             >
               <LayoutGridIcon className="h-6 w-6" />
@@ -64,7 +65,7 @@ function DashboardLayout() {
               to="/dashboard/about"
               className={cn(
                 "flex items-center gap-5 rounded-lg px-4 py-3 text-foreground transition hover:bg-success/10 hover:text-success",
-                pathname === "/dashboard/about" && "bg-success text-success"
+                pathname === "/dashboard/about" && "bg-success/10 text-success"
               )}
             >
               <ShoppingCart className="h-6 w-6" />
@@ -78,9 +79,9 @@ function DashboardLayout() {
             <Link
               to="/dashboard/chat/salama"
               className={cn(
-                "px-4 py-3 flex gap-5 items-center hover:bg-primary/10 hover:text-primary",
+                "px-4 py-3 flex gap-5 rounded-lg tran items-center hover:bg-success/10 hover:text-success",
                 pathname === "/dashboard/chat/salama" &&
-                  "bg-success text-success"
+                  "bg-success/10 text-success"
               )}
             >
               <Avatar image={userAvatar2Image} size="lg" active />
@@ -89,8 +90,9 @@ function DashboardLayout() {
             <Link
               to="/dashboard/chat/jim"
               className={cn(
-                "px-4 py-3 flex gap-5 items-center hover:bg-primary/10 hover:text-primary",
-                pathname === "/dashboard/chat/jim" && "bg-success text-success"
+                "px-4 py-3 flex gap-5 rounded-lg tran items-center hover:bg-success/10 hover:text-success",
+                pathname === "/dashboard/chat/jim" &&
+                  "bg-success/10 text-success"
               )}
             >
               <Avatar image={userAvatar3Image} size="lg" active />
@@ -104,9 +106,9 @@ function DashboardLayout() {
             <Link
               to="/dashboard/chat/vivan"
               className={cn(
-                "px-4 py-3 flex gap-5 items-center hover:bg-primary/10 hover:text-primary",
+                "px-4 py-3 flex gap-5 rounded-lg tran items-center hover:bg-success/10 hover:text-success",
                 pathname === "/dashboard/chat/vivan" &&
-                  "bg-success text-success"
+                  "bg-success/10 text-success"
               )}
             >
               <Avatar image={userAvatar4Image} size="lg" active />
@@ -120,9 +122,9 @@ function DashboardLayout() {
             <Link
               to="/dashboard/chat/jackie"
               className={cn(
-                "px-4 py-3 flex gap-5 items-center hover:bg-primary/10 hover:text-primary",
+                "px-4 py-3 flex gap-5 rounded-lg tran items-center hover:bg-success/10 hover:text-success",
                 pathname === "/dashboard/chat/jackie" &&
-                  "bg-success text-success"
+                  "bg-success/10 text-success"
               )}
             >
               <Avatar image={userAvatar5Image} size="lg" active />
@@ -137,7 +139,7 @@ function DashboardLayout() {
         </nav>
       </div>
       <div className="flex flex-col">
-        <header className="flex h-14 items-center gap-7 border-b px-4 lg:h-24 lg:px-10 py-4">
+        <header className="sticky top-0 z-10 bg-background flex h-14 items-center gap-7 border-b px-4 lg:h-24 lg:px-10 py-4">
           <Sheet>
             <SheetTrigger asChild>
               <Button
@@ -253,7 +255,7 @@ function DashboardLayout() {
             </DropdownMenuContent>
           </DropdownMenu>
         </header>
-        <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
+        <main className="container flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
           <Outlet />
         </main>
       </div>
