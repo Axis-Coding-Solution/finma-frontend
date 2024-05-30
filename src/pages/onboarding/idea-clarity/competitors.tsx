@@ -23,7 +23,7 @@ function IdeaClarityCompetitorsPage() {
       <Textarea showIcon={true} rows={10} />
     </div>
     <div className="mt-5">
-     <StepNavigationBtn prevStep="/onboarding/idea-clarity/targeted-audience" showNextStep={false}/>
+     <StepNavigationBtn prevStep="/onboarding/idea-clarity/targeted-audience" showNextStep={false} nextStep="/onboarding/idea-clarity/completed"/>
     </div>
   </div>
 </div>;
