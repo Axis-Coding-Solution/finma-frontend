@@ -29,7 +29,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import { Avatar } from "@/components/ui/avatar";
 import {
   userAvatar1Image,
@@ -38,8 +38,10 @@ import {
   userAvatar4Image,
   userAvatar5Image,
 } from "@/assets/images";
+import { cn } from "@/utils";
 
 function DashboardLayout() {
+  const { pathname } = useLocation();
   return (
     <div className="grid min-h-screen w-full lg:grid-cols-[280px_1fr]">
       <div className="hidden w-full border-r bg-background lg:block  h-full max-h-screen">
@@ -49,15 +51,21 @@ function DashboardLayout() {
               Dashboard
             </h6>
             <Link
-              to="/"
-              className="flex items-center gap-5 rounded-lg px-4 py-3 text-foreground transition hover:bg-success/10 hover:text-success"
+              to="/dashboard/overview"
+              className={cn(
+                "flex items-center gap-5 rounded-lg px-4 py-3 text-foreground transition hover:bg-success/10 hover:text-success",
+                pathname === "/dashboard/overview" && "bg-success text-success"
+              )}
             >
               <LayoutGridIcon className="h-6 w-6" />
               Overview
             </Link>
             <Link
-              to="/"
-              className="flex items-center gap-5 rounded-lg px-4 py-3 text-foreground transition hover:bg-success/10 hover:text-success"
+              to="/dashboard/about"
+              className={cn(
+                "flex items-center gap-5 rounded-lg px-4 py-3 text-foreground transition hover:bg-success/10 hover:text-success",
+                pathname === "/dashboard/about" && "bg-success text-success"
+              )}
             >
               <ShoppingCart className="h-6 w-6" />
               About
@@ -67,11 +75,24 @@ function DashboardLayout() {
             <h6 className="px-4 text-muted-foreground text-sm tracking-wider mb-2">
               Connect with experts
             </h6>
-            <div className="px-4 py-3 flex gap-5 items-center">
+            <Link
+              to="/dashboard/chat/salama"
+              className={cn(
+                "px-4 py-3 flex gap-5 items-center hover:bg-primary/10 hover:text-primary",
+                pathname === "/dashboard/chat/salama" &&
+                  "bg-success text-success"
+              )}
+            >
               <Avatar image={userAvatar2Image} size="lg" active />
               <span>Salama M.</span>
-            </div>
-            <div className="px-4 py-3 flex gap-5 items-center">
+            </Link>
+            <Link
+              to="/dashboard/chat/jim"
+              className={cn(
+                "px-4 py-3 flex gap-5 items-center hover:bg-primary/10 hover:text-primary",
+                pathname === "/dashboard/chat/jim" && "bg-success text-success"
+              )}
+            >
               <Avatar image={userAvatar3Image} size="lg" active />
               <div className="flex flex-col">
                 <span>Jim Smith</span>
@@ -79,8 +100,15 @@ function DashboardLayout() {
                   Venture Analyst
                 </span>
               </div>
-            </div>
-            <div className="px-4 py-3 flex gap-5 items-center">
+            </Link>
+            <Link
+              to="/dashboard/chat/vivan"
+              className={cn(
+                "px-4 py-3 flex gap-5 items-center hover:bg-primary/10 hover:text-primary",
+                pathname === "/dashboard/chat/vivan" &&
+                  "bg-success text-success"
+              )}
+            >
               <Avatar image={userAvatar4Image} size="lg" active />
               <div className="flex flex-col">
                 <span>Vivan Violet</span>
@@ -88,8 +116,15 @@ function DashboardLayout() {
                   Market Intelligence
                 </span>
               </div>
-            </div>
-            <div className="px-4 py-3 flex gap-5 items-center">
+            </Link>
+            <Link
+              to="/dashboard/chat/jackie"
+              className={cn(
+                "px-4 py-3 flex gap-5 items-center hover:bg-primary/10 hover:text-primary",
+                pathname === "/dashboard/chat/jackie" &&
+                  "bg-success text-success"
+              )}
+            >
               <Avatar image={userAvatar5Image} size="lg" active />
               <div className="flex flex-col">
                 <span>Jackie Jess</span>
@@ -97,7 +132,7 @@ function DashboardLayout() {
                   Business Strategist
                 </span>
               </div>
-            </div>
+            </Link>
           </section>
         </nav>
       </div>
