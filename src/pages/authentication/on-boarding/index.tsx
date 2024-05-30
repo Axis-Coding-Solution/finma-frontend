@@ -7,6 +7,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { MainHeading } from "@/pages/components/common";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const PersonalInfo = () => {
   const professionalStatus = [
@@ -82,6 +84,11 @@ const PersonalInfo = () => {
           ))}
         </SelectContent>
       </Select>
+      <div>
+        <Link to="/auth/login">
+          <Button>Continue</Button>
+        </Link>
+      </div>
     </div>
   );
 };

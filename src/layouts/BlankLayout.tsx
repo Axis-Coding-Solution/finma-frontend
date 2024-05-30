@@ -1,12 +1,13 @@
-import { Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { appLogoPath, starImgPath } from "@/assets/images";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "@/assets/icons";
 import { HamburgerMenu } from "@/pages/components/common/hamburger-menu";
-
+import { useEffect } from "react";
 
 const BlankLayout = () => {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   const handleGoBack = () => {
     const { state } = window.history;
@@ -16,6 +17,12 @@ const BlankLayout = () => {
       navigate("/auth/login", { replace: true });
     }
   };
+
+  useEffect(() => {
+    if (pathname === "/") {
+      navigate("/start-onboarding", { replace: true });
+    }
+  }, []);
   return (
     <div className="container flex flex-col gap-5">
       <header className="flex justify-between items-center h-24">
@@ -30,11 +37,13 @@ const BlankLayout = () => {
             </li>
             <li>Blog</li>
           </ul>
-          <Button className="lg:flex gap-4 hidden" variant="default">
-            Sign in
-          </Button>
-          <HamburgerMenu/>
-          </nav>
+          <Link to="/auth/login">
+            <Button className="lg:flex gap-4 hidden" variant="default">
+              Sign in
+            </Button>
+          </Link>
+          <HamburgerMenu />
+        </nav>
       </header>
       <main className="h-full">
         <Button variant="link" className="!p-0" onClick={handleGoBack}>

@@ -2,7 +2,7 @@ import { CgSpinner } from "@/assets/icons";
 import React from "react";
 import arrowDown from "@/assets/svgs/arrow-down.svg";
 import { Button } from "@/components/ui/button";
-import {  NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import GaugeChart from "@/pages/components/charts/gauge-chart";
 
 function RiskScorePage() {
@@ -52,10 +52,10 @@ function RiskScorePage() {
                   overall risk level of your idea.
                 </p>
                 <div className="flex justify-between items-center mt-10">
-                  <Button variant="default" className="">
-                    See Why
-                  </Button>
-                  <NavLink className="flex items-end gap-2 underline"   to="/">
+                  <Link to="/auth/personal-info">
+                    <Button variant="default">See Why</Button>
+                  </Link>
+                  <Button variant="link">
                     Talk to an Expert
                     <svg
                       width="16"
@@ -71,13 +71,12 @@ function RiskScorePage() {
                         fill="#1C274C"
                       />
                     </svg>
-                  </NavLink>
+                  </Button>
                 </div>
               </div>
             </div>
           </div>
           <GaugeChart value={70} maxValue={100} />
-
         </div>
       )}
     </div>
