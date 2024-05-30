@@ -10,6 +10,7 @@ import {
   ShoppingCart,
   Users,
 } from "lucide-react";
+import applogo from "@/assets/images/app-logo.png";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -45,7 +46,10 @@ function DashboardLayout() {
   return (
     <div className="grid min-h-screen w-full lg:grid-cols-[280px_1fr]">
       <div className="sticky top-0 left-0 hidden w-full border-r bg-background lg:block  h-full max-h-screen">
-        <nav className="mt-24 grid items-start gap-8 px-2 text-lg font-medium lg:px-4">
+        <div className="h-24 px-8 flex justify-start items-center">
+          <img src={applogo} className="w-24 h-10" />
+        </div>
+        <nav className="grid items-start gap-8 px-2 text-lg font-medium lg:px-4">
           <section>
             <h6 className="px-4 text-muted-foreground text-sm tracking-wider mb-2">
               Dashboard
