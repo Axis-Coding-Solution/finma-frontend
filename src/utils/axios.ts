@@ -16,7 +16,7 @@ const axiosInstance: AxiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   async (config): Promise<InternalAxiosRequestConfig> => {
-    if (config?.authorization !== false) {
+    if ((config as any)?.authorization !== false) {
       const { token, status } = getUserAuthStatus();
       if (token && status) {
         config.headers.Authorization = `BEARER ${token}`;
@@ -27,7 +27,7 @@ axiosInstance.interceptors.request.use(
   (error: AxiosError): Promise<AxiosError> => Promise.reject(error)
 );
 
-const get = (url: string, config: Object) => axiosInstance.get(url, config);
+const get = (url: string, config: AxiosRequestConfig) => axiosInstance.get(url, config);
 const post = (url: string, data: Object, config: AxiosRequestConfig) =>
   axiosInstance.post(url, data, config);
 const put = (url: string, data: Object, config: AxiosRequestConfig) =>
