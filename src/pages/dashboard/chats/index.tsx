@@ -1,8 +1,23 @@
-import { useParams } from "react-router-dom";
+import {
+  ChatAsideBar,
+  ChatContent,
+  ChatHeader,
+  SendMessageBox,
+} from "@/pages/components/chats";
 
 function ChatBoxPage() {
-  const { expert } = useParams();
-  return <div>Chat With {expert}</div>;
+  return (
+    <div>
+      <ChatHeader />
+      <div className="h-full flex flex-col gap-5">
+        <div className="flex-grow w-8/12">
+          <ChatContent />
+          <ChatAsideBar />
+        </div>
+        <SendMessageBox />
+      </div>
+    </div>
+  );
 }
 
 export default ChatBoxPage;
