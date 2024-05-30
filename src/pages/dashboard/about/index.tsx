@@ -4,7 +4,7 @@ import AboutBanner from "@/assets/images/about-banner.png";
 const AboutPage = () => {
   return (
     <>
-      <MainHeading heading="About" paragraph=" " />
+      <MainHeading heading="About" paragraph=" "/>
       <img src={AboutBanner} className="w-full" />
       <MainHeading
         heading="How it works"
