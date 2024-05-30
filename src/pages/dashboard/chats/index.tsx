@@ -1,21 +1,21 @@
-import ChatDisplayBox from "@/pages/components/chats/chat-display-box";
-import ChatInputMassage from "@/pages/components/chats/input-massage";
-import ChatSideBar from "@/pages/components/chats/side-bar";
-import ChatTopBar from "@/pages/components/chats/top-bar";
+import {
+  ChatAsideBar,
+  ChatContent,
+  ChatHeader,
+  SendMessageBox,
+} from "@/pages/components/chats";
 
 function ChatBoxPage() {
   return (
     <div>
-      <ChatTopBar />
-      <div className=" grid grid-cols-12">
-        <div className="col-span-9">
-          <ChatDisplayBox/>
+      <ChatHeader />
+      <div className="h-full flex flex-col gap-5">
+        <div className="flex-grow w-8/12">
+          <ChatContent />
+          <ChatAsideBar />
         </div>
-        <div className="col-span-3">
-          <ChatSideBar/>
-        </div>
+        <SendMessageBox />
       </div>
-      <ChatInputMassage/>
     </div>
   );
 }
