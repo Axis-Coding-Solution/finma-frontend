@@ -1,11 +1,12 @@
 import {
-  CircleUser,
+  BellDot,
   Home,
   LayoutGridIcon,
   LineChart,
   Menu,
   Package,
   Package2,
+  SearchIcon,
   ShoppingCart,
   Users,
 } from "lucide-react";
@@ -29,54 +30,79 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Link, Outlet } from "react-router-dom";
+import { Avatar } from "@/components/ui/avatar";
+import {
+  userAvatar1Image,
+  userAvatar2Image,
+  userAvatar3Image,
+  userAvatar4Image,
+  userAvatar5Image,
+} from "@/assets/images";
 
 function DashboardLayout() {
   return (
     <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
       <div className="hidden border-r bg-background md:block h-full max-h-screen">
-        <nav className="mt-24 grid items-start gap-5 px-2 text-lg font-medium lg:px-4">
+        <nav className="mt-24 grid items-start gap-8 px-2 text-lg font-medium lg:px-4">
           <section>
-            <h6 className="px-4 text-muted-foreground text-sm tracking-wider">
+            <h6 className="px-4 text-muted-foreground text-sm tracking-wider mb-2">
               Dashboard
             </h6>
             <Link
               to="/"
-              className="flex items-center gap-5 rounded-lg px-4 py-3 text-foreground transition hover:bg-green-600/10 hover:text-green-600"
+              className="flex items-center gap-5 rounded-lg px-4 py-3 text-foreground transition hover:bg-success/10 hover:text-success"
             >
               <LayoutGridIcon className="h-6 w-6" />
               Overview
             </Link>
             <Link
               to="/"
-              className="flex items-center gap-5 rounded-lg px-4 py-3 text-foreground transition hover:bg-green-600/10 hover:text-green-600"
+              className="flex items-center gap-5 rounded-lg px-4 py-3 text-foreground transition hover:bg-success/10 hover:text-success"
             >
               <ShoppingCart className="h-6 w-6" />
               About
             </Link>
           </section>
-          <section>
-            <h6 className="px-4 text-muted-foreground text-sm tracking-wider">
+          <section className="text-foreground">
+            <h6 className="px-4 text-muted-foreground text-sm tracking-wider mb-2">
               Connect with experts
             </h6>
-            <Link
-              to="/"
-              className="flex items-center gap-5 rounded-lg px-4 py-3 text-foreground transition hover:bg-green-600/10 hover:text-green-600"
-            >
-              <LayoutGridIcon className="h-6 w-6" />
-              Overview
-            </Link>
-            <Link
-              to="/"
-              className="flex items-center gap-5 rounded-lg px-4 py-3 text-foreground transition hover:bg-green-600/10 hover:text-green-600"
-            >
-              <ShoppingCart className="h-6 w-6" />
-              About
-            </Link>
+            <div className="px-4 py-3 flex gap-5 items-center">
+              <Avatar image={userAvatar2Image} size="lg" active />
+              <span>Salama M.</span>
+            </div>
+            <div className="px-4 py-3 flex gap-5 items-center">
+              <Avatar image={userAvatar3Image} size="lg" active />
+              <div className="flex flex-col">
+                <span>Jim Smith</span>
+                <span className="text-muted-foreground text-sm">
+                  Venture Analyst
+                </span>
+              </div>
+            </div>
+            <div className="px-4 py-3 flex gap-5 items-center">
+              <Avatar image={userAvatar4Image} size="lg" active />
+              <div className="flex flex-col">
+                <span>Vivan Violet</span>
+                <span className="text-muted-foreground text-sm">
+                  Market Intelligence
+                </span>
+              </div>
+            </div>
+            <div className="px-4 py-3 flex gap-5 items-center">
+              <Avatar image={userAvatar5Image} size="lg" active />
+              <div className="flex flex-col">
+                <span>Jackie Jess</span>
+                <span className="text-muted-foreground text-sm">
+                  Business Strategist
+                </span>
+              </div>
+            </div>
           </section>
         </nav>
       </div>
       <div className="flex flex-col">
-        <header className="flex h-14 items-center gap-4 border-b px-4 lg:h-24 lg:px-6">
+        <header className="flex h-14 items-center gap-7 border-b px-4 lg:h-24 lg:px-10 py-4">
           <Sheet>
             <SheetTrigger asChild>
               <Button
@@ -154,13 +180,33 @@ function DashboardLayout() {
               </div>
             </SheetContent>
           </Sheet>
-          <div className="w-full flex-1">Breadcrumbs</div>
+          <div className="self-end text-sm text-muted-foreground flex gap-2 items-center w-full flex-1">
+            <span>Dashboard</span>
+            <span>/</span>
+            <span className="text-foreground font-semibold cursor-pointer hover:underline">
+              Overview
+            </span>
+          </div>
+          <div className="bg-muted flex gap-3 items-center px-5 py-2 rounded-lg">
+            <span>Public Status:</span>
+            <span className="text-destructive font-semibold">
+              😢 Stuck with 'idea clarity' score
+            </span>
+          </div>
+          <div className="text-muted-foreground flex gap-5 items-center">
+            <span role="button">
+              <SearchIcon />
+            </span>
+            <div className="h-7 border border-border" />
+            <span role="button">
+              <BellDot />
+            </span>
+          </div>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="secondary" size="icon" className="rounded-full">
-                <CircleUser className="h-5 w-5" />
-                <span className="sr-only">Toggle user menu</span>
-              </Button>
+              <div role="button">
+                <Avatar image={userAvatar1Image} />
+              </div>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>My Account</DropdownMenuLabel>
