@@ -41,8 +41,8 @@ import {
 
 function DashboardLayout() {
   return (
-    <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
-      <div className="hidden border-r bg-background md:block h-full max-h-screen">
+    <div className="grid min-h-screen w-full lg:grid-cols-[280px_1fr]">
+      <div className="hidden w-full border-r bg-background lg:block  h-full max-h-screen">
         <nav className="mt-24 grid items-start gap-8 px-2 text-lg font-medium lg:px-4">
           <section>
             <h6 className="px-4 text-muted-foreground text-sm tracking-wider mb-2">
@@ -108,7 +108,7 @@ function DashboardLayout() {
               <Button
                 variant="outline"
                 size="icon"
-                className="shrink-0 md:hidden"
+                className="shrink-0 lg:hidden"
               >
                 <Menu className="h-5 w-5" />
                 <span className="sr-only">Toggle navigation menu</span>
