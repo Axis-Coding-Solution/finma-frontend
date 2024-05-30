@@ -1,18 +1,18 @@
 import { useRoutes } from "react-router-dom";
 
 import BlankLayout from "@/layouts/BlankLayout";
-import MainLayout from "@/layouts/MainLayout";
+import DashboardLayout from "@/layouts/DashboardLayout";
 
 import AuthenticationRoutes from "./Authentication";
+import DashboardRoutes from "./Dashboard";
 import OnboardingRoutes from "./Onboarding";
-import MainRoutes from "./Main";
 
 import { ProtectedRoutes, PublicRoutes } from "@/components/core";
 import { RoutesType } from "@/definitions/types";
 
 const mergedRoutes: RoutesType[] = [
   ...AuthenticationRoutes,
-  ...MainRoutes,
+  ...DashboardRoutes,
   ...OnboardingRoutes,
 ];
 
@@ -46,7 +46,7 @@ const getRoutesForLayout = (layout: string) => {
 
 const layouts = {
   blank: <BlankLayout />,
-  main: <MainLayout />,
+  dashboard: <DashboardLayout />,
 };
 
 const layoutsArr = Object.keys(layouts);
