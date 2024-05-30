@@ -1,9 +1,10 @@
 import { CgSpinner } from "@/assets/icons";
 import React from "react";
 import arrowDown from "@/assets/svgs/arrow-down.svg";
+import guageChart from "@/assets/svgs/guage-chart.svg";
 import { Button } from "@/components/ui/button";
-import { Link, NavLink } from "react-router-dom";
-import GaugeChart from "@/pages/components/charts/gauge-chart";
+import { Link } from "react-router-dom";
+
 
 function RiskScorePage() {
   const [isLoading, setIsLoading] = React.useState(true);
@@ -36,12 +37,15 @@ function RiskScorePage() {
             <img src={arrowDown} alt="arrow-down-img" className="w-20" />
           </div>
           <div className="grid grid-cols-12 gap-5 mt-10">
-            <div className="col-span-4 text-center">
+            <div className="md:col-span-4 col-span-12 text-center">
               <h6 className="font-semibold text-foreground text-lg">
                 Idea clarity score
               </h6>
+              <div>
+                <img src={guageChart} alt="" />
+              </div>
             </div>
-            <div className="col-span-8">
+            <div className="md:col-span-8 col-span-12">
               <div className="bg-muted p-10 rounded-xl">
                 <p>
                   Your startup idea has been evaluated based on four key
@@ -51,7 +55,7 @@ function RiskScorePage() {
                   1 (Low Risk) to 4 (High Risk). The total score determines the
                   overall risk level of your idea.
                 </p>
-                <div className="flex justify-between items-center mt-10">
+                <div className="flex md:flex-row flex-col justify-between items-center mt-10">
                   <Link to="/auth/personal-info">
                     <Button variant="default">See Why</Button>
                   </Link>
@@ -76,7 +80,6 @@ function RiskScorePage() {
               </div>
             </div>
           </div>
-          <GaugeChart value={70} maxValue={100} />
         </div>
       )}
     </div>
