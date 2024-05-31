@@ -1,6 +1,10 @@
-import React from 'react'
 
-const GaugeChart = ({ value, maxValue }) => {
+interface GaugeChartProps {
+  value: number;
+  maxValue: number;
+}
+
+const GaugeChart = ({ value, maxValue }: GaugeChartProps) => {
     
     const percentage = (value / maxValue) * 100;
     const rotation = (percentage / 100) * 180; // Converts the percentage to degrees (0-180)

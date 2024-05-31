@@ -77,3 +77,20 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
+/* customScrollbar.css */
+
+::-webkit-scrollbar-thumb {
+    background: #B2EF95; /* Thumb color */
+    border-radius: 10px; /* Round corners */
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #98d884; /* Thumb color on hover */
+  }
+  
+  *{
+    scrollbar-width: thin; /* Scrollbar width */
+    scrollbar-color: #B2EF95 transparent; /* Thumb color, Track color (transparent) */
+  }
+  
