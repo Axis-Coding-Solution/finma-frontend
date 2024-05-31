@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 export function ChatHeader() {
   const { expert } = useParams();
   return (
-    <div className="py-2 text-2xl sticky top-0 left-0 w-full font-bold">
+    <div className="py-2 text-2xl sticky bg-white top-0 left-0 w-full font-bold">
       Chat With {expert}
     </div>
   );
