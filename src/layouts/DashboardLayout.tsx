@@ -142,8 +142,8 @@ function DashboardLayout() {
           </section>
         </nav>
       </div>
-      <div className="flex flex-col">
-        <header className="sticky top-0 z-10 bg-background flex h-14 items-center gap-7 border-b px-4 lg:h-24 lg:px-10 py-4">
+      <div className="flex flex-col relative">
+        <header className="sticky  top-0 z-10 bg-background flex h-14 items-center gap-7 border-b px-4 lg:h-16 lg:px-10 py-4">
           <Sheet>
             <SheetTrigger asChild>
               <Button
@@ -221,7 +221,7 @@ function DashboardLayout() {
               </div>
             </SheetContent>
           </Sheet>
-          <div className="self-end text-sm text-muted-foreground flex gap-2 items-center w-full flex-1">
+          <div className=" text-sm text-muted-foreground flex gap-2 items-center w-full flex-1">
             <span>Dashboard</span>
             <span>/</span>
             <span className="text-foreground font-semibold cursor-pointer hover:underline">
