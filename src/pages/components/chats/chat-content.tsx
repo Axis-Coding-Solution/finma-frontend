@@ -31,7 +31,6 @@ export const ChatContent = () => {
           unexpected challenges.
         </p>
           </div>
-
       <div className="border border-border  w-[80%] rounded-xl p-5">
         <h1>
           Hi! I want to share additional analytics on your case. You can find
@@ -60,7 +59,12 @@ export const ChatContent = () => {
           <h1>Thank You 😊</h1>
         </div>
       </div>
-      <div className="border-t border-gray-300 my-4"></div>
+      <div className="flex justify-between">
+      <div className="border-t border-gray-300 w-[46%] mt-3"></div>
+      <h1 className="text-sm">Today</h1>
+      <div className="border-t border-gray-300 w-[46%] mt-3"></div>
+      </div>
+
       <div className="flex justify-end ">
         <div className="bg-primary w-[35%] p-2 h-10 rounded-xl">
           <h1>Hello Salama! How are you?</h1>
