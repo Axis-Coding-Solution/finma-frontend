@@ -1,4 +1,4 @@
-import MessageBoxIcon from "@/assets/images/image-box-icon.png";
+import MessageBoxIcon from "@/assets/images/message-box-icon.png";
 import MessageBoxEmoji from "@/assets/images/message-icon-emoji.png";
 import SendMessageIcon from "@/assets/images/send-message-icon.png";
 

@@ -7,7 +7,7 @@ import GoogleIcon from "./google-icon.png";
 import MessageIcon from "./message-icon.png";
 import AboutBanner from "./about-banner.png";
 import MessageImg from   "./message-img.png";
-import ImageBoxIcon from   "./image-box-icon.png";
+import MessageBoxIcon from   "./message-box-icon.png";
 import MessageIconEmoji from   "./message-icon-emoji.png";
 import SendMessageIcon from   "./send-message-icon.png";
 
@@ -22,7 +22,7 @@ export {
   MessageIcon,
   AboutBanner,
   MessageImg,
-  ImageBoxIcon,
+  MessageBoxIcon,
   MessageIconEmoji,
   SendMessageIcon
 };
