@@ -6,8 +6,11 @@ import ArrowPic from "./arrow-pic.png";
 import GoogleIcon from "./google-icon.png";
 import MessageIcon from "./message-icon.png";
 import AboutBanner from "./about-banner.png";
-import Message from "./message.png";
-import Message1 from "./message1.png";
+import MessageImg from   "./message-img.png";
+import MessageBoxIcon from   "./message-box-icon.png";
+import MessageIconEmoji from   "./message-icon-emoji.png";
+import SendMessageIcon from   "./send-message-icon.png";
+
 
 export * from "./avatars";
 export {
@@ -18,6 +21,8 @@ export {
   GoogleIcon,
   MessageIcon,
   AboutBanner,
-  Message,
-  Message1
+  MessageImg,
+  MessageBoxIcon,
+  MessageIconEmoji,
+  SendMessageIcon
 };
