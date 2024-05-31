@@ -6,7 +6,7 @@ import {
 
 function ChatBoxPage() {
   return (
-    <div className="grid grid-cols-12 gap-5 h-[82vh] overflow-hidden">
+    <div className="grid grid-cols-12 gap-5 h-[82.5vh] overflow-hidden">
       <div className="col-span-8 h-full overflow-auto">
         <ChatHeader />
         <ChatContent />
