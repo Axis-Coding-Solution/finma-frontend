@@ -9,7 +9,7 @@ import sharedLink from "@/assets/svgs/equalizer.svg";
 
 export const ChatAsideBar = () => {
   return (
-    <div className="bg-[#F8F8F8] p-4 ">
+    <div className="bg-[#F8F8F8] p-4 h-full">
       <Button variant={"secondary"} className="bg-background px-3 py-0 text-sm">
         <CornerDownRight size={20} />
       </Button>

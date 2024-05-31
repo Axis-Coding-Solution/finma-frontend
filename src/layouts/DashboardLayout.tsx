@@ -228,7 +228,7 @@ function DashboardLayout() {
               Overview
             </span>
           </div>
-          <div className="bg-muted flex gap-3 items-center px-5 py-2 rounded-lg">
+          <div className="hidden  bg-muted xl:flex gap-3 items-center px-5 py-2 rounded-lg">
             <span>Public Status:</span>
             <span className="text-destructive font-semibold">
               😢 Stuck with 'idea clarity' score
