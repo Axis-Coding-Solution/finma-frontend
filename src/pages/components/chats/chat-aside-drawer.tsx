@@ -129,8 +129,12 @@ export const ChatAsideBar = () => {
           <div className="flex items-center  gap-4">
             <img src={sharedLink} className="w-10" alt="" />
             <div>
-              <h4 className="text-foreground font-semibold leading-3">Google Analytics</h4>
-              <span className="text-secondary-foreground text-xs">https://marketingplatform.goo...</span>
+              <h4 className="text-foreground font-semibold leading-3">
+                Google Analytics
+              </h4>
+              <span className="text-secondary-foreground text-xs">
+                https://marketingplatform.goo...
+              </span>
             </div>
           </div>
         </div>
