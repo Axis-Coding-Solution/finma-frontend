@@ -2,7 +2,6 @@ import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { starImgPath } from "@/assets/images";
 
-
 import {
   Sheet,
   SheetContent,
@@ -15,8 +14,32 @@ import {
 export const HamburgerMenu = () => {
   return (
     <div>
-        
-        <Sheet>
+      <Sheet>
+        <SheetTrigger>
+          <Menu className="flex lg:hidden" />
+        </SheetTrigger>
+        <SheetContent>
+          <SheetHeader>
+            <SheetTitle>Menu-Bar</SheetTitle>
+            <SheetDescription>
+              <nav className="flex flex-col gap-10 ">
+                <ul className="flex flex-col items-start  gap-4 ">
+                  <li>Home</li>
+                  <li>For Innovators</li>
+                  <li>Company</li>
+                </ul>
+                <Button variant="default">Sign in</Button>
+              </nav>
+            </SheetDescription>
+          </SheetHeader>
+        </SheetContent>
+      </Sheet>
+    </div>
+  );
+};
+
+{
+  /* <Sheet>
             <SheetTrigger>
               <Menu className="flex lg:hidden" />
             </SheetTrigger>
@@ -39,7 +62,5 @@ export const HamburgerMenu = () => {
                 </SheetDescription>
               </SheetHeader>
             </SheetContent>
-          </Sheet>
-    </div>
-  )
+          </Sheet> */
 }

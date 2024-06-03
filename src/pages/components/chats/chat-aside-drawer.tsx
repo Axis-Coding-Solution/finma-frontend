@@ -2,7 +2,7 @@ import { userAvatar2Image } from "@/assets/images";
 import { Avatar } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { CornerDownLeft, CornerDownRight, Star, StarHalf } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import sharedImg from "@/assets/images/image-shared.png";
 import sharedFile from "@/assets/svgs/file-upload.svg";
 import sharedLink from "@/assets/svgs/equalizer.svg";
@@ -14,6 +14,8 @@ export const ChatAsideBar = ({
   showAside: boolean;
   toggleAside: () => void;
 }) => {
+
+  const { expert } = useParams();
   return (
     <div
       className={`bg-[#F8F8F8] p-4 h-full   ${
@@ -23,7 +25,6 @@ export const ChatAsideBar = ({
       <Button
         onClick={toggleAside}
         variant={"secondary"}
-        // className="bg-background px-3 py-0 text-sm"
         className="bg-background px-3 py-2 text-sm w-10 h-10"
       >
         {showAside ? (
@@ -34,16 +35,15 @@ export const ChatAsideBar = ({
       </Button>
 
       {showAside ? (
+        // Open Aside Bar Content
         <div>
           {/* User Info  */}
           <div className="w-full flex flex-col gap-2 mt-6">
-            <Avatar
-              image={userAvatar2Image}
-              size="lg"
-              className="h-20 w-20"
-              active
-            />
-            <h4 className="text-foreground font-semibold text-xl">Salama M.</h4>
+            <div className="w-20">
+            <Avatar image={userAvatar2Image} size="xxl" active />
+            </div>
+            <div className=""></div>
+            <h4 className="text-foreground font-semibold text-xl">{expert}</h4>
             <p className="text-secondary-foreground text-sm">
               Finance specialist with management and business skills
             </p>
@@ -175,13 +175,9 @@ export const ChatAsideBar = ({
           </div>
         </div>
       ) : (
-        <div className="lg:mt-6 mt-0">
-          <Avatar
-            image={userAvatar2Image}
-            size="lg"
-            className="h-20 w-20"
-            active
-          />
+        // Close Aside Bar Content
+        <div className="lg:mt-6 mt-0 flex justify-center">
+          <Avatar image={userAvatar2Image} size="xxl" active />
         </div>
       )}
     </div>

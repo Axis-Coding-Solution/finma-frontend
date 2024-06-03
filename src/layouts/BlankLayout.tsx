@@ -1,9 +1,18 @@
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
-import { appLogoPath, starImgPath } from "@/assets/images";
+import { appLogoPath } from "@/assets/images";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "@/assets/icons";
 import { HamburgerMenu } from "@/pages/components/common/hamburger-menu";
 import { useEffect } from "react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { ChevronDown } from "lucide-react";
 
 const BlankLayout = () => {
   const navigate = useNavigate();
@@ -28,14 +37,33 @@ const BlankLayout = () => {
       <header className="flex justify-between items-center h-24">
         <img src={appLogoPath} alt="Your Company" className="w-20 h-10" />
         <nav className="flex gap-10 items-center ">
-          <ul className="lg:flex gap-4 hidden">
+          <ul className="lg:flex gap-10 hidden">
             <li>Home</li>
-            <li>About Us</li>
-            <li className="flex font-bold">
-              <span>Get Free founder Toolkit</span>
-              <img src={starImgPath} className="w-5" />
-            </li>
-            <li>Blog</li>
+            <DropdownMenu>
+              <DropdownMenuTrigger className="focus-visible:outline-none">
+                <span className=" flex items-center gap-3">
+                  For Innovators
+                  <ChevronDown size={20} />
+                </span>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuItem>Option 1</DropdownMenuItem>
+                <DropdownMenuItem>Option 2</DropdownMenuItem>
+                <DropdownMenuItem>Option 3</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+            <DropdownMenu>
+              <DropdownMenuTrigger className="focus-visible:outline-none">
+                <span className=" flex items-center gap-3">
+                  Company <ChevronDown size={20} />
+                </span>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuItem>Option 1</DropdownMenuItem>
+                <DropdownMenuItem>Option 2</DropdownMenuItem>
+                <DropdownMenuItem>Option 3</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </ul>
           <Link to="/auth/login">
             <Button className="lg:flex gap-4 hidden" variant="default">

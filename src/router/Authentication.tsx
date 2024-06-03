@@ -2,7 +2,8 @@ import AuthLayout from "@/layouts/AuthLayout";
 import ResetPassword from "@/pages/authentication/reset-password";
 import SignUpWithGoogle from "@/pages/authentication/sign-up/google";
 import SignUpWithEmail from "@/pages/authentication/sign-up/email";
-import { PasswordChange } from "@/pages/components/auth/changed-password/password-change";
+import { PasswordChanged } from "@/pages/components/auth/changed-password/password-changed";
+import { PasswordChange } from "@/pages/components/auth/change-password/password-change";
 import { lazy } from "react";
 import PersonalInfo from "@/pages/authentication/on-boarding";
 
@@ -52,6 +53,10 @@ export default [
       },
       {
         element: <PasswordChange />,
+        path: "/auth/reset-password/change",
+      },
+      {
+        element: <PasswordChanged />,
         path: "/auth/reset-password/completed",
       },
       {
