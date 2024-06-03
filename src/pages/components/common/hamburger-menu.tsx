@@ -1,6 +1,6 @@
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { starImgPath } from "@/assets/images";
+import appLogo from "@/assets/images/app-logo.png";
 
 import {
   Sheet,
@@ -20,9 +20,9 @@ export const HamburgerMenu = () => {
         </SheetTrigger>
         <SheetContent>
           <SheetHeader>
-            <SheetTitle>Menu-Bar</SheetTitle>
+            <img src={appLogo} className="w-20 mt-4" />
             <SheetDescription>
-              <nav className="flex flex-col gap-10 ">
+              <nav className="flex flex-col gap-10 mt-4">
                 <ul className="flex flex-col items-start  gap-4 ">
                   <li>Home</li>
                   <li>For Innovators</li>
