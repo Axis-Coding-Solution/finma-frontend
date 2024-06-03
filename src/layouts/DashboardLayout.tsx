@@ -143,7 +143,7 @@ function DashboardLayout() {
         </nav>
       </div>
       <div className="flex flex-col relative">
-        <header className="sticky  top-0 z-10 bg-background flex h-14 items-center gap-7 border-b px-4 lg:h-16 lg:px-10 py-4">
+        <header className="sticky  top-0 z-10 bg-background flex h-14 items-center lg:justify-end justify-between gap-7 border-b px-4 lg:h-16 lg:px-10 py-4">
           <Sheet>
             <SheetTrigger asChild>
               <Button
@@ -221,14 +221,15 @@ function DashboardLayout() {
               </div>
             </SheetContent>
           </Sheet>
-          <div className=" text-sm text-muted-foreground flex gap-2 items-center w-full flex-1">
+          <div className="flex gap-4 items-center">
+          {/* <div className=" text-sm text-muted-foreground flex gap-2 items-center w-full flex-1">
             <span>Dashboard</span>
             <span>/</span>
             <span className="text-foreground font-semibold cursor-pointer hover:underline">
               Overview
             </span>
-          </div>
-          <div className="hidden  bg-muted xl:flex gap-3 items-center px-5 py-2 rounded-lg">
+          </div> */}
+          <div className="hidden  bg-muted md:flex gap-3 items-center px-5 py-2 rounded-lg">
             <span>Public Status:</span>
             <span className="text-destructive font-semibold">
               😢 Stuck with 'idea clarity' score
@@ -258,6 +259,7 @@ function DashboardLayout() {
               <DropdownMenuItem>Logout</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
+          </div>
         </header>
         <main className="container flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
           <Outlet />
