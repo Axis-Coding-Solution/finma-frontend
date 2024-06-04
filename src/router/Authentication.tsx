@@ -1,11 +1,11 @@
-import AuthLayout from "@/layouts/AuthLayout";
-import ResetPassword from "@/pages/authentication/reset-password";
-import SignUpWithGoogle from "@/pages/authentication/sign-up/google";
-import SignUpWithEmail from "@/pages/authentication/sign-up/email";
-import { PasswordChanged } from "@/pages/components/auth/changed-password/password-changed";
-import { PasswordChange } from "@/pages/components/auth/change-password/password-change";
 import { lazy } from "react";
-import PersonalInfo from "@/pages/authentication/on-boarding";
+
+import AuthLayout from "@/layouts/AuthLayout";
+import SignUpWithGooglePage from "@/pages/authentication/sign-up/google";
+import SignUpWithEmailPage from "@/pages/authentication/sign-up/email";
+import ResetPasswordCompletedPage from "@/pages/authentication/reset-password/completed";
+import ForgetPasswordCompleted from "@/pages/authentication/forget-password/completed";
+import PersonalInfoPage from "@/pages/authentication/personal-info";
 
 const ForgetPasswordPage = lazy(
   () => import("@/pages/authentication/forget-password")
@@ -22,46 +22,40 @@ export default [
     path: "/auth",
     children: [
       {
-        element: <ForgetPasswordPage />,
-        path: "forget-password",
-      },
-      {
         element: <LoginPage />,
         path: "login",
       },
-
+      {
+        element: <SignUpPage />,
+        path: "sign-up",
+      },
+      {
+        element: <SignUpWithEmailPage />,
+        path: "sign-up/email",
+      },
+      {
+        element: <SignUpWithGooglePage />,
+        path: "sign-up/google",
+      },
       {
         element: <ResetPasswordPage />,
         path: "reset-password",
       },
-
       {
-        element: <SignUpPage />,
-        path: "/auth/sign-up",
+        element: <ForgetPasswordPage />,
+        path: "forget-password",
       },
       {
-        element: <SignUpWithEmail />,
-        path: "/auth/sign-up/email",
+        element: <ForgetPasswordCompleted />,
+        path: "forget-password/completed",
       },
       {
-        element: <SignUpWithGoogle />,
-        path: "/auth/sign-up/google",
+        element: <ResetPasswordCompletedPage />,
+        path: "reset-password/completed",
       },
       {
-        element: <ResetPassword />,
-        path: "/auth/reset-password",
-      },
-      {
-        element: <PasswordChange />,
-        path: "/auth/reset-password/change",
-      },
-      {
-        element: <PasswordChanged />,
-        path: "/auth/reset-password/completed",
-      },
-      {
-        element: <PersonalInfo />,
-        path: "/auth/personal-info",
+        element: <PersonalInfoPage />,
+        path: "personal-info",
       },
     ],
     meta: {
