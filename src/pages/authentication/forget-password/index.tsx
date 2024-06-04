@@ -8,14 +8,23 @@ const ForgetPassword = () => {
   return (
     <>
       <MainHeading
-        heading="Forgot password?"
+        heading="Forgot password ?"
         paragraph="Enter your email address and we'll send you a link to reset your
         password"
       />
-      <Label className="-mb-3 text-base text-foreground">Email Address</Label>
-      <Input type="email" id="email" placeholder="Enter your Email" />
+      <Label
+        htmlFor="forget-password-email"
+        className="-mb-3 text-base text-foreground"
+      >
+        Email Address
+      </Label>
+      <Input
+        type="email"
+        id="forget-password-email"
+        placeholder="Enter your Email"
+      />
       <div>
-        <Link to="/auth/reset-password/change">
+        <Link to="/auth/forget-password/completed">
           <Button variant="secondary" size="lg">
             Continue
           </Button>
