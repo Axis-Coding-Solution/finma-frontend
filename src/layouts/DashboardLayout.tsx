@@ -222,43 +222,43 @@ function DashboardLayout() {
             </SheetContent>
           </Sheet>
           <div className="flex gap-4 items-center">
-          {/* <div className=" text-sm text-muted-foreground flex gap-2 items-center w-full flex-1">
+            {/* <div className=" text-sm text-muted-foreground flex gap-2 items-center w-full flex-1">
             <span>Dashboard</span>
             <span>/</span>
             <span className="text-foreground font-semibold cursor-pointer hover:underline">
               Overview
             </span>
           </div> */}
-          <div className="hidden  bg-muted md:flex gap-3 items-center px-5 py-2 rounded-lg">
-            <span>Public Status:</span>
-            <span className="text-destructive font-semibold">
-              😢 Stuck with 'idea clarity' score
-            </span>
-          </div>
-          <div className="text-muted-foreground flex gap-5 items-center">
-            <span role="button">
-              <SearchIcon />
-            </span>
-            <div className="h-7 border border-border" />
-            <span role="button">
-              <BellDot />
-            </span>
-          </div>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <div role="button">
-                <Avatar image={userAvatar1Image} />
-              </div>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Settings</DropdownMenuItem>
-              <DropdownMenuItem>Support</DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Logout</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+            <div className="hidden  bg-muted md:flex gap-3 items-center px-5 py-2 rounded-lg">
+              <span>Public Status:</span>
+              <span className="text-destructive font-semibold">
+                😢 Stuck with 'idea clarity' score
+              </span>
+            </div>
+            <div className="text-muted-foreground flex gap-5 items-center">
+              <span role="button">
+                <SearchIcon />
+              </span>
+              <div className="h-7 border border-border" />
+              <span role="button">
+                <BellDot />
+              </span>
+            </div>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <div role="button">
+                  <Avatar image={userAvatar1Image} />
+                </div>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>Settings</DropdownMenuItem>
+                <DropdownMenuItem>Support</DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>Logout</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </header>
         <main className="container flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">

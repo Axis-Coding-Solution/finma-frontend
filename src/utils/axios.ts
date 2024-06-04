@@ -11,7 +11,11 @@ import { getUserAuthStatus } from ".";
 const baseURL = import.meta.env.VITE_BACKEND_URL;
 
 const axiosInstance: AxiosInstance = axios.create({
-  baseURL,
+  baseURL: `${baseURL}/api/v1`,
+});
+
+export const axiosAuthInstance = axios.create({
+  baseURL: `${baseURL}/auth/v1`,
 });
 
 axiosInstance.interceptors.request.use(
@@ -27,7 +31,8 @@ axiosInstance.interceptors.request.use(
   (error: AxiosError): Promise<AxiosError> => Promise.reject(error)
 );
 
-const get = (url: string, config: AxiosRequestConfig) => axiosInstance.get(url, config);
+const get = (url: string, config: AxiosRequestConfig) =>
+  axiosInstance.get(url, config);
 const post = (url: string, data: Object, config: AxiosRequestConfig) =>
   axiosInstance.post(url, data, config);
 const put = (url: string, data: Object, config: AxiosRequestConfig) =>

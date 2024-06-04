@@ -9,8 +9,15 @@ import { yupResolver } from "@/utils/constants";
 import { loginSchema } from "@/utils/validation-schemas";
 import { loginInitialValues } from "@/utils/initial-values";
 import { InputError } from "@/components/ui/input-error";
+import { useMutation } from "@tanstack/react-query";
+import { loginApi } from "@/api/http";
+import { successToast } from "@/utils/index";
 
 const Login = () => {
+  const loginMutation = useMutation({
+    mutationFn: loginApi,
+  });
+
   const {
     register,
     handleSubmit,
@@ -20,10 +27,14 @@ const Login = () => {
     resolver: yupResolver(loginSchema),
   });
 
-  const onSubmitHandler = (data: typeof loginInitialValues) => {
-    console.log(data);
+  const onSubmitHandler = async (data: typeof loginInitialValues) => {
+    try {
+      const response = await loginMutation.mutateAsync(data);
+      successToast(response.message);
+    } catch (error) {
+      console.log(error);
+    }
   };
-
 
   return (
     <>
@@ -55,9 +66,9 @@ const Login = () => {
         </div>
         <div className="flex flex-col items-center md:flex-row justify-between gap-10 ">
           {/* <Link to="/dashboard/overview"> */}
-            <Button type="submit" variant="default" size="lg">
-              Log In
-            </Button>
+          <Button type="submit" variant="default" size="lg">
+            Log In
+          </Button>
           {/* </Link> */}
           <span className="items-center">
             Don’t have an account?

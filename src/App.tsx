@@ -1,9 +1,6 @@
 import { BrowserRouter } from "react-router-dom";
 import AppRouter from "./router";
-import {
-  QueryClient,
-  QueryClientProvider,
-} from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const queryClient = new QueryClient({
   defaultOptions: {
