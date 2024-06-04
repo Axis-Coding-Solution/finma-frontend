@@ -15,7 +15,7 @@ const SignUp = () => {
         paragraph="Join our community of entrepreneurs, and let's make your startup dreams
         a reality!"
       />
-      <div className=" w-full lg:w-1/2 flex flex-col gap-2">
+      <div className=" w-full lg:w-1/2 flex flex-col gap-4">
         <div className="">
           <Link to="/auth/sign-up/google" >
             <Button variant="default" size="lg" className="w-full">

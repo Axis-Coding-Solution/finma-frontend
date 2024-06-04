@@ -12,17 +12,17 @@ const ForgetPassword = () => {
         paragraph="Enter your email address and we'll send you a link to reset your
         password"
       />
-      <Label
-        htmlFor="forget-password-email"
-        className="-mb-3 text-base text-foreground"
-      >
-        Email Address
-      </Label>
-      <Input
-        type="email"
-        id="forget-password-email"
-        placeholder="Enter your Email"
-      />
+      <div>
+        <Label  htmlFor="emailAddress">
+          Email Address
+        </Label>
+        <Input
+          type="email"
+          id="email"
+          placeholder="Enter your Email"
+          className="mt-2"
+        />
+      </div>
       <div>
         <Link to="/auth/forget-password/completed">
           <Button variant="secondary" size="lg">

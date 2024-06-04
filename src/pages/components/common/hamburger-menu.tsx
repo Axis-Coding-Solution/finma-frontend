@@ -7,13 +7,12 @@ import {
   SheetContent,
   SheetDescription,
   SheetHeader,
-  SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
 
 export const HamburgerMenu = () => {
   return (
-    <div>
+    <div className="lg:hidden block">
       <Sheet>
         <SheetTrigger>
           <Menu className="flex lg:hidden" />

@@ -16,7 +16,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, IPasswordInput>(
     const toggleShowPassword = () => setShowPassword(!showPassword);
 
     return (
-      <div className="relative">
+      <div className="relative text-start">
         <Label htmlFor={id}>{label}</Label>
         <Input
           {...props}

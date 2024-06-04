@@ -1,65 +1,76 @@
-import { EyeClose, EyeOpen } from "@/assets/svgs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { PasswordInput } from "@/components/ui/password-input";
 import { MainHeading } from "@/pages/components/common";
-import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@/utils/constants";
+import { loginSchema } from "@/utils/validation-schemas";
+import { loginInitialValues } from "@/utils/initial-values";
+import { InputError } from "@/components/ui/input-error";
 
 const Login = () => {
-  const [showPassword, setShowPassword] = useState(false);
-  const toggleShowPassword = () => {
-    setShowPassword(!showPassword);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: loginInitialValues,
+    resolver: yupResolver(loginSchema),
+  });
+
+  const onSubmitHandler = (data: typeof loginInitialValues) => {
+    console.log(data);
   };
+
+
   return (
     <>
       <MainHeading heading="Login" paragraph="Welcome back to FimnaAI!" />
-      <div>
-        <Label className="text-base text-foreground" htmlFor="emailAddress">
-          Email Address
-        </Label>
-        <Input type="email" id="email" placeholder="Enter your Email" className="mt-2" />
-      </div>
-      <div className="text-end">
-        <div className="relative text-left">
-          <Label className="text-base text-foreground" htmlFor="new-password">
-            Password
-          </Label>
+      <form onSubmit={handleSubmit(onSubmitHandler)}>
+        <div>
+          <Label htmlFor="emailAddress">Email Address</Label>
           <Input
-            type={showPassword ? "text" : "password"}
-            id="new-password"
-            className="mt-2"
+            type="email"
+            {...register("email")}
+            id="email"
+            placeholder="Enter your Email"
           />
-          <span
-            className="absolute inset-y-0 right-4 top-8 flex items-center cursor-pointer"
-            onClick={toggleShowPassword}
-            aria-label="Toggle password visibility"
-          >
-            {showPassword ? (
-              <img src={EyeOpen} alt="Show password" key="eye-open" />
-            ) : (
-              <img src={EyeClose} alt="Hide password" key="eye-close" />
-            )}
+          <InputError error={errors.email} />
+        </div>
+        <div className="text-end mt-4">
+          <PasswordInput
+            id="login-password"
+            {...register("password")}
+            placeholder="Enter your password"
+            label="Password"
+          />
+          <InputError error={errors.password} />
+          <Link to="/auth/forget-password">
+            <Button variant="link" className="px-0 underline mt-2">
+              Forget Password?
+            </Button>
+          </Link>
+        </div>
+        <div className="flex flex-col items-center md:flex-row justify-between gap-10 ">
+          {/* <Link to="/dashboard/overview"> */}
+            <Button type="submit" variant="default" size="lg">
+              Log In
+            </Button>
+          {/* </Link> */}
+          <span className="items-center">
+            Don’t have an account?
+            <Link
+              role="button"
+              to="/auth/sign-up"
+              className="ms-1 font-bold underline"
+            >
+              Sign Up
+            </Link>
           </span>
         </div>
-        <Link to="/auth/forget-password">
-          <Button variant="link" className="px-0 underline mt-2">Forget Password?</Button>
-        </Link>
-      </div>
-      <div className="text-end "></div>
-      <div className="flex flex-col md:flex-row justify-between gap-10 ">
-        <Link to="/dashboard/overview">
-          <Button variant="default" size="lg" >
-            Log In
-          </Button>
-        </Link>
-        <span className="items-center">
-          Don’t have an account?
-          <Link to="/auth/sign-up" className="ms-1 font-bold underline">
-            Sign Up
-          </Link>
-        </span>
-      </div>
+      </form>
     </>
   );
 };

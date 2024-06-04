@@ -34,7 +34,7 @@ const BlankLayout = () => {
   }, []);
   return (
     <div className="container flex flex-col gap-5">
-      <header className="flex justify-between items-center h-24">
+      <header className="flex justify-between items-center md:py-4 py-2">
         <img src={appLogoPath} alt="Your Company" className="w-20 h-10" />
         <nav className="flex gap-10 items-center ">
           <ul className="lg:flex gap-10 hidden">
@@ -78,7 +78,7 @@ const BlankLayout = () => {
           <ArrowLeft size="20" />
           <span>Back</span>
         </Button>
-        <div className="rounded-lg p-5 h-auto bg-muted mt-0.5">
+        <div className="rounded-lg md:p-5 p-3  h-auto bg-muted mt-0.5">
           <Outlet />
         </div>
       </main>

@@ -1,19 +1,25 @@
 import { BrowserRouter } from "react-router-dom";
-import { Provider } from "react-redux";
-
 import AppRouter from "./router";
-import store from "./store";
+import {
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query";
 
-// ! import main routing file here and use it in the browser router
-
-// ! also store main file would be used here too
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      refetchOnMount: false,
+    },
+  },
+});
 
 function App() {
   return (
     <BrowserRouter>
-      <Provider store={store}>
+      <QueryClientProvider client={queryClient}>
         <AppRouter />
-      </Provider>
+      </QueryClientProvider>
     </BrowserRouter>
   );
 }
