@@ -11,7 +11,7 @@ import { loginInitialValues } from "@/utils/initial-values";
 import { InputError } from "@/components/ui/input-error";
 import { useMutation } from "@tanstack/react-query";
 import { loginApi } from "@/api/http";
-import { successToast } from "@/utils/index";
+import { errorToast, successToast } from "@/utils/index";
 
 const Login = () => {
   const loginMutation = useMutation({
@@ -32,7 +32,8 @@ const Login = () => {
       const response = await loginMutation.mutateAsync(data);
       successToast(response.message);
     } catch (error) {
-      console.log(error);
+      errorToast(JSON.stringify(error));
+      // console.log(error);
     }
   };
 
