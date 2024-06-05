@@ -1,7 +1,7 @@
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { appLogoPath } from "@/assets/images";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft } from "@/assets/icons";
+
 import { HamburgerMenu } from "@/pages/components/common/hamburger-menu";
 import { useEffect } from "react";
 import {
@@ -11,6 +11,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ChevronDown } from "lucide-react";
+import { ArrowConnerLeft } from "@/assets/svgs";
 
 const BlankLayout = () => {
   const navigate = useNavigate();
@@ -72,11 +73,15 @@ const BlankLayout = () => {
         </nav>
       </header>
       <main className="h-full">
-        <Button variant="link" className="!p-0" onClick={handleGoBack}>
-          <ArrowLeft size="20" />
+        <Button
+          variant="link"
+          className="!p-0 flex items-center gap-2"
+          onClick={handleGoBack}
+        >
+          <img src={ArrowConnerLeft} alt="" />
           <span>Back</span>
         </Button>
-        <div className="rounded-lg md:p-5 p-3  h-auto bg-muted mt-0.5">
+        <div className="rounded-lg md:p-5 p-3 h-auto bg-muted mt-0.5">
           <Outlet />
         </div>
       </main>
