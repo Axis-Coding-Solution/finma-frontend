@@ -5,5 +5,6 @@ export const ProtectedRoutes = ({
 }: {
   children: React.ReactNode;
 }) => {
+  console.log("protected Route");
   return children;
 };

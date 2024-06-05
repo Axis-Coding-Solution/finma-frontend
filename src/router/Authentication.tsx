@@ -60,6 +60,7 @@ export default [
     ],
     meta: {
       layout: "blank",
+      isRestrictedRoute: true,
     },
   },
 ];

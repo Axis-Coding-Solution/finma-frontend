@@ -6,7 +6,7 @@ import {
   InternalAxiosRequestConfig,
   default as axios,
 } from "axios";
-import { getUserAuthStatus } from ".";
+import { getAuthFromStorage } from ".";
 
 const baseURL = import.meta.env.VITE_BACKEND_URL;
 
@@ -21,9 +21,9 @@ export const axiosAuthInstance = axios.create({
 axiosInstance.interceptors.request.use(
   async (config): Promise<InternalAxiosRequestConfig> => {
     if ((config as any)?.authorization !== false) {
-      const { token, status } = getUserAuthStatus();
-      if (token && status) {
-        config.headers.Authorization = `BEARER ${token}`;
+      const auth = getAuthFromStorage();
+      if (auth?.token && auth?.isAuthenticated) {
+        config.headers.Authorization = `BEARER ${auth?.token}`;
       }
     }
     return config;

@@ -4,9 +4,13 @@ import { twMerge } from "tailwind-merge";
 import { type ClassValue, clsx } from "clsx";
 import { toast } from "react-hot-toast";
 
-export const getUserAuthStatus = () => {
-  // add auth status here
-  return { token: "", status: true };
+export const getAuthFromStorage = () => {
+  if (typeof window !== "undefined") {
+    const user = JSON.parse(localStorage.getItem("user") ?? "null");
+    const token = localStorage.getItem("token");
+    const isAuthenticated = token && user ? true : false;
+    return { user, isAuthenticated, token };
+  }
 };
 
 export const successToast = (message: string) => toast.success(message);

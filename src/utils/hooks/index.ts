@@ -27,3 +27,4 @@ export const useAppSelector = useSelector;
 export const useAppDispatch = useDispatch;
 
 // ** we can add our own hooks here too.
+export { useAuth } from "./use-auth";
