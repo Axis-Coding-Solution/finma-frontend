@@ -6,7 +6,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { MainHeading } from "@/pages/components/common";
 import { PasswordInput } from "@/components/ui/password-input";
 import { Controller, useForm } from "react-hook-form";
-import { yupResolver } from "@/utils/constants";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { signUpInitialValues } from "@/utils/initial-values";
 import { signUpSchema } from "@/utils/validation-schemas";
 import { InputError } from "@/components/ui/input-error";
@@ -22,7 +22,7 @@ const SignUpWithEmail = () => {
     resolver: yupResolver(signUpSchema),
   });
 
-  const onSubmitHandler = (data: typeof signUpInitialValues) => {
+  const onSubmitHandler = (data) => {
     console.log(data);
   };
 
@@ -32,10 +32,7 @@ const SignUpWithEmail = () => {
         heading="Sign Up"
         paragraph="Join our community of entrepreneurs, and let's make your startup dreams"
       />
-      <form
-        className="flex flex-col gap-5"
-        onSubmit={handleSubmit(onSubmitHandler)}
-      >
+      <form className="flex flex-col gap-5" onSubmit={handleSubmit(onSubmitHandler)}>
         <div>
           <Label htmlFor="emailAddress">Email Address</Label>
           <Input
@@ -44,7 +41,7 @@ const SignUpWithEmail = () => {
             id="emailAddress"
             placeholder="Enter your Email"
           />
-          <InputError error={errors.email} />
+          <InputError error={errors.email?.message} />
         </div>
         <div>
           <PasswordInput
@@ -53,7 +50,7 @@ const SignUpWithEmail = () => {
             label="Password"
             {...register("password")}
           />
-          <InputError error={errors.password} />
+          <InputError error={errors.password?.message} />
         </div>
         <div>
           <div className="flex items-center space-x-2">
@@ -72,14 +69,14 @@ const SignUpWithEmail = () => {
               By continuing, you agree to Finma's
               <Button className="mx-1 p-0" variant="link">
                 Terms of Use
-              </Button>{" "}
+              </Button>
               and
               <Button className="mx-1 p-0" variant="link">
                 Privacy Policy
               </Button>
             </Label>
           </div>
-          <InputError error={errors.isAgree} />
+          <InputError error={errors.isAgree?.message} />
         </div>
         <div className="flex justify-between">
           <Button type="submit" variant="default">
