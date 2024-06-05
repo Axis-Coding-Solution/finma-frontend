@@ -10,6 +10,7 @@ import MessageImg from   "./message-img.png";
 import MessageBoxIcon from   "./message-box-icon.png";
 import MessageIconEmoji from   "./message-icon-emoji.png";
 import SendMessageIcon from   "./send-message-icon.png";
+import Chart from   "./chart.png";
 
 
 export * from "./avatars";
@@ -24,5 +25,6 @@ export {
   MessageImg,
   MessageBoxIcon,
   MessageIconEmoji,
-  SendMessageIcon
+  SendMessageIcon,
+  Chart
 };

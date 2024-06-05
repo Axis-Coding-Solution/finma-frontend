@@ -10,5 +10,6 @@ import ArrowConnerRight from "./arrow-conner-right.svg"
 import ArrowConnerLeft from "./arrow-conner-left.svg"
 import GuageChart from "./guage-chart.svg"
 import VectorArrowDown from "./vector-arrow-down.svg"
+import SeeEye from "./see-eye.svg"
 
-export { ReactSVG, ViteSVG, PostBox, TickShield, EyeClose, EyeOpen, ArrowConnerRight, ArrowConnerLeft, GuageChart, VectorArrowDown };
+export { ReactSVG, ViteSVG, PostBox, TickShield, EyeClose, EyeOpen, ArrowConnerRight, ArrowConnerLeft, GuageChart, VectorArrowDown, SeeEye };
