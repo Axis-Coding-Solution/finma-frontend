@@ -32,7 +32,7 @@ const sidebarLinks = [
 function OnboardingLayout() {
   const { pathname } = useLocation();
   return (
-    <div className="grid grid-cols-12 lg:gap-5 gap-4">
+    <div className="rounded-lg grid grid-cols-12 lg:gap-5 gap-4">
       {/* Sidebar  */}
       <ul className="lg:col-span-3 col-span-12 text-foreground font-medium text-lg flex flex-col gap-4">
         {sidebarLinks.map((item, index) => (
