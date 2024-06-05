@@ -12,7 +12,7 @@ function ChatBoxPage() {
   const toggleAside = () => setShowAside(!showAside);
 
   return (
-    <div className="grid grid-cols-12 gap-5 lg:h-[82.5vh] h-auto overflow-hidden">
+    <div className="grid grid-cols-12 gap-5 h-[calc(100vh-112px)]  overflow-hidden">
       <div
         className={cn(
           "h-full overflow-auto lg:order-1 order-2",

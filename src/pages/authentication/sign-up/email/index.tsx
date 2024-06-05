@@ -68,15 +68,15 @@ const SignUpWithEmail = () => {
                 />
               )}
             />
-            <Label htmlFor="terms" checkbox>
-              By continuing, you agree too Finma's
-              <span className="underline ms-1 font-bold cursor-pointer">
+            <Label htmlFor="terms">
+              By continuing, you agree to Finma's
+              <Button className="mx-1 p-0" variant="link">
                 Terms of Use
-              </span>{" "}
+              </Button>{" "}
               and
-              <span className="underline ms-1 font-bold cursor-pointer">
+              <Button className="mx-1 p-0" variant="link">
                 Privacy Policy
-              </span>
+              </Button>
             </Label>
           </div>
           <InputError error={errors.isAgree} />

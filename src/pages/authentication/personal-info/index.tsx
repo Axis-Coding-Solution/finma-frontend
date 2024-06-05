@@ -9,10 +9,11 @@ import {
 import { MainHeading } from "@/pages/components/common";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { Label } from "@/components/ui/label";
 
 const PersonalInfo = () => {
   const professionalStatus = [
-    { label: "employed", value: "Employed(Full TIme job)" },
+    { label: "quitMyJob", value: "Contemplating to quit my job" },
     { label: "unEmployed", value: "I left my job already (Unemployed)" },
     { label: "business", value: "I own a business" },
     { label: "partTime", value: "I work part-time" },
@@ -21,7 +22,7 @@ const PersonalInfo = () => {
   ];
 
   const financialStatus = [
-    { label: "debtFree", value: "I am debt free" },
+    // { label: "debtFree", value: "I am debt free" },
     { label: "mortgage", value: "I pay a mortgage" },
     { label: "technicalSupport", value: "I receive technical support" },
     { label: "saveMoney", value: "I am able to save money" },
@@ -30,63 +31,77 @@ const PersonalInfo = () => {
   ];
 
   const familyStatus = [
-    { label: "single", value: "I am single" },
+    // { label: "single", value: "I am single" },
     { label: "relationship", value: "I am in a relationship" },
     { label: "kids", value: "I have kids" },
     { label: "other", value: "Other" },
   ];
   return (
-    <div className="flex flex-col gap-4 h-auto">
+    <div className="flex flex-col gap-6">
       <MainHeading
         heading="Almost there..."
         paragraph="Please provide your personal data to help us understand you better :)"
       />
-      <Select>
-        <SelectTrigger>
-          <SelectValue placeholder="i live in" />
-        </SelectTrigger>
-        <SelectContent side="bottom">
-          {countriesOptions.map((country) => (
-            <SelectItem key={country.value} value={country.value}>
-              {country.label}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
+      <div className="flex flex-col gap-2">
+        <Label>I Live in</Label>
+        <Select>
+          <SelectTrigger>
+            <SelectValue placeholder="i live in" />
+          </SelectTrigger>
+          <SelectContent side="bottom">
+            {countriesOptions.map((country) => (
+              <SelectItem key={country.value} value={country.value}>
+                {country.label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
 
-      <Select>
-        <SelectTrigger>
-          <SelectValue placeholder="My professional status" />
-        </SelectTrigger>
-        <SelectContent>
-          {professionalStatus.map((item) => (
-            <SelectItem value={item.label}>{item.value}</SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
-      <Select>
-        <SelectTrigger>
-          <SelectValue placeholder="My Financial status" />
-        </SelectTrigger>
-        <SelectContent>
-          {financialStatus.map((item) => (
-            <SelectItem value={item.label}>{item.value}</SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
-      <Select>
-        <SelectTrigger>
-          <SelectValue placeholder="My family status" />
-        </SelectTrigger>
-        <SelectContent>
-          {familyStatus.map((item) => (
-            <SelectItem value={item.label}>{item.value}</SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
-      <div>
-        <Link to="/auth/login">
-          <Button>Continue</Button>
+      <div className="flex flex-col gap-2">
+        <Label>My professional status</Label>
+        <Select>
+          <SelectTrigger>
+            <SelectValue placeholder="My professional status" />
+          </SelectTrigger>
+          <SelectContent>
+            {professionalStatus.map((item) => (
+              <SelectItem value={item.label}>{item.value}</SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+
+      <div className="flex flex-col gap-2">
+        <Label>My financial status</Label>
+        <Select>
+          <SelectTrigger>
+            <SelectValue placeholder="My Financial status" />
+          </SelectTrigger>
+          <SelectContent>
+            {financialStatus.map((item) => (
+              <SelectItem value={item.label}>{item.value}</SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+
+      <div className="flex flex-col gap-2">
+        <Label>My family status</Label>
+        <Select>
+          <SelectTrigger>
+            <SelectValue placeholder="My family status" />
+          </SelectTrigger>
+          <SelectContent>
+            {familyStatus.map((item) => (
+              <SelectItem value={item.label}>{item.value}</SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+      <div className="text-end">
+        <Link to="/dashboard/overview">
+          <Button>Go to Dashboard</Button>
         </Link>
       </div>
     </div>
