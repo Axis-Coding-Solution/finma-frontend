@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { useDispatch, useSelector, useStore } from "react-redux";
 import {
   useNavigation,
   useLocation,
@@ -20,11 +19,6 @@ export const useAppState = useState;
 export const useAppUseEffect = useEffect;
 export const useAppMemo = useMemo;
 export const useAppCallback = useCallback;
-
-// ** redux hooks
-export const useAppStore = useStore;
-export const useAppSelector = useSelector;
-export const useAppDispatch = useDispatch;
 
 // ** we can add our own hooks here too.
 export { useAuth } from "./use-auth";
