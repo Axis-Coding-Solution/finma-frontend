@@ -13,6 +13,20 @@ export const getAuthFromStorage = () => {
   }
 };
 
+export const saveUserToLocalStorage = ({
+  user,
+  token,
+}: {
+  user: any;
+  token: string;
+}) => {
+  if (typeof window !== "undefined") {
+    localStorage.setItem("user", JSON.stringify(user));
+    localStorage.setItem("token", token);
+  }
+  return;
+};
+
 export const successToast = (message: string) => toast.success(message);
 export const errorToast = (message: string | null | undefined) =>
   toast.error(message ?? "Runtime Error!");

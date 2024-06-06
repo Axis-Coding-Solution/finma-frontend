@@ -1,11 +1,7 @@
-// import { lazy } from 'react';
-
 import { Button } from "@/components/ui/button";
-import { GoogleIcon, MessageIcon } from "@/assets/images/index";
 import { Link } from "react-router-dom";
 import { MainHeading } from "@/pages/components/common";
-
-// const ArrowPic = lazy(() => import("@/assets/images/arrow-pic.png"));
+import { GoogleIcon, MessageIcon } from "@/assets/images/index";
 
 const SignUp = () => {
   return (
@@ -17,14 +13,14 @@ const SignUp = () => {
       />
       <div className=" w-full lg:w-1/2 flex flex-col gap-4">
         <div className="">
-          <Link to="/auth/sign-up/google" >
+          <Link to="/auth/sign-up/google">
             <Button variant="default" size="lg" className="w-full">
               <img src={GoogleIcon} className="w-5 h-5" />
               <span>Sign Up With Google</span>
             </Button>
           </Link>
         </div>
-        <Link to="/auth/sign-up/email" >
+        <Link to="/auth/sign-up/email">
           <Button variant="outline" size="lg" className="w-full">
             <img src={MessageIcon} className="w-5 h-5" />
             <span>Sign Up With email</span>
