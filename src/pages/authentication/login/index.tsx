@@ -12,10 +12,12 @@ import { InputError } from "@/components/ui/input-error";
 import { useMutation } from "@tanstack/react-query";
 import { loginApi } from "@/api/http";
 import { errorToast, successToast } from "@/utils/index";
+import { apiErrorHandler } from "@/api/helpers";
 
 const Login = () => {
   const loginMutation = useMutation({
     mutationFn: loginApi,
+    onError: apiErrorHandler,
   });
 
   const {
@@ -32,8 +34,7 @@ const Login = () => {
       const response = await loginMutation.mutateAsync(data);
       successToast(response.message);
     } catch (error) {
-      errorToast(JSON.stringify(error));
-      // console.log(error);
+      // errorToast(error.message);
     }
   };
 
@@ -42,7 +43,7 @@ const Login = () => {
       <MainHeading heading="Login" paragraph="Welcome back to FimnaAI!" />
       <form onSubmit={handleSubmit(onSubmitHandler)}>
         <div>
-          <Label htmlFor="emailAddress">Email Address</Label>
+          <Label htmlFor="email">Email Address</Label>
           <Input
             type="email"
             {...register("email")}
@@ -66,11 +67,11 @@ const Login = () => {
           </Link>
         </div>
         <div className="flex flex-col items-center md:flex-row justify-between gap-10 ">
-          {/* <Link to="/dashboard/overview"> */}
-          <Button type="submit" variant="default" size="lg">
-            Log In
-          </Button>
-          {/* </Link> */}
+          <Link to="/dashboard/overview">
+            <Button type="button" variant="default" size="lg">
+              Log In
+            </Button>
+          </Link>
           <span className="items-center">
             Don’t have an account?
             <Link
