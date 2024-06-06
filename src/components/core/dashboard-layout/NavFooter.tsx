@@ -18,10 +18,10 @@ export const NavFooter = () => {
       Settings
     </Link>
     <Link
-      to="/dashboard/about"
+      to="/dashboard/faq"
       className={cn(
         "flex items-center gap-5 rounded-lg px-4 py-3 text-foreground transition hover:bg-success/10 hover:text-success",
-        pathname === "/dashboard/about" && "bg-success/10 text-success"
+        pathname === "/dashboard/faq" && "bg-success/10 text-success"
       )}
     >
       <Rocket className="h-6 w-6" />

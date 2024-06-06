@@ -6,7 +6,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { MainHeading } from "@/pages/components/common";
 import { PasswordInput } from "@/components/ui/password-input";
 import { Controller, useForm } from "react-hook-form";
-import { yupResolver } from "@/utils/constants";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { signUpInitialValues } from "@/utils/initial-values";
 import { signUpSchema } from "@/utils/validation-schemas";
 import { InputError } from "@/components/ui/input-error";
@@ -72,7 +72,7 @@ const SignUpWithEmail = () => {
               By continuing, you agree to Finma's
               <Button className="mx-1 p-0" variant="link">
                 Terms of Use
-              </Button>{" "}
+              </Button>
               and
               <Button className="mx-1 p-0" variant="link">
                 Privacy Policy
