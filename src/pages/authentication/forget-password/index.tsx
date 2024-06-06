@@ -1,10 +1,44 @@
+import { forgetPasswordApi } from "@/api/http";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { InputError } from "@/components/ui/input-error";
 import { Label } from "@/components/ui/label";
 import { MainHeading } from "@/pages/components/common";
-import { Link } from "react-router-dom";
+import { errorToast, successToast } from "@/utils";
+import { FORM_MODE, yupResolver } from "@/utils/constants";
+import { forgetPasswordInitialValues } from "@/utils/initial-values";
+import { forgetPasswordSchema } from "@/utils/validation-schemas";
+import { useMutation } from "@tanstack/react-query";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 const ForgetPassword = () => {
+  const navigate = useNavigate();
+  const forgetPasswordMutation = useMutation({
+    mutationFn: forgetPasswordApi,
+  });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    mode: FORM_MODE,
+    defaultValues: forgetPasswordInitialValues,
+    resolver: yupResolver(forgetPasswordSchema),
+  });
+
+  const onSubmitHandler = async (
+    values: typeof forgetPasswordInitialValues
+  ) => {
+    try {
+      const response = await forgetPasswordMutation.mutateAsync(values);
+      successToast(response.message);
+      navigate("completed", { replace: true });
+    } catch (error: any) {
+      errorToast(error.message);
+    }
+  };
+
   return (
     <>
       <MainHeading
@@ -13,22 +47,25 @@ const ForgetPassword = () => {
         password"
       />
       <div>
-        <Label  htmlFor="emailAddress">
-          Email Address
-        </Label>
+        <Label htmlFor="emailAddress">Email Address</Label>
         <Input
+          {...register("email")}
           type="email"
           id="email"
           placeholder="Enter your Email"
           className="mt-2"
         />
+        <InputError error={errors.email} />
       </div>
       <div>
-        <Link to="/auth/forget-password/completed">
-          <Button variant="secondary" size="lg">
-            Continue
-          </Button>
-        </Link>
+        <Button
+          variant="secondary"
+          size="lg"
+          disabled={isSubmitting}
+          onClick={handleSubmit(onSubmitHandler)}
+        >
+          Continue
+        </Button>
       </div>
     </>
   );

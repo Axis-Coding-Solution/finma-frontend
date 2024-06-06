@@ -1,5 +1,10 @@
 import { axiosAuthInstance } from "@/utils/axios";
-import { loginInitialValues } from "@/utils/initial-values";
+import {
+  forgetPasswordInitialValues,
+  loginInitialValues,
+  resetPasswordInitialValues,
+  signUpInitialValues,
+} from "@/utils/initial-values";
 import { apiErrorHandler } from "../helpers";
 
 const url = "/users";
@@ -14,9 +19,37 @@ export const loginApi = async (body: typeof loginInitialValues) => {
   }
 };
 
-export const signUpApi = async (body: typeof loginInitialValues) => {
+export const signUpApi = async (body: typeof signUpInitialValues) => {
   try {
     const res = await axiosAuthInstance.post(appendUrl("register"), body);
+    return res.data;
+  } catch (error: any) {
+    return Promise.reject(apiErrorHandler(error));
+  }
+};
+
+export const forgetPasswordApi = async (
+  body: typeof forgetPasswordInitialValues
+) => {
+  try {
+    const res = await axiosAuthInstance.post(
+      appendUrl("forget-password"),
+      body
+    );
+    return res.data;
+  } catch (error: any) {
+    return Promise.reject(apiErrorHandler(error));
+  }
+};
+
+export const resetPasswordApi = async (
+  body: typeof resetPasswordInitialValues
+) => {
+  try {
+    const res = await axiosAuthInstance.patch(
+      appendUrl("reset-password"),
+      body
+    );
     return res.data;
   } catch (error: any) {
     return Promise.reject(apiErrorHandler(error));

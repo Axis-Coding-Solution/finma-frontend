@@ -8,3 +8,14 @@ export const signUpInitialValues = {
   password: "",
   isAgree: false,
 };
+
+export const forgetPasswordInitialValues = {
+  email: "",
+};
+
+export const resetPasswordInitialValues = {
+  id: "",
+  token: "",
+  password: "",
+  confirmPassword: "",
+};

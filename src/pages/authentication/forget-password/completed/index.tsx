@@ -11,7 +11,7 @@ function ForgetPasswordCompleted() {
         heading="Change password"
         paragraph="An email has been sent. Please click the link when you get it"
       />
-      <Link title="Go to Login" to="/auth/reset-password">
+      <Link title="Go to Login" to="/auth/login">
         <Button>Log In</Button>
       </Link>
     </div>
