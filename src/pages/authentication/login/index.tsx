@@ -11,7 +11,7 @@ import { loginInitialValues } from "@/utils/initial-values";
 import { InputError } from "@/components/ui/input-error";
 import { useMutation } from "@tanstack/react-query";
 import { loginApi } from "@/api/http";
-import { errorToast, successToast } from "@/utils/index";
+import { successToast } from "@/utils/index";
 import { apiErrorHandler } from "@/api/helpers";
 
 const Login = () => {
