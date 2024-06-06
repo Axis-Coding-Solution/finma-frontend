@@ -1,4 +1,4 @@
-import AboutPage from "@/pages/dashboard/about";
+import FaqPage from "@/pages/dashboard/faq";
 import ChatBoxPage from "@/pages/dashboard/chats";
 import OverviewPage from "@/pages/dashboard/overview";
 
@@ -11,8 +11,8 @@ export default [
     },
   },
   {
-    element: <AboutPage />,
-    path: "/dashboard/about",
+    element: <FaqPage />,
+    path: "/dashboard/faq",
     meta: {
       layout: "dashboard",
     },

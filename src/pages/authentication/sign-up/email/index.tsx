@@ -19,7 +19,7 @@ const SignUpWithEmail = () => {
     formState: { errors },
   } = useForm({
     defaultValues: signUpInitialValues,
-    resolver: yupResolver(signUpSchema),
+    resolver: yupResolver(signUpSchema as any),
   });
 
   const onSubmitHandler = (data: typeof signUpInitialValues) => {

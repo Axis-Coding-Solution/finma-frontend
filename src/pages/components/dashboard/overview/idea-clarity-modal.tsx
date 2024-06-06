@@ -6,10 +6,7 @@ import {
   DialogTitle,
   DialogTrigger,
   DialogClose,
-  DialogFooter,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { SquarePen } from "lucide-react";
 import { EditIdeaClarityModal } from "./edit-idea-clarity-modal";
 import { Chart } from "@/assets/images";
