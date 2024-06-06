@@ -30,8 +30,10 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar } from "@/components/ui/avatar";
 import { userAvatar1Image } from "@/assets/images";
+import { useAuth } from "@/utils/hooks";
 
 export const AppHeader = () => {
+  const auth = useAuth();
   return (
     <header className="sticky w-full right-0  top-0 z-10 bg-background flex h-14 items-center lg:justify-end justify-between gap-7 border-b px-4 lg:h-16 lg:px-10 py-4">
       <Sheet>
@@ -108,13 +110,6 @@ export const AppHeader = () => {
         </SheetContent>
       </Sheet>
       <div className="flex gap-4 items-center">
-        {/* <div className=" text-sm text-muted-foreground flex gap-2 items-center w-full flex-1">
-      <span>Dashboard</span>
-      <span>/</span>
-      <span className="text-foreground font-semibold cursor-pointer hover:underline">
-        Overview
-      </span>
-    </div> */}
         <div className="hidden  bg-muted md:flex gap-3 items-center px-5 py-2 rounded-lg">
           <span>Public Status:</span>
           <span className="text-destructive font-semibold">
@@ -142,8 +137,8 @@ export const AppHeader = () => {
             <DropdownMenuItem>Settings</DropdownMenuItem>
             <DropdownMenuItem>Support</DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <Link to="/auth/login" className="w-full">Logout</Link>
+            <DropdownMenuItem onClick={auth?.handleLogout}>
+              Logout
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

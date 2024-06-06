@@ -11,7 +11,7 @@ import { loginInitialValues } from "@/utils/initial-values";
 import { InputError } from "@/components/ui/input-error";
 import { useMutation } from "@tanstack/react-query";
 import { loginApi } from "@/api/http";
-import { errorToast, saveUserToLocalStorage, successToast } from "@/utils";
+import { errorToast, successToast } from "@/utils";
 import { useAuth } from "@/utils/hooks";
 
 const Login = () => {
@@ -33,9 +33,7 @@ const Login = () => {
   const onSubmitHandler = async (data: typeof loginInitialValues) => {
     try {
       const response = await loginMutation.mutateAsync(data);
-      saveUserToLocalStorage(response.data);
-      auth?.setIsAuthenticated(true);
-      auth?.setUser(response.data.user);
+      auth?.handleLogin(response.data);
       successToast(response.message);
       navigate("/dashboard/overview", { replace: true });
     } catch (error: any) {

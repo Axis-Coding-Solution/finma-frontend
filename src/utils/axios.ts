@@ -33,12 +33,12 @@ axiosInstance.interceptors.request.use(
 
 const get = (url: string, config: AxiosRequestConfig) =>
   axiosInstance.get(url, config);
-const post = (url: string, data: Object, config: AxiosRequestConfig) =>
+const post = (url: string, data: Object, config?: AxiosRequestConfig) =>
   axiosInstance.post(url, data, config);
-const put = (url: string, data: Object, config: AxiosRequestConfig) =>
+const put = (url: string, data: Object, config?: AxiosRequestConfig) =>
   axiosInstance.put(url, data, config);
 const del = (url: string, data: Object) => axiosInstance.delete(url, data);
-const patch = (url: string, data: Object, config: AxiosRequestConfig) =>
+const patch = (url: string, data: Object, config?: AxiosRequestConfig) =>
   axiosInstance.patch(url, data, config);
 
 export { get, post, put, del, patch };

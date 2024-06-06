@@ -27,6 +27,14 @@ export const saveUserToLocalStorage = ({
   return;
 };
 
+export const removeUserFromLocalStorage = () => {
+  if (typeof window !== "undefined") {
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+  }
+  return;
+};
+
 export const successToast = (message: string) => toast.success(message);
 export const errorToast = (message: string | null | undefined) =>
   toast.error(message ?? "Runtime Error!");

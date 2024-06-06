@@ -2,6 +2,7 @@
 import countriesList from "./countries";
 export { object, string, number, boolean, array, ref } from "yup";
 export { yupResolver } from "@hookform/resolvers/yup";
+export const FORM_MODE = "onChange";
 
 const countriesOptions = countriesList.map((country) => ({
   value: country.code.toLowerCase(),
