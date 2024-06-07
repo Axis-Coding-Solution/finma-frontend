@@ -19,6 +19,15 @@ export const loginApi = async (body: typeof loginInitialValues) => {
   }
 };
 
+export const getSignUpWithGoogle = async () => {
+  try {
+    const res = await axiosAuthInstance.get(appendUrl("register/google"));
+    return res.data;
+  } catch (error: any) {
+    return Promise.reject(apiErrorHandler(error));
+  }
+};
+
 export const signUpApi = async (body: typeof signUpInitialValues) => {
   try {
     const res = await axiosAuthInstance.post(appendUrl("register"), body);

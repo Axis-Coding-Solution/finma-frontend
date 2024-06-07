@@ -1,8 +1,14 @@
+import { getSignUpWithGoogle } from "@/api/http";
+import { useQuery } from "@tanstack/react-query";
 
 const SignUpWithGoogle = () => {
-  return (
-    <div>SignUpWithGoogle</div>
-  )
-}
+  const { data } = useQuery({
+    queryKey: ["getSignUpWithGoogle"],
+    queryFn: getSignUpWithGoogle,
+  });
 
-export default SignUpWithGoogle
+  console.log(data);
+  return <div>SignUpWithGoogle</div>;
+};
+
+export default SignUpWithGoogle;
