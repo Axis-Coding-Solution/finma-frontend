@@ -26,3 +26,10 @@ export const resetPasswordSchema = object({
     .required()
     .oneOf([ref("password")], "Passwords must match!"),
 });
+
+export const personalInfo = object({
+  country:string().trim().label("Country").required(),
+  professionalStatus:string().trim().label("ProfessionalStatus").required(),  
+  financialStatus:string().trim().label("FinancialStatus").required(),  
+  familyStatus:string().trim().label("FamilyStatus").required(),  
+})

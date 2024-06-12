@@ -7,10 +7,47 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Textarea } from "@/components/ui/textarea";
-import { Typography } from "@/components/ui/typography";
+import { IdeaClarityField } from "./idea-clarity-field";
+import { useForm } from "react-hook-form";
+import { FORM_MODE } from "@/utils/constants";
+import { onboardingIdeaClarityInitialValues } from "@/utils/initial-values";
+
+const ideaClarityFields = [
+  {
+    title: "The Problem",
+    name: "problem",
+    detail:
+      "Do you have strong, credible evidence that the problem you are addressing exists and is significant?",
+  },
+  {
+    title: "Solution",
+    name: "solution",
+    detail:
+      "Has your solution been tested, and does it show clear evidence of effectively solving the problem?",
+  },
+  {
+    title: "Targeted audience",
+    name: "targetedAudience",
+    detail:
+      "Who is the specific group of people who are currently struggling with the problem your startup aims to solve?",
+  },
+  {
+    title: "Competitors",
+    name: "competitors",
+    detail:
+      "Who are your direct competitors, and what makes your solution stand out?",
+  },
+];
 
 export function EditIdeaClarityModal() {
+  const { handleSubmit, register, watch } = useForm({
+    mode: FORM_MODE,
+    defaultValues: onboardingIdeaClarityInitialValues,
+  });
+
+  const onSubmitHandler = (values: typeof onboardingIdeaClarityInitialValues) =>
+    console.log("form submitted!", values);
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -36,49 +73,37 @@ export function EditIdeaClarityModal() {
             Evaluation model answers
           </DialogTitle>
         </DialogHeader>
-        <div className="flex flex-col gap-10 px-4">
-          <div>
-            <Typography variant="h4">1. The Problem</Typography>
-            <Typography variant="p">
-              Do you have strong, credible evidence that the problem you are
-              addressing exists and is significant?
-            </Typography>
-            <p className="text-sm"></p>
-            <div className="mt-4">
-              <Textarea showIcon rows={6} />
-            </div>
+        <form
+          className="flex flex-col gap-10 px-4"
+          onSubmit={handleSubmit(onSubmitHandler)}
+        >
+          {ideaClarityFields.map((field, index) => {
+            const name = field.name as
+              | "problem"
+              | "solution"
+              | "targetedAudience"
+              | "competitors";
+            return (
+              <IdeaClarityField
+                key={index}
+                index={index + 1}
+                name={name}
+                register={register}
+                title={field.title}
+                value={watch(name)}
+                detail={field.detail}
+              />
+            );
+          })}
+          <div className=" flex justify-between items-center">
+            <Button type="button" variant="outline">
+              Discard changes
+            </Button>
+            <Button type="submit" variant="default">
+              Submit answers
+            </Button>
           </div>
-          <div>
-            <Typography variant="h4">2. Solution</Typography>
-            <Typography variant="p">
-              Has your solution been tested, and does it show clear evidence of
-              effectively solving the problem?
-            </Typography>
-            <div className="mt-4">
-              <Textarea showIcon rows={6} />
-            </div>
-          </div>
-          <div>
-            <Typography variant="h4">3. Targeted audience</Typography>
-            <Typography variant="p">
-              Who is the specific group of people who are currently struggling
-              with the problem your startup aims to solve?
-            </Typography>
-            <div className="mt-4">
-              <Textarea showIcon rows={6} />
-            </div>
-          </div>
-          <div>
-            <Typography variant="h4">4. Competitors</Typography>
-            <Typography variant="p">
-              Who are your direct competitors, and what makes your solution
-              stand out?
-            </Typography>
-            <div className="mt-4">
-              <Textarea showIcon rows={6} />
-            </div>
-          </div>
-        </div>
+        </form>
       </DialogContent>
     </Dialog>
   );

@@ -9,8 +9,8 @@ const typographyVariants = cva("text-foreground", {
       h3: "!text-2xl font-bold",
       h4: "!text-xl font-bold",
       h6: "!text-lg font-medium",
-      p: "!text-base font-base",
-      span: "!text-sm",
+      p: "!text-base font-normal",
+      span: "!text-sm font-normal",
     },
   },
   defaultVariants: {

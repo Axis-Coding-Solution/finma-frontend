@@ -22,7 +22,6 @@ const PersonalInfo = () => {
   ];
 
   const financialStatus = [
-    // { label: "debtFree", value: "I am debt free" },
     { label: "mortgage", value: "I pay a mortgage" },
     { label: "technicalSupport", value: "I receive technical support" },
     { label: "saveMoney", value: "I am able to save money" },
@@ -31,7 +30,6 @@ const PersonalInfo = () => {
   ];
 
   const familyStatus = [
-    // { label: "single", value: "I am single" },
     { label: "relationship", value: "I am in a relationship" },
     { label: "kids", value: "I have kids" },
     { label: "other", value: "Other" },
