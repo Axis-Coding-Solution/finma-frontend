@@ -31,7 +31,7 @@ axiosInstance.interceptors.request.use(
   (error: AxiosError): Promise<AxiosError> => Promise.reject(error)
 );
 
-const get = (url: string, config: AxiosRequestConfig) =>
+const get = (url: string, config?: AxiosRequestConfig) =>
   axiosInstance.get(url, config);
 const post = (url: string, data: Object, config?: AxiosRequestConfig) =>
   axiosInstance.post(url, data, config);

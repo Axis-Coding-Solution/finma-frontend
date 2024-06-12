@@ -1,4 +1,4 @@
-import { post } from "@/utils/axios";
+import { post, get, put } from "@/utils/axios";
 import { apiErrorHandler } from "../helpers";
 
 const url = "/onboarding";
@@ -8,6 +8,24 @@ export const saveIdeaClarityApi = async (body: any) => {
   try {
     const res = await post(appendUrl("idea-clarity"), body);
     return res.data;
+  } catch (error: any) {
+    return Promise.reject(apiErrorHandler(error));
+  }
+};
+
+export const getIdeaClarityByUserId = async () => {
+  try {
+    const res = await get(appendUrl("idea-clarity"));
+    return res.data;
+  } catch (error: any) {
+    return Promise.reject(apiErrorHandler(error));
+  }
+};
+export const updateIdeaClarity = async ({ id, ...body }: any) => {
+  try {
+    const res = await put(appendUrl(`idea-clarity/${id}`), body);
+    return res.data;
+    
   } catch (error: any) {
     return Promise.reject(apiErrorHandler(error));
   }
