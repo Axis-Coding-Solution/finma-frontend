@@ -25,8 +25,7 @@ export const updateIdeaClarity = async ({ id, ...body }: any) => {
   try {
     const res = await put(appendUrl(`idea-clarity/${id}`), body);
     return res.data;
-    
-  } catch (error: any) {
+    } catch (error: any) {
     return Promise.reject(apiErrorHandler(error));
   }
 };
