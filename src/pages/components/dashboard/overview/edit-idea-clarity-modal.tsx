@@ -11,6 +11,10 @@ import { IdeaClarityField } from "./idea-clarity-field";
 import { useForm } from "react-hook-form";
 import { FORM_MODE } from "@/utils/constants";
 import { onboardingIdeaClarityInitialValues } from "@/utils/initial-values";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { getIdeaClarityByUserId, updateIdeaClarity } from "@/api/http";
+import { useEffect } from "react";
+import { errorToast, successToast } from "@/utils";
 
 const ideaClarityFields = [
   {
@@ -40,13 +44,49 @@ const ideaClarityFields = [
 ];
 
 export function EditIdeaClarityModal() {
-  const { handleSubmit, register, watch } = useForm({
+  const { data } = useQuery({
+    queryFn: getIdeaClarityByUserId,
+    queryKey: ["onboarding/idea-clarity"],
+  });
+
+  const mutation = useMutation({
+    mutationFn: updateIdeaClarity,
+  });
+  const {
+    handleSubmit,
+    register,
+    watch,
+    reset,
+    formState: { isSubmitting },
+  } = useForm({
     mode: FORM_MODE,
     defaultValues: onboardingIdeaClarityInitialValues,
   });
 
-  const onSubmitHandler = (values: typeof onboardingIdeaClarityInitialValues) =>
-    console.log("form submitted!", values);
+  useEffect(() => {
+    if (typeof data == "object" && data.data) {
+      const updateValues = {
+        id: data?.data._id,
+        problem: data?.data.problem,
+        solution: data?.data.solution,
+        targetedAudience: data?.data.targetedAudience,
+        competitors: data?.data.competitors,
+      };
+      reset(updateValues);
+    }
+  }, [data]);
+
+  const onSubmitHandler = async (
+    values: typeof onboardingIdeaClarityInitialValues
+  ) => {
+    try {
+      const res = await mutation.mutateAsync(values);
+      successToast(res.message);
+    } catch (error: any) {
+      console.log("🚀 ~ EditIdeaClarityModal ~ error:", error)
+      errorToast(error.message);
+    }
+  };
 
   return (
     <Dialog>
@@ -96,10 +136,10 @@ export function EditIdeaClarityModal() {
             );
           })}
           <div className=" flex justify-between items-center">
-            <Button type="button" variant="outline">
+            <Button type="button" variant="outline" disabled={isSubmitting}>
               Discard changes
             </Button>
-            <Button type="submit" variant="default">
+            <Button type="submit" variant="default" disabled={isSubmitting}>
               Submit answers
             </Button>
           </div>

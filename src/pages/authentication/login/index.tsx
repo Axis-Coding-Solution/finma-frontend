@@ -63,11 +63,14 @@ const Login = () => {
             label="Password"
           />
           <InputError error={errors.password} />
-          <Link to="/auth/forget-password">
-            <Button variant="link" className="px-0 underline mt-2">
-              Forget Password?
-            </Button>
-          </Link>
+          <Button
+            to="/auth/forget-password"
+            tag={Link}
+            variant="link"
+            className="px-0 mt-2"
+          >
+            Forget Password?
+          </Button>
         </div>
         <div className="flex flex-col items-center md:flex-row justify-between gap-10 ">
           {/* <Link to="/dashboard/overview"> */}
@@ -81,14 +84,15 @@ const Login = () => {
           </Button>
           {/* </Link> */}
           <span className="items-center">
-            Don’t have an account?
-            <Link
-              role="button"
+            Don`t have an account?
+            <Button
               to="/auth/sign-up"
-              className="ms-1 font-bold underline"
+              tag={Link}
+              variant="link"
+              className="ms-1 px-0 mt-2"
             >
               Sign Up
-            </Link>
+            </Button>
           </span>
         </div>
       </form>
