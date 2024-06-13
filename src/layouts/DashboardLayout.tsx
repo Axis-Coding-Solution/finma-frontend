@@ -10,7 +10,7 @@ function DashboardLayout() {
       </div>
       <div className="2xl:col-span-10 lg:col-span-9 col-span-12 flex flex-col relative overflow-y-auto">
         <AppHeader />
-        <main className="container flex flex-1 flex-col gap-4  lg:gap-6 lg:p-6 p-4">
+        <main className="container flex flex-1 flex-col gap-4 lg:gap-6 lg:p-6 p-4">
           <Outlet />
         </main>
       </div>
