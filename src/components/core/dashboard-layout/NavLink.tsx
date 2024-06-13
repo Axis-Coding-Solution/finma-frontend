@@ -1,4 +1,4 @@
-import { CircleHelp, LayoutGridIcon } from "lucide-react";
+import { CircleHelp, Home, LayoutGridIcon, MessageSquareMore } from "lucide-react";
 
 import { Link, useLocation } from "react-router-dom";
 import { Avatar } from "@/components/ui/avatar";
@@ -37,6 +37,26 @@ export const NavLink = () => {
         >
           <CircleHelp className="h-6 w-6" />
           FAQ
+        </Link>
+        <Link
+          to="/dashboard/faq"
+          className={cn(
+            "flex items-center gap-5 rounded-lg px-4 py-3 text-foreground transition hover:bg-success/10 hover:text-success",
+            pathname === "/dashboard/faq" && "bg-success/10 text-success"
+          )}
+        >
+          <MessageSquareMore className="h-6 w-6" />
+          Chat
+        </Link>
+        <Link
+          to="/dashboard/faq"
+          className={cn(
+            "flex items-center gap-5 rounded-lg px-4 py-3 text-foreground transition hover:bg-success/10 hover:text-success",
+            pathname === "/dashboard/faq" && "bg-success/10 text-success"
+          )}
+        >
+          <Home className="h-6 w-6" />
+          Feed
         </Link>
       </div>
       <div className="text-foreground mt-4">
