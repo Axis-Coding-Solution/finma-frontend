@@ -109,7 +109,7 @@ export const ChatSidebar = () => {
         <Button variant="outline" size='sm'>
           Innovators
         </Button>
-        <DeleteChatModal/>
+      
       </div>
       <div className="mt-4">
         <Input type="text" />

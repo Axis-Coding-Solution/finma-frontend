@@ -7,15 +7,18 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Trash } from "lucide-react";
+import { Trash, Trash2 } from "lucide-react";
 
 export const DeleteChatModal = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline-info" className="flex items-center gap-10">
-          <span>Medium Risk</span>
-        </Button>
+        <div className="flex justify-start items-center gap-2 cursor-pointer px-1">
+          <div className=" ">
+            <Trash2 size={14} />
+          </div>
+          <h1 className="text-sm">Delete Chat</h1>
+        </div>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
@@ -44,9 +47,11 @@ export const DeleteChatModal = () => {
           </div>
         </div>
         <div className="flex items-center justify-between gap-4">
-          <Button variant="outline" className="w-full">Cancel</Button>
+          <Button variant="outline" className="w-full">
+            Cancel
+          </Button>
           <Button variant="destructive" className="w-full">
-            <Trash size="20"/>
+            <Trash size="20" />
             Delete
           </Button>
         </div>

@@ -1,4 +1,9 @@
-import { CircleHelp, Home, LayoutGridIcon, MessageSquareMore } from "lucide-react";
+import {
+  CircleHelp,
+  Home,
+  LayoutGridIcon,
+  MessageSquareMore,
+} from "lucide-react";
 
 import { Link, useLocation } from "react-router-dom";
 import { Avatar } from "@/components/ui/avatar";
@@ -64,7 +69,7 @@ export const NavLink = () => {
           Connect with experts
         </h6>
         <Link
-          to="/dashboard/chat/Salama M./"
+          to="/dashboard/chat/Salama M./Venture analyst"
           className={cn(
             "px-4 py-3 flex gap-5 rounded-lg tran items-center hover:bg-success/10 hover:text-success",
             pathname === "/dashboard/chat/salama" &&
@@ -72,7 +77,11 @@ export const NavLink = () => {
           )}
         >
           <Avatar image={userAvatar2Image} size="lg" active />
+          <div className="flex flex-col">
+
           <span>Salama M.</span>
+          <span className="text-muted-foreground text-sm">Venture Analyst</span>
+          </div>
         </Link>
         <Link
           to="/dashboard/chat/Jim Smith./Venture Analyst"

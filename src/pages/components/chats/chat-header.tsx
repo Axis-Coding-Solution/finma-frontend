@@ -26,18 +26,19 @@ export function ChatHeader() {
   const avatarImage = expertImages[expert!];
 
   return (
-    <div className="py-4 flex gap-4 text-2xl sticky top-0 left-0 w-full font-bold rounded-lg bg-accent p-2">
-      <ProfileInfo
-        image={avatarImage}
-        name={expert}
-        description={description}
-      />
-      <div className="flex flex-col">
-        <div className="flex gap-8">
-          <Ratings />
-          <HeaderOptions />
-        </div>
+    <div className="py-4 justify-between flex gap-2 text-2xl sticky top-0 left-0 w-full font-bold rounded-lg bg-accent p-2">
+      <div className="flex gap-5">
+        <ProfileInfo
+          image={avatarImage}
+          name={expert}
+          description={description}
+        />
+
+        <Ratings className="" />
       </div>
+
+      <HeaderOptions />
     </div>
+    //
   );
 }
