@@ -1,15 +1,9 @@
-import {
-  ChatContent,
-  ChatHeader,
-} from "@/pages/components/chats";
+import { ChatContent, ChatHeader } from "@/pages/components/chats";
 import { ChatSidebar } from "@/pages/components/chats/chat-sidebar";
 import { MainHeading } from "@/pages/components/common";
 
 function ChatBoxPage() {
-
-
   return (
-    
     <div className="grid grid-cols-12 gap-6 h-[calc(100vh-112px)]  overflow-hidden">
       <div className="col-span-12">
         <MainHeading heading="Chats" />
