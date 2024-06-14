@@ -4,7 +4,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Ellipsis, FilePenLine, Info} from "lucide-react";
+import { Ellipsis, FilePenLine, Info } from "lucide-react";
 import { DeleteChatModal } from "../delete-chat-modal";
 import { EditChatModal } from "../edit-chat-modal";
 
@@ -16,17 +16,21 @@ const HeaderOptions = () => {
           <DropdownMenuTrigger className="focus-visible:outline-none">
             <Ellipsis />
           </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            <DropdownMenuItem className="gap-2 px-1">
-              <FilePenLine size={14} />
-              Edit
+          <DropdownMenuContent className="flex flex-col gap-2 ">
+            <DropdownMenuItem>
+              <div className="flex items-center gap-2">
+                <FilePenLine size={14} />
+                Edit
+              </div>
             </DropdownMenuItem>
-            <DropdownMenuItem className="gap-2 px-1">
-              <Info size={14} />
-              Info
+            <DropdownMenuItem>
+              <div className="flex items-center gap-2" >
+                <Info size={14} />
+                Info
+              </div>
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
-              <EditChatModal/>
+              <EditChatModal />
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
               <DeleteChatModal />
