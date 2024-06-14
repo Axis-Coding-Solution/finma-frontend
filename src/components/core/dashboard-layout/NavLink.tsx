@@ -64,7 +64,7 @@ export const NavLink = () => {
           Connect with experts
         </h6>
         <Link
-          to="/dashboard/chat/salama"
+          to="/dashboard/chat/Salama M./"
           className={cn(
             "px-4 py-3 flex gap-5 rounded-lg tran items-center hover:bg-success/10 hover:text-success",
             pathname === "/dashboard/chat/salama" &&
@@ -75,7 +75,7 @@ export const NavLink = () => {
           <span>Salama M.</span>
         </Link>
         <Link
-          to="/dashboard/chat/jim"
+          to="/dashboard/chat/Jim Smith./Venture Analyst"
           className={cn(
             "px-4 py-3 flex gap-5 rounded-lg tran items-center hover:bg-success/10 hover:text-success",
             pathname === "/dashboard/chat/jim" && "bg-success/10 text-success"
@@ -90,7 +90,7 @@ export const NavLink = () => {
           </div>
         </Link>
         <Link
-          to="/dashboard/chat/vivan"
+          to="/dashboard/chat/Vivan Violet/Market Intelligence"
           className={cn(
             "px-4 py-3 flex gap-5 rounded-lg tran items-center hover:bg-success/10 hover:text-success",
             pathname === "/dashboard/chat/vivan" && "bg-success/10 text-success"
@@ -105,7 +105,7 @@ export const NavLink = () => {
           </div>
         </Link>
         <Link
-          to="/dashboard/chat/jackie"
+          to="/dashboard/chat/Jackie Jess/Business Strategist"
           className={cn(
             "px-4 py-3 flex gap-5 rounded-lg tran items-center hover:bg-success/10 hover:text-success",
             pathname === "/dashboard/chat/jackie" &&

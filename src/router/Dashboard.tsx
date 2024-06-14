@@ -19,7 +19,7 @@ export default [
   },
   {
     element: <ChatBoxPage />,
-    path: "/dashboard/chat/:expert",
+    path: "/dashboard/chat/:expert/:description?",
     meta: {
       layout: "dashboard",
     },

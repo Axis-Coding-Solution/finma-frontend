@@ -40,7 +40,7 @@ function ChatBoxPage() {
       <div className="col-span-4 h-full overflow-auto">
         <ChatSidebar />
       </div>
-      <div className="col-span-8 h-full overflow-auto">
+      <div className="col-span-8 h-full flex flex-col gap-2 overflow-auto">
         <ChatHeader />
         <ChatContent />
       </div>
