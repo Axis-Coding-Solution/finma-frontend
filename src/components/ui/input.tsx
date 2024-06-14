@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import { cn } from "@/utils";
+import { FileSearch } from "lucide-react";
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {}
@@ -8,6 +9,7 @@ export interface InputProps
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, ...props }, ref) => {
     return (
+      <div className="w-full">
       <input
         type={type}
         className={cn(
@@ -15,8 +17,10 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           className
         )}
         ref={ref}
+        placeholder="Search"
         {...props}
       />
+      </div>
     );
   }
 );
