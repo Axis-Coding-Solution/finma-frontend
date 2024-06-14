@@ -37,10 +37,10 @@ function ChatBoxPage() {
       <div className="col-span-12">
         <MainHeading heading="Chats"/>
       </div>
-      <div className="col-span-4 h-full overflow-auto">
+      <div className="xl:col-span-4 lg:col-span-5 col-span-12 h-full overflow-auto">
         <ChatSidebar />
       </div>
-      <div className="col-span-8 h-full overflow-auto">
+      <div className="xl:col-span-8 lg:col-span-7 col-span-12 h-full overflow-auto">
         <ChatHeader />
         <ChatContent />
       </div>
