@@ -1,86 +1,94 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ChatContact } from "./chat-contact";
+import {
+  userAvatar1Image,
+  userAvatar2Image,
+  userAvatar3Image,
+  userAvatar4Image,
+  userAvatar5Image,
+} from "@/assets/images";
+import { DeleteChatModal } from "./delete-chat-modal";
 
 const contacts = [
   {
-    avatar: "https://example.com/avatar1.jpg",
+    avatar: userAvatar1Image,
     name: "John Doe",
     designation: "Software Engineer",
     message: "Hey, how are you doing?",
-    lastReceived: "2024-06-12T10:30:00Z",
+    lastReceived: "5 min",
     newCount: 2,
   },
   {
-    avatar: "https://example.com/avatar2.jpg",
+    avatar: userAvatar2Image,
     name: "Jane Smith",
     designation: "Project Manager",
     message: "Can you review the latest document?",
-    lastReceived: "2024-06-12T14:45:00Z",
+    lastReceived: "10 min",
     newCount: 5,
   },
   {
-    avatar: "https://example.com/avatar3.jpg",
+    avatar: userAvatar3Image,
     name: "Alice Johnson",
     designation: "UI/UX Designer",
     message: "The new design draft is ready.",
-    lastReceived: "2024-06-11T09:20:00Z",
+    lastReceived: "30 min",
     newCount: 1,
   },
   {
-    avatar: "https://example.com/avatar4.jpg",
+    avatar: userAvatar4Image,
     name: "Bob Brown",
     designation: "Data Scientist",
     message: "Can you look at the new dataset?",
-    lastReceived: "2024-06-10T16:30:00Z",
+    lastReceived: "1 day",
     newCount: 4,
   },
   {
-    avatar: "https://example.com/avatar5.jpg",
+    avatar: userAvatar5Image,
     name: "Carol White",
     designation: "HR Manager",
     message: "Don't forget the meeting tomorrow.",
-    lastReceived: "2024-06-12T11:15:00Z",
+    lastReceived: "2 days",
     newCount: 0,
   },
   {
-    avatar: "https://example.com/avatar6.jpg",
+    avatar: userAvatar1Image,
     name: "David Wilson",
     designation: "Marketing Specialist",
     message: "Here's the latest campaign report.",
-    lastReceived: "2024-06-11T13:40:00Z",
+    lastReceived: "1 month",
     newCount: 3,
   },
   {
-    avatar: "https://example.com/avatar7.jpg",
+    avatar: userAvatar2Image,
     name: "Emma Davis",
     designation: "Business Analyst",
     message: "The analysis report is complete.",
-    lastReceived: "2024-06-09T12:25:00Z",
+    lastReceived: "3 month",
     newCount: 6,
   },
   {
-    avatar: "https://example.com/avatar8.jpg",
+    avatar: userAvatar3Image,
     name: "Frank Miller",
     designation: "Product Manager",
     message: "We need to discuss the product roadmap.",
-    lastReceived: "2024-06-12T17:50:00Z",
+    lastReceived: "4 month",
     newCount: 1,
   },
   {
-    avatar: "https://example.com/avatar9.jpg",
+    avatar: userAvatar4Image,
     name: "Grace Lee",
-    designation: "QA Engineer",
+    designation: "1 year",
     message: "Testing has been completed successfully.",
-    lastReceived: "2024-06-10T08:15:00Z",
+    lastReceived: "5 min",
     newCount: 0,
   },
   {
-    avatar: "https://example.com/avatar10.jpg",
+    avatar: userAvatar5Image,
     name: "Henry Martinez",
     designation: "DevOps Engineer",
     message: "The deployment pipeline is ready.",
-    lastReceived: "2024-06-12T19:05:00Z",
+    lastReceived: "10 min",
     newCount: 7,
   },
 ];
@@ -95,12 +103,13 @@ export const ChatSidebar = () => {
         >
           All
         </Button>
-        <Button variant="outline" className="px-3 border-foreground">
+        <Button variant="outline" size='sm'>
           Experts
         </Button>
-        <Button variant="outline" className="px-3 border-foreground">
+        <Button variant="outline" size='sm'>
           Innovators
         </Button>
+        <DeleteChatModal/>
       </div>
       <div className="mt-4">
         <Input type="text" />
