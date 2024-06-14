@@ -1,7 +1,6 @@
 import * as React from "react";
 
 import { cn } from "@/utils";
-import { FileSearch } from "lucide-react";
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {}

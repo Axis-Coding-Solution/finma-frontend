@@ -2,7 +2,7 @@ import { CgSpinner } from "@/assets/icons";
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { ArrowConnerRight, VectorArrowDown } from "@/assets/svgs";
+import { VectorArrowDown } from "@/assets/svgs";
 import { Chart } from "@/assets/images";
 
 function RiskScorePage() {

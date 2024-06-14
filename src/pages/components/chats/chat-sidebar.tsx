@@ -8,7 +8,6 @@ import {
   userAvatar4Image,
   userAvatar5Image,
 } from "@/assets/images";
-import { DeleteChatModal } from "./delete-chat-modal";
 
 const contacts = [
   {
