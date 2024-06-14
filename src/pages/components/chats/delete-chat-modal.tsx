@@ -11,9 +11,9 @@ import { Trash, Trash2 } from "lucide-react";
 
 export const DeleteChatModal = () => {
   return (
-    <Dialog>
+    <Dialog >
       <DialogTrigger asChild>
-        <div className="flex justify-start items-center gap-2 cursor-pointer px-1">
+        <div className="flex justify-start items-center gap-2 cursor-pointer px-1 mt-2 ">
           <div className=" ">
             <Trash2 size={14} />
           </div>
