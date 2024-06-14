@@ -37,6 +37,25 @@ export const signUpApi = async (body: typeof signUpInitialValues) => {
   }
 };
 
+export const signUpWithGoogle = async () => {
+  try {
+    const res = await axiosAuthInstance.get(appendUrl("register/google"));
+    return res.data;
+  } catch (error: any) {
+    return Promise.reject(apiErrorHandler(error));
+  }
+};
+export const signUpWithGoogleCallback = async () => {
+  try {
+    const res = await axiosAuthInstance.get(
+      appendUrl("register/google/callback")
+    );
+    return res.data;
+  } catch (error: any) {
+    return Promise.reject(apiErrorHandler(error));
+  }
+};
+
 export const forgetPasswordApi = async (
   body: typeof forgetPasswordInitialValues
 ) => {
