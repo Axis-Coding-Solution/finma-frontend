@@ -44,20 +44,20 @@ export const NavLink = () => {
           FAQ
         </Link>
         <Link
-          to="/dashboard/faq"
+          to="/dashboard/chat"
           className={cn(
             "flex items-center gap-5 rounded-lg px-4 py-3 text-foreground transition hover:bg-success/10 hover:text-success",
-            pathname === "/dashboard/faq" && "bg-success/10 text-success"
+            pathname === "/dashboard/chat" && "bg-success/10 text-success"
           )}
         >
           <MessageSquareMore className="h-6 w-6" />
           Chat
         </Link>
         <Link
-          to="/dashboard/faq"
+          to="/dashboard/feed"
           className={cn(
             "flex items-center gap-5 rounded-lg px-4 py-3 text-foreground transition hover:bg-success/10 hover:text-success",
-            pathname === "/dashboard/faq" && "bg-success/10 text-success"
+            pathname === "/dashboard/feed" && "bg-success/10 text-success"
           )}
         >
           <Home className="h-6 w-6" />

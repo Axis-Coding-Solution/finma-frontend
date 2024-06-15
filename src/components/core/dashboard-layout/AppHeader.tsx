@@ -11,6 +11,7 @@ import {
   Package2,
   SearchIcon,
   ShoppingCart,
+  SquarePen,
   Users,
 } from "lucide-react";
 import {
@@ -31,6 +32,7 @@ import {
 import { Avatar } from "@/components/ui/avatar";
 import { userAvatar1Image } from "@/assets/images";
 import { useAuth } from "@/utils/hooks";
+import StatusModal from "./StatusModal";
 
 export const AppHeader = () => {
   const auth = useAuth();
@@ -112,6 +114,9 @@ export const AppHeader = () => {
       <div className="flex gap-4 items-center">
         <div className="hidden  bg-muted md:flex gap-3 items-center px-5 py-2 rounded-lg">
           <span>Public Status:</span>
+          <span>
+            <StatusModal />
+          </span>
           <span className="text-destructive font-semibold">
             😢 Stuck with 'idea clarity' score
           </span>
