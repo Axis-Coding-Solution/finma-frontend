@@ -1,11 +1,9 @@
 import { lazy } from "react";
 
 import AuthLayout from "@/layouts/AuthLayout";
-import SignUpWithGooglePage from "@/pages/authentication/sign-up/google";
 import SignUpWithEmailPage from "@/pages/authentication/sign-up/email";
 import ResetPasswordCompletedPage from "@/pages/authentication/reset-password/completed";
 import ForgetPasswordCompleted from "@/pages/authentication/forget-password/completed";
-import PersonalInfoPage from "@/pages/authentication/personal-info";
 
 const ForgetPasswordPage = lazy(
   () => import("@/pages/authentication/forget-password")
@@ -34,10 +32,6 @@ export default [
         path: "sign-up/email",
       },
       {
-        element: <SignUpWithGooglePage />,
-        path: "sign-up/google",
-      },
-      {
         element: <ResetPasswordPage />,
         path: "reset-password",
       },
@@ -52,10 +46,6 @@ export default [
       {
         element: <ResetPasswordCompletedPage />,
         path: "reset-password/completed",
-      },
-      {
-        element: <PersonalInfoPage />,
-        path: "personal-info",
       },
     ],
     meta: {

@@ -33,9 +33,10 @@ const Login = () => {
   const onSubmitHandler = async (data: typeof loginInitialValues) => {
     try {
       const response = await loginMutation.mutateAsync(data);
-      auth?.handleLogin(response.data);
+      const { token, user, redirectUrl } = response.data;
+      auth?.handleLogin({ token, user });
       successToast(response.message);
-      navigate("/dashboard/overview", { replace: true });
+      navigate(redirectUrl, { replace: true });
     } catch (error: any) {
       errorToast(error.message);
     }

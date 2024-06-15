@@ -5,7 +5,7 @@ export { yupResolver } from "@hookform/resolvers/yup";
 export const FORM_MODE = "onChange";
 
 const countriesOptions = countriesList.map((country) => ({
-  value: country.code.toLowerCase(),
+  value: country.name.toLowerCase().replaceAll(" ", "_"),
   label: country.name,
 }));
 

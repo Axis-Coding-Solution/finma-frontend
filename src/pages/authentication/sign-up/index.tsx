@@ -1,15 +1,27 @@
+import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { MainHeading } from "@/pages/components/common";
 import { GoogleIcon, MessageIcon } from "@/assets/images/index";
 import { useMutation } from "@tanstack/react-query";
-import { signUpWithGoogle } from "@/api/http";
+import { signUpWithGoogleApi } from "@/api/http";
 import { errorToast } from "@/utils";
 
 const SignUp = () => {
   const mutation = useMutation({
-    mutationFn: signUpWithGoogle,
+    mutationFn: signUpWithGoogleApi,
   });
+
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const errMsg = searchParams.get("errorMessage");
+
+  useEffect(() => {
+    if (errMsg) {
+      navigate("/auth/sign-up", { replace: true });
+      errorToast(errMsg);
+    }
+  }, []);
   const handleSignUpWithGoogle = async () => {
     try {
       const res = await mutation.mutateAsync();

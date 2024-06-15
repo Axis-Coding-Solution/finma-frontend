@@ -1,6 +1,10 @@
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { useAuth } from "@/utils/hooks";
-import React from "react";
-import { Navigate } from "react-router-dom";
+import { useEffect } from "react";
+
+const options = {
+  replace: true,
+};
 
 export const ProtectedRoutes = ({
   children,
@@ -8,9 +12,21 @@ export const ProtectedRoutes = ({
   children: React.ReactNode;
 }) => {
   const auth = useAuth();
+  const { pathname } = useLocation();
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
 
-  if (!auth?.isAuthenticated && !auth?.user)
-    return <Navigate to="/auth/login" replace />;
+  const token = searchParams.get("token");
+  const user = searchParams.get("user");
+
+  useEffect(() => {
+    if (token && user) {
+      auth?.handleLogin({ user: JSON.parse(user), token });
+      navigate(pathname, options);
+    }
+    if (!token && !user && !auth?.isAuthenticated && !auth?.user)
+      navigate("/auth/login", options);
+  }, [token, user, auth?.isAuthenticated, auth?.user]);
 
   return children;
 };

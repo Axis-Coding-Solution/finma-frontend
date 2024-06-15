@@ -45,12 +45,20 @@ function RiskScorePage() {
                   />
                 </div>
                 <div className="flex flex-col gap-4 mt-6">
-                  <Link to="/auth/personal-info">
-                    <Button className="sm:w-60 w-full" variant="default">
-                      See Why
-                    </Button>
-                  </Link>
-                  <Button className="sm:w-60 w-full" variant="outline">
+                  <Button
+                    to="/auth/sign-up"
+                    tag={Link}
+                    className="sm:w-60 w-full"
+                    variant="default"
+                  >
+                    See Why
+                  </Button>
+                  <Button
+                    tag={Link}
+                    className="sm:w-60 w-full"
+                    to="/auth/sign-up"
+                    variant="outline"
+                  >
                     Talk to an Expert
                   </Button>
                 </div>

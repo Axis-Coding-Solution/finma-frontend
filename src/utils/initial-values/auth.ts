@@ -20,9 +20,3 @@ export const resetPasswordInitialValues = {
   confirmPassword: "",
 };
 
-export const personalInfo = {
-  country: "",
-  professionalStatus:"",
-  financialStatus:"",
-  familyStatus:"",
-}

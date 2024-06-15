@@ -2,6 +2,7 @@ import { axiosAuthInstance } from "@/utils/axios";
 import {
   forgetPasswordInitialValues,
   loginInitialValues,
+  personalInformationInitialValues,
   resetPasswordInitialValues,
   signUpInitialValues,
 } from "@/utils/initial-values";
@@ -37,7 +38,7 @@ export const signUpApi = async (body: typeof signUpInitialValues) => {
   }
 };
 
-export const signUpWithGoogle = async () => {
+export const signUpWithGoogleApi = async () => {
   try {
     const res = await axiosAuthInstance.get(appendUrl("register/google"));
     return res.data;
@@ -45,7 +46,7 @@ export const signUpWithGoogle = async () => {
     return Promise.reject(apiErrorHandler(error));
   }
 };
-export const signUpWithGoogleCallback = async () => {
+export const signUpWithGoogleCallbackApi = async () => {
   try {
     const res = await axiosAuthInstance.get(
       appendUrl("register/google/callback")

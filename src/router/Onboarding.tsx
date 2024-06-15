@@ -8,11 +8,20 @@ import IdeaClarityTargetedAudiencePage from "@/pages/onboarding/idea-clarity/tar
 import { Navigate } from "react-router-dom";
 import IdeaClarityCompletedPage from "@/pages/onboarding/idea-clarity/completed";
 import RiskScorePage from "@/pages/onboarding/Risk-Score";
+import UserQuestionaryPage from "@/pages/onboarding/user-questionary";
 
 export default [
   {
     element: <StartOnboardingPage />,
     path: "/start-onboarding",
+    meta: {
+      layout: "blank",
+      isRestrictedRoute: true,
+    },
+  },
+  {
+    element: <UserQuestionaryPage />,
+    path: "/user-questionary",
     meta: {
       layout: "blank",
     },
@@ -22,6 +31,7 @@ export default [
     path: "/risk-score",
     meta: {
       layout: "blank",
+      isRestrictedRoute: true,
     },
   },
   {
@@ -65,6 +75,7 @@ export default [
     ],
     meta: {
       layout: "blank",
+      isRestrictedRoute: true,
     },
   },
 ];
