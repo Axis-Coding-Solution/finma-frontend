@@ -41,5 +41,4 @@ const HeaderOptions = () => {
     </div>
   );
 };
-
 export default HeaderOptions;
