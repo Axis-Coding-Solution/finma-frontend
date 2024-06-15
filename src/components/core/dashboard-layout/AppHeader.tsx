@@ -11,7 +11,6 @@ import {
   Package2,
   SearchIcon,
   ShoppingCart,
-  SquarePen,
   Users,
 } from "lucide-react";
 import {

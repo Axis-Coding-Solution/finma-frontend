@@ -2,7 +2,6 @@ import { axiosAuthInstance } from "@/utils/axios";
 import {
   forgetPasswordInitialValues,
   loginInitialValues,
-  personalInformationInitialValues,
   resetPasswordInitialValues,
   signUpInitialValues,
 } from "@/utils/initial-values";
