@@ -17,20 +17,15 @@ function IdeaClarityCompletedPage() {
   });
 
   const handleSaveIdeaClarity = async () => {
-    if (Object.values(formDataState.value).every((val) => val !== "")) {
-      localStorage.setItem("idea_clarity", JSON.stringify(formDataState.value));
-      successToast("Idea Clarity saved successfully!");
+    try {
+      const response = await ideaClarityMutation.mutateAsync(
+        formDataState.value
+      );
+      successToast(response.message);
       navigate("/risk-score");
-    } else {
-      errorToast("Please fill all the required steps!");
+    } catch (error: any) {
+      errorToast(error.message);
     }
-    // try {
-    //   const response = await ideaClarityMutation.mutateAsync(
-    //     formDataState.value
-    //   );
-    // } catch (error: any) {
-    //   errorToast(error.message);
-    // }
   };
 
   return (

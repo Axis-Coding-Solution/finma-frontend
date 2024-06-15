@@ -12,10 +12,12 @@ const baseURL = import.meta.env.VITE_BACKEND_URL;
 
 const axiosInstance: AxiosInstance = axios.create({
   baseURL: `${baseURL}/api/v1`,
+  withCredentials: true,
 });
 
 export const axiosAuthInstance = axios.create({
   baseURL: `${baseURL}/auth/v1`,
+  withCredentials: true,
 });
 
 axiosInstance.interceptors.request.use(

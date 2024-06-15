@@ -25,6 +25,10 @@ const SignUp = () => {
   const handleSignUpWithGoogle = async () => {
     try {
       const res = await mutation.mutateAsync();
+      let ideaClarity = localStorage.getItem("ideaClarity");
+      if (!ideaClarity) {
+        window.location.href = new URL(res.data).href;
+      }
       window.location.href = new URL(res.data).href;
     } catch (error) {
       errorToast("Something went wrong while signing up with google!");

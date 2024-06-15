@@ -1,4 +1,4 @@
-import { post, get, put } from "@/utils/axios";
+import { post, get, patch } from "@/utils/axios";
 import { apiErrorHandler } from "../helpers";
 import { userQuestionaryInitialValues } from "@/utils/initial-values";
 
@@ -24,7 +24,7 @@ export const getIdeaClarityByUserId = async () => {
 };
 export const updateIdeaClarity = async ({ id, ...body }: any) => {
   try {
-    const res = await put(appendUrl(`idea-clarity/${id}`), body);
+    const res = await patch(appendUrl(`idea-clarity/${id}`), body);
     return res.data;
   } catch (error: any) {
     return Promise.reject(apiErrorHandler(error));
