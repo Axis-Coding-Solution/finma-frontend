@@ -21,7 +21,7 @@ export const EditChatModal = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-      <div className="flex justify-start items-center gap-2 cursor-pointer px-1">
+      <div className="flex justify-start items-center gap-2 cursor-pointer px-2">
       <div className="">
             <CircleX size={14} />
           </div>

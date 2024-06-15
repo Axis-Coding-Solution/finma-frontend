@@ -13,7 +13,7 @@ export const DeleteChatModal = () => {
   return (
     <Dialog >
       <DialogTrigger asChild>
-        <div className="flex justify-start items-center gap-2 cursor-pointer px-1 mt-2 ">
+        <div className="flex justify-start items-center gap-2 cursor-pointer px-2 mt-2 pb-2">
           <div className=" ">
             <Trash2 size={14} />
           </div>
@@ -41,8 +41,7 @@ export const DeleteChatModal = () => {
             <label
               htmlFor="deleteOther"
               className="text-xl font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
-              Delete for Salama
+            > Delete for Salama
             </label>
           </div>
         </div>

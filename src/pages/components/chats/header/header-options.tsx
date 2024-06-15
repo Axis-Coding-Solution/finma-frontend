@@ -16,7 +16,7 @@ const HeaderOptions = () => {
           <DropdownMenuTrigger className="focus-visible:outline-none">
             <Ellipsis />
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="flex flex-col gap-2 ">
+          <DropdownMenuContent className="flex flex-col ">
             <DropdownMenuItem>
               <div className="flex items-center gap-2">
                 <FilePenLine size={14} />
