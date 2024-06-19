@@ -2,6 +2,7 @@ import { lazy } from "react";
 
 import AuthLayout from "@/layouts/AuthLayout";
 import SignUpWithEmailPage from "@/pages/authentication/sign-up/email";
+import LoginWithEmailPage from "@/pages/authentication/login/email";
 import ResetPasswordCompletedPage from "@/pages/authentication/reset-password/completed";
 import ForgetPasswordCompleted from "@/pages/authentication/forget-password/completed";
 
@@ -22,6 +23,10 @@ export default [
       {
         element: <LoginPage />,
         path: "login",
+      },
+      {
+        element: <LoginWithEmailPage />,
+        path: "login/email",
       },
       {
         element: <SignUpPage />,

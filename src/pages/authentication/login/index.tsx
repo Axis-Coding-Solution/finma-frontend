@@ -1,106 +1,78 @@
+import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { PasswordInput } from "@/components/ui/password-input";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { MainHeading } from "@/pages/components/common";
-import { Link, useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@/utils/constants";
-import { loginSchema } from "@/utils/validation-schemas";
-import { loginInitialValues } from "@/utils/initial-values";
-import { InputError } from "@/components/ui/input-error";
+import { GoogleIcon, MessageIcon } from "@/assets/images/index";
 import { useMutation } from "@tanstack/react-query";
-import { loginApi } from "@/api/http";
-import { errorToast, successToast } from "@/utils";
-import { useAuth } from "@/utils/hooks";
+import { signUpWithGoogleApi } from "@/api/http";
+import { errorToast } from "@/utils";
 
 const Login = () => {
-  const loginMutation = useMutation({
-    mutationFn: loginApi,
+  const mutation = useMutation({
+    mutationFn: signUpWithGoogleApi,
   });
+
+  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const auth = useAuth();
+  const errMsg = searchParams.get("errorMessage");
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    defaultValues: loginInitialValues,
-    resolver: yupResolver(loginSchema),
-  });
-
-  const onSubmitHandler = async (data: typeof loginInitialValues) => {
+  useEffect(() => {
+    if (errMsg) {
+      navigate("/auth/sign-up", { replace: true });
+      errorToast(errMsg);
+    }
+  }, []);
+  const handleSignUpWithGoogle = async () => {
     try {
-      const response = await loginMutation.mutateAsync(data);
-      const { token, user, redirectUrl } = response.data;
-      auth?.handleLogin({ token, user });
-      successToast(response.message);
-      navigate(redirectUrl, { replace: true });
-    } catch (error: any) {
-      if (error.data.redirectUrl) {
-        navigate(error.data.redirectUrl);
+      const res = await mutation.mutateAsync();
+      let ideaClarity = localStorage.getItem("ideaClarity");
+      if (!ideaClarity) {
+        window.location.href = new URL(res.data).href;
       }
-      errorToast(error.message);
+      window.location.href = new URL(res.data).href;
+    } catch (error) {
+      errorToast("Something went wrong while signing up with google!");
     }
   };
-
   return (
     <>
-      <MainHeading heading="Login" paragraph="Welcome back to FimnaAI!" />
-      <form onSubmit={handleSubmit(onSubmitHandler)}>
-        <div>
-          <Label htmlFor="email">Email Address</Label>
-          <Input
-            type="email"
-            {...register("email")}
-            id="email"
-            placeholder="Enter your Email"
-          />
-          <InputError error={errors.email} />
-        </div>
-        <div className="text-end mt-4">
-          <PasswordInput
-            id="login-password"
-            {...register("password")}
-            placeholder="Enter your password"
-            label="Password"
-          />
-          <InputError error={errors.password} />
+      <MainHeading
+        heading="Log In"
+        paragraph="Welcome back to FimnaAI"
+      />
+      <div className=" w-full lg:w-1/2 flex flex-col gap-4">
+        <div className="">
           <Button
-            to="/auth/forget-password"
-            tag={Link}
-            variant="link"
-            className="px-0 mt-2"
-          >
-            Forget Password?
-          </Button>
-        </div>
-        <div className="flex flex-col items-center md:flex-row justify-between gap-10 ">
-          {/* <Link to="/dashboard/overview"> */}
-          <Button
-            type="submit"
             variant="default"
             size="lg"
-            disabled={loginMutation.isPending}
+            disabled={mutation.isPending}
+            className="w-full"
+            onClick={handleSignUpWithGoogle}
           >
-            Log In
+            <img src={GoogleIcon} className="w-5 h-5" />
+            <span>Log In With Google</span>
           </Button>
-          {/* </Link> */}
-          <span className="items-center">
-            Don`t have an account?
-            <Button
-              to="/auth/sign-up"
-              tag={Link}
-              variant="link"
-              className="ms-1 px-0 mt-2"
-            >
-              Sign Up
-            </Button>
-          </span>
         </div>
-      </form>
+        <Button
+          to="/auth/login/email"
+          variant="outline"
+          tag={Link}
+          disabled={mutation.isPending}
+          size="lg"
+          className="w-full"
+        >
+          <img src={MessageIcon} className="w-5 h-5" />
+          <span>Log In With email</span>
+        </Button>
+        <p className="text-center">
+          Don't have an account?
+          <Link to="/auth/sign-up" className="ms-1 font-bold underline">
+            Sign Up
+          </Link>
+        </p>
+      </div>
     </>
+    // <div>Sign UP With Google</div>
   );
 };
 
