@@ -31,7 +31,7 @@ const Login = () => {
       }
       window.location.href = new URL(res.data).href;
     } catch (error) {
-      errorToast("Something went wrong while signing up with google!");
+      errorToast("Something went wrong while login with google!");
     }
   };
   return (
