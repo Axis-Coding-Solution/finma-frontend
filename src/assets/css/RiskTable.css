@@ -1,0 +1,40 @@
+/* 
+.risk-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+  }
+  
+  .risk-table th, .risk-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .risk-table th {
+    text-align: left;
+  }
+  
+  .innovator-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .innovator-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .view-dashboard-button {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .view-dashboard-button:hover {
+    background-color: #f2f2f2;
+  }
+   */
