@@ -50,49 +50,50 @@ import { Badge } from "@/components/ui/badge";
 const data: Payment[] = [
   {
     id: "m5gr84i9",
-    riskscore: "Low risk",
-    innovatorname: "Lee Shaun",
-    projects: ["Projectname"],
+    riskScore: ["Low risk"],
+    innovatorName: "Lee Shaun",
+    projects: ["projectName"],
     image: Leeshaun,
   },
   {
     id: "3u1reuv4",
-    riskscore: "High risk",
-    innovatorname: "Wilson Smith",
-    projects: ["Projectname","Projectname","Projectname","Projectname"],
-    
+    riskScore: ["High risk", "High risk", "High risk", "High risk"],
+    innovatorName: "Wilson Smith",
+    projects: ["projectName", "projectName", "projectName", "projectName"],
+
     image: WilsonSmith,
   },
   {
     id: "derv1ws0",
-    riskscore: "Medium risk",
-    innovatorname: "Emily Coen",
-    projects: ["Projectname","Projectname"],
+    riskScore: ["Medium risk", "High risk"],
+    innovatorName: "Emily Coen",
+    projects: ["projectName", "projectName"],
     image: EmilyCoen,
   },
   {
     id: "5kma53ae",
-    riskscore: "Low risk",
-    innovatorname: "Gragory Stan",
-    projects:[ "Projectname"],
+    riskScore: ["Low risk"],
+    innovatorName: "Gragory Stan",
+    projects: ["projectName"],
     image: GragoryStan,
   },
   {
     id: "bhqecj4p",
-    riskscore: "High risk",
-    innovatorname: "Vivien Jess",
-    projects: ["Projectname"],
+    riskScore: ["High risk"],
+    innovatorName: "Vivien Jess",
+    projects: ["projectName"],
     image: VivienJess,
   },
 ];
 
 export type Payment = {
   id: string;
-  riskscore: any;
-  innovatorname: string;
+  riskScore: string[];
+  innovatorName: string;
   projects: any;
   image: any;
 };
+
 
 export const columns: ColumnDef<Payment>[] = [
   {
@@ -118,7 +119,7 @@ export const columns: ColumnDef<Payment>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "innovatorname",
+    accessorKey: "innovatorName",
     header: "Innovator’s name",
     cell: ({ row }) => (
       <div className="capitalize flex gap-2 items-center">
@@ -128,7 +129,7 @@ export const columns: ColumnDef<Payment>[] = [
           className="w-8 h-8 rounded-full"
         />
         <div className="underline font-bold">
-          {row.getValue("innovatorname")}
+          {row.getValue("innovatorName")}
         </div>
       </div>
     ),
@@ -140,51 +141,98 @@ export const columns: ColumnDef<Payment>[] = [
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          className="text-start"
         >
           Projects
           <ArrowUpDown className=" h-4 w-4" />
         </Button>
       );
     },
-    cell: () => (
-      data.projects.map(({item}:{item:any})=>
-      <div className="lowercase">{item}</div>       
-    ),
+    cell: (row) => {
+      let item = row.getValue("projects");
+      let subitem = item.map((data) => data);
+      return (
+        <>
+          {/* {row.getValue("projects")} */}
+          <div className="flex flex-col gap-7">
+            {subitem.map((item) => (
+              <p> {item} </p>
+            ))}
+          </div>
+          {/* {projectData.map((item, index) => {
+            return (
+              <div key={index} className="lowercase">
+                {item.map((subItem: string , subIndex: number) => (
+                  <p key={subIndex} >{subItem}</p>
+                ))}
+              </div>
+            );
+          })} */}
+        </>
+      );
+    },
   },
   {
-    accessorKey: "riskscore",
-    header: () => <div className="text-center">Risk score</div>,
-    cell: () => {
-      // const riskscore = parseFloat(row.getValue("riskscore"))
+    accessorKey: "riskScore",
+    header: () => <div className="text-start">Risk score</div>,
+    cell: (row) => {
+      let item = row.getValue("riskScore");
+      let subitem = item.map((data) => data);
+      // const riskScore = parseFloat(row.getValue("riskScore"))
 
-      // Format the riskscore as a dollar riskscore
+      // Format the riskScore as a dollar riskScore
       // const formatted = new Intl.NumberFormat("en-US", {
       //   style: "currency",
       //   currency: "USD",
-      // }).format(riskscore)
+      // }).format(riskScore)
 
       return (
-        <div className="flex flex-col gap-1">
-          {data.map((item, Index) => (
-            <div className="w-full flex justify-between items-center">
+        <div className="flex  flex-col gap-2">
+          {subitem.map((item, index) => (
+            <div className="flex gap-2">
               <Badge
-                key={Index}
+                key={index}
                 variant={
-                  item.riskscore === "Low risk"
+                  item === "Low risk"
                     ? "info"
-                    : item.riskscore === "Medium risk"
+                    : item === "Medium risk"
                     ? "success"
-                    : item.riskscore === "High risk"
+                    : item === "High risk"
                     ? "destructive"
                     : "outline"
                 }
               >
-                {item.riskscore}
+                {item}
               </Badge>
               <Button variant="outline">View Dashboard</Button>
             </div>
           ))}
         </div>
+        // <div className="flex flex-col gap-1">
+        //   {riskData.map((item, index) => (
+        //     <div key={index} className="flex gap-1">
+        //       {item.map((item: string, subIndex: number) => (
+        //         <>
+        //           <Badge
+        //             key={subIndex}
+        //             variant={
+        //               item === "Low risk"
+        //                 ? "info"
+        //                 : item === "Medium risk"
+        //                 ? "success"
+        //                 : item === "High risk"
+        //                 ? "destructive"
+        //                 : "outline"
+        //             }
+        //           >
+        //             {item}
+        //           </Badge>
+        //           <Button variant="outline">View Dashboard</Button>
+        //         </>
+        //       ))}
+        //     </div>
+        //   ))}
+        // </div>
       );
     },
 
