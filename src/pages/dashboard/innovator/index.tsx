@@ -147,9 +147,8 @@ export const columns: ColumnDef<Payment>[] = [
       );
     },
     cell: () => (
-      { data.projects.map(({item}:{item:any})=>
-      <div className="lowercase">{item}</div>)}
-       
+      data.projects.map(({item}:{item:any})=>
+      <div className="lowercase">{item}</div>       
     ),
   },
   {
