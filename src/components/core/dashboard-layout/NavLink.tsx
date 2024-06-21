@@ -2,6 +2,7 @@ import {
   CircleHelp,
   Home,
   LayoutGridIcon,
+  Lightbulb,
   MessageSquareMore,
 } from "lucide-react";
 
@@ -33,6 +34,7 @@ export const NavLink = () => {
           <LayoutGridIcon className="h-6 w-6" />
           Overview
         </Link>
+
         <Link
           to="/dashboard/faq"
           className={cn(
@@ -43,6 +45,7 @@ export const NavLink = () => {
           <CircleHelp className="h-6 w-6" />
           FAQ
         </Link>
+
         <Link
           to="/dashboard/chat"
           className={cn(
@@ -53,6 +56,7 @@ export const NavLink = () => {
           <MessageSquareMore className="h-6 w-6" />
           Chat
         </Link>
+
         <Link
           to="/dashboard/feed"
           className={cn(
@@ -63,6 +67,17 @@ export const NavLink = () => {
           <Home className="h-6 w-6" />
           Feed
         </Link>
+        <Link
+          to="/dashboard/innovator"
+          className={cn(
+            "flex items-center gap-5 rounded-lg px-4 py-3 text-foreground transition hover:bg-success/10 hover:text-success",
+            pathname === "/dashboard/innovator" && "bg-success/10 text-success"
+          )}
+        >
+          <Lightbulb className="h-6 w-6"  />
+          Innovators
+        </Link>
+
       </div>
       <div className="text-foreground mt-4">
         <h6 className="px-4 text-muted-foreground text-sm tracking-wider mb-2">

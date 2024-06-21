@@ -33,7 +33,7 @@ const HeaderOptions = () => {
               <EditChatModal />
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
-              <DeleteChatModal />
+              <DeleteChatModal  />
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

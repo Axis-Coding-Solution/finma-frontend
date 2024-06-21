@@ -48,7 +48,7 @@ module.exports = {
         },
         info: {
           DEFAULT: "hsl(var(--info))",
-          foreground: "hsl(var(--primary-foreground))",
+          foreground: "hsl(var(--info-foreground))",
         },
         success: {
           DEFAULT: "hsl(var(--success))",
