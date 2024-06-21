@@ -43,11 +43,8 @@ const ideaClarityFields = [
   },
 ];
 
-export function EditIdeaClarityModal() {
-  const { data } = useQuery({
-    queryFn: getIdeaClarityByUserId,
-    queryKey: ["onboarding/idea-clarity"],
-  });
+export function EditIdeaClarityModal({data}) {
+ 
 
   const mutation = useMutation({
     mutationFn: updateIdeaClarity,

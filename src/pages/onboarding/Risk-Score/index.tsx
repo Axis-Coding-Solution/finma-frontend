@@ -1,12 +1,13 @@
 import { CgSpinner } from "@/assets/icons";
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { VectorArrowDown } from "@/assets/svgs";
-import { Chart } from "@/assets/images";
+import { GaugeMeter } from "@/pages/components/common/gauge-meter";
 
 function RiskScorePage() {
   const [isLoading, setIsLoading] = React.useState(true);
+  const { state } = useLocation();
 
   React.useEffect(() => {
     const timer = setTimeout(() => setIsLoading(false), 3000);
@@ -31,7 +32,7 @@ function RiskScorePage() {
         <div className="md:py-10 py-3 md:px-5 px-3">
           <div className="grid grid-cols-12 gap-5">
             <div className="md:col-span-6 col-span-12">
-              <div className="md:mt-20 mt-0  items-center">
+              <div className="md:mt-20 mt-0  items-center pl-12">
                 <div className="flex  gap-4 relative">
                   <h4 className="text-foreground font-bold text-4xl">
                     Your report
@@ -66,16 +67,10 @@ function RiskScorePage() {
             </div>
             <div className="md:col-span-6 col-span-12">
               <div className="bg-muted lg:p-10 md:p-6 p-4 rounded-xl">
-                <h6 className="font-semibold text-foreground text-lg text-center">
+                <h5 className="font-semibold text-foreground text-lg text-center mb-12">
                   Idea clarity score
-                </h6>
-                <div className="flex justify-center">
-                  <img
-                    src={Chart}
-                    className="lg:w-[90%] w-full object-contain mt-6"
-                    alt=""
-                  />
-                </div>
+                </h5>
+                <GaugeMeter score={state.score} description={state.description} color={state.color} />
                 <p className="mt-6 lg:text-base text-sm">
                   Your startup idea has been evaluated based on four key
                   validation points: Proof of the Problem, Solution

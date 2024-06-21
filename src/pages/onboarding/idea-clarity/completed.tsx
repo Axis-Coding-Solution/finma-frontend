@@ -22,7 +22,9 @@ function IdeaClarityCompletedPage() {
         formDataState.value
       );
       successToast(response.message);
-      navigate("/risk-score");
+      navigate("/risk-score", {
+        state: response.data
+      });
     } catch (error: any) {
       errorToast(error.message);
     }
