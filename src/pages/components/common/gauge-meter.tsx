@@ -1,11 +1,11 @@
 import GaugeComponent from "react-gauge-component";
 
 export const GaugeMeter = ({ score, description, color }: { score: number, description: string, color: string }) => {
-    return (
-      <div className="flex justify-center relative">
-   <GaugeComponent
+  return (
+    <div className="flex justify-center  relative">
+      <GaugeComponent
         id="gauge-component4"
-        style={{ width: "100%", height: "100%" }}
+        style={{ width: "480px", height: "100%",  }}
         type="semicircle"
         labels={{
           tickLabels: {
@@ -40,7 +40,6 @@ export const GaugeMeter = ({ score, description, color }: { score: number, descr
         {description}
       </span>
     </div>
-       
-    );
-  };
-  
+
+  );
+};
