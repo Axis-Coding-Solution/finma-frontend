@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/dialog";
 import { SquarePen } from "lucide-react";
 import { EditIdeaClarityModal } from "./edit-idea-clarity-modal";
-import { Chart } from "@/assets/images";
 import { getIdeaClarityByUserId } from "@/api/http";
 import { useQuery } from "@tanstack/react-query";
 import { GaugeMeter } from "../../common/gauge-meter";

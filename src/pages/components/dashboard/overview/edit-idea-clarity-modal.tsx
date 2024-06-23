@@ -11,8 +11,8 @@ import { IdeaClarityField } from "./idea-clarity-field";
 import { useForm } from "react-hook-form";
 import { FORM_MODE } from "@/utils/constants";
 import { onboardingIdeaClarityInitialValues } from "@/utils/initial-values";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { getIdeaClarityByUserId, updateIdeaClarity } from "@/api/http";
+import { useMutation } from "@tanstack/react-query";
+import { updateIdeaClarity } from "@/api/http";
 import { useEffect } from "react";
 import { errorToast, successToast } from "@/utils";
 
@@ -43,7 +43,7 @@ const ideaClarityFields = [
   },
 ];
 
-export function EditIdeaClarityModal({data}) {
+export function EditIdeaClarityModal({data}: {data: any}) {
  
 
   const mutation = useMutation({
