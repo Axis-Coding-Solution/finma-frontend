@@ -9,14 +9,21 @@ import {
 } from "@/components/ui/dialog";
 import { SquarePen } from "lucide-react";
 import { EditIdeaClarityModal } from "./edit-idea-clarity-modal";
-import { Chart } from "@/assets/images";
+import { getIdeaClarityByUserId } from "@/api/http";
+import { useQuery } from "@tanstack/react-query";
+import { GaugeMeter } from "../../common/gauge-meter";
 
 export function IdeaClarityModal() {
+  const { data } = useQuery({
+    queryFn: getIdeaClarityByUserId,
+    queryKey: ["onboarding/idea-clarity"],
+  });
+
   return (
     <Dialog>
       <DialogTrigger asChild>
         <Button variant="outline-info" className="flex items-center gap-10">
-          <span>Medium Risk</span>
+          <span>{data?.data?.description || ''}</span>
           <SquarePen size="20" />
         </Button>
       </DialogTrigger>
@@ -27,7 +34,8 @@ export function IdeaClarityModal() {
           </DialogTitle>
         </DialogHeader>
         <div className="flex flex-col items-center md:gap-10 gap-5 text-center">
-          <img src={Chart} className="xl:w-80 w-auto" alt="" />
+          <GaugeMeter score={data?.data?.score || 0} description={data?.data?.description || ''} color={data?.data?.color || ''} />
+          {/* <img src={Chart} className="xl:w-80 w-auto" alt="" /> */}
           <p className="md:text-sm text-xs">
             Your startup idea has been evaluated based on four key validation
             points: Proof of the Problem, Solution Effectiveness, Identification
@@ -40,7 +48,7 @@ export function IdeaClarityModal() {
           </p>
         </div>
         <DialogClose asChild>
-          <EditIdeaClarityModal />
+          <EditIdeaClarityModal data={data} />
         </DialogClose>
       </DialogContent>
     </Dialog>
