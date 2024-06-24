@@ -38,7 +38,7 @@ const LoginWithEmail = () => {
       successToast(response.message);
       navigate(redirectUrl, { replace: true });
     } catch (error: any) {
-      if (error.data.redirectUrl) {
+      if (error?.data?.redirectUrl) {
         navigate(error.data.redirectUrl);
       }
       errorToast(error.message);

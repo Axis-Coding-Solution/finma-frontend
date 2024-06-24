@@ -82,7 +82,7 @@ const SignUpWithEmail = () => {
                 />
               )}
             />
-            <Label htmlFor="terms">
+            <Label htmlFor="terms" className="mb-0">
               By continuing, you agree to Finma's
               <Button className="mx-1 p-0" variant="link">
                 Terms of Use
