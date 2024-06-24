@@ -8,6 +8,9 @@ import {
   userAvatar4Image,
   userAvatar5Image,
 } from "@/assets/images";
+import { getMessages } from "@/api/http";
+import { useQuery } from "@tanstack/react-query";
+
 
 const contacts = [
   {
@@ -86,6 +89,12 @@ const contacts = [
 ];
 
 export const ChatSidebar = () => {
+  const { data } = useQuery({
+    queryFn: getMessages,
+    queryKey: ["Messages"],
+  });
+
+  console.log(data)
   return (
     <div className="px-1">
       <div className="flex items-center gap-2">

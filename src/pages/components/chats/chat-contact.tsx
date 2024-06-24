@@ -19,7 +19,9 @@ export const ChatContact = ({
   newCount,
 }: PropsTypes) => {
   return (
+
     <div className="px-4 py-2 cursor-pointer">
+
       <div className="flex items-start justify-between">
         <div className="w-1/2 flex items-center gap-4 truncate">
           <Avatar image={avatar} size="md" />

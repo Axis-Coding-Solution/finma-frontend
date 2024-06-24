@@ -23,5 +23,4 @@ function ChatBoxPage() {
     </div>
   );
 }
-
 export default ChatBoxPage;
