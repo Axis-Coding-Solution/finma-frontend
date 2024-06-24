@@ -6,7 +6,7 @@ function DashboardLayout() {
   return (
     <div className="grid grid-cols-12 h-screen overflow-hidden">
       <div className="2xl:col-span-2 lg:col-span-3 col-span-12">
-      <Navigation />
+        <Navigation />
       </div>
       <div className="2xl:col-span-10 lg:col-span-9 col-span-12 flex flex-col relative overflow-y-auto">
         <AppHeader />
