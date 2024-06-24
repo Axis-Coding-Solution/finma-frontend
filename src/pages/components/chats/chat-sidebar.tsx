@@ -16,7 +16,7 @@ const contacts = [
     designation: "Software Engineer",
     message: "Hey, how are you doing?",
     lastReceived: "5 min",
-    newCount: 2,
+    newCount: 3,
   },
   {
     avatar: userAvatar2Image,
@@ -32,7 +32,7 @@ const contacts = [
     designation: "UI/UX Designer",
     message: "The new design draft is ready.",
     lastReceived: "30 min",
-    newCount: 1,
+    newCount: 12,
   },
   {
     avatar: userAvatar4Image,
@@ -40,7 +40,6 @@ const contacts = [
     designation: "Data Scientist",
     message: "Can you look at the new dataset?",
     lastReceived: "1 day",
-    newCount: 4,
   },
   {
     avatar: userAvatar5Image,
@@ -48,7 +47,6 @@ const contacts = [
     designation: "HR Manager",
     message: "Don't forget the meeting tomorrow.",
     lastReceived: "2 days",
-    newCount: 0,
   },
   {
     avatar: userAvatar1Image,
@@ -56,7 +54,6 @@ const contacts = [
     designation: "Marketing Specialist",
     message: "Here's the latest campaign report.",
     lastReceived: "1 month",
-    newCount: 3,
   },
   {
     avatar: userAvatar2Image,
@@ -64,7 +61,6 @@ const contacts = [
     designation: "Business Analyst",
     message: "The analysis report is complete.",
     lastReceived: "3 month",
-    newCount: 6,
   },
   {
     avatar: userAvatar3Image,
@@ -72,7 +68,6 @@ const contacts = [
     designation: "Product Manager",
     message: "We need to discuss the product roadmap.",
     lastReceived: "4 month",
-    newCount: 1,
   },
   {
     avatar: userAvatar4Image,
@@ -80,7 +75,6 @@ const contacts = [
     designation: "1 year",
     message: "Testing has been completed successfully.",
     lastReceived: "5 min",
-    newCount: 0,
   },
   {
     avatar: userAvatar5Image,
@@ -88,7 +82,6 @@ const contacts = [
     designation: "DevOps Engineer",
     message: "The deployment pipeline is ready.",
     lastReceived: "10 min",
-    newCount: 7,
   },
 ];
 
@@ -96,19 +89,15 @@ export const ChatSidebar = () => {
   return (
     <div className="px-1">
       <div className="flex items-center gap-2">
-        <Button
-          variant="outline"
-          className="px-3 rounded-full border-foreground"
-        >
+        <Button variant="dark" rounded>
           All
         </Button>
-        <Button variant="outline" size='sm'>
+        <Button variant="outline" size="sm">
           Experts
         </Button>
-        <Button variant="outline" size='sm'>
+        <Button variant="outline" size="sm">
           Innovators
         </Button>
-      
       </div>
       <div className="mt-4">
         <Input type="text" />

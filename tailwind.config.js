@@ -52,7 +52,7 @@ module.exports = {
         },
         success: {
           DEFAULT: "hsl(var(--success))",
-          foreground: "hsl(var(--primary-foreground))",
+          foreground: "hsl(var(--success-foreground))",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",

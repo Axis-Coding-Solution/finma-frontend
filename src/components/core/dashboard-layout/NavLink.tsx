@@ -74,10 +74,9 @@ export const NavLink = () => {
             pathname === "/dashboard/innovator" && "bg-success/10 text-success"
           )}
         >
-          <Lightbulb className="h-6 w-6"  />
+          <Lightbulb className="h-6 w-6" />
           Innovators
         </Link>
-
       </div>
       <div className="text-foreground mt-4">
         <h6 className="px-4 text-muted-foreground text-sm tracking-wider mb-2">
@@ -93,9 +92,10 @@ export const NavLink = () => {
         >
           <Avatar image={userAvatar2Image} size="lg" active />
           <div className="flex flex-col">
-
-          <span>Salama M.</span>
-          <span className="text-muted-foreground text-sm">Venture Analyst</span>
+            <span>Salama M.</span>
+            <span className="text-muted-foreground text-sm">
+              Venture Analyst
+            </span>
           </div>
         </Link>
         <Link

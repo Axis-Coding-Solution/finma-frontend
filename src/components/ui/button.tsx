@@ -42,16 +42,28 @@ export interface ButtonProps
   asChild?: boolean;
   to?: string;
   tag?: React.ElementType;
+  rounded?: boolean;
 }
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
-    { className, variant, size, asChild = false, tag = "button", ...props },
+    {
+      className,
+      variant,
+      size,
+      asChild = false,
+      tag = "button",
+      rounded = false,
+      ...props
+    },
     ref
   ) => {
     const Comp = asChild ? Slot : tag;
     return (
       <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
+        className={cn([
+          buttonVariants({ variant, size, className }),
+          rounded && "rounded-full px-3 py-1",
+        ])}
         ref={ref}
         {...props}
       />
