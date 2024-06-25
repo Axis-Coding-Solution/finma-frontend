@@ -8,6 +8,8 @@ import {
 } from "@/assets/images";
 import { Avatar } from "@/components/ui/avatar";
 import { useParams } from "react-router-dom";
+import { getMessageApi } from "@/api/http";
+import { useEffect, useState } from "react";
 // import MessageImg from "@/assets/images/message1.png";
 const expertImages = {
   "Salama M.": userAvatar2Image,
@@ -15,8 +17,28 @@ const expertImages = {
   "Vivan Violet": userAvatar4Image,
   "Jackie Jess": userAvatar5Image,
   // Add more mappings as needed
-  };
-export const ChatContent = () => {
+};
+export const ChatContent = ({ id }: { id: any }) => {
+  // const { data } = getMessageApi(`${id}`);
+  const [data, setData] = useState(null);
+  // const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await getMessageApi(id);
+        setData(result.data);
+      } catch (err) {
+        setError(err);
+      }
+    };
+
+    if (id) {
+      fetchData();
+    }
+  }, [id]);
+  console.log("messagesdata", data);
+
   const { expert } = useParams<{
     description?: string;
     expert: keyof typeof expertImages;
@@ -27,9 +49,11 @@ export const ChatContent = () => {
       <div className="flex gap-2 items-end">
         <Avatar image={avatarImage} />
         <div className="border border-border rounded-xl w-full max-w-[80%] p-5">
-          <h1 className="text-2xl">Initiatives.</h1>
+          <h1 className="text-2xl"></h1>
           <ul className="list-disc list-inside">
-            <h1 className="text-xl">Operational Risks</h1>
+            {data.data.map((item) => (
+                <h1 className="text-xl">{item.content}</h1>  
+             ))} 
             <li>
               Risk: Disruptions to our operations, such as employee turnover,
               supply chain

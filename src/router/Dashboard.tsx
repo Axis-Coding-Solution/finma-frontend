@@ -27,7 +27,7 @@ export default [
   },
   {
     element: <ChatBoxPage />,
-    path: "/dashboard/chats/:contactId?",
+    path: "/dashboard/chats",
     meta: {
       layout: "dashboard",
     },
