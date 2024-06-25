@@ -86,7 +86,7 @@ function IdeaClarityCompetitorsPage() {
       </div>
       <StepNavigationBtn
         showNextStep={false}
-        prevStep="/onboarding/idea-clarity/targeted-audience"
+        prevStep={resolveBasePath("targeted-audience")}
       />
     </form>
   );

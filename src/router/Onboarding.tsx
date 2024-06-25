@@ -1,78 +1,44 @@
-import StartOnboardingPage from "@/pages/onboarding/start-onboarding";
-import OnboardingLayout from "@/layouts/OnboardingLayout";
-import IdeaClarityPage from "@/pages/onboarding/idea-clarity";
-import IdeaClarityCompetitorsPage from "@/pages/onboarding/idea-clarity/competitors";
-import IdeaClarityProblemPage from "@/pages/onboarding/idea-clarity/problem";
-import IdeaClaritySolutionPage from "@/pages/onboarding/idea-clarity/solution";
-import IdeaClarityTargetedAudiencePage from "@/pages/onboarding/idea-clarity/targeted-audience";
-import { Navigate } from "react-router-dom";
-import IdeaClarityCompletedPage from "@/pages/onboarding/idea-clarity/completed";
-import RiskScorePage from "@/pages/onboarding/Risk-Score";
+import AuthLayout from "@/layouts/AuthLayout";
+import ExpertsOnboardingPage from "@/pages/onboarding/experts";
+import ExpertsPublicViewPage from "@/pages/onboarding/experts/public-view";
+import InnovatorsOnboardingPage from "@/pages/onboarding/innovators";
+import MentorsOnboardingPage from "@/pages/onboarding/mentors";
 import UserQuestionaryPage from "@/pages/onboarding/user-questionary";
 
 export default [
-  {
-    element: <StartOnboardingPage />,
-    path: "/start-onboarding",
-    meta: {
-      layout: "blank",
-      isRestrictedRoute: true,
-    },
-  },
   {
     element: <UserQuestionaryPage />,
     path: "/user-questionary",
     meta: {
       layout: "blank",
+      isRestrictedRoute: true,
     },
   },
   {
-    element: <RiskScorePage />,
-    path: "/risk-score",
+    element: <AuthLayout />,
+    path: "/onboarding",
+    children: [
+      {
+        element: <InnovatorsOnboardingPage />,
+        path: "innovators",
+      },
+      {
+        element: <ExpertsOnboardingPage />,
+        path: "experts",
+      },
+      {
+        element: <MentorsOnboardingPage />,
+        path: "mentors",
+      },
+    ],
     meta: {
       layout: "blank",
       isRestrictedRoute: true,
     },
   },
   {
-    element: <OnboardingLayout />,
-    path: "/onboarding",
-    children: [
-      {
-        index: true,
-        element: <Navigate to="idea-clarity/problem" replace />,
-      },
-      {
-        element: <IdeaClarityPage />,
-        path: "idea-clarity",
-        children: [
-          {
-            index: true,
-            element: <Navigate to="problem" replace />,
-          },
-          {
-            element: <IdeaClarityProblemPage />,
-            path: "problem",
-          },
-          {
-            element: <IdeaClaritySolutionPage />,
-            path: "solution",
-          },
-          {
-            element: <IdeaClarityTargetedAudiencePage />,
-            path: "targeted-audience",
-          },
-          {
-            element: <IdeaClarityCompetitorsPage />,
-            path: "competitors",
-          },
-          {
-            element: <IdeaClarityCompletedPage />,
-            path: "completed",
-          },
-        ],
-      },
-    ],
+    element: <ExpertsPublicViewPage />,
+    path: "/onboarding/experts/public-view",
     meta: {
       layout: "blank",
       isRestrictedRoute: true,

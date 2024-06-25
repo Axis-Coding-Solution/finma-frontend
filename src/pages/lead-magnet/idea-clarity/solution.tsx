@@ -1,20 +1,20 @@
 import { Textarea } from "@/components/ui/textarea";
 import { MainHeading } from "@/pages/components/common";
 import { StepNavigationBtn } from "@/pages/components/common/Step-navigation-btn";
-import { ideaClarityFormDataHook } from "@/store";
 import { useHookstate } from "@hookstate/core";
-import { IdeaClarityContextTypes } from ".";
-import { useOutletContext } from "react-router-dom";
+import { ideaClarityFormDataHook } from "@/store";
 import { useForm } from "react-hook-form";
 import { FORM_MODE, object, string, yupResolver } from "@/utils/constants";
+import { useOutletContext } from "react-router-dom";
+import { IdeaClarityContextTypes } from ".";
 import { useEffect } from "react";
 import { InputError } from "@/components/ui/input-error";
 
-const ideaClarityTargetedAudienceInitialValues = {
-  targetedAudience: "",
+const ideaClaritySolutionInitialValues = {
+  solution: "",
 };
 
-function IdeaClarityTargetedAudiencePage() {
+function IdeaClaritySolutionPage() {
   const formDataState = useHookstate(ideaClarityFormDataHook);
   const formData = formDataState.get();
 
@@ -28,35 +28,25 @@ function IdeaClarityTargetedAudiencePage() {
     formState: { errors },
   } = useForm({
     mode: FORM_MODE,
-    defaultValues: ideaClarityTargetedAudienceInitialValues,
+    defaultValues: ideaClaritySolutionInitialValues,
     resolver: yupResolver(
       object({
-        targetedAudience: string()
-          .trim()
-          .label("Targeted Audience")
-          .required()
-          .min(3)
-          .max(4096),
+        solution: string().trim().label("Solution").required().min(3).max(4096),
       })
     ),
   });
 
   useEffect(() => {
-    if (formData.targetedAudience) {
+    if (formData.solution) {
       reset({
-        targetedAudience: formData.targetedAudience,
+        solution: formData.solution,
       });
     }
-  }, [formData.targetedAudience]);
+  }, [formData.solution]);
 
-  const onSubmitHandler = (
-    values: typeof ideaClarityTargetedAudienceInitialValues
-  ) => {
-    formDataState.set((prev) => ({
-      ...prev,
-      targetedAudience: values.targetedAudience,
-    }));
-    navigate(resolveBasePath("competitors"));
+  const onSubmitHandler = (values: typeof ideaClaritySolutionInitialValues) => {
+    formDataState.set((prev) => ({ ...prev, solution: values.solution }));
+    navigate(resolveBasePath("targeted-audience"));
   };
 
   return (
@@ -66,32 +56,26 @@ function IdeaClarityTargetedAudiencePage() {
     >
       <div>
         <div className="flex justify-end items-end text-secondary">
-          <span className="text-foreground font-semibold text-2xl">3</span>/{" "}
+          <span className="text-foreground font-semibold text-2xl">2</span>/{" "}
           <span>4</span>
         </div>
         <div className="flex items-center gap-2 mt-2 mb-5">
           <div className="h-2 w-full rounded-full bg-primary"></div>
           <div className="h-2 w-full rounded-full bg-primary"></div>
-          <div className="h-2 w-full rounded-full bg-primary"></div>
+          <div className="h-2 w-full rounded-full bg-secondary"></div>
           <div className="h-2 w-full rounded-full bg-secondary"></div>
         </div>
       </div>
       <MainHeading
-        heading="Targeted audience"
-        paragraph="Who is the specific group of people who are currently struggling with the problem your startup aims to solve?"
+        heading="The Solution"
+        paragraph="Has your solution been tested, and does it show clear evidence of effectively solving the problem?"
       />
       <div className="text-end">
-        <Textarea
-          {...register("targetedAudience")}
-          showIcon
-          rows={10}
-          autoFocus
-        />
-        <InputError error={errors.targetedAudience} />
+        <Textarea {...register("solution")} showIcon rows={10} autoFocus />
+        <InputError error={errors.solution} />
       </div>
-      <StepNavigationBtn prevStep="/onboarding/idea-clarity/solution" />
+      <StepNavigationBtn prevStep={resolveBasePath("problem")} />
     </form>
   );
 }
-
-export default IdeaClarityTargetedAudiencePage;
+export default IdeaClaritySolutionPage;

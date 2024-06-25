@@ -22,8 +22,8 @@ function IdeaClarityCompletedPage() {
         formDataState.value
       );
       successToast(response.message);
-      navigate("/risk-score", {
-        state: response.data
+      navigate("/lead-magnet/risk-score", {
+        state: response.data,
       });
     } catch (error: any) {
       errorToast(error.message);

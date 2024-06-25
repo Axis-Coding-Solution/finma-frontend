@@ -12,7 +12,7 @@ function StartOnboardingPage() {
 
   useEffect(() => {
     if (errMsg) {
-      navigate("/start-onboarding", { replace: true });
+      navigate("/lead-magnet/start", { replace: true });
       errorToast(errMsg);
     }
   }, []);
@@ -23,7 +23,7 @@ function StartOnboardingPage() {
         <div className="relative lg:w-52 w-40">
           <img
             src={arrowImgPath}
-            alt=""
+            alt="Arrow Icon"
             className="-top-12 left-20 md:absolute block  lg:w-52 md:w-40 w-20 md:rotate-0 rotate-90"
           />
         </div>
@@ -32,7 +32,7 @@ function StartOnboardingPage() {
             heading="Welcome to the startup idea evaluation model!"
             paragraph="Let's get started and explore what makes this startup unique!"
           />
-          <Link title="Start Onboarding" to="/onboarding/idea-clarity/problem">
+          <Link title="Start Onboarding" to="/lead-magnet/idea-clarity/problem">
             <Button variant="default" className="mt-5">
               Get started
             </Button>

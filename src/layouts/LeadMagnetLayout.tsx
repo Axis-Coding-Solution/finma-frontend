@@ -29,7 +29,7 @@ const sidebarLinks = [
   },
 ];
 
-function OnboardingLayout() {
+function LeadMagnetLayout() {
   const { pathname } = useLocation();
   return (
     <div className="rounded-lg grid grid-cols-12 lg:gap-5 gap-4">
@@ -67,4 +67,4 @@ function OnboardingLayout() {
   );
 }
 
-export default OnboardingLayout;
+export default LeadMagnetLayout;

@@ -2,19 +2,16 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ChatContact } from "./chat-contact";
 import { useGetChats } from "@/api/hooks/dashboard";
-import { useEffect } from "react";
 
-export const ChatSidebar = ({ setId }: { setId: any }) => {
-  const { data, isPending } = useGetChats();
+export const ChatSidebar = () => {
+  const { data } = useGetChats();
 
-  console.log(data);
-  useEffect(() => {
-    if (data) {
-      setId(data.data.map((item) => item._id));
-    }
-  }, [data]);
-
-
+  // console.log(data);
+  // useEffect(() => {
+  //   if (data) {
+  //     setId(data.data.map((item) => item._id));
+  //   }
+  // }, [data]);
 
   return (
     <div className="px-1">
@@ -35,9 +32,7 @@ export const ChatSidebar = ({ setId }: { setId: any }) => {
       <div className="divide-y divide-border rounded-2xl bg-accent py-4 mt-4">
         {data?.data &&
           data.data.map((item: any, index: number) => (
-           
             <ChatContact item={item} key={index} />
-            
           ))}
       </div>
     </div>

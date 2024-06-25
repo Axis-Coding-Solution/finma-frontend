@@ -28,7 +28,7 @@ const BlankLayout = () => {
 
   useEffect(() => {
     if (pathname === "/") {
-      navigate("/start-onboarding", { replace: true });
+      navigate("/lead-magnet/start", { replace: true });
     }
   }, []);
   return (

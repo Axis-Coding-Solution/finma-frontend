@@ -8,7 +8,7 @@ export type IdeaClarityContextTypes = {
 function IdeaClarityPage() {
   const navigate = useNavigate();
   const resolveBasePath = (segment: string) =>
-    `/onboarding/idea-clarity/${segment}`;
+    `/lead-magnet/idea-clarity/${segment}`;
 
   const contextValues = { navigate, resolveBasePath };
 

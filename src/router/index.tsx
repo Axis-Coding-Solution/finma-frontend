@@ -6,6 +6,7 @@ import DashboardLayout from "@/layouts/DashboardLayout";
 import AuthenticationRoutes from "./Authentication";
 import DashboardRoutes from "./Dashboard";
 import OnboardingRoutes from "./Onboarding";
+import LeadMagnetRoutes from "./LeadMagnet";
 
 import { ProtectedRoutes, PublicRoutes } from "@/components/core";
 import { RoutesType } from "@/definitions/types";
@@ -14,6 +15,7 @@ const mergedRoutes: RoutesType[] = [
   ...AuthenticationRoutes,
   ...DashboardRoutes,
   ...OnboardingRoutes,
+  ...LeadMagnetRoutes,
 ];
 
 const getRoutesForLayout = (layout: string) => {
