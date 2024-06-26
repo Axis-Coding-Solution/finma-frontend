@@ -11,7 +11,6 @@ export default [
     path: "/user-questionary",
     meta: {
       layout: "blank",
-      isRestrictedRoute: true,
     },
   },
   {

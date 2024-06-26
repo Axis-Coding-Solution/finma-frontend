@@ -9,12 +9,12 @@ function ChatBoxPage() {
       <div className="col-span-12">
         <MainHeading heading="Chats" />
       </div>
-      <div className="xl:col-span-4 lg:col-span-5 col-span-12 h-full overflow-auto">
+      <div className="xl:col-span-3 lg:col-span-5 col-span-12 h-screen overflow-auto">
         <PerfectScrollbar>
           <ChatSidebar />
         </PerfectScrollbar>
       </div>
-      <div className="col-span-8 h-full flex flex-col gap-2 overflow-auto">
+      <div className="col-span-9 h-full  flex flex-col  gap-2 overflow-auto">
         <PerfectScrollbar>
           <ChatHeader />
           <ChatContent />
