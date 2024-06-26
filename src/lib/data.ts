@@ -1,3 +1,4 @@
+
 export const chatRoomData = [
   {
     sender: true,
@@ -36,7 +37,7 @@ export const chatRoomData = [
   {
     sender: false,
     receiver: true,
-    content: ["Thank You 😊"],
+    content: ["Hello Salama! How are you?"],
     time: "10:20 AM"
   },
   {
@@ -49,6 +50,12 @@ export const chatRoomData = [
     sender: false,
     receiver: true,
     content: ["Hello Salama! How are you?"],
+    time: "10:30 AM"
+  },
+  {
+    sender: true,
+    receiver: true,
+    content: ["I am good. What about you?"],
     time: "10:30 AM"
   },
 ];
