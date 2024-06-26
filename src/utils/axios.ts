@@ -11,12 +11,12 @@ import { getAuthFromStorage } from ".";
 const baseURL = import.meta.env.VITE_BACKEND_URL;
 
 const axiosInstance: AxiosInstance = axios.create({
-  baseURL: `${baseURL}/api/v1`,
+  baseURL: `${baseURL}/v1/api`,
   withCredentials: true,
 });
 
 export const axiosAuthInstance = axios.create({
-  baseURL: `${baseURL}/auth/v1`,
+  baseURL: `${baseURL}/v1/auth`,
   withCredentials: true,
 });
 
