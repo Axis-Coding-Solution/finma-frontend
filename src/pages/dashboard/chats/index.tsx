@@ -5,7 +5,7 @@ import { MainHeading } from "@/pages/components/common";
 
 function ChatBoxPage() {
   return (
-    <div className="grid grid-cols-12 gap-6 h-[calc(100vh-112px)]  overflow-hidden">
+    <div className="grid grid-cols-12 gap-6 h-screen  overflow-hidden">
       <div className="col-span-12">
         <MainHeading heading="Chats" />
       </div>

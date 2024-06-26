@@ -31,3 +31,8 @@ export const onboardingExpertsInitialValues = {
   delivery: "",
   profilePicture: null,
 };
+
+export const postMessagesInitialValues = {
+  content: "",
+  receiverId: "",
+};

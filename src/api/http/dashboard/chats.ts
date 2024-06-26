@@ -12,12 +12,10 @@ export const getChatsApi = async () => {
     return Promise.reject(apiErrorHandler(error));
   }
 };
-export const getMessageApi = async (id) => {
-
-  
+export const getMessageApi = async (id: string) => {
   try {
     const res = await get(`/messages/${id}`);
-    return {data: res.data};
+    return { data: res.data };
   } catch (error: any) {
     return Promise.reject(apiErrorHandler(error));
   }
