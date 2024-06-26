@@ -11,11 +11,11 @@ export const Ratings = forwardRef<HTMLInputElement, RatingProps>(
         {Array(4)
           .fill(0)
           .map((_, i) => (
-            <Star key={i} size={16} fill="green" stroke="green" />
+            <Star key={i} size={12} fill="#FFB500" stroke="#FFB500" />
           ))}
-        <StarHalf fill="green" size={16} stroke="green" />
-          <span className="text-sm">
-            <span className="font-bold">4 Projects</span> of expertise
+        <StarHalf fill="#FFB500" size={14} stroke="#FFB500" />
+          <span className="text-[14px] font-[400] ">
+            <span className="font-[600]">4 Projects</span> of expertise
           </span>
       </div>
     );

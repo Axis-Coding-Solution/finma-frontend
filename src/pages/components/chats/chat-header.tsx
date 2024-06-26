@@ -8,7 +8,9 @@ import {
 import { Ratings } from "@/components/ui/ratings";
 import { useParams } from "react-router-dom";
 import ProfileInfo from "./header/profile-info";
+
 import HeaderOptions from "./header/header-options";
+import { DummyImage } from "@/lib/data";
 const expertImages = {
   "Salama M.": userAvatar2Image,
   "Jim Smith.": userAvatar3Image,
@@ -26,14 +28,13 @@ export function ChatHeader() {
   const avatarImage = expertImages[expert!];
 
   return (
-    <div className="py-4 justify-between flex gap-2 text-2xl sticky top-0 left-0 w-full font-bold rounded-lg bg-accent p-2">
-      <div className="flex gap-5">
+    <div className="py-5 px-7 mb-5 justify-between flex gap-2 text-2xl sticky top-0 left-0 w-full font-bold rounded-lg bg-accent">
+      <div className="flex items-center">
         <ProfileInfo
-          image={avatarImage}
-          name={expert}
-          description={description}
+          image={avatarImage || DummyImage}
+          name={expert || "John Doe" }
+          description={description || "Analyst" }
         />
-
         <Ratings className="" />
       </div>
 
