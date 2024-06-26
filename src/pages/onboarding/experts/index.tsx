@@ -8,6 +8,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
+import { CloudUpload } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 function ExpertsOnboardingPage() {
   const selectDefault = [
@@ -236,6 +238,20 @@ function ExpertsOnboardingPage() {
           <div className="col-span-2">
             <Label htmlFor="delivery">Delivery</Label>
             <Input type="delivery" id="delivery" placeholder="" />
+          </div>
+        </div>
+      </div>
+      <hr className="border-secondary my-2" />
+      {/* Upload Photo  */}
+      <div className="flex justify-center">
+        <div className="w-1/2 border-dashed border-secondary-foreground rounded-lg p-5">
+          <CloudUpload />
+          <h6>Upload your profile photo</h6>
+          <div>
+            <Button>
+              <Label htmlFor="uploadFile-test" className="mb-0">Upload Profile Picture</Label>
+            </Button>
+            <Input type="file" id="uploadFile-test" className="hidden" />
           </div>
         </div>
       </div>
