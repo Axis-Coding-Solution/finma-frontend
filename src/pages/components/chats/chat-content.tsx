@@ -1,6 +1,4 @@
 import { SendMessageBox } from "./send-message";
-import { userAvatar2Image } from "@/assets/images";
-import { Avatar } from "@/components/ui/avatar";
 import { chatRoomData } from "@/lib/data";
 import ScrollBar from "react-perfect-scrollbar";
 import { TextMessage } from "./content/Text-Message";
@@ -39,7 +37,7 @@ export const ChatContent = () => {
             <TextMessage
               message={message}
               index={index}
-              position={message.sender ? "left" : "right"}
+              position={message.sender ? "right" : "left"}
             />
           ))}
         </div>
