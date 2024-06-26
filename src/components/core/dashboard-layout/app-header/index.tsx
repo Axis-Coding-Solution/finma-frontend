@@ -31,9 +31,9 @@ import {
 import { Avatar } from "@/components/ui/avatar";
 import { userAvatar1Image } from "@/assets/images";
 import { useAuth } from "@/utils/hooks";
-import StatusModal from "./StatusModal";
+import StatusModal from "./status-modal";
 
-export const AppHeader = () => {
+const AppHeader = () => {
   const auth = useAuth();
   return (
     <header className="sticky w-full right-0  top-0 z-10 bg-background flex h-14 items-center lg:justify-end justify-between gap-7 border-b px-4 lg:h-16 lg:px-10 py-4">
@@ -150,3 +150,5 @@ export const AppHeader = () => {
     </header>
   );
 };
+
+export default AppHeader;

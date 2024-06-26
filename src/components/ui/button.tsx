@@ -22,6 +22,8 @@ const buttonVariants = cva(
         "flat-success": "text-success hover:bg-success/10 transition",
         "outline-info":
           "border border-info bg-transparent text-info hover:bg-info/5",
+        "outline-secondary":
+          "border border-border bg-transparent text-info hover:bg-secondary/5",
       },
       size: {
         default: "h-10 px-6 py-2",
