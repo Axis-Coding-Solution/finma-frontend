@@ -46,7 +46,7 @@ function Avatar({
       {active && (
         <span
           role="status"
-          className="w-4 h-4 rounded-full bg-primary border-4 border-background z-10 absolute right-0 bottom-0"
+          className="w-3 h-3 rounded-full bg-primary border-2 border-background z-10 absolute right-0 bottom-0"
         />
       )}
     </ImgWrapper>

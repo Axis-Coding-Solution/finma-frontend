@@ -19,7 +19,7 @@ function AuthLayout() {
   }, [location.pathname]);
 
   return (
-    <div className="lg:flex flex-col lg:flex-row lg:gap-16 gap-10 bg-background h-full rounded-lg px-3 py-6 lg:items-center items-start">
+    <div className="lg:flex flex-col lg:flex-row lg:gap-16 gap-10 bg-background h-full rounded-lg px-3 py-6 items-start">
       {showArrow && (
         <img
           src={ArrowPic}
@@ -27,9 +27,9 @@ function AuthLayout() {
         />
       )}
       <section
-        className={`flex flex-col gap-5 ${
+        className={`flex flex-col self-center gap-5 ${
           showArrow ? "w-full xl:w-1/2" : "w-full"
-        }`} 
+        }`}
       >
         <Outlet />
       </section>
