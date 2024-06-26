@@ -37,7 +37,7 @@ export const ChatContent = () => {
             <TextMessage
               message={message}
               index={index}
-              position={message.sender ? "left" : "right"}
+              position={message.sender ? "right" : "left"}
             />
           ))}
         </div>
