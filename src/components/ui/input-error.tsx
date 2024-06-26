@@ -1,7 +1,7 @@
-import { FieldError } from "react-hook-form";
+import { FieldError, FieldErrorsImpl, Merge } from "react-hook-form";
 
 type PropTypes = {
-  error: FieldError | undefined;
+  error: FieldError | Merge<FieldError, FieldErrorsImpl<{}>> | undefined;
 };
 
 export function InputError({ error }: PropTypes) {
