@@ -24,8 +24,9 @@ export const ChatsContent = () => {
 
     if (container) {
       const isOverflown = checkElementOverflow(container);
+      console.log("🚀 ~ useEffect ~ isOverflown:", isOverflown);
       if (!isOverflown) container.classList.add("justify-end");
-      else if (container.scrollTop === 0) {
+      else if (container.scrollTop == 0) {
         const scrollHeight = container.scrollHeight;
         container.scrollTo({
           top: scrollHeight,
@@ -58,13 +59,12 @@ export const ChatsContent = () => {
   // const avatarImage = expertImages[expert!];
 
   const { data } = useGetMessagesByChatId(id);
-  console.log("🚀 ~ ChatsContent ~ data:", data);
   return (
-    <ScrollArea className="px-3">
-      <div
-        ref={contentRef}
-        className="flex-1 flex flex-col px-5 py-2 overflow-y-auto"
-      >
+    <div
+      ref={contentRef}
+      className="flex-1 flex flex-col px-5 py-2 overflow-y-auto h-full"
+    >
+      <ScrollArea className="px-3 h-full">
         {chatRoomData.map((message, index) => (
           <TextMessage
             message={message}
@@ -72,7 +72,7 @@ export const ChatsContent = () => {
             position={message.sender ? "right" : "left"}
           />
         ))}
-      </div>
-    </ScrollArea>
+      </ScrollArea>
+    </div>
   );
 };
