@@ -5,6 +5,8 @@ import SignUpWithEmailPage from "@/pages/authentication/sign-up/email";
 import LoginWithEmailPage from "@/pages/authentication/login/email";
 import ResetPasswordCompletedPage from "@/pages/authentication/reset-password/completed";
 import ForgetPasswordCompleted from "@/pages/authentication/forget-password/completed";
+import Privacy from "@/pages/authentication/privacy-policy";
+import TermOfUse from "@/pages/authentication/term-of-use";
 
 const ForgetPasswordPage = lazy(
   () => import("@/pages/authentication/forget-password")
@@ -16,6 +18,23 @@ const ResetPasswordPage = lazy(
 const SignUpPage = lazy(() => import("@/pages/authentication/sign-up"));
 
 export default [
+  {
+    element:<Privacy/>,
+    path:"/privacy",
+    meta: {
+      layout: "blank",
+      isRestrictedRoute: true,
+    },
+    },
+  {
+    element:<TermOfUse/>,
+    path:"/termofuse",
+    meta: {
+      layout: "blank",
+      isRestrictedRoute: true,
+    },
+    },
+
   {
     element: <AuthLayout />,
     path: "/auth",
