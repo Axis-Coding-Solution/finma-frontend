@@ -5,14 +5,25 @@ import {
 } from "@/pages/components/chats";
 
 import { MainHeading } from "@/pages/components/common";
+import { useAppParams } from "@/utils/hooks";
 
 function ChatBoxPage() {
+  const { id } = useAppParams();
+  console.log("🚀 ~ ChatBoxPage ~ id:", id);
+
   return (
     <>
       <MainHeading heading="Chats" />
       <ChatsSidebar />
-      <ChatsHeader />
-      <ChatsContent />
+      {id && (
+        <div>
+          <ChatsHeader />
+          <ChatsContent />
+        </div>
+      )}
+      <div className="h-full flex justify-center items-center  ">
+        No Messages here Yet
+      </div>
     </>
   );
 }
