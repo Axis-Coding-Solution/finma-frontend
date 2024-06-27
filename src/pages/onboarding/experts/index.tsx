@@ -8,13 +8,24 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
-import { CloudUpload } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@/utils/constants";
 import { onboardingExpertsInitialValues } from "@/utils/initial-values";
 import { onboardingExpertsSchema } from "@/utils/validation-schemas/onboarding";
 import { InputError } from "@/components/ui/input-error";
+import {cities, countries } from "@/data/dashboard/innovators";
+import {
+  areaOfExpertise,
+  compensationOptions,
+  currency,
+  currentPosition,
+  projectEngagementPreference,
+  projectIntakeProcess,
+  selectionProcess,
+  whatICanDo,
+} from "@/data/dashboard/experts";
+import FileUpload from "@/components/ui/fileupload";
 
 function ExpertsOnboardingPage() {
   const selectDefault = [
@@ -31,7 +42,8 @@ function ExpertsOnboardingPage() {
     formState: { errors },
   } = useForm({
     defaultValues: onboardingExpertsInitialValues,
-    resolver: yupResolver(onboardingExpertsSchema),
+    
+    resolver:yupResolver(onboardingExpertsSchema),
   });
   const onSubmitHandler = async (
     values: typeof onboardingExpertsInitialValues
@@ -86,9 +98,9 @@ function ExpertsOnboardingPage() {
                       <SelectValue placeholder="Select country" />
                     </SelectTrigger>
                     <SelectContent>
-                      {selectDefault.map((item) => (
-                        <SelectItem key={item.value} value={item.value}>
-                          {item.label}
+                      {countries.map((item) => (
+                        <SelectItem key={item} value={item}>
+                          {item}
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -111,9 +123,9 @@ function ExpertsOnboardingPage() {
                       <SelectValue placeholder="Select city" />
                     </SelectTrigger>
                     <SelectContent>
-                      {selectDefault.map((item) => (
-                        <SelectItem key={item.value} value={item.value}>
-                          {item.label}
+                      {cities.map((item) => (
+                        <SelectItem key={item} value={item}>
+                          {item}
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -136,9 +148,9 @@ function ExpertsOnboardingPage() {
                       <SelectValue placeholder="Select current Position" />
                     </SelectTrigger>
                     <SelectContent>
-                      {selectDefault.map((item) => (
-                        <SelectItem key={item.value} value={item.value}>
-                          {item.label}
+                      {currentPosition.map((item) => (
+                        <SelectItem key={item} value={item}>
+                          {item}
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -170,9 +182,9 @@ function ExpertsOnboardingPage() {
                       <SelectValue placeholder="Select area of expertise" />
                     </SelectTrigger>
                     <SelectContent>
-                      {selectDefault.map((item) => (
-                        <SelectItem key={item.value} value={item.value}>
-                          {item.label}
+                      {areaOfExpertise.map((item) => (
+                        <SelectItem key={item} value={item}>
+                          {item}
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -192,12 +204,12 @@ function ExpertsOnboardingPage() {
                     onValueChange={(e) => field.onChange(e)}
                   >
                     <SelectTrigger id="whatICanDo">
-                      <SelectValue placeholder="select what i can do" />
+                      <SelectValue placeholder="Select what i can do" />
                     </SelectTrigger>
                     <SelectContent>
-                      {selectDefault.map((item) => (
-                        <SelectItem key={item.value} value={item.value}>
-                          {item.label}
+                      {whatICanDo.map((item) => (
+                        <SelectItem key={item} value={item}>
+                          {item}
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -217,11 +229,11 @@ function ExpertsOnboardingPage() {
                     onValueChange={(e) => field.onChange(e)}
                   >
                     <SelectTrigger id="myGoalsIsTo">
-                      <SelectValue placeholder="select my goals is to" />
+                      <SelectValue placeholder="Select my goals is to" />
                     </SelectTrigger>
                     <SelectContent>
                       {selectDefault.map((item) => (
-                        <SelectItem key={item.value} value={item.value}>
+                        <SelectItem key={item.label} value={item.value}>
                           {item.label}
                         </SelectItem>
                       ))}
@@ -256,9 +268,9 @@ function ExpertsOnboardingPage() {
                       <SelectValue placeholder="Select work compensation options" />
                     </SelectTrigger>
                     <SelectContent>
-                      {selectDefault.map((item) => (
-                        <SelectItem key={item.value} value={item.value}>
-                          {item.label}
+                      {compensationOptions.map((item) => (
+                        <SelectItem key={item} value={item}>
+                          {item}
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -283,9 +295,9 @@ function ExpertsOnboardingPage() {
                       <SelectValue placeholder="Select project selection process" />
                     </SelectTrigger>
                     <SelectContent>
-                      {selectDefault.map((item) => (
-                        <SelectItem key={item.value} value={item.value}>
-                          {item.label}
+                      {selectionProcess.map((item) => (
+                        <SelectItem key={item} value={item}>
+                          {item}
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -310,9 +322,9 @@ function ExpertsOnboardingPage() {
                       <SelectValue placeholder="Select project intake process" />
                     </SelectTrigger>
                     <SelectContent>
-                      {selectDefault.map((item) => (
-                        <SelectItem key={item.value} value={item.value}>
-                          {item.label}
+                      {projectIntakeProcess.map((item) => (
+                        <SelectItem key={item.label} value={item.label}>
+                          {item.checkbox} {item.label}
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -344,9 +356,9 @@ function ExpertsOnboardingPage() {
                       <SelectValue placeholder="Select project engagement preference" />
                     </SelectTrigger>
                     <SelectContent>
-                      {selectDefault.map((item) => (
-                        <SelectItem key={item.value} value={item.value}>
-                          {item.label}
+                      {projectEngagementPreference.map((item) => (
+                        <SelectItem key={item} value={item}>
+                          {item}
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -366,12 +378,12 @@ function ExpertsOnboardingPage() {
                     onValueChange={(e) => field.onChange(e)}
                   >
                     <SelectTrigger id="currency">
-                      <SelectValue placeholder="select currency" />
+                      <SelectValue placeholder="Select currency" />
                     </SelectTrigger>
                     <SelectContent>
-                      {selectDefault.map((item) => (
-                        <SelectItem key={item.value} value={item.value}>
-                          {item.label}
+                      {currency.map((item) => (
+                        <SelectItem key={item} value={item}>
+                          {item}
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -414,29 +426,7 @@ function ExpertsOnboardingPage() {
         </div>
         <hr className="border-secondary my-4" />
         {/* Upload Photo  */}
-        <div className="flex justify-center">
-          <div className="md:w-1/2 w-full border-2 border-dashed border-secondary rounded-lg p-5 flex flex-col items-center justify-between gap-4 text-center">
-            <CloudUpload size="50" className="text-secondary" />
-            <h6>Upload your profile photo</h6>
-            <div className="cursor-pointer">
-              <Button type="button">
-                <Label htmlFor="uploadFile" className="mb-0 cursor-pointer">
-                  Browse files
-                </Label>
-              </Button>
-              <Input
-                type="file"
-                {...register("profilePicture")}
-                onChange={(e) =>
-                  setValue("profilePicture", e.target.files?.[0])
-                }
-                id="uploadFile"
-                className="hidden"
-              />
-              <InputError error={errors.profilePicture} />
-            </div>
-          </div>
-        </div>
+         <FileUpload/>
         <div className="flex justify-end mt-6">
           <Button type="submit">Save</Button>
         </div>
@@ -444,5 +434,4 @@ function ExpertsOnboardingPage() {
     </>
   );
 }
-
 export default ExpertsOnboardingPage;

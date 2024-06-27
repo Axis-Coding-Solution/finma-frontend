@@ -39,3 +39,33 @@ export const onboardingExpertsSchema = object({
   delivery: string().trim().label("Delivery").required(),
   profilePicture: mixed().label("Profile Photo").required(),
 });
+
+export const onboardingInnovatorsSchema = object({
+  firstName: string().trim().label("First Name").required(),
+  lastName: string().trim().label("lastName").required(),
+  dateOfBirth: string().trim().label(" Date of Birth").required(),
+  gender: string().trim().label("Gender").required(),
+  country: string().trim().label("Country").required(),
+  city: string().trim().label("City").required(),
+  mybackground: string().trim().label("My career background").required(),
+  currentposition: string().trim().label("Current position").required(),
+  skills: string().trim().label("Skills (multiple selection)").required(),
+  startupfounder: string()
+    .trim()
+    .label(" What describes your current focus and goals as a startup founder?")
+    .required(),
+  community: string()
+    .trim()
+    .label("What are your main goals for joining our community?")
+    .required(),
+  communityevent: string()
+    .trim()
+    .label(
+      "Would you be interested in participating in community events in your city"
+    )
+    .required(),
+  startup: string()
+    .trim()
+    .label("Have you previously launched or worked on a startup?")
+    .required(),
+});
