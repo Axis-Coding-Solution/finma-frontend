@@ -55,20 +55,22 @@ export const ChatsContent = () => {
 
   // const avatarImage = expertImages[expert!];
 
-  const { data } = useGetMessagesByChatId(id);
-  console.log("🚀 ~ ChatsContent ~ data:", data);
+  const { data: messages } = useGetMessagesByChatId(id);
+  console.log("🚀 ~ ChatsContent ~ data:", messages);
   return (
     <div
       ref={contentRef}
       className="flex-1 flex flex-col px-5 py-2 overflow-y-auto"
     >
-      {chatRoomData.map((message, index) => (
-        <TextMessage
-          message={message}
-          index={index}
-          position={message.sender ? "right" : "left"}
-        />
-      ))}
+      {messages?.map((item: any, index: number) => {
+        return (
+          <TextMessage
+            message={item}
+            index={index}
+            position={item.sender ? "right" : "left"}
+          />
+        );
+      })}
     </div>
   );
 };
