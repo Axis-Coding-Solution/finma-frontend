@@ -1,6 +1,7 @@
 import { useGetUsers } from "@/api/hooks/users";
 import { userAvatar2Image } from "@/assets/images";
 import { Avatar } from "@/components/ui/avatar";
+import { truncateText } from "@/lib/truncate";
 import { cn } from "@/utils";
 import { Link, useLocation } from "react-router-dom";
 
@@ -29,8 +30,21 @@ export const ConnectWithExperts = () => {
           >
             <Avatar image={userAvatar2Image} size="md" active />
             <div className="flex flex-col text-base">
-              <span>{userName}</span>
-              <span className="text-muted-foreground text-xs">Venture Analyst</span>
+              <span
+                className=""
+                style={{
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  width: "150px",
+                }}
+              >
+                {truncateText(userName, 13)}
+              </span>
+
+              <span className="text-muted-foreground text-xs">
+                Venture Analyst
+              </span>
             </div>
           </Link>
         );
