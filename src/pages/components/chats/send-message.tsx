@@ -7,10 +7,12 @@ import { postMessagesInitialValues } from "@/utils/initial-values";
 import { useMutation } from "@tanstack/react-query";
 import { Paperclip, Send, SmilePlus } from "lucide-react";
 import { Controller, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 export const SendMessageBox = () => {
   const { id } = useAppParams();
 
+  const navigate = useNavigate();
   const { control, handleSubmit } = useForm({
     mode: FORM_MODE,
     defaultValues: postMessagesInitialValues,
@@ -27,7 +29,9 @@ export const SendMessageBox = () => {
       content: values.content,
     };
     try {
-      await mutation.mutateAsync(postData);
+      const res = await mutation.mutateAsync(postData);
+      console.log("🚀 ~ onSubmitMessage ~ res:", res.data?.chatId);
+      navigate(`/dashboard/chats/${res.data?.chatId}`);
     } catch (error: any) {
       errorToast(error.message);
     }

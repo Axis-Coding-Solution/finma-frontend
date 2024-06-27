@@ -1,6 +1,8 @@
 import { useEffect, useRef } from "react";
 import { TextMessage } from "./text-message";
 import { chatRoomData } from "@/lib/data";
+import { useAppParams } from "@/utils/hooks";
+import { useGetMessagesByChatId } from "@/api/hooks/messages/messages";
 
 function checkElementOverflow(element: HTMLDivElement) {
   return (
@@ -10,6 +12,8 @@ function checkElementOverflow(element: HTMLDivElement) {
 }
 
 export const ChatsContent = () => {
+  const { id = "" } = useAppParams();
+
   // const [data, setData] = useState(null);
 
   const contentRef = useRef<HTMLDivElement | null>(null);
@@ -23,7 +27,6 @@ export const ChatsContent = () => {
         const scrollHeight = container.scrollHeight;
         container.scrollTo({
           top: scrollHeight,
-          behavior: "smooth",
         });
       }
     }
@@ -52,6 +55,8 @@ export const ChatsContent = () => {
 
   // const avatarImage = expertImages[expert!];
 
+  const { data } = useGetMessagesByChatId(id);
+  console.log("🚀 ~ ChatsContent ~ data:", data);
   return (
     <div
       ref={contentRef}

@@ -1,6 +1,5 @@
 import { get } from "@/utils/axios";
 import { apiErrorHandler } from "../../helpers";
-
 const url = "/dashboard/chats";
 // const appendUrl = (segment: string) => `${url}/${segment}`;
 
@@ -12,7 +11,7 @@ export const getChatsApi = async () => {
     return Promise.reject(apiErrorHandler(error));
   }
 };
-export const getMessageApi = async (id: string) => {
+export const getMessageBYChatIdApi = async (id: string) => {
   try {
     const res = await get(`/messages/${id}`);
     return { data: res.data };
