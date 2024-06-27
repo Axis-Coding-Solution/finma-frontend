@@ -122,3 +122,17 @@
     place-items: center;
     overflow-y: auto;
 }
+
+.truncate{
+    text-overflow: ellipsis; 
+    margin-bottom: 12px;
+    cursor: pointer;         
+    word-break: break-all;
+    overflow:hidden;         
+    white-space: nowrap;
+}
+.truncate:hover{
+    overflow: visible;       
+    white-space: normal;
+    height:auto;
+}
