@@ -1,3 +1,4 @@
+import { CircleX, Forward } from "lucide-react";
 import {
   userAvatar2Image,
   userAvatar3Image,
@@ -15,14 +16,13 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { CircleX, Forward} from "lucide-react";
 
 export const EditChatModal = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-      <div className="flex justify-start items-center gap-2 cursor-pointer px-2">
-      <div className="">
+        <div className="flex justify-start items-center gap-2 cursor-pointer px-2">
+          <div className="">
             <CircleX size={14} />
           </div>
           <h1 className="text-sm">Clear Chat History </h1>
@@ -35,61 +35,57 @@ export const EditChatModal = () => {
         <div className="flex flex-col gap-4">
           <div className="flex items-center space-x-2">
             <Input className="Search" />
-            </div>
+          </div>
           <div className="flex items-center space-x-2">
             <Checkbox id="deleteOther" />
             <Avatar image={userAvatar2Image} size="md" />
             <div className="flex flex-col">
-
-            <label
-              htmlFor="deleteOther"
-              className="text-xl font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
-              Salama M. 
-            </label>
-            <label> Venture analyst</label>
+              <label
+                htmlFor="deleteOther"
+                className="text-xl font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              >
+                Salama M.
+              </label>
+              <label> Venture analyst</label>
             </div>
           </div>
           <div className="flex items-center space-x-2">
             <Checkbox id="deleteOther" />
             <Avatar image={userAvatar3Image} size="md" />
             <div className="flex flex-col">
-
-            <label
-              htmlFor="deleteOther"
-              className="text-xl font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
-              Jim Smith 
-            </label>
-            <label>Market intelligence</label>
+              <label
+                htmlFor="deleteOther"
+                className="text-xl font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              >
+                Jim Smith
+              </label>
+              <label>Market intelligence</label>
             </div>
-
           </div>
           <div className="flex items-center space-x-2">
             <Checkbox id="deleteOther" />
             <Avatar image={userAvatar4Image} size="md" />
             <div className="flex flex-col">
-
-            <label
-              htmlFor="deleteOther"
-              className="text-xl font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
-              Vivian Violet
-            </label>
-            <label>Business strategist</label>
+              <label
+                htmlFor="deleteOther"
+                className="text-xl font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              >
+                Vivian Violet
+              </label>
+              <label>Business strategist</label>
             </div>
           </div>
           <div className="flex items-center space-x-2">
             <Checkbox id="deleteOther" />
             <Avatar image={userAvatar5Image} size="md" />
             <div className="flex flex-col">
-            <label
-              htmlFor="deleteOther"
-              className="text-xl font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
-              Jackie Jess 
-            </label>
-            <label>Market intelligence</label>
+              <label
+                htmlFor="deleteOther"
+                className="text-xl font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              >
+                Jackie Jess
+              </label>
+              <label>Market intelligence</label>
             </div>
           </div>
         </div>

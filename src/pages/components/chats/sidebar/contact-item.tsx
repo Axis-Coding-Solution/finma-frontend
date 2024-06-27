@@ -3,8 +3,7 @@ import { Check } from "lucide-react";
 type PropsTypes = {
   item: any;
 };
-export const ChatContact = ({ item }: PropsTypes) => {
-  console.log("🚀 ~ item:", item);
+export const ChatContactItem = ({ item }: PropsTypes) => {
   return (
     <>
       {item.users.map((item: any) => (
@@ -15,7 +14,6 @@ export const ChatContact = ({ item }: PropsTypes) => {
               <div>
                 <h6 className="text-foreground 2xl:text-xl text-base font-semibold">
                   {item.email}
-                  {console.log("🚀 ~ ChatContact ~ item.email:", item.email)}
                 </h6>
                 <span className="text-muted-foreground 2xl:text-base text-xs whitespace-nowrap font-normal">
                   {/* {designation} */}

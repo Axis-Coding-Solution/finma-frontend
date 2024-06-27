@@ -1,21 +1,15 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ChatContact } from "./chat-contact";
+import { ChatContactItem } from "./contact-item";
 import { useGetChats } from "@/api/hooks/dashboard";
 import { EmptyMessage } from "@/assets/icons/empty-message";
 
-export const ChatSidebar = () => {
-  const { data } = useGetChats();
-
-  // console.log(data);
-  // useEffect(() => {
-  //   if (data) {
-  //     setId(data.data.map((item) => item._id));
-  //   }
-  // }, [data]);
+export const ChatsSidebar = () => {
+  const { data = {}, isPending } = useGetChats();
+  const { data: chats } = data;
 
   return (
-    <div className="px-1 h-full  " >
+    <div className="sticky left-0 top-0 flex flex-col gap-5">
       <div className="flex items-center gap-2">
         <Button variant="dark" rounded>
           All
@@ -27,17 +21,15 @@ export const ChatSidebar = () => {
           Innovators
         </Button>
       </div>
-      <div className="mt-4">
-        <Input type="text" />
-      </div>
-      <div className="divide-y divide-border h-full rounded-2xl bg-accent py-4 mt-4">
-        {data?.data &&
-          data.data.map((item: any, index: number) => (
-            <ChatContact item={item} key={index} />
+      <Input type="text" />
+      <div className="divide-y divide-border h-full rounded-lg bg-accent py-2">
+        {!isPending &&
+          chats?.map((item: any, index: number) => (
+            <ChatContactItem item={item} key={index} />
           ))}
         <div className="flex flex-col gap-3 justify-center h-full items-center">
           <EmptyMessage />
-          <span className=" w-[232px] text-[14px] text-center ">
+          <span className="text-[14px] text-center">
             Start chatting with innovators and your chats will appear here
           </span>
           <Button variant="default" className="mt-4">

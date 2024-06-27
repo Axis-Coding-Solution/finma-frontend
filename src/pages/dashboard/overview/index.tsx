@@ -9,7 +9,7 @@ import { X } from "lucide-react";
 
 function OverviewPage() {
   return (
-    <div>
+    <>
       <div className="flex md:flex-row flex-col md:items-center items-start justify-between">
         <MainHeading heading="Overview" paragraph="" />
         <Alert className="w-auto ">
@@ -21,7 +21,7 @@ function OverviewPage() {
                 is reviewing your scorecard
               </span>
               <Button variant="ghost" className="p-2 md:ml-8 ml-2 group">
-              <X className="text-secondary group-hover:text-info" />
+                <X className="text-secondary group-hover:text-info" />
               </Button>
             </div>
           </AlertDescription>
@@ -31,7 +31,7 @@ function OverviewPage() {
         <div className="flex md:flex-row flex-col justify-between md:items-center items-start text-foreground font-medium">
           <h6 className="text-xl">Idea Clarity</h6>
           <div className="flex justify-end w-full md:mt-0 mt-2">
-          <IdeaClarityModal />
+            <IdeaClarityModal />
           </div>
         </div>
         <div className="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-5 mt-5">
@@ -68,7 +68,7 @@ function OverviewPage() {
         <LockedCard title="Founders’ ability" />
         <LockedCard title="Launch support" />
       </div>
-    </div>
+    </>
   );
 }
 

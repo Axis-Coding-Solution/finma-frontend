@@ -1,9 +1,9 @@
-import { SendMessageBox } from "./send-message";
+import PerfectScrollBar from "react-perfect-scrollbar";
+import { SendMessageBox } from "../send-message";
+import { TextMessage } from "./text-message";
 import { chatRoomData } from "@/lib/data";
-import ScrollBar from "react-perfect-scrollbar";
-import { TextMessage } from "./content/Text-Message";
 
-export const ChatContent = () => {
+export const ChatsContent = () => {
   // const [data, setData] = useState(null);
   // // const [error, setError] = useState(null);
 
@@ -31,7 +31,7 @@ export const ChatContent = () => {
 
   return (
     <div className={`flex flex-col gap-2 `}>
-      <ScrollBar>
+      <PerfectScrollBar>
         <div className="flex flex-col px-5   h-[25rem] ">
           {chatRoomData.map((message, index) => (
             <TextMessage
@@ -41,7 +41,7 @@ export const ChatContent = () => {
             />
           ))}
         </div>
-      </ScrollBar>
+      </PerfectScrollBar>
       <SendMessageBox />
     </div>
   );
