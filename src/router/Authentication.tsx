@@ -17,6 +17,12 @@ const SignUpPage = lazy(() => import("@/pages/authentication/sign-up"));
 
 export default [
   {
+    meta: {
+      layout: "blank",
+      isRestrictedRoute: true,
+    },
+  },
+  {
     element: <AuthLayout />,
     path: "/auth",
     children: [

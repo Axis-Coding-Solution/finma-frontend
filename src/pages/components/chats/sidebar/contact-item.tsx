@@ -1,7 +1,5 @@
 import { userAvatar1Image } from "@/assets/images";
 import { Avatar } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
-import { truncateText } from "@/lib/truncate";
 import { chatUserDataHook } from "@/store";
 import { useHookstate } from "@hookstate/core";
 import { Check } from "lucide-react";
@@ -28,7 +26,7 @@ export const ChatContactItem = ({ item }: PropsTypes) => {
             setChatUser((prev) => ({
               ...prev,
               id: item._id,
-              chatUserName:userName ,
+              chatUserName: userName,
             }))
           }
         >

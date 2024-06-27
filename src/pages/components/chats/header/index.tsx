@@ -2,7 +2,7 @@ import ProfileInfo from "./profile-info";
 import HeaderOptions from "./header-options";
 
 import { Ratings } from "@/components/ui/ratings";
-import { DummyImage } from "@/lib/data";
+import { DummyImage } from "@/data/chats";
 
 export function ChatsHeader() {
   return (
