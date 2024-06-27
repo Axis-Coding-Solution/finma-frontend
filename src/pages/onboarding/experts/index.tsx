@@ -14,7 +14,7 @@ import { yupResolver } from "@/utils/constants";
 import { onboardingExpertsInitialValues } from "@/utils/initial-values";
 import { onboardingExpertsSchema } from "@/utils/validation-schemas/onboarding";
 import { InputError } from "@/components/ui/input-error";
-import {cities, countries } from "@/data/dashboard/innovators";
+import { cities, countries } from "@/data/dashboard/innovators";
 import {
   areaOfExpertise,
   compensationOptions,
@@ -42,8 +42,8 @@ function ExpertsOnboardingPage() {
     formState: { errors },
   } = useForm({
     defaultValues: onboardingExpertsInitialValues,
-    
-    resolver:yupResolver(onboardingExpertsSchema),
+
+    resolver: yupResolver(onboardingExpertsSchema),
   });
   const onSubmitHandler = async (
     values: typeof onboardingExpertsInitialValues
@@ -65,36 +65,36 @@ function ExpertsOnboardingPage() {
           </h4>
           <div className="grid md:grid-cols-2 grid-cols-1 gap-4 mt-4">
             <div>
-              <Label htmlFor="firstName">First Name</Label>
+              <Label htmlFor="personalInfo.firstName">First Name</Label>
               <Input
                 type="text"
-                id="firstName"
-                {...register("firstName")}
+                id="personalInfo.firstName"
+                {...register("personalInfo.firstName")}
                 placeholder="Enter first name"
               />
-              <InputError error={errors.firstName} />
+              <InputError error={errors.personalInfo?.firstName} />
             </div>
             <div>
-              <Label htmlFor="lastName">Last Name</Label>
+              <Label htmlFor="personalInfo.lastName">Last Name</Label>
               <Input
                 type="text"
-                id="lastName"
-                {...register("lastName")}
+                id="personalInfo.lastName"
+                {...register("personalInfo.lastName")}
                 placeholder="Enter last name"
               />
-              <InputError error={errors.lastName} />
+              <InputError error={errors.personalInfo?.lastName} />
             </div>
             <div>
-              <Label htmlFor="country">Country</Label>
+              <Label htmlFor="perpersonalInfo.country">Country</Label>
               <Controller
-                name="country"
+                name="personalInfo.country"
                 control={control}
                 render={({ field }) => (
                   <Select
                     value={field.value}
                     onValueChange={(e) => field.onChange(e)}
                   >
-                    <SelectTrigger id="country">
+                    <SelectTrigger id="personalInfo.country">
                       <SelectValue placeholder="Select country" />
                     </SelectTrigger>
                     <SelectContent>
@@ -107,19 +107,19 @@ function ExpertsOnboardingPage() {
                   </Select>
                 )}
               ></Controller>
-              <InputError error={errors.country} />
+              <InputError error={errors.personalInfo?.country} />
             </div>
             <div>
-              <Label htmlFor="city">city</Label>
+              <Label htmlFor="personalInfo.city">city</Label>
               <Controller
-                name="city"
+                name="personalInfo.city"
                 control={control}
                 render={({ field }) => (
                   <Select
                     value={field.value}
                     onValueChange={(e) => field.onChange(e)}
                   >
-                    <SelectTrigger id="city">
+                    <SelectTrigger id="personalInfo.city">
                       <SelectValue placeholder="Select city" />
                     </SelectTrigger>
                     <SelectContent>
@@ -132,19 +132,21 @@ function ExpertsOnboardingPage() {
                   </Select>
                 )}
               ></Controller>
-              <InputError error={errors.city} />
+              <InputError error={errors.personalInfo?.city} />
             </div>
             <div className="md:col-span-2 col-span-1">
-              <Label htmlFor="currentPosition">My current position</Label>
+              <Label htmlFor="personalInfo.currentPosition">
+                My current position
+              </Label>
               <Controller
-                name="myCurrentPosition"
+                name="personalInfo.currentPosition"
                 control={control}
                 render={({ field }) => (
                   <Select
                     value={field.value}
                     onValueChange={(e) => field.onChange(e)}
                   >
-                    <SelectTrigger id="currentPosition">
+                    <SelectTrigger id="personalInfo.currentPosition">
                       <SelectValue placeholder="Select current Position" />
                     </SelectTrigger>
                     <SelectContent>
@@ -157,7 +159,7 @@ function ExpertsOnboardingPage() {
                   </Select>
                 )}
               ></Controller>
-              <InputError error={errors.myCurrentPosition} />
+              <InputError error={errors.personalInfo?.currentPosition} />
             </div>
           </div>
         </div>
@@ -169,16 +171,18 @@ function ExpertsOnboardingPage() {
           </h4>
           <div className="grid grid-cols-1 gap-4 mt-4">
             <div>
-              <Label htmlFor="areaOfExpertise">Area of expertise</Label>
+              <Label htmlFor="professionalInfo.areaOfExpertise">
+                Area of expertise
+              </Label>
               <Controller
-                name="areaOfExpertise"
+                name="professionalInfo.areaOfExpertise"
                 control={control}
                 render={({ field }) => (
                   <Select
                     value={field.value}
                     onValueChange={(e) => field.onChange(e)}
                   >
-                    <SelectTrigger id="areaOfExpertise">
+                    <SelectTrigger id="professionalInfo.areaOfExpertise">
                       <SelectValue placeholder="Select area of expertise" />
                     </SelectTrigger>
                     <SelectContent>
@@ -191,19 +195,19 @@ function ExpertsOnboardingPage() {
                   </Select>
                 )}
               ></Controller>
-              <InputError error={errors.areaOfExpertise} />
+              <InputError error={errors.professionalInfo?.areaOfExpertise} />
             </div>
             <div>
-              <Label htmlFor="whatICanDo">What i can do</Label>
+              <Label htmlFor="professionalInfo.canDo">What i can do</Label>
               <Controller
-                name="whatICanDo"
+                name="professionalInfo.canDo"
                 control={control}
                 render={({ field }) => (
                   <Select
                     value={field.value}
                     onValueChange={(e) => field.onChange(e)}
                   >
-                    <SelectTrigger id="whatICanDo">
+                    <SelectTrigger id="professionalInfo.canDo">
                       <SelectValue placeholder="Select what i can do" />
                     </SelectTrigger>
                     <SelectContent>
@@ -216,19 +220,19 @@ function ExpertsOnboardingPage() {
                   </Select>
                 )}
               ></Controller>
-              <InputError error={errors.whatICanDo} />
+              <InputError error={errors.professionalInfo?.canDo} />
             </div>
             <div>
-              <Label htmlFor="myGoalsIsTo">My goals is to</Label>
+              <Label htmlFor="professionalInfo.goals">My goals is to</Label>
               <Controller
-                name="myGoalsIsTo"
+                name="professionalInfo.goals"
                 control={control}
                 render={({ field }) => (
                   <Select
                     value={field.value}
                     onValueChange={(e) => field.onChange(e)}
                   >
-                    <SelectTrigger id="myGoalsIsTo">
+                    <SelectTrigger id="professionalInfo.goals">
                       <SelectValue placeholder="Select my goals is to" />
                     </SelectTrigger>
                     <SelectContent>
@@ -241,7 +245,7 @@ function ExpertsOnboardingPage() {
                   </Select>
                 )}
               ></Controller>
-              <InputError error={errors.myGoalsIsTo} />
+              <InputError error={errors.professionalInfo?.goals} />
             </div>
           </div>
         </div>
@@ -253,18 +257,18 @@ function ExpertsOnboardingPage() {
           </h4>
           <div className="grid grid-cols-1 gap-4 mt-4">
             <div>
-              <Label htmlFor="workCompensationOptions">
+              <Label htmlFor="experience.compensationOption">
                 Work compensation options
               </Label>
               <Controller
-                name="workCompensationsOptions"
+                name="experience.compensationOption"
                 control={control}
                 render={({ field }) => (
                   <Select
                     value={field.value}
                     onValueChange={(e) => field.onChange(e)}
                   >
-                    <SelectTrigger id="workCompensationOptions">
+                    <SelectTrigger id="experience.compensationOption">
                       <SelectValue placeholder="Select work compensation options" />
                     </SelectTrigger>
                     <SelectContent>
@@ -277,21 +281,21 @@ function ExpertsOnboardingPage() {
                   </Select>
                 )}
               ></Controller>
-              <InputError error={errors.workCompensationsOptions} />
+              <InputError error={errors.experience?.compensationOption} />
             </div>
             <div>
-              <Label htmlFor="projectSelectionProcess">
+              <Label htmlFor="experience.projSelectionOption">
                 Project Selection Process
               </Label>
               <Controller
-                name="projectSelectionProcess"
+                name="experience.projSelectionOption"
                 control={control}
                 render={({ field }) => (
                   <Select
                     value={field.value}
                     onValueChange={(e) => field.onChange(e)}
                   >
-                    <SelectTrigger id="projectSelectionProcess">
+                    <SelectTrigger id="experience.projSelectionOption">
                       <SelectValue placeholder="Select project selection process" />
                     </SelectTrigger>
                     <SelectContent>
@@ -304,21 +308,25 @@ function ExpertsOnboardingPage() {
                   </Select>
                 )}
               ></Controller>
-              <InputError error={errors.projectSelectionProcess} />
+              <InputError error={errors.experience?.projSelectionOption} />
             </div>
             <div>
-              <Label htmlFor="projectIntakeProcess">
+              <Label htmlFor="experience.projIntakeProcess">
                 Project Intake Process
               </Label>
               <Controller
-                name="projectIntakeProcess"
+                name="experience.projIntakeProcess"
                 control={control}
                 render={({ field }) => (
                   <Select
-                    value={field.value}
+                    // isMulti
+                    // value={}
+                    // options={projectIntakeProcess}
+                    // value={}
+                    // value={field.value}
                     onValueChange={(e) => field.onChange(e)}
                   >
-                    <SelectTrigger id="projectIntakeProcess">
+                    <SelectTrigger id="experience.projIntakeProcess">
                       <SelectValue placeholder="Select project intake process" />
                     </SelectTrigger>
                     <SelectContent>
@@ -331,7 +339,7 @@ function ExpertsOnboardingPage() {
                   </Select>
                 )}
               ></Controller>
-              <InputError error={errors.projectIntakeProcess} />
+              <InputError error={errors.experience?.projIntakeProcess} />
             </div>
           </div>
         </div>
@@ -341,18 +349,18 @@ function ExpertsOnboardingPage() {
           <h4 className="text-success uppercase font-medium">Rate</h4>
           <div className="grid md:grid-cols-6 grid-cols-1 gap-4 mt-4">
             <div className="md:col-span-3 col-span-1">
-              <Label htmlFor="projectEngagementPreference">
+              <Label htmlFor="rate.projEngagementPref">
                 Project engagement preference
               </Label>
               <Controller
-                name="projectEngagementPreference"
+                name="rate.projEngagementPref"
                 control={control}
                 render={({ field }) => (
                   <Select
                     value={field.value}
                     onValueChange={(e) => field.onChange(e)}
                   >
-                    <SelectTrigger id="projectEngagementPreference">
+                    <SelectTrigger id="rate.projEngagementPref">
                       <SelectValue placeholder="Select project engagement preference" />
                     </SelectTrigger>
                     <SelectContent>
@@ -365,19 +373,19 @@ function ExpertsOnboardingPage() {
                   </Select>
                 )}
               ></Controller>
-              <InputError error={errors.projectEngagementPreference} />
+              <InputError error={errors.rate?.projEngagementPref} />
             </div>
             <div className="md:col-span-3 col-span-1">
-              <Label htmlFor="currency">Currency</Label>
+              <Label htmlFor="rate.currency">Currency</Label>
               <Controller
-                name="currency"
+                name="rate.currency"
                 control={control}
                 render={({ field }) => (
                   <Select
                     value={field.value}
                     onValueChange={(e) => field.onChange(e)}
                   >
-                    <SelectTrigger id="currency">
+                    <SelectTrigger id="rate.currency">
                       <SelectValue placeholder="Select currency" />
                     </SelectTrigger>
                     <SelectContent>
@@ -390,43 +398,43 @@ function ExpertsOnboardingPage() {
                   </Select>
                 )}
               ></Controller>
-              <InputError error={errors.currency} />
+              <InputError error={errors.rate?.currency} />
             </div>
             <div className="md:col-span-2 col-span-1">
-              <Label htmlFor="discoveryCall">Discovery call</Label>
+              <Label htmlFor="rate.discoverCall">Discovery call</Label>
               <Input
                 type="text"
-                {...register("discoveryCall")}
-                id="discoveryCall"
+                {...register("rate.discoverCall")}
+                id="rate.discoverCall"
                 placeholder="Enter discovery call"
               />
-              <InputError error={errors.discoveryCall} />
+              <InputError error={errors.rate?.discoverCall} />
             </div>
             <div className="md:col-span-2 col-span-1">
-              <Label htmlFor="consultation">Consultation</Label>
+              <Label htmlFor="rate.consultation">Consultation</Label>
               <Input
                 type="text"
-                {...register("consultation")}
-                id="consultation"
+                {...register("rate.consultation")}
+                id="rate.consultation"
                 placeholder="Enter consultation"
               />
-              <InputError error={errors.consultation} />
+              <InputError error={errors.rate?.consultation} />
             </div>
             <div className="md:col-span-2 col-span-1">
-              <Label htmlFor="delivery">Delivery</Label>
+              <Label htmlFor="rate.delivery">Delivery</Label>
               <Input
                 type="text"
-                {...register("delivery")}
-                id="delivery"
+                {...register("rate.delivery")}
+                id="rate.delivery"
                 placeholder="Enter delivery"
               />
-              <InputError error={errors.delivery} />
+              <InputError error={errors.rate?.delivery} />
             </div>
           </div>
         </div>
         <hr className="border-secondary my-4" />
         {/* Upload Photo  */}
-         <FileUpload/>
+        <FileUpload />
         <div className="flex justify-end mt-6">
           <Button type="submit">Save</Button>
         </div>
