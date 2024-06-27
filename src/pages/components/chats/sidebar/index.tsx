@@ -22,19 +22,17 @@ export const ChatsSidebar = () => {
         </Button>
       </div>
       <Input type="text" />
-      <div className="divide-y divide-border h-full rounded-lg bg-accent py-2">
+      <div className="h-full rounded-lg bg-accent py-5 px-3">
         {!isPending &&
           chats?.map((item: any, index: number) => (
             <ChatContactItem item={item} key={index} />
           ))}
-        <div className="flex flex-col gap-3 justify-center h-full items-center">
+        <div className="inline-flex flex-col gap-5 items-center justify-center w-full">
           <EmptyMessage />
           <span className="text-sm text-center">
             Start chatting with innovators and your chats will appear here
           </span>
-          <Button variant="default" className="mt-4">
-            Browse the Innovators
-          </Button>
+          <Button variant="default">Browse the Innovators</Button>
         </div>
       </div>
     </div>
