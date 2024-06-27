@@ -6,7 +6,13 @@ const ideaClarityFormDataInitialValues = {
   targetedAudience: "",
   competitors: "",
 };
+const expertsDetailsInitialValues = {
+  name: "",
+  description: "",
+  image: "",
+};
 
 export const ideaClarityFormDataHook = hookstate(
   ideaClarityFormDataInitialValues
 );
+export const expertsDetailsHook = hookstate(expertsDetailsInitialValues);

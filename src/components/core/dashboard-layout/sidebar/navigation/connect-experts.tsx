@@ -2,13 +2,19 @@ import { useGetUsers } from "@/api/hooks/users";
 import { userAvatar2Image } from "@/assets/images";
 import { Avatar } from "@/components/ui/avatar";
 import { truncateText } from "@/lib/truncate";
+import { expertsDetailsHook } from "@/store";
 import { cn } from "@/utils";
+import { useHookstate } from "@hookstate/core";
 import { Link, useLocation } from "react-router-dom";
 
 export const ConnectWithExperts = () => {
   const { pathname } = useLocation();
   const { data } = useGetUsers();
   let users = data?.data ?? [];
+
+  const expertInfo = useHookstate(expertsDetailsHook);
+  const setExpertInfo = expertInfo.set;
+
   return (
     <div className="text-foreground mt-4 flex flex-col gap-1">
       <h6 className="px-4 text-muted-foreground text-sm tracking-wider mb-1">
@@ -38,6 +44,9 @@ export const ConnectWithExperts = () => {
                   textOverflow: "ellipsis",
                   width: "150px",
                 }}
+                onClick={() =>
+                  setExpertInfo((prev) => ({ ...prev, id, name: userName }))
+                }
               >
                 {truncateText(userName, 13)}
               </span>
