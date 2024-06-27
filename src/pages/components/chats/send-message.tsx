@@ -1,15 +1,17 @@
 import { postMessageApi } from "@/api/http/messages";
-import { errorToast, } from "@/utils";
+import { errorToast } from "@/utils";
 import { FORM_MODE } from "@/utils/constants";
-import { useAppParams  } from "@/utils/hooks";
+import { useAppNavigation, useAppParams } from "@/utils/hooks";
 import { postMessagesInitialValues } from "@/utils/initial-values";
 import { useMutation } from "@tanstack/react-query";
 import { Paperclip, Send, SmilePlus } from "lucide-react";
 import { Controller, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+// import { NavigateFunction } from "react-router-dom";
 
 export const SendMessageBox = () => {
   const { id } = useAppParams();
-
+  const navigate = useNavigate();
   const {
     control,
     handleSubmit,
@@ -31,11 +33,13 @@ export const SendMessageBox = () => {
     };
     try {
       const res = await mutation.mutateAsync(postData);
-      console.log("🚀 ~ onSubmitMessage ~ res:", res);
+      console.log("🚀 ~ onSubmitMessage ~ res:", res.data?.chatId);
+      navigate(`/dashboard/chats/${res.data?.chatId}`);
     } catch (error: any) {
       errorToast(error.message);
     }
   };
+
   console.log("🚀 ~ SendMessageBox ~ errors:", errors);
 
   return (

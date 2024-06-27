@@ -2,8 +2,12 @@ import PerfectScrollBar from "react-perfect-scrollbar";
 import { SendMessageBox } from "../send-message";
 import { TextMessage } from "./text-message";
 import { chatRoomData } from "@/lib/data";
+import { useAppParams } from "@/utils/hooks";
+import { useGetMessagesByChatId } from "@/api/hooks/messages/messages";
 
 export const ChatsContent = () => {
+  const { id = "" } = useAppParams();
+
   // const [data, setData] = useState(null);
   // // const [error, setError] = useState(null);
 
@@ -29,6 +33,8 @@ export const ChatsContent = () => {
 
   // const avatarImage = expertImages[expert!];
 
+  const { data } = useGetMessagesByChatId(id);
+  console.log("🚀 ~ ChatsContent ~ data:", data);
   return (
     <div className={`flex flex-col gap-2 `}>
       <PerfectScrollBar>

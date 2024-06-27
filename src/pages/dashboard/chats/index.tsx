@@ -9,7 +9,6 @@ import { useAppParams } from "@/utils/hooks";
 
 function ChatBoxPage() {
   const { id } = useAppParams();
-  console.log("🚀 ~ ChatBoxPage ~ id:", id);
 
   return (
     <>
