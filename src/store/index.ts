@@ -23,3 +23,5 @@ export const chatUserDataHook = hookstate({
   description: "",
   image: "",
 });
+
+export const userMessages = hookstate([] as any[]);

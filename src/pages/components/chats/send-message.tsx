@@ -1,25 +1,21 @@
-import { postMessageApi } from "@/api/http/messages";
 import { Textarea } from "@/components/ui/textarea";
 import { errorToast } from "@/utils";
 import { FORM_MODE } from "@/utils/constants";
 import { useAppParams } from "@/utils/hooks";
 import { postMessagesInitialValues } from "@/utils/initial-values";
-import { useMutation } from "@tanstack/react-query";
 import { Paperclip, Send, SmilePlus } from "lucide-react";
 import { Controller, useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { SOCKET_ENUMS } from "@/utils/constants/socket-enums";
+import { useMessagesStore } from "@/store/hooks";
+import socket from "@/lib/socket.io";
 
 export const SendMessageBox = () => {
-  const { id } = useAppParams();
+  const { id = "" } = useAppParams();
+  const { pushMessage } = useMessagesStore();
 
-  const navigate = useNavigate();
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit, reset } = useForm({
     mode: FORM_MODE,
     defaultValues: postMessagesInitialValues,
-  });
-
-  const mutation = useMutation({
-    mutationFn: postMessageApi,
   });
 
   const onSubmitMessage = async (values: typeof postMessagesInitialValues) => {
@@ -29,16 +25,17 @@ export const SendMessageBox = () => {
       content: values.content,
     };
     try {
-      const res = await mutation.mutateAsync(postData);
-      console.log("🚀 ~ onSubmitMessage ~ res:", res.data?.chatId);
-      navigate(`/dashboard/chats/${res.data?.chatId}`);
+      socket.emit(SOCKET_ENUMS.POST_MESSAGE, postData);
+      reset(postMessagesInitialValues);
+      pushMessage({
+        ...postData,
+        position: "right",
+        createdAt: new Date(),
+      });
     } catch (error: any) {
       errorToast(error.message);
     }
   };
-
-
-
 
   return (
     <form

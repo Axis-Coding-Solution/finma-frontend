@@ -7,8 +7,9 @@ export const usePostMessages = () =>
     mutationKey: ["/messages"],
   });
 
-export const useGetMessagesByChatId = (id: string) =>
-  useQuery({
+export const useGetMessagesByChatId = (id: string) => {
+  return useQuery({
     queryFn: () => getMessageBYChatIdApi(id),
     queryKey: ["/get-message", id],
   });
+};
