@@ -1,10 +1,33 @@
-import PerfectScrollBar from "react-perfect-scrollbar";
-import { SendMessageBox } from "../send-message";
+import { useEffect, useRef } from "react";
 import { TextMessage } from "./text-message";
 import { chatRoomData } from "@/lib/data";
 
+function checkElementOverflow(element: HTMLDivElement) {
+  return (
+    element.scrollHeight > element.clientHeight ||
+    element.scrollWidth > element.clientWidth
+  );
+}
+
 export const ChatsContent = () => {
   // const [data, setData] = useState(null);
+
+  const contentRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const container = contentRef.current;
+    if (container) {
+      const isOverflown = checkElementOverflow(container);
+      if (!isOverflown) container.classList.add("justify-end");
+      else {
+        const scrollHeight = container.scrollHeight;
+        container.scrollTo({
+          top: scrollHeight,
+          behavior: "smooth",
+        });
+      }
+    }
+  }, []);
   // // const [error, setError] = useState(null);
 
   // useEffect(() => {
@@ -30,19 +53,17 @@ export const ChatsContent = () => {
   // const avatarImage = expertImages[expert!];
 
   return (
-    <div className={`flex flex-col gap-2 `}>
-      <PerfectScrollBar>
-        <div className="flex flex-col px-5   h-[25rem] ">
-          {chatRoomData.map((message, index) => (
-            <TextMessage
-              message={message}
-              index={index}
-              position={message.sender ? "right" : "left"}
-            />
-          ))}
-        </div>
-      </PerfectScrollBar>
-      <SendMessageBox />
+    <div
+      ref={contentRef}
+      className="flex-1 flex flex-col px-5 py-2 overflow-y-auto"
+    >
+      {chatRoomData.map((message, index) => (
+        <TextMessage
+          message={message}
+          index={index}
+          position={message.sender ? "right" : "left"}
+        />
+      ))}
     </div>
   );
 };
