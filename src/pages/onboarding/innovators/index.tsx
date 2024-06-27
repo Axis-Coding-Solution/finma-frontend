@@ -32,20 +32,21 @@ import { onboardingInnovatorsInitialValues } from "@/utils/initial-values";
 import { onboardingInnovatorsSchema } from "@/utils/validation-schemas/onboarding";
 
 function InnovatorsOnboardingPage() {
-  const { register, control, handleSubmit } = useForm({
+  const { register, watch, control, handleSubmit } = useForm({
     defaultValues: onboardingInnovatorsInitialValues,
-    resolver: yupResolver(onboardingInnovatorsSchema),
+    // resolver: yupResolver(onboardingInnovatorsSchema),
   });
 
-  const onsubmit = (values: typeof onboardingInnovatorsInitialValues) => {
+  console.log(watch("personalInfo.dateOfBirth"));
+  const onSubmit = (values: typeof onboardingInnovatorsInitialValues) => {
     console.log(values);
   };
 
-  const [stapperstate, setStapperState] = useState(1);
+  const [step, setStep] = useState(1);
   return (
     <>
-      <form onSubmit={handleSubmit(onsubmit)}>
-        {stapperstate == 1 && (
+      <form onSubmit={handleSubmit(onSubmit)}>
+        {step == 1 && (
           <div>
             <MainHeading heading="Welcome to the community! Almost there." />
             <div className="flex justify-end items-end text-secondary">
@@ -68,25 +69,40 @@ function InnovatorsOnboardingPage() {
             <div className="grid  grid-cols-1 md:grid-cols-2 gap-5 mt-5">
               <div>
                 <Label htmlFor="firstName"> First Name</Label>
-                <Input id="firstName" type="text" {...register("firstName")} />
+                <Input
+                  id="firstName"
+                  type="text"
+                  {...register("personalInfo.firstName")}
+                />
               </div>
               <div>
                 <Label htmlFor="lastName"> Last Name</Label>
-                <Input type="text" id="lastName" {...register("lastName")} />
+                <Input
+                  type="text"
+                  id="lastName"
+                  {...register("personalInfo.lastName")}
+                />
               </div>
               <div>
                 <Label htmlFor="dateOfBirth"> Date of Birth</Label>
                 <Controller
-                  name="dateOfBirth"
+                  name="personalInfo.dateOfBirth"
                   control={control}
-                  render={({ field }) => <DatePicker />}
+                  render={({ field }) => (
+                    <DatePicker
+                      showOutsideDays={false}
+                      onChange={field.onChange}
+                      onBlur={field.onBlur}
+                      value={field.value}
+                    />
+                  )}
                 />
               </div>
 
               <div className="w-full">
                 <Label htmlFor="gender"> Gender</Label>
                 <Controller
-                  name="gender"
+                  name="personalInfo.gender"
                   control={control}
                   render={({ field }) => (
                     <Select
@@ -110,7 +126,7 @@ function InnovatorsOnboardingPage() {
               <div className="w-full">
                 <Label htmlFor="country"> Country</Label>
                 <Controller
-                  name="country"
+                  name="personalInfo.country"
                   control={control}
                   render={({ field }) => (
                     <Select
@@ -136,7 +152,7 @@ function InnovatorsOnboardingPage() {
                 <Label htmlFor="city">City</Label>
 
                 <Controller
-                  name="city"
+                  name="personalInfo.city"
                   control={control}
                   render={({ field }) => (
                     <Select
@@ -160,7 +176,7 @@ function InnovatorsOnboardingPage() {
                   <Button
                     type="submit"
                     variant="default"
-                    onClick={() => setStapperState(2)}
+                    onClick={() => setStep(2)}
                   >
                     Next
                   </Button>
@@ -170,7 +186,7 @@ function InnovatorsOnboardingPage() {
           </div>
         )}
 
-        {stapperstate == 2 && (
+        {step == 2 && (
           <div>
             <MainHeading heading="Welcome to the community! Almost there." />
             <div className="flex justify-end items-end text-secondary">
@@ -191,9 +207,12 @@ function InnovatorsOnboardingPage() {
 
             <div className="grid grid-cols-1 gap-5 mt-5">
               <div>
-                <Label htmlFor="mybackground"> My career background</Label>
+                <Label htmlFor="professionalInfo.careerBackground">
+                  {" "}
+                  My career background
+                </Label>
                 <Controller
-                  name="mybackground"
+                  name="professionalInfo.careerBackground"
                   control={control}
                   render={({ field }) => (
                     <Select
@@ -215,9 +234,11 @@ function InnovatorsOnboardingPage() {
                 />
               </div>
               <div>
-                <Label htmlFor="currentposition"> Current position</Label>
+                <Label htmlFor="professionalInfo.currentPosition">
+                  Current position
+                </Label>
                 <Controller
-                  name="currentposition"
+                  name="professionalInfo.currentPosition"
                   control={control}
                   render={({ field }) => (
                     <Select
@@ -244,7 +265,7 @@ function InnovatorsOnboardingPage() {
               <div>
                 <Label htmlFor="skills"> Skills (multiple selection)</Label>
                 <Controller
-                  name="skills"
+                  name="professionalInfo.skills"
                   control={control}
                   render={({ field }) => (
                     <Select
@@ -271,7 +292,7 @@ function InnovatorsOnboardingPage() {
                   <Button
                     type="submit"
                     variant="default"
-                    onClick={() => setStapperState(3)}
+                    onClick={() => setStep(3)}
                   >
                     Next
                   </Button>
@@ -280,7 +301,7 @@ function InnovatorsOnboardingPage() {
             </div>
           </div>
         )}
-        {stapperstate == 3 && (
+        {step == 3 && (
           <div>
             <MainHeading heading="Welcome to the community! Almost there." />
             <div className="flex justify-end items-end text-secondary">
@@ -296,19 +317,19 @@ function InnovatorsOnboardingPage() {
 
               <p className="text-muted-foreground">
                 Please provide additional info about your entrepreneurial
-                experience{" "}
+                experience
               </p>
             </div>
 
             <div className="grid grid-cols-1 gap-5 mt-5">
               <div>
-                <Label htmlFor="startupfounder">
+                <Label htmlFor="experience.currentFocusAsStartup">
                   What describes your current focus and goals as a startup
                   founder?
                 </Label>
 
                 <Controller
-                  name="startupfounder"
+                  name="experience.currentFocusAsStartup"
                   control={control}
                   render={({ field }) => (
                     <Select
@@ -339,11 +360,11 @@ function InnovatorsOnboardingPage() {
                 />
               </div>
               <div>
-                <Label htmlFor="community">
+                <Label htmlFor="experience.mainGoals">
                   What are your main goals for joining our community?
                 </Label>
                 <Controller
-                  name="community"
+                  name="experience.mainGoals"
                   control={control}
                   render={({ field }) => (
                     <Select
@@ -368,12 +389,12 @@ function InnovatorsOnboardingPage() {
                 />
               </div>
               <div>
-                <Label htmlFor="communityevent">
+                <Label htmlFor="experience.communityEvents">
                   Would you be interested in participating in community events
                   in your city
                 </Label>
                 <Controller
-                  name="communityevent"
+                  name="experience.communityEvents"
                   control={control}
                   render={({ field }) => (
                     <Select
@@ -395,11 +416,11 @@ function InnovatorsOnboardingPage() {
                 />
               </div>
               <div>
-                <Label htmlFor="startup">
+                <Label htmlFor="experience.previouslyLaunched">
                   Have you previously launched or worked on a startup?
                 </Label>
                 <Controller
-                  name="startup"
+                  name="experience.previouslyLaunched"
                   control={control}
                   render={({ field }) => (
                     <Select
@@ -426,7 +447,7 @@ function InnovatorsOnboardingPage() {
                   <Button
                     type="submit"
                     variant="default"
-                    onClick={() => setStapperState(4)}
+                    onClick={() => setStep(4)}
                   >
                     Continue
                   </Button>
@@ -435,12 +456,12 @@ function InnovatorsOnboardingPage() {
             </div>
           </div>
         )}
-        {stapperstate == 4 && (
+        {step == 4 && (
           <div>
             <MainHeading heading="Last step" />
 
             <p className="text-muted-foreground">
-              Please add your profile photo{" "}
+              Please add your profile photo
             </p>
             <FileUpload />
           </div>

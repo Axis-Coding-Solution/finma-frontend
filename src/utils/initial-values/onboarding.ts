@@ -35,19 +35,28 @@ export const postMessagesInitialValues = {
   receiverId: "",
 };
 
-export const onboardingInnovatorsInitialValues={
+export const onboardingInnovatorsInitialValues = {
+  personalInfo: {
+    firstName: "",
+    lastName: "",
+    dateOfBirth: undefined,
+    gender: "",
+    country: "",
+    city: "",
+  },
 
-firstName:"",
-lastName:"",
-dateOfBirth:"",
-gender:"",
-country:"",
-city:"",
-mybackground:"",
-currentposition:"",
-skills:"",
-startupfounder:"",
-community:"",
-communityevent:"",
-startup:""
-}
+  professionalInfo: {
+    careerBackground: [],
+    currentPosition: "",
+    skills: [],
+  },
+
+  experience: {
+    currentFocusAsStartup: "",
+    mainGoals: [],
+    communityEvents: "",
+    previouslyLaunched: "",
+    entrepreneurExperience: "",
+  },
+  profilePicture: null,
+};

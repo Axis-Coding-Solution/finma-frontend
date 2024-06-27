@@ -1,6 +1,5 @@
 "use client";
 
-import * as React from "react";
 import { format } from "date-fns";
 import { Calendar as CalendarIcon } from "lucide-react";
 
@@ -13,8 +12,15 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
-export function DatePicker() {
-  const [date, setDate] = React.useState<Date>();
+type PropTypes = {
+  showOutsideDays?: boolean;
+  value: Date | undefined;
+  onChange: any;
+  onBlur: any;
+};
+
+export function DatePicker(props: PropTypes) {
+  const { showOutsideDays = true, value, onChange, onBlur } = props;
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -22,19 +28,20 @@ export function DatePicker() {
           variant="outline-secondary"
           className={cn(
             "w-full justify-between text-left font-normal",
-            !date && "text-muted-foreground"
+            !value && "text-muted-foreground"
           )}
         >
-          {date ? format(date, "PPP") : <span>Pick a date</span>}
+          {value ? format(value, "PPP") : <span>Pick a date</span>}
           <CalendarIcon className="h-4 w-4" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-auto p-0">
         <Calendar
           mode="single"
-          selected={date}
-          onSelect={setDate}
-          initialFocus
+          selected={value}
+          onSelect={onChange}
+          onDayBlur={onBlur}
+          showOutsideDays={showOutsideDays}
         />
       </PopoverContent>
     </Popover>
