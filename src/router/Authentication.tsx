@@ -20,7 +20,7 @@ const SignUpPage = lazy(() => import("@/pages/authentication/sign-up"));
 export default [
   {
     element:<Privacy/>,
-    path:"/privacy",
+    path:"/privacy-policy",
     meta: {
       layout: "blank",
       isRestrictedRoute: true,
@@ -28,7 +28,7 @@ export default [
     },
   {
     element:<TermOfUse/>,
-    path:"/termofuse",
+    path:"/terms-of-use",
     meta: {
       layout: "blank",
       isRestrictedRoute: true,

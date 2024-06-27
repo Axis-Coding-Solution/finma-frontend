@@ -23,7 +23,7 @@ const buttonVariants = cva(
         "outline-info":
           "border border-info bg-transparent text-info hover:bg-info/5",
         "outline-secondary":
-          "border border-border bg-transparent text-info hover:bg-secondary/5",
+          "border border-border bg-transparent text-foreground hover:bg-secondary/5",
       },
       size: {
         default: "h-10 px-6 py-2",

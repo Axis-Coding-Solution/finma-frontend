@@ -35,6 +35,32 @@ export const postMessagesInitialValues = {
   receiverId: "",
 };
 
+export const onboardingInnovatorsInitialValues = {
+  personalInfo: {
+    firstName: "",
+    lastName: "",
+    dateOfBirth: undefined,
+    gender: "",
+    country: "",
+    city: "",
+  },
+
+  professionalInfo: {
+    careerBackground: [],
+    currentPosition: "",
+    skills: [],
+  },
+
+  experience: {
+    currentFocusAsStartup: "",
+    mainGoals: [],
+    communityEvents: "",
+    previouslyLaunched: "",
+    entrepreneurExperience: "",
+  },
+  profilePicture: null,
+};
+
 export const onboardingExpertsInitialValues = {
   personalInfo: {
     firstName: "",
@@ -44,7 +70,7 @@ export const onboardingExpertsInitialValues = {
     currentPosition: "",
   },
   professionalInfo: {
-    areaOfExpertise:"",
+    areaOfExpertise: "",
     canDo: "",
     goals: "",
   },
@@ -61,22 +87,5 @@ export const onboardingExpertsInitialValues = {
     delivery: "",
   },
 
-  profilePicture:null
-
-};
-
-export const onboardingInnovatorsInitialValues = {
-  firstName: "",
-  lastName: "",
-  dateOfBirth: "",
-  gender: "",
-  country: "",
-  city: "",
-  mybackground: "",
-  currentposition: "",
-  skills: "",
-  startupfounder: "",
-  community: "",
-  communityevent: "",
-  startup: "",
+  profilePicture: null,
 };

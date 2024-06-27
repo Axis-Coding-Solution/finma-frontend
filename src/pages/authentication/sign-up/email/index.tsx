@@ -86,11 +86,11 @@ const SignUpWithEmail = () => {
               By continuing, you agree to Finma's
               <Button className="mx-1 p-0" variant="link">
                 
-                <Link to="/termofuse">Terms of Use</Link>
+                <Link to="/terms-of-use">Terms of Use</Link>
               </Button>
               and
               <Button className="mx-1 p-0" variant="link">
-               <Link to="/privacy"> Privacy Policy</Link>
+               <Link to="/privacy-policy"> Privacy Policy</Link>
               </Button>
             </Label>
           </div>

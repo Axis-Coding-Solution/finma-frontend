@@ -16,3 +16,10 @@ export const ideaClarityFormDataHook = hookstate(
   ideaClarityFormDataInitialValues
 );
 export const expertsDetailsHook = hookstate(expertsDetailsInitialValues);
+
+export const chatUserDataHook = hookstate({
+  id: "",
+  chatUserName: "",
+  description: "",
+  image: "",
+});
