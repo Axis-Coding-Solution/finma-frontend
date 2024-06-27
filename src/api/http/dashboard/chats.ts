@@ -14,7 +14,7 @@ export const getChatsApi = async () => {
 export const getMessageBYChatIdApi = async (id: string) => {
   try {
     const res = await get(`/messages/${id}`);
-    return { data: res.data };
+    return res.data.data;
   } catch (error: any) {
     return Promise.reject(apiErrorHandler(error));
   }

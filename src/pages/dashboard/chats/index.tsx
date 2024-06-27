@@ -17,7 +17,7 @@ function ChatBoxPage() {
   if (!id) RenderContent = NoMessages;
   else {
     RenderContent = () => (
-      <div className="h-full flex flex-col gap-2">
+      <div className="h-full w-full flex flex-col gap-2">
         <ChatsHeader />
         <ChatsContent />
         <SendMessageBox />
