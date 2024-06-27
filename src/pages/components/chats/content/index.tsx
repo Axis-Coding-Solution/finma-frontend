@@ -3,6 +3,7 @@ import { TextMessage } from "./text-message";
 import { chatRoomData } from "@/lib/data";
 import { useAppParams } from "@/utils/hooks";
 import { useGetMessagesByChatId } from "@/api/hooks/messages/messages";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 function checkElementOverflow(element: HTMLDivElement) {
   return (
@@ -20,10 +21,11 @@ export const ChatsContent = () => {
 
   useEffect(() => {
     const container = contentRef.current;
+
     if (container) {
       const isOverflown = checkElementOverflow(container);
       if (!isOverflown) container.classList.add("justify-end");
-      else {
+      else if (container.scrollTop === 0) {
         const scrollHeight = container.scrollHeight;
         container.scrollTo({
           top: scrollHeight,
@@ -56,21 +58,21 @@ export const ChatsContent = () => {
   // const avatarImage = expertImages[expert!];
 
   const { data: messages } = useGetMessagesByChatId(id);
-  console.log("🚀 ~ ChatsContent ~ data:", messages);
+
   return (
-    <div
-      ref={contentRef}
-      className="flex-1 flex flex-col px-5 py-2 overflow-y-auto"
-    >
-      {messages?.map((item: any, index: number) => {
-        return (
+    <ScrollArea className="w-full px-3">
+      <div
+        ref={contentRef}
+        className="flex-1 w-full flex flex-col px-5 py-2 overflow-y-auto"
+      >
+        {messages?.map((message: any, index: string) => (
           <TextMessage
-            message={item}
+            message={message}
             index={index}
-            position={item.sender ? "right" : "left"}
+            position={message.sender ? "right" : "left"}
           />
-        );
-      })}
-    </div>
+        ))}
+      </div>
+    </ScrollArea>
   );
 };
