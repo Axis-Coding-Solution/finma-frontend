@@ -14,6 +14,7 @@ function checkElementOverflow(element: HTMLDivElement) {
 export const ChatsContent = () => {
   const { id = "" } = useAppParams();
 
+  console.log("renders");
   // const [data, setData] = useState(null);
 
   const contentRef = useRef<HTMLDivElement | null>(null);

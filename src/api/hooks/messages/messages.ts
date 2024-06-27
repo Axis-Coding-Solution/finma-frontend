@@ -10,5 +10,5 @@ export const usePostMessages = () =>
 export const useGetMessagesByChatId = (id: string) =>
   useQuery({
     queryFn: () => getMessageBYChatIdApi(id),
-    queryKey: ["/get-message-by-chat-id"],
+    queryKey: ["/get-message", id],
   });
