@@ -5,8 +5,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Ellipsis, FilePenLine, Info } from "lucide-react";
-import { DeleteChatModal } from "../delete-chat-modal";
-import { EditChatModal } from "../edit-chat-modal";
+import { DeleteChatModal } from "../../../../pages/components/chats/delete-chat-modal";
+import { EditChatModal } from "../../../../pages/components/chats/edit-chat-modal";
 
 const HeaderOptions = () => {
   return (
