@@ -9,7 +9,7 @@ export const ChatsSidebar = () => {
   const { data: chats } = data;
 
   return (
-    <div className="sticky left-0 top-0 flex flex-col gap-5">
+    <div className="h-full flex flex-col gap-5">
       <div className="flex items-center gap-2">
         <Button variant="dark" rounded>
           All
@@ -29,7 +29,7 @@ export const ChatsSidebar = () => {
           ))}
         <div className="flex flex-col gap-3 justify-center h-full items-center">
           <EmptyMessage />
-          <span className="text-[14px] text-center">
+          <span className="text-sm text-center">
             Start chatting with innovators and your chats will appear here
           </span>
           <Button variant="default" className="mt-4">
