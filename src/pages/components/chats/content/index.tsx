@@ -1,9 +1,11 @@
 import { useEffect, useRef } from "react";
 import { TextMessage } from "./text-message";
-import { useAppParams } from "@/utils/hooks";
+import { useAppParams, useAppState } from "@/utils/hooks";
 import { useGetMessagesByChatId } from "@/api/hooks/messages/messages";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { NoMessages } from "./no-messages";
+import io from "socket.io-client";
+import { SOCKET_ENUMS } from "@/utils/constants/socket-enums";
 
 function checkElementOverflow(element: HTMLDivElement) {
   return (
@@ -15,7 +17,12 @@ function checkElementOverflow(element: HTMLDivElement) {
 export const ChatsContent = () => {
   const { id = "" } = useAppParams();
 
+  const { data: messages } = useGetMessagesByChatId(id);
+
+  const socket = io("http://localhost:3000");
+
   console.log("renders");
+
   // const [data, setData] = useState(null);
 
   const contentRef = useRef<HTMLDivElement | null>(null);
@@ -34,8 +41,8 @@ export const ChatsContent = () => {
       }
     }
   }, []);
-  // // const [error, setError] = useState(null);
 
+  // const [error, setError] = useState(null);
   // useEffect(() => {
   //   const fetchData = async () => {
   //     try {
@@ -58,7 +65,6 @@ export const ChatsContent = () => {
 
   // const avatarImage = expertImages[expert!];
 
-  const { data: messages } = useGetMessagesByChatId(id);
   return (
     <div
       ref={contentRef}

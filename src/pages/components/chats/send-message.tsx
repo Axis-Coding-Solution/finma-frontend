@@ -37,6 +37,9 @@ export const SendMessageBox = () => {
     }
   };
 
+
+
+
   return (
     <form
       className="flex items-center  gap-3 w-full"
