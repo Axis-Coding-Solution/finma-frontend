@@ -67,11 +67,11 @@ export const ChatsContent = () => {
   // const avatarImage = expertImages[expert!];
 
   return (
-    <div
-      ref={contentRef}
-      className="flex-1 flex flex-col px-5 py-2 overflow-y-auto h-full"
-    >
-      <ScrollArea className="px-3 h-full">
+    <ScrollArea className="px-3 h-full">
+      <div
+        ref={contentRef}
+        className="flex-1 flex flex-col px-5 py-2 overflow-y-auto h-auto"
+      >
         {chat?.length === 0 && <NoMessages />}
         {chat?.map((message: any, index: string) => (
           <TextMessage
@@ -80,7 +80,7 @@ export const ChatsContent = () => {
             position={message.sender ? "right" : "left"}
           />
         ))}
-      </ScrollArea>
-    </div>
+      </div>
+    </ScrollArea>
   );
 };

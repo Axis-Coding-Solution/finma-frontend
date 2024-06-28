@@ -7,7 +7,9 @@ const appendUrl = (segment: string) => `${url}/${segment}`;
 
 export const saveIdeaClarityApi = async (body: any) => {
   try {
-    const res = await post(appendUrl("idea-clarity"), body);
+    const res = await post(appendUrl("idea-clarity"), body, {
+      authorization: false,
+    });
     return res.data;
   } catch (error: any) {
     return Promise.reject(apiErrorHandler(error));
