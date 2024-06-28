@@ -32,7 +32,6 @@ export default [
     ],
     meta: {
       layout: "blank",
-      isRestrictedRoute: true,
     },
   },
   {
@@ -40,7 +39,6 @@ export default [
     path: "/onboarding/experts/public-view",
     meta: {
       layout: "blank",
-      isRestrictedRoute: true,
     },
   },
 ];
