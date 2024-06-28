@@ -1,8 +1,32 @@
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import { InputError } from "@/components/ui/input-error";
+import { Label } from "@/components/ui/label";
 import { MainHeading } from "@/pages/components/common";
-import { Link, useLocation } from "react-router-dom";
+import { termsInitialValues } from "@/utils/initial-values";
+import { termsSchema } from "@/utils/validation-schemas";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Controller, useForm } from "react-hook-form";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 const TermOfUse = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const handleCancel = () => {
+    navigate(-1);
+  };
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: termsInitialValues,
+    resolver: yupResolver(termsSchema as any),
+  });
+
+  const onSubmitHandler = async (data: typeof termsInitialValues) => {
+    console.log(data);
+    navigate("/auth/sign-up/email");
+  };
   return (
     <div className="container bg-white rounded-xl p-5">
       <div className="flex justify-center">
@@ -223,27 +247,64 @@ const TermOfUse = () => {
       </div>
 
       <hr />
-      <div className="flex gap-2 md:mx-10 my-5">
-        <input type="checkbox" />
-        <h1 className="font-bold">
-          By clicking "I Agree" and signing up for the Services, you acknowledge
-          that you have read, understood, and agree to be bound by these Service
-          Terms.
-        </h1>
-      </div>
-      <div className="  flex gap-2 md:mx-10 my-5">
-        <input type="checkbox" />
-        <h1 className="font-bold">
-          By clicking "I Agree" and signing up for the Services, you By using
-          the Services, you acknowledge that you have read and understood this
-          Privacy Policy and agree to our collection, use, and disclosure of
-          your personal information as described herein.
-        </h1>
-      </div>
-      <div className=" flex flex-col md:flex-row gap-2 justify-between md:mx-10 my-5">
-        <Button variant="outline"> Cancel</Button>
-        <Button variant="default"> Continue</Button>
-      </div>
+      <form
+        onSubmit={handleSubmit(onSubmitHandler)}
+        className="flex flex-col gap-5 md:mx-10 mt-5"
+      >
+        <div>
+          <div className="flex gap-4 items-start mb-1">
+            <Controller
+              name="isAgreeServicesTerms"
+              control={control}
+              render={({ field }) => (
+                <Checkbox
+                  id="servicesTerms"
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                />
+              )}
+            />
+            <Label htmlFor="servicesTerms" className="mb-0 font-bold">
+              By clicking "I Agree" and signing up for the Services, you
+              acknowledge that you have read, understood, and agree to be bound
+              by these Service Terms.
+            </Label>
+          </div>
+          <InputError error={errors.isAgreeServicesTerms} />
+        </div>
+        <div>
+          <div className="flex gap-4 items-start mb-1">
+            <Controller
+              name="isAgreeServicesPolicy"
+              control={control}
+              render={({ field }) => (
+                <Checkbox
+                  id="servicesPolicy"
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                />
+              )}
+            />
+            <Label
+              htmlFor="servicesPolicy"
+              className="mb-0 font-bold leading-5"
+            >
+              By clicking "I Agree" and signing up for the Services, you By
+              using the Services, you acknowledge that you have read and
+              understood this Privacy Policy and agree to our collection, use,
+              and disclosure of your personal information as described herein.
+            </Label>
+          </div>
+          <InputError error={errors.isAgreeServicesPolicy} />
+        </div>
+        <div className=" flex flex-col md:flex-row gap-2 justify-between">
+          <Button variant="outline" onClick={handleCancel}> Cancel</Button>
+          <Button variant="default" type="submit">
+            {" "}
+            Continue
+          </Button>
+        </div>
+      </form>
     </div>
   );
 };

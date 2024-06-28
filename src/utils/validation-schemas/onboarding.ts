@@ -8,6 +8,10 @@ export const userQuestionarySchema = object({
   familyStatus: string().trim().label("Family Status").required(),
 });
 
+export const onboardingCompletedSchema =object({
+  projectName: string().trim().label("Project Name").required(),
+})
+
 export const onboardingExpertsSchema = object({
   firstName: string().trim().label("First Name").required(),
   lastName: string().trim().label("Last Name").required(),

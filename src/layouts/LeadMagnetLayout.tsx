@@ -31,6 +31,7 @@ const sidebarLinks = [
 
 function LeadMagnetLayout() {
   const { pathname } = useLocation();
+  const isActiveLink = sidebarLinks.some(link => pathname.includes(link.to));
   return (
     <div className="rounded-lg grid grid-cols-12 lg:gap-5 gap-4">
       {/* Sidebar  */}
@@ -40,9 +41,9 @@ function LeadMagnetLayout() {
             key={index}
             className={cn(
               "hover:bg-background transition rounded-md hover:text-black",
-              pathname.includes(item.to)
-                ? "bg-background rounded-md"
-                : "text-muted-foreground"
+              pathname.includes(item.to) || (!isActiveLink && index==0)
+                ? "bg-background rounded-md text-black"
+                : "text-muted-foreground "
             )}
           >
             <Link

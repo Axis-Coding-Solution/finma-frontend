@@ -71,7 +71,7 @@ function IdeaClarityProblemPage() {
         paragraph="Do you have strong, credible evidence that the problem you are addressing exists and is significant?"
       />
       <div className="text-end">
-        <Textarea {...register("problem")} showIcon rows={10} autoFocus />
+        <Textarea {...register("problem")} showIcon  autoFocus />
         <InputError error={errors.problem} />
       </div>
       <StepNavigationBtn showPrevStep={false} />

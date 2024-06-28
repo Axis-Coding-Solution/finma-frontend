@@ -37,7 +37,9 @@ const BlankLayout = () => {
         <img src={appLogoPath} alt="Your Company" className="w-20 h-10" />
         <nav className="flex gap-10 items-center ">
           <ul className="lg:flex gap-10 hidden">
-            <li>Home</li>
+            <Link to="https://finma.ai/">
+              <li>Home</li>
+            </Link>
             <DropdownMenu>
               <DropdownMenuTrigger className="focus-visible:outline-none">
                 <span className=" flex items-center gap-3">
@@ -46,9 +48,15 @@ const BlankLayout = () => {
                 </span>
               </DropdownMenuTrigger>
               <DropdownMenuContent>
-                <DropdownMenuItem>Option 1</DropdownMenuItem>
-                <DropdownMenuItem>Option 2</DropdownMenuItem>
-                <DropdownMenuItem>Option 3</DropdownMenuItem>
+                <Link to="https://finma.ai/knowledge-base/">
+                  <DropdownMenuItem>Knowledge Base</DropdownMenuItem>
+                </Link>
+                <Link to="https://finma.ai/tech-toolkit/">
+                  <DropdownMenuItem>Tech toolkit</DropdownMenuItem>
+                </Link>
+                <Link to="https://finma.ai/events/">
+                  <DropdownMenuItem>Events and Programs</DropdownMenuItem>
+                </Link>
               </DropdownMenuContent>
             </DropdownMenu>
             <DropdownMenu>
@@ -58,9 +66,14 @@ const BlankLayout = () => {
                 </span>
               </DropdownMenuTrigger>
               <DropdownMenuContent>
-                <DropdownMenuItem>Option 1</DropdownMenuItem>
-                <DropdownMenuItem>Option 2</DropdownMenuItem>
-                <DropdownMenuItem>Option 3</DropdownMenuItem>
+                <Link to="https://finma.ai/about-us/">
+                  <DropdownMenuItem>About</DropdownMenuItem>
+                </Link>
+                <Link to="https://finma.ai/blog/">
+                  <DropdownMenuItem>Blog</DropdownMenuItem>
+                </Link>
+                <DropdownMenuItem>Join the community</DropdownMenuItem>
+                <DropdownMenuItem>Share your expertise</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </ul>

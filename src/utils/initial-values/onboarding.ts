@@ -4,6 +4,9 @@ export const onboardingIdeaClarityInitialValues = {
   targetedAudience: "",
   competitors: "",
 };
+export const onboardingCompletedInitialValues={
+  ProjectName:"",
+}
 export const userQuestionaryInitialValues = {
   country: "",
   professionalStatus: "",

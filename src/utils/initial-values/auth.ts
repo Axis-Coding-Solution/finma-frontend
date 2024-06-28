@@ -20,3 +20,11 @@ export const resetPasswordInitialValues = {
   confirmPassword: "",
 };
 
+export const termsInitialValues = {
+  isAgreeServicesTerms: false,
+  isAgreeServicesPolicy: false,
+}
+export const privacyPolicyInitialValues = {
+  isAgreeServicesTerms: false,
+  isAgreeServicesPolicy: false,
+}
