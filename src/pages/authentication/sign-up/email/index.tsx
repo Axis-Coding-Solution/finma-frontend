@@ -85,11 +85,12 @@ const SignUpWithEmail = () => {
             <Label htmlFor="terms" className="mb-0">
               By continuing, you agree to Finma's
               <Button className="mx-1 p-0" variant="link">
-                Terms of Use
+                
+                <Link to="/terms-of-use">Terms of Use</Link>
               </Button>
               and
               <Button className="mx-1 p-0" variant="link">
-                Privacy Policy
+               <Link to="/privacy-policy"> Privacy Policy</Link>
               </Button>
             </Label>
           </div>
