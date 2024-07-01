@@ -665,6 +665,20 @@ export const careerBackground = [
   },
   { checkbox: <input type="checkbox" />, label: "Education & Training" },
 ];
+export const communityGoals = [
+  {
+    checkbox: <input type="checkbox" />,
+    label: "Networking with other founders",
+  },
+  { checkbox: <input type="checkbox" />, label: "Seeking mentorship" },
+  { checkbox: <input type="checkbox" />, label: "Gaining market insights" },
+  { checkbox: <input type="checkbox" />, label: "Learning new skills" },
+  {
+    checkbox: <input type="checkbox" />,
+    label: "Finding co-founders or team members",
+  },
+  { checkbox: <input type="checkbox" />, label: "Other (please specify)" },
+];
 
 export const startUpFounder = [
   {
@@ -768,4 +782,12 @@ export const community = [
     checkbox: <input type="checkbox" />,
     label: "Other (please specify below)",
   },
+];
+export const industry = [
+  "Technology & IT",
+  "Consumer Goods & Services",
+  "Industrial & Manufacturing",
+  "Energy & Utilities",
+  "Financial Services",
+  "Media & Entertainment",
 ];

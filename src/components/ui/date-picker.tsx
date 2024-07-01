@@ -31,7 +31,7 @@ export function DatePicker(props: PropTypes) {
             !value && "text-muted-foreground"
           )}
         >
-          {value ? format(value, "PPP") : <span>Pick a date</span>}
+          {value ? format(value, "PPP") : <span></span>}
           <CalendarIcon className="h-4 w-4" />
         </Button>
       </PopoverTrigger>
