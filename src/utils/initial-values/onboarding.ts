@@ -43,21 +43,37 @@ export const onboardingInnovatorsInitialValues = {
     gender: "",
     country: "",
     city: "",
+    linkedInProfile:"",
   },
 
   professionalInfo: {
-    careerBackground: [],
-    currentPosition: "",
-    skills: [],
+    currentEmploymentStatus: "",
+    careerBackground: "",
+    skills: "",
   },
 
-  experience: {
-    currentFocusAsStartup: "",
-    mainGoals: [],
-    communityEvents: "",
-    previouslyLaunched: "",
-    entrepreneurExperience: "",
-  },
+  communityInformation : {
+    entrepreneurialStage:"",
+    communityGoals:"",
+    dedicateToYourVenture:"",
+    personalBio:"",
+      },
+
+      entrepreneurialTrackRecord:
+      {
+
+        nameOfStratUp:"",
+        industry:"",
+        aboutTheStartup:"",
+        yourRole:"",
+        websiteLink:"",
+        numberOfEmployee:"",
+        yearsOfOperations:undefined,
+        lastYearRevenue:"",
+        accomplishment :"",
+        companyLinkedIn:"",
+
+      },
   profilePicture: null,
 };
 

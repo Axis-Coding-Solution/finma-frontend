@@ -1,4 +1,3 @@
-import AuthLayout from "@/layouts/AuthLayout";
 import ExpertsOnboardingPage from "@/pages/onboarding/experts";
 import ExpertsPublicViewPage from "@/pages/onboarding/experts/public-view";
 import InnovatorsOnboardingPage from "@/pages/onboarding/innovators";
@@ -14,22 +13,24 @@ export default [
     },
   },
   {
-    element: <AuthLayout />,
-    path: "/onboarding",
-    children: [
-      {
-        element: <InnovatorsOnboardingPage />,
-        path: "innovators",
-      },
-      {
-        element: <ExpertsOnboardingPage />,
-        path: "experts",
-      },
-      {
-        element: <MentorsOnboardingPage />,
-        path: "mentors",
-      },
-    ],
+    element: <InnovatorsOnboardingPage />,
+    path: "/onboarding/innovators",
+    meta: {
+      layout: "blank",
+      isRestrictedRoute: true,
+    },
+  },
+  {
+    element: <ExpertsOnboardingPage />,
+    path: "/onboarding/experts",
+    meta: {
+      layout: "blank",
+      isRestrictedRoute: true,
+    },
+  },
+  {
+    element: <MentorsOnboardingPage />,
+    path: "/onboarding/mentors",
     meta: {
       layout: "blank",
     },
