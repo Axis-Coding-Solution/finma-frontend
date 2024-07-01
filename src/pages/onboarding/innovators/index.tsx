@@ -1,4 +1,4 @@
-import { MainHeading } from "@/pages/components/common";
+import { MainHeading, SectionHeading } from "@/pages/components/common";
 import { Label } from "@/components/ui/label";
 import {
   Select,
@@ -426,9 +426,7 @@ function InnovatorsOnboardingPage() {
             <hr className="border-secondary my-4" />
             {/* your entrepreneurial track-record */}
             <div className="">
-              <h4 className="text-success uppercase font-medium">
-                your entrepreneurial track-record
-              </h4>
+              <SectionHeading heading="Your Entrepreneurial Track-Record" />
               <div className="flex  gap-4 mt-4">
                 <div className="w-full">
                   <Label htmlFor="entrepreneurialTrackRecord.nameOfStratUp">
