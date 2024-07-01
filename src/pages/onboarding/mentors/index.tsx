@@ -1,5 +1,10 @@
+import { EntrepreneurialInfo, PersonalInfo } from "@/pages/components/onboarding/common";
+
 function MentorsOnboardingPage() {
-  return <div>MentorsOnboardingPage</div>;
+  return <div>
+    <PersonalInfo/>
+    <EntrepreneurialInfo/>
+  </div>;
 }
 
 export default MentorsOnboardingPage;

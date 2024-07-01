@@ -1,3 +1,6 @@
+import { communityGoals } from "@/data/dashboard/innovators";
+// import CommunityServiceOffer from "@/pages/components/onboarding/experts/community-service-offer";
+
 export const onboardingIdeaClarityInitialValues = {
   problem: "",
   solution: "",
@@ -86,21 +89,28 @@ export const onboardingExpertsInitialValues = {
     currentPosition: "",
   },
   professionalInfo: {
-    areaOfExpertise: "",
-    canDo: "",
-    goals: "",
+    employmentType: "",
+    jobTitle: "",
+    skills: "",
+    companyName:""
   },
-  experience: {
-    compensationOption: "",
-    projSelectionOption: "",
-    projIntakeProcess: [],
+  communityServiceOffer: {
+    startUpDevelopmentModule: "",
+    communityGoals: "",
+    personalBio:"" ,
+  },
+  
+  projectPreference: {
+    workCompensationsOptions: "",
+    projectSelectionCriteria: "",
+    projectIntakeSteps:"" ,
   },
   rate: {
-    projEngagementPref: "",
+    contractualPreference: "",
     currency: "",
-    discoverCall: "",
-    consultation: "",
-    delivery: "",
+    hourlyRate: "",
+    monthlyRate: "",
+    projectStartingPrice: "",
   },
 
   profilePicture: null,
