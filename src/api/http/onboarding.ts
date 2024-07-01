@@ -43,3 +43,14 @@ export const saveUserQuestionaryApi = async (
     return Promise.reject(apiErrorHandler(error));
   }
 };
+
+export const startOnboardingInnovators = async (
+  body: typeof userQuestionaryInitialValues
+) => {
+  try {
+    const res = await post("/onboarding/innovators", body);
+    return res.data;
+  } catch (error: any) {
+    return Promise.reject(apiErrorHandler(error));
+  }
+};

@@ -26,7 +26,7 @@ export const axiosAuthInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   async (config: RequestConfig): Promise<InternalAxiosRequestConfig> => {
-    if (config.authorization) {
+    if (config.authorization !== false) {
       const auth = getAuthFromStorage();
       if (auth?.token && auth?.isAuthenticated) {
         if (config.headers) {

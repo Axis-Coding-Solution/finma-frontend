@@ -30,6 +30,10 @@ import FileUpload from "@/components/ui/fileupload";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { onboardingInnovatorsInitialValues } from "@/utils/initial-values";
 import { onboardingInnovatorsSchema } from "@/utils/validation-schemas/onboarding";
+import { useMutation } from "@tanstack/react-query";
+import { startOnboardingInnovators } from "@/api/http";
+import { successToast } from "@/utils";
+import { Navigate } from "react-router-dom";
 
 function InnovatorsOnboardingPage() {
   const { register, watch, control, handleSubmit } = useForm({
@@ -37,9 +41,21 @@ function InnovatorsOnboardingPage() {
     // resolver: yupResolver(onboardingInnovatorsSchema),
   });
 
+  const mutation = useMutation({
+    mutationFn: startOnboardingInnovators,
+  });
+
   console.log(watch("personalInfo.dateOfBirth"));
-  const onSubmit = (values: typeof onboardingInnovatorsInitialValues) => {
-    console.log(values);
+  const onSubmit = async (values: typeof onboardingInnovatorsInitialValues) => {
+    try {
+      const res = await mutation.mutateAsync(values);
+      successToast(res.message);
+      Navigate("/dashboard/overview", {
+        replace: true,
+      });
+    } catch (error: any) {
+      errorToast(error.message);
+    }
   };
 
   const [step, setStep] = useState(1);

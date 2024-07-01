@@ -5,6 +5,8 @@ import { useGetMessagesByChatId } from "@/api/hooks/messages/messages";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { NoMessages } from "./no-messages";
 import { useMessagesStore } from "@/store/hooks";
+import socket from "@/lib/socket.io";
+import { SOCKET_ENUMS } from "@/utils/constants/socket-enums";
 
 function checkElementOverflow(element: HTMLDivElement) {
   return (
@@ -29,6 +31,9 @@ export const ChatsContent = () => {
   }, [data]);
 
   useEffect(() => {
+    socket.emit(SOCKET_ENUMS.RECEIVE_MESSAGE, (data)=>{
+      console.log('FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF', data)
+    });
     const container = contentRef.current;
 
     if (container) {

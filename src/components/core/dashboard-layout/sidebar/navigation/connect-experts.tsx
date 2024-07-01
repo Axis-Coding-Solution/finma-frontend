@@ -5,15 +5,40 @@ import { truncateText } from "@/utils";
 import { expertsDetailsHook } from "@/store";
 import { cn } from "@/utils";
 import { useHookstate } from "@hookstate/core";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { QueryClient, useMutation, useQueryClient } from "@tanstack/react-query";
+import { createChatsApi } from "@/api/http";
 
 export const ConnectWithExperts = () => {
   const { pathname } = useLocation();
   const { data } = useGetUsers();
+  const queryClient = useQueryClient()
+
   let users = data?.data ?? [];
 
+  const navigate = useNavigate();
   const expertInfo = useHookstate(expertsDetailsHook);
   const setExpertInfo = expertInfo.set;
+
+  const mutation = useMutation({
+    mutationFn: createChatsApi,
+    mutationKey: ["dashboard/chats"],
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['dashboard/chats'] });
+    },
+  });
+
+
+  const chatHandler = async (id: string) => {
+    try {
+      const res = await mutation.mutateAsync({ receiverId: id });
+      if (res) {
+        navigate(`/dashboard/chats/${res.data._id}`);
+      }
+    } catch (error) {
+
+    }
+  }
 
   return (
     <div className="text-foreground mt-4 flex flex-col gap-1">
@@ -25,13 +50,13 @@ export const ConnectWithExperts = () => {
           .split("@")[0]
           .replace(/\b\w/g, (l) => l.toUpperCase());
         return (
-          <Link
-            to={`/dashboard/chats/${id}`}
+          <div
+            onClick={() => chatHandler(id)}
             key={id}
             className={cn(
               "truncate max-w-max px-4 py-3 flex gap-3 rounded-lg tran items-center hover:bg-success/10 hover:text-success",
               pathname === `/dashboard/chats/${id}` &&
-                "bg-success/10 text-success"
+              "bg-success/10 text-success"
             )}
           >
             <Avatar image={userAvatar2Image} size="md" active />
@@ -55,7 +80,7 @@ export const ConnectWithExperts = () => {
                 Venture Analyst
               </span>
             </div>
-          </Link>
+          </div>
         );
       })}
     </div>
