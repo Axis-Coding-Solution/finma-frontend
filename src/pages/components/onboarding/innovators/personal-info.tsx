@@ -33,7 +33,9 @@ export const PersonalInfo = () => {
 
         <div className="grid md:grid-cols-2 grid-cols-1 gap-4 mt-4">
           <div>
-            <Label htmlFor="personalInfo.firstName">First Name</Label>
+            <Label htmlFor="personalInfo.firstName">
+              First Name <span className="text-destructive">*</span>
+            </Label>
             <Input
               type="text"
               id="personalInfo.firstName"
@@ -42,7 +44,7 @@ export const PersonalInfo = () => {
             <InputError error={errors.personalInfo?.firstName} />
           </div>
           <div>
-            <Label htmlFor="personalInfo.lastName">Last Name</Label>
+            <Label htmlFor="personalInfo.lastName">Last Name <span className="text-destructive">*</span></Label>
             <Input
               type="text"
               id="personalInfo.lastName"
@@ -51,7 +53,7 @@ export const PersonalInfo = () => {
             <InputError error={errors.personalInfo?.lastName} />
           </div>
           <div>
-            <Label htmlFor="personalInfo.country">Country</Label>
+            <Label htmlFor="personalInfo.country">Country <span className="text-destructive">*</span></Label>
             <Controller
               name="personalInfo.country"
               control={control}
@@ -76,7 +78,7 @@ export const PersonalInfo = () => {
             <InputError error={errors.personalInfo?.country} />
           </div>
           <div>
-            <Label htmlFor="personalInfo.city">City</Label>
+            <Label htmlFor="personalInfo.city">City <span className="text-destructive">*</span></Label>
             <Controller
               name="personalInfo.city"
               control={control}
@@ -103,7 +105,7 @@ export const PersonalInfo = () => {
 
           <div>
             {" "}
-            <Label htmlFor="personalInfo.dateOfBirth"> Date of Birth</Label>
+            <Label htmlFor="personalInfo.dateOfBirth">Date of Birth <span className="text-destructive">*</span></Label>
             <Controller
               name="personalInfo.dateOfBirth"
               control={control}
@@ -119,7 +121,7 @@ export const PersonalInfo = () => {
           </div>
 
           <div className="w-full">
-            <Label htmlFor="personalInfo.gender"> Gender</Label>
+            <Label htmlFor="personalInfo.gender">Gender <span className="text-destructive">*</span></Label>
             <Controller
               name="personalInfo.gender"
               control={control}
@@ -144,7 +146,7 @@ export const PersonalInfo = () => {
           </div>
         </div>
         <div className="mt-4">
-          <Label htmlFor="personalInfo.linkedInProfile">LinkedIn profile</Label>
+          <Label htmlFor="personalInfo.linkedInProfile">LinkedIn profile <span className="text-destructive">*</span></Label>
           <Input
             type="text"
             id="personalInfo.linkedInProfile"
