@@ -37,26 +37,26 @@ const currencyInitialValues = {
   currency: "",
 };
 
+export const startUpInitialValues = {
+  startUpName: "",
+  industry: "",
+  startUpAbout: "",
+  role: "",
+  webLink: "",
+  noOfEmp: "",
+  yearsOfOp: {
+    from: undefined,
+    to: undefined,
+  },
+  lastYearRevenue: currencyInitialValues,
+  fundRaised: currencyInitialValues,
+  accomplishment: "",
+  companyLinkedIn: "",
+};
+
 const entrepreneurialTrackRecordInitialValues = {
   entrepTrackRecord: {
-    startUps: [
-      {
-        startUpName: "",
-        industry: "",
-        startUpAbout: "",
-        role: "",
-        webLink: "",
-        noOfEmp: "",
-        yearsOfOp: {
-          from: undefined,
-          to: undefined,
-        },
-        lastYearRevenue: currencyInitialValues,
-        fundRaised: currencyInitialValues,
-        accomplishment: "",
-        companyLinkedIn: "",
-      },
-    ],
+    startUps: [startUpInitialValues],
   },
 };
 

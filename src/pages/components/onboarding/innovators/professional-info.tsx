@@ -1,8 +1,7 @@
-import React from "react";
 import { Label } from "@/components/ui/label";
 import { SectionHeading } from "../../common";
 import { InputError } from "@/components/ui/input-error";
-import { Controller, useForm } from "react-hook-form";
+import { Controller } from "react-hook-form";
 import {
   Select,
   SelectContent,
@@ -11,29 +10,18 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { ReactSelect } from "@/components/ui/react-select";
-import {
-  areaOfExpertise,
-  currentEmploymentStatus,
-} from "@/data/dashboard/experts";
+import { currentEmploymentStatus } from "@/data/dashboard/experts";
 import {
   careerBackgroundOptions,
   skillsOptions,
 } from "@/data/dashboard/innovators";
-
-import { onboardingInnovatorsInitialValues } from "@/utils/initial-values";
-import { useNavigate } from "react-router-dom";
 import { ReactCreatableSelect } from "@/components/ui/creatable-select";
+import { InnovatorsOnboardingPropTypes } from "@/definitions/types/onboarding";
 
-export const ProfessionalInfo = () => {
-  const navigate = useNavigate();
-  const {
-    control,
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    defaultValues: onboardingInnovatorsInitialValues,
-  });
+export const ProfessionalInfo = ({
+  control,
+  errors,
+}: InnovatorsOnboardingPropTypes) => {
   return (
     <div className="w-full pt-5 flex flex-col gap-4">
       <SectionHeading heading="Professional Information" />
@@ -63,9 +51,7 @@ export const ProfessionalInfo = () => {
               </Select>
             )}
           ></Controller>
-          <InputError
-            error={errors.professionalInfo?.curEmpStatus}
-          />
+          <InputError error={errors.professionalInfo?.curEmpStatus} />
         </div>
         <div>
           <Label htmlFor="professionalInfo.careerBackground">
@@ -106,7 +92,11 @@ export const ProfessionalInfo = () => {
             name="professionalInfo.skills"
             control={control}
             render={({ field }) => (
-              <ReactCreatableSelect isMulti options={skillsOptions} />
+              <ReactCreatableSelect
+                isMulti
+                options={skillsOptions}
+                {...field}
+              />
             )}
           ></Controller>
           <InputError error={errors.professionalInfo?.skills} />

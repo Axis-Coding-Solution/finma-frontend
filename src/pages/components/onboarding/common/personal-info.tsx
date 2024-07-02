@@ -17,13 +17,16 @@ import {
   genderStatus,
 } from "@/data/dashboard/innovators";
 import { ReactSelect } from "@/components/ui/react-select";
-import { ExpertsOnboardingPropTypes } from "@/definitions/types/onboarding";
+import {
+  ExpertsOnboardingPropTypes,
+  InnovatorsOnboardingPropTypes,
+} from "@/definitions/types/onboarding";
 
 export const PersonalInfo = ({
   control,
   errors,
   register,
-}: ExpertsOnboardingPropTypes) => {
+}: ExpertsOnboardingPropTypes | InnovatorsOnboardingPropTypes) => {
   return (
     <div className="w-full pt-5 flex flex-col gap-4">
       <SectionHeading heading="PERSONAL INFORMATION" />

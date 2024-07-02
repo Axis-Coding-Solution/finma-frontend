@@ -1,5 +1,4 @@
 import {
-  communityGoals,
   communityGoalsOptions,
   startUpFounder,
 } from "@/data/dashboard/innovators";
@@ -14,22 +13,16 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
-import { Controller, useForm } from "react-hook-form";
-import { onboardingInnovatorsInitialValues } from "@/utils/initial-values";
+import { Controller } from "react-hook-form";
 import { InputError } from "@/components/ui/input-error";
-import { useNavigate } from "react-router-dom";
 import { ReactSelect } from "@/components/ui/react-select";
+import { InnovatorsOnboardingPropTypes } from "@/definitions/types/onboarding";
 
-export const CommunityInfo = () => {
-  const navigate = useNavigate();
-  const {
-    control,
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    defaultValues: onboardingInnovatorsInitialValues,
-  });
+export const CommunityInfo = ({
+  control,
+  errors,
+  register,
+}: InnovatorsOnboardingPropTypes) => {
   return (
     <div className="w-full pt-5 flex flex-col gap-4">
       <SectionHeading heading="COMMUNITY INFORMATION" />
@@ -62,9 +55,7 @@ export const CommunityInfo = () => {
               </Select>
             )}
           ></Controller>
-          <InputError
-            error={errors.communityInfo?.entrepStage}
-          />
+          <InputError error={errors.communityInfo?.entrepStage} />
         </div>
 
         <div>
@@ -123,9 +114,7 @@ export const CommunityInfo = () => {
             id="communityInfo.dedicatedHoursPerWeek"
             {...register("communityInfo.dedicatedHoursPerWeek")}
           />
-          <InputError
-            error={errors.communityInfo?.dedicatedHoursPerWeek}
-          />
+          <InputError error={errors.communityInfo?.dedicatedHoursPerWeek} />
         </div>
       </div>
     </div>
