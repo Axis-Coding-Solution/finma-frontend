@@ -1,7 +1,6 @@
 import React from "react";
 import { Label } from "@/components/ui/label";
 import { SectionHeading } from "../../common";
-import { Input } from "@/components/ui/input";
 import { InputError } from "@/components/ui/input-error";
 import { Controller, useForm } from "react-hook-form";
 import {
@@ -11,18 +10,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { ReactSelect } from "@/components/ui/react-select";
 import {
   areaOfExpertise,
   currentEmploymentStatus,
 } from "@/data/dashboard/experts";
-import {
-  careerBackground,
-  communityGoals,
-  industry,
-  startUpFounder,
-} from "@/data/dashboard/innovators";
-import { DatePicker } from "@/components/ui/date-picker";
-import { cities, countries, genderStatus } from "@/data/dashboard/innovators";
+import { careerBackgroundOptions } from "@/data/dashboard/innovators";
+
 import { onboardingInnovatorsInitialValues } from "@/utils/initial-values";
 import { useNavigate } from "react-router-dom";
 
@@ -82,23 +76,29 @@ export const ProfessionalInfo = () => {
               name="professionalInfo.careerBackground"
               control={control}
               render={({ field }) => (
-                <Select
-                  value={field.value}
-                  onValueChange={(e) => field.onChange(e)}
-                >
-                  <SelectTrigger id="professionalInfo.careerBackground">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {careerBackground.map((item) => (
-                      <SelectItem key={item.label} value={item.label}>
-                        {item.checkbox} {item.label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                // <Select
+                //   value={field.value}
+                //   onValueChange={(e) => field.onChange(e)}
+                // >
+                //   <SelectTrigger id="professionalInfo.careerBackground">
+                //     <SelectValue />
+                //   </SelectTrigger>
+                //   <SelectContent>
+                //     {careerBackground.map((item) => (
+                //       <SelectItem key={item.label} value={item.label}>
+                //         {item.checkbox} {item.label}
+                //       </SelectItem>
+                //     ))}
+                //   </SelectContent>
+                // </Select>
+                <ReactSelect
+                  {...field}
+                  isMulti
+                  options={careerBackgroundOptions}
+                  isClearable
+                />
               )}
-            ></Controller>
+            />
             <InputError error={errors.professionalInfo?.careerBackground} />
           </div>
           <div>

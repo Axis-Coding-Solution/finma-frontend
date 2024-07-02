@@ -11,9 +11,10 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { DatePicker } from "@/components/ui/date-picker";
-import { cities, countries, genderStatus } from "@/data/dashboard/innovators";
+import { cities, cityOptions, countries, countryOptions, genderStatus } from "@/data/dashboard/innovators";
 import { onboardingInnovatorsInitialValues } from "@/utils/initial-values";
 import { useNavigate } from "react-router-dom";
+import { ReactSelect } from "@/components/ui/react-select";
 
 export const PersonalInfo = () => {
   const navigate = useNavigate();
@@ -44,7 +45,9 @@ export const PersonalInfo = () => {
             <InputError error={errors.personalInfo?.firstName} />
           </div>
           <div>
-            <Label htmlFor="personalInfo.lastName">Last Name <span className="text-destructive">*</span></Label>
+            <Label htmlFor="personalInfo.lastName">
+              Last Name <span className="text-destructive">*</span>
+            </Label>
             <Input
               type="text"
               id="personalInfo.lastName"
@@ -53,59 +56,49 @@ export const PersonalInfo = () => {
             <InputError error={errors.personalInfo?.lastName} />
           </div>
           <div>
-            <Label htmlFor="personalInfo.country">Country <span className="text-destructive">*</span></Label>
+            <Label htmlFor="personalInfo.country">
+              Country <span className="text-destructive">*</span>
+            </Label>
             <Controller
               name="personalInfo.country"
               control={control}
               render={({ field }) => (
-                <Select
+                <ReactSelect
+                  {...field}
+                  options={countryOptions}
+                  onChange={(value) => field.onChange(value)}
                   value={field.value}
-                  onValueChange={(e) => field.onChange(e)}
-                >
-                  <SelectTrigger id="personalInfo.country">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {countries.map((item) => (
-                      <SelectItem key={item} value={item}>
-                        {item}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                />
               )}
-            ></Controller>
+            />
             <InputError error={errors.personalInfo?.country} />
           </div>
+
           <div>
-            <Label htmlFor="personalInfo.city">City <span className="text-destructive">*</span></Label>
+            <Label htmlFor="personalInfo.city">
+              City <span className="text-destructive">*</span>
+            </Label>
             <Controller
               name="personalInfo.city"
               control={control}
               render={({ field }) => (
-                <Select
+                
+                <ReactSelect
+                  {...field}
+                  options={cityOptions}
+                  onChange={(value) => field.onChange(value)}
                   value={field.value}
-                  onValueChange={(e) => field.onChange(e)}
-                >
-                  <SelectTrigger id="personalInfo.city">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {cities.map((item) => (
-                      <SelectItem key={item} value={item}>
-                        {item}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                />
               )}
-            ></Controller>
+            />
             <InputError error={errors.personalInfo?.city} />
           </div>
 
           <div>
             {" "}
-            <Label htmlFor="personalInfo.dateOfBirth">Date of Birth <span className="text-destructive">*</span></Label>
+            <Label htmlFor="personalInfo.dateOfBirth">
+              Date of Birth <span className="text-destructive">*</span>
+            </Label>
             <Controller
               name="personalInfo.dateOfBirth"
               control={control}
@@ -121,7 +114,9 @@ export const PersonalInfo = () => {
           </div>
 
           <div className="w-full">
-            <Label htmlFor="personalInfo.gender">Gender <span className="text-destructive">*</span></Label>
+            <Label htmlFor="personalInfo.gender">
+              Gender <span className="text-destructive">*</span>
+            </Label>
             <Controller
               name="personalInfo.gender"
               control={control}
@@ -146,7 +141,9 @@ export const PersonalInfo = () => {
           </div>
         </div>
         <div className="mt-4">
-          <Label htmlFor="personalInfo.linkedInProfile">LinkedIn profile <span className="text-destructive">*</span></Label>
+          <Label htmlFor="personalInfo.linkedInProfile">
+            LinkedIn profile <span className="text-destructive">*</span>
+          </Label>
           <Input
             type="text"
             id="personalInfo.linkedInProfile"
