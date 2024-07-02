@@ -9,6 +9,7 @@ import {
 } from "@/pages/components/onboarding/common";
 import { FORM_MODE } from "@/utils/constants";
 import { useForm } from "react-hook-form";
+import InvestmentInterest from "@/pages/components/onboarding/mentors/investment-interest";
 
 function MentorsOnboardingPage() {
   const { handleSubmit } = useForm({
@@ -30,6 +31,7 @@ function MentorsOnboardingPage() {
         <MentorsProfessionalInfo />
         <MentorsCommunityServiceOffer />
         <EntrepreneurialInfo />
+        <InvestmentInterest/>
       </form>
     </div>
   );
