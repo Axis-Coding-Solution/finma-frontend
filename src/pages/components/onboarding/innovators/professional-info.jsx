@@ -107,21 +107,22 @@ export const ProfessionalInfo = () => {
               name="professionalInfo.skills"
               control={control}
               render={({ field }) => (
-                <Select
-                  value={field.value}
-                  onValueChange={(e) => field.onChange(e)}
-                >
-                  <SelectTrigger id="professionalInfo.skills">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {areaOfExpertise.map((item) => (
-                      <SelectItem key={item} value={item}>
-                        {item}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                // <Select
+                //   value={field.value}
+                //   onValueChange={(e) => field.onChange(e)}
+                // >
+                //   <SelectTrigger id="professionalInfo.skills">
+                //     <SelectValue />
+                //   </SelectTrigger>
+                //   <SelectContent>
+                //     {areaOfExpertise.map((item) => (
+                //       <SelectItem key={item} value={item}>
+                //         {item}
+                //       </SelectItem>
+                //     ))}
+                //   </SelectContent>
+                // </Select>
+                
               )}
             ></Controller>
             <InputError error={errors.professionalInfo?.skills} />
