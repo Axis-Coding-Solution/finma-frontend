@@ -28,7 +28,7 @@ export const ProfessionalInfo = ({
       <div className="grid grid-cols-1 gap-4">
         <div>
           <Label htmlFor="professionalInfo.curEmpStatus">
-            Current employment status
+            Current employment status<span className="text-destructive">*</span>
           </Label>
           <Controller
             name="professionalInfo.curEmpStatus"
@@ -55,7 +55,7 @@ export const ProfessionalInfo = ({
         </div>
         <div>
           <Label htmlFor="professionalInfo.careerBackground">
-            Career background
+            Career background<span className="text-destructive">*</span>
           </Label>
           <Controller
             name="professionalInfo.careerBackground"
@@ -87,7 +87,9 @@ export const ProfessionalInfo = ({
           <InputError error={errors.professionalInfo?.careerBackground} />
         </div>
         <div>
-          <Label htmlFor="professionalInfo.skills">Skills</Label>
+          <Label htmlFor="professionalInfo.skills">Skills
+          <span className="text-destructive">*</span>
+          </Label>
           <Controller
             name="professionalInfo.skills"
             control={control}

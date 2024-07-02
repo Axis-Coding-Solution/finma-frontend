@@ -14,6 +14,8 @@ import {
 } from "@/pages/components/onboarding/common";
 import { useForm } from "react-hook-form";
 import { InnovatorsOnboardingValuesType } from "@/definitions/types/onboarding";
+import { onboardingInnovatorsSchema } from "@/utils/validation-schemas/onboarding";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 function InnovatorsOnboardingPage() {
   const {
@@ -23,6 +25,7 @@ function InnovatorsOnboardingPage() {
     formState: { errors },
   } = useForm({
     defaultValues: onboardingInnovatorsInitialValues,
+    resolver: yupResolver(onboardingInnovatorsSchema),
   });
 
   const onSubmitHandler = async (values: InnovatorsOnboardingValuesType) =>

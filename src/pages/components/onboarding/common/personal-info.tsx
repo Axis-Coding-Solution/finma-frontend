@@ -97,6 +97,8 @@ export const PersonalInfo = ({
               />
             )}
           />
+          <InputError error={errors.personalInfo?.dateOfBirth} />
+
         </div>
 
         <div className="w-full">
@@ -111,7 +113,7 @@ export const PersonalInfo = ({
                 value={field.value}
                 onValueChange={(e) => field.onChange(e)}
               >
-                <SelectTrigger id="personal-info-country">
+                <SelectTrigger id="personalInfo.gender">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -124,6 +126,7 @@ export const PersonalInfo = ({
               </Select>
             )}
           />
+          <InputError error={errors.personalInfo?.gender} />
         </div>
       </div>
       <div>

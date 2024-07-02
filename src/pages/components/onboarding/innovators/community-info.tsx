@@ -17,6 +17,7 @@ import { Controller } from "react-hook-form";
 import { InputError } from "@/components/ui/input-error";
 import { ReactSelect } from "@/components/ui/react-select";
 import { InnovatorsOnboardingPropTypes } from "@/definitions/types/onboarding";
+import { Textarea } from "@/components/ui/textarea";
 
 export const CommunityInfo = ({
   control,
@@ -30,6 +31,7 @@ export const CommunityInfo = ({
         <div>
           <Label htmlFor="communityInfo.entrepStage">
             What best describes your entrepreneurial stage?
+            <span className="text-destructive">*</span>
           </Label>
           <Controller
             name="communityInfo.entrepStage"
@@ -60,7 +62,7 @@ export const CommunityInfo = ({
 
         <div>
           <Label htmlFor="communityInfo.communityGoals">
-            My community goals are
+            My community goals are<span className="text-destructive">*</span>
           </Label>
           <Controller
             name="communityInfo.communityGoals"
@@ -97,11 +99,10 @@ export const CommunityInfo = ({
           <Label htmlFor="communityInfo.personalBio">
             Personal bio (150 character only){" "}
           </Label>
-          <Input
-            type="text"
-            id="communityInfo.personalBio"
+
+          <Textarea
             {...register("communityInfo.personalBio")}
-            // placeholder="Enter first name"
+            id="communityInfo.personalBio"
           />
           <InputError error={errors.communityInfo?.personalBio} />
         </div>
