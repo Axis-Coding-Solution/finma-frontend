@@ -9,10 +9,7 @@ type PropsTypes = {
   item: any;
 };
 export const ChatContactItem = ({ item }: PropsTypes) => {
-  let email = item.users.map((item: any) => item.email);
-  let userName = email.map((item: any) =>
-    item.split("@")[0].replace(/\b\w/g, (l: any) => l.toUpperCase())
-  );
+  let userName = item.user.email.split("@")[0].replace(/\b\w/g, (l: any) => l.toUpperCase())
 
   const chatUser = useHookstate(chatUserDataHook);
   const setChatUser = chatUser.set;

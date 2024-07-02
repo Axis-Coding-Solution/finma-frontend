@@ -1,3 +1,6 @@
+import { communityGoals } from "@/data/dashboard/innovators";
+// import CommunityServiceOffer from "@/pages/components/onboarding/experts/community-service-offer";
+
 export const onboardingIdeaClarityInitialValues = {
   problem: "",
   solution: "",
@@ -46,21 +49,37 @@ export const onboardingInnovatorsInitialValues = {
     gender: "",
     country: "",
     city: "",
+    linkedInProfile:"",
   },
 
   professionalInfo: {
-    careerBackground: [],
-    currentPosition: "",
-    skills: [],
+    currentEmploymentStatus: "",
+    careerBackground: "",
+    skills: "",
   },
 
-  experience: {
-    currentFocusAsStartup: "",
-    mainGoals: [],
-    communityEvents: "",
-    previouslyLaunched: "",
-    entrepreneurExperience: "",
-  },
+  communityInformation : {
+    entrepreneurialStage:"",
+    communityGoals:"",
+    dedicateToYourVenture:"",
+    personalBio:"",
+      },
+
+      entrepreneurialTrackRecord:
+      {
+
+        nameOfStratUp:"",
+        industry:"",
+        aboutTheStartup:"",
+        yourRole:"",
+        websiteLink:"",
+        numberOfEmployee:"",
+        yearsOfOperations:undefined,
+        lastYearRevenue:"",
+        accomplishment :"",
+        companyLinkedIn:"",
+
+      },
   profilePicture: null,
 };
 
@@ -73,21 +92,28 @@ export const onboardingExpertsInitialValues = {
     currentPosition: "",
   },
   professionalInfo: {
-    areaOfExpertise: "",
-    canDo: "",
-    goals: "",
+    employmentType: "",
+    jobTitle: "",
+    skills: "",
+    companyName:""
   },
-  experience: {
-    compensationOption: "",
-    projSelectionOption: "",
-    projIntakeProcess: [],
+  communityServiceOffer: {
+    startUpDevelopmentModule: "",
+    communityGoals: "",
+    personalBio:"" ,
+  },
+  
+  projectPreference: {
+    workCompensationsOptions: "",
+    projectSelectionCriteria: "",
+    projectIntakeSteps:"" ,
   },
   rate: {
-    projEngagementPref: "",
+    contractualPreference: "",
     currency: "",
-    discoverCall: "",
-    consultation: "",
-    delivery: "",
+    hourlyRate: "",
+    monthlyRate: "",
+    projectStartingPrice: "",
   },
 
   profilePicture: null,

@@ -8,6 +8,10 @@ import {
 } from "axios";
 import { getAuthFromStorage } from ".";
 
+interface RequestConfig extends AxiosRequestConfig {
+  authorization?: boolean;
+}
+
 const baseURL = import.meta.env.VITE_BACKEND_URL;
 
 const axiosInstance: AxiosInstance = axios.create({
@@ -21,26 +25,28 @@ export const axiosAuthInstance = axios.create({
 });
 
 axiosInstance.interceptors.request.use(
-  async (config): Promise<InternalAxiosRequestConfig> => {
-    if ((config as any)?.authorization !== false) {
+  async (config: RequestConfig): Promise<InternalAxiosRequestConfig> => {
+    if (config.authorization !== false) {
       const auth = getAuthFromStorage();
       if (auth?.token && auth?.isAuthenticated) {
-        config.headers.Authorization = `BEARER ${auth?.token}`;
+        if (config.headers) {
+          config.headers.Authorization = `BEARER ${auth?.token}`;
+        }
       }
     }
-    return config;
+    return config as any;
   },
   (error: AxiosError): Promise<AxiosError> => Promise.reject(error)
 );
 
-const get = (url: string, config?: AxiosRequestConfig) =>
+const get = (url: string, config?: RequestConfig) =>
   axiosInstance.get(url, config);
-const post = (url: string, data: Object, config?: AxiosRequestConfig) =>
+const post = (url: string, data: Object, config?: RequestConfig) =>
   axiosInstance.post(url, data, config);
-const put = (url: string, data: Object, config?: AxiosRequestConfig) =>
+const put = (url: string, data: Object, config?: RequestConfig) =>
   axiosInstance.put(url, data, config);
 const del = (url: string, data: Object) => axiosInstance.delete(url, data);
-const patch = (url: string, data: Object, config?: AxiosRequestConfig) =>
+const patch = (url: string, data: Object, config?: RequestConfig) =>
   axiosInstance.patch(url, data, config);
 
 export { get, post, put, del, patch };

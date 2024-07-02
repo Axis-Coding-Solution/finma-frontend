@@ -5,6 +5,8 @@ import { useGetMessagesByChatId } from "@/api/hooks/messages/messages";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { NoMessages } from "./no-messages";
 import { useMessagesStore } from "@/store/hooks";
+import socket from "@/lib/socket.io";
+import { SOCKET_ENUMS } from "@/utils/constants/socket-enums";
 
 function checkElementOverflow(element: HTMLDivElement) {
   return (
@@ -29,6 +31,9 @@ export const ChatsContent = () => {
   }, [data]);
 
   useEffect(() => {
+    socket.emit(SOCKET_ENUMS.RECEIVE_MESSAGE, (data)=>{
+      console.log('FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF', data)
+    });
     const container = contentRef.current;
 
     if (container) {
@@ -67,11 +72,11 @@ export const ChatsContent = () => {
   // const avatarImage = expertImages[expert!];
 
   return (
-    <div
-      ref={contentRef}
-      className="flex-1 flex flex-col px-5 py-2 overflow-y-auto h-full"
-    >
-      <ScrollArea className="px-3 h-full">
+    <ScrollArea className="px-3 h-full">
+      <div
+        ref={contentRef}
+        className="flex-1 flex flex-col px-5 py-2 overflow-y-auto h-auto"
+      >
         {chat?.length === 0 && <NoMessages />}
         {chat?.map((message: any, index: string) => (
           <TextMessage
@@ -80,7 +85,7 @@ export const ChatsContent = () => {
             position={message.sender ? "right" : "left"}
           />
         ))}
-      </ScrollArea>
-    </div>
+      </div>
+    </ScrollArea>
   );
 };
