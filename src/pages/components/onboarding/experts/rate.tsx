@@ -7,118 +7,108 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
-import { Controller, useForm } from "react-hook-form";
-import { onboardingExpertsInitialValues } from "@/utils/initial-values";
+import { Controller } from "react-hook-form";
 import { InputError } from "@/components/ui/input-error";
-import {
-  compensationOptions,
-} from "@/data/dashboard/experts";
+import { compensationOptions } from "@/data/dashboard/experts";
+import { SectionHeading } from "../../common";
+import { ExpertsOnboardingPropTypes } from "@/definitions/types/onboarding";
 
-export const Rate = () => {
-  const {
-    control,
-    register,
-    setValue,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    defaultValues: onboardingExpertsInitialValues,
-
-    // resolver: yupResolver(onboardingExpertsSchema),
-  });
+export const Rate = ({
+  control,
+  errors,
+  register,
+}: ExpertsOnboardingPropTypes) => {
   return (
-    <div>
-      <div className="">
-        <h4 className="text-success uppercase font-medium">Rate </h4>
-        <div className="grid grid-cols-1 gap-4 mt-4">
-          <div className="flex gap-3">
-            <div className="w-full">
-              <Label htmlFor="rate.contractualPreference">
-                Contractual preference{" "}
-              </Label>
-              <Controller
-                name="rate.contractualPreference"
-                control={control}
-                render={({ field }) => (
-                  <Select
-                    value={field.value}
-                    onValueChange={(e) => field.onChange(e)}
-                  >
-                    <SelectTrigger id="rate.contractualPreference">
-                      <SelectValue  />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {compensationOptions.map((item) => (
-                        <SelectItem key={item} value={item}>
-                          {item}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                )}
-              ></Controller>
-              <InputError error={errors.rate?.contractualPreference} />
-            </div>
-            <div className="w-full">
-              <Label htmlFor="rate.currency">Currency</Label>
-              <Controller
-                name="rate.currency"
-                control={control}
-                render={({ field }) => (
-                  <Select
-                    value={field.value}
-                    onValueChange={(e) => field.onChange(e)}
-                  >
-                    <SelectTrigger id="rate.currency">
-                      <SelectValue  />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {compensationOptions.map((item) => (
-                        <SelectItem key={item} value={item}>
-                          {item}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                )}
-              ></Controller>
-              <InputError error={errors.rate?.currency} />
-            </div>
+    <div className="w-full pt-5 flex flex-col gap-4">
+      <SectionHeading heading="Rate" />
+      <div className="grid grid-cols-1 gap-4 mt-4">
+        <div className="flex gap-3">
+          <div className="w-full">
+            <Label htmlFor="rate.contractualPref">
+              Contractual preference{" "}
+            </Label>
+            <Controller
+              name="rate.contractualPref"
+              control={control}
+              render={({ field }) => (
+                <Select
+                  value={field.value}
+                  onValueChange={(e) => field.onChange(e)}
+                >
+                  <SelectTrigger id="rate.contractualPref">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {compensationOptions.map((item) => (
+                      <SelectItem key={item} value={item}>
+                        {item}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              )}
+            ></Controller>
+            <InputError error={errors.rate?.contractualPref} />
           </div>
+          <div className="w-full">
+            <Label htmlFor="rate.currency">Currency</Label>
+            <Controller
+              name="rate.currency"
+              control={control}
+              render={({ field }) => (
+                <Select
+                  value={field.value}
+                  onValueChange={(e) => field.onChange(e)}
+                >
+                  <SelectTrigger id="rate.currency">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {compensationOptions.map((item) => (
+                      <SelectItem key={item} value={item}>
+                        {item}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              )}
+            ></Controller>
+            <InputError error={errors.rate?.currency} />
+          </div>
+        </div>
 
-          <div className="flex gap-3">
-            <div>
-              <Label htmlFor="rate.hourlyRate">Hourly Rate</Label>
-              <Input
-                type="text"
-                id="rate.hourlyRate"
-                {...register("rate.hourlyRate")}
-                // placeholder="Enter first name"
-              />
-              <InputError error={errors.rate?.hourlyRate} />
-            </div>
-            <div>
-              <Label htmlFor="rate.monthlyRate">Monthly Rate</Label>
-              <Input
-                type="text"
-                id="rate.monthlyRate"
-                {...register("rate.monthlyRate")}
-                // placeholder="Enter first name"
-              />
-              <InputError error={errors.rate?.monthlyRate} />
-            </div>
-            <div>
-              <Label htmlFor="rate.projectStartingPrice">
-                Project starting price
-              </Label>
-              <Input
-                type="text"
-                id="rate.projectStartingPrice"
-                {...register("rate.projectStartingPrice")}
-                // placeholder="Enter first name"
-              />
-              <InputError error={errors.rate?.projectStartingPrice} />
-            </div>
+        <div className="flex gap-3">
+          <div>
+            <Label htmlFor="rate.hourlyRate">Hourly Rate</Label>
+            <Input
+              type="text"
+              id="rate.hourlyRate"
+              {...register("rate.hourlyRate")}
+              // placeholder="Enter first name"
+            />
+            <InputError error={errors.rate?.hourlyRate} />
+          </div>
+          <div>
+            <Label htmlFor="rate.monthlyRate">Monthly Rate</Label>
+            <Input
+              type="text"
+              id="rate.monthlyRate"
+              {...register("rate.monthlyRate")}
+              // placeholder="Enter first name"
+            />
+            <InputError error={errors.rate?.monthlyRate} />
+          </div>
+          <div>
+            <Label htmlFor="rate.projStartingPrice">
+              Project starting price
+            </Label>
+            <Input
+              type="text"
+              id="rate.projStartingPrice"
+              {...register("rate.projStartingPrice")}
+              // placeholder="Enter first name"
+            />
+            <InputError error={errors.rate?.projStartingPrice} />
           </div>
         </div>
       </div>

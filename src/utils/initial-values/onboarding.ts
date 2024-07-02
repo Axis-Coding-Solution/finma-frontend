@@ -25,9 +25,9 @@ const commonOnboardingInitialValues = {
     lastName: "",
     country: "",
     city: "",
-    dateOfBirth: null,
+    dateOfBirth: undefined,
     gender: "",
-    linkedInProfile:""
+    linkedInProfile: "",
   },
   profilePicture: null,
 };
@@ -48,8 +48,8 @@ const entrepreneurialTrackRecordInitialValues = {
         webLink: "",
         noOfEmp: "",
         yearsOfOp: {
-          from: "",
-          to: "",
+          from: undefined,
+          to: undefined,
         },
         lastYearRevenue: currencyInitialValues,
         fundRaised: currencyInitialValues,
@@ -85,9 +85,14 @@ export const onboardingExpertsInitialValues = {
     companyName: "",
   },
   communityServiceOffer: {
-    startUpDerModules: [],
+    startUpDevModules: [],
     communityGoals: [],
     personalBio: "",
+  },
+  projectPreferences: {
+    compensationOptions: [],
+    projSelectionCriteria: [],
+    projIntakeSteps: [],
   },
   rate: {
     contractualPref: "",

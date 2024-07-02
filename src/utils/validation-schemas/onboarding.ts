@@ -78,7 +78,7 @@ export const onboardingExpertsSchema = {
     companyName: string().trim().required(),
   },
   communityServiceOffer: {
-    startUpDerModules: array()
+    startUpDevModules: array()
       .required()
       .min(1, "Please select at least 1 option!"),
     communityGoals: array()

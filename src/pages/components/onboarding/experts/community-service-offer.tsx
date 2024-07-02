@@ -1,109 +1,54 @@
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Input } from "@/components/ui/input";
-import { Controller, useForm } from "react-hook-form";
-import { onboardingExpertsInitialValues } from "@/utils/initial-values";
+import { Controller } from "react-hook-form";
 import { InputError } from "@/components/ui/input-error";
-import {
-  compensationOptions,
-} from "@/data/dashboard/experts";
+import { SectionHeading } from "../../common";
+import { ExpertsOnboardingPropTypes } from "@/definitions/types/onboarding";
+import { ReactSelect } from "@/components/ui/react-select";
+import { Textarea } from "@/components/ui/textarea";
 
-export const CommunityServiceOffer = () => {
-  const {
-    control,
-    register,
-    setValue,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    defaultValues: onboardingExpertsInitialValues,
-
-    // resolver: yupResolver(onboardingExpertsSchema),
-  });
+export const CommunityServiceOffer = ({
+  control,
+  errors,
+  register,
+}: ExpertsOnboardingPropTypes) => {
   return (
-    <div>
-      <div className="">
-        <h4 className="text-success uppercase font-medium">
-          Community SERVICE OFFER{" "}
-        </h4>
-        <div className="grid grid-cols-1 gap-4 mt-4">
-          <div>
-            <Label htmlFor="communityServiceOffer.startUpDevelopmentModule">
-              I can support innovators in these startup development modules{" "}
-            </Label>
-            <Controller
-              name="communityServiceOffer.startUpDevelopmentModule"
-              control={control}
-              render={({ field }) => (
-                <Select
-                  value={field.value}
-                  onValueChange={(e) => field.onChange(e)}
-                >
-                  <SelectTrigger id="communityServiceOffer.startUpDevelopmentModule">
-                    <SelectValue  />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {compensationOptions.map((item) => (
-                      <SelectItem key={item} value={item}>
-                        {item}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              )}
-            ></Controller>
-            <InputError
-              error={errors.communityServiceOffer?.startUpDevelopmentModule}
-            />
-          </div>
-          <div>
-            <Label htmlFor="communityServiceOffer.communityGoals">
-              My community goals are
-            </Label>
-            <Controller
-              name="communityServiceOffer.communityGoals"
-              control={control}
-              render={({ field }) => (
-                <Select
-                  value={field.value}
-                  onValueChange={(e) => field.onChange(e)}
-                >
-                  <SelectTrigger id="communityServiceOffer.communityGoals">
-                    <SelectValue placeholder="Select work compensation options" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {compensationOptions.map((item) => (
-                      <SelectItem key={item} value={item}>
-                        {item}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              )}
-            ></Controller>
-            <InputError error={errors.communityServiceOffer?.communityGoals} />
-          </div>
-          <div>
-            <Label htmlFor="communityServiceOffer.personalBio">
-            Personal bio (150 character only)            </Label>
-            <Input
-              type="text"
-              id="CommunityServiceOffer.personalBio"
-              {...register("communityServiceOffer.personalBio")}
-              // placeholder="Enter first name"
-            />
-            <InputError error={errors.communityServiceOffer?.personalBio} />
-          </div>
-         
+    <div className="w-full pt-5 flex flex-col gap-4">
+      <SectionHeading heading="COMMUNITY SERVICE OFFER" />
+      <div className="grid grid-cols-1 gap-4">
+        <div>
+          <Label htmlFor="communityServiceOffer.startUpDevModules">
+            I can support innovators in these startup development modules{" "}
+          </Label>
+          <Controller
+            name="communityServiceOffer.startUpDevModules"
+            control={control}
+            render={({ field }) => <ReactSelect {...field} options={[]} />}
+          ></Controller>
+          <InputError error={errors.communityServiceOffer?.startUpDevModules} />
+        </div>
+        <div>
+          <Label htmlFor="communityServiceOffer.communityGoals">
+            My community goals are
+          </Label>
+          <Controller
+            name="communityServiceOffer.communityGoals"
+            control={control}
+            render={({ field }) => <ReactSelect {...field} options={[]} />}
+          ></Controller>
+          <InputError error={errors.communityServiceOffer?.communityGoals} />
+        </div>
+        <div>
+          <Label htmlFor="communityServiceOffer.personalBio">
+            Personal bio (150 character only){" "}
+          </Label>
+          <Textarea
+            {...register("communityServiceOffer.personalBio")}
+            id="CommunityServiceOffer.personalBio"
+            // placeholder="Enter first name"
+          />
+          <InputError error={errors.communityServiceOffer?.personalBio} />
         </div>
       </div>
     </div>
   );
 };
-

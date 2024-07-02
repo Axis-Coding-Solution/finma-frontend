@@ -2,7 +2,7 @@ import { Label } from "@/components/ui/label";
 import { SectionHeading } from "../../common";
 import { Input } from "@/components/ui/input";
 import { InputError } from "@/components/ui/input-error";
-import { Controller, useForm } from "react-hook-form";
+import { Controller } from "react-hook-form";
 import {
   Select,
   SelectContent,
@@ -16,17 +16,14 @@ import {
   countryOptions,
   genderStatus,
 } from "@/data/dashboard/innovators";
-import { onboardingInnovatorsInitialValues } from "@/utils/initial-values";
 import { ReactSelect } from "@/components/ui/react-select";
+import { ExpertsOnboardingPropTypes } from "@/definitions/types/onboarding";
 
-export const PersonalInfo = () => {
-  const {
-    control,
-    register,
-    formState: { errors },
-  } = useForm({
-    defaultValues: onboardingInnovatorsInitialValues,
-  });
+export const PersonalInfo = ({
+  control,
+  errors,
+  register,
+}: ExpertsOnboardingPropTypes) => {
   return (
     <div className="w-full pt-5 flex flex-col gap-4">
       <SectionHeading heading="PERSONAL INFORMATION" />
@@ -61,12 +58,7 @@ export const PersonalInfo = () => {
             name="personalInfo.country"
             control={control}
             render={({ field }) => (
-              <ReactSelect
-                {...field}
-                options={countryOptions}
-                onChange={(value) => field.onChange(value)}
-                value={field.value}
-              />
+              <ReactSelect {...field} options={countryOptions} />
             )}
           />
           <InputError error={errors.personalInfo?.country} />
@@ -80,19 +72,13 @@ export const PersonalInfo = () => {
             name="personalInfo.city"
             control={control}
             render={({ field }) => (
-              <ReactSelect
-                {...field}
-                options={cityOptions}
-                onChange={(value) => field.onChange(value)}
-                value={field.value}
-              />
+              <ReactSelect {...field} options={cityOptions} />
             )}
           />
           <InputError error={errors.personalInfo?.city} />
         </div>
 
         <div>
-          {" "}
           <Label htmlFor="personalInfo.dateOfBirth">
             Date of Birth <span className="text-destructive">*</span>
           </Label>

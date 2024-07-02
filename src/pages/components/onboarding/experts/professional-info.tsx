@@ -7,86 +7,86 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
-import { Controller, useForm } from "react-hook-form";
-import { onboardingExpertsInitialValues } from "@/utils/initial-values";
+import { Controller } from "react-hook-form";
 import { InputError } from "@/components/ui/input-error";
-import {
-  areaOfExpertise,
-} from "@/data/dashboard/experts";
-export const ProfessionalInfo = () => {
-  
-
-  const {
-    control,
-    register,
-    setValue,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    defaultValues: onboardingExpertsInitialValues,
-
-    // resolver: yupResolver(onboardingExpertsSchema),
-  });
+import { areaOfExpertise } from "@/data/dashboard/experts";
+import { SectionHeading } from "../../common";
+import { ExpertsOnboardingPropTypes } from "@/definitions/types/onboarding";
+export const ProfessionalInfo = ({
+  control,
+  errors,
+  register,
+}: ExpertsOnboardingPropTypes) => {
   return (
-    <div>
-      <div className="">
-        <h4 className="text-success uppercase font-medium">
-          Professional Information
-        </h4>
-        <div className="grid grid-cols-1 gap-4 mt-4">
-          <div>
-            <Label htmlFor="professionalInfo.employmentType">
-              Current employment status <span className="text-destructive">*</span>
-            </Label>
-            <Controller
-              name="professionalInfo.employmentType"
-              control={control}
-              render={({ field }) => (
-                <Select
-                  value={field.value}
-                  onValueChange={(e) => field.onChange(e)}
-                >
-                  <SelectTrigger id="professionalInfo.employmentType">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {areaOfExpertise.map((item) => (
-                      <SelectItem key={item} value={item}>
-                        {item}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              )}
-            ></Controller>
-            <InputError error={errors.professionalInfo?.employmentType} />
-          </div>
-
-          <div>
-            <Label htmlFor="professionalInfo.jobTitle">
-              Career background <span className="text-destructive">*</span>
-            </Label>
-            <Input
-              type="text"
-              id="professionalInfo.jobTitle"
-              {...register("professionalInfo.jobTitle")}
-              // placeholder="Enter first name"
-            />
-            <InputError error={errors.professionalInfo?.jobTitle} />
-          </div>
-          <div>
-            <Label htmlFor="professionalInfo.skills">Skills <span className="text-destructive">*</span></Label>
-            <Input
-              type="text"
-              id="professionalInfo.skills"
-              {...register("professionalInfo.skills")}
-              // placeholder="Enter first name"
-            />
-            <InputError error={errors.professionalInfo?.skills} />
-          </div>
+    <div className="w-full pt-5 flex flex-col gap-4">
+      <SectionHeading heading="Professional Information" />
+      <div className="grid grid-cols-1 gap-4">
+        <div>
+          <Label htmlFor="professionalInfo.currEmpType">
+            Current employment type
+            <span className="text-destructive">*</span>
+          </Label>
+          <Controller
+            name="professionalInfo.currEmpType"
+            control={control}
+            render={({ field }) => (
+              <Select
+                value={field.value}
+                onValueChange={(e) => field.onChange(e)}
+              >
+                <SelectTrigger id="professionalInfo.currEmpType">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {areaOfExpertise.map((item) => (
+                    <SelectItem key={item} value={item}>
+                      {item}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            )}
+          ></Controller>
+          <InputError error={errors.professionalInfo?.currEmpType} />
         </div>
+
+        <div>
+          <Label htmlFor="professionalInfo.currJobTitle">
+            Current job title (This will appear on your community card){" "}
+            <span className="text-destructive">*</span>
+          </Label>
+          <Input
+            type="text"
+            id="professionalInfo.currJobTitle"
+            {...register("professionalInfo.currJobTitle")}
+          />
+          <InputError error={errors.professionalInfo?.currJobTitle} />
+        </div>
+        <div>
+          <Label htmlFor="professionalInfo.skills">
+            Skills <span className="text-destructive">*</span>
+          </Label>
+          <Input
+            type="text"
+            id="professionalInfo.skills"
+            {...register("professionalInfo.skills")}
+            // placeholder="Enter first name"
+          />
+          <InputError error={errors.professionalInfo?.skills} />
+        </div>
+      </div>
+      <div>
+        <Label htmlFor="professionalInfo.companyName">
+          Company name, if applicable (This will appear on your community card){" "}
+          <span className="text-destructive">*</span>
+        </Label>
+        <Input
+          type="text"
+          id="professionalInfo.companyName"
+          {...register("professionalInfo.companyName")}
+        />
+        <InputError error={errors.professionalInfo?.companyName} />
       </div>
     </div>
   );
 };
-
