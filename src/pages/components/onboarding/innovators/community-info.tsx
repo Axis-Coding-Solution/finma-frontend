@@ -35,18 +35,18 @@ export const CommunityInfo = () => {
       <SectionHeading heading="COMMUNITY INFORMATION" />
       <div className="grid grid-cols-1 gap-4">
         <div>
-          <Label htmlFor="communityInformation.entrepreneurialStage">
+          <Label htmlFor="communityInfo.entrepStage">
             What best describes your entrepreneurial stage?
           </Label>
           <Controller
-            name="communityInformation.entrepreneurialStage"
+            name="communityInfo.entrepStage"
             control={control}
             render={({ field }) => (
               <Select
                 value={field.value}
                 onValueChange={(e) => field.onChange(e)}
               >
-                <SelectTrigger id="communityInformation.entrepreneurialStage">
+                <SelectTrigger id="communityInfo.entrepStage">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -63,23 +63,23 @@ export const CommunityInfo = () => {
             )}
           ></Controller>
           <InputError
-            error={errors.communityInformation?.entrepreneurialStage}
+            error={errors.communityInfo?.entrepStage}
           />
         </div>
 
         <div>
-          <Label htmlFor="communityInformation.communityGoals">
+          <Label htmlFor="communityInfo.communityGoals">
             My community goals are
           </Label>
           <Controller
-            name="communityInformation.communityGoals"
+            name="communityInfo.communityGoals"
             control={control}
             render={({ field }) => (
               // <Select
               //   value={field.value}
               //   onValueChange={(e) => field.onChange(e)}
               // >
-              //   <SelectTrigger id="communityInformation.communityGoals">
+              //   <SelectTrigger id="communityInfo.communityGoals">
               //     <SelectValue />
               //   </SelectTrigger>
               //   <SelectContent>
@@ -99,32 +99,32 @@ export const CommunityInfo = () => {
               />
             )}
           ></Controller>
-          <InputError error={errors.communityInformation?.communityGoals} />
+          <InputError error={errors.communityInfo?.communityGoals} />
         </div>
 
         <div>
-          <Label htmlFor="communityInformation.personalBio">
+          <Label htmlFor="communityInfo.personalBio">
             Personal bio (150 character only){" "}
           </Label>
           <Input
             type="text"
-            id="communityInformation.personalBio"
-            {...register("communityInformation.personalBio")}
+            id="communityInfo.personalBio"
+            {...register("communityInfo.personalBio")}
             // placeholder="Enter first name"
           />
-          <InputError error={errors.communityInformation?.personalBio} />
+          <InputError error={errors.communityInfo?.personalBio} />
         </div>
         <div>
-          <Label htmlFor="communityInformation.dedicateToYourVenture">
+          <Label htmlFor="communityInfo.dedicatedHoursPerWeek">
             How many hours per weeks can you dedicate to your venture(s)?
           </Label>
           <Input
             type="text"
-            id="communityInformation.dedicateToYourVenture"
-            {...register("communityInformation.dedicateToYourVenture")}
+            id="communityInfo.dedicatedHoursPerWeek"
+            {...register("communityInfo.dedicatedHoursPerWeek")}
           />
           <InputError
-            error={errors.communityInformation?.dedicateToYourVenture}
+            error={errors.communityInfo?.dedicatedHoursPerWeek}
           />
         </div>
       </div>
