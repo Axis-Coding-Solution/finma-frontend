@@ -27,6 +27,7 @@ const commonOnboardingInitialValues = {
     city: "",
     dateOfBirth: null,
     gender: "",
+    linkedInProfile:""
   },
   profilePicture: null,
 };
