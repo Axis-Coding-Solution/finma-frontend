@@ -1,120 +1,125 @@
-import { communityGoals } from "@/data/dashboard/innovators";
-// import CommunityServiceOffer from "@/pages/components/onboarding/experts/community-service-offer";
-
 export const onboardingIdeaClarityInitialValues = {
   problem: "",
   solution: "",
   targetedAudience: "",
   competitors: "",
 };
-export const onboardingCompletedInitialValues={
-  ProjectName:"",
-}
+export const onboardingCompletedInitialValues = {
+  ProjectName: "",
+};
 export const userQuestionaryInitialValues = {
   country: "",
   professionalStatus: "",
   financialStatus: "",
   familyStatus: "",
 };
-// export const onboardingExpertsInitialValues = {
-//   firstName: "",
-//   lastName: "",
-//   country: "",
-//   city: "",
-//   myCurrentPosition: "",
-//   areaOfExpertise: "",
-//   whatICanDo: "",
-//   myGoalsIsTo: "",
-//   workCompensationsOptions: "",
-//   projectSelectionProcess: "",
-//   projectIntakeProcess: "",
-//   projectEngagementPreference: "",
-//   currency: "",
-//   discoveryCall: "",
-//   consultation: "",
-//   delivery: "",
-//   profilePicture: null,
-// };
 
 export const postMessagesInitialValues = {
   content: "",
   receiverId: "",
 };
 
-export const onboardingInnovatorsInitialValues = {
+const commonOnboardingInitialValues = {
   personalInfo: {
     firstName: "",
     lastName: "",
-    dateOfBirth: undefined,
-    gender: "",
     country: "",
     city: "",
-    linkedInProfile:"",
+    dateOfBirth: null,
+    gender: "",
   },
-
-  professionalInfo: {
-    currentEmploymentStatus: "",
-    careerBackground: "",
-    skills: "",
-  },
-
-  communityInformation : {
-    entrepreneurialStage:"",
-    communityGoals:"",
-    dedicateToYourVenture:"",
-    personalBio:"",
-      },
-
-      entrepreneurialTrackRecord:
-      {
-
-        nameOfStratUp:"",
-        industry:"",
-        aboutTheStartup:"",
-        yourRole:"",
-        websiteLink:"",
-        numberOfEmployee:"",
-        yearsOfOperations:undefined,
-        lastYearRevenue:"",
-        accomplishment :"",
-        companyLinkedIn:"",
-
-      },
   profilePicture: null,
 };
 
-export const onboardingExpertsInitialValues = {
-  personalInfo: {
-    firstName: "",
-    lastName: "",
-    country: "",
-    city: "",
-    currentPosition: "",
+const currencyInitialValues = {
+  amount: 0,
+  currency: "",
+};
+
+const entrepreneurialTrackRecordInitialValues = {
+  entrepTrackRecord: {
+    startUps: [
+      {
+        startUpName: "",
+        industry: "",
+        startUpAbout: "",
+        role: "",
+        webLink: "",
+        noOfEmp: "",
+        yearsOfOp: {
+          from: "",
+          to: "",
+        },
+        lastYearRevenue: currencyInitialValues,
+        fundRaised: currencyInitialValues,
+        accomplishment: "",
+        companyLinkedIn: "",
+      },
+    ],
   },
+};
+
+export const onboardingInnovatorsInitialValues = {
+  ...commonOnboardingInitialValues,
+  ...entrepreneurialTrackRecordInitialValues,
   professionalInfo: {
-    employmentType: "",
-    jobTitle: "",
-    skills: "",
-    companyName:""
+    curEmpStatus: "",
+    careerBackground: "",
+    skills: [],
+  },
+  communityInfo: {
+    entrepStage: "",
+    communityGoals: [],
+    dedicatedHoursPerWeek: "",
+    personalBio: "",
+  },
+};
+
+export const onboardingExpertsInitialValues = {
+  ...commonOnboardingInitialValues,
+  professionalInfo: {
+    currEmpType: "",
+    currJobTitle: "",
+    skills: [],
+    companyName: "",
   },
   communityServiceOffer: {
-    startUpDevelopmentModule: "",
-    communityGoals: "",
-    personalBio:"" ,
-  },
-  
-  projectPreference: {
-    workCompensationsOptions: "",
-    projectSelectionCriteria: "",
-    projectIntakeSteps:"" ,
+    startUpDerModules: [],
+    communityGoals: [],
+    personalBio: "",
   },
   rate: {
-    contractualPreference: "",
+    contractualPref: "",
     currency: "",
-    hourlyRate: "",
-    monthlyRate: "",
-    projectStartingPrice: "",
+    hourlyRate: 0,
+    monthlyRate: 0,
+    projStartingPrice: 0,
+  },
+};
+
+export const onboardingMentorsInitialValues = {
+  ...commonOnboardingInitialValues,
+  professionalInfo: {
+    jobTitle: "",
+    companyName: "",
+    industry: "",
+  },
+  communityServiceOffer: {
+    startUpDerModules: [],
+    communityGoals: [],
+    personalBio: "",
   },
 
-  profilePicture: null,
+  ...entrepreneurialTrackRecordInitialValues,
+  investmentInterest: {
+    ticketSize: "",
+    targetIndustry: "",
+    prefInvestmentInstrument: "",
+    typicalInvestmentDuration: "",
+    investmentEvalKPIS: [],
+    prefStartUpTypes: [],
+    annualStartUpInvestment: [],
+    prefInvestmentRegions: [],
+    postInvestmentSupport: "",
+  },
 };

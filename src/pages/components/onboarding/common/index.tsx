@@ -1,2 +1,2 @@
-export {EntrepreneurialInfo} from "./entrepreneurial-info"
-export { PersonalInfo } from "../innovators/personal-info";
+export { EntrepreneurialInfo } from "./entrepreneurial-info";
+export { PersonalInfo } from "./personal-info";

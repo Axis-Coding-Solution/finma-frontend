@@ -11,17 +11,18 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { DatePicker } from "@/components/ui/date-picker";
-import { cities, cityOptions, countries, countryOptions, genderStatus } from "@/data/dashboard/innovators";
+import {
+  cityOptions,
+  countryOptions,
+  genderStatus,
+} from "@/data/dashboard/innovators";
 import { onboardingInnovatorsInitialValues } from "@/utils/initial-values";
-import { useNavigate } from "react-router-dom";
 import { ReactSelect } from "@/components/ui/react-select";
 
 export const PersonalInfo = () => {
-  const navigate = useNavigate();
   const {
     control,
     register,
-    handleSubmit,
     formState: { errors },
   } = useForm({
     defaultValues: onboardingInnovatorsInitialValues,
@@ -82,7 +83,6 @@ export const PersonalInfo = () => {
               name="personalInfo.city"
               control={control}
               render={({ field }) => (
-                
                 <ReactSelect
                   {...field}
                   options={cityOptions}
