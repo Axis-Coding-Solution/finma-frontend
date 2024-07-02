@@ -27,10 +27,10 @@ function MentorsOnboardingPage() {
         onSubmit={handleSubmit(onSubmitHandler)}
         className="flex flex-col gap-5"
       >
-        <PersonalInfo />
+        {/* <PersonalInfo /> */}
         <MentorsProfessionalInfo />
         <MentorsCommunityServiceOffer />
-        <EntrepreneurialInfo />
+        {/* <EntrepreneurialInfo /> */}
         <InvestmentInterest/>
       </form>
     </div>
