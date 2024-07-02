@@ -39,18 +39,18 @@ export const ProfessionalInfo = () => {
       <SectionHeading heading="Professional Information" />
       <div className="grid grid-cols-1 gap-4">
         <div>
-          <Label htmlFor="professionalInfo.areaOfExpertise">
+          <Label htmlFor="professionalInfo.curEmpStatus">
             Current employment status
           </Label>
           <Controller
-            name="professionalInfo.currentEmploymentStatus"
+            name="professionalInfo.curEmpStatus"
             control={control}
             render={({ field }) => (
               <Select
                 value={field.value}
                 onValueChange={(e) => field.onChange(e)}
               >
-                <SelectTrigger id="professionalInfo.currentEmploymentStatus">
+                <SelectTrigger id="professionalInfo.curEmpStatus">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -64,7 +64,7 @@ export const ProfessionalInfo = () => {
             )}
           ></Controller>
           <InputError
-            error={errors.professionalInfo?.currentEmploymentStatus}
+            error={errors.professionalInfo?.curEmpStatus}
           />
         </div>
         <div>
