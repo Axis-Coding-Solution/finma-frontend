@@ -33,6 +33,7 @@ export default [
     path: "/onboarding/mentors",
     meta: {
       layout: "blank",
+      isRestrictedRoute: true,
     },
   },
   {
