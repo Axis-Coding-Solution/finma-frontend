@@ -10,10 +10,15 @@ import {
 } from "@/components/ui/select";
 import { mentorsIndustryOptions } from "@/data/dashboard/mentors";
 import { Textarea } from "@/components/ui/textarea";
+import { MentorsOnboardingPropTypes } from "@/definitions/types/onboarding";
 
-function InvestmentInterest() {
+function InvestmentInterest({
+  control,
+  register,
+  errors,
+}: MentorsOnboardingPropTypes) {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-4 w-full pt-4">
       <SectionHeading heading="Investment Interest" />
       <div className="grid grid-cols-2 gap-4">
         <div className="col-span-2">

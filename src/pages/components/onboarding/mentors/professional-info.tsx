@@ -9,10 +9,15 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { mentorsIndustryOptions } from "@/data/dashboard/mentors";
+import { MentorsOnboardingPropTypes } from "@/definitions/types/onboarding";
 
-export const MentorsProfessionalInfo = () => {
+export const MentorsProfessionalInfo = ({
+  control,
+  register,
+  errors,
+}: MentorsOnboardingPropTypes) => {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="w-full pt-5 flex flex-col gap-4">
       <SectionHeading heading="Professional Information" />
       <div>
         <Label htmlFor="mentors-prof-info-job-title">

@@ -7,29 +7,51 @@ import { FORM_MODE } from "@/utils/constants";
 import { useForm } from "react-hook-form";
 import InvestmentInterest from "@/pages/components/onboarding/mentors/investment-interest";
 import { onboardingMentorsInitialValues } from "@/utils/initial-values";
+import { MentorsOnboardingValuesType } from "@/definitions/types/onboarding";
+import {
+  EntrepreneurialInfo,
+  PersonalInfo,
+} from "@/pages/components/onboarding/common";
+import { Button } from "@/components/ui/button";
+import FileUpload from "@/components/ui/fileupload";
 
 function MentorsOnboardingPage() {
-  const { handleSubmit } = useForm({
+  const {
+    register,
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     mode: FORM_MODE,
     defaultValues: onboardingMentorsInitialValues,
   });
 
-  const onSubmitHandler = (values: unknown) => console.log("values: ", values);
+  const onSubmitHandler = (values: MentorsOnboardingValuesType) =>
+    console.log("values: ", values);
+
+  const commonProps = {
+    register,
+    control,
+    errors,
+  };
   return (
     <div className="bg-background rounded-lg px-2 lg:px-10 py-6 flex flex-col gap-8">
       <MainHeading
         heading="Lets create your mentor profile"
         paragraph="Please tell us about your expertise to help us set up your profile."
       />
-      <form
-        onSubmit={handleSubmit(onSubmitHandler)}
-        className="flex flex-col gap-5"
-      >
-        {/* <PersonalInfo /> */}
-        <MentorsProfessionalInfo />
-        <MentorsCommunityServiceOffer />
-        {/* <EntrepreneurialInfo /> */}
-        <InvestmentInterest />
+      <form onSubmit={handleSubmit(onSubmitHandler)}>
+        <div className="flex flex-col lg:flex-row items-start">
+          <FileUpload />
+          <div className="divide-y divide-border flex flex-col gap-5 items-end">
+            <PersonalInfo {...commonProps} />
+            <MentorsProfessionalInfo {...commonProps} />
+            <MentorsCommunityServiceOffer {...commonProps} />
+            <EntrepreneurialInfo {...commonProps} />
+            <InvestmentInterest {...commonProps} />
+            <Button type="submit">Save</Button>
+          </div>
+        </div>
       </form>
     </div>
   );

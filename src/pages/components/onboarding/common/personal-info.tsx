@@ -20,13 +20,17 @@ import { ReactSelect } from "@/components/ui/react-select";
 import {
   ExpertsOnboardingPropTypes,
   InnovatorsOnboardingPropTypes,
+  MentorsOnboardingPropTypes,
 } from "@/definitions/types/onboarding";
 
 export const PersonalInfo = ({
   control,
   errors,
   register,
-}: ExpertsOnboardingPropTypes | InnovatorsOnboardingPropTypes) => {
+}:
+  | ExpertsOnboardingPropTypes
+  | InnovatorsOnboardingPropTypes
+  | MentorsOnboardingPropTypes) => {
   return (
     <div className="w-full pt-5 flex flex-col gap-4">
       <SectionHeading heading="PERSONAL INFORMATION" />

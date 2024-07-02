@@ -12,7 +12,10 @@ import { Controller, useFieldArray } from "react-hook-form";
 import { InputError } from "@/components/ui/input-error";
 import { industry } from "@/data/dashboard/innovators";
 
-import { InnovatorsOnboardingPropTypes } from "@/definitions/types/onboarding";
+import {
+  InnovatorsOnboardingPropTypes,
+  MentorsOnboardingPropTypes,
+} from "@/definitions/types/onboarding";
 import { DatePicker } from "@/components/ui/date-picker";
 import { Button } from "@/components/ui/button";
 import { Plus, Trash2 } from "lucide-react";
@@ -23,7 +26,7 @@ export const EntrepreneurialInfo = ({
   control,
   errors,
   register,
-}: InnovatorsOnboardingPropTypes) => {
+}: InnovatorsOnboardingPropTypes | MentorsOnboardingPropTypes) => {
   const { fields, append, remove } = useFieldArray({
     keyName: "uid",
     control,

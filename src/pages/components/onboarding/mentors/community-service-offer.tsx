@@ -10,10 +10,15 @@ import {
 } from "@/components/ui/select";
 import { mentorsIndustryOptions } from "@/data/dashboard/mentors";
 import { Textarea } from "@/components/ui/textarea";
+import { MentorsOnboardingPropTypes } from "@/definitions/types/onboarding";
 
-export const MentorsCommunityServiceOffer = () => {
+export const MentorsCommunityServiceOffer = ({
+  control,
+  register,
+  errors,
+}: MentorsOnboardingPropTypes) => {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="w-full pt-4 flex flex-col gap-4">
       <SectionHeading heading="community-service Information" />
       <div>
         <Label htmlFor="mentors-community-service-startup-dev-modules">
