@@ -1,4 +1,4 @@
-import { communityGoals, startUpFounder } from "@/data/dashboard/innovators";
+import { communityGoals, communityGoalsOptions, startUpFounder } from "@/data/dashboard/innovators";
 
 import { SectionHeading } from "@/pages/components/common";
 import { Label } from "@/components/ui/label";
@@ -14,6 +14,7 @@ import { Controller, useForm } from "react-hook-form";
 import { onboardingInnovatorsInitialValues } from "@/utils/initial-values";
 import { InputError } from "@/components/ui/input-error";
 import { useNavigate } from "react-router-dom";
+import { ReactSelect } from "@/components/ui/react-select";
 
 export const CommunityInfo = () => {
   const navigate = useNavigate();
@@ -72,21 +73,28 @@ export const CommunityInfo = () => {
               name="communityInformation.communityGoals"
               control={control}
               render={({ field }) => (
-                <Select
-                  value={field.value}
-                  onValueChange={(e) => field.onChange(e)}
-                >
-                  <SelectTrigger id="communityInformation.communityGoals">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {communityGoals.map((item) => (
-                      <SelectItem key={item.label} value={item.label}>
-                        {item.checkbox} {item.label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                // <Select
+                //   value={field.value}
+                //   onValueChange={(e) => field.onChange(e)}
+                // >
+                //   <SelectTrigger id="communityInformation.communityGoals">
+                //     <SelectValue />
+                //   </SelectTrigger>
+                //   <SelectContent>
+                //     {communityGoals.map((item) => (
+                //       <SelectItem key={item.label} value={item.label}>
+                //         {item.checkbox} {item.label}
+                //       </SelectItem>
+                //     ))}
+                //   </SelectContent>
+                // </Select>
+
+                <ReactSelect
+                {...field}
+                isMulti
+                options={communityGoalsOptions}
+                isClearable
+              />
               )}
             ></Controller>
             <InputError error={errors.communityInformation?.communityGoals} />

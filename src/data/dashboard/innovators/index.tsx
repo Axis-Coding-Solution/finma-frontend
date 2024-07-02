@@ -946,6 +946,11 @@ export const communityGoals = [
   { checkbox: <input type="checkbox" />, label: "Other (please specify)" },
 ];
 
+export const communityGoalsOptions = communityGoals.map(community => ({
+  label: community.label,
+  value: community.label
+}));
+
 export const startUpFounder = [
   {
     heading: "Early-Stage Dreamer",
