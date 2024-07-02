@@ -3,17 +3,15 @@ import {
   MentorsCommunityServiceOffer,
   MentorsProfessionalInfo,
 } from "@/pages/components/onboarding/mentors";
-import {
-  EntrepreneurialInfo,
-  PersonalInfo,
-} from "@/pages/components/onboarding/common";
 import { FORM_MODE } from "@/utils/constants";
 import { useForm } from "react-hook-form";
 import InvestmentInterest from "@/pages/components/onboarding/mentors/investment-interest";
+import { onboardingMentorsInitialValues } from "@/utils/initial-values";
 
 function MentorsOnboardingPage() {
   const { handleSubmit } = useForm({
     mode: FORM_MODE,
+    defaultValues: onboardingMentorsInitialValues,
   });
 
   const onSubmitHandler = (values: unknown) => console.log("values: ", values);
@@ -31,7 +29,7 @@ function MentorsOnboardingPage() {
         <MentorsProfessionalInfo />
         <MentorsCommunityServiceOffer />
         {/* <EntrepreneurialInfo /> */}
-        <InvestmentInterest/>
+        <InvestmentInterest />
       </form>
     </div>
   );
