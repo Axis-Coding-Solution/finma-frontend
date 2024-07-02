@@ -1,8 +1,9 @@
-import { Props } from "react-select";
 import CreatableSelect from "react-select/creatable";
+import { Props } from "react-select";
 
-export const CreatableReactSelect =  ({ options, ...props }: Props) => {
-  return <CreatableSelect  {...props} />
-};
+const colorOptions = [{ value: "ocean", label: "Ocean" }];
 
-
+export const ReactCreatableSelect = ({
+  options = colorOptions,
+  ...props
+}: Props) => <CreatableSelect options={options} {...props} />;

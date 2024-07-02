@@ -15,10 +15,14 @@ import {
   areaOfExpertise,
   currentEmploymentStatus,
 } from "@/data/dashboard/experts";
-import { careerBackgroundOptions } from "@/data/dashboard/innovators";
+import {
+  careerBackgroundOptions,
+  skillsOptions,
+} from "@/data/dashboard/innovators";
 
 import { onboardingInnovatorsInitialValues } from "@/utils/initial-values";
 import { useNavigate } from "react-router-dom";
+import { ReactCreatableSelect } from "@/components/ui/creatable-select";
 
 export const ProfessionalInfo = () => {
   const navigate = useNavigate();
@@ -107,22 +111,7 @@ export const ProfessionalInfo = () => {
               name="professionalInfo.skills"
               control={control}
               render={({ field }) => (
-                // <Select
-                //   value={field.value}
-                //   onValueChange={(e) => field.onChange(e)}
-                // >
-                //   <SelectTrigger id="professionalInfo.skills">
-                //     <SelectValue />
-                //   </SelectTrigger>
-                //   <SelectContent>
-                //     {areaOfExpertise.map((item) => (
-                //       <SelectItem key={item} value={item}>
-                //         {item}
-                //       </SelectItem>
-                //     ))}
-                //   </SelectContent>
-                // </Select>
-                
+                <ReactCreatableSelect isMulti options={skillsOptions} />
               )}
             ></Controller>
             <InputError error={errors.professionalInfo?.skills} />

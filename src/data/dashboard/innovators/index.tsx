@@ -391,9 +391,9 @@ export var cities = [
   "Youngstown",
 ];
 
-export const cityOptions = cities.map(city => ({
+export const cityOptions = cities.map((city) => ({
   label: city,
-  value: city
+  value: city,
 }));
 
 // export const countries = [
@@ -899,9 +899,9 @@ export const countries = [
   "Åland Islands",
 ];
 
-export const countryOptions = countries.map(city => ({
+export const countryOptions = countries.map((city) => ({
   label: city,
-  value: city
+  value: city,
 }));
 
 export const currentPosition = [
@@ -927,9 +927,9 @@ export const careerBackground = [
   { checkbox: <input type="checkbox" />, label: "Education & Training" },
 ];
 
-export const careerBackgroundOptions = careerBackground.map(city => ({
+export const careerBackgroundOptions = careerBackground.map((city) => ({
   label: city.label,
-  value: city.label
+  value: city.label,
 }));
 export const communityGoals = [
   {
@@ -946,9 +946,9 @@ export const communityGoals = [
   { checkbox: <input type="checkbox" />, label: "Other (please specify)" },
 ];
 
-export const communityGoalsOptions = communityGoals.map(community => ({
+export const communityGoalsOptions = communityGoals.map((community) => ({
   label: community.label,
-  value: community.label
+  value: community.label,
 }));
 
 export const startUpFounder = [
@@ -1019,6 +1019,11 @@ export const skills = [
   },
   { checkbox: <input type="checkbox" />, label: "Education & Training" },
 ];
+
+export const skillsOptions = skills.map((skill) => ({
+  label: skill.label,
+  value: skill.label,
+}));
 
 export const workOnStartUp = [
   { checkbox: <input type="checkbox" />, label: "Workshops" },
