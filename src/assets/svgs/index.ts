@@ -15,6 +15,8 @@ import ArrowLong from "./arrow-long.svg";
 import AngryEmoji from "./angry-emoji.svg";
 import ArrowEmoji from "./arrow-emoji.svg";
 import MoneyEmoji from "./money-emoji.svg";
+import BulbBannerImg from "./bulb-banner-img.svg";
+import UnderlineVector from "./underline-vector.svg";
 
 export {
   ReactSVG,
@@ -32,4 +34,6 @@ export {
   AngryEmoji,
   ArrowEmoji,
   MoneyEmoji,
+  BulbBannerImg,
+  UnderlineVector
 };
