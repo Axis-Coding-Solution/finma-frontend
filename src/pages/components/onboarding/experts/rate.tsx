@@ -22,7 +22,7 @@ export const Rate = ({
     <div className="w-full pt-5 flex flex-col gap-4">
       <SectionHeading heading="Rate" />
       <div className="grid grid-cols-1 gap-4 mt-4">
-        <div className="flex gap-3">
+        <div className="flex flex-col lg:flex-row gap-3">
           <div className="w-full">
             <Label htmlFor="rate.contractualPref">
               Contractual preference{" "}
@@ -77,14 +77,13 @@ export const Rate = ({
           </div>
         </div>
 
-        <div className="flex gap-3">
+        <div className=" w-full flex flex-col lg:flex-row gap-3 ">
           <div>
             <Label htmlFor="rate.hourlyRate">Hourly Rate</Label>
             <Input
               type="text"
               id="rate.hourlyRate"
               {...register("rate.hourlyRate")}
-              // placeholder="Enter first name"
             />
             <InputError error={errors.rate?.hourlyRate} />
           </div>
@@ -94,7 +93,6 @@ export const Rate = ({
               type="text"
               id="rate.monthlyRate"
               {...register("rate.monthlyRate")}
-              // placeholder="Enter first name"
             />
             <InputError error={errors.rate?.monthlyRate} />
           </div>
@@ -106,7 +104,6 @@ export const Rate = ({
               type="text"
               id="rate.projStartingPrice"
               {...register("rate.projStartingPrice")}
-              // placeholder="Enter first name"
             />
             <InputError error={errors.rate?.projStartingPrice} />
           </div>

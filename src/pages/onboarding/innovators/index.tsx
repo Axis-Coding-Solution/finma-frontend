@@ -44,9 +44,9 @@ function InnovatorsOnboardingPage() {
         paragraph="Please tell us about your expertise to help us set up your profile message. It will help innovators learn about your expertise and experience."
       />
       <form onSubmit={handleSubmit(onSubmitHandler)}>
-        <div className="flex flex-col lg:flex-row items-start">
+        <div className="flex  flex-col lg:flex-row items-start">
           <FileUpload />
-          <div className="divide divide-y divide-border flex flex-col items-end gap-5">
+          <div className="divide divide-y divide-border w-full flex flex-col items-end gap-5">
             <PersonalInfo {...commonProps} />
             <ProfessionalInfo {...commonProps} />
             <CommunityInfo {...commonProps} />
