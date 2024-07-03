@@ -4,6 +4,7 @@ import OverviewPage from "@/pages/dashboard/overview";
 import InnovatorPage from "@/pages/dashboard/innovator";
 import CommunityPage from "@/pages/dashboard/community";
 import { ProductPage } from "@/pages/dashboard/product";
+import MyProjectsPage from "@/pages/dashboard/my-projects";
 
 export default [
   {
@@ -39,6 +40,13 @@ export default [
   {
     element: <FaqPage />,
     path: "/dashboard/faq",
+    meta: {
+      layout: "dashboard",
+    },
+  },
+  {
+    element: <MyProjectsPage />,
+    path: "/dashboard/my-projects",
     meta: {
       layout: "dashboard",
     },
