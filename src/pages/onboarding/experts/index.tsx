@@ -11,16 +11,19 @@ import {
   ProjectPreference,
   Rate,
 } from "@/pages/components/onboarding/experts";
-// import CommunityServiceOffer from "@/pages/components/onboarding/experts/community-service-offer";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { onboardingExpertsSchema } from "@/utils/validation-schemas/onboarding";
 
 function ExpertsOnboardingPage() {
   const {
     control,
     handleSubmit,
     register,
-    formState: { errors, isSubmitting },
+    formState: { errors},
   } = useForm({
     defaultValues: onboardingExpertsInitialValues,
+    resolver: yupResolver(onboardingExpertsSchema),
+
   });
 
   const onSubmitHandler = async (
@@ -47,9 +50,7 @@ function ExpertsOnboardingPage() {
             <CommunityServiceOffer {...commonProps} />
             <ProjectPreference {...commonProps} />
             <Rate {...commonProps} />
-            <Button type="submit" disabled={isSubmitting}>
-              Save
-            </Button>
+            <Button type="submit">Save</Button>
           </div>
         </div>
       </form>

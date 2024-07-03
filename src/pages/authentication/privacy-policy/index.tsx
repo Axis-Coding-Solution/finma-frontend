@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { InputError } from "@/components/ui/input-error";
 import { Label } from "@/components/ui/label";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { MainHeading } from "@/pages/components/common";
 import { privacyPolicyInitialValues } from "@/utils/initial-values";
 import { privacyPolicySchema } from "@/utils/validation-schemas";
@@ -57,6 +58,8 @@ const Privacy = () => {
             </Button>
           </Link>
         </div>
+
+        <ScrollArea className="h-[350px]">
         <div className="md:mx-10 my-5 ">
           <h1 className="font-bold">1.Introduction</h1>
           <p>
@@ -229,6 +232,9 @@ const Privacy = () => {
             us at admin@finma.ai
           </p>
         </div>
+
+        </ScrollArea>
+
         <hr />
         <form
           onSubmit={handleSubmit(onSubmitHandler)}
