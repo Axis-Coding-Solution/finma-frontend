@@ -16,8 +16,12 @@ import { useForm } from "react-hook-form";
 import { InnovatorsOnboardingValuesType } from "@/definitions/types/onboarding";
 import { onboardingInnovatorsSchema } from "@/utils/validation-schemas/onboarding";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useOnboardingInnovatorsMutation } from "@/api/hooks/onboarding";
+import { errorToast, successToast } from "@/utils";
+import { useNavigate } from "react-router-dom";
 
 function InnovatorsOnboardingPage() {
+  const navigate = useNavigate();
   const {
     control,
     register,
@@ -25,11 +29,23 @@ function InnovatorsOnboardingPage() {
     formState: { errors },
   } = useForm({
     defaultValues: onboardingInnovatorsInitialValues,
-    resolver: yupResolver(onboardingInnovatorsSchema),
+    resolver: yupResolver(onboardingInnovatorsSchema as any),
   });
+  console.log("🚀 ~ InnovatorsOnboardingPage ~ errors:", errors)
 
-  const onSubmitHandler = async (values: InnovatorsOnboardingValuesType) =>
-    console.log("values: ", values);
+  const { mutateAsync } = useOnboardingInnovatorsMutation();
+
+  const onSubmitHandler = async (values: InnovatorsOnboardingValuesType) => {
+    try {
+      const response = await mutateAsync(values);
+      successToast(response.message);
+      navigate("/dashboard/overview", {
+        replace: true,
+      });
+    } catch (error: any) {
+      errorToast(error.message);
+    }
+  };
 
   const commonProps = {
     control,

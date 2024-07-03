@@ -22,9 +22,8 @@ export const ProfessionalInfo = ({
       <SectionHeading heading="Professional Information" />
       <div className="grid grid-cols-1 gap-4">
         <div>
-          <Label htmlFor="professionalInfo.currEmpType">
+          <Label type="required" htmlFor="professionalInfo.currEmpType">
             Current employment type
-            <span className="text-destructive">*</span>
           </Label>
           <Controller
             name="professionalInfo.currEmpType"
@@ -51,9 +50,8 @@ export const ProfessionalInfo = ({
         </div>
 
         <div>
-          <Label htmlFor="professionalInfo.currJobTitle">
-            Current job title (This will appear on your community card){" "}
-            <span className="text-destructive">*</span>
+          <Label type="required" htmlFor="professionalInfo.currJobTitle">
+            Current job title (This will appear on your community card)
           </Label>
           <Input
             type="text"
@@ -63,8 +61,8 @@ export const ProfessionalInfo = ({
           <InputError error={errors.professionalInfo?.currJobTitle} />
         </div>
         <div>
-          <Label htmlFor="professionalInfo.skills">
-            Skills <span className="text-destructive">*</span>
+          <Label type="required" htmlFor="professionalInfo.skills">
+            Skills
           </Label>
           <Input
             type="text"
@@ -77,8 +75,7 @@ export const ProfessionalInfo = ({
       </div>
       <div>
         <Label htmlFor="professionalInfo.companyName">
-          Company name, if applicable (This will appear on your community card){" "}
-          <span className="text-destructive">*</span>
+          Company name, if applicable (This will appear on your community card)
         </Label>
         <Input
           type="text"

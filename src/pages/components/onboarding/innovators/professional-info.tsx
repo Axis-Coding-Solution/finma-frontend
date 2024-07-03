@@ -27,18 +27,18 @@ export const ProfessionalInfo = ({
       <SectionHeading heading="Professional Information" />
       <div className="grid grid-cols-1 gap-4">
         <div>
-          <Label type="required" htmlFor="professionalInfo.curEmpStatus">
+          <Label type="required" htmlFor="professionalInfo.currEmpStatus">
             Current employment status
           </Label>
           <Controller
-            name="professionalInfo.curEmpStatus"
+            name="professionalInfo.currEmpStatus"
             control={control}
             render={({ field }) => (
               <Select
                 value={field.value}
                 onValueChange={(e) => field.onChange(e)}
               >
-                <SelectTrigger id="professionalInfo.curEmpStatus">
+                <SelectTrigger id="professionalInfo.currEmpStatus">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -51,7 +51,7 @@ export const ProfessionalInfo = ({
               </Select>
             )}
           ></Controller>
-          <InputError error={errors.professionalInfo?.curEmpStatus} />
+          <InputError error={errors.professionalInfo?.currEmpStatus} />
         </div>
         <div>
           <Label type="required" htmlFor="professionalInfo.careerBackground">
@@ -61,21 +61,6 @@ export const ProfessionalInfo = ({
             name="professionalInfo.careerBackground"
             control={control}
             render={({ field }) => (
-              // <Select
-              //   value={field.value}
-              //   onValueChange={(e) => field.onChange(e)}
-              // >
-              //   <SelectTrigger id="professionalInfo.careerBackground">
-              //     <SelectValue />
-              //   </SelectTrigger>
-              //   <SelectContent>
-              //     {careerBackground.map((item) => (
-              //       <SelectItem key={item.label} value={item.label}>
-              //         {item.checkbox} {item.label}
-              //       </SelectItem>
-              //     ))}
-              //   </SelectContent>
-              // </Select>
               <ReactSelect
                 {...field}
                 isMulti

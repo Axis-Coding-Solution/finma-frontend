@@ -16,8 +16,11 @@ export const CommunityServiceOffer = ({
       <SectionHeading heading="COMMUNITY SERVICE OFFER" />
       <div className="grid grid-cols-1 gap-4">
         <div>
-          <Label htmlFor="communityServiceOffer.startUpDevModules">
-            I can support innovators in these startup development modules{" "}
+          <Label
+            type="required"
+            htmlFor="communityServiceOffer.startUpDevModules"
+          >
+            I can support innovators in these startup development modules
           </Label>
           <Controller
             name="communityServiceOffer.startUpDevModules"
@@ -27,7 +30,7 @@ export const CommunityServiceOffer = ({
           <InputError error={errors.communityServiceOffer?.startUpDevModules} />
         </div>
         <div>
-          <Label htmlFor="communityServiceOffer.communityGoals">
+          <Label type="required" htmlFor="communityServiceOffer.communityGoals">
             My community goals are
           </Label>
           <Controller
@@ -39,12 +42,11 @@ export const CommunityServiceOffer = ({
         </div>
         <div>
           <Label htmlFor="communityServiceOffer.personalBio">
-            Personal bio (150 character only){" "}
+            Personal bio (150 character only)
           </Label>
           <Textarea
             {...register("communityServiceOffer.personalBio")}
             id="CommunityServiceOffer.personalBio"
-            // placeholder="Enter first name"
           />
           <InputError error={errors.communityServiceOffer?.personalBio} />
         </div>

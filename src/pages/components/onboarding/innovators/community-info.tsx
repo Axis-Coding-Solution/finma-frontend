@@ -29,9 +29,8 @@ export const CommunityInfo = ({
       <SectionHeading heading="COMMUNITY INFORMATION" />
       <div className="grid grid-cols-1 gap-4">
         <div>
-          <Label htmlFor="communityInfo.entrepStage">
+          <Label type="required" htmlFor="communityInfo.entrepStage">
             What best describes your entrepreneurial stage?
-            <span className="text-destructive">*</span>
           </Label>
           <Controller
             name="communityInfo.entrepStage"
@@ -61,29 +60,13 @@ export const CommunityInfo = ({
         </div>
 
         <div>
-          <Label htmlFor="communityInfo.communityGoals">
-            My community goals are<span className="text-destructive">*</span>
+          <Label type="required" htmlFor="communityInfo.communityGoals">
+            My community goals are
           </Label>
           <Controller
             name="communityInfo.communityGoals"
             control={control}
             render={({ field }) => (
-              // <Select
-              //   value={field.value}
-              //   onValueChange={(e) => field.onChange(e)}
-              // >
-              //   <SelectTrigger id="communityInfo.communityGoals">
-              //     <SelectValue />
-              //   </SelectTrigger>
-              //   <SelectContent>
-              //     {communityGoals.map((item) => (
-              //       <SelectItem key={item.label} value={item.label}>
-              //         {item.checkbox} {item.label}
-              //       </SelectItem>
-              //     ))}
-              //   </SelectContent>
-              // </Select>
-
               <ReactSelect
                 {...field}
                 isMulti
@@ -94,10 +77,20 @@ export const CommunityInfo = ({
           ></Controller>
           <InputError error={errors.communityInfo?.communityGoals} />
         </div>
-
+        <div>
+          <Label htmlFor="communityInfo.dedicatedHoursPerWeek">
+            How many hours per weeks can you dedicate to your venture(s)?
+          </Label>
+          <Input
+            type="number"
+            id="communityInfo.dedicatedHoursPerWeek"
+            {...register("communityInfo.dedicatedHoursPerWeek")}
+          />
+          <InputError error={errors.communityInfo?.dedicatedHoursPerWeek} />
+        </div>
         <div>
           <Label htmlFor="communityInfo.personalBio">
-            Personal bio (150 character only){" "}
+            Personal bio (150 character only)
           </Label>
 
           <Textarea
@@ -105,17 +98,6 @@ export const CommunityInfo = ({
             id="communityInfo.personalBio"
           />
           <InputError error={errors.communityInfo?.personalBio} />
-        </div>
-        <div>
-          <Label htmlFor="communityInfo.dedicatedHoursPerWeek">
-            How many hours per weeks can you dedicate to your venture(s)?
-          </Label>
-          <Input
-            type="text"
-            id="communityInfo.dedicatedHoursPerWeek"
-            {...register("communityInfo.dedicatedHoursPerWeek")}
-          />
-          <InputError error={errors.communityInfo?.dedicatedHoursPerWeek} />
         </div>
       </div>
     </div>

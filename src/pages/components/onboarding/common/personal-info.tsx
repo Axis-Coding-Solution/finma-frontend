@@ -17,22 +17,8 @@ import {
   genderStatus,
 } from "@/data/dashboard/innovators";
 import { ReactSelect } from "@/components/ui/react-select";
-import {
-  ExpertsOnboardingPropTypes,
-  InnovatorsOnboardingPropTypes,
-  MentorsOnboardingPropTypes,
-} from "@/definitions/types/onboarding";
-import Flatpickr from "react-flatpickr";
-import { Calendar } from "@/components/ui/calendar";
 
-export const PersonalInfo = ({
-  control,
-  errors,
-  register,
-}:
-  | ExpertsOnboardingPropTypes
-  | InnovatorsOnboardingPropTypes
-  | MentorsOnboardingPropTypes) => {
+export const PersonalInfo = ({ control, errors, register }: any) => {
   return (
     <div className="w-full pt-5 flex flex-col gap-4">
       <SectionHeading heading="PERSONAL INFORMATION" />
@@ -70,9 +56,10 @@ export const PersonalInfo = ({
           <Controller
             name="personalInfo.country"
             control={control}
-            render={({ field }) => (
-              <ReactSelect {...field} options={countryOptions} />
-            )}
+            render={({ field }) => {
+              console.log(field);
+              return <ReactSelect {...field} options={countryOptions} />;
+            }}
           />
           <InputError error={errors.personalInfo?.country} />
         </div>

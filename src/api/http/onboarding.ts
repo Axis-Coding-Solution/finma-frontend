@@ -1,6 +1,11 @@
 import { post, get, patch } from "@/utils/axios";
 import { apiErrorHandler } from "../helpers";
 import { userQuestionaryInitialValues } from "@/utils/initial-values";
+import {
+  InnovatorsOnboardingValuesType,
+  ExpertOnboardingValuesType,
+  MentorsOnboardingValuesType,
+} from "@/definitions/types/onboarding";
 
 const url = "/public/leads-magnet";
 const appendUrl = (segment: string) => `${url}/${segment}`;
@@ -45,10 +50,30 @@ export const saveUserQuestionaryApi = async (
 };
 
 export const startOnboardingInnovators = async (
-  body: typeof userQuestionaryInitialValues
+  body: InnovatorsOnboardingValuesType
 ) => {
   try {
     const res = await post("/onboarding/innovators", body);
+    return res.data;
+  } catch (error: any) {
+    return Promise.reject(apiErrorHandler(error));
+  }
+};
+export const startOnboardingExperts = async (
+  body: ExpertOnboardingValuesType
+) => {
+  try {
+    const res = await post("/onboarding/experts", body);
+    return res.data;
+  } catch (error: any) {
+    return Promise.reject(apiErrorHandler(error));
+  }
+};
+export const startOnboardingMentors = async (
+  body: MentorsOnboardingValuesType
+) => {
+  try {
+    const res = await post("/onboarding/mentors", body);
     return res.data;
   } catch (error: any) {
     return Promise.reject(apiErrorHandler(error));

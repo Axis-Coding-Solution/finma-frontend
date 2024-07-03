@@ -11,22 +11,13 @@ import { Input } from "@/components/ui/input";
 import { Controller, useFieldArray } from "react-hook-form";
 import { InputError } from "@/components/ui/input-error";
 import { industry } from "@/data/dashboard/innovators";
-
-import {
-  InnovatorsOnboardingPropTypes,
-  MentorsOnboardingPropTypes,
-} from "@/definitions/types/onboarding";
-import { DatePicker } from "@/components/ui/date-picker";
 import { Button } from "@/components/ui/button";
 import { Plus, Trash2 } from "lucide-react";
 import { startUpInitialValues } from "@/utils/initial-values";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Textarea } from "@/components/ui/textarea";
 
-export const EntrepreneurialInfo = ({
-  control,
-  errors,
-  register,
-}: InnovatorsOnboardingPropTypes | MentorsOnboardingPropTypes) => {
+export const EntrepreneurialInfo = ({ control, errors, register }: any) => {
   const { fields, append, remove } = useFieldArray({
     keyName: "uid",
     control,
@@ -62,7 +53,7 @@ export const EntrepreneurialInfo = ({
                     <Input
                       type="text"
                       {...register(
-                        `entrepTrackRecord.startUps.${index}.startUpName`
+                        `entrepTrackRecord.startUps[${index}].startUpName`
                       )}
                     />
                     <InputError
@@ -116,8 +107,7 @@ export const EntrepreneurialInfo = ({
                 >
                   About the startup (120 letter max)
                 </Label>
-                <Input
-                  type="text"
+                <Textarea
                   id={`entrepTrackRecord.startUps.${index}.startUpAbout`}
                   {...register(
                     `entrepTrackRecord.startUps.${index}.startUpAbout`
@@ -169,7 +159,7 @@ export const EntrepreneurialInfo = ({
                     Number of employees
                   </Label>
                   <Input
-                    type="text"
+                    type="number"
                     id={`entrepTrackRecord.startUps.${index}.noOfEmp`}
                     {...register(`entrepTrackRecord.startUps.${index}.noOfEmp`)}
                   />
@@ -190,24 +180,30 @@ export const EntrepreneurialInfo = ({
                       name={`entrepTrackRecord.startUps.${index}.yearsOfOp.from`}
                       control={control}
                       render={({ field }) => (
-                        <DatePicker
-                          showOutsideDays={false}
-                          onChange={field.onChange}
-                          onBlur={field.onBlur}
-                          value={field.value}
-                        />
+                        <div>
+                          <Input type="number" {...field} />
+                          <InputError
+                            error={
+                              errors?.entrepTrackRecord?.startUps?.[index]
+                                ?.yearsOfOp?.from
+                            }
+                          />
+                        </div>
                       )}
                     />
                     <Controller
                       name={`entrepTrackRecord.startUps.${index}.yearsOfOp.to`}
                       control={control}
                       render={({ field }) => (
-                        <DatePicker
-                          showOutsideDays={false}
-                          onChange={field.onChange}
-                          onBlur={field.onBlur}
-                          value={field.value}
-                        />
+                        <div>
+                          <Input type="number" {...field} />
+                          <InputError
+                            error={
+                              errors?.entrepTrackRecord?.startUps?.[index]
+                                ?.yearsOfOp?.to
+                            }
+                          />
+                        </div>
                       )}
                     />
                   </div>
@@ -227,7 +223,7 @@ export const EntrepreneurialInfo = ({
                   <div>
                     <div className="flex gap-4">
                       <Input
-                        type="text"
+                        type="number"
                         id={`entrepTrackRecord.startUps.${index}.lastYearRevenue.amount`}
                         {...register(
                           `entrepTrackRecord.startUps.${index}.lastYearRevenue.amount`
@@ -276,7 +272,7 @@ export const EntrepreneurialInfo = ({
                   <div>
                     <div className="flex gap-4">
                       <Input
-                        type="text"
+                        type="number"
                         id="entrepTrackRecord.startUps.fundRaised"
                         {...register(
                           `entrepTrackRecord.startUps.${index}.fundRaised.amount`
