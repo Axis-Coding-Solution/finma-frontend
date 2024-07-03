@@ -5,19 +5,15 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { FilePenLine } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {ProjectForm} from "./project-form";
- export const ProjectEditModal = () => {
+import { ProjectForm } from "./project-form";
+const ProjectAddModal = () => {
   return (
     <div>
       <Dialog>
         <DialogTrigger asChild>
           <span role="button">
-            <div className="flex gap-1">
-              <FilePenLine size={14} className="mt-1" />
-              <h1 className="text-sm">Edit Project Card</h1>
-            </div>{" "}
+            <Button variant="default">+ Add new projects</Button>
           </span>
         </DialogTrigger>
         <DialogContent className="">
@@ -25,12 +21,13 @@ import {ProjectForm} from "./project-form";
             <DialogTitle className="text-left ">Project Card</DialogTitle>
           </DialogHeader>
           <ProjectForm />
-         <div className="flex items-center justify-between gap-4">
+
+          <div className="flex items-center justify-between gap-4">
             <Button variant="outline" className="w-full">
               Cancel
             </Button>
             <Button variant="secondary" className="w-full">
-              Update
+              Create
             </Button>
           </div>
         </DialogContent>
@@ -38,3 +35,4 @@ import {ProjectForm} from "./project-form";
     </div>
   );
 };
+export default ProjectAddModal;

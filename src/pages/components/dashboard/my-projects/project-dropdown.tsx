@@ -2,11 +2,10 @@ import { Ellipsis, FilePenLine, Trash2 } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import ProjectEditModal from "./project-edit-modal";
-import ProjectDeleteModal from "./project-delete-modal";
+import {ProjectEditModal} from "./project-edit-modal";
+import {ProjectDeleteModal} from "./project-delete-modal";
 
 const ProjectDropDOwn = () => {
   return (

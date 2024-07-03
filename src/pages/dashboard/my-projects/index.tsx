@@ -1,13 +1,12 @@
-import { userAvatar1Image} from "@/assets/images";
 import logoimage from "@/assets/images/logoimage.png"
-import { Button } from "@/components/ui/button";
 import { MainHeading } from "@/pages/components/common";
 import ProjectCard from "@/pages/components/dashboard/my-projects/card";
+import ProjectAddModal from "@/pages/components/dashboard/my-projects/project-add-modal";
 
 const MyProjectsPage = () => {
   const projectCarArray = [
     {
-      image: userAvatar1Image,
+      image: logoimage,
       name: "Mad Cookies",
       bio: "Project Bio",
     },
@@ -27,10 +26,10 @@ const MyProjectsPage = () => {
       <div>
         <MainHeading
           heading="My Projects"
-          renderRight={<Button variant="default">+ Add new projects</Button>}
+          renderRight={<ProjectAddModal/>}
         />
       </div>
-      <div className="flex gap-5">
+      <div className="flex flex-col lg:flex-row gap-5">
         {projectCarArray.map((item, index) => (
           <ProjectCard key={index} {...item} />
         ))}

@@ -6,20 +6,16 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import FileUpload from "@/components/ui/fileupload";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Trash2 } from "lucide-react";
-
-const ProjectDeleteModal = () => {
+export const ProjectDeleteModal = () => {
   return (
     <div>
       <Dialog>
         <DialogTrigger asChild>
           <span role="button">
-            <div className="flex gap-2">
+            <div className="flex gap-1">
               <Trash2 size={14} className="mt-1" />
-              <h1>Delete Project Card</h1>
+              <h1 className="text-sm">Delete Card</h1>
             </div>
           </span>
         </DialogTrigger>
@@ -27,8 +23,7 @@ const ProjectDeleteModal = () => {
           <DialogHeader>
             <DialogTitle className="text-left ">Delete Project</DialogTitle>
           </DialogHeader>
-
-          <div>
+        <div>
             <span>
               You are about to delete{" "}
               <span className="font-bold">Mad Cookies</span>. All associated
@@ -52,4 +47,3 @@ const ProjectDeleteModal = () => {
   );
 };
 
-export default ProjectDeleteModal;
