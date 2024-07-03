@@ -1,6 +1,7 @@
 import {
   CircleHelp,
   Home,
+  LayoutGrid,
   LayoutGridIcon,
   Lightbulb,
   MessageSquareMore,
@@ -17,6 +18,11 @@ const navLinks = [
     name: "FAQ",
     path: "/dashboard/faq",
     Icon: CircleHelp,
+  },
+  {
+    name: "My Projects",
+    path: "/dashboard/my-projects",
+    Icon: LayoutGrid ,
   },
   {
     name: "Chats",
