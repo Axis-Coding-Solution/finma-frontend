@@ -13,7 +13,7 @@ const FileUpload = () => {
   } = useForm();
   return (
     <div className="flex justify-center mt-5 w-full lg:w-[400px]">
-      <div className="md:w-1/2 w-full border-2 border-dashed border-secondary rounded-lg p-5 flex flex-col items-center justify-between gap-4 text-center">
+      <div className="md:w-3/4 w-full border-2 border-dashed border-secondary rounded-lg p-5 flex flex-col items-center justify-between gap-4 text-center">
         <CloudUpload size="50" className="text-secondary" />
         <h6>Upload your profile photo</h6>
         <div className="cursor-pointer">

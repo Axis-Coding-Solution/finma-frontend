@@ -44,7 +44,7 @@ function ExpertsOnboardingPage() {
       <form onSubmit={handleSubmit(onSubmitHandler)}>
         <div className="flex flex-col lg:flex-row items-start">
           <FileUpload />
-          <div className="divide divide-y divide-border flex flex-col gap-5 items-end">
+          <div className="divide divide-y divide-border w-full flex flex-col gap-5 items-end">
             <PersonalInfo {...commonProps} />
             <ProfessionalInfo {...commonProps} />
             <CommunityServiceOffer {...commonProps} />
