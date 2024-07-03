@@ -111,11 +111,13 @@ const AppHeader = () => {
         </SheetContent>
       </Sheet>
       <div className="flex gap-4 items-center">
-        <div className="hidden bg-muted md:flex gap-3 items-center px-5 py-2 rounded-lg">
-          <span>Public Status:</span>
-          <StatusModal />
-          <span className="text-destructive font-semibold">
-            😢 Stuck with 'idea clarity' score
+        <div className="hidden md:flex flex-col rounded-lg">
+          <div className="flex items-center gap-1">
+            <span className="text-muted-foreground text-xs">Public Status </span>
+            <StatusModal />
+          </div>
+          <span className="text-foreground font-semibold underline text-sm">
+            Please set up your public status
           </span>
         </div>
         <div className="text-muted-foreground flex gap-5 items-center">
