@@ -2,6 +2,7 @@ import FaqPage from "@/pages/dashboard/faq";
 import ChatBoxPage from "@/pages/dashboard/chats";
 import OverviewPage from "@/pages/dashboard/overview";
 import InnovatorPage from "@/pages/dashboard/innovator";
+import CommunityPage from "@/pages/dashboard/community";
 
 export default [
   {
@@ -9,6 +10,14 @@ export default [
     path: "/dashboard/overview",
     meta: {
       layout: "dashboard",
+    },
+  },
+  {
+    element: <CommunityPage />,
+    path: "/dashboard/community",
+    meta: {
+      layout: "dashboard",
+      isRestrictedRoute: true,
     },
   },
   {
