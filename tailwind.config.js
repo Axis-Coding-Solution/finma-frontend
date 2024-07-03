@@ -12,7 +12,7 @@ module.exports = {
     container: {
       center: true,
       padding: {
-        DEFAULT: '1rem',
+        DEFAULT: "1rem",
         md: "2rem",
       },
       screens: {

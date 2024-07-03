@@ -6,8 +6,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 @layer base {
     :root {
         --background: 0 0% 100%;
@@ -64,7 +62,7 @@
     box-sizing: border-box;
 }
 
-:root {
+#root {
     font-family: "Inter", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
@@ -80,22 +78,6 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-
-/* customScrollbar.css */
-
-/* ::-webkit-scrollbar-thumb {
-    background: #B2EF95;
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #98d884;
-}
-
-* {
-    scrollbar-width: thin;
-    scrollbar-color: #B2EF95 transparent;
-} */
 
 .animate-fade {
     animation: fade 0.3s ease;
@@ -123,16 +105,17 @@
     overflow-y: auto;
 }
 
-.truncate{
-    text-overflow: ellipsis; 
+.truncate {
+    text-overflow: ellipsis;
     margin-bottom: 12px;
-    cursor: pointer;         
+    cursor: pointer;
     word-break: break-all;
-    overflow:hidden;         
+    overflow: hidden;
     white-space: nowrap;
 }
-.truncate:hover{
-    overflow: visible;       
+
+.truncate:hover {
+    overflow: visible;
     white-space: normal;
-    height:auto;
+    height: auto;
 }

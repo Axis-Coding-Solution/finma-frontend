@@ -22,6 +22,8 @@ import {
   InnovatorsOnboardingPropTypes,
   MentorsOnboardingPropTypes,
 } from "@/definitions/types/onboarding";
+import Flatpickr from "react-flatpickr";
+import { Calendar } from "@/components/ui/calendar";
 
 export const PersonalInfo = ({
   control,
@@ -36,8 +38,12 @@ export const PersonalInfo = ({
       <SectionHeading heading="PERSONAL INFORMATION" />
       <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
         <div>
-          <Label htmlFor="personalInfo.firstName">
-            First Name <span className="text-destructive">*</span>
+          <Label
+            type="required"
+            title="First Name"
+            htmlFor="personalInfo.firstName"
+          >
+            First Name
           </Label>
           <Input
             type="text"
@@ -47,8 +53,8 @@ export const PersonalInfo = ({
           <InputError error={errors.personalInfo?.firstName} />
         </div>
         <div>
-          <Label htmlFor="personalInfo.lastName">
-            Last Name <span className="text-destructive">*</span>
+          <Label type="required" htmlFor="personalInfo.lastName">
+            Last Name
           </Label>
           <Input
             type="text"
@@ -58,8 +64,8 @@ export const PersonalInfo = ({
           <InputError error={errors.personalInfo?.lastName} />
         </div>
         <div>
-          <Label htmlFor="personalInfo.country">
-            Country <span className="text-destructive">*</span>
+          <Label type="required" htmlFor="personalInfo.country">
+            Country
           </Label>
           <Controller
             name="personalInfo.country"
@@ -72,8 +78,8 @@ export const PersonalInfo = ({
         </div>
 
         <div>
-          <Label htmlFor="personalInfo.city">
-            City <span className="text-destructive">*</span>
+          <Label type="required" htmlFor="personalInfo.city">
+            City
           </Label>
           <Controller
             name="personalInfo.city"
@@ -86,8 +92,8 @@ export const PersonalInfo = ({
         </div>
 
         <div>
-          <Label htmlFor="personalInfo.dateOfBirth">
-            Date of Birth <span className="text-destructive">*</span>
+          <Label type="required" htmlFor="personalInfo.dateOfBirth">
+            Date of Birth
           </Label>
           <Controller
             name="personalInfo.dateOfBirth"
@@ -102,12 +108,11 @@ export const PersonalInfo = ({
             )}
           />
           <InputError error={errors.personalInfo?.dateOfBirth} />
-
         </div>
 
         <div className="w-full">
-          <Label htmlFor="personalInfo.gender">
-            Gender <span className="text-destructive">*</span>
+          <Label type="required" htmlFor="personalInfo.gender">
+            Gender
           </Label>
           <Controller
             name="personalInfo.gender"
@@ -134,8 +139,8 @@ export const PersonalInfo = ({
         </div>
       </div>
       <div>
-        <Label htmlFor="personalInfo.linkedInProfile">
-          LinkedIn profile <span className="text-destructive">*</span>
+        <Label type="required" htmlFor="personalInfo.linkedInProfile">
+          LinkedIn profile
         </Label>
         <Input
           type="text"

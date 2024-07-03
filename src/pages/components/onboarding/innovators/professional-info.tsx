@@ -27,8 +27,8 @@ export const ProfessionalInfo = ({
       <SectionHeading heading="Professional Information" />
       <div className="grid grid-cols-1 gap-4">
         <div>
-          <Label htmlFor="professionalInfo.curEmpStatus">
-            Current employment status<span className="text-destructive">*</span>
+          <Label type="required" htmlFor="professionalInfo.curEmpStatus">
+            Current employment status
           </Label>
           <Controller
             name="professionalInfo.curEmpStatus"
@@ -54,8 +54,8 @@ export const ProfessionalInfo = ({
           <InputError error={errors.professionalInfo?.curEmpStatus} />
         </div>
         <div>
-          <Label htmlFor="professionalInfo.careerBackground">
-            Career background<span className="text-destructive">*</span>
+          <Label type="required" htmlFor="professionalInfo.careerBackground">
+            Career background
           </Label>
           <Controller
             name="professionalInfo.careerBackground"
@@ -80,15 +80,14 @@ export const ProfessionalInfo = ({
                 {...field}
                 isMulti
                 options={careerBackgroundOptions}
-                isClearable
               />
             )}
           />
           <InputError error={errors.professionalInfo?.careerBackground} />
         </div>
         <div>
-          <Label htmlFor="professionalInfo.skills">Skills
-          <span className="text-destructive">*</span>
+          <Label type="required" htmlFor="professionalInfo.skills">
+            Skills
           </Label>
           <Controller
             name="professionalInfo.skills"
