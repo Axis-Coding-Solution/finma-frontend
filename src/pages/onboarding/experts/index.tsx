@@ -61,7 +61,7 @@ function ExpertsOnboardingPage() {
           <div className="w-[25%]">
             <FileUpload />
           </div>
-          <div className="lg:w-1/2 divide divide-y divide-border w-full flex flex-col gap-5 items-end">
+          <div className="lg:w-8/12 divide divide-y divide-border w-full flex flex-col gap-5 items-end">
             <PersonalInfo {...commonProps} />
             <ProfessionalInfo {...commonProps} />
             <CommunityServiceOffer {...commonProps} />

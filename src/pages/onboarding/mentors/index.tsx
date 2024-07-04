@@ -41,9 +41,11 @@ function MentorsOnboardingPage() {
         paragraph="Please tell us about your expertise to help us set up your profile."
       />
       <form onSubmit={handleSubmit(onSubmitHandler)}>
-        <div className="flex flex-col lg:flex-row items-start">
+        <div className="flex flex-col lg:flex-row items-start gap-10">
+        <div className="w-[25%]">
           <FileUpload />
-          <div className="divide-y divide-border flex flex-col gap-5 items-end">
+        </div>
+          <div className="lg:w-8/12 divide divide-y divide-border w-full flex flex-col gap-5 items-end">
             <PersonalInfo {...commonProps} />
             <MentorsProfessionalInfo {...commonProps} />
             <MentorsCommunityServiceOffer {...commonProps} />

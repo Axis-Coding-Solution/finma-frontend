@@ -113,19 +113,20 @@ export const onboardingMentorsInitialValues = {
   communityServiceOffer: {
     startUpDerModules: [],
     communityGoals: [],
+    hoursPerWeek: 0,
     personalBio: "",
   },
 
   ...entrepreneurialTrackRecordInitialValues,
   investmentInterest: {
-    ticketSize: "",
-    targetIndustry: "",
-    prefInvestmentInstrument: "",
-    typicalInvestmentDuration: "",
+    ticketSize: {},
+    targetIndustry: {},
+    prefInvestmentInstrument: [],
+    typicalInvestmentDuration: {},
     investmentEvalKPIS: [],
-    prefStartUpTypes: [],
-    annualStartUpInvestment: [],
+    prefStartUpTypes: {},
+    annualStartUpInvestment: {},
     prefInvestmentRegions: [],
-    postInvestmentSupport: "",
+    postInvestmentSupport: [],
   },
 };
