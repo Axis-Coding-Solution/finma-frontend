@@ -63,20 +63,22 @@ const Option = (props: OptionProps) => {
 
   const values: any = getValue();
 
-  useEffect(() => {
-    if (values && values.length > 0) {
-      const newValues = values.map((value: any) => {
-        if (value.values && value.values.length)
-          return {
-            value: value.value,
-            label: value.label,
-            selected: [],
-          };
-        return value;
-      });
-      setValue(newValues, "select-option");
-    }
-  }, [values.length]);
+  // useEffect(() => {
+  //   if (values && values.length > 0) {
+
+  //     const newValues = values.map((value: any) => {
+  //       if (value.values && value.values.length)
+  //         return {
+  //           value: value.value,
+  //           label: value.label,
+  //           selected: [],
+  //         };
+  //       return value;
+  //     });
+  //     setValue(newValues, "deselect-option");
+  //   }
+  // }, []);
+
 
   return (
     <div className="flex flex-col gap-5 divide-y divide-border">
@@ -90,7 +92,7 @@ const Option = (props: OptionProps) => {
       >
         <Checkbox id={`option-${uid}`} checked={props.isSelected} />
         <Label
-          onClick={(e) => e.stopPropagation()}
+          // onClick={(e) => e.stopPropagation()}
           type="default"
           className="mb-0"
           htmlFor={`option-${uid}`}
@@ -128,8 +130,6 @@ const Option = (props: OptionProps) => {
                   };
                 return value;
               });
-
-              console.log(newValues);
               setValue(newValues, actionMeta.action as SetValueAction);
               return e;
             }}
@@ -141,19 +141,14 @@ const Option = (props: OptionProps) => {
   );
 };
 
-export const MultiLevelSelect = forwardRef<any, Props>((props, ref) => {
+export const MultiLevelSelect = forwardRef<unknown, Props>((props, ref) => {
   return (
     <ReactSelect
       ref={ref}
       isMulti
       hideSelectedOptions={false}
-      onChange={(e) => {
-        console.log(e);
-        return e;
-      }}
       components={{
         Option,
-        // GroupHeading,
       }}
       {...props}
     />

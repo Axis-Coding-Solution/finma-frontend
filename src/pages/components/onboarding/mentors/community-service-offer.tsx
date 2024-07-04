@@ -1,19 +1,13 @@
 import { Label } from "@/components/ui/label";
 import { SectionHeading } from "../../common";
 import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { mentorsIndustryOptions } from "@/data/dashboard/mentors";
+import { mentorsCommunityGoalsOptions, mentorsStartupModulesOptions } from "@/data/dashboard/mentors";
 import { Textarea } from "@/components/ui/textarea";
 import { MentorsOnboardingPropTypes } from "@/definitions/types/onboarding";
 import { Controller } from "react-hook-form";
 import { ReactCreatableSelect } from "@/components/ui/creatable-select";
 import { InputError } from "@/components/ui/input-error";
+import { MultiLevelSelect } from "@/components/ui/multi-level-select";
 
 export const MentorsCommunityServiceOffer = ({
   control,
@@ -26,15 +20,9 @@ export const MentorsCommunityServiceOffer = ({
       <div>
         <Label htmlFor="mentors-community-service-startup-dev-modules">
           I am willing to support founders in these startup development modules
-        </Label>
-        <Controller
-          name="communityServiceOffer.startUpDerModules"
-          control={control}
-          render={({ field }) => (
-            <ReactCreatableSelect options={mentorsIndustryOptions} {...field} />
-          )}
-        />
-        <InputError error={errors.communityServiceOffer?.startUpDerModules} />
+        </Label><MultiLevelSelect options={mentorsStartupModulesOptions} />
+
+        <InputError error={errors.communityServiceOffer?.startUpDevModules} />
         {/* <Select>
           <SelectTrigger id="mentors-community-service-startup-dev-modules">
             <SelectValue placeholder="Select startup development modules" />
@@ -54,7 +42,7 @@ export const MentorsCommunityServiceOffer = ({
           name="communityServiceOffer.communityGoals"
           control={control}
           render={({ field }) => (
-            <ReactCreatableSelect options={mentorsIndustryOptions} {...field} />
+            <ReactCreatableSelect options={mentorsCommunityGoalsOptions} {...field} />
           )}
         />
         <InputError error={errors.communityServiceOffer?.communityGoals} />
@@ -79,7 +67,7 @@ export const MentorsCommunityServiceOffer = ({
           placeholder="Enter your hours of availability..."
           {...register("communityServiceOffer.hoursPerWeek")}
         />
-         <InputError error={errors.communityServiceOffer?.hoursPerWeek} />
+        <InputError error={errors.communityServiceOffer?.hoursPerWeek} />
       </div>
       <div>
         <Label htmlFor="mentors-community-service-personal-bio">
@@ -91,7 +79,7 @@ export const MentorsCommunityServiceOffer = ({
           placeholder="Type your personal bio..."
           {...register("communityServiceOffer.personalBio")}
         />
-         <InputError error={errors.communityServiceOffer?.personalBio} />
+        <InputError error={errors.communityServiceOffer?.personalBio} />
       </div>
     </div>
   );

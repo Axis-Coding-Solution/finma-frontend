@@ -60,7 +60,7 @@ function InnovatorsOnboardingPage() {
         heading="Lets create your innovator profile"
         paragraph="Please tell us about your expertise to help us set up your profile message. It will help innovators learn about your expertise and experience."
       />
-      <MultiLevelSelect menuIsOpen options={onboardingStartupModulesOptions} />
+      <MultiLevelSelect closeMenuOnSelect={false} options={onboardingStartupModulesOptions} />
       <form onSubmit={handleSubmit(onSubmitHandler)}>
         <div className="flex flex-col lg:flex-row gap-10 items-start">
           <div className="w-[25%]">
