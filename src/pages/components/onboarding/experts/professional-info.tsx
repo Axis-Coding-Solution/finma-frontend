@@ -12,6 +12,7 @@ import { InputError } from "@/components/ui/input-error";
 import { areaOfExpertise } from "@/data/dashboard/experts";
 import { SectionHeading } from "../../common";
 import { ExpertsOnboardingPropTypes } from "@/definitions/types/onboarding";
+import { ReactCreatableSelect } from "@/components/ui/creatable-select";
 export const ProfessionalInfo = ({
   control,
   errors,
@@ -28,23 +29,7 @@ export const ProfessionalInfo = ({
           <Controller
             name="professionalInfo.currEmpType"
             control={control}
-            render={({ field }) => (
-              <Select
-                value={field.value}
-                onValueChange={(e) => field.onChange(e)}
-              >
-                <SelectTrigger id="professionalInfo.currEmpType">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  {areaOfExpertise.map((item) => (
-                    <SelectItem key={item} value={item}>
-                      {item}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            )}
+            render={({ field }) => <ReactCreatableSelect {...field} />}
           ></Controller>
           <InputError error={errors.professionalInfo?.currEmpType} />
         </div>
@@ -64,11 +49,10 @@ export const ProfessionalInfo = ({
           <Label type="required" htmlFor="professionalInfo.skills">
             Skills
           </Label>
-          <Input
-            type="text"
-            id="professionalInfo.skills"
-            {...register("professionalInfo.skills")}
-            // placeholder="Enter first name"
+          <Controller
+            name="professionalInfo.skills"
+            control={control}
+            render={({ field }) => <ReactCreatableSelect isMulti {...field} />}
           />
           <InputError error={errors.professionalInfo?.skills} />
         </div>

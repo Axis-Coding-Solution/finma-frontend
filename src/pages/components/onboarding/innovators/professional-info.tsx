@@ -2,14 +2,6 @@ import { Label } from "@/components/ui/label";
 import { SectionHeading } from "../../common";
 import { InputError } from "@/components/ui/input-error";
 import { Controller } from "react-hook-form";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { ReactSelect } from "@/components/ui/react-select";
 import { currentEmploymentStatus } from "@/data/dashboard/experts";
 import {
   careerBackgroundOptions,
@@ -34,21 +26,7 @@ export const ProfessionalInfo = ({
             name="professionalInfo.currEmpStatus"
             control={control}
             render={({ field }) => (
-              <Select
-                value={field.value}
-                onValueChange={(e) => field.onChange(e)}
-              >
-                <SelectTrigger id="professionalInfo.currEmpStatus">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  {currentEmploymentStatus.map((item) => (
-                    <SelectItem key={item} value={item}>
-                      {item}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              <ReactCreatableSelect options={[]} {...field} />
             )}
           ></Controller>
           <InputError error={errors.professionalInfo?.currEmpStatus} />
@@ -61,7 +39,7 @@ export const ProfessionalInfo = ({
             name="professionalInfo.careerBackground"
             control={control}
             render={({ field }) => (
-              <ReactSelect
+              <ReactCreatableSelect
                 {...field}
                 isMulti
                 options={careerBackgroundOptions}

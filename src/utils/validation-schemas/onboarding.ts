@@ -18,7 +18,7 @@ const commonOnboardingSchema = {
     country: object().label("Country").required(),
     city: object().label("City").required(),
     dateOfBirth: date().label("Date of Birth").required().max(new Date()),
-    gender: string().trim().label("Gender").required(),
+    gender: object().label("Gender").required(),
     linkedInProfile: string().trim().label("LinkedIn Profile").required(),
   }),
   // profilePicture: mixed().label("Profile picture").required(),
@@ -55,10 +55,7 @@ const entrepreneurialTrackRecordSchema = {
 export const onboardingInnovatorsSchema = object({
   ...commonOnboardingSchema,
   professionalInfo: object({
-    currEmpStatus: string()
-      .trim()
-      .label("Current employment status")
-      .required(),
+    currEmpStatus: object().label("Current employment status").required(),
     careerBackground: array().label("Career background").required().min(1),
     skills: array().label("Skills").required().min(1),
   }),
@@ -74,7 +71,7 @@ export const onboardingInnovatorsSchema = object({
 export const onboardingExpertsSchema = object({
   ...commonOnboardingSchema,
   professionalInfo: object({
-    currEmpType: string().trim().label("Current employment type").required(),
+    currEmpType: object().label("Current employment type").required(),
     currJobTitle: string().trim().label("Current job title").required(),
     skills: array().required().label("Skills").min(1),
     companyName: string().optional(),
@@ -86,12 +83,12 @@ export const onboardingExpertsSchema = object({
   }),
 
   projectPreferences: object({
-    compensationOptions: array().optional(),
-    projSelectionCriteria: array().optional(),
+    compensationOptions: object().optional().nullable(),
+    projSelectionCriteria: object().optional().nullable(),
     projIntakeSteps: array().optional(),
   }),
   rate: object({
-    contractualPref: string().optional().trim(),
+    contractualPref: object().optional().nullable(),
     currency: string().optional().trim(),
     hourlyRate: number().required().typeError("Must be a number!"),
     monthlyRate: number().required().typeError("Must be a number!"),

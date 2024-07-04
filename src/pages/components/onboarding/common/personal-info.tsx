@@ -3,20 +3,10 @@ import { SectionHeading } from "../../common";
 import { Input } from "@/components/ui/input";
 import { InputError } from "@/components/ui/input-error";
 import { Controller } from "react-hook-form";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { DatePicker } from "@/components/ui/date-picker";
-import {
-  cityOptions,
-  countryOptions,
-  genderStatus,
-} from "@/data/dashboard/innovators";
+import { cityOptions, countryOptions } from "@/data/dashboard/innovators";
 import { ReactSelect } from "@/components/ui/react-select";
+import { ReactCreatableSelect } from "@/components/ui/creatable-select";
 
 export const PersonalInfo = ({ control, errors, register }: any) => {
   return (
@@ -56,10 +46,9 @@ export const PersonalInfo = ({ control, errors, register }: any) => {
           <Controller
             name="personalInfo.country"
             control={control}
-            render={({ field }) => {
-              console.log(field);
-              return <ReactSelect {...field} options={countryOptions} />;
-            }}
+            render={({ field }) => (
+              <ReactSelect {...field} options={countryOptions} />
+            )}
           />
           <InputError error={errors.personalInfo?.country} />
         </div>
@@ -104,23 +93,7 @@ export const PersonalInfo = ({ control, errors, register }: any) => {
           <Controller
             name="personalInfo.gender"
             control={control}
-            render={({ field }) => (
-              <Select
-                value={field.value}
-                onValueChange={(e) => field.onChange(e)}
-              >
-                <SelectTrigger id="personalInfo.gender">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  {genderStatus.map((gender) => (
-                    <SelectItem key={gender.value} value={gender.value}>
-                      {gender.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            )}
+            render={({ field }) => <ReactCreatableSelect {...field} />}
           />
           <InputError error={errors.personalInfo?.gender} />
         </div>

@@ -31,7 +31,6 @@ function InnovatorsOnboardingPage() {
     defaultValues: onboardingInnovatorsInitialValues,
     resolver: yupResolver(onboardingInnovatorsSchema as any),
   });
-  console.log("🚀 ~ InnovatorsOnboardingPage ~ errors:", errors)
 
   const { mutateAsync } = useOnboardingInnovatorsMutation();
 
@@ -60,14 +59,16 @@ function InnovatorsOnboardingPage() {
         paragraph="Please tell us about your expertise to help us set up your profile message. It will help innovators learn about your expertise and experience."
       />
       <form onSubmit={handleSubmit(onSubmitHandler)}>
-        <div className="flex  flex-col lg:flex-row items-start">
-          <FileUpload />
-          <div className="divide divide-y divide-border w-full flex flex-col items-end gap-5">
+        <div className="flex flex-col lg:flex-row gap-10 items-start">
+          <div className="w-[25%]">
+            <FileUpload />
+          </div>
+          <div className="w-[50%] divide divide-y divide-border flex flex-col items-end gap-5">
             <PersonalInfo {...commonProps} />
             <ProfessionalInfo {...commonProps} />
             <CommunityInfo {...commonProps} />
             <EntrepreneurialInfo {...commonProps} />
-            <Button type="submit">Save</Button>
+            <Button type="submit">Next</Button>
           </div>
         </div>
       </form>

@@ -5,6 +5,7 @@ import { SectionHeading } from "../../common";
 import { ExpertsOnboardingPropTypes } from "@/definitions/types/onboarding";
 import { ReactSelect } from "@/components/ui/react-select";
 import { Textarea } from "@/components/ui/textarea";
+import { ReactCreatableSelect } from "@/components/ui/creatable-select";
 
 export const CommunityServiceOffer = ({
   control,
@@ -25,7 +26,9 @@ export const CommunityServiceOffer = ({
           <Controller
             name="communityServiceOffer.startUpDevModules"
             control={control}
-            render={({ field }) => <ReactSelect {...field} options={[]} />}
+            render={({ field }) => (
+              <ReactSelect isMulti {...field} options={[]} />
+            )}
           ></Controller>
           <InputError error={errors.communityServiceOffer?.startUpDevModules} />
         </div>
@@ -36,7 +39,9 @@ export const CommunityServiceOffer = ({
           <Controller
             name="communityServiceOffer.communityGoals"
             control={control}
-            render={({ field }) => <ReactSelect {...field} options={[]} />}
+            render={({ field }) => (
+              <ReactCreatableSelect isMulti {...field} options={[]} />
+            )}
           ></Controller>
           <InputError error={errors.communityServiceOffer?.communityGoals} />
         </div>

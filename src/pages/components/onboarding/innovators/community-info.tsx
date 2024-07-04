@@ -15,9 +15,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { Controller } from "react-hook-form";
 import { InputError } from "@/components/ui/input-error";
-import { ReactSelect } from "@/components/ui/react-select";
 import { InnovatorsOnboardingPropTypes } from "@/definitions/types/onboarding";
 import { Textarea } from "@/components/ui/textarea";
+import { ReactCreatableSelect } from "@/components/ui/creatable-select";
 
 export const CommunityInfo = ({
   control,
@@ -67,7 +67,7 @@ export const CommunityInfo = ({
             name="communityInfo.communityGoals"
             control={control}
             render={({ field }) => (
-              <ReactSelect
+              <ReactCreatableSelect
                 {...field}
                 isMulti
                 options={communityGoalsOptions}

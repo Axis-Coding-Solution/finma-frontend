@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { InputError } from "./input-error";
 
 type PropTypes = {
-  text: string;
+  text?: string;
 };
 
 const FileUpload = ({ text = "Upload your profile photo" }: PropTypes) => {

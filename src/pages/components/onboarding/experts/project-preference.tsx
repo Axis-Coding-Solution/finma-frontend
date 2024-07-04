@@ -4,6 +4,7 @@ import { InputError } from "@/components/ui/input-error";
 import { SectionHeading } from "../../common";
 import { ExpertsOnboardingPropTypes } from "@/definitions/types/onboarding";
 import { ReactSelect } from "@/components/ui/react-select";
+import { ReactCreatableSelect } from "@/components/ui/creatable-select";
 
 export const ProjectPreference = ({
   control,
@@ -21,7 +22,7 @@ export const ProjectPreference = ({
             name="projectPreferences.compensationOptions"
             control={control}
             render={({ field }) => (
-              <ReactSelect isMulti options={[]} {...field} />
+              <ReactCreatableSelect options={[]} {...field} />
             )}
           ></Controller>
           <InputError error={errors.projectPreferences?.compensationOptions} />
@@ -34,7 +35,7 @@ export const ProjectPreference = ({
             name="projectPreferences.projSelectionCriteria"
             control={control}
             render={({ field }) => (
-              <ReactSelect isMulti options={[]} {...field} />
+              <ReactCreatableSelect options={[]} {...field} />
             )}
           ></Controller>
           <InputError
@@ -49,7 +50,7 @@ export const ProjectPreference = ({
             name="projectPreferences.projIntakeSteps"
             control={control}
             render={({ field }) => (
-              <ReactSelect isMulti options={[]} {...field} />
+              <ReactCreatableSelect isMulti options={[]} {...field} />
             )}
           ></Controller>
           <InputError error={errors.projectPreferences?.projIntakeSteps} />

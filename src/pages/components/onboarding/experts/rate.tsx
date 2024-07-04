@@ -12,6 +12,7 @@ import { InputError } from "@/components/ui/input-error";
 import { compensationOptions } from "@/data/dashboard/experts";
 import { SectionHeading } from "../../common";
 import { ExpertsOnboardingPropTypes } from "@/definitions/types/onboarding";
+import { ReactCreatableSelect } from "@/components/ui/creatable-select";
 
 export const Rate = ({
   control,
@@ -30,23 +31,7 @@ export const Rate = ({
             <Controller
               name="rate.contractualPref"
               control={control}
-              render={({ field }) => (
-                <Select
-                  value={field.value}
-                  onValueChange={(e) => field.onChange(e)}
-                >
-                  <SelectTrigger id="rate.contractualPref">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {compensationOptions.map((item) => (
-                      <SelectItem key={item} value={item}>
-                        {item}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              )}
+              render={({ field }) => <ReactCreatableSelect {...field} />}
             ></Controller>
             <InputError error={errors.rate?.contractualPref} />
           </div>

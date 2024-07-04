@@ -26,7 +26,7 @@ const commonOnboardingInitialValues = {
     country: null,
     city: null,
     dateOfBirth: undefined,
-    gender: "",
+    gender: null,
     linkedInProfile: "",
   },
   profilePicture: null,
@@ -79,7 +79,7 @@ export const onboardingInnovatorsInitialValues = {
 export const onboardingExpertsInitialValues = {
   ...commonOnboardingInitialValues,
   professionalInfo: {
-    currEmpType: "",
+    currEmpType: null,
     currJobTitle: "",
     skills: [],
     companyName: "",
@@ -90,8 +90,8 @@ export const onboardingExpertsInitialValues = {
     personalBio: "",
   },
   projectPreferences: {
-    compensationOptions: [],
-    projSelectionCriteria: [],
+    compensationOptions: null,
+    projSelectionCriteria: null,
     projIntakeSteps: [],
   },
   rate: {
