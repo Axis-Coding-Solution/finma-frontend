@@ -10,6 +10,9 @@ import {
 } from "@/components/ui/select";
 import { mentorsIndustryOptions } from "@/data/dashboard/mentors";
 import { MentorsOnboardingPropTypes } from "@/definitions/types/onboarding";
+import { InputError } from "@/components/ui/input-error";
+import { ReactCreatableSelect } from "@/components/ui/creatable-select";
+import { Controller } from "react-hook-form";
 
 export const MentorsProfessionalInfo = ({
   control,
@@ -27,7 +30,9 @@ export const MentorsProfessionalInfo = ({
           id="mentors-prof-info-job-title"
           type="text"
           placeholder="Enter your job title..."
+          {...register("professionalInfo.jobTitle")}
         />
+        <InputError error={errors.professionalInfo?.jobTitle} />
       </div>
       <div>
         <Label htmlFor="mentors-prof-info-company-name">
@@ -37,11 +42,21 @@ export const MentorsProfessionalInfo = ({
           id="mentors-prof-info-company-name"
           type="text"
           placeholder="Enter your company name..."
+          {...register("professionalInfo.companyName")}
         />
+        <InputError error={errors.professionalInfo?.companyName} />
       </div>
       <div>
         <Label htmlFor="mentors-prof-info-industry">Industry</Label>
-        <Select>
+        <Controller
+          name="professionalInfo.industry"
+          control={control}
+          render={({ field }) => (
+            <ReactCreatableSelect options={mentorsIndustryOptions} {...field} />
+          )}
+        />
+        <InputError error={errors.professionalInfo?.industry} />
+        {/* <Select>
           <SelectTrigger id="mentors-prof-info-industry">
             <SelectValue placeholder="Select Industry" />
           </SelectTrigger>
@@ -50,7 +65,7 @@ export const MentorsProfessionalInfo = ({
               <SelectItem value={industry.value}>{industry.label}</SelectItem>
             ))}
           </SelectContent>
-        </Select>
+        </Select> */}
       </div>
     </div>
   );
