@@ -11,7 +11,7 @@ import { CgSpinner } from "./assets/icons/cg-spinner.tsx";
 import  appLogo from "./assets/images/app-logo.png";
 
 createRoot(document.getElementById("root")!).render(
-  <StrictMode>
+  // <StrictMode>
     <Suspense fallback={<>
       <div className=" flex flex-col justify-center items-center h-screen">
           <img src={appLogo} className="w-40" />
@@ -20,5 +20,5 @@ createRoot(document.getElementById("root")!).render(
     </>}>
       <App />
     </Suspense>
-  </StrictMode>
+  // </StrictMode>
 );

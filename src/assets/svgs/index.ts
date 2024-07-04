@@ -12,5 +12,7 @@ import GuageChart from "./guage-chart.svg"
 import VectorArrowDown from "./vector-arrow-down.svg"
 import SeeEye from "./see-eye.svg"
 import ArrowLong from "./arrow-long.svg"
+import SingleCheck from "./single-check.svg"
+import DoubleCheck from "./double-check.svg"
 
-export { ReactSVG, ViteSVG, PostBox, TickShield, EyeClose, EyeOpen, ArrowConnerRight, ArrowConnerLeft, GuageChart, VectorArrowDown, SeeEye, ArrowLong };
+export { ReactSVG, ViteSVG, PostBox, TickShield, EyeClose, EyeOpen, ArrowConnerRight, ArrowConnerLeft, GuageChart, VectorArrowDown, SeeEye, ArrowLong, SingleCheck, DoubleCheck };
