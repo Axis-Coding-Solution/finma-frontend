@@ -14,14 +14,16 @@ const DropdownIndicator = (props: DropdownIndicatorProps) => (
 );
 
 export const ReactSelect = forwardRef<any, Props>((props, ref) => {
+  const { components = {}, ...otherProps } = props;
+
   return (
     <Select
       ref={ref}
       isClearable={false}
-      components={{ DropdownIndicator }}
+      components={{ DropdownIndicator, ...components }}
       unstyled
-      {...props}
       classNames={classNamesReactSelect}
+      {...otherProps}
     />
   );
 });
