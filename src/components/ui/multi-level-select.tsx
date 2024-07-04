@@ -1,5 +1,11 @@
-import { forwardRef } from "react";
-import { ClassNamesConfig, GroupBase, OptionProps, Props } from "react-select";
+import { forwardRef, useEffect } from "react";
+import {
+  ClassNamesConfig,
+  GroupBase,
+  OptionProps,
+  Props,
+  SetValueAction,
+} from "react-select";
 import { ReactSelect } from "./react-select";
 import { Checkbox } from "./checkbox";
 import { twMerge } from "tailwind-merge";
@@ -50,9 +56,27 @@ const classNames: ClassNamesConfig<unknown, boolean, GroupBase<unknown>> = {
 // };
 
 const Option = (props: OptionProps) => {
-  const { innerProps, children, innerRef } = props;
+  const { innerProps, setValue, getValue, children, innerRef } = props;
   const { className, ...othersInnerProps } = innerProps;
   const uid = crypto.randomUUID();
+  const data: any = props.data;
+
+  const values: any = getValue();
+
+  useEffect(() => {
+    if (values && values.length > 0) {
+      const newValues = values.map((value: any) => {
+        if (value.values && value.values.length)
+          return {
+            value: value.value,
+            label: value.label,
+            selected: [],
+          };
+        return value;
+      });
+      setValue(newValues, "select-option");
+    }
+  }, [values.length]);
 
   return (
     <div className="flex flex-col gap-5 divide-y divide-border">
@@ -94,7 +118,22 @@ const Option = (props: OptionProps) => {
               e.stopPropagation();
               return e;
             }}
-            options={props.data?.values}
+            onChange={(e, actionMeta) => {
+              const newValues = values.map((value: any) => {
+                if (value.value === data?.value)
+                  return {
+                    value: value.value,
+                    label: value.label,
+                    selected: e,
+                  };
+                return value;
+              });
+
+              console.log(newValues);
+              setValue(newValues, actionMeta.action as SetValueAction);
+              return e;
+            }}
+            options={data?.values}
           />
         </div>
       )}
@@ -108,6 +147,10 @@ export const MultiLevelSelect = forwardRef<any, Props>((props, ref) => {
       ref={ref}
       isMulti
       hideSelectedOptions={false}
+      onChange={(e) => {
+        console.log(e);
+        return e;
+      }}
       components={{
         Option,
         // GroupHeading,
