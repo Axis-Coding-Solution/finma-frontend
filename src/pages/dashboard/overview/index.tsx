@@ -8,10 +8,83 @@ import { IdeaClarityModal } from "@/pages/components/dashboard/overview/idea-cla
 import { X } from "lucide-react";
 
 function OverviewPage() {
+  const lockedCardArray = [
+    {
+      title: "Market Research and Validation",
+    },
+    {
+      title: "Building the MVP",
+    },
+    {
+      title: "Growth and User Acquisition ",
+    },
+    {
+      title: "Design and branding ",
+    },
+    {
+      title: "Product Development",
+    },
+    {
+      title: "Business Model and Revenue Generation",
+    },
+    {
+      title: "Fundraising and Pitching",
+    },
+    {
+      title: "Team Building and Management",
+    },
+    {
+      title: "Legal and Operational Setup",
+    },
+    {
+      title: "Customer Retention and Engagement",
+    },
+    {
+      title: "Networking and Community Building",
+    },
+  ];
+
+  const idesClarityCardArray = [
+    {
+      badgeText: "Good",
+      badgeColor: "success",
+      title: "Problem",
+      description: "Strong evidence from multiple sources",
+    },
+    {
+      badgeText: "Weak",
+      badgeColor: "destructive",
+      title: "Solution",
+      description: "Strong is untested or has shown poor results",
+    },
+    {
+      badgeText: "Good",
+      badgeColor: "success",
+      title: "Audience",
+      description: "Broadly defined target audience with some details",
+    },
+    {
+      badgeText: "Moderate",
+      badgeColor: "info",
+      title: "Competitors",
+      description: "Some direct competitors, moderate differentiation.",
+    },
+  ];
   return (
     <>
       <div className="flex md:flex-row flex-col md:items-center items-start justify-between">
-        <MainHeading heading="Overview" paragraph="" />
+        <div className="flex flex-col md:flex-row md:gap-3">
+          <div className="flex flex-col">
+            <h1 className="text-sm text-muted-foreground">Project Name</h1>
+            <MainHeading heading="Mad Cookie" />
+          </div>
+          <div className="flex flex-col mt-3">
+            <h1 className="md:text-sm text-muted-foreground">Project Status</h1>
+            <span className="font-bold md:text-xl">
+              Problem identification stage
+            </span>
+          </div>
+        </div>
         <Alert className="w-auto ">
           <AlertDescription>
             <div className="flex items-center gap-2 text-md font-semibold">
@@ -29,44 +102,25 @@ function OverviewPage() {
       </div>
       <div className="mt-5 rounded-2xl bg-muted p-5">
         <div className="flex md:flex-row flex-col justify-between md:items-center items-start text-foreground font-medium">
-          <h6 className="text-xl">Idea Clarity</h6>
-          <div className="flex justify-end w-full md:mt-0 mt-2">
-            <IdeaClarityModal />
-          </div>
+          <h6 className="text-lg w-32">Idea Clarity</h6>
+          <IdeaClarityModal />
         </div>
         <div className="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-5 mt-5">
-          <IdeaClarityCard
-            badgeText="Good"
-            badgeColor="success"
-            title="Problem"
-            description="Strong evidence from multiple sources"
-          />
-          <IdeaClarityCard
-            badgeText="Weak"
-            badgeColor="destructive"
-            title="Solution"
-            description="Strong is untested or has shown poor results"
-          />
-          <IdeaClarityCard
-            badgeText="Good"
-            badgeColor="success"
-            title="Audience"
-            description="Broadly defined target audience with some details"
-          />
-          <IdeaClarityCard
-            badgeText="Moderate"
-            badgeColor="info"
-            title="Competitors"
-            description="Some direct competitors, moderate differentiation."
-          />
+          {idesClarityCardArray.map((item) => (
+            <IdeaClarityCard
+              badgeText={item.badgeText}
+              badgeColor={item.badgeColor}
+              title={item.title}
+              description={item.description}
+            />
+          ))}
+          
         </div>
       </div>
       <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 mt-5">
-        <LockedCard title="Scalability Analysis" />
-        <LockedCard title="Product singularity" />
-        <LockedCard title="Customer validation " />
-        <LockedCard title="Founders’ ability" />
-        <LockedCard title="Launch support" />
+        {lockedCardArray.map((item) => (
+          <LockedCard key={item.title} title={item.title} />
+        ))}
       </div>
     </>
   );

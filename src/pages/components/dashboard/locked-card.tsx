@@ -13,7 +13,7 @@ function LockedCard({ title }: PropType) {
         </span>
       </div>
       <div className="flex items-end justify-between gap-2 mt-8">
-        <span className=" font-medium text-lg mb-4">Score is locked</span>
+        <span className=" font-medium text-lg mb-4">Module is locked</span>
         <img src={lockImg} alt="" />
       </div>
     </div>

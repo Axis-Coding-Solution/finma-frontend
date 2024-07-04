@@ -2,42 +2,46 @@ import {
   CircleHelp,
   Home,
   LayoutGrid,
-  LayoutGridIcon,
   Lightbulb,
   MessageSquareMore,
+  UsersRound,
+  Zap,
 } from "lucide-react";
 import { LinkItem } from "./link-item";
 
 const navLinks = [
   {
-    name: "Overview",
-    path: "/dashboard/overview",
-    Icon: LayoutGridIcon,
+    name: "Community",
+    path: "/dashboard/community",
+    Icon: Home,
   },
+
+  {
+    name: "My Projects",
+    path: "/dashboard/my-projects",
+    Icon: LayoutGrid,
+  },
+  {
+    name: "Product Launch",
+    path: "/dashboard/product-launch",
+    Icon: Zap ,
+  },
+
+  {
+    name: "My Team",
+    path: "/dashboard/my-team",
+    Icon: UsersRound ,
+  },
+
   {
     name: "FAQ",
     path: "/dashboard/faq",
     Icon: CircleHelp,
   },
   {
-    name: "My Projects",
-    path: "/dashboard/my-projects",
-    Icon: LayoutGrid ,
-  },
-  {
     name: "Chats",
     path: "/dashboard/chats",
     Icon: MessageSquareMore,
-  },
-  {
-    name: "Community Feeds",
-    path: "/dashboard/community-feeds",
-    Icon: Home,
-  },
-  {
-    name: "Innovators",
-    path: "/dashboard/innovators",
-    Icon: Lightbulb,
   },
 ];
 

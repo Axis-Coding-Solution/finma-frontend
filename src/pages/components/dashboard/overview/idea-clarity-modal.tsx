@@ -22,7 +22,8 @@ export function IdeaClarityModal() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline-info" className="flex items-center gap-10">
+        <Button variant="outline-info" className="flex items-center">
+          <h1>Medium Risk </h1>
           <span>{data?.data?.description || ''}</span>
           <SquarePen size="20" />
         </Button>
@@ -35,7 +36,6 @@ export function IdeaClarityModal() {
         </DialogHeader>
         <div className="flex flex-col items-center md:gap-10 gap-5 text-center">
           <GaugeMeter score={data?.data?.score || 0} description={data?.data?.description || ''} color={data?.data?.color || ''} />
-          {/* <img src={Chart} className="xl:w-80 w-auto" alt="" /> */}
           <p className="md:text-sm text-xs">
             Your startup idea has been evaluated based on four key validation
             points: Proof of the Problem, Solution Effectiveness, Identification

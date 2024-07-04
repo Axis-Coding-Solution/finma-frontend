@@ -13,9 +13,9 @@ export const ProjectDeleteModal = () => {
       <Dialog>
         <DialogTrigger asChild>
           <span role="button">
-            <div className="flex gap-1">
-              <Trash2 size={14} className="mt-1" />
-              <h1 className="text-sm">Delete Card</h1>
+            <div className="flex gap-1 text-red-500">
+              <Trash2 size={16} className="mt-1" />
+              <h1 className="">Delete Card</h1>
             </div>
           </span>
         </DialogTrigger>
@@ -23,16 +23,15 @@ export const ProjectDeleteModal = () => {
           <DialogHeader>
             <DialogTitle className="text-left ">Delete Project</DialogTitle>
           </DialogHeader>
-        <div>
+          <div>
             <span>
-              You are about to delete{" "}
+              You are about to delete
               <span className="font-bold">Mad Cookies</span>. All associated
               data will also be deleted. This action cannot be undone. Are you
-              sure you want to delete
+              sure you want to delete{" "}
               <span className="font-bold">Mad Cookies</span>?
             </span>
           </div>
-
           <div className="flex items-center justify-between gap-4">
             <Button variant="outline" className="w-full">
               Cancel
@@ -46,4 +45,3 @@ export const ProjectDeleteModal = () => {
     </div>
   );
 };
-
