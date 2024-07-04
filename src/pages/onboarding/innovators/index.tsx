@@ -3,7 +3,7 @@ import { MainHeading } from "@/pages/components/common";
 import { Button } from "@/components/ui/button";
 import { onboardingInnovatorsInitialValues } from "@/utils/initial-values";
 
-import FileUpload from "@/components/ui/fileupload";
+import FileUpload from "@/components/ui/file-upload";
 import {
   CommunityInfo,
   ProfessionalInfo,
@@ -60,11 +60,13 @@ function InnovatorsOnboardingPage() {
         heading="Lets create your innovator profile"
         paragraph="Please tell us about your expertise to help us set up your profile message. It will help innovators learn about your expertise and experience."
       />
-      <MultiLevelSelect closeMenuOnSelect={false} options={onboardingStartupModulesOptions} />
+      <MultiLevelSelect
+        options={onboardingStartupModulesOptions}
+      />
       <form onSubmit={handleSubmit(onSubmitHandler)}>
         <div className="flex flex-col lg:flex-row gap-10 items-start">
           <div className="w-[25%]">
-            <FileUpload />
+            <FileUpload register={register} errors={errors} />
           </div>
           <div className="w-[50%] divide divide-y divide-border flex flex-col items-end gap-5">
             <PersonalInfo {...commonProps} />

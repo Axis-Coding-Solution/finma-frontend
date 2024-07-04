@@ -2,7 +2,7 @@ import { MainHeading } from "@/pages/components/common";
 import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
 import { onboardingExpertsInitialValues } from "@/utils/initial-values";
-import FileUpload from "@/components/ui/fileupload";
+import FileUpload from "@/components/ui/file-upload";
 import { PersonalInfo } from "@/pages/components/onboarding/common";
 // import ProfessionalInfo from "@/pages/components/onboarding/experts/professional-info";
 import {
@@ -59,7 +59,7 @@ function ExpertsOnboardingPage() {
       <form onSubmit={handleSubmit(onSubmitHandler)}>
         <div className="flex flex-col lg:flex-row items-start gap-10">
           <div className="w-[25%]">
-            <FileUpload />
+            <FileUpload register={register} errors={errors} />
           </div>
           <div className="lg:w-8/12 divide divide-y divide-border w-full flex flex-col gap-5 items-end">
             <PersonalInfo {...commonProps} />

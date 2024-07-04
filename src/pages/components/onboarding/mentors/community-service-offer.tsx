@@ -1,7 +1,10 @@
 import { Label } from "@/components/ui/label";
 import { SectionHeading } from "../../common";
 import { Input } from "@/components/ui/input";
-import { mentorsCommunityGoalsOptions, mentorsStartupModulesOptions } from "@/data/dashboard/mentors";
+import {
+  mentorsCommunityGoalsOptions,
+  mentorsStartupModulesOptions,
+} from "@/data/dashboard/mentors";
 import { Textarea } from "@/components/ui/textarea";
 import { MentorsOnboardingPropTypes } from "@/definitions/types/onboarding";
 import { Controller } from "react-hook-form";
@@ -20,7 +23,19 @@ export const MentorsCommunityServiceOffer = ({
       <div>
         <Label htmlFor="mentors-community-service-startup-dev-modules">
           I am willing to support founders in these startup development modules
-        </Label><MultiLevelSelect options={mentorsStartupModulesOptions} />
+        </Label>
+        <Controller
+          name="communityServiceOffer.startUpDevModules"
+          control={control}
+          render={({ field }) => {
+            return (
+              <MultiLevelSelect
+                options={mentorsStartupModulesOptions}
+                {...field}
+              />
+            );
+          }}
+        />
 
         <InputError error={errors.communityServiceOffer?.startUpDevModules} />
         {/* <Select>
@@ -42,7 +57,10 @@ export const MentorsCommunityServiceOffer = ({
           name="communityServiceOffer.communityGoals"
           control={control}
           render={({ field }) => (
-            <ReactCreatableSelect options={mentorsCommunityGoalsOptions} {...field} />
+            <ReactCreatableSelect
+              options={mentorsCommunityGoalsOptions}
+              {...field}
+            />
           )}
         />
         <InputError error={errors.communityServiceOffer?.communityGoals} />

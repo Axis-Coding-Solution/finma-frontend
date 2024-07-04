@@ -5,10 +5,13 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+
 import { FilePenLine } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
-import {ProjectForm} from "./project-form";
- export const ProjectEditModal = () => {
+
+import { ProjectForm } from "./project-form";
+export const ProjectEditModal = () => {
   return (
     <div>
       <Dialog>
@@ -25,7 +28,7 @@ import {ProjectForm} from "./project-form";
             <DialogTitle className="text-left ">Project Card</DialogTitle>
           </DialogHeader>
           <ProjectForm />
-         <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center justify-between gap-4">
             <Button variant="outline" className="w-full">
               Cancel
             </Button>

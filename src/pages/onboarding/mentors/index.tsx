@@ -13,7 +13,7 @@ import {
   PersonalInfo,
 } from "@/pages/components/onboarding/common";
 import { Button } from "@/components/ui/button";
-import FileUpload from "@/components/ui/fileupload";
+import FileUpload from "@/components/ui/file-upload";
 
 function MentorsOnboardingPage() {
   const {
@@ -42,9 +42,9 @@ function MentorsOnboardingPage() {
       />
       <form onSubmit={handleSubmit(onSubmitHandler)}>
         <div className="flex flex-col lg:flex-row items-start gap-10">
-        <div className="w-[25%]">
-          <FileUpload />
-        </div>
+          <div className="w-[25%]">
+            <FileUpload register={register} errors={errors}/>
+          </div>
           <div className="lg:w-8/12 divide divide-y divide-border w-full flex flex-col gap-5 items-end">
             <PersonalInfo {...commonProps} />
             <MentorsProfessionalInfo {...commonProps} />

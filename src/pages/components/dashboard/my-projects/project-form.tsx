@@ -1,7 +1,6 @@
-import React from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import FileUpload from "@/components/ui/fileupload";
+import FileUpload from "@/components/ui/file-upload";
 
 export const ProjectForm = () => {
   return (
@@ -20,7 +19,7 @@ export const ProjectForm = () => {
         </div>
         <div className="md:max-w-[45%] w-full">
           <Label>Project Logo</Label>
-          <FileUpload text="Upload project logo" />
+          {/* <FileUpload text="Upload project logo" /> */}
         </div>
       </div>
       <div>
@@ -30,4 +29,3 @@ export const ProjectForm = () => {
     </div>
   );
 };
-

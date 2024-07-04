@@ -1,4 +1,4 @@
-import logoimage from "@/assets/images/logoimage.png"
+import logoimage from "@/assets/images/logoimage.png";
 import { MainHeading } from "@/pages/components/common";
 import ProjectCard from "@/pages/components/dashboard/my-projects/card";
 import ProjectAddModal from "@/pages/components/dashboard/my-projects/project-add-modal";
@@ -24,10 +24,7 @@ const MyProjectsPage = () => {
   return (
     <>
       <div>
-        <MainHeading
-          heading="My Projects"
-          renderRight={<ProjectAddModal/>}
-        />
+        <MainHeading heading="My Projects" renderRight={<ProjectAddModal />} />
       </div>
       <div className="flex flex-col lg:flex-row gap-5">
         {projectCarArray.map((item, index) => (
