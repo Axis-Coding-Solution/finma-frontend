@@ -4,6 +4,13 @@ import { twMerge } from "tailwind-merge";
 import { type ClassValue, clsx } from "clsx";
 import { toast } from "react-hot-toast";
 import { ClassNamesConfig, GroupBase } from "react-select";
+import {
+  differenceInDays,
+  differenceInHours,
+  differenceInMinutes,
+  differenceInMonths,
+  differenceInYears,
+} from "date-fns";
 
 export const getAuthFromStorage = () => {
   if (typeof window !== "undefined") {
@@ -90,3 +97,37 @@ export const classNamesReactSelect: ClassNamesConfig<
         : "hover:bg-card text-foreground"
     ),
 };
+
+export function convertDate(date: any) {
+  const startDate = new Date(date);
+  const endDate = new Date(); // Current date and time
+
+  let formattedDuration = "";
+  const years = differenceInYears(endDate, startDate);
+  if (years > 0) {
+    formattedDuration = `${years} y`;
+  } else {
+    const months = differenceInMonths(endDate, startDate);
+    if (months > 0) {
+      formattedDuration = `${months} m`;
+    } else {
+      const days = differenceInDays(endDate, startDate);
+      if (days > 0) {
+        formattedDuration = `${days} d`;
+      } else {
+        const hours = differenceInHours(endDate, startDate);
+        if (hours > 0) {
+          formattedDuration = `${hours} h`;
+        } else {
+          const minutes = differenceInMinutes(endDate, startDate);
+          if (minutes > 0) {
+            formattedDuration = `${minutes} min`;
+          } else {
+            formattedDuration = "0 min";
+          }
+        }
+      }
+    }
+  }
+  return formattedDuration;
+}

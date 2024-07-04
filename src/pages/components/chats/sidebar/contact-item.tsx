@@ -4,6 +4,9 @@ import { chatUserDataHook } from "@/store";
 import { useHookstate } from "@hookstate/core";
 import { Check } from "lucide-react";
 import { Link } from "react-router-dom";
+import { format } from 'date-fns';
+import { DoubleCheck, SingleCheck } from "@/assets/svgs";
+import { convertDate } from "@/utils";
 
 type PropsTypes = {
   item: any;
@@ -22,13 +25,13 @@ export const ChatContactItem = ({ item }: PropsTypes) => {
           onClick={() =>
             setChatUser((prev) => ({
               ...prev,
-              id: item._id,
+              id: item.user._id,
               chatUserName: userName,
             }))
           }
         >
           <Avatar image={userAvatar1Image} size="md" />
-          <div className="">
+          <div className="w-full">
             <div className="flex justify-between gap-1 ">
               <h6
                 title={userName}
@@ -37,15 +40,19 @@ export const ChatContactItem = ({ item }: PropsTypes) => {
                 {/* {truncateText(userName, 13)} */}
                 {userName}
               </h6>
-              <p className=" inline-flex text-success font-semibold text-[10px]">
-                10:00 Am
-              </p>
+              <div className="flex justify-center items-center gap-1">
+                {item?.lastMessage?.receivedAt ? <img src={SingleCheck} alt="" /> : item?.lastMessage?.readAt && <img src={DoubleCheck} alt="" />}
+                <p className=" inline-flex text-muted-foreground font-semibold text-[10px]">
+                  {item?.lastMessage?.createdAt && convertDate(item.lastMessage.createdAt)}
+                </p>
+              </div>
             </div>
-            <div className="flex  items-center">
+            <div className="flex items-center">
               <p className="text-muted-foreground text-xs w-full ">
-                Good Morning
+                {item?.lastMessage?.content || ''}
               </p>
-              <Check className="text-muted-foreground" size={17} />
+
+              {/* <Check className="text-muted-foreground" size={17} /> */}
             </div>
           </div>
         </div>

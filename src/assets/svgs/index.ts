@@ -17,6 +17,8 @@ import ArrowEmoji from "./arrow-emoji.svg";
 import MoneyEmoji from "./money-emoji.svg";
 import BulbBannerImg from "./bulb-banner-img.svg";
 import UnderlineVector from "./underline-vector.svg";
+import SingleCheck from "./single-check.svg";
+import DoubleCheck from "./double-check.svg";
 
 export {
   ReactSVG,
@@ -35,5 +37,7 @@ export {
   ArrowEmoji,
   MoneyEmoji,
   BulbBannerImg,
-  UnderlineVector
+  UnderlineVector,
+  SingleCheck,
+  DoubleCheck,
 };

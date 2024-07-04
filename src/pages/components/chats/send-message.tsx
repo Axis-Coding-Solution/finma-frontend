@@ -1,16 +1,20 @@
 import { Textarea } from "@/components/ui/textarea";
 import { errorToast } from "@/utils";
 import { FORM_MODE } from "@/utils/constants";
-import { useAppParams } from "@/utils/hooks";
+import { useAppParams, useAuth } from "@/utils/hooks";
 import { postMessagesInitialValues } from "@/utils/initial-values";
 import { Paperclip, Send, SmilePlus } from "lucide-react";
 import { Controller, useForm } from "react-hook-form";
 import { SOCKET_ENUMS } from "@/utils/constants/socket-enums";
 import { useMessagesStore } from "@/store/hooks";
 import socket from "@/lib/socket.io";
+import { useHookstate } from "@hookstate/core";
+import { chatUserDataHook } from "@/store";
 
 export const SendMessageBox = () => {
-  const { id = "" } = useAppParams();
+  const chatUser = useHookstate(chatUserDataHook);
+  const getChatUser = chatUser.get();
+  const auth = useAuth()
   const { pushMessage } = useMessagesStore();
 
   const { control, handleSubmit, reset } = useForm({
@@ -21,7 +25,8 @@ export const SendMessageBox = () => {
   const onSubmitMessage = async (values: typeof postMessagesInitialValues) => {
     if (!values.content) return;
     const postData = {
-      receiverId: id ?? "",
+      senderId: auth?.user._id,
+      receiverId: getChatUser.id ?? "",
       content: values.content,
     };
     try {
