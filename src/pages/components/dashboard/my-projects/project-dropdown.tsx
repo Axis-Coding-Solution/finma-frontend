@@ -15,12 +15,10 @@ const ProjectDropDOwn = () => {
           <Ellipsis size={20} />
         </DropdownMenuTrigger>
         <DropdownMenuContent side="bottom">
-          <div className="flex flex-col p-3">
+          <div className="flex flex-col p-3 gap-1">
             <ProjectEditModal />
-            <div className="flex gap-2">
               <ProjectDeleteModal />
             </div>
-          </div>
         </DropdownMenuContent>
       </DropdownMenu>
     </div>

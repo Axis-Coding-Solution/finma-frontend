@@ -5,11 +5,12 @@ import InnovatorPage from "@/pages/dashboard/innovator";
 import CommunityPage from "@/pages/dashboard/community";
 import { ProductPage } from "@/pages/dashboard/product";
 import MyProjectsPage from "@/pages/dashboard/my-projects";
+import MyTeamPage from "@/pages/dashboard/my-team";
 
 export default [
   {
     element: <OverviewPage />,
-    path: "/dashboard/overview",
+    path: "/project/overview",
     meta: {
       layout: "dashboard",
     },
@@ -19,15 +20,21 @@ export default [
     path: "/dashboard/community",
     meta: {
       layout: "dashboard",
-      isRestrictedRoute: true,
     },
   },
   {
-    element: <ProductPage />,
-    path: "/dashboard/product",
+    element: <MyTeamPage />,
+    path: "/dashboard/my-team",
     meta: {
       layout: "dashboard",
-      isRestrictedRoute: true,
+    },
+  },
+
+  {
+    element: <ProductPage />,
+    path: "/dashboard/product-launch",
+    meta: {
+      layout: "dashboard",
     },
   },
   {
