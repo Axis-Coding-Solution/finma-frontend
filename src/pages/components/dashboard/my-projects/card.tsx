@@ -1,10 +1,9 @@
 import { Avatar } from "@/components/ui/avatar";
-import { CornerDownRight, Ellipsis } from "lucide-react";
+import { CornerDownRight} from "lucide-react";
 import ProjectDropdownModal from "./project-dropdown";
 import { Link } from "react-router-dom";
 
 const ProjectCard = (props: any) => {
-  console.log("🚀 ~ ProjectCard ~ props:", props)
   return (
     <>
       <div className="bg-accent flex flex-col gap-5  w-full p-5 rounded-xl">

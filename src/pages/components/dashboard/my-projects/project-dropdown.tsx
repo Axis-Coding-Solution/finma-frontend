@@ -4,14 +4,10 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import {ProjectEditModal} from "./project-edit-modal";
-import {ProjectDeleteModal} from "./project-delete-modal";
+import { ProjectEditModal } from "./project-edit-modal";
+import { ProjectDeleteModal } from "./project-delete-modal";
 
-const ProjectDropDOwn = ({
-  name,id
-}: {
-  name: string,id:string
-}) => {
+const ProjectDropDOwn = ({ name, id }: { name: string; id: string }) => {
   return (
     <div>
       <DropdownMenu>
@@ -20,9 +16,9 @@ const ProjectDropDOwn = ({
         </DropdownMenuTrigger>
         <DropdownMenuContent side="bottom">
           <div className="flex flex-col p-3 gap-1">
-            <ProjectEditModal />
-              <ProjectDeleteModal projectName={name} projectId={id} />
-            </div>
+            <ProjectEditModal projectId={id} />
+            <ProjectDeleteModal projectName={name} projectId={id} />
+          </div>
         </DropdownMenuContent>
       </DropdownMenu>
     </div>
