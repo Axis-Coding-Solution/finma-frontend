@@ -4,7 +4,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { InputError } from "@/components/ui/input-error";
 import { Label } from "@/components/ui/label";
 import { useOnboardingForm } from "@/store/hooks";
-import { errorToast, successToast } from "@/utils";
+import { createFormData, errorToast, successToast } from "@/utils";
 import { FORM_MODE } from "@/utils/constants";
 import { termsAndConditionsInitialValues } from "@/utils/initial-values";
 import { termsAndConditionsSchema } from "@/utils/validation-schemas";
@@ -38,8 +38,10 @@ export const TermsAndConditionsForm = () => {
     const form = getFormData();
     const navigateRole = role ?? "innovators";
     if (!form) navigate(`/onboarding/${navigateRole}`);
+
     try {
-      await mutateAsync({ role, ...form });
+      const formData = createFormData(form);
+      await mutateAsync({ role: navigateRole, formData });
       clearFormData();
       successToast("Onboarding Completed!");
       navigate("/dashboard/community-feed", {

@@ -33,7 +33,7 @@ const commonOnboardingSchema = {
 
 const currencySchema = object({
   amount: number().required().typeError("Must be a number!"),
-  currency: string().optional(),
+  currency: object().optional().nullable(),
 });
 
 const entrepreneurialTrackRecordSchema = {
@@ -41,7 +41,7 @@ const entrepreneurialTrackRecordSchema = {
     startUps: array().of(
       object({
         startUpName: string().optional(),
-        industry: string().optional(),
+        industry: object().optional().nullable(),
         startUpAbout: string().optional(),
         role: string().optional(),
         webLink: string().optional(),

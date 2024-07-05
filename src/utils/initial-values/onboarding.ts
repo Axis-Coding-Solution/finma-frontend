@@ -34,12 +34,12 @@ const commonOnboardingInitialValues = {
 
 const currencyInitialValues = {
   amount: "0",
-  currency: "",
+  currency: null,
 };
 
 export const startUpInitialValues = {
   startUpName: "",
-  industry: "",
+  industry: null,
   startUpAbout: "",
   role: "",
   webLink: "",

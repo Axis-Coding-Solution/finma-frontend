@@ -131,3 +131,21 @@ export function convertDate(date: any) {
   }
   return formattedDuration;
 }
+
+export const createFormData = (values: any = {}, options: any = {}) => {
+  const { filter = [] } = options;
+  const formData = new FormData();
+  for (const key in values) {
+    if (Object.hasOwnProperty.call(values, key)) {
+      let value = values[key];
+      if (value instanceof File === false && typeof value === "object") {
+        value = JSON.stringify(values[key]);
+      }
+      if (filter.includes(key)) {
+        continue;
+      }
+      formData.append(key, value);
+    }
+  }
+  return formData;
+};

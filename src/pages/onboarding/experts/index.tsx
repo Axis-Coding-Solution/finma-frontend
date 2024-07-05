@@ -58,6 +58,7 @@ function ExpertsOnboardingPage() {
   };
 
   const country = watch("personalInfo.country");
+  const image = watch("profilePicture");
 
   return (
     <div className="bg-background rounded-lg px-2 lg:px-10 py-6 flex flex-col gap-8">
@@ -68,7 +69,12 @@ function ExpertsOnboardingPage() {
       <form onSubmit={handleSubmit(onSubmitHandler)}>
         <div className="flex flex-col lg:flex-row items-start gap-10">
           <div className="w-[25%]">
-            <FileUpload register={register} errors={errors} />
+            <FileUpload
+              image={image}
+              control={control}
+              register={register}
+              errors={errors}
+            />
           </div>
           <div className="lg:w-8/12 divide divide-y divide-border w-full flex flex-col gap-5 items-end">
             <PersonalInfo
