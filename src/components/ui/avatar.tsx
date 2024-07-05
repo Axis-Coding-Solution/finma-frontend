@@ -40,6 +40,7 @@ function Avatar({
     <ImgWrapper {...wrapperProps}>
       <img
         src={image}
+        crossOrigin="anonymous"
         className={cn(badgeVariants({ size }), className)}
         {...props}
       />

@@ -7,7 +7,11 @@ import {
 import {ProjectEditModal} from "./project-edit-modal";
 import {ProjectDeleteModal} from "./project-delete-modal";
 
-const ProjectDropDOwn = () => {
+const ProjectDropDOwn = ({
+  name,id
+}: {
+  name: string,id:string
+}) => {
   return (
     <div>
       <DropdownMenu>
@@ -17,7 +21,7 @@ const ProjectDropDOwn = () => {
         <DropdownMenuContent side="bottom">
           <div className="flex flex-col p-3 gap-1">
             <ProjectEditModal />
-              <ProjectDeleteModal />
+              <ProjectDeleteModal projectName={name} projectId={id} />
             </div>
         </DropdownMenuContent>
       </DropdownMenu>

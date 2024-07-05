@@ -4,12 +4,14 @@ import ProjectDropdownModal from "./project-dropdown";
 import { Link } from "react-router-dom";
 
 const ProjectCard = (props: any) => {
+  console.log("🚀 ~ ProjectCard ~ props:", props)
   return (
     <>
       <div className="bg-accent flex flex-col gap-5  w-full p-5 rounded-xl">
         <div className="flex justify-between">
-          <Avatar image={props.image} size="lg" />
-          <ProjectDropdownModal />
+          <Avatar image={props.logoImage} size="lg" />
+          <ProjectDropdownModal name={props.name} id={props.id}  />
+          
         </div>
         <div>
           <h1 className="text-lg font-bold">{props.name}</h1>
