@@ -11,7 +11,26 @@ import { FilePenLine } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 import { ProjectForm } from "./project-form";
+import { useForm } from "react-hook-form";
+import { dashboardProjectsInitialValues } from "@/utils/initial-values/dashboard/Projects";
 export const ProjectEditModal = () => {
+  const {
+    control,
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: dashboardProjectsInitialValues,
+  });
+
+  const commonProps = {
+    control,
+    register,
+    errors,
+  };
+  const onsubmitHandler = (values: typeof dashboardProjectsInitialValues) => {
+    console.log(values);
+  };
   return (
     <div>
       <Dialog>
@@ -27,15 +46,21 @@ export const ProjectEditModal = () => {
           <DialogHeader>
             <DialogTitle className="text-left ">Project Card</DialogTitle>
           </DialogHeader>
-          <ProjectForm />
-          <div className="flex items-center justify-between gap-4">
-            <Button variant="outline" className="w-full">
-              Cancel
-            </Button>
-            <Button variant="secondary" className="w-full">
-              Update
-            </Button>
-          </div>
+
+          <form
+            onSubmit={handleSubmit(onsubmitHandler)}
+            className="flex flex-col gap-4"
+          >
+            <ProjectForm {...commonProps} />
+            <div className="flex items-center justify-between gap-4">
+              <Button type="button" variant="outline" className="w-full">
+                Cancel
+              </Button>
+              <Button type="submit" variant="secondary" className="w-full">
+                Create
+              </Button>
+            </div>
+          </form>
         </DialogContent>
       </Dialog>
     </div>
