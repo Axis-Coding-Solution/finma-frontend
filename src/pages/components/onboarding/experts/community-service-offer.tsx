@@ -3,9 +3,10 @@ import { Controller } from "react-hook-form";
 import { InputError } from "@/components/ui/input-error";
 import { SectionHeading } from "../../common";
 import { ExpertsOnboardingPropTypes } from "@/definitions/types/onboarding";
-import { ReactSelect } from "@/components/ui/react-select";
 import { Textarea } from "@/components/ui/textarea";
 import { ReactCreatableSelect } from "@/components/ui/creatable-select";
+import { MultiLevelSelect } from "@/components/ui/multi-level-select";
+import { communityGoalsOptions, StartupModulesOptions } from "@/data/onboarding";
 
 export const CommunityServiceOffer = ({
   control,
@@ -27,7 +28,10 @@ export const CommunityServiceOffer = ({
             name="communityServiceOffer.startUpDevModules"
             control={control}
             render={({ field }) => (
-              <ReactSelect isMulti {...field} options={[]} />
+              <MultiLevelSelect
+                {...field}
+                options={StartupModulesOptions}
+              />
             )}
           ></Controller>
           <InputError error={errors.communityServiceOffer?.startUpDevModules} />
@@ -40,7 +44,11 @@ export const CommunityServiceOffer = ({
             name="communityServiceOffer.communityGoals"
             control={control}
             render={({ field }) => (
-              <ReactCreatableSelect isMulti {...field} options={[]} />
+              <ReactCreatableSelect
+                isMulti
+                {...field}
+                options={communityGoalsOptions}
+              />
             )}
           ></Controller>
           <InputError error={errors.communityServiceOffer?.communityGoals} />

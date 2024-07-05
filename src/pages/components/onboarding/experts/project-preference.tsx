@@ -3,8 +3,12 @@ import { Controller } from "react-hook-form";
 import { InputError } from "@/components/ui/input-error";
 import { SectionHeading } from "../../common";
 import { ExpertsOnboardingPropTypes } from "@/definitions/types/onboarding";
-import { ReactSelect } from "@/components/ui/react-select";
 import { ReactCreatableSelect } from "@/components/ui/creatable-select";
+import {
+  projectIntakeStepsOptions,
+  projectSelectionCriteriaOptions,
+  workCompensationOptions,
+} from "@/data/onboarding";
 
 export const ProjectPreference = ({
   control,
@@ -22,7 +26,10 @@ export const ProjectPreference = ({
             name="projectPreferences.compensationOptions"
             control={control}
             render={({ field }) => (
-              <ReactCreatableSelect options={[]} {...field} />
+              <ReactCreatableSelect
+                options={workCompensationOptions}
+                {...field}
+              />
             )}
           ></Controller>
           <InputError error={errors.projectPreferences?.compensationOptions} />
@@ -35,7 +42,10 @@ export const ProjectPreference = ({
             name="projectPreferences.projSelectionCriteria"
             control={control}
             render={({ field }) => (
-              <ReactCreatableSelect options={[]} {...field} />
+              <ReactCreatableSelect
+                options={projectSelectionCriteriaOptions}
+                {...field}
+              />
             )}
           ></Controller>
           <InputError
@@ -50,7 +60,11 @@ export const ProjectPreference = ({
             name="projectPreferences.projIntakeSteps"
             control={control}
             render={({ field }) => (
-              <ReactCreatableSelect isMulti options={[]} {...field} />
+              <ReactCreatableSelect
+                isMulti
+                options={projectIntakeStepsOptions}
+                {...field}
+              />
             )}
           ></Controller>
           <InputError error={errors.projectPreferences?.projIntakeSteps} />

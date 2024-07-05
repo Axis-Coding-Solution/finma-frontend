@@ -1,19 +1,25 @@
+import { useOnboardingInnovatorsMutation } from "@/api/hooks/onboarding";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { InputError } from "@/components/ui/input-error";
 import { Label } from "@/components/ui/label";
+import { useOnboardingForm } from "@/store/hooks";
+import { errorToast, successToast } from "@/utils";
 import { FORM_MODE } from "@/utils/constants";
 import { termsAndConditionsInitialValues } from "@/utils/initial-values";
 import { termsAndConditionsSchema } from "@/utils/validation-schemas";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Controller, useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 export const TermsAndConditionsForm = () => {
   const navigate = useNavigate();
-  const handleCancel = () => {
-    navigate(-1);
-  };
+  const { getFormData, clearFormData } = useOnboardingForm();
+
+  const [searchParams] = useSearchParams();
+  const role = searchParams.get("role");
+  const handleCancel = () => navigate(`/onboarding/${role}?redirectedFrom=t&c`);
+  const { mutateAsync } = useOnboardingInnovatorsMutation();
 
   const {
     control,
@@ -27,8 +33,22 @@ export const TermsAndConditionsForm = () => {
 
   const onSubmitHandler = async (
     data: typeof termsAndConditionsInitialValues
-  ) => console.log("data: ", data);
-
+  ) => {
+    if (!data.isAgreedForTerms || !data.isAgreedForPrivacyPolicy) return null;
+    const form = getFormData();
+    const navigateRole = role ?? "innovators";
+    if (!form) navigate(`/onboarding/${navigateRole}`);
+    try {
+      await mutateAsync({ role, ...form });
+      clearFormData();
+      successToast("Onboarding Completed!");
+      navigate("/dashboard/community-feed", {
+        replace: true,
+      });
+    } catch (error: any) {
+      errorToast(error?.message);
+    }
+  };
   return (
     <form
       onSubmit={handleSubmit(onSubmitHandler)}

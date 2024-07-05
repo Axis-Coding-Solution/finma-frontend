@@ -95,7 +95,7 @@ export const onboardingExpertsInitialValues = {
     projIntakeSteps: [],
   },
   rate: {
-    contractualPref: "",
+    contractualPref: null,
     currency: "",
     hourlyRate: 0,
     monthlyRate: 0,
@@ -108,7 +108,7 @@ export const onboardingMentorsInitialValues = {
   professionalInfo: {
     jobTitle: "",
     companyName: "",
-    industry: "",
+    industry: null,
   },
   communityServiceOffer: {
     startUpDevModules: [],
@@ -119,13 +119,14 @@ export const onboardingMentorsInitialValues = {
 
   ...entrepreneurialTrackRecordInitialValues,
   investmentInterest: {
-    ticketSize: {},
-    targetIndustry: {},
+    ticketSize: null,
+    targetIndustry: null,
     prefInvestmentInstrument: [],
-    typicalInvestmentDuration: {},
+    typicalInvestmentDuration: null,
     investmentEvalKPIS: [],
-    prefStartUpTypes: {},
-    annualStartUpInvestment: {},
+    investmentStrategy: null,
+    prefStartUpTypes: null,
+    annualStartUpInvestment: null,
     prefInvestmentRegions: [],
     postInvestmentSupport: [],
   },

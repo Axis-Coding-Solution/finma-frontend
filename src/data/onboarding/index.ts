@@ -1,4 +1,299 @@
-export const mentorsIndustryOptions = [
+export const currentEmploymentStatusOptions = [
+  {
+    value: "Student",
+    label: "Student",
+  },
+  {
+    value: "Startup Employee",
+    label: "Startup Employee",
+  },
+  {
+    value: "Corporate Employee",
+    label: "Corporate Employee",
+  },
+  {
+    value: "Unemployed",
+    label: "Unemployed",
+  },
+  {
+    value: "Freelance",
+    label: "Freelance",
+  },
+  {
+    value: "Own an SME (Small-Medium Enterprise) ",
+    label: "Own an SME (Small-Medium Enterprise) ",
+  },
+  {
+    value: "Startup Solo-founder",
+    label: "Startup Solo-founder",
+  },
+  {
+    value: "Co-Founder at a startup",
+    label: "Co-Founder at a startup",
+  },
+];
+
+export const careerBackgroundOptions = [
+  {
+    value: "Marketing & Communications",
+    label: "Marketing & Communications",
+  },
+  {
+    value: "Design & Graphics",
+    label: "Design & Graphics",
+  },
+  {
+    value: "Development",
+    label: "Development",
+  },
+  {
+    value: "Finance & Accounting",
+    label: "Finance & Accounting",
+  },
+  {
+    value: "Human Resources",
+    label: "Human Resources",
+  },
+  {
+    value: "Consulting & Strategy",
+    label: "Consulting & Strategy",
+  },
+  {
+    value: "Entrepreneurship & Innovation",
+    label: "Entrepreneurship & Innovation",
+  },
+];
+
+export const skillsOptions = [
+  { value: "Business Strategy", label: "Business Strategy" },
+  { value: "Market Research", label: "Market Research" },
+  { value: "Financial Planning", label: "Financial Planning" },
+  { value: "UI/UX Design", label: "UI/UX Design" },
+  { value: "Product Development", label: "Product Development" },
+  { value: "SEO/SEM", label: "SEO/SEM" },
+  { value: "Web Development", label: "Web Development" },
+  { value: "Branding", label: "Branding" },
+  { value: "Mobile App Development", label: "Mobile App Development" },
+  { value: "Digital Marketing", label: "Digital Marketing" },
+  { value: "Content Marketing", label: "Content Marketing" },
+  { value: "Social Media Marketing", label: "Social Media Marketing" },
+  { value: "Copywriting", label: "Copywriting" },
+  { value: "Legal and Compliance", label: "Legal and Compliance" },
+  { value: "Fundraising", label: "Fundraising" },
+  { value: "Pitch Deck Creation", label: "Pitch Deck Creation" },
+  { value: "Sales Strategy", label: "Sales Strategy" },
+  { value: "Operations Management", label: "Operations Management" },
+  { value: "Supply Chain Management", label: "Supply Chain Management" },
+  { value: "Data Analysis", label: "Data Analysis" },
+  { value: "Machine Learning/AI", label: "Machine Learning/AI" },
+  { value: "Cybersecurity", label: "Cybersecurity" },
+  { value: "Cloud Computing", label: "Cloud Computing" },
+  { value: "Human Resources", label: "Human Resources" },
+  { value: "Customer Service", label: "Customer Service" },
+  { value: "Project Management", label: "Project Management" },
+  { value: "Agile/Scrum", label: "Agile/Scrum" },
+];
+
+export const communityGoalsOptions = [
+  {
+    value: "Networking with other founders",
+    label: "Networking with other founders",
+  },
+  { value: "Seeking mentorship", label: "Seeking mentorship" },
+  { value: "Gaining market insights", label: "Gaining market insights" },
+  { value: "Learning new skills", label: "Learning new skills" },
+  {
+    value: "Finding co-founders or team members",
+    label: "Finding co-founders or team members",
+  },
+];
+
+const currYear = new Date().getFullYear();
+export const yearsOptions: number[] = [];
+for (let i = 1900; i <= currYear; i++) yearsOptions.push(i);
+
+export const currenciesOptions = [
+  {
+    value: "$ USD",
+    label: "$ USD",
+  },
+  {
+    value: "€ EUR",
+    label: "€ EUR",
+  },
+  {
+    value: "¥ CNA",
+    label: "¥ CNA",
+  },
+];
+
+export const genderOptions = [
+  { value: "Male", label: "Male" },
+  { value: "Female", label: "Female" },
+  { value: "Non-binary", label: "Non-binary" },
+  { value: "Genderqueer", label: "Genderqueer" },
+  { value: "Agender", label: "Agender" },
+  { value: "Transgender", label: "Transgender" },
+  { value: "Gender Fluid", label: "Gender Fluid" },
+  { value: "Prefer not to say", label: "Prefer not to say" },
+];
+
+export const currentEmploymentTypeOptions = [
+  { value: "I am a student", label: "I am a student" },
+  {
+    value: "I am looking for a Full-Time job",
+    label: "I am looking for a Full-Time job",
+  },
+  {
+    value: "I am working Full-Time and looking for a side project",
+    label: "I am working Full-Time and looking for a side project",
+  },
+  {
+    value: "I am looking for a Part-Time job",
+    label: "I am looking for a Part-Time job",
+  },
+  {
+    value: "I am a Full-Time freelancer",
+    label: "I am a Full-Time freelancer",
+  },
+  {
+    value: "I am a Part-Time freelancer",
+    label: "I am a Part-Time freelancer",
+  },
+  {
+    value: "I am part of a service agency",
+    label: "I am part of a service agency",
+  },
+  {
+    value: "I am an entrepreneur working on my own startup",
+    label: "I am an entrepreneur working on my own startup",
+  },
+  {
+    value: "I am semi-retired and looking for occasional projects",
+    label: "I am semi-retired and looking for occasional projects",
+  },
+];
+
+export const workCompensationOptions = [
+  {
+    value: "Fees (hourly/project-based)",
+    label: "Fees (hourly/project-based)",
+  },
+  { value: "Equity", label: "Equity" },
+  { value: "Reduced fees and equity", label: "Reduced fees and equity" },
+  {
+    value: "Reduced fees and promise to hire",
+    label: "Reduced fees and promise to hire",
+  },
+  { value: "Revenue share", label: "Revenue share" },
+  { value: "Pro bono", label: "Pro bono" },
+];
+
+export const projectSelectionCriteriaOptions = [
+  {
+    value: "Industry preferences (e.g., FinTech, HealthTech, EdTech, etc.)",
+    label: "Industry preferences (e.g., FinTech, HealthTech, EdTech, etc.)",
+  },
+  {
+    value: "Investment stage preferences (pre-seed, seed, Series A, etc.)",
+    label: "Investment stage preferences (pre-seed, seed, Series A, etc.)",
+  },
+  { value: "Project scope and timeline", label: "Project scope and timeline" },
+  { value: "Startup team experience", label: "Startup team experience" },
+  { value: "Market potential", label: "Market potential" },
+  { value: "Social impact", label: "Social impact" },
+  { value: "Innovation level", label: "Innovation level" },
+  { value: "Funding status", label: "Funding status" },
+  { value: "Geographic location", label: "Geographic location" },
+];
+
+export const projectIntakeStepsOptions = [
+  {
+    value: "Discovery call → Power hours → Quotation → Contract signature",
+    label: "Discovery call → Power hours → Quotation → Contract signature",
+  },
+  { value: "RFQ → Contract signature", label: "RFQ → Contract signature" },
+  {
+    value: "Initial consultation → Proposal → Contract",
+    label: "Initial consultation → Proposal → Contract",
+  },
+  {
+    value: "Needs assessment → Proposal → Agreement",
+    label: "Needs assessment → Proposal → Agreement",
+  },
+  {
+    value: "Briefing → Estimation → Approval",
+    label: "Briefing → Estimation → Approval",
+  },
+  {
+    value: "Consultation → Planning → Agreement",
+    label: "Consultation → Planning → Agreement",
+  },
+  {
+    value: "Initial meeting → Strategy session → Contract",
+    label: "Initial meeting → Strategy session → Contract",
+  },
+];
+
+export const contractualPreferenceOptions = [
+  { value: "Hourly rate", label: "Hourly rate" },
+  { value: "Fixed project price", label: "Fixed project price" },
+  { value: "Milestone-based payment", label: "Milestone-based payment" },
+  { value: "Advance payment required", label: "Advance payment required" },
+  { value: "Retainer agreement", label: "Retainer agreement" },
+  { value: "Employment contract", label: "Employment contract" },
+  { value: "Performance-based pay", label: "Performance-based pay" },
+];
+
+export const entrepreneurialStageOptions = [
+  {
+    heading: "Early-Stage Dreamer",
+    subheading: "I have a great idea and am looking to explore its potential",
+  },
+  {
+    heading: "Aspiring Entrepreneur",
+    subheading:
+      "I'm eager to start a business but need guidance to get started",
+  },
+  {
+    heading: "Startup Builder",
+    subheading: "I'm developing a startup and working on its launch",
+  },
+  {
+    heading: "Growth Seeker",
+    subheading:
+      "My startup is up and running, and I'm focused on scaling and growing it",
+  },
+  {
+    heading: "Serial Entrepreneur",
+    subheading: "I've started multiple businesses and aim to keep innovating",
+  },
+  {
+    heading: "Tech Innovator",
+    subheading: "I'm focused on developing cutting-edge technology solutions.",
+  },
+  {
+    heading: "Market Strategist",
+    subheading:
+      "I excel at spotting market opportunities and crafting success strategies",
+  },
+  {
+    heading: "Impact Creator",
+    subheading:
+      "I'm driven by creating social or environmental impact through my ventures",
+  },
+  {
+    heading: "Creative Visionary ",
+    subheading:
+      "I excel at turning creative ideas into innovative business models",
+  },
+  {
+    heading: "Regional Pioneers",
+    subheading: "I'm committed to pioneering startup success in my community",
+  },
+];
+
+export const IndustryOptions = [
   {
     value: "Technology & IT",
     label: "Technology & IT",
@@ -65,7 +360,7 @@ export const mentorsIndustryOptions = [
   },
 ];
 
-export const mentorsStartupModulesOptions = [
+export const StartupModulesOptions = [
   {
     value: "Idea and Problem Validation",
     label: "Idea and Problem Validation",
@@ -399,8 +694,8 @@ export const mentorsStartupModulesOptions = [
         label: "Connect with industry leaders and potential partners.",
       },
       {
-        value: "Organize mentorship programs and networking sessions.",
-        label: "Organize mentorship programs and networking sessions.",
+        value: "Organize hip programs and networking sessions.",
+        label: "Organize hip programs and networking sessions.",
       },
       {
         value: "Track and report on community engagement metrics.",
@@ -410,7 +705,7 @@ export const mentorsStartupModulesOptions = [
   },
 ];
 
-export const mentorsCommunityGoalsOptions = [
+export const CommunityGoalsOptions = [
   {
     value: "Help founders build products people love",
     label: "Help founders build products people love",
@@ -448,7 +743,22 @@ export const mentorsCommunityGoalsOptions = [
     label: "Other (please specify)",
   },
 ];
-export const mentorsTicketSizeOptions = [
+
+export const investmentStrategyOptions = [
+  {
+    value: "Active involvement (e.g., board membership, mentorship)",
+    label: "Active involvement (e.g., board membership, mentorship)",
+  },
+  {
+    value: "Passive investment",
+    label: "Passive investment",
+  },
+  {
+    value: "Hands-on guidance and support",
+    label: "Hands-on guidance and support",
+  },
+];
+export const TicketSizeOptions = [
   {
     value: "Micro investments (e.g., <$25,000)",
     label: "Micro investments (e.g., <$25,000)",
@@ -470,7 +780,7 @@ export const mentorsTicketSizeOptions = [
     label: "Other, please specify",
   },
 ];
-export const mentorsTargetIndustryOptions = [
+export const TargetIndustryOptions = [
   {
     value: "Technology & IT",
     label: "Technology & IT",
@@ -536,7 +846,7 @@ export const mentorsTargetIndustryOptions = [
     label: "Miscellaneous",
   },
 ];
-export const mentorsPrefInvestmentInstrumentOptions = [
+export const PrefInvestmentInstrumentOptions = [
   {
     value: "Equity",
     label: "Equity",
@@ -560,9 +870,9 @@ export const mentorsPrefInvestmentInstrumentOptions = [
   {
     value: "Other, please specify",
     label: "Other, please specify",
-  }
+  },
 ];
-export const mentorsTypicalInvestmentDurationOptions = [
+export const TypicalInvestmentDurationOptions = [
   {
     value: "Short-term (<1 year)",
     label: "Short-term (<1 year)",
@@ -574,9 +884,9 @@ export const mentorsTypicalInvestmentDurationOptions = [
   {
     value: "Long-term (3+ years)",
     label: "Long-term (3+ years)",
-  }
+  },
 ];
-export const mentorsInvestmentEvalKPISOptions = [
+export const InvestmentEvalKPISOptions = [
   {
     value: "Market size",
     label: "Market size",
@@ -596,9 +906,9 @@ export const mentorsInvestmentEvalKPISOptions = [
   {
     value: "Other, please specify",
     label: "Other, please specify",
-  }
+  },
 ];
-export const mentorsPrefStartUpTypesOptions = [
+export const PrefStartUpTypesOptions = [
   {
     value: "Idea stage",
     label: "Idea stage",
@@ -616,7 +926,7 @@ export const mentorsPrefStartUpTypesOptions = [
     label: "Mature-stage",
   },
 ];
-export const mentorsAnnualStartUpInvestmentOptions = [
+export const AnnualStartUpInvestmentOptions = [
   {
     value: "1-5",
     label: "1-5",
@@ -634,7 +944,7 @@ export const mentorsAnnualStartUpInvestmentOptions = [
     label: "20+",
   },
 ];
-export const mentorsPrefInvestmentRegionsOptions = [
+export const PrefInvestmentRegionsOptions = [
   {
     value: "North America",
     label: "North America",
@@ -656,10 +966,10 @@ export const mentorsPrefInvestmentRegionsOptions = [
     label: "Other, please specify",
   },
 ];
-export const mentorsPostInvestmentSupportOptions = [
+export const PostInvestmentSupportOptions = [
   {
-    value: "Mentorship",
-    label: "Mentorship",
+    value: "hip",
+    label: "hip",
   },
   {
     value: "Operational support",
@@ -672,5 +982,5 @@ export const mentorsPostInvestmentSupportOptions = [
   {
     value: "Other, please specify",
     label: "Other, please specify",
-  }
+  },
 ];

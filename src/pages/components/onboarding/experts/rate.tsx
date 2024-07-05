@@ -1,18 +1,15 @@
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Controller } from "react-hook-form";
 import { InputError } from "@/components/ui/input-error";
-import { compensationOptions } from "@/data/dashboard/experts";
 import { SectionHeading } from "../../common";
 import { ExpertsOnboardingPropTypes } from "@/definitions/types/onboarding";
 import { ReactCreatableSelect } from "@/components/ui/creatable-select";
+import {
+  contractualPreferenceOptions,
+  currenciesOptions,
+} from "@/data/onboarding";
+import { ReactSelect } from "@/components/ui/react-select";
 
 export const Rate = ({
   control,
@@ -25,13 +22,16 @@ export const Rate = ({
       <div className="grid grid-cols-1 gap-4 mt-4">
         <div className="flex flex-col lg:flex-row gap-3">
           <div className="w-full">
-            <Label htmlFor="rate.contractualPref">
-              Contractual preference{" "}
-            </Label>
+            <Label htmlFor="rate.contractualPref">Contractual preference</Label>
             <Controller
               name="rate.contractualPref"
               control={control}
-              render={({ field }) => <ReactCreatableSelect {...field} />}
+              render={({ field }) => (
+                <ReactCreatableSelect
+                  options={contractualPreferenceOptions}
+                  {...field}
+                />
+              )}
             ></Controller>
             <InputError error={errors.rate?.contractualPref} />
           </div>
@@ -41,23 +41,9 @@ export const Rate = ({
               name="rate.currency"
               control={control}
               render={({ field }) => (
-                <Select
-                  value={field.value}
-                  onValueChange={(e) => field.onChange(e)}
-                >
-                  <SelectTrigger id="rate.currency">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {compensationOptions.map((item) => (
-                      <SelectItem key={item} value={item}>
-                        {item}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                <ReactSelect {...field} options={currenciesOptions} />
               )}
-            ></Controller>
+            />
             <InputError error={errors.rate?.currency} />
           </div>
         </div>

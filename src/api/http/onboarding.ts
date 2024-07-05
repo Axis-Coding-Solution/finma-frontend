@@ -49,31 +49,9 @@ export const saveUserQuestionaryApi = async (
   }
 };
 
-export const startOnboardingInnovators = async (
-  body: InnovatorsOnboardingValuesType
-) => {
+export const startOnboardingApi = async ({ role, ...body }: any) => {
   try {
-    const res = await post("/onboarding/innovators", body);
-    return res.data;
-  } catch (error: any) {
-    return Promise.reject(apiErrorHandler(error));
-  }
-};
-export const startOnboardingExperts = async (
-  body: ExpertOnboardingValuesType
-) => {
-  try {
-    const res = await post("/onboarding/experts", body);
-    return res.data;
-  } catch (error: any) {
-    return Promise.reject(apiErrorHandler(error));
-  }
-};
-export const startOnboardingMentors = async (
-  body: MentorsOnboardingValuesType
-) => {
-  try {
-    const res = await post("/onboarding/mentors", body);
+    const res = await post(`/onboarding/${role}`, body);
     return res.data;
   } catch (error: any) {
     return Promise.reject(apiErrorHandler(error));

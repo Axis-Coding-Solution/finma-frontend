@@ -2,13 +2,9 @@ import { Label } from "@/components/ui/label";
 import { SectionHeading } from "../../common";
 import { InputError } from "@/components/ui/input-error";
 import { Controller } from "react-hook-form";
-import { currentEmploymentStatus } from "@/data/dashboard/experts";
-import {
-  careerBackgroundOptions,
-  skillsOptions,
-} from "@/data/dashboard/innovators";
 import { ReactCreatableSelect } from "@/components/ui/creatable-select";
 import { InnovatorsOnboardingPropTypes } from "@/definitions/types/onboarding";
+import { careerBackgroundOptions, currentEmploymentStatusOptions, skillsOptions } from "@/data/onboarding";
 
 export const ProfessionalInfo = ({
   control,
@@ -26,7 +22,7 @@ export const ProfessionalInfo = ({
             name="professionalInfo.currEmpStatus"
             control={control}
             render={({ field }) => (
-              <ReactCreatableSelect options={[]} {...field} />
+              <ReactCreatableSelect options={currentEmploymentStatusOptions} {...field} />
             )}
           ></Controller>
           <InputError error={errors.professionalInfo?.currEmpStatus} />

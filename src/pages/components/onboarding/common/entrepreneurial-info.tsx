@@ -1,21 +1,15 @@
 import { SectionHeading } from "@/pages/components/common";
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Controller, useFieldArray } from "react-hook-form";
 import { InputError } from "@/components/ui/input-error";
-import { industry } from "@/data/dashboard/innovators";
 import { Button } from "@/components/ui/button";
 import { Plus, Trash2 } from "lucide-react";
 import { startUpInitialValues } from "@/utils/initial-values";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Textarea } from "@/components/ui/textarea";
+import { IndustryOptions, currenciesOptions } from "@/data/onboarding";
+import { ReactSelect } from "@/components/ui/react-select";
 
 export const EntrepreneurialInfo = ({ control, errors, register }: any) => {
   const { fields, append, remove } = useFieldArray({
@@ -74,23 +68,7 @@ export const EntrepreneurialInfo = ({ control, errors, register }: any) => {
                     name={`entrepTrackRecord.startUps.${index}.industry`}
                     control={control}
                     render={({ field }) => (
-                      <Select
-                        value={field.value}
-                        onValueChange={(e) => field.onChange(e)}
-                      >
-                        <SelectTrigger
-                          id={`entrepTrackRecord.startUps.${index}.industry`}
-                        >
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {industry.map((item) => (
-                            <SelectItem key={item} value={item}>
-                              {item}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
+                      <ReactSelect options={IndustryOptions} {...field} />
                     )}
                   ></Controller>
                   <InputError
@@ -220,8 +198,8 @@ export const EntrepreneurialInfo = ({ control, errors, register }: any) => {
                     </Label>
                   </div>
 
-                  <div>
-                    <div className="flex gap-4">
+                  <div className="grid grid-cols-2 items-center gap-2">
+                    <div>
                       <Input
                         type="number"
                         id={`entrepTrackRecord.startUps.${index}.lastYearRevenue.amount`}
@@ -235,31 +213,14 @@ export const EntrepreneurialInfo = ({ control, errors, register }: any) => {
                             ?.lastYearRevenue?.amount
                         }
                       />
-
-                      <Controller
-                        name={`entrepTrackRecord.startUps.${index}.lastYearRevenue.currency`}
-                        control={control}
-                        render={({ field }) => (
-                          <Select
-                            value={field.value}
-                            onValueChange={(e) => field.onChange(e)}
-                          >
-                            <SelectTrigger
-                              id={`entrepTrackRecord.startUps.${index}.lastYearRevenue`}
-                            >
-                              <SelectValue />
-                            </SelectTrigger>
-                            <SelectContent>
-                              {industry.map((item) => (
-                                <SelectItem key={item} value={item}>
-                                  {item}
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-                        )}
-                      />
                     </div>
+                    <Controller
+                      name={`entrepTrackRecord.startUps.${index}.lastYearRevenue.currency`}
+                      control={control}
+                      render={({ field }) => (
+                        <ReactSelect {...field} options={currenciesOptions} />
+                      )}
+                    />
                   </div>
                 </div>
                 <div className="flex flex-col gap-2 w-full">
@@ -269,8 +230,8 @@ export const EntrepreneurialInfo = ({ control, errors, register }: any) => {
                     </Label>
                   </div>
 
-                  <div>
-                    <div className="flex gap-4">
+                  <div className="grid grid-cols-2 items-center gap-2">
+                    <div>
                       <Input
                         type="number"
                         id="entrepTrackRecord.startUps.fundRaised"
@@ -284,31 +245,14 @@ export const EntrepreneurialInfo = ({ control, errors, register }: any) => {
                             ?.fundRaised?.amount
                         }
                       />
-
-                      <Controller
-                        name={`entrepTrackRecord.startUps.${index}.fundRaised.currency`}
-                        control={control}
-                        render={({ field }) => (
-                          <Select
-                            value={field.value}
-                            onValueChange={(e) => field.onChange(e)}
-                          >
-                            <SelectTrigger
-                              id={`entrepTrackRecord.startUps.${index}.fundRaised.currency`}
-                            >
-                              <SelectValue />
-                            </SelectTrigger>
-                            <SelectContent>
-                              {industry.map((item) => (
-                                <SelectItem key={item} value={item}>
-                                  {item}
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-                        )}
-                      />
                     </div>
+                    <Controller
+                      name={`entrepTrackRecord.startUps.${index}.fundRaised.currency`}
+                      control={control}
+                      render={({ field }) => (
+                        <ReactSelect {...field} options={currenciesOptions} />
+                      )}
+                    />
                   </div>
                 </div>
               </div>

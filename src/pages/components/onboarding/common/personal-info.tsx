@@ -13,6 +13,7 @@ import {
 } from "@/api/hooks/common";
 import { useEffect } from "react";
 import { classNamesReactSelect } from "@/utils";
+import { genderOptions } from "@/data/onboarding";
 
 export const PersonalInfo = ({
   control,
@@ -22,12 +23,9 @@ export const PersonalInfo = ({
   setValue,
   resetField,
 }: any) => {
+  const countryCode = country?.value;
   const { data: countries, isLoading: countriesLoading } =
     useGetCountriesQuery();
-
-  // const {} = useInfiniteQuery({});
-
-  const countryCode = country?.value;
   const { mutateAsync, data: cities } = useGetCountryCitiesMutation();
 
   useEffect(() => {
@@ -157,7 +155,9 @@ export const PersonalInfo = ({
           <Controller
             name="personalInfo.gender"
             control={control}
-            render={({ field }) => <ReactCreatableSelect {...field} />}
+            render={({ field }) => (
+              <ReactCreatableSelect {...field} options={genderOptions} />
+            )}
           />
           <InputError error={errors.personalInfo?.gender} />
         </div>

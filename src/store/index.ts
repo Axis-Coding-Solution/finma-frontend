@@ -25,3 +25,5 @@ export const chatUserDataHook = hookstate({
 });
 
 export const userMessages = hookstate([] as any[]);
+
+export const onboardingForm = hookstate(null);

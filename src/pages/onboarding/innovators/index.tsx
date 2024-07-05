@@ -16,11 +16,9 @@ import { useForm } from "react-hook-form";
 import { InnovatorsOnboardingValuesType } from "@/definitions/types/onboarding";
 import { onboardingInnovatorsSchema } from "@/utils/validation-schemas/onboarding";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useOnboardingInnovatorsMutation } from "@/api/hooks/onboarding";
-import { errorToast, successToast } from "@/utils";
-import { useNavigate } from "react-router-dom";
-import { MultiLevelSelect } from "@/components/ui/multi-level-select";
-import { onboardingStartupModulesOptions } from "@/data/onboarding/common";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { useOnboardingForm } from "@/store/hooks";
+import { useEffect } from "react";
 
 function InnovatorsOnboardingPage() {
   const navigate = useNavigate();
@@ -31,24 +29,28 @@ function InnovatorsOnboardingPage() {
     setValue,
     resetField,
     watch,
+    reset,
     formState: { errors },
   } = useForm({
     defaultValues: onboardingInnovatorsInitialValues,
     resolver: yupResolver(onboardingInnovatorsSchema as any),
   });
 
-  const { mutateAsync } = useOnboardingInnovatorsMutation();
+  const { setFormData, getFormData, clearFormData } = useOnboardingForm();
+  const [searchParams] = useSearchParams();
+  const redirectedFrom = searchParams.get("redirectedFrom");
+
+  useEffect(() => {
+    const formData = getFormData();
+    if (redirectedFrom && formData) {
+      reset(formData);
+    }
+    if (formData && !redirectedFrom) clearFormData();
+  }, [redirectedFrom]);
 
   const onSubmitHandler = async (values: InnovatorsOnboardingValuesType) => {
-    try {
-      const response = await mutateAsync(values);
-      successToast(response.message);
-      navigate("/dashboard/overview", {
-        replace: true,
-      });
-    } catch (error: any) {
-      errorToast(error.message);
-    }
+    setFormData(values);
+    navigate("/onboarding/terms-conditions?role=innovators");
   };
 
   const commonProps = {
@@ -65,7 +67,6 @@ function InnovatorsOnboardingPage() {
         heading="Lets create your innovator profile"
         paragraph="Please tell us about your expertise to help us set up your profile message. It will help innovators learn about your expertise and experience."
       />
-      <MultiLevelSelect options={onboardingStartupModulesOptions} />
       <form onSubmit={handleSubmit(onSubmitHandler)}>
         <div className="flex flex-col lg:flex-row gap-10 items-start">
           <div className="w-[25%]">
