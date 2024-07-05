@@ -1,4 +1,11 @@
-import { string, object, number, array, date } from "@/utils/constants";
+import {
+  string,
+  object,
+  number,
+  array,
+  date,
+  boolean,
+} from "@/utils/constants";
 
 export const userQuestionarySchema = object({
   country: string().trim().label("Country").required(),
@@ -122,3 +129,12 @@ export const onboardingMentorsSchema = {
     postInvestmentSupport: string().trim().required(),
   },
 };
+
+export const termsAndConditionsSchema = object({
+  isAgreedForTerms: boolean()
+    .required()
+    .isTrue("Please agree with terms and conditions!"),
+  isAgreedForPrivacyPolicy: boolean()
+    .required()
+    .isTrue("Please agree with privacy policy!"),
+});

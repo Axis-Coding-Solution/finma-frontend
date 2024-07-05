@@ -63,7 +63,7 @@ const entrepreneurialTrackRecordInitialValues = {
 export const onboardingInnovatorsInitialValues = {
   ...commonOnboardingInitialValues,
   professionalInfo: {
-    currEmpStatus: "",
+    currEmpStatus: null,
     careerBackground: [],
     skills: [],
   },
@@ -129,4 +129,9 @@ export const onboardingMentorsInitialValues = {
     prefInvestmentRegions: [],
     postInvestmentSupport: [],
   },
+};
+
+export const termsAndConditionsInitialValues = {
+  isAgreedForTerms: false,
+  isAgreedForPrivacyPolicy: false,
 };

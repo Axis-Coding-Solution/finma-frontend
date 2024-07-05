@@ -3,6 +3,7 @@ import countriesList from "./countries";
 export { object, string, number, boolean, array, ref, mixed, date } from "yup";
 export { yupResolver } from "@hookform/resolvers/yup";
 export const FORM_MODE = "onChange";
+export const DEBOUNCE_TIME = 300;
 
 const countriesOptions = countriesList.map((country) => ({
   value: country.name.toLowerCase().replaceAll(" ", "_"),

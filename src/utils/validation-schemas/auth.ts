@@ -27,21 +27,11 @@ export const resetPasswordSchema = object({
     .oneOf([ref("password")], "Passwords must match!"),
 });
 
-
-export const termsSchema = object({
-  isAgreeServicesTerms: boolean()
-  .required()
-  .isTrue("Please agree with terms and conditions!"),
-  isAgreeServicesPolicy: boolean()
-  .required()
-  .isTrue("Please agree with terms and conditions!"),
-})
-
 export const privacyPolicySchema = object({
   isAgreeServicesTerms: boolean()
-  .required()
-  .isTrue("Please agree with terms and conditions!"),
+    .required()
+    .isTrue("Please agree with terms and conditions!"),
   isAgreeServicesPolicy: boolean()
-  .required()
-  .isTrue("Please agree with terms and conditions!"),
-})
+    .required()
+    .isTrue("Please agree with terms and conditions!"),
+});
