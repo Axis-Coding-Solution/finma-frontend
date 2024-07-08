@@ -1,6 +1,6 @@
 export const dashboardProjectsInitialValues = {
   name: "",
   tagline: "",
-  logoImage: null,
+  log0Image: null,
   bio: "",
 };

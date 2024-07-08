@@ -40,6 +40,7 @@ export const ProjectEditModal = ({ projectId }: { projectId: string }) => {
     try {
       const response = await put(`/projects/${projectId}`, values);
       successToast("Updated Successfully");
+      console.log("🚀 ~ ProjectEditModal ~ values:", values)
     } catch (error: any) {
       errorToast(error.message);
     }

@@ -28,6 +28,7 @@ const ProjectAddModal = () => {
   ) => {
     try {
       const response = await post("/projects", values);
+      console.log("🚀 ~ ProjectAddModal ~ values:", values)
       console.log("Response:", response);
 
       successToast("Project created successfully");
@@ -58,7 +59,9 @@ const ProjectAddModal = () => {
             onSubmit={handleSubmit(onsubmitHandler)}
             className="flex flex-col gap-4"
           >
-            <ProjectForm {...commonProps} />
+            <ProjectForm {...commonProps}
+               errors={errors}
+               />
             <div className="flex items-center justify-between gap-4">
               <Button type="button" variant="outline" className="w-full">
                 Cancel

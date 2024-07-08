@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { get } from "@/utils/axios";
 
 export const ProjectForm = ({
-  register,
+  register, 
   control,
   errors,
   data,
@@ -20,9 +20,9 @@ export const ProjectForm = ({
       reset({
         name: response?.data.data.name || "",
         tagline: response?.data.data.tagline || "",
-        logoImage: null,
-        bio: response?.data.data.bio || "" ,
-      })
+        logoImage: response?.data.data.profilePicture || "",
+        bio: response?.data.data.bio || "",
+      });
       console.log("🚀 ~ getProjectById ~ response:", response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -30,13 +30,10 @@ export const ProjectForm = ({
   };
 
   useEffect(() => {
-    if(id){
+    if (id) {
       getProjectById();
     }
   }, [id]);
-
-
-  
 
   console.log("🚀 ~ ProjectEditModal ~ project:", project?.name);
 
@@ -60,7 +57,7 @@ export const ProjectForm = ({
         </div>
         <div className="md:max-w-[45%] w-full">
           <Label>Project Logo</Label>
-          {/* <FileUpload text="Upload project logo" /> */}
+          <FileUpload register={register} errors={errors} name="logoImage"  />
         </div>
       </div>
       <div>
