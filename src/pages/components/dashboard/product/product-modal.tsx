@@ -101,7 +101,7 @@ const ProductModal = ({
               <DialogHeader className="flex">
                 <DialogTitle className="text-left ">
                   <div className="flex gap-3">
-                    <div>Soultions.</div>
+                    <div>Solution.</div>
                     <div className="flex items-center gap-1">
                       <span
                         className={cn(

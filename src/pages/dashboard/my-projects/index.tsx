@@ -1,9 +1,7 @@
-import logoimage from "@/assets/images/logoimage.png";
 import { MainHeading } from "@/pages/components/common";
 import ProjectCard from "@/pages/components/dashboard/my-projects/card";
 import ProjectAddModal from "@/pages/components/dashboard/my-projects/project-add-modal";
 import { get } from "@/utils/axios";
-import axios from "axios";
 import { useEffect, useState } from "react";
 
 const MyProjectsPage = () => {
@@ -21,9 +19,6 @@ const MyProjectsPage = () => {
     fetchData();
   }, []);
 
-  console.log("project",projectCardArray)
-
-  
   return (
     <>
       <div>

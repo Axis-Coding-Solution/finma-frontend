@@ -5,9 +5,11 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
+  DialogClose,
 } from "@/components/ui/dialog";
+
 import { errorToast, successToast } from "@/utils";
-import axios from "axios";
+import { del } from "@/utils/axios";
 import { Trash2 } from "lucide-react";
 export const ProjectDeleteModal = ({
   projectName,
@@ -16,16 +18,14 @@ export const ProjectDeleteModal = ({
   projectName: string;
   projectId: string;
 }) => {
-  console.log("🚀 ~ id:", projectId);
-  console.log("🚀 ~ ProjectDeleteModal ~ name:", projectName);
-  const deleteData = (projectId) => {
+  async function deleteProject(id: string) {
     try {
-      const response = axios.delete(`/projects/${projectId}`);
-      successToast("Deleted Successfully");
+      const response = await del(`/projects/${id}`);
+      successToast(response?.data?.message);
     } catch (error) {
-      errorToast("Something went wrong");
+      errorToast(error);
     }
-  };
+  }
 
   return (
     <div>
@@ -45,23 +45,25 @@ export const ProjectDeleteModal = ({
           <div>
             <p>
               You are about to delete
-              <span className="font-bold"> {projectName}</span>. All
-              associated data will also be deleted. This action cannot be
-              undone. Are you sure you want to delete
+              <span className="font-bold"> {projectName}</span>. All associated
+              data will also be deleted. This action cannot be undone. Are you
+              sure you want to delete
               <span className="font-bold"> {projectName}?</span>
             </p>
           </div>
           <div className="flex items-center justify-between gap-4">
-            <Button variant="outline" className="w-full">
-              Cancel
-            </Button>
-            <Button
-              variant="destructive"
-              onClick={() => deleteData(projectId)}
-              className="w-full"
-            >
-              Delete
-            </Button>
+            <DialogClose asChild>
+              <Button variant="outline" className="w-full">
+                Cancel
+              </Button>
+            </DialogClose>
+              <Button
+                variant="destructive"
+                onClick={() => deleteProject(projectId)}
+                className="w-full"
+              >
+                Delete
+              </Button>
           </div>
         </DialogContent>
       </Dialog>
