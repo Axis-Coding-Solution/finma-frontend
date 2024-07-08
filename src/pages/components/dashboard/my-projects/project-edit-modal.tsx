@@ -15,7 +15,7 @@ import { useForm } from "react-hook-form";
 import { dashboardProjectsInitialValues } from "@/utils/initial-values/dashboard/Projects";
 import { get, put } from "@/utils/axios";
 import { useEffect, useState } from "react";
-import { errorToast, successToast } from "@/utils";
+import { createFormData, errorToast, successToast } from "@/utils";
 export const ProjectEditModal = ({ projectId }: { projectId: string }) => {
   const [project, setProject] = useState<any>({});
 
@@ -24,6 +24,7 @@ export const ProjectEditModal = ({ projectId }: { projectId: string }) => {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors },
   } = useForm({
     defaultValues: dashboardProjectsInitialValues,
@@ -32,15 +33,17 @@ export const ProjectEditModal = ({ projectId }: { projectId: string }) => {
     control,
     register,
     errors,
+    watch,
   };
 
   const onsubmitHandler = async (
     values: typeof dashboardProjectsInitialValues
   ) => {
     try {
-      const response = await put(`/projects/${projectId}`, values);
+      const formData = createFormData(values)
+      const response = await put(`/projects/${projectId}`, formData);
       successToast("Updated Successfully");
-      console.log("🚀 ~ ProjectEditModal ~ values:", values)
+      console.log("🚀 ~ ProjectEditModal ~ values:", values);
     } catch (error: any) {
       errorToast(error.message);
     }

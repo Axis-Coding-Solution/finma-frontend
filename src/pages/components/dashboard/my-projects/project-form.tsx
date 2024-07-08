@@ -1,19 +1,17 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import FileUpload from "@/components/ui/file-upload";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { get } from "@/utils/axios";
 
 export const ProjectForm = ({
-  register, 
+  register,
   control,
   errors,
-  data,
+  watch,
   reset,
   id,
 }: any) => {
-  const [project, setProject] = useState<any>({});
-
   const getProjectById = async () => {
     try {
       const response = await get(`/projects/${id}`);
@@ -35,8 +33,7 @@ export const ProjectForm = ({
     }
   }, [id]);
 
-  console.log("🚀 ~ ProjectEditModal ~ project:", project?.name);
-
+  const image = watch("logoImage");
   return (
     <div>
       <div className="flex flex-col w-full md:flex-row gap-5 items-start">
@@ -47,17 +44,19 @@ export const ProjectForm = ({
           </div>
           <div>
             <Label htmlFor="tagline">Tagline</Label>
-            <Input
-              // value={data.tagline}
-              type="text"
-              id="tagline"
-              {...register("tagline")}
-            />
+            <Input type="text" id="tagline" {...register("tagline")} />
           </div>
         </div>
         <div className="md:max-w-[45%] w-full">
           <Label>Project Logo</Label>
-          <FileUpload register={register} errors={errors} name="logoImage"  />
+          <FileUpload
+            control={control}
+            image={image}
+            text="Upload project logo..."
+            register={register}
+            errors={errors}
+            name="logoImage"
+          />
         </div>
       </div>
       <div>

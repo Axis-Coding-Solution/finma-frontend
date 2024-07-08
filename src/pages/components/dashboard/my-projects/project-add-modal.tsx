@@ -10,14 +10,13 @@ import { ProjectForm } from "./project-form";
 import { useForm } from "react-hook-form";
 import { dashboardProjectsInitialValues } from "@/utils/initial-values/dashboard/Projects";
 import { post } from "@/utils/axios";
-import { errorToast, successToast } from "@/utils";
+import { createFormData, errorToast, successToast } from "@/utils";
 const ProjectAddModal = () => {
   const {
     control,
     handleSubmit,
-    reset,
     register,
-
+    watch,
     formState: { errors },
   } = useForm({
     defaultValues: dashboardProjectsInitialValues,
@@ -27,8 +26,9 @@ const ProjectAddModal = () => {
     values: typeof dashboardProjectsInitialValues
   ) => {
     try {
-      const response = await post("/projects", values);
-      console.log("🚀 ~ ProjectAddModal ~ values:", values)
+      const formData= createFormData(values)
+      const response = await post("/projects", formData);
+      console.log("🚀 ~ ProjectAddModal ~ values:", values);
       console.log("Response:", response);
 
       successToast("Project created successfully");
@@ -40,6 +40,7 @@ const ProjectAddModal = () => {
 
   const commonProps = {
     control,
+    watch,
     register,
   };
   return (
@@ -59,9 +60,7 @@ const ProjectAddModal = () => {
             onSubmit={handleSubmit(onsubmitHandler)}
             className="flex flex-col gap-4"
           >
-            <ProjectForm {...commonProps}
-               errors={errors}
-               />
+            <ProjectForm {...commonProps} errors={errors} />
             <div className="flex items-center justify-between gap-4">
               <Button type="button" variant="outline" className="w-full">
                 Cancel

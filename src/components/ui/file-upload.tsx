@@ -11,6 +11,7 @@ type PropTypes = {
   register: any;
   errors: any;
   control: any;
+  name?: string;
 };
 
 const FileUpload = ({
@@ -18,6 +19,7 @@ const FileUpload = ({
   errors,
   control,
   image,
+  name = "profilePicture",
 }: PropTypes) => {
   const [preview, setPreview] = useState<undefined | string>();
   const hiddenInputRef = useRef<any>(null);
@@ -41,10 +43,10 @@ const FileUpload = ({
   }, [image]);
 
   return (
-    <div className="w-full border-2 border-dashed border-border rounded-lg p-5 flex flex-col items-center justify-between gap-4">
+    <div className="max-w-64 max-h-48 w-full h-full border-2 border-dashed border-border rounded-lg p-5 flex flex-col items-center justify-between gap-4">
       <Controller
         control={control}
-        name="profilePicture"
+        name={name}
         render={({ field: { ref, onChange, value, ...others } }) => (
           <Input
             type="file"
@@ -70,7 +72,7 @@ const FileUpload = ({
           >
             <Edit size={20} />
           </span>
-          <img src={preview} width={250} height={300} />
+          <img src={preview} className="w-auto h-auto" />
         </div>
       ) : (
         <>
@@ -80,7 +82,7 @@ const FileUpload = ({
             <Button type="button" onClick={onUpload}>
               Browse files
             </Button>
-            <InputError error={errors.profilePicture} />
+            <InputError error={errors[name]} />
           </div>
         </>
       )}
