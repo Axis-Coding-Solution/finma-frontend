@@ -19,6 +19,7 @@ export default [
       isRestrictedRoute: true,
     },
   },
+ 
   {
     element: <RiskScorePage />,
     path: "lead-magnet/risk-score",
