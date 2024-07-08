@@ -88,7 +88,7 @@ export const classNamesReactSelect: ClassNamesConfig<
       selectProps.isClearable ? "block" : "none"
     ),
   noOptionsMessage: () =>
-    "text-foreground h-8 text-base font-medium flex items-center justify-center",
+    "text-foreground min-h-8 py-2 px-2 text-sm font-medium flex items-center justify-center",
   option: ({ isSelected }) =>
     cn(
       "rounded-sm py-2 px-3 w-full !cursor-pointer",
@@ -131,3 +131,21 @@ export function convertDate(date: any) {
   }
   return formattedDuration;
 }
+
+export const createFormData = (values: any = {}, options: any = {}) => {
+  const { filter = [] } = options;
+  const formData = new FormData();
+  for (const key in values) {
+    if (Object.hasOwnProperty.call(values, key)) {
+      let value = values[key];
+      if (value instanceof File === false && typeof value === "object") {
+        value = JSON.stringify(values[key]);
+      }
+      if (filter.includes(key)) {
+        continue;
+      }
+      formData.append(key, value);
+    }
+  }
+  return formData;
+};

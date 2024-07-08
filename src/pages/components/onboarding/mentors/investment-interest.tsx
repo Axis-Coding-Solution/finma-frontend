@@ -1,26 +1,24 @@
 import { Label } from "@/components/ui/label";
 import { SectionHeading } from "../../common";
-import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { mentorsAnnualStartUpInvestmentOptions, mentorsIndustryOptions, mentorsInvestmentEvalKPISOptions, mentorsPostInvestmentSupportOptions, mentorsPrefInvestmentInstrumentOptions, mentorsPrefInvestmentRegionsOptions, mentorsPrefStartUpTypesOptions,  mentorsTargetIndustryOptions, mentorsTicketSizeOptions, mentorsTypicalInvestmentDurationOptions } from "@/data/dashboard/mentors";
-import { Textarea } from "@/components/ui/textarea";
 import { MentorsOnboardingPropTypes } from "@/definitions/types/onboarding";
 import { Controller } from "react-hook-form";
 import { ReactCreatableSelect } from "@/components/ui/creatable-select";
 import { InputError } from "@/components/ui/input-error";
 import { ReactSelect } from "@/components/ui/react-select";
+import {
+  AnnualStartUpInvestmentOptions,
+  InvestmentEvalKPISOptions,
+  PostInvestmentSupportOptions,
+  PrefInvestmentInstrumentOptions,
+  PrefInvestmentRegionsOptions,
+  PrefStartUpTypesOptions,
+  TargetIndustryOptions,
+  TicketSizeOptions,
+  TypicalInvestmentDurationOptions,
+  investmentStrategyOptions,
+} from "@/data/onboarding";
 
-function InvestmentInterest({
-  control,
-  register,
-  errors,
-}: MentorsOnboardingPropTypes) {
+function InvestmentInterest({ control, errors }: MentorsOnboardingPropTypes) {
   return (
     <div className="flex flex-col gap-4 w-full pt-4">
       <SectionHeading heading="Investment Interest" />
@@ -33,20 +31,10 @@ function InvestmentInterest({
             name="investmentInterest.ticketSize"
             control={control}
             render={({ field }) => (
-              <ReactCreatableSelect options={mentorsTicketSizeOptions} {...field} />
+              <ReactCreatableSelect options={TicketSizeOptions} {...field} />
             )}
           />
           <InputError error={errors.investmentInterest?.ticketSize} />
-          {/* <Select>
-            <SelectTrigger id="mentors-community-service-startup-dev-modules">
-              <SelectValue placeholder="Select startup development modules" />
-            </SelectTrigger>
-            <SelectContent>
-              {mentorsIndustryOptions.map((industry) => (
-                <SelectItem value={industry.value}>{industry.label}</SelectItem>
-              ))}
-            </SelectContent>
-          </Select> */}
         </div>
         <div className="col-span-2">
           <Label htmlFor="mentors-community-service-goals">
@@ -56,20 +44,10 @@ function InvestmentInterest({
             name="investmentInterest.targetIndustry"
             control={control}
             render={({ field }) => (
-              <ReactSelect options={mentorsTargetIndustryOptions} {...field} />
+              <ReactSelect options={TargetIndustryOptions} {...field} />
             )}
           />
           <InputError error={errors.investmentInterest?.targetIndustry} />
-          {/* <Select>
-            <SelectTrigger id="mentors-community-service-goals">
-              <SelectValue placeholder="Select Community Goals" />
-            </SelectTrigger>
-            <SelectContent>
-              {mentorsIndustryOptions.map((industry) => (
-                <SelectItem value={industry.value}>{industry.label}</SelectItem>
-              ))}
-            </SelectContent>
-          </Select> */}
         </div>
         <div className="col-span-2">
           <Label htmlFor="mentors-community-service-hours-week">
@@ -80,16 +58,16 @@ function InvestmentInterest({
             name="investmentInterest.prefInvestmentInstrument"
             control={control}
             render={({ field }) => (
-              <ReactCreatableSelect options={mentorsPrefInvestmentInstrumentOptions} {...field} />
+              <ReactCreatableSelect
+                isMulti
+                options={PrefInvestmentInstrumentOptions}
+                {...field}
+              />
             )}
           />
-          {/* <Input
-            id="mentors-community-service-hours-week"
-            type="number"
-            placeholder="Enter your hours of availability..."
-            {...register("investmentInterest.prefInvestmentInstrument")}
-          /> */}
-          <InputError error={errors.investmentInterest?.prefInvestmentInstrument} />
+          <InputError
+            error={errors.investmentInterest?.prefInvestmentInstrument}
+          />
         </div>
         <div>
           <Label htmlFor="mentors-community-service-personal-bio">
@@ -99,16 +77,15 @@ function InvestmentInterest({
             name="investmentInterest.typicalInvestmentDuration"
             control={control}
             render={({ field }) => (
-              <ReactSelect options={mentorsTypicalInvestmentDurationOptions} {...field} />
+              <ReactSelect
+                options={TypicalInvestmentDurationOptions}
+                {...field}
+              />
             )}
           />
-          {/* <Input
-            id="mentors-community-service-hours-week"
-            type="number"
-            placeholder="Enter your hours of availability..."
-            {...register("investmentInterest.typicalInvestmentDuration")}
-          /> */}
-          <InputError error={errors.investmentInterest?.typicalInvestmentDuration} />
+          <InputError
+            error={errors.investmentInterest?.typicalInvestmentDuration}
+          />
         </div>
         <div>
           <Label htmlFor="mentors-community-service-personal-bio">
@@ -118,12 +95,31 @@ function InvestmentInterest({
             name="investmentInterest.investmentEvalKPIS"
             control={control}
             render={({ field }) => (
-              <ReactCreatableSelect options={mentorsInvestmentEvalKPISOptions} {...field} />
+              <ReactCreatableSelect
+                isMulti
+                options={InvestmentEvalKPISOptions}
+                {...field}
+              />
             )}
           />
           <InputError error={errors.investmentInterest?.investmentEvalKPIS} />
         </div>
-
+        <div>
+          <Label htmlFor="mentors-community-service-personal-bio">
+            Your Investment Strategy
+          </Label>
+          <Controller
+            name="investmentInterest.investmentStrategy"
+            control={control}
+            render={({ field }) => (
+              <ReactCreatableSelect
+                options={investmentStrategyOptions}
+                {...field}
+              />
+            )}
+          />
+          <InputError error={errors.investmentInterest?.investmentStrategy} />
+        </div>
         <div>
           <Label htmlFor="mentors-community-service-personal-bio">
             Preferred startup types
@@ -132,7 +128,7 @@ function InvestmentInterest({
             name="investmentInterest.prefStartUpTypes"
             control={control}
             render={({ field }) => (
-              <ReactSelect options={mentorsPrefStartUpTypesOptions} {...field} />
+              <ReactSelect options={PrefStartUpTypesOptions} {...field} />
             )}
           />
           <InputError error={errors.investmentInterest?.prefStartUpTypes} />
@@ -145,10 +141,15 @@ function InvestmentInterest({
             name="investmentInterest.annualStartUpInvestment"
             control={control}
             render={({ field }) => (
-              <ReactSelect options={mentorsAnnualStartUpInvestmentOptions} {...field} />
+              <ReactSelect
+                options={AnnualStartUpInvestmentOptions}
+                {...field}
+              />
             )}
           />
-          <InputError error={errors.investmentInterest?.annualStartUpInvestment} />
+          <InputError
+            error={errors.investmentInterest?.annualStartUpInvestment}
+          />
         </div>
         <div>
           <Label htmlFor="mentors-community-service-personal-bio">
@@ -158,15 +159,16 @@ function InvestmentInterest({
             name="investmentInterest.prefInvestmentRegions"
             control={control}
             render={({ field }) => (
-              <ReactCreatableSelect options={mentorsPrefInvestmentRegionsOptions} {...field} />
+              <ReactCreatableSelect
+                isMulti
+                options={PrefInvestmentRegionsOptions}
+                {...field}
+              />
             )}
           />
-          <InputError error={errors.investmentInterest?.prefInvestmentRegions} />
-          {/* <Input
-            id="mentors-community-service-hours-week"
-            type="number"
-            placeholder="Enter your hours of availability..."
-            /> */}
+          <InputError
+            error={errors.investmentInterest?.prefInvestmentRegions}
+          />
         </div>
         <div>
           <Label htmlFor="mentors-community-service-personal-bio">
@@ -176,15 +178,16 @@ function InvestmentInterest({
             name="investmentInterest.postInvestmentSupport"
             control={control}
             render={({ field }) => (
-              <ReactCreatableSelect options={mentorsPostInvestmentSupportOptions} {...field} />
+              <ReactCreatableSelect
+                isMulti
+                options={PostInvestmentSupportOptions}
+                {...field}
+              />
             )}
           />
-          <InputError error={errors.investmentInterest?.postInvestmentSupport} />
-          {/* <Input
-            id="mentors-community-service-hours-week"
-            type="number"
-            placeholder="Enter your hours of availability..."
-          /> */}
+          <InputError
+            error={errors.investmentInterest?.postInvestmentSupport}
+          />
         </div>
       </div>
     </div>

@@ -1,4 +1,11 @@
-import { string, object, number, array, date } from "@/utils/constants";
+import {
+  string,
+  object,
+  number,
+  array,
+  date,
+  boolean,
+} from "@/utils/constants";
 
 export const userQuestionarySchema = object({
   country: string().trim().label("Country").required(),
@@ -25,8 +32,8 @@ const commonOnboardingSchema = {
 };
 
 const currencySchema = object({
-  amount: string().optional(),
-  currency: number().required().typeError("Must be a number!"),
+  amount: number().required().typeError("Must be a number!"),
+  currency: object().optional().nullable(),
 });
 
 const entrepreneurialTrackRecordSchema = {
@@ -34,7 +41,7 @@ const entrepreneurialTrackRecordSchema = {
     startUps: array().of(
       object({
         startUpName: string().optional(),
-        industry: string().optional(),
+        industry: object().optional().nullable(),
         startUpAbout: string().optional(),
         role: string().optional(),
         webLink: string().optional(),
@@ -96,29 +103,41 @@ export const onboardingExpertsSchema = object({
   }),
 });
 
-export const onboardingMentorsSchema = {
+export const onboardingMentorsSchema = object({
   ...commonOnboardingSchema,
-  professionalInfo: {
-    jobTitle: string().trim().required(),
-    companyName: string().trim().required(),
-    industry: string().trim().required(),
-  },
-  communityServiceOffer: {
-    startUpDerModules: array().required().min(1),
-    communityGoals: array().required().min(1),
-    personalBio: string().trim().required(),
-  },
+  professionalInfo: object({
+    jobTitle: string().label("Job Title").trim().required(),
+    companyName: string().label("Company Name").trim().required(),
+    industry: object().label("Industry").required(),
+  }),
+  communityServiceOffer: object({
+    startUpDevModules: array()
+      .label("Startup Development Modules")
+      .required()
+      .min(1),
+    communityGoals: array().label("Community Goals").required().min(1),
+  }),
 
   ...entrepreneurialTrackRecordSchema,
-  investmentInterest: {
-    ticketSize: string().trim().required(),
-    targetIndustry: string().trim().required(),
-    prefInvestmentInstrument: string().trim().required(),
-    typicalInvestmentDuration: string().trim().required(),
-    investmentEvalKPIS: array().required().min(1),
-    prefStartUpTypes: array().required().min(1),
-    annualStartUpInvestment: array().required().min(1),
-    prefInvestmentRegions: array().required().min(1),
-    postInvestmentSupport: string().trim().required(),
-  },
-};
+  investmentInterest: object({
+    ticketSize: object().optional().nullable(),
+    targetIndustry: object().optional().nullable(),
+    prefInvestmentInstrument: array().optional(),
+    typicalInvestmentDuration: object().optional().nullable(),
+    investmentEvalKPIS: array().optional(),
+    investmentStrategy: object().optional().nullable(),
+    prefStartUpTypes: object().optional().nullable(),
+    annualStartUpInvestment: object().optional().nullable(),
+    prefInvestmentRegions: array().optional(),
+    postInvestmentSupport: array().optional(),
+  }),
+});
+
+export const termsAndConditionsSchema = object({
+  isAgreedForTerms: boolean()
+    .required()
+    .isTrue("Please agree with terms and conditions!"),
+  isAgreedForPrivacyPolicy: boolean()
+    .required()
+    .isTrue("Please agree with privacy policy!"),
+});

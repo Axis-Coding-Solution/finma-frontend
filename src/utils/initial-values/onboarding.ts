@@ -34,12 +34,12 @@ const commonOnboardingInitialValues = {
 
 const currencyInitialValues = {
   amount: "0",
-  currency: "",
+  currency: null,
 };
 
 export const startUpInitialValues = {
   startUpName: "",
-  industry: "",
+  industry: null,
   startUpAbout: "",
   role: "",
   webLink: "",
@@ -63,7 +63,7 @@ const entrepreneurialTrackRecordInitialValues = {
 export const onboardingInnovatorsInitialValues = {
   ...commonOnboardingInitialValues,
   professionalInfo: {
-    currEmpStatus: "",
+    currEmpStatus: null,
     careerBackground: [],
     skills: [],
   },
@@ -95,7 +95,7 @@ export const onboardingExpertsInitialValues = {
     projIntakeSteps: [],
   },
   rate: {
-    contractualPref: "",
+    contractualPref: null,
     currency: "",
     hourlyRate: 0,
     monthlyRate: 0,
@@ -108,7 +108,7 @@ export const onboardingMentorsInitialValues = {
   professionalInfo: {
     jobTitle: "",
     companyName: "",
-    industry: "",
+    industry: null,
   },
   communityServiceOffer: {
     startUpDevModules: [],
@@ -119,14 +119,20 @@ export const onboardingMentorsInitialValues = {
 
   ...entrepreneurialTrackRecordInitialValues,
   investmentInterest: {
-    ticketSize: {},
-    targetIndustry: {},
+    ticketSize: null,
+    targetIndustry: null,
     prefInvestmentInstrument: [],
-    typicalInvestmentDuration: {},
+    typicalInvestmentDuration: null,
     investmentEvalKPIS: [],
-    prefStartUpTypes: {},
-    annualStartUpInvestment: {},
+    investmentStrategy: null,
+    prefStartUpTypes: null,
+    annualStartUpInvestment: null,
     prefInvestmentRegions: [],
     postInvestmentSupport: [],
   },
+};
+
+export const termsAndConditionsInitialValues = {
+  isAgreedForTerms: false,
+  isAgreedForPrivacyPolicy: false,
 };

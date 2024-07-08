@@ -4,11 +4,57 @@ import { Input } from "@/components/ui/input";
 import { InputError } from "@/components/ui/input-error";
 import { Controller } from "react-hook-form";
 import { DatePicker } from "@/components/ui/date-picker";
-import { cityOptions, countryOptions } from "@/data/dashboard/innovators";
 import { ReactSelect } from "@/components/ui/react-select";
 import { ReactCreatableSelect } from "@/components/ui/creatable-select";
+import AsyncSelect from "react-select/async";
+import {
+  useGetCountriesQuery,
+  useGetCountryCitiesMutation,
+} from "@/api/hooks/common";
+import { useEffect } from "react";
+import { classNamesReactSelect } from "@/utils";
+import { genderOptions } from "@/data/onboarding";
 
-export const PersonalInfo = ({ control, errors, register }: any) => {
+export const PersonalInfo = ({
+  control,
+  errors,
+  register,
+  country,
+  setValue,
+  resetField,
+}: any) => {
+  const countryCode = country?.value;
+  const { data: countries, isLoading: countriesLoading } =
+    useGetCountriesQuery();
+  const { mutateAsync, data: cities } = useGetCountryCitiesMutation();
+
+  useEffect(() => {
+    if (Array.isArray(cities) && cities.length === 0) {
+      setValue("personalInfo.city", {
+        value: "N/A",
+        label: "N/A",
+      });
+    }
+  }, [cities]);
+
+  const fetchCitiesOptions = async (inputText: string) => {
+    if (inputText.length > 2 && countryCode) {
+      const res = await mutateAsync({ search: inputText, code: countryCode });
+      return res.data;
+    }
+    return [];
+  };
+
+  const noOptionMessage = ({ inputValue }: { inputValue: string }) => (
+    <div>
+      {countryCode
+        ? inputValue.length < 3
+          ? "Please search your city!"
+          : "No City found against search!"
+        : "Please select your country!"}
+    </div>
+  );
+
   return (
     <div className="w-full pt-5 flex flex-col gap-4">
       <SectionHeading heading="PERSONAL INFORMATION" />
@@ -47,7 +93,15 @@ export const PersonalInfo = ({ control, errors, register }: any) => {
             name="personalInfo.country"
             control={control}
             render={({ field }) => (
-              <ReactSelect {...field} options={countryOptions} />
+              <ReactSelect
+                {...field}
+                onChange={(e) => {
+                  resetField("personalInfo.city");
+                  field.onChange(e);
+                }}
+                isLoading={countriesLoading}
+                options={countries}
+              />
             )}
           />
           <InputError error={errors.personalInfo?.country} />
@@ -61,7 +115,15 @@ export const PersonalInfo = ({ control, errors, register }: any) => {
             name="personalInfo.city"
             control={control}
             render={({ field }) => (
-              <ReactSelect {...field} options={cityOptions} />
+              <AsyncSelect
+                {...field}
+                unstyled
+                cacheOptions
+                defaultOptions
+                noOptionsMessage={noOptionMessage}
+                classNames={classNamesReactSelect}
+                loadOptions={fetchCitiesOptions}
+              />
             )}
           />
           <InputError error={errors.personalInfo?.city} />
@@ -93,7 +155,9 @@ export const PersonalInfo = ({ control, errors, register }: any) => {
           <Controller
             name="personalInfo.gender"
             control={control}
-            render={({ field }) => <ReactCreatableSelect {...field} />}
+            render={({ field }) => (
+              <ReactCreatableSelect {...field} options={genderOptions} />
+            )}
           />
           <InputError error={errors.personalInfo?.gender} />
         </div>

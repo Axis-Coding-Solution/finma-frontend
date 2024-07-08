@@ -13,6 +13,7 @@ import { areaOfExpertise } from "@/data/dashboard/experts";
 import { SectionHeading } from "../../common";
 import { ExpertsOnboardingPropTypes } from "@/definitions/types/onboarding";
 import { ReactCreatableSelect } from "@/components/ui/creatable-select";
+import { currentEmploymentTypeOptions, skillsOptions } from "@/data/onboarding";
 export const ProfessionalInfo = ({
   control,
   errors,
@@ -29,7 +30,12 @@ export const ProfessionalInfo = ({
           <Controller
             name="professionalInfo.currEmpType"
             control={control}
-            render={({ field }) => <ReactCreatableSelect {...field} />}
+            render={({ field }) => (
+              <ReactCreatableSelect
+                options={currentEmploymentTypeOptions}
+                {...field}
+              />
+            )}
           ></Controller>
           <InputError error={errors.professionalInfo?.currEmpType} />
         </div>
@@ -52,7 +58,13 @@ export const ProfessionalInfo = ({
           <Controller
             name="professionalInfo.skills"
             control={control}
-            render={({ field }) => <ReactCreatableSelect isMulti {...field} />}
+            render={({ field }) => (
+              <ReactCreatableSelect
+                options={skillsOptions}
+                isMulti
+                {...field}
+              />
+            )}
           />
           <InputError error={errors.professionalInfo?.skills} />
         </div>

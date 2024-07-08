@@ -13,9 +13,10 @@ import {
 } from "@/pages/components/onboarding/experts";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { onboardingExpertsSchema } from "@/utils/validation-schemas/onboarding";
-import { useOnboardingExpertsMutation } from "@/api/hooks/onboarding";
-import { errorToast, successToast } from "@/utils";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { ExpertOnboardingValuesType } from "@/definitions/types/onboarding";
+import { useOnboardingForm } from "@/store/hooks";
+import { useEffect } from "react";
 
 function ExpertsOnboardingPage() {
   const navigate = useNavigate();
@@ -23,26 +24,31 @@ function ExpertsOnboardingPage() {
     control,
     handleSubmit,
     register,
+    resetField,
+    watch,
+    setValue,
+    reset,
     formState: { errors },
   } = useForm({
     defaultValues: onboardingExpertsInitialValues,
     resolver: yupResolver(onboardingExpertsSchema as any),
   });
 
-  const { mutateAsync } = useOnboardingExpertsMutation();
+  const { setFormData, getFormData, clearFormData } = useOnboardingForm();
+  const [searchParams] = useSearchParams();
+  const redirectedFrom = searchParams.get("redirectedFrom");
 
-  const onSubmitHandler = async (
-    values: typeof onboardingExpertsInitialValues
-  ) => {
-    try {
-      const res = await mutateAsync(values);
-      successToast(res.message);
-      navigate("/dashboard/overview", {
-        replace: true,
-      });
-    } catch (error: any) {
-      errorToast(error.message);
+  useEffect(() => {
+    const formData = getFormData();
+    if (redirectedFrom && formData) {
+      reset(formData);
     }
+    if (formData && !redirectedFrom) clearFormData();
+  }, [redirectedFrom]);
+
+  const onSubmitHandler = async (values: ExpertOnboardingValuesType) => {
+    setFormData(values);
+    navigate("/onboarding/terms-conditions?role=experts");
   };
 
   const commonProps = {
@@ -50,6 +56,10 @@ function ExpertsOnboardingPage() {
     errors,
     register,
   };
+
+  const country = watch("personalInfo.country");
+  const image = watch("profilePicture");
+
   return (
     <div className="bg-background rounded-lg px-2 lg:px-10 py-6 flex flex-col gap-8">
       <MainHeading
@@ -59,15 +69,25 @@ function ExpertsOnboardingPage() {
       <form onSubmit={handleSubmit(onSubmitHandler)}>
         <div className="flex flex-col lg:flex-row items-start gap-10">
           <div className="w-[25%]">
-            <FileUpload register={register} errors={errors} />
+            <FileUpload
+              image={image}
+              control={control}
+              register={register}
+              errors={errors}
+            />
           </div>
           <div className="lg:w-8/12 divide divide-y divide-border w-full flex flex-col gap-5 items-end">
-            <PersonalInfo {...commonProps} />
+            <PersonalInfo
+              resetField={resetField}
+              country={country}
+              setValue={setValue}
+              {...commonProps}
+            />
             <ProfessionalInfo {...commonProps} />
             <CommunityServiceOffer {...commonProps} />
             <ProjectPreference {...commonProps} />
             <Rate {...commonProps} />
-            <Button type="submit">Save</Button>
+            <Button type="submit">Next</Button>
           </div>
         </div>
       </form>

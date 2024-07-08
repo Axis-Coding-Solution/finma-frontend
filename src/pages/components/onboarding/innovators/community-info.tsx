@@ -1,8 +1,3 @@
-import {
-  communityGoalsOptions,
-  startUpFounder,
-} from "@/data/dashboard/innovators";
-
 import { SectionHeading } from "@/pages/components/common";
 import { Label } from "@/components/ui/label";
 import {
@@ -18,6 +13,10 @@ import { InputError } from "@/components/ui/input-error";
 import { InnovatorsOnboardingPropTypes } from "@/definitions/types/onboarding";
 import { Textarea } from "@/components/ui/textarea";
 import { ReactCreatableSelect } from "@/components/ui/creatable-select";
+import {
+  communityGoalsOptions,
+  entrepreneurialStageOptions,
+} from "@/data/onboarding";
 
 export const CommunityInfo = ({
   control,
@@ -44,7 +43,7 @@ export const CommunityInfo = ({
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  {startUpFounder.map((item) => (
+                  {entrepreneurialStageOptions.map((item) => (
                     <SelectItem key={item.heading} value={item.heading}>
                       <div className="flex flex-col">
                         <div className="font-bold">{item.heading}</div>
