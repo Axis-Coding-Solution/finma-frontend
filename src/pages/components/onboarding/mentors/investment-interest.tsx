@@ -36,6 +36,7 @@ function InvestmentInterest({ control, errors }: MentorsOnboardingPropTypes) {
           />
           <InputError error={errors.investmentInterest?.ticketSize} />
         </div>
+
         <div className="col-span-2">
           <Label htmlFor="mentors-community-service-goals">
             Target Industry
@@ -49,6 +50,7 @@ function InvestmentInterest({ control, errors }: MentorsOnboardingPropTypes) {
           />
           <InputError error={errors.investmentInterest?.targetIndustry} />
         </div>
+
         <div className="col-span-2">
           <Label htmlFor="mentors-community-service-hours-week">
             Preferred investment instrument
@@ -69,6 +71,7 @@ function InvestmentInterest({ control, errors }: MentorsOnboardingPropTypes) {
             error={errors.investmentInterest?.prefInvestmentInstrument}
           />
         </div>
+
         <div>
           <Label htmlFor="mentors-community-service-personal-bio">
             Your typical investment duration
@@ -87,6 +90,7 @@ function InvestmentInterest({ control, errors }: MentorsOnboardingPropTypes) {
             error={errors.investmentInterest?.typicalInvestmentDuration}
           />
         </div>
+
         <div>
           <Label htmlFor="mentors-community-service-personal-bio">
             KPIs for evaluating investments
@@ -104,7 +108,8 @@ function InvestmentInterest({ control, errors }: MentorsOnboardingPropTypes) {
           />
           <InputError error={errors.investmentInterest?.investmentEvalKPIS} />
         </div>
-        <div>
+
+        <div className="col-span-2">
           <Label htmlFor="mentors-community-service-personal-bio">
             Your Investment Strategy
           </Label>
@@ -120,6 +125,7 @@ function InvestmentInterest({ control, errors }: MentorsOnboardingPropTypes) {
           />
           <InputError error={errors.investmentInterest?.investmentStrategy} />
         </div>
+
         <div>
           <Label htmlFor="mentors-community-service-personal-bio">
             Preferred startup types
@@ -133,6 +139,7 @@ function InvestmentInterest({ control, errors }: MentorsOnboardingPropTypes) {
           />
           <InputError error={errors.investmentInterest?.prefStartUpTypes} />
         </div>
+
         <div>
           <Label htmlFor="mentors-community-service-personal-bio">
             Annual startup investment
@@ -151,6 +158,7 @@ function InvestmentInterest({ control, errors }: MentorsOnboardingPropTypes) {
             error={errors.investmentInterest?.annualStartUpInvestment}
           />
         </div>
+
         <div>
           <Label htmlFor="mentors-community-service-personal-bio">
             Preferred investment regions
@@ -170,6 +178,7 @@ function InvestmentInterest({ control, errors }: MentorsOnboardingPropTypes) {
             error={errors.investmentInterest?.prefInvestmentRegions}
           />
         </div>
+
         <div>
           <Label htmlFor="mentors-community-service-personal-bio">
             Post-investment support
@@ -189,6 +198,7 @@ function InvestmentInterest({ control, errors }: MentorsOnboardingPropTypes) {
             error={errors.investmentInterest?.postInvestmentSupport}
           />
         </div>
+        
       </div>
     </div>
   );
