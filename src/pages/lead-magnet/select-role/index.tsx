@@ -16,19 +16,20 @@ function SelectRolePage() {
         </div>
         <div className=" mt-5">
           <MainHeading
-            heading="Welcome to the startup idea evaluation model!"
-            paragraph="Let's get started and explore what makes this startup unique!"
+            heading="Welcome to the Finma community"
+            paragraph="Share your expertise with hundreds of innovators "
           />
+          <MainHeading  heading="" paragraph="Select a partnership"/>
 
-          <div className="flex gap-2">
+          <div className="flex flex-col justify-center items-center sm:flex-row md:gap-2">
             <Link title="Start Onboarding" to="/onboarding/mentors">
-              <Button variant="outline" className="mt-5">
+              <Button variant="outline" className="mt-5 w-48">
                 Mentor
               </Button>
             </Link>
 
             <Link title="Start Onboarding" to="/onboarding/experts">
-              <Button variant="outline" className="mt-5">
+              <Button variant="outline" className="mt-5 w-48 ">
                 Expert
               </Button>
             </Link>

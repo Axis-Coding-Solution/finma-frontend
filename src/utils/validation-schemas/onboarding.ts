@@ -32,7 +32,7 @@ const commonOnboardingSchema = {
 };
 
 const currencySchema = object({
-  amount: number().required().typeError("Must be a number!"),
+  amount: number().required().positive("Must be a positive number!").typeError("Must be a number!"),
   currency: object().optional().nullable(),
 });
 

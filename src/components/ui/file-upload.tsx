@@ -43,7 +43,7 @@ const FileUpload = ({
   }, [image]);
 
   return (
-    <div className="max-w-64 max-h-48 w-full h-full border-2 border-dashed border-border rounded-lg p-5 flex flex-col items-center justify-between gap-4">
+    <div className="max-w-64 max-h-48 w-full h-full border-2 border-dashed border-border rounded-lg p-5 flex flex-col items-center justify-center gap-4">
       <Controller
         control={control}
         name={name}
@@ -72,7 +72,7 @@ const FileUpload = ({
           >
             <Edit size={20} />
           </span>
-          <img src={preview} className="w-auto h-auto" />
+          <img src={preview} className="max-w-48 max-h-32 " />
         </div>
       ) : (
         <>
