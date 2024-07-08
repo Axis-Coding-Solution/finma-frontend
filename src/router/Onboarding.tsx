@@ -19,7 +19,6 @@ export default [
     path: "/onboarding/innovators",
     meta: {
       layout: "blank",
-      isRestrictedRoute: true,
     },
   },
 
@@ -28,7 +27,6 @@ export default [
     path: "onboarding/select-role",
     meta: {
       layout: "blank",
-      isRestrictedRoute: true,
     },
   },
   {
@@ -36,7 +34,6 @@ export default [
     path: "/onboarding/experts",
     meta: {
       layout: "blank",
-      isRestrictedRoute: true,
     },
   },
   {
@@ -44,7 +41,6 @@ export default [
     path: "/onboarding/mentors",
     meta: {
       layout: "blank",
-      isRestrictedRoute: true,
     },
   },
   {
@@ -59,7 +55,6 @@ export default [
     path: "/onboarding/terms-conditions",
     meta: {
       layout: "blank",
-      isRestrictedRoute: true,
     },
   },
 ];

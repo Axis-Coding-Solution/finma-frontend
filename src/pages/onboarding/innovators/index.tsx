@@ -67,7 +67,7 @@ function InnovatorsOnboardingPage() {
         paragraph="Please tell us about your expertise to help us set up your profile message. It will help innovators learn about your expertise and experience."
       />
       <form onSubmit={handleSubmit(onSubmitHandler)}>
-        <div className="flex flex-col md:flex-row gap-10  justify-center items-center md:items-start">
+        <div className="flex flex-col md:flex-row gap-10 items-center md:items-start">
           <div className="w-full md:w-[25%]">
             <FileUpload
               image={image}

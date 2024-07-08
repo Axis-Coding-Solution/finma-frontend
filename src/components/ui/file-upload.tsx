@@ -43,7 +43,7 @@ const FileUpload = ({
   }, [image]);
 
   return (
-    <div className="max-w-64 max-h-48 w-full h-full border-2 border-dashed border-border rounded-lg p-5 flex flex-col items-center justify-center gap-4">
+    <div className="relative max-w-64 h-48 w-full border-2 border-dashed border-border rounded-lg p-5 flex flex-col items-center justify-center gap-4">
       <Controller
         control={control}
         name={name}
@@ -63,16 +63,16 @@ const FileUpload = ({
         )}
       />
       {preview ? (
-        <div className="relative flex flex-row-reverse">
+        <div className="flex flex-row-reverse">
           <span
-            className="block absolute -top-7 -right-7 text-foreground hover:text-success rounded transition"
+            className="block absolute text-foreground hover:text-success rounded transition"
             role="button"
             title="Change Picture"
             onClick={onUpload}
           >
             <Edit size={20} />
           </span>
-          <img src={preview} className="max-w-48 max-h-32 " />
+          <img src={preview} className="h-44 w-full object-cover" />
         </div>
       ) : (
         <>
