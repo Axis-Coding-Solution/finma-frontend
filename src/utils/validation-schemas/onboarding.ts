@@ -96,7 +96,7 @@ export const onboardingExpertsSchema = object({
   }),
   rate: object({
     contractualPref: object().optional().nullable(),
-    currency: string().optional().trim(),
+    currency: object().optional().nullable(),
     hourlyRate: number().required().typeError("Must be a number!"),
     monthlyRate: number().required().typeError("Must be a number!"),
     projStartingPrice: number().required().typeError("Must be a number!"),
