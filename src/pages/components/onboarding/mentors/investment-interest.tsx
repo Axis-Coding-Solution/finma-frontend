@@ -23,6 +23,7 @@ function InvestmentInterest({ control, errors }: MentorsOnboardingPropTypes) {
     <div className="flex flex-col gap-4 w-full pt-4">
       <SectionHeading heading="Investment Interest" />
       <div className="grid grid-cols-2 gap-4">
+
         <div className="col-span-2">
           <Label htmlFor="mentors-community-service-startup-dev-modules">
             Ticket size
@@ -198,7 +199,7 @@ function InvestmentInterest({ control, errors }: MentorsOnboardingPropTypes) {
             error={errors.investmentInterest?.postInvestmentSupport}
           />
         </div>
-        
+
       </div>
     </div>
   );
