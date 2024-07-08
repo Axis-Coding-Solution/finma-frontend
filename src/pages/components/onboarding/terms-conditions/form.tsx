@@ -36,6 +36,7 @@ export const TermsAndConditionsForm = () => {
   ) => {
     if (!data.isAgreedForTerms || !data.isAgreedForPrivacyPolicy) return null;
     const form = getFormData();
+    console.log("🚀 ~ TermsAndConditionsForm ~ form:", form)
     const navigateRole = role ?? "innovators";
     if (!form) navigate(`/onboarding/${navigateRole}`);
 
