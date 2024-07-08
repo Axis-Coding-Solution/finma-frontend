@@ -113,7 +113,7 @@ export const onboardingMentorsInitialValues = {
   communityServiceOffer: {
     startUpDevModules: [],
     communityGoals: [],
-    hoursPerWeek: 0,
+    dedicatedHoursPerWeek: 0,
     personalBio: "",
   },
 

@@ -60,9 +60,9 @@ export const MentorsCommunityServiceOffer = ({
           id="mentors-community-service-hours-week"
           type="number"
           placeholder="Enter your hours of availability..."
-          {...register("communityServiceOffer.hoursPerWeek")}
+          {...register("communityServiceOffer.dedicatedHoursPerWeek")}
         />
-        <InputError error={errors.communityServiceOffer?.hoursPerWeek} />
+        <InputError error={errors.communityServiceOffer?.dedicatedHoursPerWeek} />
       </div>
       <div>
         <Label htmlFor="mentors-community-service-personal-bio">

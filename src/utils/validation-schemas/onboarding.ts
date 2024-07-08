@@ -24,9 +24,12 @@ const commonOnboardingSchema = {
     lastName: string().trim().label("Last Name").required(),
     country: object().label("Country").required(),
     city: object().label("City").required(),
-    dateOfBirth: date().label("Date of Birth").required().max(new Date()),
+    dateOfBirth: date().label("Date of Birth").typeError("Must be a valid date!").required().max(new Date(), "Must be a past date date!"),
     gender: object().label("Gender").required(),
-    linkedInProfile: string().trim().label("LinkedIn Profile").required(),
+    linkedInProfile: string().trim().label("LinkedIn Profile").matches(
+      /^(http(s)?:\/\/)?([\w]+\.)?linkedin\.com\/(pub|in|profile)/gm,
+      'Enter correct url!'
+  ).required(),
   }),
   // profilePicture: mixed().label("Profile picture").required(),
 };
@@ -45,7 +48,7 @@ const entrepreneurialTrackRecordSchema = {
         startUpAbout: string().optional(),
         role: string().optional(),
         webLink: string().optional(),
-        noOfEmp: number().required().typeError("Must be a number!"),
+        noOfEmp: number().required().positive("Must be a positive number!").typeError("Must be a number!"),
         yearsOfOp: object({
           from: number().required().typeError("Must be a number!"),
           to: number().required().typeError("Must be a number!"),
@@ -53,7 +56,10 @@ const entrepreneurialTrackRecordSchema = {
         lastYearRevenue: currencySchema,
         fundRaised: currencySchema,
         accomplishment: string().optional(),
-        companyLinkedIn: string().optional(),
+        companyLinkedIn: string().trim().label("LinkedIn Profile").matches(
+          /^(http(s)?:\/\/)?([\w]+\.)?linkedin\.com\/(pub|in|profile)/gm,
+          'Enter correct url!'
+      ).required(),
       })
     ),
   }),
@@ -97,9 +103,9 @@ export const onboardingExpertsSchema = object({
   rate: object({
     contractualPref: object().optional().nullable(),
     currency: object().optional().nullable(),
-    hourlyRate: number().required().typeError("Must be a number!"),
-    monthlyRate: number().required().typeError("Must be a number!"),
-    projStartingPrice: number().required().typeError("Must be a number!"),
+    hourlyRate: number().required().positive("must be a positive number!").typeError("Must be a number!"),
+    monthlyRate: number().required().positive("must be a positive number!").typeError("Must be a number!"),
+    projStartingPrice: number().required().positive("must be a positive number!").typeError("Must be a number!"),
   }),
 });
 
@@ -116,6 +122,8 @@ export const onboardingMentorsSchema = object({
       .required()
       .min(1),
     communityGoals: array().label("Community Goals").required().min(1),
+    hoursPerWeek: number().label("Hours per week").positive("Must be a positive number!").typeError("Must be a number!"),
+    personalBio: string().optional().trim(),
   }),
 
   ...entrepreneurialTrackRecordSchema,

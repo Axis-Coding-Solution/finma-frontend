@@ -188,7 +188,7 @@ export const EntrepreneurialInfo = ({ control, errors, register }: any) => {
                 </div>
               </div>
 
-              <div className="flex flex-col lg:flex-row gap-4">
+              <div className="flex flex-col xxl:flex-row gap-4">
                 <div className=" flex flex-col gap-2 w-full">
                   <div>
                     <Label
@@ -198,7 +198,7 @@ export const EntrepreneurialInfo = ({ control, errors, register }: any) => {
                     </Label>
                   </div>
 
-                  <div className="grid grid-cols-2 items-center gap-2">
+                  <div className="grid grid-cols-2 items-start gap-2">
                     <div>
                       <Input
                         type="number"
@@ -223,6 +223,7 @@ export const EntrepreneurialInfo = ({ control, errors, register }: any) => {
                     />
                   </div>
                 </div>
+
                 <div className="flex flex-col gap-2 w-full">
                   <div>
                     <Label htmlFor="entrepTrackRecord.startUps.fundRaised">
@@ -230,7 +231,7 @@ export const EntrepreneurialInfo = ({ control, errors, register }: any) => {
                     </Label>
                   </div>
 
-                  <div className="grid grid-cols-2 items-center gap-2">
+                  <div className="grid grid-cols-2 items-start gap-2">
                     <div>
                       <Input
                         type="number"

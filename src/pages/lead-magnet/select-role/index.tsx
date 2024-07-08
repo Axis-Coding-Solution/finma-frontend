@@ -19,18 +19,23 @@ function SelectRolePage() {
             heading="Welcome to the Finma community"
             paragraph="Share your expertise with hundreds of innovators "
           />
-          <MainHeading  heading="" paragraph="Select a partnership"/>
+          <MainHeading heading="" paragraph="Select a partnership" />
 
-          <div className="flex flex-col justify-center items-center sm:flex-row md:gap-2">
-            <Link title="Start Onboarding" to="/onboarding/mentors">
-              <Button variant="outline" className="mt-5 w-48">
-                Mentor
+          <div className="flex flex-col justify-center items-center md:justify-start   md:items-start sm:flex-row md:gap-2">
+            <Link title="Start Onboarding" to="/onboarding/innovators">
+              <Button variant="outline" className="mt-5 w-32">
+                Innovator
+              </Button>
+            </Link>
+            <Link title="Start Onboarding" to="/onboarding/experts">
+              <Button variant="outline" className="mt-5 w-32 ">
+                Expert
               </Button>
             </Link>
 
-            <Link title="Start Onboarding" to="/onboarding/experts">
-              <Button variant="outline" className="mt-5 w-48 ">
-                Expert
+            <Link title="Start Onboarding" to="/onboarding/mentors">
+              <Button variant="outline" className="mt-5 w-32">
+                Mentor
               </Button>
             </Link>
           </div>
