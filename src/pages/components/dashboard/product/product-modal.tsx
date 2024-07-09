@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { cn } from "@/utils";
 
 import {
@@ -8,10 +7,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import {
-  ArrowRight,
-  CornerDownRight,
-} from "lucide-react";
+import { ArrowRight, CornerDownRight } from "lucide-react";
 const ProductModal = ({
   title,
   badgeText,

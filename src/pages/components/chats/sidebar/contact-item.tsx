@@ -2,9 +2,7 @@ import { userAvatar1Image } from "@/assets/images";
 import { Avatar } from "@/components/ui/avatar";
 import { chatUserDataHook } from "@/store";
 import { useHookstate } from "@hookstate/core";
-import { Check } from "lucide-react";
 import { Link } from "react-router-dom";
-import { format } from 'date-fns';
 import { DoubleCheck, SingleCheck } from "@/assets/svgs";
 import { convertDate } from "@/utils";
 

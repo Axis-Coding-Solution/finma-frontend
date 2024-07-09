@@ -45,7 +45,7 @@ const post = (url: string, data: Object, config?: RequestConfig) =>
   axiosInstance.post(url, data, config);
 const put = (url: string, data: Object, config?: RequestConfig) =>
   axiosInstance.put(url, data, config);
-const del = (url: string, data: Object) => axiosInstance.delete(url, data);
+const del = (url: string, data?: Object) => axiosInstance.delete(url, data);
 const patch = (url: string, data: Object, config?: RequestConfig) =>
   axiosInstance.patch(url, data, config);
 

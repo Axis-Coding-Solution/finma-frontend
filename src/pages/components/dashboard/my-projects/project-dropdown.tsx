@@ -1,4 +1,4 @@
-import { Ellipsis, FilePenLine, Trash2 } from "lucide-react";
+import { Ellipsis } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,

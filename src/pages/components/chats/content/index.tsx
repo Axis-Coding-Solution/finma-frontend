@@ -82,7 +82,7 @@ export const ChatsContent = () => {
         className="flex-1 flex flex-col px-5 py-2 overflow-y-auto h-auto"
       >
         {chat?.length === 0 && <NoMessages />}
-        {chat?.map((message: any, index: string) => (
+        {chat?.map((message: any, index: number) => (
           <TextMessage
             message={message}
             index={index}

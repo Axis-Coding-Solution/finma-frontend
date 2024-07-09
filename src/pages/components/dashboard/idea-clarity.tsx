@@ -1,5 +1,5 @@
 import { cn } from "@/utils";
-import { ArrowRight, CornerDownRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import ProductModal from "./product/product-modal";
 type PropTypes = {
   badgeText: string;
@@ -58,7 +58,11 @@ function IdeaClarityCard({
       </div>
       <h6 className="text-base font-semibold mt-3">{title}</h6>
       <p className="text-sm mt-2 pb-5">{description}</p>
-      <ProductModal title={title} badgeSettings={badgeSettings[badgeColor]} badgeText={badgeText}/>
+      <ProductModal
+        title={title}
+        badgeSettings={badgeSettings[badgeColor]}
+        badgeText={badgeText}
+      />
     </div>
   );
 }

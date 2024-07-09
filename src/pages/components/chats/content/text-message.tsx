@@ -6,7 +6,10 @@ export const TextMessage = ({ message, index, position }: any) => {
   const container = position === "right" ? "justify-start" : "justify-end";
   const background = position === "right" ? "bg-muted" : "bg-primary";
   const check = position === "right" ? "hidden" : "d-flex";
-  const checkColor = message.readAt && message.receivedAt ? "text-info" : " text-muted-foreground";
+  const checkColor =
+    message.readAt && message.receivedAt
+      ? "text-info"
+      : " text-muted-foreground";
 
   return (
     <div className={`w-full flex  ${container}`}>
@@ -28,7 +31,10 @@ export const TextMessage = ({ message, index, position }: any) => {
               {message.readAt ? (
                 <CheckCheck size={17} className={` ${checkColor} ${check} `} />
               ) : (
-                <Check size={16} className={` text-muted-foreground ${check} `} />
+                <Check
+                  size={16}
+                  className={` text-muted-foreground ${check} `}
+                />
               )}
             </p>
           </div>

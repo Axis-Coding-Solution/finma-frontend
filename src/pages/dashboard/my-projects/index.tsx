@@ -25,7 +25,7 @@ const MyProjectsPage = () => {
         <MainHeading heading="My Projects" renderRight={<ProjectAddModal />} />
       </div>
       <div className="grid grid-cols-3  lg:flex-row gap-5">
-        {projectCardArray.map((item, index) => (
+        {projectCardArray.map((item: any, index: number) => (
           <ProjectCard key={index} {...item} />
         ))}
       </div>

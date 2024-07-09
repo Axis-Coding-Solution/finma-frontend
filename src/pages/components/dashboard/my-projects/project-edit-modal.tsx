@@ -13,11 +13,11 @@ import { Button } from "@/components/ui/button";
 import { ProjectForm } from "./project-form";
 import { useForm } from "react-hook-form";
 import { dashboardProjectsInitialValues } from "@/utils/initial-values/dashboard/Projects";
-import { get, put } from "@/utils/axios";
-import { useEffect, useState } from "react";
+import { put } from "@/utils/axios";
+import { useState } from "react";
 import { createFormData, errorToast, successToast } from "@/utils";
 export const ProjectEditModal = ({ projectId }: { projectId: string }) => {
-  const [project, setProject] = useState<any>({});
+  const [project] = useState<any>({});
 
   const {
     control,
@@ -40,8 +40,8 @@ export const ProjectEditModal = ({ projectId }: { projectId: string }) => {
     values: typeof dashboardProjectsInitialValues
   ) => {
     try {
-      const formData = createFormData(values)
-      const response = await put(`/projects/${projectId}`, formData);
+      const formData = createFormData(values);
+      await put(`/projects/${projectId}`, formData);
       successToast("Updated Successfully");
       console.log("🚀 ~ ProjectEditModal ~ values:", values);
     } catch (error: any) {

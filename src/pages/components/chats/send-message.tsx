@@ -1,7 +1,7 @@
 import { Textarea } from "@/components/ui/textarea";
 import { errorToast } from "@/utils";
 import { FORM_MODE } from "@/utils/constants";
-import { useAppParams, useAuth } from "@/utils/hooks";
+import { useAuth } from "@/utils/hooks";
 import { postMessagesInitialValues } from "@/utils/initial-values";
 import { Paperclip, Send, SmilePlus } from "lucide-react";
 import { Controller, useForm } from "react-hook-form";
@@ -14,7 +14,7 @@ import { chatUserDataHook } from "@/store";
 export const SendMessageBox = () => {
   const chatUser = useHookstate(chatUserDataHook);
   const getChatUser = chatUser.get();
-  const auth = useAuth()
+  const auth = useAuth();
   const { pushMessage } = useMessagesStore();
 
   const { control, handleSubmit, reset } = useForm({

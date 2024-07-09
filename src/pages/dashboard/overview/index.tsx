@@ -70,6 +70,7 @@ function OverviewPage() {
       description: "Some direct competitors, moderate differentiation.",
     },
   ];
+
   return (
     <>
       <div className="flex md:flex-row flex-col md:items-center items-start justify-between">
@@ -109,12 +110,11 @@ function OverviewPage() {
           {idesClarityCardArray.map((item) => (
             <IdeaClarityCard
               badgeText={item.badgeText}
-              badgeColor={item.badgeColor}
+              badgeColor={item.badgeColor as "success" | "destructive" | "info"}
               title={item.title}
               description={item.description}
             />
           ))}
-          
         </div>
       </div>
       <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 mt-5">

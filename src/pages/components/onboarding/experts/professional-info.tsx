@@ -1,15 +1,8 @@
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+
 import { Input } from "@/components/ui/input";
 import { Controller } from "react-hook-form";
 import { InputError } from "@/components/ui/input-error";
-import { areaOfExpertise } from "@/data/dashboard/experts";
 import { SectionHeading } from "../../common";
 import { ExpertsOnboardingPropTypes } from "@/definitions/types/onboarding";
 import { ReactCreatableSelect } from "@/components/ui/creatable-select";

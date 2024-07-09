@@ -15,7 +15,7 @@ import { useState } from "react";
 export const HamburgerMenu = () => {
   const [openDropdown, setOpenDropdown] = useState(null);
 
-  const handleToggle = (dropdownId) => {
+  const handleToggle = (dropdownId: any) => {
     if (openDropdown === dropdownId) {
       setOpenDropdown(null);
     } else {

@@ -94,7 +94,6 @@ export type Payment = {
   image: any;
 };
 
-
 export const columns: ColumnDef<Payment>[] = [
   {
     id: "select",
@@ -148,14 +147,14 @@ export const columns: ColumnDef<Payment>[] = [
         </Button>
       );
     },
-    cell: (row) => {
+    cell: (row: any) => {
       let item = row.getValue("projects");
-      let subitem = item.map((data) => data);
+      let subitem = item.map((data: any) => data);
       return (
         <>
           {/* {row.getValue("projects")} */}
           <div className="flex flex-col gap-7">
-            {subitem.map((item) => (
+            {subitem.map((item: any) => (
               <p> {item} </p>
             ))}
           </div>
@@ -175,9 +174,9 @@ export const columns: ColumnDef<Payment>[] = [
   {
     accessorKey: "riskScore",
     header: () => <div className="text-start">Risk score</div>,
-    cell: (row) => {
+    cell: (row:any) => {
       let item = row.getValue("riskScore");
-      let subitem = item.map((data) => data);
+      let subitem = item.map((data:any) => data);
       // const riskScore = parseFloat(row.getValue("riskScore"))
 
       // Format the riskScore as a dollar riskScore
@@ -188,7 +187,7 @@ export const columns: ColumnDef<Payment>[] = [
 
       return (
         <div className="flex  flex-col gap-2">
-          {subitem.map((item, index) => (
+          {subitem.map((item:any, index: number) => (
             <div className="flex gap-2">
               <Badge
                 key={index}

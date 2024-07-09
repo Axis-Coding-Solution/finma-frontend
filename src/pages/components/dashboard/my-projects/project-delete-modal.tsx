@@ -22,7 +22,7 @@ export const ProjectDeleteModal = ({
     try {
       const response = await del(`/projects/${id}`);
       successToast(response?.data?.message);
-    } catch (error) {
+    } catch (error: any) {
       errorToast(error);
     }
   }
@@ -57,13 +57,13 @@ export const ProjectDeleteModal = ({
                 Cancel
               </Button>
             </DialogClose>
-              <Button
-                variant="destructive"
-                onClick={() => deleteProject(projectId)}
-                className="w-full"
-              >
-                Delete
-              </Button>
+            <Button
+              variant="destructive"
+              onClick={() => deleteProject(projectId)}
+              className="w-full"
+            >
+              Delete
+            </Button>
           </div>
         </DialogContent>
       </Dialog>

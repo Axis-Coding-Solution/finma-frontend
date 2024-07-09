@@ -1,6 +1,4 @@
 import { Button } from "@/components/ui/button";
-// import angryemoji from "@/assets/svgs/angry-emoji.svg"
-import { MoneyEmoji } from "@/assets/svgs";
 import {
   Select,
   SelectContent,
@@ -15,9 +13,9 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { SquarePen} from "lucide-react";
+import { SquarePen } from "lucide-react";
 const statusOptions = [
-  {label:"💡 Brainstorming Ideas", value: "💡 Brainstorming Ideas" },
+  { label: "💡 Brainstorming Ideas", value: "💡 Brainstorming Ideas" },
   { label: "🔍 Proofing the Concept", value: "🔍 Proofing the Concept" },
   { label: "📅 Updating the Roadmap", value: "📅 Updating the Roadmap" },
   { label: " 🌐 Exploring New Markets", value: " 🌐 Exploring New Markets" },
@@ -25,7 +23,10 @@ const statusOptions = [
   { label: "📝 Writing User Stories", value: "📝 Writing User Stories" },
   { label: "🎨 Designing a New XP", value: "🎨 Designing a New XP" },
   { label: "🔧 Building a New Feature", value: "🔧 Building a New Feature" },
-  { label: "🚧 Building the Infrastructure", value: "🚧 Building the Infrastructure" },
+  {
+    label: "🚧 Building the Infrastructure",
+    value: "🚧 Building the Infrastructure",
+  },
   { label: "💻 Hard Coding in...", value: "💻 Hard Coding in..." },
   { label: "🛠️ Fixing Bugs", value: "🛠️ Fixing Bugs" },
   { label: "🛡️ Securing the Backend", value: "🛡️ Securing the Backend" },
@@ -58,7 +59,7 @@ const StatusModal = () => {
           <SelectContent side="bottom" className="h-52">
             {statusOptions.map((item) => (
               <SelectItem key={item.value} value={item.value}>
-               {item.label}
+                {item.label}
               </SelectItem>
             ))}
           </SelectContent>
