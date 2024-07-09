@@ -61,13 +61,13 @@ export function EditIdeaClarityModal({data}: {data: any}) {
   });
 
   useEffect(() => {
-    if (typeof data == "object" && data.data) {
+    if (typeof data == "object" && data) {
       const updateValues = {
-        id: data?.data._id,
-        problem: data?.data.problem,
-        solution: data?.data.solution,
-        targetedAudience: data?.data.targetedAudience,
-        competitors: data?.data.competitors,
+        id: data?._id,
+        problem: data?.problem,
+        solution: data?.solution,
+        targetedAudience: data?.targetedAudience,
+        competitors: data?.competitors,
       };
       reset(updateValues);
     }

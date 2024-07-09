@@ -13,6 +13,7 @@ const renderRight = <span>256 Members</span>;
 
 function CommunityPage() {
   const { data, isLoading } = useGetCommunity();
+  console.log("🚀 ~ CommunityPage ~ data:", data)
   return (
     <div className="flex flex-col gap-8">
       <MainHeading heading="Community" renderRight={renderRight} />

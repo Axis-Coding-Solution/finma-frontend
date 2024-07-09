@@ -13,18 +13,16 @@ import { getIdeaClarityByUserId } from "@/api/http";
 import { useQuery } from "@tanstack/react-query";
 import { GaugeMeter } from "../../common/gauge-meter";
 
-export function IdeaClarityModal() {
-  const { data } = useQuery({
-    queryFn: getIdeaClarityByUserId,
-    queryKey: ["onboarding/idea-clarity"],
-  });
+export function IdeaClarityModal({data}: {data: any}) {
 
   return (
+    
+
     <Dialog>
       <DialogTrigger asChild>
         <Button variant="outline-info" className="flex items-center">
-          <h1>Medium Risk </h1>
-          <span>{data?.data?.description || ''}</span>
+          <h1>{data?.description || ''}</h1>
+          {/* <span>{data?.data?.description || ''}</span> */}
           <SquarePen size="20" />
         </Button>
       </DialogTrigger>
@@ -35,7 +33,7 @@ export function IdeaClarityModal() {
           </DialogTitle>
         </DialogHeader>
         <div className="flex flex-col items-center md:gap-10 gap-5 text-center">
-          <GaugeMeter score={data?.data?.score || 0} description={data?.data?.description || ''} color={data?.data?.color || ''} />
+          <GaugeMeter score={data?.score || 0} description={data?.description || ''} color={data?.color || ''} />
           <p className="md:text-sm text-xs">
             Your startup idea has been evaluated based on four key validation
             points: Proof of the Problem, Solution Effectiveness, Identification
@@ -52,5 +50,6 @@ export function IdeaClarityModal() {
         </DialogClose>
       </DialogContent>
     </Dialog>
+    
   );
 }

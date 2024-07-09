@@ -5,9 +5,33 @@ import { MainHeading } from "@/pages/components/common";
 import IdeaClarityCard from "@/pages/components/dashboard/idea-clarity";
 import LockedCard from "@/pages/components/dashboard/locked-card";
 import { IdeaClarityModal } from "@/pages/components/dashboard/overview/idea-clarity-modal";
+import { get } from "@/utils/axios";
 import { X } from "lucide-react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 function OverviewPage() {
+  const [data, setData] = useState<any>(null);
+  const {id}=useParams();
+  const getProjectById = async () => {
+    try {
+      const response = await get(`/idea-clarity/project/${id}`);
+
+      setData(response.data.data);
+      console.log("data",data)
+      console.log("🚀 ~ getProjectById ~ response:", response.data.data.name);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    if (id) {
+      getProjectById();
+    }
+  }, [id]);
+
+
   const lockedCardArray = [
     {
       title: "Market Research and Validation",
@@ -77,9 +101,10 @@ function OverviewPage() {
         <div className="flex flex-col md:flex-row md:gap-3">
           <div className="flex flex-col">
             <h1 className="text-sm text-muted-foreground">Project Name</h1>
-            <MainHeading heading="Mad Cookie" />
+            
+             <h1 className="text-xl font-bold">{data?.projectId?.name || ''}</h1>
           </div>
-          <div className="flex flex-col mt-3">
+          <div className="flex flex-col ">
             <h1 className="md:text-sm text-muted-foreground">Project Status</h1>
             <span className="font-bold md:text-xl">
               Problem identification stage
@@ -104,7 +129,7 @@ function OverviewPage() {
       <div className="mt-5 rounded-2xl bg-muted p-5">
         <div className="flex md:flex-row flex-col justify-between md:items-center items-start text-foreground font-medium">
           <h6 className="text-lg w-32">Idea Clarity</h6>
-          <IdeaClarityModal />
+          <IdeaClarityModal data={data} />
         </div>
         <div className="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-5 mt-5">
           {idesClarityCardArray.map((item) => (
