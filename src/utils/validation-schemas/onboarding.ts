@@ -76,7 +76,7 @@ const entrepreneurialTrackRecordSchema = {
             test: (val) => {
               if (!val) return true;
               const regexp =
-                /^(http(s)?:\/\/)?([\w]+\.)?linkedin\.com\/(pub|in|profile)/gm;
+                /^https:\/\/(www\.)?linkedin\.com\/company\/[\w-]+\/?(?:\?.*)?$/;
               return regexp.test(val);
             },
             message: "Please enter a correct LinkedIn Profile!",
