@@ -9,13 +9,6 @@ import MyTeamPage from "@/pages/dashboard/my-team";
 
 export default [
   {
-    element: <OverviewPage />,
-    path: "/project/overview",
-    meta: {
-      layout: "dashboard",
-    },
-  },
-  {
     element: <CommunityPage />,
     path: "/dashboard/community",
     meta: {
@@ -54,6 +47,13 @@ export default [
   {
     element: <MyProjectsPage />,
     path: "/dashboard/my-projects",
+    meta: {
+      layout: "dashboard",
+    },
+  },
+  {
+    element: <OverviewPage />,
+    path: "/dashboard/my-projects/:id",
     meta: {
       layout: "dashboard",
     },
