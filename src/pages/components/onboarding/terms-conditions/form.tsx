@@ -45,7 +45,7 @@ export const TermsAndConditionsForm = () => {
       await mutateAsync({ role: navigateRole, formData });
       clearFormData();
       successToast("Onboarding Completed!");
-      navigate("/dashboard/community-feed", {
+      navigate("/dashboard/community", {
         replace: true,
       });
     } catch (error: any) {

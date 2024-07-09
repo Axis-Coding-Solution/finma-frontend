@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { TextMessage } from "./text-message";
-import { useAppParams, useAuth } from "@/utils/hooks";
+import { useAppParams } from "@/utils/hooks";
 import { useGetMessagesByChatId } from "@/api/hooks/messages/messages";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { NoMessages } from "./no-messages";
@@ -19,7 +19,6 @@ export const ChatsContent = () => {
   const { id = "" } = useAppParams();
   const { data } = useGetMessagesByChatId(id);
   const { getChat, setChat, pushMessage } = useMessagesStore();
-  const auth = useAuth();
 
   const chat = getChat();
 
@@ -34,10 +33,10 @@ export const ChatsContent = () => {
   useEffect(() => {
     socket.on(SOCKET_ENUMS.RECEIVE_MESSAGE, (data) => {
       const obj = {
-        ...data, 
-        position: 'right',
-      }
-      pushMessage(obj)
+        ...data,
+        position: "right",
+      };
+      pushMessage(obj);
     });
     const container = contentRef.current;
 
@@ -87,7 +86,7 @@ export const ChatsContent = () => {
           <TextMessage
             message={message}
             index={index}
-            position={message.position == 'right' ? "right" : "left"}
+            position={message.position == "right" ? "right" : "left"}
           />
         ))}
       </div>

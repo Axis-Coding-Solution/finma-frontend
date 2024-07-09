@@ -5,6 +5,7 @@ import SignUpWithEmailPage from "@/pages/authentication/sign-up/email";
 import LoginWithEmailPage from "@/pages/authentication/login/email";
 import ResetPasswordCompletedPage from "@/pages/authentication/reset-password/completed";
 import ForgetPasswordCompleted from "@/pages/authentication/forget-password/completed";
+import SelectRolePage from "@/pages/authentication/select-role";
 
 const ForgetPasswordPage = lazy(
   () => import("@/pages/authentication/forget-password")
@@ -16,6 +17,14 @@ const ResetPasswordPage = lazy(
 const SignUpPage = lazy(() => import("@/pages/authentication/sign-up"));
 
 export default [
+  {
+    element: <SelectRolePage />,
+    path: "/select-role",
+    meta: {
+      layout: "blank",
+      isRestrictedRoute: true,
+    },
+  },
   {
     element: <AuthLayout />,
     path: "/auth",

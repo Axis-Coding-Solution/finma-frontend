@@ -14,17 +14,17 @@ import { SOCKET_ENUMS } from "@/utils/constants/socket-enums";
 
 function ChatBoxPage() {
   const { id } = useAppParams();
-  const auth = useAuth()
+  const auth = useAuth();
 
   let RenderContent = null;
 
   useEffect(() => {
-    socket.emit(SOCKET_ENUMS.JOIN, auth.user._id);
+    socket.emit(SOCKET_ENUMS.JOIN, auth?.user._id);
     // return () => {
     //   socket.off(SOCKET_ENUMS.RECEIVE_MESSAGE);
     //   socket.disconnect();
     // };
-  }, [auth.user]);
+  }, [auth?.user]);
 
   if (!id) RenderContent = NoMessages;
   else {

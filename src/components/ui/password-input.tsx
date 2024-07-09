@@ -30,14 +30,14 @@ export const PasswordInput = forwardRef<HTMLInputElement, IPasswordInput>(
         />
         {error && <InputError error={error} />}
         <span
-          className="absolute inset-y-0 right-4 top-8 flex items-center cursor-pointer"
+          className="absolute inset-y-0 right-4 top-7 flex items-center cursor-pointer"
           onClick={toggleShowPassword}
           aria-label="Toggle password visibility"
         >
           {showPassword ? (
-            <img src={EyeOpen} alt="Show password" key="eye-open" />
+            <img src={EyeOpen} alt="Show password" key="eye-open" className="size-7"/>
           ) : (
-            <img src={EyeClose} alt="Hide password" key="eye-close" />
+            <img src={EyeClose} alt="Hide password" key="eye-close" className="size-7"/>
           )}
         </span>
       </div>

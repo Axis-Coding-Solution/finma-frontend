@@ -36,7 +36,7 @@ export const GaugeMeter = ({ score, description, color }: { score: number, descr
         pointer={{ type: "arrow", width: 12, length: 5, color: "#181818" }}
         minValue={0}
       />
-      <span className={`font-medium absolute bottom-10 left-50 font-bold text-2xl ${color}`}>
+      <span className={`absolute bottom-10 left-50 font-bold text-2xl ${color}`}>
         {description}
       </span>
     </div>

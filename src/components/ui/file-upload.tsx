@@ -43,7 +43,7 @@ const FileUpload = ({
   }, [image]);
 
   return (
-    <div className="relative max-w-64 h-48 w-full border-2 border-dashed border-border rounded-lg p-5 flex flex-col items-center justify-center gap-4">
+    <div className="relative md:max-w-64 h-64 md:h-48 w-full border-2 border-dashed border-border rounded-lg p-5 flex flex-col items-center justify-center gap-4">
       <Controller
         control={control}
         name={name}
@@ -72,7 +72,11 @@ const FileUpload = ({
           >
             <Edit size={20} />
           </span>
-          <img src={preview} className="h-44 w-full object-cover" />
+          <img
+            src={preview}
+            className="md:h-44 h-56 md:w-56 w-full object-top"
+            onLoad={(e) => URL.revokeObjectURL(e.currentTarget.src)}
+          />
         </div>
       ) : (
         <>

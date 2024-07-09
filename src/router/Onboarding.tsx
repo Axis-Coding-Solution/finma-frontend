@@ -1,4 +1,3 @@
-import SelectRolePage from "@/pages/lead-magnet/select-role";
 import ExpertsOnboardingPage from "@/pages/onboarding/experts";
 import ExpertsPublicViewPage from "@/pages/onboarding/experts/public-view";
 import InnovatorsOnboardingPage from "@/pages/onboarding/innovators";
@@ -17,14 +16,6 @@ export default [
   {
     element: <InnovatorsOnboardingPage />,
     path: "/onboarding/innovators",
-    meta: {
-      layout: "blank",
-    },
-  },
-
-  {
-    element: <SelectRolePage />,
-    path: "onboarding/select-role",
     meta: {
       layout: "blank",
     },

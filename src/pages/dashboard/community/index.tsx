@@ -1,5 +1,8 @@
+import { useGetCommunity } from "@/api/hooks/dashboard";
+import { CgSpinner } from "@/assets/icons";
 import { Pagination } from "@/components/ui/pagination";
 import { SearchInput } from "@/components/ui/search-input";
+import { CommunityTypes } from "@/definitions/types";
 import { MainHeading } from "@/pages/components/common";
 import {
   CommunityCard,
@@ -8,8 +11,8 @@ import {
 
 const renderRight = <span>256 Members</span>;
 
-
 function CommunityPage() {
+  const { data, isLoading } = useGetCommunity();
   return (
     <div className="flex flex-col gap-8">
       <MainHeading heading="Community" renderRight={renderRight} />
@@ -17,13 +20,21 @@ function CommunityPage() {
         <CommunityFilter />
         <SearchInput />
       </div>
-      <div className="flex flex-col gap-4">
-        <CommunityCard />
-        <CommunityCard />
-        <CommunityCard />
-      </div>
+      {isLoading && (
+        <div className="w-full h-96 flex flex-col gap-5 justify-center items-center">
+          <CgSpinner className="animate-spin size-10" />
+          <span className="text-xl">Loading Data...</span>
+        </div>
+      )}
+      {!isLoading && (
+        <div className="flex flex-col gap-4">
+          {data?.map((item: CommunityTypes) => (
+            <CommunityCard key={item.id} {...item} />
+          ))}
+        </div>
+      )}
       <div>
-        <Pagination/>
+        <Pagination />
       </div>
     </div>
   );

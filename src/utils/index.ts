@@ -91,7 +91,7 @@ export const classNamesReactSelect: ClassNamesConfig<
     "text-foreground min-h-8 py-2 px-2 text-sm font-medium flex items-center justify-center",
   option: ({ isSelected }) =>
     cn(
-      "rounded-sm py-2 px-3 w-full !cursor-pointer",
+      "rounded-sm py-2 px-3 w-full !cursor-pointer focus-visible:outline",
       isSelected
         ? "bg-card transition hover:bg-card text-card-foreground"
         : "hover:bg-card text-foreground"
