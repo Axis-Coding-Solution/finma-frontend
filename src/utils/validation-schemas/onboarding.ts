@@ -34,7 +34,7 @@ const commonOnboardingSchema = {
       .trim()
       .label("LinkedIn Profile")
       .matches(
-        /^(http(s)?:\/\/)?([\w]+\.)?linkedin\.com\/(pub|in|profile)/gm,
+        /^https:\/\/(www\.)?linkedin\.com\/company\/[\w-]+\/?(?:\?.*)?$/,
         "Enter correct url!"
       )
       .required(),
