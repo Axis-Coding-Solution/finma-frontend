@@ -1,7 +1,6 @@
 import { SeeEye } from "@/assets/svgs";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
-import { MainHeading } from "@/pages/components/common";
 import IdeaClarityCard from "@/pages/components/dashboard/idea-clarity";
 import LockedCard from "@/pages/components/dashboard/locked-card";
 import { IdeaClarityModal } from "@/pages/components/dashboard/overview/idea-clarity-modal";
