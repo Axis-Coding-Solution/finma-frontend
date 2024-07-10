@@ -9,8 +9,6 @@ import {
 } from "@/components/ui/dialog";
 import { SquarePen } from "lucide-react";
 import { EditIdeaClarityModal } from "./edit-idea-clarity-modal";
-import { getIdeaClarityByUserId } from "@/api/http";
-import { useQuery } from "@tanstack/react-query";
 import { GaugeMeter } from "../../common/gauge-meter";
 
 export function IdeaClarityModal({data}: {data: any}) {

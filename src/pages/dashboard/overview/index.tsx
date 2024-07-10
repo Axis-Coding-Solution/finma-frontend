@@ -1,7 +1,6 @@
 import { SeeEye } from "@/assets/svgs";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
-import { MainHeading } from "@/pages/components/common";
 import IdeaClarityCard from "@/pages/components/dashboard/idea-clarity";
 import LockedCard from "@/pages/components/dashboard/locked-card";
 import { IdeaClarityModal } from "@/pages/components/dashboard/overview/idea-clarity-modal";
@@ -12,13 +11,13 @@ import { useParams } from "react-router-dom";
 
 function OverviewPage() {
   const [data, setData] = useState<any>(null);
-  const {id}=useParams();
+  const { id } = useParams();
   const getProjectById = async () => {
     try {
       const response = await get(`/idea-clarity/project/${id}`);
 
       setData(response.data.data);
-      console.log("data",data)
+      console.log("data", data);
       console.log("🚀 ~ getProjectById ~ response:", response.data.data.name);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -30,7 +29,6 @@ function OverviewPage() {
       getProjectById();
     }
   }, [id]);
-
 
   const lockedCardArray = [
     {
@@ -101,8 +99,8 @@ function OverviewPage() {
         <div className="flex flex-col md:flex-row md:gap-3">
           <div className="flex flex-col">
             <h1 className="text-sm text-muted-foreground">Project Name</h1>
-            
-             <h1 className="text-xl font-bold">{data?.projectId?.name || ''}</h1>
+
+            <h1 className="text-xl font-bold">{data?.projectId?.name || ""}</h1>
           </div>
           <div className="flex flex-col ">
             <h1 className="md:text-sm text-muted-foreground">Project Status</h1>
