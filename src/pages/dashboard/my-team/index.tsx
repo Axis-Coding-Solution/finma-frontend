@@ -1,7 +1,8 @@
+import UnderConstruction from "@/pages/components/under-construction"
 
 const MyTeamPage = () => {
   return (
-    <div className="mt-36 font-bold text-4xl flex justify-center items-center">Not Found </div>
+  <UnderConstruction/>
   )
 }
 
