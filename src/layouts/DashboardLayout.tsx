@@ -2,14 +2,14 @@ import { Outlet, useNavigate } from "react-router-dom";
 
 import AppHeader from "@/components/core/dashboard-layout/app-header";
 import Sidebar from "@/components/core/dashboard-layout/sidebar";
-import { useLayoutEffect } from "react";
+import { useEffect } from "react";
 import { useAuth } from "@/utils/hooks";
 
 function DashboardLayout() {
   const navigate = useNavigate();
   const auth = useAuth();
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const onboarding = auth?.user?.onboarding;
     const role = auth?.user?.role;
     if (!onboarding) navigate(`/onboarding/${role}s`, { replace: true });
