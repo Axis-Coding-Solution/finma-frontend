@@ -14,8 +14,11 @@ import {
 
 export const getAuthFromStorage = () => {
   if (typeof window !== "undefined") {
-    const user = JSON.parse(localStorage.getItem("user") ?? "null");
-    const token = localStorage.getItem("token");
+    let user = JSON.parse(localStorage.getItem("user") ?? "null");
+    let token = localStorage.getItem("token");
+    if (!user) user = JSON.parse(sessionStorage.getItem("user") ?? "null");
+    if (!token) token = sessionStorage.getItem("token");
+
     const isAuthenticated = token && user ? true : false;
     return { user, isAuthenticated, token };
   }
@@ -35,10 +38,26 @@ export const saveUserToLocalStorage = ({
   return;
 };
 
+export const saveUserToSessionStorage = ({
+  user,
+  token,
+}: {
+  user: any;
+  token: string;
+}) => {
+  if (typeof window !== "undefined") {
+    sessionStorage.setItem("user", JSON.stringify(user));
+    sessionStorage.setItem("token", token);
+  }
+  return;
+};
+
 export const removeUserFromLocalStorage = () => {
   if (typeof window !== "undefined") {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
+    sessionStorage.removeItem("user");
+    sessionStorage.removeItem("token");
   }
   return;
 };

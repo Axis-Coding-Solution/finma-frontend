@@ -2,14 +2,12 @@ import { post, get, patch } from "@/utils/axios";
 import { apiErrorHandler } from "../helpers";
 import { userQuestionaryInitialValues } from "@/utils/initial-values";
 
-const url = "/public/leads-magnet";
+const url = "/leads-magnet";
 const appendUrl = (segment: string) => `${url}/${segment}`;
 
-export const saveIdeaClarityApi = async (body: any) => {
+export const createIdeaClarity = async (body: any) => {
   try {
-    const res = await post(appendUrl("idea-clarity"), body, {
-      authorization: false,
-    });
+    const res = await post(appendUrl("idea-clarity"), body);
     return res.data;
   } catch (error: any) {
     return Promise.reject(apiErrorHandler(error));

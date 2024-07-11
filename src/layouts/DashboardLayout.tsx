@@ -10,10 +10,13 @@ function DashboardLayout() {
   const auth = useAuth();
 
   useEffect(() => {
-    const onboarding = auth?.user?.onboarding;
-    const role = auth?.user?.role;
-    if (!onboarding) navigate(`/onboarding/${role}s`, { replace: true });
-  }, []);
+    if (auth?.user && auth?.isAuthenticated) {
+      const onboarding = auth.user.onboarding;
+      const role = auth?.user?.role;
+      if (!onboarding) navigate(`/onboarding/${role}s`, { replace: true });
+    }
+  }, [auth?.isAuthenticated]);
+
   return (
     <div className="flex lg:flex-row flex-col h-screen overflow-hidden">
       <div className="w-96">

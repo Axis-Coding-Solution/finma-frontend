@@ -16,16 +16,14 @@ export default [
     path: "lead-magnet/start",
     meta: {
       layout: "blank",
-      isRestrictedRoute: true,
     },
   },
- 
+
   {
     element: <RiskScorePage />,
     path: "lead-magnet/risk-score",
     meta: {
       layout: "blank",
-      isRestrictedRoute: true,
     },
   },
   {
@@ -69,7 +67,6 @@ export default [
     ],
     meta: {
       layout: "blank",
-      isRestrictedRoute: true,
     },
   },
 ];

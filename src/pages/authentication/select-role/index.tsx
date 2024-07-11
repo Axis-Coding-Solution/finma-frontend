@@ -3,16 +3,33 @@ import { Button } from "@/components/ui/button";
 import { MainHeading } from "@/pages/components/common";
 import { errorToast } from "@/utils";
 import { post } from "@/utils/axios";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 function SelectRolePage() {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+
+  const [searchParams] = useSearchParams();
+  const errMsg = searchParams.get("errorMessage");
+
+  useEffect(() => {
+    if (errMsg) {
+      navigate("/select-role", { replace: true });
+      errorToast(errMsg);
+    }
+  }, []);
+
   const startOnboarding = async (role: string) => {
     try {
       setIsLoading(true);
-      await post("/public/common/save-role", { role });
+      await post(
+        "/public/common/save-role",
+        { role },
+        {
+          authorization: false,
+        }
+      );
       navigate("/auth/sign-up");
     } catch (error) {
       errorToast("Unable to proceed");
@@ -37,6 +54,14 @@ function SelectRolePage() {
           />
           <p>Select a partnership</p>
           <div className="mt-5 flex flex-col justify-center items-center md:justify-start md:items-start sm:flex-row md:gap-5">
+            <Button
+              title="Start Onboarding"
+              onClick={() => startOnboarding("innovator")}
+              variant="outline-secondary"
+              disabled={isLoading}
+            >
+              Innovator
+            </Button>
             <Button
               title="Start Onboarding"
               onClick={() => startOnboarding("expert")}

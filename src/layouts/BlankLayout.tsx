@@ -25,7 +25,7 @@ const BlankLayout = () => {
       return null;
 
     if (pathname === "/onboarding/terms-conditions" && auth?.isAuthenticated) {
-      return navigate(`/onboarding/${auth?.user?.role}s`, { replace: true });
+      return navigate(`/onboarding/${auth?.user?.role}s?redirectedFrom=t&c`, { replace: true });
     }
     if (state && state.idx > 0) {
       navigate(-1);
@@ -36,7 +36,7 @@ const BlankLayout = () => {
 
   useEffect(() => {
     if (pathname === "/") {
-      navigate("/lead-magnet/start", { replace: true });
+      navigate("/auth/login", { replace: true });
     }
   }, []);
   return (

@@ -90,7 +90,7 @@ const LoginWithEmail = () => {
           <span className="items-center">
             Don`t have an account?
             <Button
-              to="/auth/sign-up"
+              to="/select-role"
               tag={Link}
               variant="link"
               className="ms-1 px-0 mt-2"

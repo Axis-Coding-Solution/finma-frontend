@@ -96,7 +96,7 @@ export const onboardingExpertsInitialValues = {
   },
   rate: {
     contractualPref: null,
-    currency: "",
+    currency: null,
     hourlyRate: 0,
     monthlyRate: 0,
     projStartingPrice: 0,

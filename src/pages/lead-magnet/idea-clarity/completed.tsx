@@ -1,4 +1,4 @@
-import { saveIdeaClarityApi } from "@/api/http";
+import { createIdeaClarity } from "@/api/http";
 import { Button } from "@/components/ui/button";
 import { MainHeading } from "@/pages/components/common";
 import { ideaClarityFormDataHook } from "@/store";
@@ -15,7 +15,7 @@ function IdeaClarityCompletedPage() {
   const { navigate } = useOutletContext<IdeaClarityContextTypes>();
   const formDataState = useHookstate(ideaClarityFormDataHook);
   const ideaClarityMutation = useMutation({
-    mutationFn: saveIdeaClarityApi,
+    mutationFn: createIdeaClarity,
   });
 
   const inputRef = useRef<any>(null);

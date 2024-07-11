@@ -13,9 +13,21 @@ import { InputError } from "@/components/ui/input-error";
 import { useMutation } from "@tanstack/react-query";
 import { errorToast, successToast } from "@/utils";
 import { signUpApi } from "@/api/http";
+import { useAuth } from "@/utils/hooks";
+
+const routes = {
+  innovator: "/lead-magnet/start",
+  expert: "/onboarding/experts",
+  mentor: "/onboarding/mentors",
+};
+
+const getRouteOnRole = (role: "innovator" | "expert" | "mentor") => {
+  return routes[role];
+};
 
 const SignUpWithEmail = () => {
   const navigate = useNavigate();
+  const auth = useAuth();
   const signUpMutate = useMutation({
     mutationFn: signUpApi,
   });
@@ -34,8 +46,17 @@ const SignUpWithEmail = () => {
     try {
       const response = await signUpMutate.mutateAsync(data);
       successToast(response.message);
-      navigate("/auth/login");
+
+      const { token, user } = response.data;
+      auth?.handleLoginToSession({ token, user });
+
+      const role = user.role;
+      const url = getRouteOnRole(role);
+      navigate(url, { replace: true });
+
     } catch (error: any) {
+      if (error?.data?.redirectUrl)
+        navigate(error.data.redirectUrl, { replace: true });
       errorToast(error.message);
     }
   };
@@ -85,12 +106,11 @@ const SignUpWithEmail = () => {
             <Label htmlFor="terms" className="mb-0">
               By continuing, you agree to Finma's
               <Button className="mx-1 p-0" variant="link">
-                
                 <Link to="/terms-of-use">Terms of Use</Link>
               </Button>
               and
               <Button className="mx-1 p-0" variant="link">
-               <Link to="/privacy-policy"> Privacy Policy</Link>
+                <Link to="/privacy-policy"> Privacy Policy</Link>
               </Button>
             </Label>
           </div>

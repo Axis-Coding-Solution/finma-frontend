@@ -3,6 +3,7 @@ import {
   getAuthFromStorage,
   removeUserFromLocalStorage,
   saveUserToLocalStorage,
+  saveUserToSessionStorage,
 } from "@/utils";
 import { AuthContext } from "../context";
 import { useQueryClient } from "@tanstack/react-query";
@@ -24,6 +25,18 @@ function AuthProvider({ children }: PropsTypes) {
     saveUserToLocalStorage({ user, token });
   };
 
+  const handleLoginToSession = ({
+    user,
+    token,
+  }: {
+    user: any;
+    token: string;
+  }) => {
+    setIsAuthenticated(true);
+    setUser(user);
+    saveUserToSessionStorage({ user, token });
+  };
+
   const updateUser = (user: any) => {
     setUser(user);
     localStorage.setItem("user", JSON.stringify(user));
@@ -43,6 +56,7 @@ function AuthProvider({ children }: PropsTypes) {
         user,
         handleLogin,
         handleLogout,
+        handleLoginToSession,
         updateUser,
       }}
     >

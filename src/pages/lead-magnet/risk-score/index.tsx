@@ -45,22 +45,13 @@ function RiskScorePage() {
                     className="md:w-24 sm:w-20 w-16 sm:static absolute top-6 right-0 rotate-45 mt-6"
                   />
                 </div>
-                <div className="flex flex-col gap-4 mt-6">
+                <div className="flex flex-col gap-4 mt-10">
                   <Button
-                    to="/auth/sign-up"
-                    tag={Link}
                     className="sm:w-60 w-full"
-                    variant="default"
-                  >
-                    See Why
-                  </Button>
-                  <Button
                     tag={Link}
-                    className="sm:w-60 w-full"
-                    to="/auth/sign-up"
-                    variant="outline"
+                    to="/onboarding/innovators"
                   >
-                    Talk to an Expert
+                    Start Onboarding
                   </Button>
                 </div>
               </div>
@@ -70,7 +61,11 @@ function RiskScorePage() {
                 <h5 className="font-semibold text-foreground text-lg text-center mb-12">
                   Idea clarity score
                 </h5>
-                <GaugeMeter score={state.score} description={state.description} color={state.color} />
+                <GaugeMeter
+                  score={state.score}
+                  description={state.description}
+                  color={state.color}
+                />
                 <p className="mt-6 lg:text-base text-sm">
                   Your startup idea has been evaluated based on four key
                   validation points: Proof of the Problem, Solution

@@ -5,6 +5,7 @@ import {
   array,
   date,
   boolean,
+  mixed,
 } from "@/utils/constants";
 
 export const userQuestionarySchema = object({
@@ -39,7 +40,7 @@ const commonOnboardingSchema = {
       )
       .required(),
   }),
-  // profilePicture: mixed().label("Profile picture").required(),
+  profilePicture: mixed().label("Profile picture").required(),
 };
 
 const currencySchema = object({

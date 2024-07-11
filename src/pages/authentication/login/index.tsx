@@ -66,7 +66,7 @@ const Login = () => {
         </Button>
         <p className="text-center">
           Don't have an account?
-          <Link to="/auth/sign-up" className="ms-1 font-bold underline">
+          <Link to="/select-role" className="ms-1 font-bold underline">
             Sign Up
           </Link>
         </p>
