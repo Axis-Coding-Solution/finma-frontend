@@ -10,6 +10,7 @@ import LeadMagnetRoutes from "./LeadMagnet";
 
 import { ProtectedRoutes, PublicRoutes } from "@/components/core";
 import { RoutesType } from "@/definitions/types";
+import MiscRoutes from "./Misc";
 
 const mergedRoutes: RoutesType[] = [
   ...AuthenticationRoutes,
@@ -67,7 +68,7 @@ const Router = () => {
     };
   });
 
-  const Routes = useRoutes([...allRoutesWithLayouts]);
+  const Routes = useRoutes([...allRoutesWithLayouts, ...MiscRoutes]);
 
   return Routes;
 };
