@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { useOnboardingForm } from "@/store/hooks";
 import { createFormData, errorToast, successToast } from "@/utils";
 import { FORM_MODE } from "@/utils/constants";
+import { useAuth } from "@/utils/hooks";
 import { termsAndConditionsInitialValues } from "@/utils/initial-values";
 import { termsAndConditionsSchema } from "@/utils/validation-schemas";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -14,6 +15,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 
 export const TermsAndConditionsForm = () => {
   const navigate = useNavigate();
+  const auth = useAuth();
   const { getFormData, clearFormData } = useOnboardingForm();
 
   const [searchParams] = useSearchParams();
@@ -36,7 +38,6 @@ export const TermsAndConditionsForm = () => {
   ) => {
     if (!data.isAgreedForTerms || !data.isAgreedForPrivacyPolicy) return null;
     const form = getFormData();
-    console.log("🚀 ~ TermsAndConditionsForm ~ form:", form)
     const navigateRole = role ?? "innovators";
     if (!form) navigate(`/onboarding/${navigateRole}`);
 
@@ -45,6 +46,7 @@ export const TermsAndConditionsForm = () => {
       await mutateAsync({ role: navigateRole, formData });
       clearFormData();
       successToast("Onboarding Completed!");
+      auth?.updateUser({ ...auth?.user, onboarding: true });
       navigate("/dashboard/community", {
         replace: true,
       });

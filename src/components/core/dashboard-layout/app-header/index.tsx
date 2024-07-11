@@ -32,9 +32,12 @@ import { Avatar } from "@/components/ui/avatar";
 import { userAvatar1Image } from "@/assets/images";
 import { useAuth } from "@/utils/hooks";
 import StatusModal from "./status-modal";
+import { useGetStatusForUser } from "@/api/hooks/dashboard";
 
 const AppHeader = () => {
   const auth = useAuth();
+
+  const { data } = useGetStatusForUser();
   return (
     <header className="sticky w-full right-0  top-0 z-10 bg-background flex h-14 items-center lg:justify-end justify-between gap-7 border-b px-4 lg:h-16 lg:px-10 py-4">
       <Sheet>
@@ -113,12 +116,12 @@ const AppHeader = () => {
       <div className="flex gap-4 items-center">
         <div className="hidden md:flex flex-col rounded-lg">
           <div className="flex items-center gap-1">
-            <span className="text-muted-foreground text-xs">Public Status </span>
-            <StatusModal />
+            <span className="text-muted-foreground text-xs">Public Status</span>
+            <StatusModal userStatus={data} />
           </div>
-          <span className="text-foreground font-semibold underline text-sm">
-            Please set up your public status
-          </span>
+          <p className="w-full text-foreground font-semibold underline text-sm">
+            {data ? data.label : "Please set up your public status"}
+          </p>
         </div>
         <div className="text-muted-foreground flex gap-5 items-center">
           <span role="button">

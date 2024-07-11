@@ -23,7 +23,7 @@ function AuthLayout() {
       {showArrow && (
         <img
           src={ArrowPic}
-          className=" lg:rotate-0 rotate-90  lg:w-96 md:w-32 w-20 lg:h-96 md:h-32 h-20 lg:mt-20 mt-0 lg:mb-0 mb-6"
+          className=" lg:rotate-0 rotate-90 lg:w-96 md:w-32 w-20 lg:h-96 md:h-32 h-20 lg:mt-20 mt-0 lg:mb-0 mb-6"
         />
       )}
       <section

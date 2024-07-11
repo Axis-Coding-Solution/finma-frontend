@@ -5,5 +5,6 @@ type AuthContextType = null | {
   user: any;
   handleLogin: ({ user, token }: { user: any; token: string }) => void;
   handleLogout: () => void;
+  updateUser: (user: any) => void;
 };
 export const AuthContext = createContext<AuthContextType>(null);

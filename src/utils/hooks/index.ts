@@ -22,3 +22,4 @@ export const useAppCallback = useCallback;
 
 // ** we can add our own hooks here too.
 export { useAuth } from "./use-auth";
+export { useModal } from "./use-modal";

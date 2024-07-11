@@ -9,14 +9,19 @@ import {
   CommunityFilter,
 } from "@/pages/components/dashboard/community";
 
-const renderRight = <span>256 Members</span>;
+const RenderRight = ({ members }: { members: number }) => (
+  <span>{members} Members</span>
+);
 
 function CommunityPage() {
   const { data, isLoading } = useGetCommunity();
-  console.log("🚀 ~ CommunityPage ~ data:", data)
+  const total = data?.length ?? 0;
   return (
     <div className="flex flex-col gap-8">
-      <MainHeading heading="Community" renderRight={renderRight} />
+      <MainHeading
+        heading="Community"
+        renderRight={<RenderRight members={total} />}
+      />
       <div className="flex md:flex-row flex-col md:items-center items-start justify-between gap-4">
         <CommunityFilter />
         <SearchInput />
@@ -35,7 +40,7 @@ function CommunityPage() {
         </div>
       )}
       <div>
-        <Pagination />
+        <Pagination total={total} />
       </div>
     </div>
   );

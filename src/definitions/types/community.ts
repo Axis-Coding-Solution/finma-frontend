@@ -3,6 +3,10 @@ export type CommunityTypes = {
   name: string;
   profilePicture: string;
   role: string;
-  communityGoals: string[];
+  status: string;
+  communityGoals: {
+    goals: string[];
+    more: number;
+  };
   entrepStage: string;
 };

@@ -5,6 +5,7 @@ import {
   saveUserToLocalStorage,
 } from "@/utils";
 import { AuthContext } from "../context";
+import { useQueryClient } from "@tanstack/react-query";
 
 type PropsTypes = {
   children: ReactNode;
@@ -15,6 +16,7 @@ const auth = getAuthFromStorage();
 function AuthProvider({ children }: PropsTypes) {
   const [isAuthenticated, setIsAuthenticated] = useState(auth?.isAuthenticated);
   const [user, setUser] = useState(auth?.user);
+  const queryClient = useQueryClient();
 
   const handleLogin = ({ user, token }: { user: any; token: string }) => {
     setIsAuthenticated(true);
@@ -22,9 +24,15 @@ function AuthProvider({ children }: PropsTypes) {
     saveUserToLocalStorage({ user, token });
   };
 
+  const updateUser = (user: any) => {
+    setUser(user);
+    localStorage.setItem("user", JSON.stringify(user));
+  };
+
   const handleLogout = () => {
     setIsAuthenticated(false);
     setUser(null);
+    queryClient.clear();
     removeUserFromLocalStorage();
   };
 
@@ -35,6 +43,7 @@ function AuthProvider({ children }: PropsTypes) {
         user,
         handleLogin,
         handleLogout,
+        updateUser,
       }}
     >
       {children}
