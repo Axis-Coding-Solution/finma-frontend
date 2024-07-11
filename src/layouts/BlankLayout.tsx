@@ -85,11 +85,24 @@ const BlankLayout = () => {
               </DropdownMenuContent>
             </DropdownMenu>
           </ul>
-          <Link to="/auth/login">
-            <Button className="lg:flex gap-4 hidden" variant="default">
+          {auth?.isAuthenticated ? (
+            <Button
+              className="lg:flex gap-4 hidden"
+              variant="default"
+              onClick={auth?.handleLogout}
+            >
+              Sign Out
+            </Button>
+          ) : (
+            <Button
+              tag={Link}
+              to="/auth/login"
+              className="lg:flex gap-4 hidden"
+              variant="default"
+            >
               Sign in
             </Button>
-          </Link>
+          )}
           <HamburgerMenu />
         </nav>
       </header>
