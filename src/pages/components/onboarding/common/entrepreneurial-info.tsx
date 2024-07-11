@@ -10,8 +10,11 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Textarea } from "@/components/ui/textarea";
 import { IndustryOptions, currenciesOptions } from "@/data/onboarding";
 import { ReactSelect } from "@/components/ui/react-select";
+import { Checkbox } from "@/components/ui/checkbox";
+import { useState } from "react";
 
 export const EntrepreneurialInfo = ({ control, errors, register }: any) => {
+  const [isPresent, setIsPresent] = useState<boolean>(false)
   const { fields, append, remove } = useFieldArray({
     keyName: "uid",
     control,
@@ -130,7 +133,7 @@ export const EntrepreneurialInfo = ({ control, errors, register }: any) => {
               </div>
 
               <div className="flex flex-col lg:flex-row gap-4">
-                <div className="w-full lg:w-[60%] ">
+                <div className="w-full ">
                   <Label
                     htmlFor={`entrepTrackRecord.startUps.${index}.noOfEmp`}
                   >
@@ -145,15 +148,16 @@ export const EntrepreneurialInfo = ({ control, errors, register }: any) => {
                     error={errors.entrepTrackRecord?.startUps?.[index]?.noOfEmp}
                   />
                 </div>
-
-                <div className="flex flex-col w-full lg:w-[40%] ">
+              </div>
+              <div className="flex flex-col lg:flex-row gap-4">
+              <div className="flex flex-col w-full">
                   <div>
                     <Label htmlFor="yearsOfOperations">
                       Years of operations (from-to)
                     </Label>
                   </div>
 
-                  <div className="flex gap-4">
+                  <div className="flex justify-center items-center gap-4">
                     <Controller
                       name={`entrepTrackRecord.startUps.${index}.yearsOfOp.from`}
                       control={control}
@@ -174,7 +178,7 @@ export const EntrepreneurialInfo = ({ control, errors, register }: any) => {
                       control={control}
                       render={({ field }) => (
                         <div>
-                          <Input type="number" {...field} />
+                          <Input type="number" {...field} value={isPresent ? new Date().getFullYear() : field.value} disabled={isPresent} />
                           <InputError
                             error={
                               errors?.entrepTrackRecord?.startUps?.[index]
@@ -184,6 +188,22 @@ export const EntrepreneurialInfo = ({ control, errors, register }: any) => {
                         </div>
                       )}
                     />
+                    <div className="flex justify-center w-[40%] text-center">
+                    <Controller
+                      name={`entrepTrackRecord.startUps.${index}.yearsOfOp.to`}
+                      control={control}
+                      render={() => (
+                        <Checkbox
+                        id="presentWorking"
+                          checked={isPresent}
+                          onCheckedChange={(e:boolean) => setIsPresent(e)}
+                        />
+                      )}
+                    />
+                    <Label htmlFor="presentWorking" className="text-center ml-2 leading-5">
+                      Present is Working
+                    </Label>
+                    </div>
                   </div>
                 </div>
               </div>
