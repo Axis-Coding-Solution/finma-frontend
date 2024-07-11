@@ -6,6 +6,7 @@ import CommunityPage from "@/pages/dashboard/community";
 import { ProductPage } from "@/pages/dashboard/product";
 import MyProjectsPage from "@/pages/dashboard/my-projects";
 import MyTeamPage from "@/pages/dashboard/my-team";
+import Setting from "@/pages/dashboard/setting";
 
 export default [
   {
@@ -61,6 +62,13 @@ export default [
   {
     element: <ChatBoxPage />,
     path: "/dashboard/chats/:id?",
+    meta: {
+      layout: "dashboard",
+    },
+  },
+  {
+    element: <Setting />,
+    path: "/dashboard/settings",
     meta: {
       layout: "dashboard",
     },
