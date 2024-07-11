@@ -17,6 +17,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { ExpertOnboardingValuesType } from "@/definitions/types/onboarding";
 import { useOnboardingForm } from "@/store/hooks";
 import { useEffect } from "react";
+import { useAuth } from "@/utils/hooks";
 
 function ExpertsOnboardingPage() {
   const navigate = useNavigate();
@@ -36,6 +37,7 @@ function ExpertsOnboardingPage() {
 
   const { setFormData, getFormData, clearFormData } = useOnboardingForm();
   const [searchParams] = useSearchParams();
+  const auth = useAuth();
   const redirectedFrom = searchParams.get("redirectedFrom");
 
   useEffect(() => {
@@ -45,6 +47,13 @@ function ExpertsOnboardingPage() {
     }
     if (formData && !redirectedFrom) clearFormData();
   }, [redirectedFrom]);
+
+  useEffect(() => {
+    const role = auth?.user?.role;
+    const onboarding = auth?.user?.onboarding;
+    if (onboarding) navigate("/dashboard/community", { replace: true });
+    if (role !== "expert") navigate(`/onboarding/${role}s`, { replace: true });
+  }, []);
 
   const onSubmitHandler = async (values: ExpertOnboardingValuesType) => {
     setFormData(values);

@@ -18,6 +18,7 @@ import { useOnboardingForm } from "@/store/hooks";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
 import { onboardingMentorsSchema } from "@/utils/validation-schemas";
+import { useAuth } from "@/utils/hooks";
 
 function MentorsOnboardingPage() {
   const {
@@ -38,6 +39,7 @@ function MentorsOnboardingPage() {
   const navigate = useNavigate();
   const { setFormData, getFormData, clearFormData } = useOnboardingForm();
   const [searchParams] = useSearchParams();
+  const auth = useAuth();
   const redirectedFrom = searchParams.get("redirectedFrom");
 
   useEffect(() => {
@@ -47,6 +49,15 @@ function MentorsOnboardingPage() {
     }
     if (formData && !redirectedFrom) clearFormData();
   }, [redirectedFrom]);
+
+  useEffect(() => {
+    const role = auth?.user?.role;
+    const onboarding = auth?.user?.onboarding;
+    if (onboarding) navigate("/dashboard/community", { replace: true });
+    
+    if (role !== "mentor" && !onboarding)
+      navigate(`/onboarding/${role}s`, { replace: true });
+  }, []);
 
   const onSubmitHandler = async (values: MentorsOnboardingValuesType) => {
     setFormData(values);

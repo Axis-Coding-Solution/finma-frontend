@@ -18,7 +18,7 @@ function App() {
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
         <AuthProvider>
-          <Toaster position="top-right" reverseOrder={false} />
+          <Toaster position="bottom-right" reverseOrder={false} />
           <AppRouter />
         </AuthProvider>
       </QueryClientProvider>

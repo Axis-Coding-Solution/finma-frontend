@@ -1,19 +1,21 @@
+import { useAddStatusMutation } from "@/api/hooks/dashboard";
 import { Button } from "@/components/ui/button";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { ReactCreatableSelect } from "@/components/ui/creatable-select";
 import {
   DialogTrigger,
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
+  DialogClose,
 } from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
+import { errorToast, successToast } from "@/utils";
+import { useModal } from "@/utils/hooks";
+import { useQueryClient } from "@tanstack/react-query";
 import { SquarePen } from "lucide-react";
+import { useEffect, useState } from "react";
+
 const statusOptions = [
   { label: "💡 Brainstorming Ideas", value: "💡 Brainstorming Ideas" },
   { label: "🔍 Proofing the Concept", value: "🔍 Proofing the Concept" },
@@ -40,36 +42,66 @@ const statusOptions = [
   { label: "📈 Analyzing User Data", value: "📈 Analyzing User Data" },
   { label: "📅 Planning the Roadmap", value: "📅 Planning the Roadmap" },
 ];
-const StatusModal = () => {
+
+type OptionType = { value: string; label: string };
+
+const StatusModal = ({ userStatus }: { userStatus: OptionType }) => {
+  const [status, setStatus] = useState<OptionType | null>(null);
+  const queryClient = useQueryClient();
+
+  const modal = useModal();
+
+  const { mutateAsync, isPending } = useAddStatusMutation();
+
+  useEffect(() => {
+    if (userStatus) setStatus(userStatus);
+  }, [userStatus]);
+
+  const onSubmitHandler = async () => {
+    try {
+      const res = await mutateAsync({ status: status?.value });
+      queryClient.invalidateQueries({ queryKey: ["/statuses/user"] });
+      successToast(res.message);
+      modal.close();
+    } catch (error: any) {
+      errorToast(error.messsage);
+    }
+  };
+
   return (
-    <Dialog>
+    <Dialog modal={modal.show} onOpenChange={modal.setShow}>
       <DialogTrigger asChild>
         <span role="button">
           <SquarePen size={14} className="text-muted-foreground" />
         </span>
       </DialogTrigger>
-      <DialogContent className="md:w-96 w-auto">
+      <DialogContent>
         <DialogHeader>
-          <DialogTitle className="text-left ">Status Update</DialogTitle>
+          <DialogTitle className="text-left">Add your status</DialogTitle>
         </DialogHeader>
-        <Select>
-          <SelectTrigger>
-            <SelectValue placeholder="" />
-          </SelectTrigger>
-          <SelectContent side="bottom" className="h-52">
-            {statusOptions.map((item) => (
-              <SelectItem key={item.value} value={item.value}>
-                {item.label}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+
+        <div>
+          <Label>Status</Label>
+          <ReactCreatableSelect
+            options={statusOptions}
+            value={status}
+            onChange={(e: any) => setStatus(e)}
+            placeholder="Select from list or type a new one"
+          />
+        </div>
         <div className="flex items-center justify-between gap-4">
-          <Button variant="outline" className="w-full">
-            Cancel
-          </Button>
-          <Button variant="secondary" className="w-full">
-            Update
+          <DialogClose asChild>
+            <Button disabled={isPending} variant="outline" className="w-full">
+              Cancel
+            </Button>
+          </DialogClose>
+          <Button
+            variant="default"
+            className="w-full"
+            disabled={isPending}
+            onClick={onSubmitHandler}
+          >
+            Add
           </Button>
         </div>
       </DialogContent>

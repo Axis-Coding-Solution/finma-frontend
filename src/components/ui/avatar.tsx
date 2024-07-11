@@ -2,6 +2,7 @@ import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/utils";
+import { userAvatar1Image } from "@/assets/images";
 
 const badgeVariants = cva("rounded-full border-transparent", {
   variants: {
@@ -41,6 +42,7 @@ function Avatar({
       <img
         src={image}
         crossOrigin="anonymous"
+        onError={(e) => (e.currentTarget.src = userAvatar1Image)}
         className={cn(badgeVariants({ size }), className)}
         {...props}
       />

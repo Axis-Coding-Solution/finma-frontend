@@ -12,13 +12,21 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { ChevronDown } from "lucide-react";
 import { ArrowConnerLeft } from "@/assets/svgs";
+import { useAuth } from "@/utils/hooks";
 
 const BlankLayout = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const auth = useAuth();
 
   const handleGoBack = () => {
     const { state } = window.history;
+    if (pathname !== "/onboarding/terms-conditions" && auth?.isAuthenticated)
+      return null;
+
+    if (pathname === "/onboarding/terms-conditions" && auth?.isAuthenticated) {
+      return navigate(`/onboarding/${auth?.user?.role}s`, { replace: true });
+    }
     if (state && state.idx > 0) {
       navigate(-1);
     } else {

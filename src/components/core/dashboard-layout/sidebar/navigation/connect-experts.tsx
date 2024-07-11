@@ -40,46 +40,49 @@ export const ConnectWithExperts = () => {
   return (
     <div className="text-foreground mt-4 flex flex-col gap-1">
       <h6 className="px-4 text-muted-foreground text-sm tracking-wider mb-1">
-        Connect with experts
+        Recent Chats
       </h6>
-      {users?.map(({ id, email }: { id: string; email: string }) => {
-        let userName = email
-          .split("@")[0]
-          .replace(/\b\w/g, (l) => l.toUpperCase());
-        return (
-          <div
-            onClick={() => chatHandler(id)}
-            key={id}
-            className={cn(
-              "truncate max-w-max px-4 py-3 flex gap-3 rounded-lg tran items-center hover:bg-success/10 hover:text-success",
-              pathname === `/dashboard/chats/${id}` &&
-                "bg-success/10 text-success"
-            )}
-          >
-            <Avatar image={userAvatar2Image} size="md" active />
-            <div className="flex flex-col text-base">
-              <span
-                className=""
-                style={{
-                  whiteSpace: "nowrap",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  width: "150px",
-                }}
-                onClick={() =>
-                  setExpertInfo((prev) => ({ ...prev, id, name: userName }))
-                }
-              >
-                {truncateText(userName, 13)}
-              </span>
+      {users?.map(
+        ({ id, email }: { id: string; email: string }, idx: number) => {
+          let userName = email
+            .split("@")[0]
+            .replace(/\b\w/g, (l) => l.toUpperCase());
+          if (idx > 1) return null;
+          return (
+            <div
+              onClick={() => chatHandler(id)}
+              key={id}
+              className={cn(
+                "truncate max-w-max px-4 py-3 flex gap-3 rounded-lg tran items-center hover:bg-success/10 hover:text-success",
+                pathname === `/dashboard/chats/${id}` &&
+                  "bg-success/10 text-success"
+              )}
+            >
+              <Avatar image={userAvatar2Image} size="md" active />
+              <div className="flex flex-col text-base">
+                <span
+                  className=""
+                  style={{
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    width: "150px",
+                  }}
+                  onClick={() =>
+                    setExpertInfo((prev) => ({ ...prev, id, name: userName }))
+                  }
+                >
+                  {truncateText(userName, 13)}
+                </span>
 
-              <span className="text-muted-foreground text-xs">
-                Venture Analyst
-              </span>
+                <span className="text-muted-foreground text-xs">
+                  Venture Analyst
+                </span>
+              </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        }
+      )}
     </div>
   );
 };

@@ -17,6 +17,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useOnboardingForm } from "@/store/hooks";
 import { useEffect } from "react";
+import { useAuth } from "@/utils/hooks";
 
 function InnovatorsOnboardingPage() {
   const navigate = useNavigate();
@@ -36,6 +37,7 @@ function InnovatorsOnboardingPage() {
 
   const { setFormData, getFormData, clearFormData } = useOnboardingForm();
   const [searchParams] = useSearchParams();
+  const auth = useAuth();
   const redirectedFrom = searchParams.get("redirectedFrom");
 
   useEffect(() => {
@@ -45,6 +47,14 @@ function InnovatorsOnboardingPage() {
     }
     if (formData && !redirectedFrom) clearFormData();
   }, [redirectedFrom]);
+
+  useEffect(() => {
+    const role = auth?.user?.role;
+    const onboarding = auth?.user?.onboarding;
+    
+    if (onboarding) navigate("/dashboard/community", { replace: true });
+    if (role !== "innovator") navigate(`/onboarding/${role}s`, { replace: true });
+  }, []);
 
   const onSubmitHandler = async (values: InnovatorsOnboardingValuesType) => {
     setFormData(values);
