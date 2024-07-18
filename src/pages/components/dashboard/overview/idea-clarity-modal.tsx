@@ -2,21 +2,31 @@ import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
-  DialogHeader,
-  DialogTitle,
   DialogTrigger,
-  DialogClose,
 } from "@/components/ui/dialog";
 import { SquarePen } from "lucide-react";
-import { EditIdeaClarityModal } from "./edit-idea-clarity-modal";
-import { GaugeMeter } from "../../common/gauge-meter";
+import { useEffect, useState } from "react";
+import { IdeaClarityScore } from "./components/idea-clarity-score";
+import { EditIdeaClarity } from "./components/edit-idea-clarity";
+import { useModal } from "@/utils/hooks";
 
-export function IdeaClarityModal({data}: {data: any}) {
+
+export function IdeaClarityModal({ data }: { data: any }) {
+  const [selectStep, setSelectStep] = useState(0)
+  const modal = useModal()
+
+  const content = [<IdeaClarityScore setSelectStep={setSelectStep} data={data} />, <EditIdeaClarity data={data} setSelectStep={setSelectStep} />]
+  useEffect(() => {
+    if ((data && !data?.ideaClarity)) {
+      setSelectStep(1)
+      modal.open()
+    }
+  }, [data])
 
   return (
-    
 
-    <Dialog>
+
+    <Dialog open={(data && !data?.ideaClarity) ? true : modal.show} onOpenChange={modal.setShow} >
       <DialogTrigger asChild>
         <Button variant="outline-info" className="flex items-center">
           <h1>{data?.description || ''}</h1>
@@ -25,29 +35,12 @@ export function IdeaClarityModal({data}: {data: any}) {
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[800px]   pb-10 lg:px-20 md:px-10 px-4">
-        <DialogHeader>
-          <DialogTitle className="font-semibold text-lg text-center">
-            Idea clarity score
-          </DialogTitle>
-        </DialogHeader>
-        <div className="flex flex-col items-center md:gap-10 gap-5 text-center">
-          <GaugeMeter score={data?.score || 0} description={data?.description || ''} color={data?.color || ''} />
-          <p className="md:text-sm text-xs">
-            Your startup idea has been evaluated based on four key validation
-            points: Proof of the Problem, Solution Effectiveness, Identification
-            of Targeted Audience, and Direct Competitors.
-            <br />
-            <br />
-            Each validation point was scored on a scale from 1 (Low Risk) to 4
-            (High Risk). The total score determines the overall risk level of
-            your idea.
-          </p>
-        </div>
-        <DialogClose asChild>
+        {content[selectStep]}
+        {/* <DialogClose asChild>
           <EditIdeaClarityModal data={data} />
-        </DialogClose>
+        </DialogClose> */}
       </DialogContent>
     </Dialog>
-    
+
   );
 }

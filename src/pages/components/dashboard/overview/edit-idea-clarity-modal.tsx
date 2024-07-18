@@ -63,11 +63,11 @@ export function EditIdeaClarityModal({data}: {data: any}) {
   useEffect(() => {
     if (typeof data == "object" && data) {
       const updateValues = {
-        id: data?._id,
-        problem: data?.problem,
-        solution: data?.solution,
-        targetedAudience: data?.targetedAudience,
-        competitors: data?.competitors,
+        id: data?.ideaClarity?._id,
+        problem: data?.ideaClarity?.problem,
+        solution: data?.ideaClarity?.solution,
+        targetedAudience: data?.ideaClarity?.targetedAudience,
+        competitors: data?.ideaClarity?.competitors,
       };
       reset(updateValues);
     }

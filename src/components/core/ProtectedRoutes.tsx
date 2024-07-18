@@ -22,7 +22,7 @@ export const ProtectedRoutes = ({
   useEffect(() => {
     if (token && user) {
       const parsedUser = JSON.parse(user);
-      if (parsedUser.onboardind) {
+      if (parsedUser.onboarding) {
         auth?.handleLogin({ user: parsedUser, token });
       } else {
         auth?.handleLoginToSession({ user: parsedUser, token });

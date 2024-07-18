@@ -3,6 +3,7 @@ import { Label } from "@/components/ui/label";
 import FileUpload from "@/components/ui/file-upload";
 import { useEffect } from "react";
 import { get } from "@/utils/axios";
+import { InputError } from "@/components/ui/input-error";
 
 export const ProjectForm = ({
   register,
@@ -41,6 +42,7 @@ export const ProjectForm = ({
           <div>
             <Label htmlFor="name">Project Name</Label>
             <Input type="text" id="name" {...register("name")} />
+            <InputError error={errors?.name} />
           </div>
           <div>
             <Label htmlFor="tagline">Tagline</Label>

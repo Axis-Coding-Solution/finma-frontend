@@ -1,3 +1,4 @@
+import { useDeleteProject } from "@/api/hooks/dashboard/myProject";
 import { Button } from "@/components/ui/button";
 import {
   DialogTrigger,
@@ -9,7 +10,8 @@ import {
 } from "@/components/ui/dialog";
 
 import { errorToast, successToast } from "@/utils";
-import { del } from "@/utils/axios";
+import { useModal } from "@/utils/hooks";
+import { useQueryClient } from "@tanstack/react-query";
 import { Trash2 } from "lucide-react";
 export const ProjectDeleteModal = ({
   projectName,
@@ -18,10 +20,15 @@ export const ProjectDeleteModal = ({
   projectName: string;
   projectId: string;
 }) => {
+  const modal = useModal();
+  const { mutateAsync } = useDeleteProject()
+  const queryClient = useQueryClient();
   async function deleteProject(id: string) {
     try {
-      const response = await del(`/projects/${id}`);
-      successToast(response?.data?.message);
+      const response = await mutateAsync(id);
+      queryClient.invalidateQueries({ queryKey: ["/projects"] })
+      modal.close();
+      successToast(response?.message);
     } catch (error: any) {
       errorToast(error);
     }

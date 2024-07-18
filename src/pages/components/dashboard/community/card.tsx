@@ -13,6 +13,7 @@ export const CommunityCard = ({
   communityGoals,
   status,
   entrepStage,
+  projectCount
 }: CommunityTypes) => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-6 lg:grid-cols-12 bg-muted p-4 rounded-lg gap-4">
@@ -20,6 +21,7 @@ export const CommunityCard = ({
       {/* Avatar Section  */}
       <div className="flex items-center gap-4 col-span-12 sm:col-span-4 lg:col-span-3">
         <Avatar
+        className="object-cover"
           image={profilePicture ? profilePicture : userAvatar1Image}
           size="lg"
         />
@@ -59,7 +61,7 @@ export const CommunityCard = ({
       {role === "innovator" && (
         <div className="flex flex-col items-start gap-2 col-span-12 sm:col-span-2 lg:col-span-2">
           <h6 className="text-foreground font-semibold">Open projects</h6>
-          <span className="ps-2 text-success underline text-sm">0</span>
+          <span className="ps-2 text-success underline text-sm">{projectCount}</span>
         </div>
       )}
       {role === "mentor" && (

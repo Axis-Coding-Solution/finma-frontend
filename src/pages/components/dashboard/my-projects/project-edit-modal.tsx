@@ -4,6 +4,7 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
+  DialogClose,
 } from "@/components/ui/dialog";
 
 import { FilePenLine } from "lucide-react";
@@ -13,11 +14,16 @@ import { Button } from "@/components/ui/button";
 import { ProjectForm } from "./project-form";
 import { useForm } from "react-hook-form";
 import { dashboardProjectsInitialValues } from "@/utils/initial-values/dashboard/Projects";
-import { put } from "@/utils/axios";
 import { useState } from "react";
 import { createFormData, errorToast, successToast } from "@/utils";
+import { useEditProjectMutation } from "@/api/hooks/dashboard/myProject";
+import { useQueryClient } from "@tanstack/react-query";
+import { useModal } from "@/utils/hooks";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { dashboardProjectsSchema } from "@/utils/validation-schemas/dashoard/projects";
 export const ProjectEditModal = ({ projectId }: { projectId: string }) => {
   const [project] = useState<any>({});
+  const modal = useModal()
 
   const {
     control,
@@ -28,7 +34,10 @@ export const ProjectEditModal = ({ projectId }: { projectId: string }) => {
     formState: { errors },
   } = useForm({
     defaultValues: dashboardProjectsInitialValues,
+    resolver: yupResolver(dashboardProjectsSchema as any)
   });
+  const { mutateAsync } = useEditProjectMutation()
+  const queryClient = useQueryClient();
   const commonProps = {
     control,
     register,
@@ -41,9 +50,10 @@ export const ProjectEditModal = ({ projectId }: { projectId: string }) => {
   ) => {
     try {
       const formData = createFormData(values);
-      await put(`/projects/${projectId}`, formData);
+      await mutateAsync({ data: formData, id: projectId });
+      queryClient.invalidateQueries({ queryKey: ["/projects"] });
       successToast("Updated Successfully");
-      console.log("🚀 ~ ProjectEditModal ~ values:", values);
+      modal.close()
     } catch (error: any) {
       errorToast(error.message);
     }
@@ -74,9 +84,11 @@ export const ProjectEditModal = ({ projectId }: { projectId: string }) => {
               id={projectId}
             />
             <div className="flex items-center justify-between gap-4">
-              <Button type="button" variant="outline" className="w-full">
-                Cancel
-              </Button>
+              <DialogClose asChild>
+                <Button type="button" variant="outline" className="w-full">
+                  Cancel
+                </Button>
+              </DialogClose>
               <Button type="submit" variant="secondary" className="w-full">
                 Update
               </Button>

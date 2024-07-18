@@ -2,6 +2,7 @@ import { Avatar } from "@/components/ui/avatar";
 import { CornerDownRight} from "lucide-react";
 import ProjectDropdownModal from "./project-dropdown";
 import { Link } from "react-router-dom";
+import { userAvatar1Image } from "@/assets/images";
 
 const ProjectCard = (props: any) => {
   console.log("🚀 ~ ProjectCard ~ props:", props)
@@ -9,7 +10,7 @@ const ProjectCard = (props: any) => {
     <>
       <div className="bg-accent flex flex-col gap-5  w-full p-5 rounded-xl">
         <div className="flex justify-between">
-          <Avatar image={props.logoImage} size="lg" />
+          <Avatar className="object-cover" image={props.logoImage || userAvatar1Image} size="lg" />
           <ProjectDropdownModal name={props.name} id={props.id}  />
           
         </div>

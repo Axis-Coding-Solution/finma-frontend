@@ -9,4 +9,5 @@ export type CommunityTypes = {
     more: number;
   };
   entrepStage: string;
+  projectCount: number;
 };

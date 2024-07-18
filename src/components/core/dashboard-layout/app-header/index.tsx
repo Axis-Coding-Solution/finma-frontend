@@ -135,7 +135,7 @@ const AppHeader = () => {
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <div role="button">
-              <Avatar image={userAvatar1Image} />
+              <Avatar className="object-cover" image={auth?.user?.profilePicture || userAvatar1Image} />
             </div>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
