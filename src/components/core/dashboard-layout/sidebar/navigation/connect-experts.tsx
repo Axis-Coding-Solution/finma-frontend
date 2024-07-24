@@ -15,7 +15,6 @@ export const ConnectWithExperts = () => {
   const queryClient = useQueryClient();
 
   let users = data?.data ?? [];
-  console.log('NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN', users)
 
   const navigate = useNavigate();
   const expertInfo = useHookstate(expertsDetailsHook);
@@ -44,9 +43,16 @@ export const ConnectWithExperts = () => {
         Recent Chats
       </h6>
       {users?.map(
-        ({ id, name, entrepStage }: { id: string; name: string, entrepStage: string }, idx: number) => {
-          let userName = name || ''
-            
+        (
+          {
+            id,
+            name,
+            entrepStage,
+          }: { id: string; name: string; entrepStage: string },
+          idx: number
+        ) => {
+          let userName = name || "";
+
           if (idx > 1) return null;
           return (
             <div

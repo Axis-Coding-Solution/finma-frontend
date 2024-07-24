@@ -22,7 +22,6 @@ export const ProjectForm = ({
         logoImage: response?.data.data.profilePicture || "",
         bio: response?.data.data.bio || "",
       });
-      console.log("🚀 ~ getProjectById ~ response:", response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }

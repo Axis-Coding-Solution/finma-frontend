@@ -1,9 +1,19 @@
-import ExpertsOnboardingPage from "@/pages/onboarding/experts";
-import ExpertsPublicViewPage from "@/pages/onboarding/experts/public-view";
-import InnovatorsOnboardingPage from "@/pages/onboarding/innovators";
-import MentorsOnboardingPage from "@/pages/onboarding/mentors";
-import TermsAndConditionsPage from "@/pages/onboarding/terms-conditions";
-import UserQuestionaryPage from "@/pages/onboarding/user-questionary";
+import { lazy } from "react";
+
+const ExpertsOnboardingPage = lazy(() => import("@/pages/onboarding/experts"));
+const ExpertsPublicViewPage = lazy(
+  () => import("@/pages/onboarding/experts/public-view")
+);
+const InnovatorsOnboardingPage = lazy(
+  () => import("@/pages/onboarding/innovators")
+);
+const MentorsOnboardingPage = lazy(() => import("@/pages/onboarding/mentors"));
+const TermsAndConditionsPage = lazy(
+  () => import("@/pages/onboarding/terms-conditions")
+);
+const UserQuestionaryPage = lazy(
+  () => import("@/pages/onboarding/user-questionary")
+);
 
 export default [
   {

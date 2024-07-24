@@ -1,12 +1,16 @@
-import FaqPage from "@/pages/dashboard/faq";
-import ChatBoxPage from "@/pages/dashboard/chats";
-import OverviewPage from "@/pages/dashboard/overview";
-import InnovatorPage from "@/pages/dashboard/innovator";
-import CommunityPage from "@/pages/dashboard/community";
-import { ProductPage } from "@/pages/dashboard/product";
-import MyProjectsPage from "@/pages/dashboard/my-projects";
-import MyTeamPage from "@/pages/dashboard/my-team";
-import Setting from "@/pages/dashboard/setting";
+import { lazy } from "react";
+
+const FaqPage = lazy(() => import("@/pages/dashboard/faq"));
+const ChatBoxPage = lazy(() => import("@/pages/dashboard/chats"));
+const InnovatorPage = lazy(() => import("@/pages/dashboard/innovator"));
+const CommunityPage = lazy(() => import("@/pages/dashboard/community"));
+const ProductPage = lazy(() => import("@/pages/dashboard/product"));
+const MyProjectsPage = lazy(() => import("@/pages/dashboard/my-projects"));
+const MyTeamPage = lazy(() => import("@/pages/dashboard/my-team"));
+const Setting = lazy(() => import("@/pages/dashboard/setting"));
+const ProjectOverviewPage = lazy(
+  () => import("@/pages/dashboard/my-projects/overview")
+);
 
 export default [
   {
@@ -53,7 +57,7 @@ export default [
     },
   },
   {
-    element: <OverviewPage />,
+    element: <ProjectOverviewPage />,
     path: "/dashboard/my-projects/:id",
     meta: {
       layout: "dashboard",

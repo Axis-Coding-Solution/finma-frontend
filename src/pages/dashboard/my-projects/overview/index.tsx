@@ -2,96 +2,79 @@ import { useGetIdeaClarityProject } from "@/api/hooks/dashboard/idea-clarity";
 import { SeeEye } from "@/assets/svgs";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
-import IdeaClarityCard from "@/pages/components/dashboard/idea-clarity";
-import LockedCard from "@/pages/components/dashboard/locked-card";
 import { IdeaClarityModal } from "@/pages/components/dashboard/overview/idea-clarity-modal";
 import { X } from "lucide-react";
 import { useParams } from "react-router-dom";
 
-function OverviewPage() {
-  // const [data, setData] = useState<any>(null);
-  const { id = '' } = useParams();
-  const { data } = useGetIdeaClarityProject(id)
-  // const getProjectById = async () => {
-  //   try {
-  //     const response = await get(`/idea-clarity/project/${id}`);
+import IdeaClarityCard from "@/pages/components/dashboard/idea-clarity";
+import LockedCard from "@/pages/components/dashboard/locked-card";
 
-  //     setData(response.data.data);
-  //     console.log("data", data);
-  //     console.log("🚀 ~ getProjectById ~ response:", response.data.data.name);
-  //   } catch (error) {
-  //     console.error("Error fetching data:", error);
-  //   }
-  // };
+const lockedCardArray = [
+  {
+    title: "Market Research and Validation",
+  },
+  {
+    title: "Building the MVP",
+  },
+  {
+    title: "Growth and User Acquisition ",
+  },
+  {
+    title: "Design and branding ",
+  },
+  {
+    title: "Product Development",
+  },
+  {
+    title: "Business Model and Revenue Generation",
+  },
+  {
+    title: "Fundraising and Pitching",
+  },
+  {
+    title: "Team Building and Management",
+  },
+  {
+    title: "Legal and Operational Setup",
+  },
+  {
+    title: "Customer Retention and Engagement",
+  },
+  {
+    title: "Networking and Community Building",
+  },
+];
 
-  // useEffect(() => {
-  //   if (id) {
-  //     getProjectById();
-  //   }
-  // }, [id]);
+const idesClarityCardArray = [
+  {
+    badgeText: "Good",
+    badgeColor: "success",
+    title: "Problem",
+    description: "Strong evidence from multiple sources",
+  },
+  {
+    badgeText: "Weak",
+    badgeColor: "destructive",
+    title: "Solution",
+    description: "Strong is untested or has shown poor results",
+  },
+  {
+    badgeText: "Good",
+    badgeColor: "success",
+    title: "Audience",
+    description: "Broadly defined target audience with some details",
+  },
+  {
+    badgeText: "Moderate",
+    badgeColor: "info",
+    title: "Competitors",
+    description: "Some direct competitors, moderate differentiation.",
+  },
+];
 
-  const lockedCardArray = [
-    {
-      title: "Market Research and Validation",
-    },
-    {
-      title: "Building the MVP",
-    },
-    {
-      title: "Growth and User Acquisition ",
-    },
-    {
-      title: "Design and branding ",
-    },
-    {
-      title: "Product Development",
-    },
-    {
-      title: "Business Model and Revenue Generation",
-    },
-    {
-      title: "Fundraising and Pitching",
-    },
-    {
-      title: "Team Building and Management",
-    },
-    {
-      title: "Legal and Operational Setup",
-    },
-    {
-      title: "Customer Retention and Engagement",
-    },
-    {
-      title: "Networking and Community Building",
-    },
-  ];
-
-  const idesClarityCardArray = [
-    {
-      badgeText: "Good",
-      badgeColor: "success",
-      title: "Problem",
-      description: "Strong evidence from multiple sources",
-    },
-    {
-      badgeText: "Weak",
-      badgeColor: "destructive",
-      title: "Solution",
-      description: "Strong is untested or has shown poor results",
-    },
-    {
-      badgeText: "Good",
-      badgeColor: "success",
-      title: "Audience",
-      description: "Broadly defined target audience with some details",
-    },
-    {
-      badgeText: "Moderate",
-      badgeColor: "info",
-      title: "Competitors",
-      description: "Some direct competitors, moderate differentiation.",
-    },
-  ];
+function ProjectOverviewPage() {
+  const { id = "" } = useParams();
+  const { data } = useGetIdeaClarityProject(id);
 
   return (
     <>
@@ -99,7 +82,6 @@ function OverviewPage() {
         <div className="flex flex-col md:flex-row md:gap-3">
           <div className="flex flex-col">
             <h1 className="text-sm text-muted-foreground">Project Name</h1>
-
             <h1 className="text-xl font-bold">{data?.name || ""}</h1>
           </div>
           <div className="flex flex-col ">
@@ -149,4 +131,4 @@ function OverviewPage() {
   );
 }
 
-export default OverviewPage;
+export default ProjectOverviewPage;

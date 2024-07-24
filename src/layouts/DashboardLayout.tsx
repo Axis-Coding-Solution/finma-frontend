@@ -2,8 +2,9 @@ import { Outlet, useNavigate } from "react-router-dom";
 
 import AppHeader from "@/components/core/dashboard-layout/app-header";
 import Sidebar from "@/components/core/dashboard-layout/sidebar";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { useAuth } from "@/utils/hooks";
+import { CgSpinner } from "@/assets/icons";
 
 function DashboardLayout() {
   const navigate = useNavigate();
@@ -25,7 +26,15 @@ function DashboardLayout() {
       <div className="w-full flex flex-col relative overflow-y-auto">
         <AppHeader />
         <main className="container flex flex-1 flex-col gap-4 lg:gap-6 lg:p-6 p-4">
-          <Outlet />
+          <Suspense
+            fallback={
+              <div className="flex justify-center items-center h-full">
+                <CgSpinner className="animate-spin mt-4 w-10 h-10" />
+              </div>
+            }
+          >
+            <Outlet />
+          </Suspense>
         </main>
       </div>
     </div>

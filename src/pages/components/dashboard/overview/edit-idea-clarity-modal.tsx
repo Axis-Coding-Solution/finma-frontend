@@ -43,9 +43,7 @@ const ideaClarityFields = [
   },
 ];
 
-export function EditIdeaClarityModal({data}: {data: any}) {
- 
-
+export function EditIdeaClarityModal({ data }: { data: any }) {
   const mutation = useMutation({
     mutationFn: updateIdeaClarity,
   });
@@ -80,7 +78,6 @@ export function EditIdeaClarityModal({data}: {data: any}) {
       const res = await mutation.mutateAsync(values);
       successToast(res.message);
     } catch (error: any) {
-      console.log("🚀 ~ EditIdeaClarityModal ~ error:", error)
       errorToast(error.message);
     }
   };

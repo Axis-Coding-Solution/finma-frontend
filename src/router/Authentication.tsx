@@ -1,11 +1,19 @@
 import { lazy } from "react";
 
 import AuthLayout from "@/layouts/AuthLayout";
-import SignUpWithEmailPage from "@/pages/authentication/sign-up/email";
-import LoginWithEmailPage from "@/pages/authentication/login/email";
-import ResetPasswordCompletedPage from "@/pages/authentication/reset-password/completed";
-import ForgetPasswordCompleted from "@/pages/authentication/forget-password/completed";
-import SelectRolePage from "@/pages/authentication/select-role";
+const SignUpWithEmailPage = lazy(
+  () => import("@/pages/authentication/sign-up/email")
+);
+const LoginWithEmailPage = lazy(
+  () => import("@/pages/authentication/login/email")
+);
+const ResetPasswordCompletedPage = lazy(
+  () => import("@/pages/authentication/reset-password/completed")
+);
+const ForgetPasswordCompleted = lazy(
+  () => import("@/pages/authentication/forget-password/completed")
+);
+const SelectRolePage = lazy(() => import("@/pages/authentication/select-role"));
 
 const ForgetPasswordPage = lazy(
   () => import("@/pages/authentication/forget-password")
