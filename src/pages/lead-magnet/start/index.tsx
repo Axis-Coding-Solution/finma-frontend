@@ -23,7 +23,8 @@ function StartOnboardingPage() {
         <div className="relative lg:w-52 w-40">
           <img
             src={arrowImgPath}
-            alt="Arrow Icon"
+            alt="Arrow Icon" 
+            
             className="-top-12 left-20 md:absolute block  lg:w-52 md:w-40 w-20 md:rotate-0 rotate-90"
           />
         </div>

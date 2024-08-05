@@ -1,3 +1,5 @@
+import IdeaClarity from "@/pages/idea-clarity-new";
+import StartStartup from "@/pages/idea-clarity-new/start-startup";
 import { lazy } from "react";
 import { Navigate } from "react-router-dom";
 
@@ -39,7 +41,7 @@ export default [
   },
   {
     element: <LeadMagnetLayout />,
-    path: "/lead-magnet",
+    path: "lead-magnet",
     children: [
       {
         index: true,
@@ -47,7 +49,7 @@ export default [
       },
       {
         element: <IdeaClarityPage />,
-        path: "idea-clarity",
+        path: "old-idea-clarity",
         children: [
           {
             index: true,
@@ -76,6 +78,34 @@ export default [
         ],
       },
     ],
+    meta: {
+      layout: "blank",
+    },
+  },
+  {
+    element: <StartStartup />,
+    path: "start-startup",
+    // children: [
+    //   {
+    //     element: <IdeaClarity />,
+    //     path: "idea-clarity",
+       
+    //   },
+    // ],
+    meta: {
+      layout: "blank",
+    },
+  },
+  {
+    element: <IdeaClarity />,
+    path: "idea-clarity",
+    // children: [
+    //   {
+    //     element: <IdeaClarity />,
+    //     path: "idea-clarity",
+       
+    //   },
+    // ],
     meta: {
       layout: "blank",
     },
