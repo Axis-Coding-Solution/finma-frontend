@@ -1,76 +1,40 @@
-import { useRoutes } from "react-router-dom";
+import { lazy } from "react";
+import { useRoutes, Navigate } from "react-router-dom";
 
-import BlankLayout from "@/layouts/BlankLayout";
-import DashboardLayout from "@/layouts/DashboardLayout";
+import MainLayout from "@/layouts/main";
+import getRoutesForLayouts from "./routes";
 
-import AuthenticationRoutes from "./Authentication";
-import DashboardRoutes from "./Dashboard";
-import OnboardingRoutes from "./Onboarding";
-import LeadMagnetRoutes from "./LeadMagnet";
+// ** Components
+const ErrorPage = lazy(() => import("@/pages/misc/404"));
+const NotAuthorizedPage = lazy(() => import("@/pages/misc/not-authorized"));
 
-import { ProtectedRoutes, PublicRoutes } from "@/components/core";
-import { RoutesType } from "@/definitions/types";
-import MiscRoutes from "./Misc";
-
-const mergedRoutes: RoutesType[] = [
-  ...AuthenticationRoutes,
-  ...DashboardRoutes,
-  ...OnboardingRoutes,
-  ...LeadMagnetRoutes,
-];
-
-const getRoutesForLayout = (layout: string) => {
-  const matchedRoutes: RoutesType[] = [];
-
-  mergedRoutes.forEach((route: RoutesType) => {
-    let matchedWithLayout = false;
-
-    if (!route.meta && layout === "main") matchedWithLayout = true;
-    else if (route.meta && route.meta.layout && route.meta.layout === layout)
-      matchedWithLayout = true;
-
-    let isRestrictedRoute = false;
-
-    if (matchedWithLayout) {
-      if (route.meta && route.meta.isRestrictedRoute) isRestrictedRoute = true;
-
-      const RouteTag = isRestrictedRoute ? PublicRoutes : ProtectedRoutes;
-      route.element = (
-        <RouteTag {...(isRestrictedRoute ? { route } : {})}>
-          {route.element}
-        </RouteTag>
-      );
-
-      matchedRoutes.push(route);
-    }
-  });
-  return matchedRoutes;
+const getHomeRoute = () => {
+  return "/auth/login";
 };
-
-const layouts = {
-  blank: <BlankLayout />,
-  dashboard: <DashboardLayout />,
-};
-
-const layoutsArr = Object.keys(layouts);
-
-type LayoutKeyType = keyof typeof layouts;
 
 const Router = () => {
-  const allRoutesWithLayouts = layoutsArr.map((layout: string) => {
-    const routesWithLayout = getRoutesForLayout(layout);
-    const Layout = layouts[layout as LayoutKeyType];
+  const allRoutes = getRoutesForLayouts();
 
-    return {
+  const routes = useRoutes([
+    {
       path: "/",
-      element: Layout,
-      children: routesWithLayout,
-    };
-  });
+      index: true,
+      element: <Navigate replace to={getHomeRoute()} />,
+    },
+    {
+      path: "/auth/not-auth",
+      element: <MainLayout />,
+      children: [{ path: "/auth/not-auth", element: <NotAuthorizedPage /> }],
+    },
+    {
+      path: "*",
+      element: <MainLayout />,
+      children: [{ path: "*", element: <ErrorPage /> }],
+    },
+    ...allRoutes,
+  ]);
 
-  const Routes = useRoutes([...allRoutesWithLayouts, ...MiscRoutes]);
-
-  return Routes;
+  return routes;
 };
 
 export default Router;

@@ -1,4 +1,1 @@
-import { MainHeading } from "./main-heading";
-
-export { MainHeading };
-export { SectionHeading } from "./section-heading";
+export { MainHeading } from "./main-heading";

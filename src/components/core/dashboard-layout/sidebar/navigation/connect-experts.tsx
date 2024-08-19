@@ -1,6 +1,6 @@
 import { useGetUsers } from "@/api/hooks/users";
 import { userAvatar2Image } from "@/assets/images";
-import { Avatar } from "@/components/ui/avatar";
+import { Avatar } from "@/components/_ui/avatar";
 import { truncateText } from "@/utils";
 import { expertsDetailsHook } from "@/store";
 import { cn } from "@/utils";

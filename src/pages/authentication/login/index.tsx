@@ -1,79 +1,41 @@
-import { useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { Button, FloatingInput } from "@/components/ui";
 import { MainHeading } from "@/pages/components/common";
-import { GoogleIcon, MessageIcon } from "@/assets/images/index";
-import { useMutation } from "@tanstack/react-query";
-import { signUpWithGoogleApi } from "@/api/http";
-import { errorToast } from "@/utils";
+import { X } from "lucide-react";
 
-const Login = () => {
-  const mutation = useMutation({
-    mutationFn: signUpWithGoogleApi,
-  });
-
-  const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
-  const errMsg = searchParams.get("errorMessage");
-
-  useEffect(() => {
-    if (errMsg) {
-      navigate("/auth/sign-up", { replace: true });
-      errorToast(errMsg);
-    }
-  }, []);
-  const handleSignUpWithGoogle = async () => {
-    try {
-      const res = await mutation.mutateAsync();
-      let ideaClarity = localStorage.getItem("ideaClarity");
-      if (!ideaClarity) {
-        window.location.href = new URL(res.data).href;
-      }
-      window.location.href = new URL(res.data).href;
-    } catch (error) {
-      errorToast("Something went wrong while login with google!");
-    }
-  };
+const LoginPage = () => {
   return (
-    <>
-      <MainHeading
-        heading="Log In"
-        paragraph="Welcome back to FimnaAI"
-      />
-      <div className=" w-full lg:w-1/2 flex flex-col gap-4">
-        <div className="">
-          <Button
-            variant="default"
-            size="lg"
-            disabled={mutation.isPending}
-            className="w-full"
-            onClick={handleSignUpWithGoogle}
-          >
-            <img src={GoogleIcon} className="w-5 h-5" />
-            <span>Log In With Google</span>
-          </Button>
-        </div>
-        <Button
-          to="/auth/login/email"
-          variant="outline"
-          tag={Link}
-          disabled={mutation.isPending}
-          size="lg"
-          className="w-full"
-        >
-          <img src={MessageIcon} className="w-5 h-5" />
-          <span>Log In With email</span>
-        </Button>
-        <p className="text-center">
-          Don't have an account?
-          <Link to="/select-role" className="ms-1 font-bold underline">
-            Sign Up
-          </Link>
+    <div className="bg-secondary rounded-lg py-8 px-[52px] flex justify-between items-stretch gap-[104px]">
+      <div className="w-full">
+        <h1>Welcome Back!</h1>
+        <p>
+          Join our community of entrepreneurs, and let's make your startup
+          dreams a reality!
         </p>
+        <figure>
+          <img src="/assets/images/login-main.png" alt="Main Login Image" />
+        </figure>
       </div>
-    </>
-    // <div>Sign UP With Google</div>
+      <div className="min-w-[584px] bg-background rounded p-[52px] flex flex-col gap-10 relative">
+        <MainHeading />
+        <button
+          type="button"
+          onClick={() => console.log("Hello There!")}
+          className="absolute rounded-full size-12 inline-flex justify-center items-center top-0 right-0 self-end border-8 border-secondary"
+        >
+          <X />
+        </button>
+        <div className="flex flex-col gap-10">
+          <FloatingInput type="email" name="email" label="Enter Email" />
+          <FloatingInput
+            type="password"
+            name="password"
+            label="Enter existing password"
+          />
+          <Button type="submit">Log in</Button>
+        </div>
+      </div>
+    </div>
   );
 };
 
-export default Login;
+export default LoginPage;

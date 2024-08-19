@@ -1,6 +1,6 @@
 import { useAddStatusMutation } from "@/api/hooks/dashboard";
-import { Button } from "@/components/ui/button";
-import { ReactCreatableSelect } from "@/components/ui/creatable-select";
+import { Button } from "@/components/_ui/button";
+import { ReactCreatableSelect } from "@/components/_ui/creatable-select";
 import {
   DialogTrigger,
   Dialog,
@@ -8,8 +8,8 @@ import {
   DialogHeader,
   DialogTitle,
   DialogClose,
-} from "@/components/ui/dialog";
-import { Label } from "@/components/ui/label";
+} from "@/components/_ui/dialog";
+import { Label } from "@/components/_ui/label";
 import { errorToast, successToast } from "@/utils";
 import { useModal } from "@/utils/hooks";
 import { useQueryClient } from "@tanstack/react-query";

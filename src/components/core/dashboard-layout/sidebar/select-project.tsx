@@ -4,7 +4,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from "@/components/_ui/select";
 import { SelectIcon } from "@radix-ui/react-select";
 import { Rocket } from "lucide-react";
 

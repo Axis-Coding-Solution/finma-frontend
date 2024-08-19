@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Button } from "@/components/_ui/button";
+import { Badge } from "@/components/_ui/badge";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/_ui/sheet";
 import { Link } from "react-router-dom";
 import {
   BellDot,
@@ -19,7 +19,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "@/components/_ui/card";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -27,8 +27,8 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Avatar } from "@/components/ui/avatar";
+} from "@/components/_ui/dropdown-menu";
+import { Avatar } from "@/components/_ui/avatar";
 import { userAvatar1Image } from "@/assets/images";
 import { useAuth } from "@/utils/hooks";
 import StatusModal from "./status-modal";
