@@ -39,6 +39,7 @@ module.exports = {
         secondary: {
           DEFAULT: "rgb(var(--secondary)/<alpha-value>)",
           foreground: "rgb(var(--secondary-foreground)/<alpha-value>)",
+          dark: "rgb(var(--secondary-dark)/<alpha-value>)",
         },
         success: {
           DEFAULT: "rgb(var(--success)/<alpha-value>)",

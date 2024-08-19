@@ -27,11 +27,11 @@ const getRoutesForLayout = (layout: string) => {
       if (route.meta && route.meta.isRestrictedRoute) isRestrictedRoute = true;
 
       const RouteTag = isRestrictedRoute ? PublicRoutes : ProtectedRoutes;
-      route.element = (
-        <RouteTag {...(isRestrictedRoute ? { route } : {})}>
-          {route.element}
-        </RouteTag>
-      );
+      // route.element = (
+      //   <RouteTag {...(isRestrictedRoute ? { route } : {})}>
+      //     {route.element}
+      //   </RouteTag>
+      // );
 
       matchedRoutes.push(route);
     }

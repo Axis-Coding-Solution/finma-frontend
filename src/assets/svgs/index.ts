@@ -19,6 +19,10 @@ import BulbBannerImg from "./bulb-banner-img.svg";
 import UnderlineVector from "./underline-vector.svg";
 import SingleCheck from "./single-check.svg";
 import DoubleCheck from "./double-check.svg";
+import SignUpInnovator from "./signup-innovator.svg"
+import SignUpBuilder from "./signup-builder.svg"
+import SignUpLauncher from "./signup-launcher.svg"
+import RocketArrow from "./rocket-arrow.svg"
 
 export {
   ReactSVG,
@@ -40,4 +44,8 @@ export {
   UnderlineVector,
   SingleCheck,
   DoubleCheck,
+  SignUpInnovator,
+  SignUpBuilder,
+  SignUpLauncher,
+  RocketArrow
 };

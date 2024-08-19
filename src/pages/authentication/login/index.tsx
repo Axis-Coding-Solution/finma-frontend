@@ -3,6 +3,7 @@ import { FloatingInputPassword } from "@/components/ui/floating-input-password";
 import { MainHeading } from "@/pages/components/common";
 import { X } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const LoginPage = () => {
   const [showLoginForm, setShowLoginForm] = useState(false);
@@ -59,7 +60,10 @@ const LoginPage = () => {
           </div>
         )}
         <h6 className="flex items-center gap-1 justify-center">
-          Don`t have an account? <span className="font-semibold">Sign Up</span>
+          Don`t have an account? 
+          <Link to="/auth/sign-up">
+          <span className="font-semibold">Sign Up</span>
+          </Link>
         </h6>
       </div>
     </div>

@@ -16,11 +16,10 @@ const Router = () => {
   const allRoutes = getRoutesForLayouts();
 
   const routes = useRoutes([
-    {
-      path: "/",
-      index: true,
-      element: <Navigate replace to={getHomeRoute()} />,
-    },
+    // {
+    //   path: "/",
+    //   element: <Navigate replace to={getHomeRoute()} />,
+    // },
     {
       path: "/auth/not-auth",
       element: <MainLayout />,
