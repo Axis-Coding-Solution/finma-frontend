@@ -68,6 +68,9 @@ module.exports = {
         },
         input: "rgb(var(--input)/<alpha-value>)",
       },
+      boxShadow: {
+        'card-outer': '0px 0px 30px 0px rgba(0, 0, 0, 0.05)'
+      },
       borderRadius: {
         DEFAULT: "var(--radius)",
         lg: "calc(var(--radius) + 20px)",

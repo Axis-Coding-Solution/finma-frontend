@@ -1,5 +1,5 @@
+import { NewEyeClose, NewEyeOpen } from "@/assets/svgs";
 import { cn } from "@/utils";
-import { EyeIcon, EyeOffIcon } from "lucide-react";
 import { forwardRef, useId, useState } from "react";
 
 export interface InputProps
@@ -15,15 +15,17 @@ export const FloatingInputPassword = forwardRef<HTMLInputElement, InputProps>(
     const [passwordShow, setPasswordShow] = useState(false);
     const id = useId();
 
-    const togglePasswordShow= ()=>{
-      setPasswordShow(prev=>!prev);
-    }
+    const togglePasswordShow = () => {
+      setPasswordShow((prev) => !prev);
+    };
 
     return (
       <div className="flex items-center relative w-full ">
         <input
           ref={ref}
-          type={type === "password"?(passwordShow?"text":"password"):type}
+          type={
+            type === "password" ? (passwordShow ? "text" : "password") : type
+          }
           id={id}
           placeholder=""
           className={cn(
@@ -46,9 +48,9 @@ export const FloatingInputPassword = forwardRef<HTMLInputElement, InputProps>(
             className="absolute right-2 top-1/2 transform -translate-y-1/2 focus:outline-none"
           >
             {passwordShow ? (
-              <EyeIcon className="w-5 h-5 text-muted-foreground" />
+              <img src={NewEyeOpen} alt="Show password" />
             ) : (
-              <EyeOffIcon className="w-5 h-5 text-muted-foreground" />
+              <img src={NewEyeClose} alt="Hide password" />
             )}
           </button>
         )}

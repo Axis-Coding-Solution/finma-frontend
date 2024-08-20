@@ -39,6 +39,7 @@
     "react-gauge-component": "^1.2.21",
     "react-hook-form": "^7.51.5",
     "react-hot-toast": "^2.4.1",
+    "react-lottie": "^1.2.4",
     "react-perfect-scrollbar": "^1.5.8",
     "react-router-dom": "^6.23.1",
     "react-select": "^5.8.0",

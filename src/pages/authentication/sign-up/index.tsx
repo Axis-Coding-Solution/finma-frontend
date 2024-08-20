@@ -1,10 +1,11 @@
-import { RocketArrow } from "@/assets/svgs";
 import { Button, FloatingInput } from "@/components/ui";
 import { FloatingInputPassword } from "@/components/ui/floating-input-password";
 import { MainHeading } from "@/pages/components/common";
-import { X } from "lucide-react";
+import { ChevronLeft, X } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Lottie from "react-lottie";
+import { RocketLottie } from "@/assets/lottie";
 
 const SignUpPage = () => {
   const [showLoginForm, setShowLoginForm] = useState(false);
@@ -14,23 +15,39 @@ const SignUpPage = () => {
   const handleCloseForm = () => {
     setShowLoginForm(false);
   };
+  const lottieOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: RocketLottie,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
   return (
-    <div className="bg-secondary-dark rounded-lg py-8 px-[52px] flex justify-between items-center gap-[104px]">
-      <div className="w-full flex flex-col gap-10 justify-between">
-        <div>
-          <h2 className="text-4xl font-semibold">
-            Build your startup with FinmaAI
-          </h2>
-          <p className="mt-4">
-            Join our community of entrepreneurs, and let's make your startup
-            dreams a reality!
-          </p>
+    <div className="bg-secondary-dark rounded-lg py-8 px-[52px] flex justify-between items-stretch gap-16">
+      <div className="w-full flex flex-col gap-4 justify-between">
+        <div className="flex flex-col gap-8">
+          <Link to="/auth/select-role">
+            <div className="flex items-center  text-lg font-medium">
+              <ChevronLeft />
+              Go back
+            </div>
+          </Link>
+          <div className="flex flex-col gap-8">
+            <h2 className="text-[44px] font-semibold leading-[50px]">
+              Build your startup with FinmaAI
+            </h2>
+            <p className="text-2xl leading-7">
+              Join our community of entrepreneurs, and let's make your startup
+              dreams a reality!
+            </p>
+          </div>
         </div>
-        <figure>
-          <img src={RocketArrow} className="w-full" alt="Main Login Image" />
+        <figure className="mt-14">
+          <Lottie options={lottieOptions} />
         </figure>
       </div>
-      <div className="min-w-[584px] bg-background rounded p-[52px] flex flex-col gap-10 relative overflow-hidden">
+      <div className="min-w-[532px] bg-background rounded p-[52px] flex flex-col gap-[52px] relative overflow-hidden">
         <button
           type="button"
           onClick={handleCloseForm}
@@ -38,7 +55,7 @@ const SignUpPage = () => {
         >
           <X />
         </button>
-        <div className="rounded bg-secondary-dark h-40 w-40 absolute -top-[105px] -right-[105px]"></div>
+        <div className="rounded bg-secondary-dark h-40 w-40 absolute -top-[100px] -right-[100px]"></div>
         <MainHeading title="Sign up" subtitle="Please sign up in the system." />
         {!showLoginForm ? (
           <div className="flex flex-col gap-8">
@@ -47,19 +64,19 @@ const SignUpPage = () => {
           </div>
         ) : (
           <div className="flex flex-col gap-8">
-            <FloatingInput type="email" name="email" label="Enter Email" />
+            <FloatingInput type="email" name="email" label="Enter email" />
             <FloatingInputPassword
               type="password"
               name="password"
-              label="Enter existing password"
+              label="Create a password"
             />
             <Button type="submit">Sign up</Button>
           </div>
         )}
         <h6 className="flex items-center gap-1 justify-center">
-          Have an account? 
+          Have an account?
           <Link to="/auth/login">
-          <span className="font-semibold">Log in</span>
+            <span className="font-semibold">Log in</span>
           </Link>
         </h6>
       </div>

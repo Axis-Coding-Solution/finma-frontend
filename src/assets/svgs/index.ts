@@ -19,10 +19,18 @@ import BulbBannerImg from "./bulb-banner-img.svg";
 import UnderlineVector from "./underline-vector.svg";
 import SingleCheck from "./single-check.svg";
 import DoubleCheck from "./double-check.svg";
-import SignUpInnovator from "./signup-innovator.svg"
-import SignUpBuilder from "./signup-builder.svg"
-import SignUpLauncher from "./signup-launcher.svg"
-import RocketArrow from "./rocket-arrow.svg"
+import SignUpInnovator from "./signup-innovator.svg";
+import SignUpBuilder from "./signup-builder.svg";
+import SignUpLauncher from "./signup-launcher.svg";
+import RocketArrow from "./rocket-arrow.svg";
+import SuccessThumb from "./success-thumb.svg";
+import NewEyeClose from "./new-eye-close.svg";
+import NewEyeOpen from "./new-eye-open.svg";
+import IdeaValidationStart from "./idea-validation-start.svg";
+import IdeaValidationProblem from "./idea-validation-problem.svg";
+import IdeaValidationSolution from "./idea-validation-solution.svg";
+import IdeaValidationStartup from "./idea-validation-startup.svg";
+import StartupLoader from "./startup-loader.svg";
 
 export {
   ReactSVG,
@@ -47,5 +55,13 @@ export {
   SignUpInnovator,
   SignUpBuilder,
   SignUpLauncher,
-  RocketArrow
+  RocketArrow,
+  SuccessThumb,
+  NewEyeClose,
+  NewEyeOpen,
+  IdeaValidationStart,
+  IdeaValidationProblem,
+  IdeaValidationSolution,
+  IdeaValidationStartup,
+  StartupLoader,
 };
