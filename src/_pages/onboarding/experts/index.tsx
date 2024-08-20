@@ -1,16 +1,16 @@
-import { MainHeading } from "@/pages/components/common";
+import { MainHeading } from "@/_pages/components/common";
 import { Button } from "@/components/_ui/button";
 import { useForm } from "react-hook-form";
 import { onboardingExpertsInitialValues } from "@/utils/initial-values";
 import FileUpload from "@/components/_ui/file-upload";
-import { PersonalInfo } from "@/pages/components/onboarding/common";
+import { PersonalInfo } from "@/_pages/components/onboarding/common";
 // import ProfessionalInfo from "@/pages/components/onboarding/experts/professional-info";
 import {
   CommunityServiceOffer,
   ProfessionalInfo,
   ProjectPreference,
   Rate,
-} from "@/pages/components/onboarding/experts";
+} from "@/_pages/components/onboarding/experts";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { onboardingExpertsSchema } from "@/utils/validation-schemas/onboarding";
 import { useNavigate, useSearchParams } from "react-router-dom";

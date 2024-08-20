@@ -3,10 +3,10 @@ import {
   ChatsHeader,
   ChatsContent,
   SendMessageBox,
-} from "@/pages/components/chats";
-import { NoMessages } from "@/pages/components/chats/content/no-messages";
+} from "@/_pages/components/chats";
+import { NoMessages } from "@/_pages/components/chats/content/no-messages";
 
-import { MainHeading } from "@/pages/components/common";
+import { MainHeading } from "@/_pages/components/common";
 import { useAppParams, useAuth } from "@/utils/hooks";
 import socket from "@/lib/socket.io";
 import { useEffect } from "react";

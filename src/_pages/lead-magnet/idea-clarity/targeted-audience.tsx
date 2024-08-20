@@ -1,6 +1,6 @@
 import { Textarea } from "@/components/_ui/textarea";
-import { MainHeading } from "@/pages/components/common";
-import { StepNavigationBtn } from "@/pages/components/common/Step-navigation-btn";
+import { MainHeading } from "@/_pages/components/common";
+import { StepNavigationBtn } from "@/_pages/components/common/Step-navigation-btn";
 import { ideaClarityFormDataHook } from "@/store";
 import { useHookstate } from "@hookstate/core";
 import { IdeaClarityContextTypes } from ".";

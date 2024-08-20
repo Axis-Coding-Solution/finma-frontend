@@ -3,7 +3,7 @@ import React from "react";
 import { Button } from "@/components/_ui/button";
 import { Link, useLocation } from "react-router-dom";
 import { VectorArrowDown } from "@/assets/svgs";
-import { GaugeMeter } from "@/pages/components/common/gauge-meter";
+import { GaugeMeter } from "@/_pages/components/common/gauge-meter";
 
 function RiskScorePage() {
   const [isLoading, setIsLoading] = React.useState(true);

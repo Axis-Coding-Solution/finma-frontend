@@ -1,15 +1,15 @@
-import { MainHeading } from "@/pages/components/common";
+import { MainHeading } from "@/_pages/components/common";
 import { Button } from "@/components/_ui/button";
 import { onboardingInnovatorsInitialValues } from "@/utils/initial-values";
 import FileUpload from "@/components/_ui/file-upload";
 import {
   CommunityInfo,
   ProfessionalInfo,
-} from "@/pages/components/onboarding/innovators";
+} from "@/_pages/components/onboarding/innovators";
 import {
   EntrepreneurialInfo,
   PersonalInfo,
-} from "@/pages/components/onboarding/common";
+} from "@/_pages/components/onboarding/common";
 import { useForm } from "react-hook-form";
 import { InnovatorsOnboardingValuesType } from "@/definitions/types/onboarding";
 import { onboardingInnovatorsSchema } from "@/utils/validation-schemas/onboarding";

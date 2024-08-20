@@ -1,6 +1,6 @@
-import { MainHeading } from "@/pages/components/common";
+import { MainHeading } from "@/_pages/components/common";
 import { Textarea } from "@/components/_ui/textarea";
-import { StepNavigationBtn } from "@/pages/components/common/Step-navigation-btn";
+import { StepNavigationBtn } from "@/_pages/components/common/Step-navigation-btn";
 import { useOutletContext } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { FORM_MODE, object, string, yupResolver } from "@/utils/constants";

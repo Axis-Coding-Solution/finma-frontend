@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { ScrollArea } from "@/components/_ui/scroll-area";
-import { MainHeading } from "@/pages/components/common";
+import { MainHeading } from "@/_pages/components/common";
 import {
   PrivacyPolicyTab,
   TermsConditionsTab,
   Tabs,
   TermsAndConditionsForm,
-} from "@/pages/components/onboarding/terms-conditions";
+} from "@/_pages/components/onboarding/terms-conditions";
 
 const tabs = [<TermsConditionsTab />, <PrivacyPolicyTab />];
 

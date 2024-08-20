@@ -1,4 +1,4 @@
-import { SectionHeading } from "@/pages/components/common";
+import { SectionHeading } from "@/_pages/components/common";
 import { Label } from "@/components/_ui/label";
 import {
   Select,

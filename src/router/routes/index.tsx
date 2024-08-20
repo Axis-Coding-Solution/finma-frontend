@@ -1,4 +1,4 @@
-import { ProtectedRoutes, PublicRoutes } from "@/components/core";
+// import { ProtectedRoutes, PublicRoutes } from "@/components/core";
 
 // layouts
 import MainLayout from "@/layouts/main";
@@ -25,12 +25,12 @@ const getRoutesForLayout = (layout: string) => {
     else if (route.meta && route.meta.layout && route.meta.layout === layout)
       matchedWithLayout = true;
 
-    let isRestrictedRoute = false;
+    // let isRestrictedRoute = false;
 
     if (matchedWithLayout) {
-      if (route.meta && route.meta.isRestrictedRoute) isRestrictedRoute = true;
+      // if (route.meta && route.meta.isRestrictedRoute) isRestrictedRoute = true;
 
-      const RouteTag = isRestrictedRoute ? PublicRoutes : ProtectedRoutes;
+      // const RouteTag = isRestrictedRoute ? PublicRoutes : ProtectedRoutes;
       // route.element = (
       //   <RouteTag {...(isRestrictedRoute ? { route } : {})}>
       //     {route.element}

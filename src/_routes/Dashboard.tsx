@@ -1,15 +1,15 @@
 import { lazy } from "react";
 
-const FaqPage = lazy(() => import("@/pages/dashboard/faq"));
-const ChatBoxPage = lazy(() => import("@/pages/dashboard/chats"));
-const InnovatorPage = lazy(() => import("@/pages/dashboard/innovator"));
-const CommunityPage = lazy(() => import("@/pages/dashboard/community"));
-const ProductPage = lazy(() => import("@/pages/dashboard/product"));
-const MyProjectsPage = lazy(() => import("@/pages/dashboard/my-projects"));
-const MyTeamPage = lazy(() => import("@/pages/dashboard/my-team"));
-const Setting = lazy(() => import("@/pages/dashboard/setting"));
+const FaqPage = lazy(() => import("@/_pages/dashboard/faq"));
+const ChatBoxPage = lazy(() => import("@/_pages/dashboard/chats"));
+const InnovatorPage = lazy(() => import("@/_pages/dashboard/innovator"));
+const CommunityPage = lazy(() => import("@/_pages/dashboard/community"));
+const ProductPage = lazy(() => import("@/_pages/dashboard/product"));
+const MyProjectsPage = lazy(() => import("@/_pages/dashboard/my-projects"));
+const MyTeamPage = lazy(() => import("@/_pages/dashboard/my-team"));
+const Setting = lazy(() => import("@/_pages/dashboard/setting"));
 const ProjectOverviewPage = lazy(
-  () => import("@/pages/dashboard/my-projects/overview")
+  () => import("@/_pages/dashboard/my-projects/overview")
 );
 
 export default [

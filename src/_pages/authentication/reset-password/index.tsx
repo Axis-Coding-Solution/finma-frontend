@@ -1,7 +1,7 @@
 import { resetPasswordApi } from "@/api/http";
 import { Button } from "@/components/_ui/button";
 import { PasswordInput } from "@/components/_ui/password-input";
-import { MainHeading } from "@/pages/components/common";
+import { MainHeading } from "@/_pages/components/common";
 import { errorToast, successToast } from "@/utils";
 import { FORM_MODE, yupResolver } from "@/utils/constants";
 import { resetPasswordInitialValues } from "@/utils/initial-values";

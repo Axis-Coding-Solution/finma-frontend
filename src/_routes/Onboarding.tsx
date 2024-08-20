@@ -1,18 +1,18 @@
 import { lazy } from "react";
 
-const ExpertsOnboardingPage = lazy(() => import("@/pages/onboarding/experts"));
+const ExpertsOnboardingPage = lazy(() => import("@/_pages/onboarding/experts"));
 const ExpertsPublicViewPage = lazy(
-  () => import("@/pages/onboarding/experts/public-view")
+  () => import("@/_pages/onboarding/experts/public-view")
 );
 const InnovatorsOnboardingPage = lazy(
-  () => import("@/pages/onboarding/innovators")
+  () => import("@/_pages/onboarding/innovators")
 );
-const MentorsOnboardingPage = lazy(() => import("@/pages/onboarding/mentors"));
+const MentorsOnboardingPage = lazy(() => import("@/_pages/onboarding/mentors"));
 const TermsAndConditionsPage = lazy(
-  () => import("@/pages/onboarding/terms-conditions")
+  () => import("@/_pages/onboarding/terms-conditions")
 );
 const UserQuestionaryPage = lazy(
-  () => import("@/pages/onboarding/user-questionary")
+  () => import("@/_pages/onboarding/user-questionary")
 );
 
 export default [

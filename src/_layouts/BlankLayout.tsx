@@ -2,7 +2,7 @@ import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { appLogoPath } from "@/assets/images";
 import { Button } from "@/components/_ui/button";
 
-import { HamburgerMenu } from "@/pages/components/common/hamburger-menu";
+import { HamburgerMenu } from "@/_pages/components/common/hamburger-menu";
 import { useEffect } from "react";
 import {
   DropdownMenu,

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/_ui/button";
-import { MainHeading } from "@/pages/components/common";
+import { MainHeading } from "@/_pages/components/common";
 import { TickShield } from "@/assets/svgs";
 
 function ResetPasswordCompletedPage() {

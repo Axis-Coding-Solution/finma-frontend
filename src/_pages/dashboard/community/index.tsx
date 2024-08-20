@@ -3,11 +3,11 @@ import { CgSpinner } from "@/assets/icons";
 import { Pagination } from "@/components/_ui/pagination";
 import { SearchInput } from "@/components/_ui/search-input";
 import { CommunityTypes } from "@/definitions/types";
-import { MainHeading } from "@/pages/components/common";
+import { MainHeading } from "@/_pages/components/common";
 import {
   CommunityCard,
   CommunityFilter,
-} from "@/pages/components/dashboard/community";
+} from "@/_pages/components/dashboard/community";
 
 const RenderRight = ({ members }: { members: number }) => (
   <span>{members} Members</span>

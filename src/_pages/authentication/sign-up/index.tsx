@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Button } from "@/components/_ui/button";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
-import { MainHeading } from "@/pages/components/common";
+import { MainHeading } from "@/_pages/components/common";
 import { GoogleIcon, MessageIcon } from "@/assets/images/index";
 import { useMutation } from "@tanstack/react-query";
 import { signUpWithGoogleApi } from "@/api/http";

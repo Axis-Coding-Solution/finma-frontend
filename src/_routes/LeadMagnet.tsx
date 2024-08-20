@@ -1,25 +1,25 @@
 import { lazy } from "react";
 import { Navigate } from "react-router-dom";
 
-const StartLeadMagnetPage = lazy(() => import("@/pages/lead-magnet/start"));
+const StartLeadMagnetPage = lazy(() => import("@/_pages/lead-magnet/start"));
 const LeadMagnetLayout = lazy(() => import("@/_layouts/LeadMagnetLayout"));
-const IdeaClarityPage = lazy(() => import("@/pages/lead-magnet/idea-clarity"));
+const IdeaClarityPage = lazy(() => import("@/_pages/lead-magnet/idea-clarity"));
 const IdeaClarityCompetitorsPage = lazy(
-  () => import("@/pages/lead-magnet/idea-clarity/competitors")
+  () => import("@/_pages/lead-magnet/idea-clarity/competitors")
 );
 const IdeaClarityProblemPage = lazy(
-  () => import("@/pages/lead-magnet/idea-clarity/problem")
+  () => import("@/_pages/lead-magnet/idea-clarity/problem")
 );
 const IdeaClaritySolutionPage = lazy(
-  () => import("@/pages/lead-magnet/idea-clarity/solution")
+  () => import("@/_pages/lead-magnet/idea-clarity/solution")
 );
 const IdeaClarityTargetedAudiencePage = lazy(
-  () => import("@/pages/lead-magnet/idea-clarity/targeted-audience")
+  () => import("@/_pages/lead-magnet/idea-clarity/targeted-audience")
 );
 const IdeaClarityCompletedPage = lazy(
-  () => import("@/pages/lead-magnet/idea-clarity/completed")
+  () => import("@/_pages/lead-magnet/idea-clarity/completed")
 );
-const RiskScorePage = lazy(() => import("@/pages/lead-magnet/risk-score"));
+const RiskScorePage = lazy(() => import("@/_pages/lead-magnet/risk-score"));
 
 export default [
   {

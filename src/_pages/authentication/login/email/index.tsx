@@ -2,7 +2,7 @@ import { Button } from "@/components/_ui/button";
 import { Input } from "@/components/_ui/input";
 import { Label } from "@/components/_ui/label";
 import { PasswordInput } from "@/components/_ui/password-input";
-import { MainHeading } from "@/pages/components/common";
+import { MainHeading } from "@/_pages/components/common";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@/utils/constants";

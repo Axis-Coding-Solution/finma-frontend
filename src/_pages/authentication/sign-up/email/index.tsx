@@ -3,7 +3,7 @@ import { Label } from "@/components/_ui/label";
 import { Button } from "@/components/_ui/button";
 import { Link, useNavigate } from "react-router-dom";
 import { Checkbox } from "@/components/_ui/checkbox";
-import { MainHeading } from "@/pages/components/common";
+import { MainHeading } from "@/_pages/components/common";
 import { PasswordInput } from "@/components/_ui/password-input";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";

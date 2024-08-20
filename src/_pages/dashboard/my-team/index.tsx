@@ -1,4 +1,4 @@
-import UnderConstruction from "@/pages/components/under-construction"
+import UnderConstruction from "@/_pages/components/under-construction"
 
 const MyTeamPage = () => {
   return (

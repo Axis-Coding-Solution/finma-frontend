@@ -6,7 +6,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/_ui/select";
-import { MainHeading } from "@/pages/components/common";
+import { MainHeading } from "@/_pages/components/common";
 import { Button } from "@/components/_ui/button";
 import { Label } from "@/components/_ui/label";
 import { Controller, useForm } from "react-hook-form";

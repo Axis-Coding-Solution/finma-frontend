@@ -1,9 +1,9 @@
 import { ProductImg1, ProductImg2, ProductImg3 } from "@/assets/images";
-import { MainHeading } from "@/pages/components/common";
+import { MainHeading } from "@/_pages/components/common";
 import {
   ProductBanner,
   ProductCard,
-} from "@/pages/components/dashboard/product";
+} from "@/_pages/components/dashboard/product";
 
 const ProductPage = () => {
   const productOption = [

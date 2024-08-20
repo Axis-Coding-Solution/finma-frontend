@@ -1,6 +1,6 @@
 import { createIdeaClarity } from "@/api/http";
 import { Button } from "@/components/_ui/button";
-import { MainHeading } from "@/pages/components/common";
+import { MainHeading } from "@/_pages/components/common";
 import { ideaClarityFormDataHook } from "@/store";
 import { errorToast, successToast } from "@/utils";
 import { useHookstate } from "@hookstate/core";

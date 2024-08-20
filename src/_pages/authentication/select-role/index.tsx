@@ -1,6 +1,6 @@
 import arrowImgPath from "@/assets/images/arrow-pic-2.png";
 import { Button } from "@/components/_ui/button";
-import { MainHeading } from "@/pages/components/common";
+import { MainHeading } from "@/_pages/components/common";
 import { errorToast } from "@/utils";
 import { post } from "@/utils/axios";
 import { useEffect, useState } from "react";

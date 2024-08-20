@@ -1,4 +1,4 @@
-import { MainHeading } from "@/pages/components/common";
+import { MainHeading } from "@/_pages/components/common";
 import { ArrowLong } from "@/assets/svgs";
 import {
   Accordion,

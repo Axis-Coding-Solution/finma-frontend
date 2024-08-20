@@ -1,6 +1,6 @@
 import { Button } from "@/components/_ui/button";
 import { DialogHeader } from "@/components/_ui/dialog";
-import { GaugeMeter } from "@/pages/components/common/gauge-meter";
+import { GaugeMeter } from "@/_pages/components/common/gauge-meter";
 import { DialogTitle } from "@radix-ui/react-dialog";
 
 export function IdeaClarityScore({ setSelectStep, data }: { setSelectStep: any, data: any }) {

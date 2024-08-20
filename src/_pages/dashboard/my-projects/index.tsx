@@ -1,7 +1,7 @@
 import { useGetProjects } from "@/api/hooks/dashboard/myProject";
-import { MainHeading } from "@/pages/components/common";
-import ProjectCard from "@/pages/components/dashboard/my-projects/card";
-import ProjectAddModal from "@/pages/components/dashboard/my-projects/project-add-modal";
+import { MainHeading } from "@/_pages/components/common";
+import ProjectCard from "@/_pages/components/dashboard/my-projects/card";
+import ProjectAddModal from "@/_pages/components/dashboard/my-projects/project-add-modal";
 
 const MyProjectsPage = () => {
   const { data} = useGetProjects();

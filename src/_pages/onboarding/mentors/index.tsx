@@ -1,17 +1,17 @@
-import { MainHeading } from "@/pages/components/common";
+import { MainHeading } from "@/_pages/components/common";
 import {
   MentorsCommunityServiceOffer,
   MentorsProfessionalInfo,
-} from "@/pages/components/onboarding/mentors";
+} from "@/_pages/components/onboarding/mentors";
 import { FORM_MODE, yupResolver } from "@/utils/constants";
 import { useForm } from "react-hook-form";
-import InvestmentInterest from "@/pages/components/onboarding/mentors/investment-interest";
+import InvestmentInterest from "@/_pages/components/onboarding/mentors/investment-interest";
 import { onboardingMentorsInitialValues } from "@/utils/initial-values";
 import { MentorsOnboardingValuesType } from "@/definitions/types/onboarding";
 import {
   EntrepreneurialInfo,
   PersonalInfo,
-} from "@/pages/components/onboarding/common";
+} from "@/_pages/components/onboarding/common";
 import { Button } from "@/components/_ui/button";
 import FileUpload from "@/components/_ui/file-upload";
 import { useOnboardingForm } from "@/store/hooks";

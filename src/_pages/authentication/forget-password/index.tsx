@@ -3,7 +3,7 @@ import { Button } from "@/components/_ui/button";
 import { Input } from "@/components/_ui/input";
 import { InputError } from "@/components/_ui/input-error";
 import { Label } from "@/components/_ui/label";
-import { MainHeading } from "@/pages/components/common";
+import { MainHeading } from "@/_pages/components/common";
 import { errorToast, successToast } from "@/utils";
 import { FORM_MODE, yupResolver } from "@/utils/constants";
 import { forgetPasswordInitialValues } from "@/utils/initial-values";
