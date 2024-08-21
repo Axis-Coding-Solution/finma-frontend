@@ -1,5 +1,5 @@
 import { Button, FloatingInput, RadioButton } from "@/components/ui";
-import { CheckboxGroup, MainHeading } from "@/pages/components/common";
+import { CheckboxGroup } from "@/pages/components/common";
 import { X } from "lucide-react";
 import { useState } from "react";
 import {

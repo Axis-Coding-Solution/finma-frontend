@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 import { cva } from "class-variance-authority";
 import { cn } from "@/utils/index";
 import { Label } from "./index";
-import { Circle, CircleDotIcon } from "lucide-react";
+import { Circle } from "lucide-react";
 
 const radioInputVariants = cva(
   "peer transition appearance-none cursor-pointer ring-1 ring-border shrink-0 focus:ring-2 rounded-full",
