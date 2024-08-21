@@ -1,6 +1,6 @@
 import { IdeaValidationStartup, StartupLoader } from "@/assets/svgs";
 import { Button, FloatingInput } from "@/components/ui";
-import { ChevronLeft, CircleCheck, X } from "lucide-react";
+import { Check, ChevronLeft, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 const IdeaClarityStartupPage = () => {
@@ -57,30 +57,30 @@ const IdeaClarityStartupPage = () => {
             <div className="flex flex-col gap-6 capitalize">
               <h6 className="uppercase font-medium">The Problem</h6>
               <span className="text-xl flex items-center gap-3">
-                <CircleCheck className="text-secondary-dark" />
+                <Check className="w-5 h-5 text-background bg-secondary-dark rounded-full " />
                 Urgency
               </span>
               <span className="text-xl flex items-center gap-3">
-                <CircleCheck className="text-secondary-dark" />
+                <Check className="w-5 h-5 text-background bg-secondary-dark rounded-full " />
                 Relevance
               </span>
               <span className="text-xl flex items-center gap-3">
-                <CircleCheck className="text-secondary-dark" />
+                <Check className="w-5 h-5 text-background bg-secondary-dark rounded-full " />
                 Evidence
               </span>
             </div>
             <div className="flex flex-col gap-6 capitalize">
               <h6 className="uppercase font-medium">The Solution</h6>
               <span className="text-xl flex items-center gap-3">
-                <CircleCheck className="text-secondary-dark" />
+                <Check className="w-5 h-5 text-background bg-secondary-dark rounded-full " />
                 Effectiveness
               </span>
               <span className="text-xl flex items-center gap-3">
-                <CircleCheck className="text-secondary-dark" />
+                <Check className="w-5 h-5 text-background bg-secondary-dark rounded-full " />
                 Innovation
               </span>
               <span className="text-xl flex items-center gap-3">
-                <CircleCheck className="text-secondary-dark" />
+                <Check className="w-5 h-5 text-background bg-secondary-dark rounded-full " />
                 Feasibility
               </span>
             </div>

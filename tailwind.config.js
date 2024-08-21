@@ -23,6 +23,7 @@ module.exports = {
       colors: {
         background: "rgb(var(--background)/<alpha-value>)",
         foreground: "rgb(var(--foreground)/<alpha-value>)",
+        "light-gray": "rgb(var(--light-gray)/<alpha-value>)",
         card: {
           DEFAULT: "rgb(var(--card)/<alpha-value>)",
           foreground: "rgb(var(--card-foreground)/<alpha-value>)",

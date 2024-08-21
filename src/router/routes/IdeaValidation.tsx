@@ -1,7 +1,7 @@
 import { lazy } from "react";
 
 const Start = lazy(() => import("@/pages/idea-validation/start"));
-const Details = lazy(() => import("@/pages/idea-validation/details"));
+const Details = lazy(() => import("@/pages/idea-validation/details/_index"));
 const StartUp = lazy(() => import("@/pages/idea-validation/startup"));
 
 const IdeaValidationRoutes = [

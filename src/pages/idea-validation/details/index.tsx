@@ -1,6 +1,6 @@
-import { IdeaValidationProblem, IdeaValidationSolution } from "@/assets/svgs";
+import { ColorLoader, PlainLoader } from "@/assets/svgs";
 import { Button } from "@/components/ui";
-import { X } from "lucide-react";
+import { Check, CircleAlert, RefreshCcw, X } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -23,84 +23,138 @@ const IdeaClarityDetailsPage = () => {
     }
   };
   return (
-    <div className="bg-secondary rounded-lg py-8 px-[52px] flex justify-between items-center gap-2 relative">
-      <div className="absolute top-10 left-10">
-        {!showDetails ? (
-          <div className="flex items-center gap-2">
-            <div className="w-4 h-4 rounded-full bg-warning"></div>
-            <div className="w-4 h-4 rounded-full bg-background"></div>
-            <div className="w-4 h-4 rounded-full bg-background"></div>
-            <div className="w-4 h-4 rounded-full bg-background"></div>
-          </div>
-        ) : (
-          <div className="flex items-center gap-2">
-            <div className="w-4 h-4 rounded-full bg-warning"></div>
-            <div className="w-4 h-4 rounded-full bg-warning"></div>
-            <div className="w-4 h-4 rounded-full bg-background"></div>
-            <div className="w-4 h-4 rounded-full bg-background"></div>
-          </div>
-        )}
-      </div>
-      <div className="w-[454px]">
-        <div className="flex flex-col gap-8 pl-10">
-          <h2 className="text-[44px] font-semibold">Idea Validation</h2>
-          <p className="text-2xl leading-7">
-            Write your idea in problem and solution format. It is the safest way
-            to analyze your idea.
-          </p>
-        </div>
-        <figure className="mt-[50px]">
-          {!showDetails ? (
-            <img
-              src={IdeaValidationProblem}
-              className="w-[242px]"
-              alt="Idea Validation Problem"
-            />
-          ) : (
-            <img
-              src={IdeaValidationSolution}
-              className="w-[242px]"
-              alt="Idea Validation Problem"
-            />
-          )}
-        </figure>
-      </div>
-      <div className="w-[554px] bg-background rounded p-[52px]  relative overflow-hidden">
+    <div className="w-[1084px] bg-secondary rounded-lg p-8  relative">
+      <div className="w-full bg-background rounded p-8  relative overflow-hidden">
         <button
           type="button"
           className="absolute rounded-full size-12 inline-flex justify-center items-center top-0 right-0 self-end bg-background z-10"
         >
           <X />
         </button>
-        <div className="rounded bg-secondary h-40 w-40 absolute -top-[105px] -right-[105px]"></div>
+        <div className="rounded bg-secondary h-40 w-40 absolute -top-[100px] -right-[100px]"></div>
         {!showDetails ? (
-          <div className="flex flex-col gap-7">
-            <h6 className="text-[32px] font-semibold">The Problem</h6>
-            <textarea
-              className="h-[300px] outline-none border-b pb-2 text-muted-foreground text-[28px] leading-[32px] w-full"
-              placeholder="Example: Short-term caravans rental to domestic transit travelers accessible at airport car parking. The sun set beautifully over the calm ocean, painting the sky with shades of pink and orange. The sun set beautifull. The sun set beautifully"
-            />
+          <div>
+            <div className="flex justify-between ">
+              <div className="flex flex-col gap-6">
+                <h2 className="text-[44px] font-semibold leading-[48px]">
+                  Describe the problem your <br />
+                  startup is going to solve
+                </h2>
+                <p className="text-2xl leading-7">
+                  It is the safest way to analyze your idea.
+                </p>
+              </div>
+              <div className="w-[184px] rounded shadow-lg py-7 px-5 mr-10 mt-10 flex flex-col gap-5">
+                <div className="flex items-center justify-between">
+                  <h6 className="uppercase text-[8px] font-bold">
+                    The Problem
+                  </h6>
+                  <RefreshCcw />
+                </div>
+                <div className="flex items-center gap-2">
+                  <img src={PlainLoader} className="w-10" />
+                  <span className="text-[9px] flex flex-col gap-1">
+                    The Problem score{" "}
+                    <span className="text-[12px] font-bold">--/--</span>
+                  </span>
+                </div>
+                <ul className="flex flex-col gap-4">
+                  <li className="text-[12px] flex items-center gap-2">
+                    <Check className="w-3 h-3 text-background bg-muted-foreground rounded-full " />
+                    Urgency
+                  </li>
+                  <li className="text-[12px] flex items-center gap-2">
+                    <Check className="w-3 h-3 text-background bg-muted-foreground rounded-full " />
+                    Relevance
+                  </li>
+                  <li className="text-[12px] flex items-center gap-2">
+                    <Check className="w-3 h-3 text-background bg-muted-foreground rounded-full " />
+                    Evidence
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div className="mt-10">
+              <textarea className="h-20 outline-none border-b border-muted p-2 text-secondary-foreground text-[28px] leading-[32px] w-full" />
+              <span className="text-lg text-muted-foreground">
+                120 letter max
+              </span>
+            </div>
           </div>
         ) : (
-          <div className="flex flex-col gap-7">
-            <h6 className="text-[32px] font-semibold">The Solution</h6>
-            <textarea
-              className="h-[300px] outline-none border-b pb-2 text-muted-foreground text-[28px] leading-[32px] w-full"
-              placeholder="Example: Short-term caravans rental to domestic transit travelers accessible at airport car parking. The sun set beautifully over the calm ocean, painting the sky with shades of pink and orange. The sun set beautifull. The sun set beautifully"
-            />
+          <div>
+            <div className="flex justify-between ">
+              <div className="flex flex-col gap-6">
+                <h2 className="text-[44px] font-semibold leading-[48px]">
+                  Describe the solution
+                </h2>
+                <p className="text-2xl leading-7">
+                  It is the safest way to analyze your idea.
+                </p>
+              </div>
+              <div className="w-[184px] rounded shadow-lg py-7 px-5 mr-10 mt-10 flex flex-col gap-5">
+                <div className="flex items-center justify-between">
+                  <h6 className="uppercase text-[8px] font-bold">
+                    The Solution
+                  </h6>
+                  <RefreshCcw />
+                </div>
+                <div className="flex items-center gap-2">
+                  <img src={ColorLoader} className="w-10 animate-spin" />
+                  <span className="text-[9px] flex flex-col gap-1">
+                    The Solution score{" "}
+                    <span className="text-[12px] font-bold">--/--</span>
+                  </span>
+                </div>
+                <ul className="flex flex-col gap-4">
+                  <li className="text-[12px] flex items-center gap-2">
+                    <Check className="w-3 h-3 text-background bg-secondary-dark rounded-full " />
+                    Urgency
+                    <CircleAlert />
+                  </li>
+                  <li className="text-[12px] flex items-center gap-2">
+                    <Check className="w-3 h-3 text-background bg-secondary-dark rounded-full " />
+                    Relevance
+                    <CircleAlert />
+                  </li>
+                  <li className="text-[12px] flex items-center gap-2">
+                    <Check className="w-3 h-3 text-background bg-secondary-dark rounded-full " />
+                    Evidence
+                    <CircleAlert />
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div className="mt-10">
+              <textarea className="h-20 outline-none border-b border-muted p-2 text-secondary-foreground text-[28px] leading-[32px] w-full" />
+              <span className="text-lg text-muted-foreground">
+                120 letter max
+              </span>
+            </div>
           </div>
         )}
-        <div className="mt-[60px] flex items-center gap-8">
-          <Button
-            variant="outline"
-            className="w-full"
-            onClick={handleDetailsBack}
-          >
-            Go Back
-          </Button>
-          <Button className="w-full" onClick={handleDetailsNext}>
-            Next
-          </Button>
+        <div className="flex justify-between gap-4 items-end">
+          <div className="flex items-center gap-2">
+            <div className="w-4 h-4 rounded-full bg-warning"></div>
+            <div className="w-4 h-4 rounded-full bg-warning"></div>
+            <div className="w-4 h-4 rounded-full bg-slate-200"></div>
+            <div className="w-4 h-4 rounded-full bg-slate-200"></div>
+          </div>
+          <div className="flex items-center gap-3">
+            <Button
+              variant="outline"
+              className="px-10"
+              onClick={handleDetailsBack}
+            >
+              Back
+            </Button>
+            <Button variant="outline" className="px-10">
+              Validate
+            </Button>
+            <Button className="px-14" onClick={handleDetailsNext}>
+              Next
+            </Button>
+          </div>
         </div>
       </div>
     </div>

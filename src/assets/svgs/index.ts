@@ -31,6 +31,15 @@ import IdeaValidationProblem from "./idea-validation-problem.svg";
 import IdeaValidationSolution from "./idea-validation-solution.svg";
 import IdeaValidationStartup from "./idea-validation-startup.svg";
 import StartupLoader from "./startup-loader.svg";
+import PlainLoader from "./plain-check-loader.svg";
+import ColorLoader from "./color-check-loader.svg";
+import ProfileAvatar from "./profile-avatar.svg";
+import ProfileChatMentor from "./profile-chat-mentor.svg";
+import ProfileAbstract1 from "./profile-abstract1.svg";
+import ProfileAbstract2 from "./profile-abstract2.svg";
+import ProfileAbstract3 from "./profile-abstract3.svg";
+import ProfileAbstract4 from "./profile-abstract4.svg";
+
 
 export {
   ReactSVG,
@@ -64,4 +73,12 @@ export {
   IdeaValidationSolution,
   IdeaValidationStartup,
   StartupLoader,
+  PlainLoader,
+  ColorLoader,
+  ProfileAvatar,
+  ProfileChatMentor,
+  ProfileAbstract1,
+  ProfileAbstract2,
+  ProfileAbstract3,
+  ProfileAbstract4
 };

@@ -70,7 +70,9 @@ const SignUpPage = () => {
               name="password"
               label="Create a password"
             />
-            <Button type="submit">Sign up</Button>
+            <Link to="/auth/profile">
+              <Button type="submit" className="w-full">Sign up</Button>
+            </Link>
           </div>
         )}
         <h6 className="flex items-center gap-1 justify-center">
