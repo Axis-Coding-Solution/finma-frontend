@@ -61,9 +61,13 @@
     --ring: 142.4 71.8% 29.2%;
   }
 
-  .custom-scrollbar {
+  .custom-scrollbar-warning {
     scrollbar-width: thin;
     scrollbar-color: rgb(255, 181, 0) rgb(239, 248, 255);
+  }
+  .custom-scrollbar-secondary {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(189, 244, 163) rgb(239, 248, 255);
   }
 } 
 
