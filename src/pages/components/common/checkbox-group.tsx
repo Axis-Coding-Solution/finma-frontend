@@ -9,7 +9,7 @@ export const CheckboxGroup = ({
   return (
     <div className="flex gap-2 items-center">
       <Checkbox id={id} {...props} />
-      <Label htmlFor={id} type="checkbox">
+      <Label className="text-sm" htmlFor={id} type="checkbox">
         {label}
       </Label>
     </div>

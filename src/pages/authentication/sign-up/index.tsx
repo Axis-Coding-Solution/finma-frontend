@@ -1,11 +1,12 @@
 import { Button, FloatingInput } from "@/components/ui";
 import { FloatingInputPassword } from "@/components/ui/floating-input-password";
 import { MainHeading } from "@/pages/components/common";
-import { ChevronLeft, X } from "lucide-react";
+import { ChevronLeft, Mail, X } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Lottie from "react-lottie";
 import { RocketLottie } from "@/assets/lottie";
+import { GoogleIcon } from "@/assets/svgs";
 
 const SignUpPage = () => {
   const [showLoginForm, setShowLoginForm] = useState(false);
@@ -33,21 +34,17 @@ const SignUpPage = () => {
               Go back
             </div>
           </Link>
-          <div className="flex flex-col gap-8">
-            <h2 className="text-[44px] font-semibold leading-[50px]">
-              Build your startup with FinmaAI
-            </h2>
-            <p className="text-2xl leading-7">
-              Join our community of entrepreneurs, and let's make your startup
-              dreams a reality!
-            </p>
-          </div>
+          <MainHeading
+            title="Build your startup with FinmaAI"
+            subtitle="Join our community of entrepreneurs, and let's make your startup
+              dreams a reality!"
+          />
         </div>
-        <figure className="mt-14">
+        <figure className="2xl:mt-14 mt-10">
           <Lottie options={lottieOptions} />
         </figure>
       </div>
-      <div className="min-w-[532px] bg-background rounded p-[52px] flex flex-col gap-[52px] relative overflow-hidden">
+      <div className="min-w-[532px] bg-background rounded 2xl:p-[52px] p-10  flex flex-col 2xl:gap-[52px] gap-10 relative overflow-hidden">
         <button
           type="button"
           onClick={handleCloseForm}
@@ -57,24 +54,28 @@ const SignUpPage = () => {
         </button>
         <div className="rounded bg-secondary-dark h-40 w-40 absolute -top-[100px] -right-[100px]"></div>
         <MainHeading title="Sign up" subtitle="Please sign up in the system." />
-        {!showLoginForm ? (
-          <div className="flex flex-col gap-8">
-            <Button onClick={handleLoginForm}>Sign up with email</Button>
-            <Button variant="outline">Sign up with email</Button>
-          </div>
-        ) : (
-          <div className="flex flex-col gap-8">
-            <FloatingInput type="email" name="email" label="Enter email" />
-            <FloatingInputPassword
-              type="password"
-              name="password"
-              label="Create a password"
-            />
-            <Link to="/auth/profile">
-              <Button type="submit" className="w-full">Sign up</Button>
-            </Link>
-          </div>
-        )}
+        <div className="flex flex-col 2xl:gap-8 gap-6">
+          {!showLoginForm ? (
+            <>
+              <Button icon={<Mail />} onClick={handleLoginForm}>Sign up with email</Button>
+              <Button icon={<img src={GoogleIcon}/>} variant="outline">Sign up with Google</Button>
+            </>
+          ) : (
+            <>
+              <FloatingInput type="email" name="email" label="Enter email" />
+              <FloatingInputPassword
+                type="password"
+                name="password"
+                label="Create a password"
+              />
+              <Link to="/auth/profile">
+                <Button type="submit" className="w-full">
+                  Sign up
+                </Button>
+              </Link>
+            </>
+          )}
+        </div>
         <h6 className="flex items-center gap-1 justify-center">
           Have an account?
           <Link to="/auth/login">

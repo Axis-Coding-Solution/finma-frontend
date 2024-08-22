@@ -1,5 +1,6 @@
 import { ColorLoader, PlainLoader } from "@/assets/svgs";
 import { Button } from "@/components/ui";
+import { MainHeading } from "@/pages/components/common";
 import { Check, CircleAlert, RefreshCcw, X } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -23,8 +24,8 @@ const IdeaClarityDetailsPage = () => {
     }
   };
   return (
-    <div className="w-[1084px] bg-secondary rounded-lg p-8  relative">
-      <div className="w-full bg-background rounded p-8  relative overflow-hidden">
+    <div className="w-[1084px] bg-secondary rounded-lg 2xl:p-8 p-6  relative">
+      <div className="w-full bg-background rounded 2xl:p-8 p-6  relative overflow-hidden">
         <button
           type="button"
           className="absolute rounded-full size-12 inline-flex justify-center items-center top-0 right-0 self-end bg-background z-10"
@@ -34,17 +35,15 @@ const IdeaClarityDetailsPage = () => {
         <div className="rounded bg-secondary h-40 w-40 absolute -top-[100px] -right-[100px]"></div>
         {!showDetails ? (
           <div>
-            <div className="flex justify-between ">
-              <div className="flex flex-col gap-6">
-                <h2 className="text-[44px] font-semibold leading-[48px]">
-                  Describe the problem your <br />
-                  startup is going to solve
-                </h2>
-                <p className="text-2xl leading-7">
-                  It is the safest way to analyze your idea.
-                </p>
+            <div className="flex justify-between 2xl:gap-0 gap-10">
+              <div className="2xl:w-[600px] w-auto">
+                <MainHeading
+                  title=" Describe the problem your
+                  startup is going to solve"
+                  subtitle="It is the safest way to analyze your idea."
+                />
               </div>
-              <div className="w-[184px] rounded shadow-lg py-7 px-5 mr-10 mt-10 flex flex-col gap-5">
+              <div className="w-[184px] rounded shadow-lg py-7 px-5 mr-10 2xl:mt-10 mt-0 flex flex-col gap-5">
                 <div className="flex items-center justify-between">
                   <h6 className="uppercase text-[8px] font-bold">
                     The Problem
@@ -83,16 +82,14 @@ const IdeaClarityDetailsPage = () => {
           </div>
         ) : (
           <div>
-            <div className="flex justify-between ">
-              <div className="flex flex-col gap-6">
-                <h2 className="text-[44px] font-semibold leading-[48px]">
-                  Describe the solution
-                </h2>
-                <p className="text-2xl leading-7">
-                  It is the safest way to analyze your idea.
-                </p>
+            <div className="flex justify-between 2xl:gap-0 gap-10">
+              <div className="2xl:w-[600px] w-auto">
+                <MainHeading
+                  title=" Describe the solution"
+                  subtitle="  It is the safest way to analyze your idea."
+                />
               </div>
-              <div className="w-[184px] rounded shadow-lg py-7 px-5 mr-10 mt-10 flex flex-col gap-5">
+              <div className="w-[184px] rounded shadow-lg py-7 px-5 mr-10 2xl:mt-10 mt-0 flex flex-col gap-5">
                 <div className="flex items-center justify-between">
                   <h6 className="uppercase text-[8px] font-bold">
                     The Solution
@@ -110,22 +107,22 @@ const IdeaClarityDetailsPage = () => {
                   <li className="text-[12px] flex items-center gap-2">
                     <Check className="w-3 h-3 text-background bg-secondary-dark rounded-full " />
                     Urgency
-                    <CircleAlert />
+                    <CircleAlert className="w-3" />
                   </li>
                   <li className="text-[12px] flex items-center gap-2">
                     <Check className="w-3 h-3 text-background bg-secondary-dark rounded-full " />
                     Relevance
-                    <CircleAlert />
+                    <CircleAlert className="w-3" />
                   </li>
                   <li className="text-[12px] flex items-center gap-2">
                     <Check className="w-3 h-3 text-background bg-secondary-dark rounded-full " />
                     Evidence
-                    <CircleAlert />
+                    <CircleAlert className="w-3" />
                   </li>
                 </ul>
               </div>
             </div>
-            <div className="mt-10">
+            <div className="2xl:mt-10 mt-6">
               <textarea className="h-20 outline-none border-b border-muted p-2 text-secondary-foreground text-[28px] leading-[32px] w-full" />
               <span className="text-lg text-muted-foreground">
                 120 letter max

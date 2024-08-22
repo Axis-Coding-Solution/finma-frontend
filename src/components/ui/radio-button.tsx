@@ -5,7 +5,7 @@ import { Label } from "./index";
 import { Circle } from "lucide-react";
 
 const radioInputVariants = cva(
-  "peer transition appearance-none cursor-pointer ring-1 ring-border shrink-0 focus:ring-2 rounded-full",
+  "peer transition appearance-none cursor-pointer ring-1 ring-warning  shrink-0 focus:ring-2 rounded-full",
   {
     variants: {
       variant: {
@@ -34,7 +34,7 @@ const radioInputVariants = cva(
 );
 
 const circleSvgVariants = cva(
-  "left-[54px] peer-checked:transition h-6 w-6 absolute pointer-events-none hidden peer-checked:block",
+  "left-0.5 peer-checked:transition h-6 w-6 absolute pointer-events-none hidden peer-checked:block",
   {
     variants: {
       color: {
@@ -73,7 +73,7 @@ export const RadioButton = forwardRef<any, any>(
     ref: any
   ) => {
     return (
-      <div className="flex gap-2 items-center">
+      <div className="relative flex gap-2 items-center">
         <input
           ref={ref}
           id={id}

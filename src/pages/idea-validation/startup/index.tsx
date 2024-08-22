@@ -1,5 +1,6 @@
 import { IdeaValidationStartup, StartupLoader } from "@/assets/svgs";
 import { Button, FloatingInput } from "@/components/ui";
+import { MainHeading } from "@/pages/components/common";
 import { Check, ChevronLeft, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -13,10 +14,10 @@ const IdeaClarityStartupPage = () => {
     return () => clearTimeout(timer);
   }, []);
   return (
-    <div className="bg-secondary rounded-lg p-8 flex  gap-12 items-stretch  relative">
+    <div className="bg-secondary rounded-lg 2xl:p-8 p-6 flex  gap-12 items-stretch  relative">
       {/* Left Section  */}
       <div className="w-[439px] flex flex-col justify-between">
-        <div className="flex flex-col gap-8 ">
+        <div className="flex flex-col 2xl:gap-8 gap-6">
           <Link to="/idea-validation/details">
             <div className="flex items-center  text-lg font-medium">
               <ChevronLeft />
@@ -24,23 +25,19 @@ const IdeaClarityStartupPage = () => {
             </div>
           </Link>
           {!showScore ? (
-            <div className="flex flex-col gap-6">
-              <h2 className="text-[44px] font-semibold">AI is checking idea</h2>
-              <p className="text-2xl leading-7">
-                Create your startup and continue!
-              </p>
-            </div>
+            <MainHeading
+              title="AI is checking idea"
+              subtitle="Create your startup and continue!"
+            />
           ) : (
-            <div className="flex flex-col gap-6">
-              <h2 className="text-[44px] font-semibold">Well done</h2>
-              <p className="text-2xl leading-7">
-                Start with validation module, its free!
-              </p>
-            </div>
+            <MainHeading
+              title="Well done"
+              subtitle=" Start with validation module, its free!"
+            />
           )}
           <div>
             {showScore ? (
-              <div className="bg-secondary-dark rounded p-2 text-2xl font-medium w-[306px]">
+              <div className="bg-secondary-dark rounded p-2 2xl:text-2xl text-lg font-medium w-[306px]">
                 <h6 className="flex items-center justify-between">
                   Overall idea score:{" "}
                   <span className="font-semibold">8/10</span>
@@ -54,33 +51,33 @@ const IdeaClarityStartupPage = () => {
             )}
           </div>
           <div className="flex gap-10">
-            <div className="flex flex-col gap-6 capitalize">
-              <h6 className="uppercase font-medium">The Problem</h6>
-              <span className="text-xl flex items-center gap-3">
-                <Check className="w-5 h-5 text-background bg-secondary-dark rounded-full " />
+            <div className="flex flex-col 2xl:gap-6 gap-4 capitalize">
+              <h6 className="uppercase  font-medium">The Problem</h6>
+              <span className="2xl:text-xl text-base flex items-center gap-3">
+                <Check className="2xl:w-5 2xl:h-5 w-4 h-4 text-background bg-secondary-dark rounded-full " />
                 Urgency
               </span>
-              <span className="text-xl flex items-center gap-3">
-                <Check className="w-5 h-5 text-background bg-secondary-dark rounded-full " />
+              <span className="2xl:text-xl text-base flex items-center gap-3">
+                <Check className="2xl:w-5 2xl:h-5 w-4 h-4 text-background bg-secondary-dark rounded-full " />
                 Relevance
               </span>
-              <span className="text-xl flex items-center gap-3">
-                <Check className="w-5 h-5 text-background bg-secondary-dark rounded-full " />
+              <span className="2xl:text-xl text-base flex items-center gap-3">
+                <Check className="2xl:w-5 2xl:h-5 w-4 h-4 text-background bg-secondary-dark rounded-full " />
                 Evidence
               </span>
             </div>
-            <div className="flex flex-col gap-6 capitalize">
+            <div className="flex flex-col 2xl:gap-6 gap-4 capitalize">
               <h6 className="uppercase font-medium">The Solution</h6>
-              <span className="text-xl flex items-center gap-3">
-                <Check className="w-5 h-5 text-background bg-secondary-dark rounded-full " />
+              <span className="2xl:text-xl text-base flex items-center gap-3">
+                <Check className="2xl:w-5 2xl:h-5 w-4 h-4 text-background bg-secondary-dark rounded-full " />
                 Effectiveness
               </span>
-              <span className="text-xl flex items-center gap-3">
-                <Check className="w-5 h-5 text-background bg-secondary-dark rounded-full " />
+              <span className="2xl:text-xl text-base flex items-center gap-3">
+                <Check className="2xl:w-5 2xl:h-5 w-4 h-4 text-background bg-secondary-dark rounded-full " />
                 Innovation
               </span>
-              <span className="text-xl flex items-center gap-3">
-                <Check className="w-5 h-5 text-background bg-secondary-dark rounded-full " />
+              <span className="2xl:text-xl text-base flex items-center gap-3">
+                <Check className="2xl:w-5 2xl:h-5 w-4 h-4 text-background bg-secondary-dark rounded-full " />
                 Feasibility
               </span>
             </div>
@@ -96,7 +93,7 @@ const IdeaClarityStartupPage = () => {
         </div>
       </div>
       {/* Right Section  */}
-      <div className="w-[532px] bg-background rounded p-[52px] pb-8  relative overflow-hidden">
+      <div className="w-[532px] bg-background rounded 2xl:p-[52px] p-8 pb-8  relative overflow-hidden">
         <button
           type="button"
           className="absolute rounded-full size-12 inline-flex justify-center items-center top-0 right-0 self-end bg-background z-10"
@@ -105,8 +102,8 @@ const IdeaClarityStartupPage = () => {
         </button>
         <div className="rounded bg-secondary h-40 w-40 absolute -top-[105px] -right-[105px]"></div>
         <div className="">
-          <h2 className="text-[44px] font-semibold">Well done</h2>
-          <div className="flex flex-col gap-8 mt-8">
+          <h2 className="2xl:text-[44px] text-4xl font-semibold">Well done</h2>
+          <div className="flex flex-col 2xl:gap-8 gap-6 2xl:mt-8 mt-4">
             <FloatingInput
               type="text"
               name="startupName"

@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const IdeaClarityStartPage = () => {
   return (
     <div className="xl:w-[1084px] w-auto xl:mx-0 mx-5">
-      <div className="bg-secondary rounded-lg p-[52px] lg:px-20 md:px-10 px-5 flex flex-col justify-between items-center  relative">
+      <div className="bg-secondary rounded-lg 2xl:p-[52px] p-8  flex flex-col justify-between items-center  relative">
         <Link to="/auth/select-role">
           <button
             type="button"
@@ -16,25 +16,25 @@ const IdeaClarityStartPage = () => {
           </button>
         </Link>
         <div className="flex items-end ">
-          <div className="min-w-[561px] flex flex-col gap-8 text-foreground pb-10">
-            <h4 className="text-[44px] font-bold leading-[48px] ">
+          <div className="min-w-[561px] flex flex-col 2xl:gap-8 gap-4 text-foreground 2xl:pb-10 pb-0">
+            <h4 className="2xl:text-[44px] text-4xl font-bold 2xl:leading-[48px] leading-[40px]">
               Welcome to idea validation module{" "}
             </h4>
-            <p className="text-xl leading-[27px]">
+            <p className="2xl:text-xl text-base 2xl:leading-[27px] ">
               Our first two modules are{" "}
               <span className="font-bold">validation modules. </span>They’re
               designed to exponentially speed up your startup building process
               and boost your success rate.
             </p>
-            <p className="text-xl leading-[27px]">
+            <p className="2xl:text-xl text-base 2xl:leading-[27px] ">
               After completing the validation modules you’ll be up to speed to
               start building your startup with and idea that is both vetted and
               data-driven.
             </p>
-            <p className="text-xl leading-[27px]">
+            <p className="2xl:text-xl text-base 2xl:leading-[27px] ">
               Our community will help you get:
             </p>
-            <ul className="text-xl leading-[27px] list-disc ml-8">
+            <ul className="2xl:text-xl text-base 2xl:leading-[27px]  list-disc ml-8">
               <li>
                 <span className="font-bold">Idea validation: </span>
                 40 words Elevator Pitch
@@ -44,11 +44,11 @@ const IdeaClarityStartPage = () => {
                 with 3 USP tests
               </li>
             </ul>
-            <p className="text-xl leading-[27px]">
+            <p className="2xl:text-xl text-base 2xl:leading-[27px] ">
               Our AI, Market Analysts and Copywriters are all you need to
               validate your idea
             </p>
-            <p className="text-xl leading-[27px]">
+            <p className="2xl:text-xl text-base 2xl:leading-[27px] ">
               Impressive entrepreneurial journey ahead.
               <br />
               Your friends @finma.ai

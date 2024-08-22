@@ -60,7 +60,12 @@
     --input: 240 3.7% 15.9%;
     --ring: 142.4 71.8% 29.2%;
   }
-}
+
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(255, 181, 0) rgb(239, 248, 255);
+  }
+} 
 
 * {
   box-sizing: border-box;
