@@ -145,7 +145,7 @@ const IdeaClarityDetailsPage = () => {
             >
               Back
             </Button>
-            <Button variant="outline" className="px-10">
+            <Button variant="gradient" className="px-10 rounded">
               Validate
             </Button>
             <Button className="px-14" onClick={handleDetailsNext}>

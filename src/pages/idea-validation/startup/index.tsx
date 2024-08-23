@@ -114,13 +114,15 @@ const IdeaClarityStartupPage = () => {
           <div className="flex justify-center -mt-5">
             <img src={IdeaValidationStartup} />
           </div>
-          <div className="flex items-center gap-8 mt-5">
+          <div className="flex flex-1 items-center gap-8 mt-5">
             <Button variant="outline" className="w-full">
               Need time
             </Button>
+            <Link to="/auth/sign-up" className="w-full">
             <Button className="w-full">
-              <Link to="/auth/sign-up">Built it!</Link>
+              Built it!
             </Button>
+            </Link>
           </div>
         </div>
       </div>

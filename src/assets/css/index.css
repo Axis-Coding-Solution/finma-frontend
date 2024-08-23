@@ -65,11 +65,12 @@
     scrollbar-width: thin;
     scrollbar-color: rgb(255, 181, 0) rgb(239, 248, 255);
   }
+
   .custom-scrollbar-secondary {
     scrollbar-width: thin;
     scrollbar-color: rgb(189, 244, 163) rgb(239, 248, 255);
   }
-} 
+}
 
 * {
   box-sizing: border-box;
@@ -131,4 +132,27 @@
   overflow: visible;
   white-space: normal;
   height: auto;
+}
+
+
+
+.gradient-button {
+  /* Basic button styling */
+  cursor: pointer;
+  background-clip: padding-box;
+  border-color: rgba(255, 27, 232, 1);
+  /* Gradient border */
+  /* border-image: linear-gradient(45deg,
+      rgba(255, 157, 47, 1),
+      rgba(255, 27, 232, 1),
+      rgba(33, 115, 255, 1)); */
+  border-image-slice: 1;
+
+  /* Gradient text */
+  background: linear-gradient(90deg,
+      rgba(255, 157, 47, 1),
+      rgba(255, 27, 232, 1),
+      rgba(33, 115, 255, 1));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

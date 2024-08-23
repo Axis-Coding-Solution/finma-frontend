@@ -8,6 +8,7 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
+        gradient:"gradient-button bg-background font-medium border",
         primary: "bg-primary text-primary-foreground hover:bg-primary/90 font-medium",
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline: "border border-primary bg-background text-primary hover:bg-accent hover:text-accent-foreground",
@@ -43,7 +44,7 @@ export interface ButtonProps
   to?: string;
   tag?: React.ElementType;
   rounded?: boolean;
-  icon?: React.ReactNode; // New prop for the icon
+  icon?: React.ReactNode; 
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
