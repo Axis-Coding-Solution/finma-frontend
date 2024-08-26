@@ -8,7 +8,7 @@ import {
   ProfileAbstract4,
   ProfileChatMentor,
 } from "@/assets/svgs";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   ProfileCommunity,
   ProfileCountry,
@@ -18,12 +18,26 @@ import {
 
 const ProfilePage = () => {
   const [currentStep, setCurrentStep] = useState(1);
+  const navigate = useNavigate();
+
   const handleNext = () => {
-    setCurrentStep((prevStep) => Math.min(prevStep + 1, 4));
+    setCurrentStep((prevStep) => {
+      if (prevStep === 4) {
+        navigate("/dashboard/my-projects");
+        return prevStep;
+      }
+      return Math.min(prevStep + 1, 4);
+    });
   };
 
   const handleBack = () => {
-    setCurrentStep((prevStep) => Math.max(prevStep - 1, 1));
+    setCurrentStep((prevStep) => {
+      if (prevStep === 1) {
+        navigate("/auth/sign-up");
+        return prevStep;
+      }
+      return Math.max(prevStep - 1, 1);
+    });
   };
   const changeCircle = (step: any) => {
     if (currentStep >= step) {
@@ -99,11 +113,10 @@ const ProfilePage = () => {
         {currentStep === 2 && <ProfileCountry />}
         {currentStep === 3 && <ProfileEntrepreneurial />}
         {currentStep === 4 && <ProfileCommunity />}
-        <div className="flex items-center gap-8 mt-10 ">
+        <div className="flex items-center gap-8 mt-10">
           <Button
             variant="outline"
             onClick={handleBack}
-            disabled={currentStep === 1}
             className="w-full"
           >
             Go back
@@ -111,7 +124,6 @@ const ProfilePage = () => {
           <Button
             className="w-full"
             onClick={handleNext}
-            disabled={currentStep === 4}
           >
             Next
           </Button>

@@ -10,9 +10,11 @@
   :root {
     --background: 255 255 255;
     --foreground: 0 0 0;
-    --card: 255 255 255;
+    --card: 252 252 252;
     --light-gray: 241 241 241;
     --card-foreground: 0 0 0;
+    --yellow: 254, 169, 70;
+    --blue: 0 86 158;
     --popover: 255 255 255;
     --popover-foreground: 255 255 255;
     --primary: 0 0 0;
@@ -21,8 +23,10 @@
     --secondary: 255 246 189;
     --secondary-foreground: 0 0 0;
     --secondary-dark: 189 244 163;
+    --danger: 227 68 70;
     --success: 178 239 149;
     --success-foreground: 255 255 255;
+    --success-dark: 94 182 80;
     --warning: 255 181 0;
     --warning-foreground: 0 0 0;
     --info: 22 156 213;
@@ -136,23 +140,42 @@
 
 
 
+/* Basic button styling */
 .gradient-button {
-  /* Basic button styling */
-  cursor: pointer;
-  background-clip: padding-box;
-  border-color: rgba(255, 27, 232, 1);
-  /* Gradient border */
-  /* border-image: linear-gradient(45deg,
+  padding: 1px;
+  background: linear-gradient(45deg,
       rgba(255, 157, 47, 1),
       rgba(255, 27, 232, 1),
-      rgba(33, 115, 255, 1)); */
-  border-image-slice: 1;
+      rgba(33, 115, 255, 1));
+  cursor: pointer;
+}
 
-  /* Gradient text */
-  background: linear-gradient(90deg,
+/* Gradient text */
+.gradient-button .gradient-text {
+  background: linear-gradient(45deg,
       rgba(255, 157, 47, 1),
       rgba(255, 27, 232, 1),
       rgba(33, 115, 255, 1));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.gradient-progress {
+  background: linear-gradient(45deg,
+      rgba(255, 157, 47, 1),
+      rgba(255, 27, 232, 1),
+      rgba(33, 115, 255, 1));
+}
+
+.gradient-complete {
+  background: linear-gradient(45deg,
+      rgba(0, 238, 110, 1),
+      rgba(21, 171, 255, 1)
+  );
+}
+.gradient-noStarted {
+  background: linear-gradient(45deg,
+  rgba(141, 141, 141, 1),
+  rgba(216, 216, 216, 1)
+  );
 }

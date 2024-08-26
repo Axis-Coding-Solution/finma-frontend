@@ -41,10 +41,10 @@ const FileUpload = ({
   useEffect(() => {
     if (image && !preview) setPreview(URL.createObjectURL(image as any));
   }, [image]);
-
+  // md:max-w-64
   return (
     <div>
-      <div className="relative md:max-w-64 h-64 md:h-48 w-full border-2 border-dashed border-border rounded-lg p-5 flex flex-col items-center justify-center gap-4">
+      <div className="relative h-64 md:h-48 w-full border-2 border-dashed border-border rounded-lg p-5 flex flex-col items-center justify-center gap-4">
         <Controller
           control={control}
           name={name}
@@ -81,10 +81,10 @@ const FileUpload = ({
           </div>
         ) : (
           <>
-            <CloudUpload size="50" className="text-secondary" />
+            <CloudUpload size="50" className="text-secondary-dark" />
             <span className="text-sm text-foreground">{text}</span>
             <div className="cursor-pointer">
-              <Button type="button" onClick={onUpload}>
+              <Button className="bg-secondary-dark text-foreground" type="button" onClick={onUpload}>
                 Browse files
               </Button>
             </div>

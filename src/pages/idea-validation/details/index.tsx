@@ -1,5 +1,5 @@
 import { ColorLoader, PlainLoader } from "@/assets/svgs";
-import { Button } from "@/components/ui";
+import { Button, GradientButton } from "@/components/ui";
 import { MainHeading } from "@/pages/components/common";
 import { Check, CircleAlert, RefreshCcw, X } from "lucide-react";
 import { useState } from "react";
@@ -145,9 +145,9 @@ const IdeaClarityDetailsPage = () => {
             >
               Back
             </Button>
-            <Button variant="gradient" className="px-10 rounded">
+            <GradientButton variant="gradient" className="px-10 rounded">
               Validate
-            </Button>
+            </GradientButton>
             <Button className="px-14" onClick={handleDetailsNext}>
               Next
             </Button>

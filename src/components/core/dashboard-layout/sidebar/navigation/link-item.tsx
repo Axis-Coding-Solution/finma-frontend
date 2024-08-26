@@ -17,14 +17,14 @@ export const LinkItem = ({ path, name, Icon }: PropTypes) => {
     <Link
       to={path}
       className={cn(
-        "group flex items-center gap-5 rounded-lg px-4 py-3 text-base text-foreground transition hover:bg-success/10 hover:text-success",
-        pathname.startsWith(path) && "bg-success/10 text-success"
+        "group flex items-center gap-5 rounded-lg px-4 py-3 text-base text-foreground transition hover:bg-secondary-dark/40 hover:text-foreground",
+        pathname.startsWith(path) && "bg-secondary-dark/40 text-foreground"
       )}
     >
       <Icon
         className={cn(
-          "h-6 w-6 text-muted-foreground group-hover:text-success",
-          pathname.startsWith(path) && "text-success"
+          "h-6 w-6 text-foreground group-hover:text-success-dark",
+          pathname.startsWith(path) && "text-success-dark"
         )}
       />
       {name}

@@ -3,6 +3,7 @@ import {
   Home,
   LayoutGrid,
   MessageSquareMore,
+  Sparkles,
   UsersRound,
   Zap,
 } from "lucide-react";
@@ -11,17 +12,16 @@ import { useAuth } from "@/utils/hooks";
 
 const navLinks = [
   {
-    name: "Community",
-    path: "/dashboard/community",
-    roles: ["innovator", "mentor", "expert"],
-    Icon: Home,
-  },
-
-  {
-    name: "My Projects",
+    name: "My Startups",
     path: "/dashboard/my-projects",
     roles: ["innovator"],
     Icon: LayoutGrid,
+  },
+  {
+    name: "The Community",
+    path: "/dashboard/community",
+    roles: ["innovator", "mentor", "expert"],
+    Icon: Sparkles,
   },
   {
     name: "Product Launch",
@@ -52,14 +52,14 @@ const navLinks = [
 ];
 
 export const NavLinks = () => {
-  const auth = useAuth();
+  // const auth = useAuth();
 
-  if (!auth?.isAuthenticated) return null;
+  // if (!auth?.isAuthenticated) return null;
 
-  const userNavLinks = navLinks.filter((link) =>
-    link.roles.includes(auth?.user?.role)
-  );
-  
+  // const userNavLinks = navLinks.filter((link) =>
+  // link.roles.includes(auth?.user?.role)
+  // );
+  const userNavLinks = navLinks;
   return (
     <div className="flex flex-col gap-1">
       <h6 className="px-4 text-muted-foreground text-sm tracking-wider mb-1">

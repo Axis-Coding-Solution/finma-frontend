@@ -45,7 +45,11 @@ module.exports = {
         success: {
           DEFAULT: "rgb(var(--success)/<alpha-value>)",
           foreground: "rgb(var(--success-foreground)/<alpha-value>)",
-        },
+          dark: "rgb(var(--success-dark)/<alpha-value>)",
+            },
+        danger: {
+          DEFAULT: "rgb(var(--danger)/<alpha-value>)",
+            },
         warning: {
           DEFAULT: "rgb(var(--warning)/<alpha-value>)",
           foreground: "rgb(var(--warning-foreground)/<alpha-value>)",

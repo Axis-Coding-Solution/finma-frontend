@@ -40,6 +40,7 @@ import ProfileAbstract2 from "./profile-abstract2.svg";
 import ProfileAbstract3 from "./profile-abstract3.svg";
 import ProfileAbstract4 from "./profile-abstract4.svg";
 import GoogleIcon from "./google-icon.svg";
+import LogoAvatar from "./logo-avatar.svg"
 
 
 export {
@@ -82,5 +83,6 @@ export {
   ProfileAbstract2,
   ProfileAbstract3,
   ProfileAbstract4,
-  GoogleIcon
+  GoogleIcon,
+  LogoAvatar
 };

@@ -9,7 +9,7 @@ import {
   Menu,
   Package,
   Package2,
-  SearchIcon,
+  Settings,
   ShoppingCart,
   Users,
 } from "lucide-react";
@@ -31,15 +31,15 @@ import {
 import { Avatar } from "@/components/_ui/avatar";
 import { userAvatar1Image } from "@/assets/images";
 import { useAuth } from "@/utils/hooks";
-import StatusModal from "./status-modal";
 import { useGetStatusForUser } from "@/api/hooks/dashboard";
+import ProfileEditModal from "./profile-edit-modal";
 
 const AppHeader = () => {
   const auth = useAuth();
 
   const { data } = useGetStatusForUser();
   return (
-    <header className="sticky w-full right-0  top-0 z-10 bg-background flex h-14 items-center lg:justify-end justify-between gap-7 border-b px-4 lg:h-16 lg:px-10 py-4">
+    <header className="sticky w-full right-0  top-0 z-10 bg-background flex  items-center lg:justify-end justify-between gap-7 border-b px-4  lg:px-10 py-3">
       <Sheet>
         <SheetTrigger asChild>
           <Button variant="outline" size="icon" className="shrink-0 lg:hidden">
@@ -113,42 +113,48 @@ const AppHeader = () => {
           </div>
         </SheetContent>
       </Sheet>
-      <div className="flex gap-4 items-center">
-        <div className="hidden md:flex flex-col rounded-lg">
-          <div className="flex items-center gap-1">
-            <span className="text-muted-foreground text-xs">Public Status</span>
-            <StatusModal userStatus={data} />
-          </div>
-          <p className="w-full text-foreground font-semibold underline text-sm">
-            {data ? data.label : "Please set up your public status"}
-          </p>
-        </div>
-        <div className="text-muted-foreground flex gap-5 items-center">
-          <span role="button">
-            <SearchIcon />
-          </span>
-          <div className="h-7 border border-border" />
+      <div className="flex 2xl:gap-12 gap-8 items-center">
+        <div className="text-muted-foreground flex 2xl:gap-10 gap-8 items-center">
           <span role="button">
             <BellDot />
           </span>
+          <span role="button">
+            <Settings />
+          </span>
         </div>
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <div role="button">
-              <Avatar className="object-cover" image={auth?.user?.profilePicture || userAvatar1Image} />
+        <div className="flex items-center gap-3">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <div role="button">
+                <Avatar
+                  className="object-cover 2xl:min-w-14 min-w-10 2xl:h-14 h-10"
+                  image={auth?.user?.profilePicture || userAvatar1Image}
+                />
+              </div>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>Settings</DropdownMenuItem>
+              <DropdownMenuItem>Support</DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem onClick={auth?.handleLogout}>
+                Logout
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+          <div className="flex items-start gap-1">
+            <div className="flex flex-col gap-1">
+              <h2 className=" 2xl:text-[22px] text-base font-semibold text-foreground">
+                Eve Norman
+              </h2>
+              <span className="flex gap-0 items-center 2xl:text-lg text-xs font-normal text-muted-foreground">
+                😤 <span>Building a new feature</span>
+              </span>
             </div>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>Settings</DropdownMenuItem>
-            <DropdownMenuItem>Support</DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={auth?.handleLogout}>
-              Logout
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+            <ProfileEditModal userStatus={data} />
+          </div>
+        </div>
       </div>
     </header>
   );

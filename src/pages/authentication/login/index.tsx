@@ -45,8 +45,12 @@ const LoginPage = () => {
           <div className="flex flex-col 2xl:gap-8 gap-6">
             {!showLoginForm ? (
               <>
-                <Button icon={<Mail />}  onClick={handleLoginForm}>Log in with email</Button>
-                <Button icon={<img src={GoogleIcon}/>} variant="outline">Log in with Google</Button>
+                <Button icon={<Mail />} onClick={handleLoginForm}>
+                  Log in with email
+                </Button>
+                <Button icon={<img src={GoogleIcon} />} variant="outline">
+                  Log in with Google
+                </Button>
               </>
             ) : (
               <>
@@ -59,7 +63,9 @@ const LoginPage = () => {
                 <h6 className="-mt-6 text-end">
                   <Link to="/auth/forget-password">Forgot password?</Link>
                 </h6>
-                <Button type="submit">Log in</Button>
+                <Link to="/dashboard/my-projects">
+                  <Button type="submit" className="w-full">Log in</Button>
+                </Link>
               </>
             )}
           </div>

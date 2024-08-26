@@ -1,6 +1,6 @@
 import { Outlet, useNavigate } from "react-router-dom";
 
-import AppHeader from "@/components/core/dashboard-layout/app-header";
+import AppHeader from "@/components/core/dashboard-layout/app-header/_index";
 import Sidebar from "@/components/core/dashboard-layout/sidebar";
 import { Suspense, useEffect } from "react";
 import { useAuth } from "@/utils/hooks";
