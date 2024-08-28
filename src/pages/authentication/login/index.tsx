@@ -1,18 +1,57 @@
+import { loginApi } from "@/api/http";
 import { GoogleIcon } from "@/assets/svgs";
-import { Button, FloatingInput } from "@/components/ui";
+import { Button, FloatingInput, InputError } from "@/components/ui";
 import { FloatingInputPassword } from "@/components/ui/floating-input-password";
 import { MainHeading } from "@/pages/components/common";
+import { errorToast, successToast } from "@/utils";
+import { useAuth } from "@/utils/hooks";
+import { loginInitialValues } from "@/utils/initial-values";
+import { loginSchema } from "@/utils/validation-schemas";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useMutation } from "@tanstack/react-query";
 import { Mail, X } from "lucide-react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const [showLoginForm, setShowLoginForm] = useState(false);
+  const navigate = useNavigate();
+  const auth = useAuth();
+
   const handleLoginForm = () => {
     setShowLoginForm(true);
   };
   const handleCloseForm = () => {
     setShowLoginForm(false);
+  };
+
+  const loginMutation = useMutation({
+    mutationFn: loginApi,
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: loginInitialValues,
+    resolver: yupResolver(loginSchema),
+  });
+
+  const onSubmitHandler = async (data: typeof loginInitialValues) => {
+    try {
+      const response = await loginMutation.mutateAsync(data);
+      const { token, user, redirectUrl } = response.data;
+      auth?.handleLogin({ token, user });
+      successToast(response.message);
+      navigate(redirectUrl, { replace: true });
+    } catch (error: any) {
+      if (error?.data?.redirectUrl) {
+        navigate(error.data.redirectUrl);
+      }
+      errorToast(error.message);
+    }
   };
 
   return (
@@ -53,20 +92,31 @@ const LoginPage = () => {
                 </Button>
               </>
             ) : (
-              <>
-                <FloatingInput type="email" name="email" label="Enter Email" />
-                <FloatingInputPassword
-                  type="password"
-                  name="password"
-                  label="Enter existing password"
-                />
+              <form className="flex flex-col 2xl:gap-8 gap-6" onSubmit={handleSubmit(onSubmitHandler)}>
+                <div>
+                  <FloatingInput
+                    type="email"
+                    label="Enter Email"
+                    {...register("email")}
+                  />
+                  <InputError error={errors.email} />
+                </div>
+                <div>
+                  <FloatingInputPassword
+                    type="password"
+                    label="Enter existing password"
+                    {...register("password")}
+                  />
+                  <InputError error={errors.password} />
+                </div>
                 <h6 className="-mt-6 text-end">
                   <Link to="/auth/forget-password">Forgot password?</Link>
                 </h6>
-                <Link to="/dashboard/my-projects">
-                  <Button type="submit" className="w-full">Log in</Button>
-                </Link>
-              </>
+
+                <Button type="submit" className="w-full">
+                  Log in
+                </Button>
+              </form>
             )}
           </div>
           <h6 className="flex items-center gap-1 justify-center">

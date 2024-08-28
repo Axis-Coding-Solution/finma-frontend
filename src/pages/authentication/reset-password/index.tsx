@@ -1,18 +1,60 @@
 import { SuccessThumb } from "@/assets/svgs";
-import { Button } from "@/components/ui";
+import { Button, InputError } from "@/components/ui";
 import { FloatingInputPassword } from "@/components/ui/floating-input-password";
 import { MainHeading } from "@/pages/components/common";
 import { X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Lottie from "react-lottie";
 import { Star1Lottie } from "@/assets/lottie";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
+import { useMutation } from "@tanstack/react-query";
+import { resetPasswordApi } from "@/api/http";
+import { errorToast, successToast } from "@/utils";
+import { resetPasswordInitialValues } from "@/utils/initial-values";
+import { resetPasswordSchema } from "@/utils/validation-schemas";
+import { useForm } from "react-hook-form";
+import { FORM_MODE, yupResolver } from "@/utils/constants";
 
 const ResetPasswordPage = () => {
   const [showChanged, setShowChanged] = useState(false);
+  const [searchParams] = useSearchParams();
+  const id = searchParams.get("id");
+  const token = searchParams.get("token");
   const handlePasswordChanged = () => {
     setShowChanged(true);
   };
+
+  const resetPasswordMutation = useMutation({
+    mutationFn: resetPasswordApi,
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+    reset,
+  } = useForm({
+    mode: FORM_MODE,
+    defaultValues: resetPasswordInitialValues,
+    resolver: yupResolver(resetPasswordSchema),
+  });
+
+  useEffect(() => {
+    if (id && token) reset((prev) => ({ ...prev, id, token }));
+  }, [id, token]);
+
+  const onSubmitHandler = async (values: typeof resetPasswordInitialValues) => {
+    console.log("works");
+    try {
+      const response = await resetPasswordMutation.mutateAsync(values);
+      successToast(response.message);
+      handlePasswordChanged();
+    } catch (error: any) {
+      console.log(error);
+      errorToast(error.message);
+    }
+  };
+
   const lottieOptions = {
     loop: true,
     autoplay: true,
@@ -23,7 +65,10 @@ const ResetPasswordPage = () => {
   };
   return (
     <div className="2xl:w-[596px] w-[500px] bg-secondary rounded-lg 2xl:p-8 p-5">
-      <div className="bg-background rounded 2xl:p-[52px] p-5 flex flex-col 2xl:gap-[52px] gap-8 relative overflow-hidden">
+      <form
+        onSubmit={handleSubmit(onSubmitHandler)}
+        className="bg-background rounded 2xl:p-[52px] p-5 flex flex-col 2xl:gap-[52px] gap-8 relative overflow-hidden"
+      >
         <button
           type="button"
           className="absolute rounded-full size-12 inline-flex justify-center items-center top-0 right-0 self-end bg-background z-10"
@@ -31,55 +76,56 @@ const ResetPasswordPage = () => {
           <X />
         </button>
         <div className="rounded bg-secondary h-40 w-40 absolute -top-[100px] -right-[100px]"></div>
+        <MainHeading
+          title={showChanged ? "Password changed" : "Change password"}
+          subtitle={
+            showChanged
+              ? "Your password has been successfully changed!"
+              : "Enter your new password below"
+          }
+        />
         {!showChanged ? (
-          <>
-            <MainHeading
-              title="Change password"
-              subtitle="Enter your new password below"
-            />
-            <div className="flex flex-col 2xl:gap-8 gap-6 pb-2">
+          <div className="flex flex-col 2xl:gap-8 gap-6 pb-2">
+            <div>
               <FloatingInputPassword
                 type="password"
-                name="newPassword"
                 label="Create a password"
+                {...register("password")}
               />
+              <InputError error={errors.password} />
+            </div>
+            <div>
               <FloatingInputPassword
                 type="password"
-                name="repeatPassword"
                 label="Repeat created password"
+                {...register("confirmPassword")}
               />
-              <Button
-                onClick={handlePasswordChanged}
-                type="submit"
-                className="mt-5"
-              >
-                Set new password
-              </Button>
+              <InputError error={errors.confirmPassword} />
             </div>
-          </>
+            <Button type="submit" disabled={isSubmitting} className="mt-5">
+              Set new password
+            </Button>
+          </div>
         ) : (
-          <>
-            <MainHeading
-              title="Password changed"
-              subtitle="Your password has been successfully changed!"
-            />
-            <div className="relative 2xl:mt-0 mt-5 2xl:pb-0 pb-5">
-              <Link to="/auth/login">
-                <Button type="submit" className="w-full">
-                  Log in
-                </Button>
-              </Link>
-              <div className="absolute -top-5 right-5">
-                <Lottie width={50} options={lottieOptions} />
-              </div>
-              <img
-                src={SuccessThumb}
-                className="absolute top-4 right-0 w-[92px]"
-              />
+          <div className="relative 2xl:mt-0 mt-5 2xl:pb-0 pb-5">
+            <Button
+              tag={Link}
+              to="/auth/login"
+              type="button"
+              className="w-full"
+            >
+              Log in
+            </Button>
+            <div className="absolute -top-5 right-5">
+              <Lottie width={50} options={lottieOptions} />
             </div>
-          </>
+            <img
+              src={SuccessThumb}
+              className="absolute top-4 right-0 w-[92px]"
+            />
+          </div>
         )}
-      </div>
+      </form>
     </div>
   );
 };

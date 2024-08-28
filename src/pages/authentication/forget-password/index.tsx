@@ -1,13 +1,41 @@
-import { Button, FloatingInput } from "@/components/ui";
+import { forgetPasswordApi } from "@/api/http";
+import { Button, FloatingInput, InputError } from "@/components/ui";
 import { MainHeading } from "@/pages/components/common";
+import { errorToast, successToast } from "@/utils";
+import { FORM_MODE, yupResolver } from "@/utils/constants";
+import { forgetPasswordInitialValues } from "@/utils/initial-values";
+import { forgetPasswordSchema } from "@/utils/validation-schemas";
+import { useMutation } from "@tanstack/react-query";
 import { X } from "lucide-react";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 const ForgetPasswordPage = () => {
-  const [email, setEmail] = useState("");
-  const handleEmailChange = (e :any ) => {
-    setEmail(e.target.value);
+  const navigate = useNavigate();
+
+  const forgetPasswordMutation = useMutation({
+    mutationFn: forgetPasswordApi,
+  });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    mode: FORM_MODE,
+    defaultValues: forgetPasswordInitialValues,
+    resolver: yupResolver(forgetPasswordSchema),
+  });
+
+  const onSubmitHandler = async (
+    values: typeof forgetPasswordInitialValues
+  ) => {
+    try {
+      const response = await forgetPasswordMutation.mutateAsync(values);
+      successToast(response.message);
+      navigate("/", { replace: true });
+    } catch (error: any) {
+      errorToast(error.message);
+    }
   };
   return (
     <div className="2xl:w-[596px] w-[500px] bg-secondary rounded-lg 2xl:p-8 p-5">
@@ -23,14 +51,22 @@ const ForgetPasswordPage = () => {
           title="Forgot password?"
           subtitle="Enter your email address and we’ll send you a link to reset your password"
         />
-        <div className="flex flex-col 2xl:gap-8 gap-6 pb-2">
-          <FloatingInput type="email" name="email" label="Enter Email" value={email} onChange={handleEmailChange} />
-          <Link to={email? "/auth/reset-password" :"#"}>
-            <Button disabled={!email} type="submit" className="mt-5 w-full">
-              Reset
-            </Button>
-          </Link>
-        </div>
+        <form
+          onSubmit={handleSubmit(onSubmitHandler)}
+          className="flex flex-col 2xl:gap-8 gap-6 pb-2"
+        >
+          <div>
+            <FloatingInput
+              type="email"
+              label="Enter Email"
+              {...register("email")}
+            />
+            <InputError error={errors.email} />
+          </div>
+          <Button disabled={isSubmitting} type="submit" className="mt-5 w-full">
+            Reset
+          </Button>
+        </form>
       </div>
     </div>
   );

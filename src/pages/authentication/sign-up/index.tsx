@@ -1,21 +1,72 @@
-import { Button, FloatingInput } from "@/components/ui";
+import { Button, FloatingInput, InputError } from "@/components/ui";
 import { FloatingInputPassword } from "@/components/ui/floating-input-password";
 import { MainHeading } from "@/pages/components/common";
 import { ChevronLeft, Mail, X } from "lucide-react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Lottie from "react-lottie";
 import { RocketLottie } from "@/assets/lottie";
 import { GoogleIcon } from "@/assets/svgs";
+import { useAuth } from "@/utils/hooks";
+import { useMutation } from "@tanstack/react-query";
+import { signUpApi } from "@/api/http";
+import { useForm } from "react-hook-form";
+import { signUpInitialValues } from "@/utils/initial-values";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { signUpSchema } from "@/utils/validation-schemas";
+import { errorToast, successToast } from "@/utils";
+
+const routes = {
+  innovator: "/lead-magnet/start",
+  expert: "/onboarding/experts",
+  mentor: "/onboarding/mentors",
+};
+
+const getRouteOnRole = (role: "innovator" | "expert" | "mentor") => {
+  return routes[role];
+};
 
 const SignUpPage = () => {
   const [showLoginForm, setShowLoginForm] = useState(false);
+  const navigate = useNavigate();
+  const auth = useAuth();
+
   const handleLoginForm = () => {
     setShowLoginForm(true);
   };
   const handleCloseForm = () => {
     setShowLoginForm(false);
   };
+
+  const signUpMutate = useMutation({
+    mutationFn: signUpApi,
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: signUpInitialValues,
+    resolver: yupResolver(signUpSchema as any),
+  });
+
+  const onsubmitHandler = async (data: typeof signUpInitialValues) => {
+    try {
+      const response = await signUpMutate.mutateAsync(data);
+      successToast(response.message);
+      const { token, user } = response.data;
+      auth?.handleLoginToSession({ token, user });
+      const role = user.role;
+      const url = getRouteOnRole(role);
+      navigate(url, { replace: true });
+    } catch (error: any) {
+      if (error?.data?.redirectUrl)
+        navigate(error.role.redirectUrl, { replace: true });
+      errorToast(error.message);
+    }
+  };
+
   const lottieOptions = {
     loop: true,
     autoplay: true,
@@ -57,23 +108,38 @@ const SignUpPage = () => {
         <div className="flex flex-col 2xl:gap-8 gap-6">
           {!showLoginForm ? (
             <>
-              <Button icon={<Mail />} onClick={handleLoginForm}>Sign up with email</Button>
-              <Button icon={<img src={GoogleIcon}/>} variant="outline">Sign up with Google</Button>
+              <Button icon={<Mail />} onClick={handleLoginForm}>
+                Sign up with email
+              </Button>
+              <Button icon={<img src={GoogleIcon} />} variant="outline">
+                Sign up with Google
+              </Button>
             </>
           ) : (
-            <>
-              <FloatingInput type="email" name="email" label="Enter email" />
-              <FloatingInputPassword
-                type="password"
-                name="password"
-                label="Create a password"
-              />
-              <Link to="/auth/profile">
-                <Button type="submit" className="w-full">
-                  Sign up
-                </Button>
-              </Link>
-            </>
+            <form
+              onSubmit={handleSubmit(onsubmitHandler)}
+              className="flex flex-col 2xl:gap-8 gap-6"
+            >
+              <div>
+                <FloatingInput
+                  type="email"
+                  label="Enter email"
+                  {...register("email")}
+                />
+                <InputError error={errors.email} />
+              </div>
+              <div>
+                <FloatingInputPassword
+                  type="password"
+                  label="Create a password"
+                  {...register("password")}
+                />
+                <InputError error={errors.password} />
+              </div>
+              <Button type="submit" className="w-full">
+                Sign up
+              </Button>
+            </form>
           )}
         </div>
         <h6 className="flex items-center gap-1 justify-center">
