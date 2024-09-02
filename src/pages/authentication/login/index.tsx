@@ -1,14 +1,13 @@
-import { loginApi } from "@/api/http";
-import { GoogleIcon } from "@/assets/svgs";
+import { useLoginMutation } from "@/api/hooks";
 import { Button, FloatingInput, InputError } from "@/components/ui";
 import { FloatingInputPassword } from "@/components/ui/floating-input-password";
+import { ContinueWithGoogle } from "@/pages/components/auth";
 import { MainHeading } from "@/pages/components/common";
 import { errorToast, successToast } from "@/utils";
 import { useAuth } from "@/utils/hooks";
 import { loginInitialValues } from "@/utils/initial-values";
 import { loginSchema } from "@/utils/validation-schemas";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useMutation } from "@tanstack/react-query";
 import { Mail, X } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -26,9 +25,7 @@ const LoginPage = () => {
     setShowLoginForm(false);
   };
 
-  const loginMutation = useMutation({
-    mutationFn: loginApi,
-  });
+  const { mutateAsync } = useLoginMutation();
 
   const {
     register,
@@ -41,15 +38,13 @@ const LoginPage = () => {
 
   const onSubmitHandler = async (data: typeof loginInitialValues) => {
     try {
-      const response = await loginMutation.mutateAsync(data);
+      const response = await mutateAsync(data);
+      console.log(response.data, response);
       const { token, user, redirectUrl } = response.data;
       auth?.handleLogin({ token, user });
       successToast(response.message);
       navigate(redirectUrl, { replace: true });
     } catch (error: any) {
-      if (error?.data?.redirectUrl) {
-        navigate(error.data.redirectUrl);
-      }
       errorToast(error.message);
     }
   };
@@ -87,12 +82,13 @@ const LoginPage = () => {
                 <Button icon={<Mail />} onClick={handleLoginForm}>
                   Log in with email
                 </Button>
-                <Button icon={<img src={GoogleIcon} />} variant="outline">
-                  Log in with Google
-                </Button>
+                <ContinueWithGoogle text="Login with Google" />
               </>
             ) : (
-              <form className="flex flex-col 2xl:gap-8 gap-6" onSubmit={handleSubmit(onSubmitHandler)}>
+              <form
+                className="flex flex-col 2xl:gap-8 gap-6"
+                onSubmit={handleSubmit(onSubmitHandler)}
+              >
                 <div>
                   <FloatingInput
                     type="email"

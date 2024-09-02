@@ -1,5 +1,4 @@
 import { lazy } from "react";
-const SelectRolePage = lazy(() => import("@/pages/authentication/select-role"));
 
 const LoginPage = lazy(() => import("@/pages/authentication/login"));
 const SignUpPage = lazy(() => import("@/pages/authentication/sign-up"));
@@ -9,7 +8,6 @@ const ForgetPasswordPage = lazy(
 const ResetPasswordPage = lazy(
   () => import("@/pages/authentication/reset-password")
 );
-const ProfilePage = lazy(()=>import("@/pages/authentication/profile"))
 
 const AuthenticationRoutes = [
   {
@@ -27,14 +25,6 @@ const AuthenticationRoutes = [
   {
     element: <ForgetPasswordPage />,
     path: "/auth/forget-password",
-  },
-  {
-    element: <SelectRolePage />,
-    path: "/auth/select-role",
-  },
-  {
-    element: <ProfilePage />,
-    path: "/auth/profile",
   },
 ];
 

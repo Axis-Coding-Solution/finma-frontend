@@ -6,7 +6,6 @@ export const loginInitialValues = {
 export const signUpInitialValues = {
   email: "",
   password: "",
-  isAgree: false,
 };
 
 export const forgetPasswordInitialValues = {

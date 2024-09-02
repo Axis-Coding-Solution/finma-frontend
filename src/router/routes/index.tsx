@@ -9,9 +9,11 @@ import AuthenticationRoutes from "./Authentication";
 import { RoutesType } from "@/definitions/types";
 import IdeaValidationRoutes from "./IdeaValidation";
 import DashboardRoutes from "./Dashboard";
+import OnboardingRoutes from "./Onboarding";
 
 const mergedRoutes: RoutesType[] = [
   ...AuthenticationRoutes,
+  ...OnboardingRoutes,
   ...IdeaValidationRoutes,
   ...DashboardRoutes,
 ];
