@@ -41,7 +41,7 @@ export const ProjectDeleteModal = ({
           <span role="button">
             <div className="flex gap-1 text-red-500">
               <Trash2 size={16} className="mt-1" />
-              <h1 className="">Delete project</h1>
+              <h1 className="">Delete startup</h1>
             </div>
           </span>
         </DialogTrigger>
@@ -72,7 +72,7 @@ export const ProjectDeleteModal = ({
               onClick={() => deleteProject(projectId)}
               className="w-full"
             >
-              Delete
+              Update
             </Button>
           </div>
         </DialogContent>

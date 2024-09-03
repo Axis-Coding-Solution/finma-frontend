@@ -1,36 +1,37 @@
 import { HeadingButton } from "@/pages/components/common";
 import ProjectCard from "@/pages/components/dashboard/my-projects/card";
+import ProjectAddModal from "@/pages/components/dashboard/my-projects/project-add-modal";
 
 const startupOptions = [
   {
     name: "Mad Cookies",
     category: "IT & Technology",
-    status: "Completed",
+    status: "launched",
   },
   {
     name: "Mad Cookies",
     category: "IT & Technology",
-    status: "In progress",
+    status: "progress",
   },
   {
     name: "Mad Cookies",
     category: "IT & Technology",
-    status: "No started",
+    status: "closed",
   },
   {
     name: "Mad Cookies",
     category: "IT & Technology",
-    status: "Completed",
+    status: "launched",
   },
   {
     name: "Mad Cookies",
     category: "IT & Technology",
-    status: "In progress",
+    status: "progress",
   },
   {
     name: "Mad Cookies",
     category: "IT & Technology",
-    status: "No started",
+    status: "closed",
   },
 ];
 
@@ -41,9 +42,10 @@ const MyProjectsPage = () => {
         <HeadingButton
           title="My Startups"
           subtitle="8 project"
+          renderRight={<ProjectAddModal projectId=""/>}
         />
       </div>
-      <div className="grid xl:grid-cols-3 lg:grid-cols-2   md:grid-cols-3 sm:grid-cols-2 grid-cols-1  lg:flex-row gap-5">
+      <div className="grid xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-3 sm:grid-cols-2 grid-cols-1  lg:flex-row gap-5">
         {startupOptions &&
           startupOptions.map((item: any, index) => (
             <ProjectCard

@@ -16,19 +16,19 @@ export const LinkItem = ({ path, name, Icon }: PropTypes) => {
   return (
     <div className={cn(
       "lg:pr-4 pr-2 border-r-transparent border-r-4 ",
-      pathname.startsWith(path) && " border-r-success-dark border-r-4"
+      pathname.startsWith(path) && " border-r-warning border-r-4"
     )}>
     <Link
       to={path}
       className={cn(
-        "group flex items-center gap-5 rounded-lg px-4 py-3 text-base text-foreground transition hover:bg-secondary-dark/40 hover:text-foreground",
-        pathname.startsWith(path) && "bg-secondary-dark/40 text-foreground "
+        "group flex items-center gap-5 rounded-lg px-4 py-3 text-base text-background transition hover:bg-warning hover:text-foreground",
+        pathname.startsWith(path) && "bg-warning text-foreground "
       )}
     >
       <Icon
         className={cn(
-          "h-6 w-6 text-foreground group-hover:text-success-dark",
-          pathname.startsWith(path) && "text-success-dark"
+          "h-6 w-6 text-background group-hover:text-foreground",
+          pathname.startsWith(path) && "text-foreground"
         )}
       />
       {name}
