@@ -1,5 +1,4 @@
 import { HeadingButton } from "@/pages/components/common";
-import ProjectAddModal from "@/pages/components/dashboard/my-projects/project-add-modal";
 import ProjectCard from "@/pages/components/dashboard/my-projects/card";
 
 const startupOptions = [
@@ -44,7 +43,7 @@ const MyProjectsPage = () => {
           subtitle="8 project"
         />
       </div>
-      <div className="grid grid-cols-3  lg:flex-row gap-5">
+      <div className="grid xl:grid-cols-3 lg:grid-cols-2   md:grid-cols-3 sm:grid-cols-2 grid-cols-1  lg:flex-row gap-5">
         {startupOptions &&
           startupOptions.map((item: any, index) => (
             <ProjectCard

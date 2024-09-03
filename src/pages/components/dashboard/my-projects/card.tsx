@@ -22,9 +22,9 @@ const ProjectCard = (props: any) => {
           : props.status === "In progress"
           ? inProgress
           : noStarted
-      }  2xl:rounded-[32px] rounded-3xl overflow-hidden pt-0.5`}
+      }  2xl:rounded-[32px] rounded-3xl overflow-hidden `}
     >
-      <div className="bg-background flex flex-col gap-3  w-full p-6 2xl:rounded-[32px] rounded-3xl ">
+      <div className="bg-background h-full w-full flex flex-col gap-3  lg:p-6 p-4 2xl:rounded-[32px] rounded-3xl mt-0.5">
         <div className="flex justify-between">
           <Avatar
             className="object-cover 2xl:min-w-16 2xl:h-16 min-w-12 h-12"
@@ -40,7 +40,7 @@ const ProjectCard = (props: any) => {
             {props.category}
           </h1>
         </div>
-        <div className="flex justify-between items-center 2xl:mt-5 mt-2">
+        <div className="flex justify-between items-center gap-2 2xl:mt-5 mt-2">
           <Badge variant={statusVariant[props.status]}>{props.status}</Badge>
           <div className="flex items-center relative">
             <div className="bg-[#FEA946] 2xl:min-w-10 2xl:h-10 w-8 h-8 2xl:text-base text-sm font-normal flex justify-center items-center rounded-full text-background uppercase">
