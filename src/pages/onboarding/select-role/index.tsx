@@ -52,10 +52,9 @@ const SelectRolePage = () => {
                   <p className="2xl:text-xl text-md 2xl:mt-3 mt-2">
                     {item.subtitle}
                   </p>
-                  <img
-                    className="2xl:mt-6 mt-0 md:w-full w-1/2"
-                    src={item.img}
-                  />
+                  <figure className="2xl:mt-6 mt-0 md:w-full w-1/2">
+                    <img className="size-full" src={item.img} />
+                  </figure>
                 </div>
               </Link>
             ))}

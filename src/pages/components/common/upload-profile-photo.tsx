@@ -1,5 +1,5 @@
 import { Button, InputError } from "@/components/ui";
-import { CloudDownloadIcon, CloudUpload, Edit } from "lucide-react";
+import { CloudUploadIcon } from "lucide-react";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { Controller } from "react-hook-form";
 
@@ -13,13 +13,12 @@ type PropTypes = {
 };
 
 export const UploadProfilePhoto = ({
-  text = "Upload your profile photo",
   errors,
   control,
   image,
   name = "profilePicture",
 }: PropTypes) => {
-  const [preview, setPreview] = useState<undefined | string>();
+  const [preview, setPreview] = useState<undefined | string>("");
   const hiddenInputRef = useRef<any>(null);
 
   const handleUploadedFile = (
@@ -42,7 +41,7 @@ export const UploadProfilePhoto = ({
   // md:max-w-64
   return (
     <div>
-      <div className="relative h-64 md:h-48 w-full border-2 border-dashed border-border rounded-lg p-5 flex flex-col items-center justify-center gap-4">
+      <div className="flex gap-5 items-center">
         <Controller
           control={control}
           name={name}
@@ -63,38 +62,29 @@ export const UploadProfilePhoto = ({
             />
           )}
         />
-        {preview ? (
-          <div className="flex flex-row-reverse">
-            <span
-              className="block absolute -top-5 right-0 text-foreground hover:text-success rounded transition"
-              role="button"
-              title="Change Picture"
-              onClick={onUpload}
-            >
-              <Edit size={22} />
-            </span>
-            <img
-              src={preview}
-              className="md:h-44 h-56 md:w-56 w-full object-top"
-              onLoad={(e) => URL.revokeObjectURL(e.currentTarget.src)}
-            />
-          </div>
-        ) : (
-          <>
-            <CloudUpload size="50" className="text-secondary-dark" />
-            <span className="text-sm text-foreground">{text}</span>
-            <div className="cursor-pointer">
-              <Button
-                className="bg-secondary-dark text-foreground"
-                icon={<CloudDownloadIcon />}
-                type="button"
-                onClick={onUpload}
-              >
-                Choose Photo
-              </Button>
-            </div>
-          </>
-        )}
+        <div
+          onClick={onUpload}
+          role="button"
+          className="border border-border rounded-full"
+        >
+          <img
+            src={preview}
+            className="size-20 rounded-full"
+            onLoad={(e) => URL.revokeObjectURL(e.currentTarget.src)}
+            alt="Profile Photo"
+          />
+        </div>
+        <div className="cursor-pointer">
+          <Button
+            icon={<CloudUploadIcon />}
+            variant="secondary-dark"
+            className="font-normal"
+            type="button"
+            onClick={onUpload}
+          >
+            Choose photo
+          </Button>
+        </div>
       </div>
       <InputError error={errors[name]} />
     </div>

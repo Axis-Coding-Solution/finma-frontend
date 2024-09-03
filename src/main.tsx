@@ -7,6 +7,9 @@ const App = lazy(() => import("./App.tsx"));
 
 // ** styles import
 import "@/assets/css/index.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 import { CgSpinner } from "./assets/icons/cg-spinner.tsx";
 import appLogo from "./assets/images/app-logo.png";
 

@@ -138,44 +138,59 @@
   height: auto;
 }
 
-
-
 /* Basic button styling */
 .gradient-button {
   padding: 1px;
-  background: linear-gradient(45deg,
-      rgba(255, 157, 47, 1),
-      rgba(255, 27, 232, 1),
-      rgba(33, 115, 255, 1));
+  background: linear-gradient(
+    45deg,
+    rgba(255, 157, 47, 1),
+    rgba(255, 27, 232, 1),
+    rgba(33, 115, 255, 1)
+  );
   cursor: pointer;
 }
 
 /* Gradient text */
 .gradient-button .gradient-text {
-  background: linear-gradient(45deg,
-      rgba(255, 157, 47, 1),
-      rgba(255, 27, 232, 1),
-      rgba(33, 115, 255, 1));
+  background: linear-gradient(
+    45deg,
+    rgba(255, 157, 47, 1),
+    rgba(255, 27, 232, 1),
+    rgba(33, 115, 255, 1)
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .gradient-progress {
-  background: linear-gradient(45deg,
-      rgba(255, 157, 47, 1),
-      rgba(255, 27, 232, 1),
-      rgba(33, 115, 255, 1));
+  background: linear-gradient(
+    45deg,
+    rgba(255, 157, 47, 1),
+    rgba(255, 27, 232, 1),
+    rgba(33, 115, 255, 1)
+  );
 }
 
 .gradient-complete {
-  background: linear-gradient(45deg,
-      rgba(0, 238, 110, 1),
-      rgba(21, 171, 255, 1)
+  background: linear-gradient(
+    45deg,
+    rgba(0, 238, 110, 1),
+    rgba(21, 171, 255, 1)
   );
 }
 .gradient-noStarted {
-  background: linear-gradient(45deg,
-  rgba(141, 141, 141, 1),
-  rgba(216, 216, 216, 1)
+  background: linear-gradient(
+    45deg,
+    rgba(141, 141, 141, 1),
+    rgba(216, 216, 216, 1)
   );
+}
+
+.slick-list {
+  padding: 1rem !important;
+}
+
+.slick-track {
+  display: flex !important;
+  gap: 1.25rem !important;
 }
