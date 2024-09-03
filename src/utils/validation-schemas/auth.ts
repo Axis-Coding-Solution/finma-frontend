@@ -8,9 +8,9 @@ export const loginSchema = object({
 export const signUpSchema = object({
   email: string().label("Email").required().email(),
   password: string().label("Password").required().trim().min(8).max(64),
-  isAgree: boolean()
-    .required()
-    .isTrue("Please agree with terms and conditions!"),
+  // isAgree: boolean()
+  //   .required()
+  //   .isTrue("Please agree with terms and conditions!"),
 });
 
 export const forgetPasswordSchema = object({

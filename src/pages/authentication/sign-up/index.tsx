@@ -1,30 +1,17 @@
 import { Button, FloatingInput, InputError } from "@/components/ui";
 import { FloatingInputPassword } from "@/components/ui/floating-input-password";
 import { MainHeading } from "@/pages/components/common";
-import { ChevronLeft, Mail, X } from "lucide-react";
+import { Mail, X } from "lucide-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Lottie from "react-lottie";
-import { RocketLottie } from "@/assets/lottie";
-import { GoogleIcon } from "@/assets/svgs";
 import { useAuth } from "@/utils/hooks";
-import { useMutation } from "@tanstack/react-query";
-import { signUpApi } from "@/api/http";
 import { useForm } from "react-hook-form";
 import { signUpInitialValues } from "@/utils/initial-values";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signUpSchema } from "@/utils/validation-schemas";
 import { errorToast, successToast } from "@/utils";
-
-const routes = {
-  innovator: "/lead-magnet/start",
-  expert: "/onboarding/experts",
-  mentor: "/onboarding/mentors",
-};
-
-const getRouteOnRole = (role: "innovator" | "expert" | "mentor") => {
-  return routes[role];
-};
+import { useSignUpMutation } from "@/api/hooks";
+import { ContinueWithGoogle } from "@/pages/components/auth";
 
 const SignUpPage = () => {
   const [showLoginForm, setShowLoginForm] = useState(false);
@@ -38,46 +25,40 @@ const SignUpPage = () => {
     setShowLoginForm(false);
   };
 
-  const signUpMutate = useMutation({
-    mutationFn: signUpApi,
-  });
+  const { mutateAsync } = useSignUpMutation();
 
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm({
     defaultValues: signUpInitialValues,
-    resolver: yupResolver(signUpSchema as any),
+    resolver: yupResolver(signUpSchema),
   });
 
   const onsubmitHandler = async (data: typeof signUpInitialValues) => {
     try {
-      const response = await signUpMutate.mutateAsync(data);
-      successToast(response.message);
+      const response = await mutateAsync(data);
       const { token, user } = response.data;
       auth?.handleLoginToSession({ token, user });
-      const role = user.role;
-      const url = getRouteOnRole(role);
-      navigate(url, { replace: true });
+      navigate("/onboarding/select-role", { replace: true });
+      successToast(response.message);
     } catch (error: any) {
-      if (error?.data?.redirectUrl)
-        navigate(error.role.redirectUrl, { replace: true });
       errorToast(error.message);
     }
   };
 
-  const lottieOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: RocketLottie,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  };
+  // const lottieOptions = {
+  //   loop: true,
+  //   autoplay: true,
+  //   animationData: RocketLottie,
+  //   rendererSettings: {
+  //     preserveAspectRatio: "xMidYMid slice",
+  //   },
+  // };
   return (
-    <div className="bg-secondary-dark rounded-lg py-8 px-[52px] flex justify-between items-stretch gap-16">
-      <div className="w-full flex flex-col gap-4 justify-between">
+    <div className="bg-secondary-dark rounded-lg p-7">
+      {/* <div className="w-full flex flex-col gap-4 justify-between">
         <div className="flex flex-col gap-8">
           <Link to="/auth/select-role">
             <div className="flex items-center  text-lg font-medium">
@@ -94,7 +75,7 @@ const SignUpPage = () => {
         <figure className="2xl:mt-14 mt-10">
           <Lottie options={lottieOptions} />
         </figure>
-      </div>
+      </div> */}
       <div className="min-w-[532px] bg-background rounded 2xl:p-[52px] p-10  flex flex-col 2xl:gap-[52px] gap-10 relative overflow-hidden">
         <button
           type="button"
@@ -111,9 +92,7 @@ const SignUpPage = () => {
               <Button icon={<Mail />} onClick={handleLoginForm}>
                 Sign up with email
               </Button>
-              <Button icon={<img src={GoogleIcon} />} variant="outline">
-                Sign up with Google
-              </Button>
+              <ContinueWithGoogle />
             </>
           ) : (
             <form
@@ -136,7 +115,7 @@ const SignUpPage = () => {
                 />
                 <InputError error={errors.password} />
               </div>
-              <Button type="submit" className="w-full">
+              <Button disabled={isSubmitting} type="submit" className="w-full">
                 Sign up
               </Button>
             </form>

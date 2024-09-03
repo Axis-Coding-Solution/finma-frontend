@@ -37,20 +37,10 @@ export const signUpApi = async (body: typeof signUpInitialValues) => {
   }
 };
 
-export const signUpWithGoogleApi = async () => {
+export const getGoogleAuthUrl = async () => {
   try {
-    const res = await axiosAuthInstance.get(appendUrl("register/google"));
-    return res.data;
-  } catch (error: any) {
-    return Promise.reject(apiErrorHandler(error));
-  }
-};
-export const signUpWithGoogleCallbackApi = async () => {
-  try {
-    const res = await axiosAuthInstance.get(
-      appendUrl("register/google/callback")
-    );
-    return res.data;
+    const res = await axiosAuthInstance.get(appendUrl("google"));
+    return res.data?.data;
   } catch (error: any) {
     return Promise.reject(apiErrorHandler(error));
   }
