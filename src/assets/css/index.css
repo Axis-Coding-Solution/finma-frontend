@@ -9,6 +9,7 @@
 @layer base {
   :root {
     --background: 255 255 255;
+    --dark: 29 29 29;
     --foreground: 0 0 0;
     --card: 252 252 252;
     --light-gray: 241 241 241;
@@ -170,12 +171,11 @@
 .gradient-complete {
   background: linear-gradient(45deg,
       rgba(0, 238, 110, 1),
-      rgba(21, 171, 255, 1)
-  );
+      rgba(21, 171, 255, 1));
 }
+
 .gradient-noStarted {
   background: linear-gradient(45deg,
-  rgba(141, 141, 141, 1),
-  rgba(216, 216, 216, 1)
-  );
+      rgba(141, 141, 141, 1),
+      rgba(216, 216, 216, 1));
 }

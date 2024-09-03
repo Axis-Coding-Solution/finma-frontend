@@ -62,9 +62,9 @@ export const NavLinks = () => {
   const userNavLinks = navLinks;
   return (
     <div className="flex flex-col gap-1">
-      <h6 className="px-4 text-muted-foreground text-sm tracking-wider mb-1">
+      {/* <h6 className="px-4 text-muted-foreground text-sm tracking-wider mb-1">
         Dashboard
-      </h6>
+      </h6> */}
       {userNavLinks.map((navLink, index) => (
         <LinkItem key={index} {...navLink} />
       ))}

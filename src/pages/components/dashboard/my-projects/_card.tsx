@@ -4,27 +4,27 @@ import { LogoAvatar } from "@/assets/svgs";
 import { Badge } from "@/components/ui/badge";
 
 const statusVariant: any = {
-  launched: "secondary",
-  progress: "warning",
-  closed: "info",
+  Completed: "secondary",
+  "In progress": "danger",
+  "No started": "primary",
 };
 
 const ProjectCard = (props: any) => {
-  const launched = "bg-secondary-dark/50";
-  const progress = "bg-secondary/70";
-  const closed = "bg-light-gray";
+  const completed = "gradient-complete";
+  const inProgress = "gradient-progress";
+  const noStarted = "gradient-noStarted";
 
   return (
     <div
       className={`${
-        props.status === "launched"
-          ? launched
-          : props.status === "progress"
-          ? progress
-          : closed
-      }  rounded-[14px] 2xl:p-5 p-4`}
+        props.status === "Completed"
+          ? completed
+          : props.status === "In progress"
+          ? inProgress
+          : noStarted
+      }  2xl:rounded-[32px] rounded-3xl overflow-hidden `}
     >
-      <div className="bg-background h-full w-full flex flex-col gap-3  p-3 rounded-[14px]">
+      <div className="bg-background h-full w-full flex flex-col gap-3  lg:p-6 p-4 2xl:rounded-[32px] rounded-3xl mt-0.5">
         <div className="flex justify-between">
           <Avatar
             className="object-cover 2xl:min-w-16 2xl:h-16 min-w-12 h-12"
