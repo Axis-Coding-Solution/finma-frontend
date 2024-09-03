@@ -15,6 +15,9 @@ import ProductImg1 from "./product-img.png";
 import ProductImg2 from "./product-img-1.png";
 import ProductImg3 from "./product-img-2.png";
 import AppLogoLight from "./app-logo-light.png";
+import Avatar1 from "./emily-coen.png";
+import Avatar2 from "./lee-shaun.png";
+import Avatar3 from "./gragory-stan.png";
 
 export * from "./avatars";
 export {
@@ -34,4 +37,7 @@ export {
   ProductImg2,
   ProductImg3,
   AppLogoLight,
+  Avatar1,
+  Avatar2,
+  Avatar3,
 };

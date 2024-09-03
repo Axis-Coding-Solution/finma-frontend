@@ -21,7 +21,7 @@ export const LinkItem = ({ path, name, Icon }: PropTypes) => {
     <Link
       to={path}
       className={cn(
-        "group flex items-center gap-5 rounded-lg px-4 py-3 text-base text-background transition hover:bg-warning hover:text-foreground",
+        "group flex items-center gap-5 2xl:rounded-lg rounded-2xl px-4 py-3 text-base text-background transition hover:bg-warning hover:text-foreground",
         pathname.startsWith(path) && "bg-warning text-foreground "
       )}
     >

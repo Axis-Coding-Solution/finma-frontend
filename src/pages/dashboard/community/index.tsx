@@ -8,10 +8,24 @@ import {
   CommunityCard,
   CommunityFilter,
 } from "@/_pages/components/dashboard/community";
+import { Avatar1 } from "@/assets/images";
 
 const RenderRight = ({ members }: { members: number }) => (
   <span>{members} Members</span>
 );
+
+const communityOptions = [
+  {
+    id: "01",
+    name: "Mubeen Rana",
+    profilePicture: { Avatar1 },
+    role: "mentor",
+    communityGoals: "cdczczxcxzc",
+    status: "active",
+    entrepStage: "sadwieiei",
+    projectCount: "sdda",
+  },
+];
 
 function CommunityPage() {
   const { data, isLoading } = useGetCommunity();
@@ -39,6 +53,11 @@ function CommunityPage() {
           ))}
         </div>
       )}
+      {/* <div className="flex flex-col gap-4">
+        {communityOptions?.map((item :any) => (
+          <CommunityCard key={item.id} {...item} />
+        ))}
+      </div> */}
       <div>
         <Pagination total={total} />
       </div>

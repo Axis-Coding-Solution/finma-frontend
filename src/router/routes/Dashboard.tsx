@@ -8,6 +8,8 @@ const ProductPage = lazy(() => import("@/pages/dashboard/product"));
 const MyProjectsPage = lazy(() => import("@/pages/dashboard/my-projects"));
 const MyTeamPage = lazy(() => import("@/pages/dashboard/my-team"));
 const Setting = lazy(() => import("@/pages/dashboard/setting"));
+const MyStartupPage= lazy (()=>import("@/pages/dashboard/startups"));
+const StartupDetailPage = lazy(()=>import("@/pages/dashboard/startups/details"))
 const ProjectOverviewPage = lazy(
   () => import("@/pages/dashboard/my-projects/overview")
 );
@@ -52,6 +54,20 @@ export default [
   {
     element: <MyProjectsPage />,
     path: "/dashboard/my-projects",
+    meta: {
+      layout: "dashboard",
+    },
+  },
+  {
+    element: <MyStartupPage />,
+    path: "/dashboard/my-startups",
+    meta: {
+      layout: "dashboard",
+    },
+  },
+  {
+    element: <StartupDetailPage />,
+    path: "/dashboard/my-startups/detail",
     meta: {
       layout: "dashboard",
     },

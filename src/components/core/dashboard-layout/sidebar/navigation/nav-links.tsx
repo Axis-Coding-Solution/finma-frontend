@@ -13,7 +13,7 @@ import { useAuth } from "@/utils/hooks";
 const navLinks = [
   {
     name: "My Startups",
-    path: "/dashboard/my-projects",
+    path: "/dashboard/my-startups",
     roles: ["innovator"],
     Icon: LayoutGrid,
   },

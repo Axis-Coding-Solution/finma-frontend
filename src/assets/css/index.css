@@ -42,6 +42,7 @@
     --destructive-foreground: 255 255 255;
     --input: 255 255 255;
     --radius: 20px;
+    --green:64 167 55;
   }
 
   .dark {

@@ -39,7 +39,7 @@ export const ConnectWithExperts = () => {
 
   return (
     <div className="text-foreground mt-4 flex flex-col gap-1">
-      <h6 className="px-4 text-muted-foreground text-sm tracking-wider mb-1">
+      <h6 className="px-4 text-background text-sm tracking-wider mb-1">
         Recent Chats
       </h6>
       {users?.map(

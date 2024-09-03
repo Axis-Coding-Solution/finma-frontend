@@ -40,7 +40,11 @@ import ProfileAbstract2 from "./profile-abstract2.svg";
 import ProfileAbstract3 from "./profile-abstract3.svg";
 import ProfileAbstract4 from "./profile-abstract4.svg";
 import GoogleIcon from "./google-icon.svg";
-import LogoAvatar from "./logo-avatar.svg"
+import LogoAvatar from "./logo-avatar.svg";
+import StartupIdeaValidation from "./startup-idea-validation.svg";
+import StartupMarketResearch from "./startup-market-research.svg";
+import StartupBuildingMvp from "./startup-building-mvp.svg";
+import StartupGrowth from "./startup-growth.svg";
 
 
 export {
@@ -84,5 +88,9 @@ export {
   ProfileAbstract3,
   ProfileAbstract4,
   GoogleIcon,
-  LogoAvatar
+  LogoAvatar,
+  StartupIdeaValidation,
+  StartupMarketResearch,
+  StartupBuildingMvp,
+  StartupGrowth
 };
