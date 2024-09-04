@@ -8,14 +8,16 @@ import DashboardLayout from "@/layouts/dashboard";
 import AuthenticationRoutes from "./Authentication";
 import { RoutesType } from "@/definitions/types";
 import IdeaValidationRoutes from "./IdeaValidation";
-import DashboardRoutes from "./Dashboard";
+import DashboardRoutes from "./OldDashboard";
 import OnboardingRoutes from "./Onboarding";
+import NewDashboardRoutes from "./dashboard";
 
 const mergedRoutes: RoutesType[] = [
   ...AuthenticationRoutes,
   ...OnboardingRoutes,
   ...IdeaValidationRoutes,
   ...DashboardRoutes,
+  ...NewDashboardRoutes,
 ];
 
 const getRoutesForLayout = (layout: string) => {

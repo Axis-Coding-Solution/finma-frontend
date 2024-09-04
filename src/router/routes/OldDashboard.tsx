@@ -9,7 +9,7 @@ const MyProjectsPage = lazy(() => import("@/pages/dashboard/my-projects"));
 const MyTeamPage = lazy(() => import("@/pages/dashboard/my-team"));
 const Setting = lazy(() => import("@/pages/dashboard/setting"));
 const MyStartupPage= lazy (()=>import("@/pages/dashboard/startups"));
-const StartupDetailPage = lazy(()=>import("@/pages/dashboard/startups/details"))
+const StartupDetailPage = lazy(()=>import("@/pages/dashboard/startups/details"));
 const ProjectOverviewPage = lazy(
   () => import("@/pages/dashboard/my-projects/overview")
 );

@@ -45,6 +45,14 @@ import StartupIdeaValidation from "./startup-idea-validation.svg";
 import StartupMarketResearch from "./startup-market-research.svg";
 import StartupBuildingMvp from "./startup-building-mvp.svg";
 import StartupGrowth from "./startup-growth.svg";
+import StartupDesign from "./startup-design.svg";
+import StartupBusiness from "./startup-business.svg";
+import StartupFundraising from "./startup-fundraising.svg";
+import StartupLegal from "./startup-legal.svg";
+import StartupCustomer from "./startup-customer.svg";
+import StartupNetworking from "./startup-networking.svg";
+import StartupProduct from "./startup-product.svg";
+import StartupTeamBuilding from "./startup-team-building.svg";
 
 
 export {
@@ -92,5 +100,13 @@ export {
   StartupIdeaValidation,
   StartupMarketResearch,
   StartupBuildingMvp,
-  StartupGrowth
+  StartupGrowth,
+  StartupTeamBuilding,
+  StartupBusiness,
+  StartupFundraising,
+  StartupDesign,
+  StartupLegal,
+  StartupNetworking,
+  StartupProduct,
+  StartupCustomer,
 };
