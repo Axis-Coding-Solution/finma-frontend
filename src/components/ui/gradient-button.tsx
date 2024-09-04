@@ -59,7 +59,7 @@ const GradientButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         {...props}
       >
-        <div className="bg-background h-full w-full  flex items-center  rounded  px-6 py-1">
+        <div className="bg-background h-full w-full  flex items-center  rounded  px-6 py-1  justify-center ">
           {icon && <span>{icon}</span>} {/* Render the icon if provided */}
           <span className="gradient-text">{children}</span>
         </div>

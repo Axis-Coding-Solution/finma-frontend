@@ -34,7 +34,7 @@ export const IdeaValidationCard:React.FC<IdeaValidationCardProps> = ({heading,su
           <div className="flex items-center 2xl:gap-4 gap-2">
             <img src={ColorLoader} className="2xl:w-20 w-14" />
             <span className="2xl:text-base text-sm flex flex-col gap-1 font-medium leading-[18px]">
-              The Problem score{" "}
+              The {validation} score{" "}
               <span className="2xl:text-xl text-lg font-bold">7/10</span>
             </span>
           </div>
