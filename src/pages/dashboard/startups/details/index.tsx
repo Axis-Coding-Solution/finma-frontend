@@ -1,4 +1,3 @@
-import { LogoAvatar } from "@/assets/svgs";
 import {
   StartupTimeline,
   StartuptitleBar,
@@ -12,7 +11,7 @@ function StartupDetailPage() {
     navigate(-1);
   };
   return (
-    <>
+    <div className="flex flex-col 2xl:gap-10 gap-6">
       {/* back Button  */}
       <button
         onClick={handleBack}
@@ -38,7 +37,7 @@ function StartupDetailPage() {
       <div>
         <StartupTimeline />
       </div>
-    </>
+    </div>
   );
 }
 

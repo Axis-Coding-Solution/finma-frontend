@@ -118,9 +118,11 @@ const AppHeader = () => {
           <span role="button">
             <BellDot />
           </span>
+          <Link to="/dashboard/settings">
           <span role="button">
             <Settings />
           </span>
+          </Link>
         </div>
         <div className="flex items-center gap-3">
           <DropdownMenu>
