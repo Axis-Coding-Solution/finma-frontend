@@ -83,7 +83,7 @@ export const classNamesReactSelect: ClassNamesConfig<
 > = {
   control: ({ isFocused }) =>
     cn(
-      "rounded-lg border transition-all bg-input text-foreground",
+      "rounded-sm border transition-all bg-input text-foreground",
       isFocused ? "border-ring" : "border-border"
     ),
   dropdownIndicator: ({ selectProps }) =>
@@ -98,7 +98,7 @@ export const classNamesReactSelect: ClassNamesConfig<
   multiValue: () =>
     "bg-success text-success-foreground px-1.5 py-0.5 rounded text-sm",
   menu: () =>
-    "!z-10 shadow-md mt-2 border rounded-lg text-sm py-1.5 bg-input border-border",
+    "!z-[100] relative shadow-md mt-2 border rounded-sm text-sm py-1.5 bg-input border-border",
   menuList: () => "px-1.5",
   menuPortal: () => "!z-50",
   clearIndicator: ({ selectProps }) =>
@@ -112,8 +112,8 @@ export const classNamesReactSelect: ClassNamesConfig<
     cn(
       "rounded-sm py-2 px-3 w-full !cursor-pointer focus-visible:outline",
       isSelected
-        ? "bg-card transition hover:bg-card text-card-foreground"
-        : "hover:bg-card text-foreground"
+        ? "bg-secondary transition hover:bg-secondary text-secondary-foreground"
+        : "hover:bg-light-gray text-foreground"
     ),
 };
 

@@ -196,4 +196,13 @@
 .slick-track {
   display: flex !important;
   gap: 1.25rem !important;
+  align-items: stretch;
+  height: 100%;
+}
+
+.slick-slide {
+  height: unset !important;
+}
+.slick-slide>div {
+  height: 100%;
 }

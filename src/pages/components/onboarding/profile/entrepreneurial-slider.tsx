@@ -76,37 +76,48 @@ const ArrowRightBtn = ({ onClick }: any) => {
   );
 };
 
-export const EntrepreneurialSlider = () => {
+export const EntrepreneurialSlider = ({ Controller, control }: any) => {
   const settings = {
     dots: true,
     arrow: true,
     infinite: true,
-    speed: 500,
-    slidesToShow: 3,
+    speed: 700,
+    slidesToShow: 3.2,
     slidesToScroll: 3,
     prevArrow: <ArrowLeftBtn onClick={() => null} />,
     nextArrow: <ArrowRightBtn onClick={() => null} />,
     className: "!flex items-center gap-5",
   };
   return (
-    <Slider {...settings}>
-      {cards.map((card, idx) => (
-        <figure
-          className="p-5 shadow-card-outer h-72 !flex flex-col gap-5"
-          key={idx}
-        >
-          <div className="h-full flex justify-center items-center flex-grow pt-2">
-            <img
-              className="w-full h-28 aspect-square"
-              src={card.image}
-              alt="Test"
-            />
-          </div>
-          <figcaption className="text-center font-medium">
-            {card.description}
-          </figcaption>
-        </figure>
-      ))}
-    </Slider>
+    <Controller
+      control={control}
+      name="entrepreneurType"
+      render={({ field }: any) => (
+        <Slider {...settings}>
+          {cards.map((card, idx) => (
+            <figure
+              className={cn(
+                "rounded cursor-pointer h-full p-5 shadow-card-outer !flex justify-stretch flex-col gap-5",
+                field.value === card.description && "bg-secondary"
+              )}
+              role="radiogroup"
+              onClick={() => field.onChange(card.description)}
+              key={idx}
+            >
+              <div className="h-full flex justify-center items-center flex-grow">
+                <img
+                  className="aspect-square w-full object-contain"
+                  src={card.image}
+                  alt="Test"
+                />
+              </div>
+              <figcaption className="text-center font-medium">
+                {card.description}
+              </figcaption>
+            </figure>
+          ))}
+        </Slider>
+      )}
+    />
   );
 };
