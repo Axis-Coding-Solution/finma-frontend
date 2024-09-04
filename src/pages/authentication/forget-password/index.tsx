@@ -1,11 +1,10 @@
-import { forgetPasswordApi } from "@/api/http";
+import { useForgetPasswordMutation } from "@/api/hooks";
 import { Button, FloatingInput, InputError } from "@/components/ui";
 import { MainHeading } from "@/pages/components/common";
 import { errorToast, successToast } from "@/utils";
 import { FORM_MODE, yupResolver } from "@/utils/constants";
 import { forgetPasswordInitialValues } from "@/utils/initial-values";
 import { forgetPasswordSchema } from "@/utils/validation-schemas";
-import { useMutation } from "@tanstack/react-query";
 import { X } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -13,9 +12,7 @@ import { useNavigate } from "react-router-dom";
 const ForgetPasswordPage = () => {
   const navigate = useNavigate();
 
-  const forgetPasswordMutation = useMutation({
-    mutationFn: forgetPasswordApi,
-  });
+  const { mutateAsync } = useForgetPasswordMutation();
   const {
     register,
     handleSubmit,
@@ -30,9 +27,9 @@ const ForgetPasswordPage = () => {
     values: typeof forgetPasswordInitialValues
   ) => {
     try {
-      const response = await forgetPasswordMutation.mutateAsync(values);
+      const response = await mutateAsync(values);
       successToast(response.message);
-      navigate("/", { replace: true });
+      navigate("/auth/login", { replace: true });
     } catch (error: any) {
       errorToast(error.message);
     }
