@@ -53,6 +53,8 @@ import StartupCustomer from "./startup-customer.svg";
 import StartupNetworking from "./startup-networking.svg";
 import StartupProduct from "./startup-product.svg";
 import StartupTeamBuilding from "./startup-team-building.svg";
+import IdeaValidationProblemInfo from "./idea-validation-problem-info.svg";
+import IdeaValidationSolutionInfo from "./idea-validation-solution-info.svg";
 
 
 export {
@@ -109,4 +111,6 @@ export {
   StartupNetworking,
   StartupProduct,
   StartupCustomer,
+  IdeaValidationProblemInfo,
+  IdeaValidationSolutionInfo,
 };

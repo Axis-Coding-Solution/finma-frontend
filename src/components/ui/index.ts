@@ -12,3 +12,4 @@ export { Badge } from "./badge";
 export { InputError } from "./input-error";
 export * from "./select";
 export { ReactSelect } from "./react-select";
+export * from "./dialog"

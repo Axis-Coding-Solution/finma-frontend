@@ -1,4 +1,3 @@
-
 import { Fragment } from "react";
 import { timelineContent } from "./timeline-component/data";
 import {
@@ -9,35 +8,37 @@ import {
 export const StartupTimeline = () => {
   return (
     <div className="flex flex-col [&>div>*]:-mt-20 w-full my-4">
-      {timelineContent.map((event: any, key: any) => {
+      {timelineContent.map((item: any, key: any) => {
         return (
           <Fragment key={key}>
             <div className="w-full grid grid-cols-[1fr_auto_1fr] 2xl:gap-x-10 gap-x-6 items-center mx-auto">
-              {event.direction === "right" ? (
+              {item.direction === "right" ? (
                 <StartupTimelineCard
                   idx={key}
-                  heading={event.heading}
-                  subHeading={event.subHeading}
-                  detail={event.detail}
-                  image={event.image}
-                  direction={event.direction}
-                  totalTask={event.totalTask}
-                  completedTask={event.completedTask}
+                  to={item.to}
+                  heading={item.heading}
+                  subHeading={item.subHeading}
+                  detail={item.detail}
+                  image={item.image}
+                  direction={item.direction}
+                  totalTask={item.totalTask}
+                  completedTask={item.completedTask}
                 />
               ) : (
                 <div></div>
               )}
               <StartupTimelinePillar />
-              {event.direction === "left" ? (
+              {item.direction === "left" ? (
                 <StartupTimelineCard
                   idx={key}
-                  heading={event.heading}
-                  subHeading={event.subHeading}
-                  detail={event.detail}
-                  image={event.image}
-                  direction={event.direction}
-                  totalTask={event.totalTask}
-                  completedTask={event.completedTask}
+                  to={item.to}
+                  heading={item.heading}
+                  subHeading={item.subHeading}
+                  detail={item.detail}
+                  image={item.image}
+                  direction={item.direction}
+                  totalTask={item.totalTask}
+                  completedTask={item.completedTask}
                 />
               ) : (
                 <div></div>
