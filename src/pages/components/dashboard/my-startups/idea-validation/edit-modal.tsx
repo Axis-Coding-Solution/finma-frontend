@@ -3,8 +3,6 @@ import {
   Button,
   Dialog,
   DialogContent,
-  DialogHeader,
-  DialogTitle,
   DialogTrigger,
   GradientButton,
 } from "@/components/ui";

@@ -1,9 +1,7 @@
-import UnderConstruction from "@/_pages/components/under-construction"
+import UnderConstruction from "@/pages/components/under-construction";
 
 const MyTeamPage = () => {
-  return (
-  <UnderConstruction/>
-  )
-}
+  return <UnderConstruction />;
+};
 
-export default MyTeamPage
+export default MyTeamPage;

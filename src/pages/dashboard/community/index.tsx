@@ -3,15 +3,15 @@ import { CgSpinner } from "@/assets/icons";
 import { Pagination } from "@/components/_ui/pagination";
 import { SearchInput } from "@/components/_ui/search-input";
 import { CommunityTypes } from "@/definitions/types";
-import { MainHeading } from "@/_pages/components/common";
+import { MainHeading } from "@/pages/components/common";
 import {
   CommunityCard,
   CommunityFilter,
-} from "@/_pages/components/dashboard/community";
+} from "@/pages/components/dashboard/community";
 
-const RenderRight = ({ members }: { members: number }) => (
-  <span>{members} Members</span>
-);
+// const RenderRight = ({ members }: { members: number }) => (
+//   <span>{members} Members</span>
+// );
 
 function CommunityPage() {
   const { data, isLoading } = useGetCommunity();
@@ -19,8 +19,8 @@ function CommunityPage() {
   return (
     <div className="flex flex-col gap-8">
       <MainHeading
-        heading="Community"
-        renderRight={<RenderRight members={total} />}
+        title="Community"
+        // renderRight={<RenderRight members={total} />}
       />
       <div className="flex md:flex-row flex-col md:items-center items-start justify-between gap-4">
         <CommunityFilter />

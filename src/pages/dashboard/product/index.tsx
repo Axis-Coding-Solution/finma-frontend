@@ -1,9 +1,9 @@
 import { ProductImg1, ProductImg2, ProductImg3 } from "@/assets/images";
-import { MainHeading } from "@/_pages/components/common";
+import { MainHeading } from "@/pages/components/common";
 import {
   ProductBanner,
   ProductCard,
-} from "@/_pages/components/dashboard/product";
+} from "@/pages/components/dashboard/product";
 
 const ProductPage = () => {
   const productOption = [
@@ -38,7 +38,7 @@ const ProductPage = () => {
   ];
   return (
     <div className="flex flex-col gap-8">
-      <MainHeading heading="Product Launch" />
+      <MainHeading title="Product Launch" />
       <ProductBanner />
       <div className="flex flex-col gap-6">
         {productOption &&

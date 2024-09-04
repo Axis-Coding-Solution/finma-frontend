@@ -1,6 +1,5 @@
 import {
   CircleHelp,
-  Home,
   LayoutGrid,
   MessageSquareMore,
   Sparkles,
@@ -8,7 +7,6 @@ import {
   Zap,
 } from "lucide-react";
 import { LinkItem } from "./link-item";
-import { useAuth } from "@/utils/hooks";
 
 const navLinks = [
   {

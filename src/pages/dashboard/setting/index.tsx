@@ -1,10 +1,7 @@
-import UnderConstruction from "@/_pages/components/under-construction";
-
+import UnderConstruction from "@/pages/components/under-construction";
 
 const Setting = () => {
-  return (
-    <UnderConstruction/>
-  );
+  return <UnderConstruction />;
 };
 
 export default Setting;

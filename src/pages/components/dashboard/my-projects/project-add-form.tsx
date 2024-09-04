@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { get } from "@/utils/axios";
 import { InputError } from "@/components/_ui/input-error";
-import { FloatingInput, FloatingTextarea, Label } from "@/components/ui";
+import { FloatingInput, Label } from "@/components/ui";
 import {
   Select,
   SelectContent,
@@ -21,9 +21,7 @@ const industryOptions = [
 
 export const ProjectAddForm = ({
   register,
-  control,
   errors,
-  watch,
   reset,
   id,
 }: any) => {
@@ -47,7 +45,7 @@ export const ProjectAddForm = ({
     }
   }, [id]);
 
-  const image = watch("logoImage");
+  // const image = watch("logoImage");
   return (
     <>
       <div className="grid grid-cols-2 gap-8">

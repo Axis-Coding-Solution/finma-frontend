@@ -6,22 +6,20 @@ import {
 } from "@/components/_ui/dialog";
 import { useForm } from "react-hook-form";
 import { dashboardProjectsInitialValues } from "@/utils/initial-values/dashboard/Projects";
-import { createFormData, errorToast, successToast } from "@/utils";
-import { useModal } from "@/utils/hooks";
-import { useAddProjectMutation } from "@/api/hooks/dashboard/myProject";
-import { useQueryClient } from "@tanstack/react-query";
-import { useNavigate } from "react-router-dom";
+// import { createFormData, errorToast, successToast } from "@/utils";
+// import { useModal } from "@/utils/hooks";
+// import { useAddProjectMutation } from "@/api/hooks/dashboard/myProject";
+// import { useQueryClient } from "@tanstack/react-query";
+// import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { dashboardProjectsSchema } from "@/utils/validation-schemas/dashoard/projects";
 import { Button } from "@/components/ui";
 import { CloudUpload, Plus } from "lucide-react";
-import { MainHeading } from "../../common";
 import { ProjectAddForm } from "./project-add-form";
-const ProjectAddModal = ({projectId}:{projectId :string}) => {
-  const modal = useModal();
+const ProjectAddModal = () => {
+  // const modal = useModal();
   const {
     control,
-    handleSubmit,
     register,
     watch,
     formState: { errors },
@@ -29,25 +27,25 @@ const ProjectAddModal = ({projectId}:{projectId :string}) => {
     defaultValues: dashboardProjectsInitialValues,
     resolver: yupResolver(dashboardProjectsSchema as any),
   });
-  const { mutateAsync } = useAddProjectMutation();
-  const queryClient = useQueryClient();
-  const navigate = useNavigate();
+  // const { mutateAsync } = useAddProjectMutation();
+  // const queryClient = useQueryClient();
+  // const navigate = useNavigate();
 
-  const onsubmitHandler = async (
-    values: typeof dashboardProjectsInitialValues
-  ) => {
-    try {
-      const formData = createFormData(values);
-      const response = await mutateAsync(formData);
-      queryClient.invalidateQueries({ queryKey: ["/projects"] });
-      navigate(`/dashboard/my-projects/${response.data._id}`);
-      successToast(response.message);
-      modal.close();
-    } catch (error: any) {
-      console.error("Error:", error);
-      errorToast("Something went wrong while creating the project");
-    }
-  };
+  // const onsubmitHandler = async (
+  //   values: typeof dashboardProjectsInitialValues
+  // ) => {
+  //   try {
+  //     const formData = createFormData(values);
+  //     const response = await mutateAsync(formData);
+  //     queryClient.invalidateQueries({ queryKey: ["/projects"] });
+  //     navigate(`/dashboard/my-projects/${response.data._id}`);
+  //     successToast(response.message);
+  //     modal.close();
+  //   } catch (error: any) {
+  //     console.error("Error:", error);
+  //     errorToast("Something went wrong while creating the project");
+  //   }
+  // };
 
   const commonProps = {
     control,

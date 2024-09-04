@@ -1,9 +1,9 @@
 import { Button } from "@/components/_ui/button";
 import { DialogHeader } from "@/components/_ui/dialog";
-import { GaugeMeter } from "@/_pages/components/common/gauge-meter";
+// import { GaugeMeter } from "@/pages/components/common/gauge-meter";
 import { DialogTitle } from "@radix-ui/react-dialog";
 
-export function IdeaClarityScore({ setSelectStep, data }: { setSelectStep: any, data: any }) {
+export function IdeaClarityScore({ setSelectStep }: { setSelectStep: any, data: any }) {
 
     return (
         <>
@@ -13,7 +13,7 @@ export function IdeaClarityScore({ setSelectStep, data }: { setSelectStep: any, 
                 </DialogTitle>
             </DialogHeader>
             <div className="flex flex-col items-center md:gap-10 gap-5 text-center">
-                <GaugeMeter score={data?.score || 0} description={data?.description || ''} color={data?.color || ''} />
+                {/* <GaugeMeter score={data?.score || 0} description={data?.description || ''} color={data?.color || ''} /> */}
                 <p className="md:text-sm text-xs">
                     Your startup idea has been evaluated based on four key validation
                     points: Proof of the Problem, Solution Effectiveness, Identification

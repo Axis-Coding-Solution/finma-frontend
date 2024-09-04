@@ -1,4 +1,4 @@
-import { ColorLoader, IdeaValidationProblemInfo } from "@/assets/svgs";
+import { ColorLoader } from "@/assets/svgs";
 import { Check,  RefreshCcw, X } from "lucide-react";
 import React from "react";
 import { IdeaValidationCardEditModal } from "./edit-modal";
