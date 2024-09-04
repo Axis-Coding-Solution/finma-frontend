@@ -21,6 +21,7 @@ export const ReactSelect = forwardRef<any, Props>((props, ref) => {
       ref={ref}
       isClearable={false}
       components={{ DropdownIndicator, ...components }}
+      // menuIsOpen
       unstyled
       classNames={classNamesReactSelect}
       {...otherProps}

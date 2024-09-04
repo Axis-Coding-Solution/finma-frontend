@@ -1,23 +1,11 @@
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 import AppHeader from "@/components/core/dashboard-layout/app-header/index";
 import Sidebar from "@/components/core/dashboard-layout/sidebar";
-import { Suspense, useEffect } from "react";
-import { useAuth } from "@/utils/hooks";
+import { Suspense } from "react";
 import { CgSpinner } from "@/assets/icons";
 
 function DashboardLayout() {
-  const navigate = useNavigate();
-  const auth = useAuth();
-
-  useEffect(() => {
-    if (auth?.user && auth?.isAuthenticated) {
-      const onboarding = auth.user.onboarding;
-      const role = auth?.user?.role;
-      if (!onboarding) navigate(`/onboarding/${role}s`, { replace: true });
-    }
-  }, [auth?.isAuthenticated]);
-
   return (
     <div className="flex lg:flex-row flex-col h-screen overflow-hidden">
       <div className="w-96">

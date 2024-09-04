@@ -12,7 +12,7 @@ interface RequestConfig extends AxiosRequestConfig {
   authorization?: boolean;
 }
 
-const baseURL = import.meta.env.VITE_BACKEND_URL;
+export const baseURL = import.meta.env.VITE_BACKEND_URL;
 
 const axiosInstance: AxiosInstance = axios.create({
   baseURL: `${baseURL}/v1/api`,

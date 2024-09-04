@@ -8,24 +8,10 @@ import {
   CommunityCard,
   CommunityFilter,
 } from "@/_pages/components/dashboard/community";
-import { Avatar1 } from "@/assets/images";
 
 const RenderRight = ({ members }: { members: number }) => (
   <span>{members} Members</span>
 );
-
-const communityOptions = [
-  {
-    id: "01",
-    name: "Mubeen Rana",
-    profilePicture: { Avatar1 },
-    role: "mentor",
-    communityGoals: "cdczczxcxzc",
-    status: "active",
-    entrepStage: "sadwieiei",
-    projectCount: "sdda",
-  },
-];
 
 function CommunityPage() {
   const { data, isLoading } = useGetCommunity();

@@ -1,20 +1,17 @@
 import { lazy } from "react";
-import { Navigate, useRoutes, } from "react-router-dom";
+import { Navigate, useRoutes } from "react-router-dom";
 
 import MainLayout from "@/layouts/main";
 import getRoutesForLayouts from "./routes";
+import { getHomeRoute } from "@/utils";
 
 // ** Components
 const ErrorPage = lazy(() => import("@/pages/misc/404"));
 const NotAuthorizedPage = lazy(() => import("@/pages/misc/not-authorized"));
 
-const getHomeRoute = () => {
-  return "/auth/select-role";
-};
+const allRoutes = getRoutesForLayouts();
 
 const Router = () => {
-  const allRoutes = getRoutesForLayouts();
-
   const routes = useRoutes([
     {
       path: "/",

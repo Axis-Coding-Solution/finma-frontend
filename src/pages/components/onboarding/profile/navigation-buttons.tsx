@@ -10,29 +10,41 @@ type PropsTypes = {
     city: null;
     entrepreneurType: string;
     communityGoals: never[];
+    role: string;
   }>;
   nextStep: () => void;
   prevStep: () => void;
+  isSubmitting: boolean;
 };
 
 export const OnboardingProfileNavigationButtons = (props: PropsTypes) => {
-  const { step, nextStep, prevStep, triggerValidation } = props;
+  const { step, nextStep, prevStep, triggerValidation, isSubmitting } = props;
 
   const handleNext = async () => {
-    if (step === 2) return;
     const isValid = await triggerValidation();
     if (isValid) nextStep();
   };
   return (
     <div className="flex items-center gap-5">
       {step > 0 && (
-        <Button type="button" variant="outline" onClick={prevStep}>
+        <Button
+          type="button"
+          disabled={isSubmitting}
+          variant="outline"
+          onClick={prevStep}
+        >
           Back
         </Button>
       )}
-      <Button type={step === 2 ? "submit" : "button"} onClick={handleNext}>
-        {step === 2 ? "Start" : "Next"}
-      </Button>
+      {step === 2 ? (
+        <Button type="submit" disabled={isSubmitting}>
+          Start
+        </Button>
+      ) : (
+        <Button type="button" onClick={handleNext}>
+          Next
+        </Button>
+      )}
     </div>
   );
 };

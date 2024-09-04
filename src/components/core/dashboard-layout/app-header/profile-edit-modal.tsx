@@ -33,7 +33,13 @@ const stageOptions = [
 
 type OptionType = { value: string; label: string };
 
-const ProfileEditModal = ({ userStatus }: { userStatus: OptionType }) => {
+const ProfileEditModal = ({
+  userStatus,
+  userData,
+}: {
+  userStatus: OptionType;
+  userData: any;
+}) => {
   const [status, setStatus] = useState<OptionType | null>(null);
   const queryClient = useQueryClient();
 
@@ -52,7 +58,7 @@ const ProfileEditModal = ({ userStatus }: { userStatus: OptionType }) => {
       successToast(res.message);
       modal.close();
     } catch (error: any) {
-      errorToast(error.messsage);
+      errorToast(error.message);
     }
   };
 
@@ -95,8 +101,20 @@ const ProfileEditModal = ({ userStatus }: { userStatus: OptionType }) => {
         </div>
         <div className="bg-info-light rounded  2xl:p-5 p-4  flex flex-col gap-6">
           <h6 className="text-info text-lg font-medium">Mentor</h6>
-          <FloatingInput className="bg-transparent" type="text" label="Full name"/>
-          <FloatingInput className="bg-transparent" type="email" label="Email"/>
+          <FloatingInput
+            className="bg-transparent"
+            type="text"
+            value={`${userData?.firstName}  ${userData?.lastName}`}
+            label="Full name"
+            readOnly
+          />
+          <FloatingInput
+            className="bg-transparent"
+            type="email"
+            value={userData?.email}
+            label="Email"
+            readOnly
+          />
           <div className="pb-4">
             <Label htmlFor="selectStage">Entrepreneurial stage</Label>
             <Select>

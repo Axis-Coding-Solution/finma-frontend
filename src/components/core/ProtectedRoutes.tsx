@@ -11,10 +11,11 @@ export const ProtectedRoutes = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const auth = useAuth();
+  const navigate = useNavigate();
   const { pathname } = useLocation();
   const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
+
+  const auth = useAuth();
 
   const token = searchParams.get("token");
   const user = searchParams.get("user");
@@ -22,7 +23,7 @@ export const ProtectedRoutes = ({
   useEffect(() => {
     if (token && user) {
       const parsedUser = JSON.parse(user);
-      if (parsedUser.onboarding) {
+      if (parsedUser.role) {
         auth?.handleLogin({ user: parsedUser, token });
       } else {
         auth?.handleLoginToSession({ user: parsedUser, token });
@@ -31,7 +32,7 @@ export const ProtectedRoutes = ({
     }
     if (!token && !user && !auth?.isAuthenticated && !auth?.user)
       navigate("/auth/login", options);
-  }, [token, user, auth?.isAuthenticated, auth?.user]);
+  }, [token, user]);
 
   return children;
 };

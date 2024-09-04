@@ -11,6 +11,7 @@ import IdeaValidationRoutes from "./IdeaValidation";
 import DashboardRoutes from "./OldDashboard";
 import OnboardingRoutes from "./Onboarding";
 import NewDashboardRoutes from "./dashboard";
+import { ProtectedRoutes, PublicRoutes } from "@/components/core";
 
 const mergedRoutes: RoutesType[] = [
   ...AuthenticationRoutes,
@@ -26,22 +27,16 @@ const getRoutesForLayout = (layout: string) => {
   mergedRoutes.forEach((route: RoutesType) => {
     let matchedWithLayout = false;
 
-    if (!route.meta && layout === "main") matchedWithLayout = true;
+    if (!route?.meta?.layout && layout === "main") matchedWithLayout = true;
     else if (route.meta && route.meta.layout && route.meta.layout === layout)
       matchedWithLayout = true;
 
-    // let isRestrictedRoute = false;
+    let isRestrictedRoute = false;
 
     if (matchedWithLayout) {
-      // if (route.meta && route.meta.isRestrictedRoute) isRestrictedRoute = true;
-
-      // const RouteTag = isRestrictedRoute ? PublicRoutes : ProtectedRoutes;
-      // route.element = (
-      //   <RouteTag {...(isRestrictedRoute ? { route } : {})}>
-      //     {route.element}
-      //   </RouteTag>
-      // );
-
+      if (route.meta && route.meta.isRestrictedRoute) isRestrictedRoute = true;
+      const RouteTag = isRestrictedRoute ? PublicRoutes : ProtectedRoutes;
+      route.element = <RouteTag>{route.element}</RouteTag>;
       matchedRoutes.push(route);
     }
   });

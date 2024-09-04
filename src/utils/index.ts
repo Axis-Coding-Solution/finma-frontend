@@ -97,10 +97,11 @@ export const classNamesReactSelect: ClassNamesConfig<
     "w-full h-full py-3 px-3 flex gap-1 items-center !overflow-auto text-sm",
   multiValue: () =>
     "bg-success text-success-foreground px-1.5 py-0.5 rounded text-sm",
-  menu: () =>
-    "!z-[100] relative shadow-md mt-2 border rounded-sm text-sm py-1.5 bg-input border-border",
-  menuList: () => "px-1.5",
   menuPortal: () => "!z-50",
+  menu: () =>
+    "!z-1  absolute top-[100%]  shadow-md my-2 box-border border rounded-sm text-sm bg-input border-border",
+  menuList: () => "px-1.5 h-full relative overflow-y-auto box-border py-1.5",
+  // menuPortal: () => "!z-50",
   clearIndicator: ({ selectProps }) =>
     cn(
       "cursor-pointer hover:bg-danger/10 p-1 rounded text-danger",
@@ -110,7 +111,7 @@ export const classNamesReactSelect: ClassNamesConfig<
     "text-foreground min-h-8 py-2 px-2 text-sm font-medium flex items-center justify-center",
   option: ({ isSelected }) =>
     cn(
-      "rounded-sm py-2 px-3 w-full !cursor-pointer focus-visible:outline",
+      "rounded-sm py-2 px-3 w-full !cursor-pointer focus-visible:bg-light-gray",
       isSelected
         ? "bg-secondary transition hover:bg-secondary text-secondary-foreground"
         : "hover:bg-light-gray text-foreground"
@@ -167,4 +168,14 @@ export const createFormData = (values: any = {}, options: any = {}) => {
     }
   }
   return formData;
+};
+
+export const getHomeRoute = () => {
+  const authState = getAuthFromStorage();
+  const user = authState?.user;
+  const isAuthenticated = authState?.isAuthenticated;
+  if (!isAuthenticated) return "/auth/login";
+  if (!user.role)
+    return "/onboarding/select-role?infoMessage=Continue by selecting your role!";
+  return "dashboard/community";
 };

@@ -1,7 +1,7 @@
 import { Button } from "@/components/_ui/button";
 import { Badge } from "@/components/_ui/badge";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/_ui/sheet";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   BellDot,
   Home,
@@ -29,15 +29,23 @@ import {
   DropdownMenuTrigger,
 } from "@/components/_ui/dropdown-menu";
 import { Avatar } from "@/components/_ui/avatar";
-import { userAvatar1Image } from "@/assets/images";
 import { useAuth } from "@/utils/hooks";
-import { useGetStatusForUser } from "@/api/hooks/dashboard";
 import ProfileEditModal from "./profile-edit-modal";
+import { baseURL } from "@/utils/axios";
+import { useGetStatusForUser } from "@/api/hooks/dashboard";
+import { successToast } from "@/utils";
 
 const AppHeader = () => {
   const auth = useAuth();
+  const navigate = useNavigate();
+  const userData = auth?.user;
+  const { data: status } = useGetStatusForUser();
 
-  const { data } = useGetStatusForUser();
+  const handleLogin = () => {
+    auth?.handleLogout();
+    navigate("/auth/login");
+    successToast("Logout successfully!");
+  };
   return (
     <header className="sticky w-full right-0  top-0 z-10 bg-background flex  items-center lg:justify-end justify-between gap-7 border-b px-4  lg:px-10 py-3">
       <Sheet>
@@ -125,10 +133,10 @@ const AppHeader = () => {
         <div className="flex items-center gap-3">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <div role="button">
+              <div role="button" className="border border-border rounded-full">
                 <Avatar
                   className="object-cover 2xl:min-w-14 min-w-10 2xl:h-14 h-10"
-                  image={auth?.user?.profilePicture || userAvatar1Image}
+                  image={`${baseURL}/images/${userData?.profilePicture}`}
                 />
               </div>
             </DropdownMenuTrigger>
@@ -138,21 +146,19 @@ const AppHeader = () => {
               <DropdownMenuItem>Settings</DropdownMenuItem>
               <DropdownMenuItem>Support</DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={auth?.handleLogout}>
-                Logout
-              </DropdownMenuItem>
+              <DropdownMenuItem onClick={handleLogin}>Logout</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
           <div className="flex items-start gap-1">
             <div className="flex flex-col gap-1">
               <h2 className=" 2xl:text-[22px] text-base font-semibold text-foreground">
-                Eve Norman
+                {userData?.firstName + " " + userData?.lastName}
               </h2>
               <span className="flex gap-0 items-center 2xl:text-lg text-xs font-normal text-muted-foreground">
-                😤 <span>Building a new feature</span>
+                😤 <span>Not Provided</span>
               </span>
             </div>
-            <ProfileEditModal userStatus={data} />
+            <ProfileEditModal userStatus={status} userData={userData} />
           </div>
         </div>
       </div>

@@ -13,18 +13,30 @@ const AuthenticationRoutes = [
   {
     element: <LoginPage />,
     path: "/auth/login",
+    meta: {
+      isRestrictedRoute: true,
+    },
   },
   {
     element: <SignUpPage />,
     path: "/auth/sign-up",
+    meta: {
+      isRestrictedRoute: true,
+    },
   },
   {
     element: <ResetPasswordPage />,
     path: "/auth/reset-password",
+    meta: {
+      isRestrictedRoute: true,
+    },
   },
   {
     element: <ForgetPasswordPage />,
     path: "/auth/forget-password",
+    meta: {
+      isRestrictedRoute: true,
+    },
   },
 ];
 
