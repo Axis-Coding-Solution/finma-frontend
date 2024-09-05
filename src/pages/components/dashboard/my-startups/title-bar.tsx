@@ -2,13 +2,13 @@ import { LogoAvatar } from "@/assets/svgs"
 
 export const StartuptitleBar = ()=>{
     return (
-        <div className="bg-background px-6 py-4 shadow rounded flex items-start  2xl:gap-10 gap-6 justify-between">
+        <div className="bg-background px-6 py-4 shadow rounded flex 2xl:flex-1 flex-wrap items-start  2xl:gap-10 gap-2 justify-between">
         {/* Page title  */}
         <div className="">
           <div className="flex items-center gap-3">
             <img src={LogoAvatar} className="w-16" />
             <div className="flex flex-col gap-1">
-              <h4 className="2xl:text-[28px] text-lg font-semibold text-foreground">
+              <h4 className="2xl:text-[28px] leading-0 text-lg font-semibold text-foreground">
                 Mad Cookies
               </h4>
               <p className="text-base text-muted-text">

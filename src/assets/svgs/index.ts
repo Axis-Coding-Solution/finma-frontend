@@ -55,6 +55,8 @@ import StartupProduct from "./startup-product.svg";
 import StartupTeamBuilding from "./startup-team-building.svg";
 import IdeaValidationProblemInfo from "./idea-validation-problem-info.svg";
 import IdeaValidationSolutionInfo from "./idea-validation-solution-info.svg";
+import MarketSizeInfo from "./market-size-info.svg";
+import MarketGrowthInfo from "./market-growth-info.svg";
 
 
 export {
@@ -113,4 +115,6 @@ export {
   StartupCustomer,
   IdeaValidationProblemInfo,
   IdeaValidationSolutionInfo,
+  MarketSizeInfo,
+  MarketGrowthInfo,
 };

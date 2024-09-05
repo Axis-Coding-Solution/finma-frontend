@@ -4,3 +4,4 @@ export { StepperDotted } from "./stepper-dotted";
 export { HeadingButton } from "./heading-button";
 export { UploadProfilePhoto } from "./upload-profile-photo";
 export { StepsIndicator } from "./steps-indicator";
+export {ProgressBar} from "./progress-bar";

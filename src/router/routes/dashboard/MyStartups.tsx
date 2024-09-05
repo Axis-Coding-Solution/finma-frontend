@@ -7,6 +7,9 @@ const StartupDetailPage = lazy(
 const StartupIdeaValidation = lazy(
   () => import("@/pages/dashboard/startups/details/idea-validation")
 );
+const StartupMarketGrowth = lazy(
+  () => import("@/pages/dashboard/startups/details/market-growth")
+);
 
 export default [
   {
@@ -26,6 +29,13 @@ export default [
   {
     element: <StartupIdeaValidation />,
     path: "/dashboard/my-startups/idea-validation",
+    meta: {
+      layout: "dashboard",
+    },
+  },
+  {
+    element: <StartupMarketGrowth />,
+    path: "/dashboard/my-startups/market-growth",
     meta: {
       layout: "dashboard",
     },

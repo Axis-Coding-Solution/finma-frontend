@@ -36,7 +36,7 @@ export const timelineContent = [
     direction: "left",
     totalTask: "3",
     completedTask: "0",
-    to: "/dashboard/my-startups/market-research",
+    to: "/dashboard/my-startups/market-growth",
   },
   {
     heading: "Building the MVP",
@@ -47,7 +47,7 @@ export const timelineContent = [
     direction: "right",
     totalTask: "3",
     completedTask: "0",
-    to: "/dashboard/my-startups/market-research",
+    to: "/dashboard/my-startups/idea-validation",
   },
   {
     heading: "Growth and User Acquisition",
@@ -58,7 +58,7 @@ export const timelineContent = [
     direction: "left",
     totalTask: "3",
     completedTask: "0",
-    to: "/dashboard/my-startups/market-research",
+    to: "/dashboard/my-startups/market-growth",
   },
   {
     heading: "Design and Branding",
@@ -69,7 +69,7 @@ export const timelineContent = [
     direction: "right",
     totalTask: "3",
     completedTask: "0",
-    to: "/dashboard/my-startups/market-research",
+    to: "/dashboard/my-startups/idea-validation",
   },
   {
     heading: "Product development",
@@ -80,7 +80,7 @@ export const timelineContent = [
     direction: "left",
     totalTask: "3",
     completedTask: "0",
-    to: "/dashboard/my-startups/market-research",
+    to: "/dashboard/my-startups/idea-validation",
   },
   {
     heading: "Business model and Revenue",
@@ -91,7 +91,7 @@ export const timelineContent = [
     direction: "right",
     totalTask: "3",
     completedTask: "0",
-    to: "/dashboard/my-startups/market-research",
+    to: "/dashboard/my-startups/idea-validation",
   },
   {
     heading: "Fundraising and Pitching",
@@ -102,7 +102,7 @@ export const timelineContent = [
     direction: "left",
     totalTask: "3",
     completedTask: "0",
-    to: "/dashboard/my-startups/market-research",
+    to: "/dashboard/my-startups/idea-validation",
   },
   {
     heading: "Team building and management",
@@ -113,7 +113,7 @@ export const timelineContent = [
     direction: "right",
     totalTask: "3",
     completedTask: "0",
-    to: "/dashboard/my-startups/market-research",
+    to: "/dashboard/my-startups/idea-validation",
   },
   {
     heading: "Legal and operation setup",
@@ -124,7 +124,7 @@ export const timelineContent = [
     direction: "left",
     totalTask: "3",
     completedTask: "0",
-    to: "/dashboard/my-startups/market-research",
+    to: "/dashboard/my-startups/idea-validation",
   },
   {
     heading: "Customer retention and engagement",
@@ -135,7 +135,7 @@ export const timelineContent = [
     direction: "right",
     totalTask: "3",
     completedTask: "0",
-    to: "/dashboard/my-startups/market-research",
+    to: "/dashboard/my-startups/idea-validation",
   },
   {
     heading: "Networking and community building",
@@ -146,6 +146,6 @@ export const timelineContent = [
     direction: "left",
     totalTask: "3",
     completedTask: "0",
-    to: "/dashboard/my-startups/market-research",
+    to: "/dashboard/my-startups/idea-validation",
   },
 ];
