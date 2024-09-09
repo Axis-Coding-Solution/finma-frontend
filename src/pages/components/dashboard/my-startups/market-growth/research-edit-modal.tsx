@@ -1,8 +1,11 @@
 import { Button, Dialog, DialogContent, DialogTrigger } from "@/components/ui";
-import {  MessageCircleMore, Plus, RefreshCcw, SquarePen } from "lucide-react";
+import { MessageCircleMore, Plus, RefreshCcw, SquarePen } from "lucide-react";
 import { MarketResearchChart } from "./research-chart";
 import { ProgressBar } from "@/pages/components/common";
 import { MarketResearchChartEditModal } from "./research-chart-edit-modal";
+import { CardStatusDropdown } from "../card-status";
+import { TeamMembersDropdown } from "../team-members";
+import { TaskActionDropdown } from "../task-action";
 
 export const MarketResearchCardEditModal = () => {
   return (
@@ -35,9 +38,7 @@ export const MarketResearchCardEditModal = () => {
                   <div className="bg-[#00569E] 2xl:min-w-10 2xl:h-10 w-8 h-8 2xl:text-base text-sm font-normal flex justify-center items-center rounded-full text-background uppercase">
                     VH
                   </div>
-                  <div className="bg-background 2xl:min-w-10 2xl:h-10 w-8 h-8 2xl:text-base text-sm font-normal flex justify-center items-center rounded-full text-background uppercase">
-                    <Plus className="text-foreground" />
-                  </div>
+                  <TeamMembersDropdown />
                 </div>
               </div>
               {/* Card status  */}
@@ -45,8 +46,13 @@ export const MarketResearchCardEditModal = () => {
                 <h6 className="text-foreground 2xl:text-base text-sm font-medium">
                   Team members
                 </h6>
-                <div className="px-3 py-1 2xl:text-base text-sm rounded-full max-w-max bg-secondary-dark">
-                  Delivered by Adam on Sep 20, 2024
+                <div className="flex items-center gap-2">
+                  <div className="min-w-max px-3 py-1 2xl:text-base text-sm rounded-full bg-secondary-dark">
+                    Delivered by Adam on Sep 20, 2024
+                  </div>
+                  <div>
+                    <CardStatusDropdown />
+                  </div>
                 </div>
               </div>
             </div>
@@ -76,14 +82,13 @@ export const MarketResearchCardEditModal = () => {
                   </div>
                 </div>
               </div>
-
               <div className="bg-background 2xl:min-w-[328px] min-w-[260px] 2xl:h-[378px] h-[300px] rounded shadow-lg 2xl:p-6 p-4  flex flex-col 2xl:gap-8 gap-6">
                 <div className="flex items-center justify-between 2xl:gap-4 gap-2">
                   <h6 className="uppercase 2xl:text-base text-sm font-medium ">
                     Market Research
                   </h6>
                   <div className="flex items-center 2xl:gap-3 gap-2">
-                   <MarketResearchChartEditModal/>
+                    <MarketResearchChartEditModal />
                     <RefreshCcw size={20} className="text-info" />
                   </div>
                 </div>
@@ -99,7 +104,7 @@ export const MarketResearchCardEditModal = () => {
                   Community interaction
                 </h6>
                 <div className="flex items-center 2xl:gap-10 gap-6">
-                  <ProgressBar icon="😍" value="20" />
+                  <ProgressBar icon="🏆" value="20" />
                   <div className="flex items-center relative">
                     <div className="bg-[#FEA946] 2xl:min-w-10 2xl:h-10 w-6 h-6 2xl:text-base text-xs font-normal flex justify-center items-center rounded-full text-background uppercase">
                       AG
@@ -136,8 +141,8 @@ export const MarketResearchCardEditModal = () => {
                   >
                     Publish this task
                   </Button>
-                  <div className="bg-background 2xl:min-w-10 2xl:h-10 w-8 h-8 2xl:text-base text-sm font-normal flex justify-center items-center rounded-full text-background uppercase">
-                    <Plus className="text-foreground" />
+                  <div>
+                    <TaskActionDropdown />
                   </div>
                 </div>
               </div>

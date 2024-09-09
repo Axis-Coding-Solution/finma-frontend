@@ -13,8 +13,8 @@ interface IdeaValidationCardProps{
 
 export const IdeaValidationCard:React.FC<IdeaValidationCardProps> = ({heading,subHeading,detail, validation,image}) => {
   return (
-    <div className="bg-info-light 2xl:p-8 p-6 rounded grid grid-cols-12 gap-10 items-stretch">
-      <div className="col-span-9 bg-background 2xl:p-8 p-6 rounded flex 2xl:gap-24 gap-12 items-center justify-between">
+    <div className="bg-info-light 2xl:p-8 md:p-6 p-4 rounded grid grid-cols-12 md:gap-10 gap-6 items-stretch">
+      <div className="md:order-1 order-2 md:col-span-9 col-span-12 bg-background 2xl:p-8 md:p-6 p-4 rounded flex sm:flex-row flex-col 2xl:gap-24 md:gap-12 gap-6 items-center justify-between">
         <div className="flex flex-col justify-between h-full">
           <h4 className="2xl:text-[32px] text-2xl font-semibold text-foreground capitalize">
             The {heading}
@@ -26,7 +26,7 @@ export const IdeaValidationCard:React.FC<IdeaValidationCardProps> = ({heading,su
             </span>
           </p>
         </div>
-        <div className="bg-background 2xl:min-w-[305px] min-w-[255px] rounded shadow-lg 2xl:p-6 p-4  flex flex-col 2xl:gap-8 gap-6">
+        <div className="bg-background 2xl:min-w-[305px] sm:min-w-[255px] min-w-max rounded shadow-lg 2xl:p-6 p-4  flex flex-col 2xl:gap-8 gap-6">
           <div className="flex items-center justify-between 2xl:gap-4 gap-2">
             <h6 className="uppercase 2xl:text-base text-sm font-medium ">The {validation} Validation</h6>
             <RefreshCcw size={20} className="text-info" />
@@ -54,11 +54,11 @@ export const IdeaValidationCard:React.FC<IdeaValidationCardProps> = ({heading,su
           </ul>
         </div>
       </div>
-      <div className="col-span-3 flex justify-end items-center relative">
+      <div className="md:order-2 order-1 md:col-span-3 col-span-12 flex md:justify-end justify-start items-center relative">
         <div className="absolute top-0 right-0">
           <IdeaValidationCardEditModal/>
         </div>
-        <figure className="w-64">
+        <figure className="md:w-64 w-32">
             <img src={image} className="" alt="" />
         </figure>
       </div>

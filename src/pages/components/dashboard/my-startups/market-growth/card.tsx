@@ -25,8 +25,8 @@ export const MarketGrowthCard: React.FC<MarketGrowthProps> = ({
   modal,
 }) => {
   return (
-    <div className="bg-info-light 2xl:p-8 p-6 rounded grid grid-cols-12 gap-10 items-stretch">
-      <div className="col-span-9 bg-background 2xl:p-8 p-6 rounded flex 2xl:gap-24 gap-12 items-center justify-between">
+    <div className="bg-info-light 2xl:p-8 md:p-6 p-4 rounded grid grid-cols-12 md:gap-10 gap-6 items-stretch">
+      <div className="md:order-1 order-2 md:col-span-9 col-span-12 bg-background 2xl:p-8 md:p-6 p-4 rounded flex sm:flex-row flex-col 2xl:gap-24 md:gap-12 gap-6 items-center justify-between">
         <div className="flex flex-col justify-between h-full">
           <h4 className="2xl:text-[32px] text-2xl font-semibold text-foreground capitalize">
             Market {heading}
@@ -52,7 +52,7 @@ export const MarketGrowthCard: React.FC<MarketGrowthProps> = ({
           </div>
         </div>
       </div>
-      <div className="col-span-3 flex justify-end items-center relative">
+      <div className="md:order-2 order-1 md:col-span-3 col-span-12 flex md:justify-end justify-start items-center relative">
         <div className="absolute top-0 right-0">
           {modal === "research" ? (
             <MarketResearchCardEditModal />
@@ -60,7 +60,7 @@ export const MarketGrowthCard: React.FC<MarketGrowthProps> = ({
             <MarketGrowthCardEditModal />
           )}
         </div>
-        <figure className="w-64">
+        <figure className="md:w-64 w-32">
           <img src={image} className="" alt="" />
         </figure>
       </div>

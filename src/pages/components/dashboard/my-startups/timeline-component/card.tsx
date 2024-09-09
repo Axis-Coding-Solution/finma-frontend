@@ -59,8 +59,11 @@ export const StartupTimelineCard: React.FC<StartupTimelineCardProps> = ({
             </div>
           </div>
         </div>
+        <div className="md:hidden flex justify-center">
+        <div className=" 2xl:w-[30px] w-6  h-10 bg-secondary mx-auto"></div>
+        </div>
         <div
-          className={`bg-secondary w-10 h-6 absolute top-1/2 ${
+          className={`bg-secondary w-10 h-6 absolute md:block hidden  top-1/2 ${
             direction == "right" ? "-right-10" : "-left-10"
           } transform -translate-y-1/2 `}
         ></div>
