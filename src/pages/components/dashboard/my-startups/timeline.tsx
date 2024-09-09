@@ -7,11 +7,11 @@ import {
 
 export const StartupTimeline = () => {
   return (
-    <div className="flex flex-col [&>div>*]:-mt-20 w-full my-4">
+    <div className="flex flex-col md:[&>div>*]:-mt-20 [&>div>*]:-mt-0 w-full my-4">
       {timelineContent.map((item: any, key: any) => {
         return (
           <Fragment key={key}>
-            <div className="w-full grid grid-cols-[1fr_auto_1fr] 2xl:gap-x-10 gap-x-6 items-center mx-auto">
+            <div className="w-full  grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] 2xl:gap-x-10 gap-x-6 items-center mx-auto">
               {item.direction === "right" ? (
                 <StartupTimelineCard
                   idx={key}

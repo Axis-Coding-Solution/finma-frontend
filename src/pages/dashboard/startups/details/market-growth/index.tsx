@@ -1,10 +1,10 @@
 import { StartuptitleBar } from "@/pages/components/dashboard/my-startups";
-import { IdeaValidationCard } from "@/pages/components/dashboard/my-startups/idea-validation";
-import { ideaValidationContent } from "@/pages/components/dashboard/my-startups/idea-validation/data";
+import { MarketGrowthCard } from "@/pages/components/dashboard/my-startups/market-growth";
+import { MarketGrowthContent } from "@/pages/components/dashboard/my-startups/market-growth/data";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-const StartupIdeaValidationPage = () => {
+const StartupMarketGrowthPage = () => {
   const navigate = useNavigate();
   const handleBack = () => {
     navigate(-1);
@@ -21,12 +21,12 @@ const StartupIdeaValidationPage = () => {
       </button>
 
       {/* Breadcrumb  */}
-      <div className="flex flex-wrap items-center 2xl:gap-3 md:gap-2 gap-1 2xl:text-2xl md:text-lg text-base font-medium text-foreground">
+      <div className="flex items-center 2xl:gap-3 gap-2 2xl:text-2xl text-lg font-medium text-foreground">
         <span className="text-muted-foreground">My Startups</span>
         <ChevronRight size={20} className="text-muted-foreground" />
         <span className="text-muted-foreground">Mad Cookies Roadmap</span>
         <ChevronRight size={20} className="text-muted-foreground" />
-        <span>Idea Validation</span>
+        <span>Market Growth</span>
       </div>
 
       {/* Title Card  */}
@@ -36,20 +36,21 @@ const StartupIdeaValidationPage = () => {
 
       {/* Idea Validation Card  */}
       <div className="flex flex-col 2xl:gap-10 gap-6">
-        {ideaValidationContent && ideaValidationContent.map((item:any)=>(
-          <IdeaValidationCard 
-          heading={item.heading}
-          subHeading={item.subHeading}
-          detail={item.detail}
-          validation={item.validation}
-          image={item.image}
-          />
-        ))
-
-        }
+        {MarketGrowthContent &&
+          MarketGrowthContent.map((item: any) => (
+            <MarketGrowthCard
+              heading={item.heading}
+              subHeading={item.subHeading}
+              detail={item.detail}
+              market={item.market}
+              image={item.image}
+              chart={item.chart}
+              modal={item.modal}
+            />
+          ))}
       </div>
     </div>
   );
 };
 
-export default StartupIdeaValidationPage;
+export default StartupMarketGrowthPage;

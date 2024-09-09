@@ -8,8 +8,8 @@ type PropTypes = {
 
 export const HeadingButton   = ({ title, subtitle, renderRight }: PropTypes) => {
   return (
-    <div className="flex justify-between items-center">
-      <div className="flex items-center gap-8">
+    <div className="flex flex-wrap justify-between items-center gap-4">
+      <div className="flex items-center  gap-8">
         <h1 className="2xl:text-[38px] text-2xl leading-tight font-semibold">
           {title}
         </h1>
