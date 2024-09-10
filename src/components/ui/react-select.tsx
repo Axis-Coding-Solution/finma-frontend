@@ -20,7 +20,10 @@ export const ReactSelect = forwardRef<any, Props>((props, ref) => {
     <Select
       ref={ref}
       isClearable={false}
-      components={{ DropdownIndicator, ...components }}
+      components={{
+        DropdownIndicator,
+        ...components,
+      }}
       // menuIsOpen
       unstyled
       classNames={classNamesReactSelect}

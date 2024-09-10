@@ -1,3 +1,4 @@
+import { ProfileAvatar } from "@/assets/svgs";
 import { Button, InputError } from "@/components/ui";
 import { CloudUploadIcon } from "lucide-react";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
@@ -67,12 +68,12 @@ export const UploadProfilePhoto = ({
           role="button"
           className="border border-border rounded-full"
         >
-          <img
-            src={preview}
-            className="size-20 rounded-full"
-            onLoad={(e) => URL.revokeObjectURL(e.currentTarget.src)}
-            alt="Profile Photo"
-          />
+            <img
+              src={ preview  ? preview : ProfileAvatar }
+              className="size-20 rounded-full border border-[#4D4D4D]"
+              onLoad={(e) => URL.revokeObjectURL(e.currentTarget.src)}
+              alt="Profile Photo"
+            />
         </div>
         <div className="cursor-pointer">
           <Button
