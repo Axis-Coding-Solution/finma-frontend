@@ -12,7 +12,7 @@ const ProjectDropDOwn = ({ name, id }: { name: string; id: string }) => {
     <div>
       <DropdownMenu>
         <DropdownMenuTrigger className="focus-visible:outline-none">
-          <Ellipsis size={20} />
+          <Ellipsis className="text-[#5EB650]" size={20} />
         </DropdownMenuTrigger>
         <DropdownMenuContent side="bottom">
           <div className="flex flex-col p-3 pb-4 gap-2 ">

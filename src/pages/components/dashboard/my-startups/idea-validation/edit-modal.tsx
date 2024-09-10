@@ -31,7 +31,7 @@ export const IdeaValidationCardEditModal = () => {
             </div>
           </span>
         </DialogTrigger>
-        <DialogContent className="bg-info-light min-w-[1084px] 2xl:py-[52px] py-8 2xl:px-8 px-6">
+        <DialogContent className="text-2xl bg-info-light min-w-[1084px] 2xl:py-[52px] py-8 2xl:px-8 px-6">
           <div className="flex flex-col 2xl:gap-8 gap-6">
             {/* Team member & Card Status */}
             <div className="flex items-start 2xl:gap-10 gap-6">
@@ -80,7 +80,7 @@ export const IdeaValidationCardEditModal = () => {
                   </span>
                 </div>
                 <div>
-                  <p className="2xl:text-[28px] text-lg 2xl:leading-8 leading-6 text-foreground">
+                  <p className="2xl:text-[28px] text-lg 2xl:leading-8 leading-6 text-foreground border-b border-muted-foreground pb-2 ">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     Suspendisse ultrices interdum orci, at sagittis elit
                     porttitor. Suspendisse ultrices interdum orci, at sagittis
