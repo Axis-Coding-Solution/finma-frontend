@@ -21,7 +21,7 @@ export default [
   },
   {
     element: <StartupDetailPage />,
-    path: "/dashboard/my-startups/detail",
+    path: "/dashboard/my-startups/:id",
     meta: {
       layout: "dashboard",
     },

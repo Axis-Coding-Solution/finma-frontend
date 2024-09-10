@@ -2,7 +2,6 @@ import {
   DialogTrigger,
   Dialog,
   DialogContent,
-  DialogClose,
 } from "@/components/_ui/dialog";
 import { useForm } from "react-hook-form";
 // import { createFormData, errorToast, successToast } from "@/utils";
@@ -12,8 +11,8 @@ import { useForm } from "react-hook-form";
 // import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Button } from "@/components/ui";
-import {  Plus } from "lucide-react";
-import { ProjectAddForm } from "./project-add-form";
+import { Plus } from "lucide-react";
+import { StartupForm } from "./startup-form";
 import { useAddProjectMutation } from "@/api/hooks/dashboard/myProject";
 import { useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
@@ -45,7 +44,8 @@ const ProjectAddModal = () => {
       const formData = createFormData(values);
       const response = await mutateAsync(formData);
       queryClient.invalidateQueries({ queryKey: ["/projects"] });
-      navigate(`/dashboard/my-projects/${response.data._id}`);
+      // navigate(`/dashboard/my-projects/${response.data._id}`);
+      navigate(`/dashboard/my-startups/${response.data._id}`);
       successToast(response.message);
       modal.close();
     } catch (error: any) {
@@ -73,19 +73,7 @@ const ProjectAddModal = () => {
               className="flex flex-col gap-4"
               onSubmit={handleSubmit(onsubmitHandler)}
             >
-              <ProjectAddForm {...commonProps} errors={errors} />
-              <div className="flex justify-end">
-                <div className="md:w-1/2 w-full flex items-center justify-between gap-4">
-                  <DialogClose asChild>
-                    <Button type="button" variant="outline" className="w-full">
-                      Cancel
-                    </Button>
-                  </DialogClose>
-                  <Button type="submit" className="w-full">
-                    Save
-                  </Button>
-                </div>
-              </div>
+              <StartupForm {...commonProps} errors={errors} />
             </form>
           </div>
         </DialogContent>

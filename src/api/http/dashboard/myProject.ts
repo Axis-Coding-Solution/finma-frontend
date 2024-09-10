@@ -7,9 +7,16 @@ const appendUrl = (segment: string) => `${url}/${segment}`;
 export const getProjectsApi = async () => {
     try {
         const res = await get(url)
-        // console.log("datadddddddd", res.data.data);
         return res.data?.data;
 
+    } catch (error: any) {
+        return Promise.reject(apiErrorHandler(error));
+    }
+};
+export const getProjectApiById = async (id: string) => {
+    try {
+        const res = await get(appendUrl(id));
+        return res.data;
     } catch (error: any) {
         return Promise.reject(apiErrorHandler(error));
     }

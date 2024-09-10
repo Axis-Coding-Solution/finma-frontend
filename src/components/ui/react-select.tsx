@@ -1,6 +1,6 @@
 import { classNamesReactSelect, cn } from "@/utils";
 import { ChevronDown } from "lucide-react";
-import { forwardRef, useId, useState } from "react";
+import { forwardRef, useCallback, useId, useState } from "react";
 import Select, {
   DropdownIndicatorProps,
   Props,
@@ -24,9 +24,11 @@ export const ReactSelect = forwardRef<any, IProps>((props, ref) => {
   const id = useId();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const toggleMenuOpen = () => setIsMenuOpen(!isMenuOpen);
 
   console.log(props.value, isMenuOpen);
+
+  const onMenuOpen = useCallback(() => setIsMenuOpen(true), [isMenuOpen]);
+  const onMenuClose = useCallback(() => setIsMenuOpen(false), [isMenuOpen]);
 
   return (
     <div className="flex items-center relative w-full">
@@ -40,8 +42,8 @@ export const ReactSelect = forwardRef<any, IProps>((props, ref) => {
         }}
         onInputChange={(value) => setInputValue(value)}
         menuIsOpen={isMenuOpen}
-        onMenuOpen={toggleMenuOpen}
-        onMenuClose={toggleMenuOpen}
+        onMenuOpen={onMenuOpen}
+        onMenuClose={onMenuClose}
         inputValue={inputValue}
         unstyled
         classNames={classNamesReactSelect}

@@ -13,6 +13,7 @@ import { errorToast, successToast } from "@/utils";
 import { useModal } from "@/utils/hooks";
 import { useQueryClient } from "@tanstack/react-query";
 import { Trash2 } from "lucide-react";
+import {  useNavigate } from "react-router-dom";
 export const ProjectDeleteModal = ({
   projectName,
   projectId,
@@ -21,12 +22,14 @@ export const ProjectDeleteModal = ({
   projectId: string;
 }) => {
   const modal = useModal();
-  const { mutateAsync } = useDeleteProject()
+  const navigate = useNavigate(); 
+  const { mutateAsync } = useDeleteProject();
   const queryClient = useQueryClient();
   async function deleteProject(id: string) {
     try {
       const response = await mutateAsync(id);
-      queryClient.invalidateQueries({ queryKey: ["/projects"] })
+      queryClient.refetchQueries({ queryKey: ["/projects"] });
+      navigate(`/dashboard/my-startups`);
       modal.close();
       successToast(response?.message);
     } catch (error: any) {
@@ -37,21 +40,21 @@ export const ProjectDeleteModal = ({
   return (
     <div>
       <Dialog>
-        <DialogTrigger asChild>
+        <DialogTrigger onClick={(e) => e.stopPropagation()}>
           <span role="button">
             <div className="flex gap-1 text-red-500">
               <Trash2 size={16} className="mt-1" />
-              <h1 className="">Delete startup</h1>
+              <h1>Delete startup</h1>
             </div>
           </span>
         </DialogTrigger>
-        <DialogContent className="">
+        <DialogContent>
           <DialogHeader>
             <DialogTitle className="text-left ">
               <h4 className="text-foreground 2xl:text-[32px] text-2xl font-semibold">
-              Delete Project
+                Delete Project
               </h4>
-              </DialogTitle>
+            </DialogTitle>
           </DialogHeader>
           <div>
             <p className="2xl:text-[22px] 2xl:leading-[26px] text-lg leading-[22px]">
@@ -63,15 +66,12 @@ export const ProjectDeleteModal = ({
             </p>
           </div>
           <div className="flex items-center justify-between gap-4">
-            <DialogClose asChild>
-              <Button variant="outline" className="w-full">
+            <DialogClose onClick={(e) => e.stopPropagation()}>
+              <Button variant="outline" className="w-full" >
                 Cancel
               </Button>
             </DialogClose>
-            <Button
-              onClick={() => deleteProject(projectId)}
-              className="w-full"
-            >
+            <Button onClick={() => deleteProject(projectId)} className="w-full">
               Update
             </Button>
           </div>

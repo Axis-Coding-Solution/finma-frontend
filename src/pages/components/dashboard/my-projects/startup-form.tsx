@@ -1,40 +1,34 @@
 import { useEffect } from "react";
 import { get } from "@/utils/axios";
 import { InputError } from "@/components/ui/input-error";
-import { FloatingInput, Label } from "@/components/ui";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+  Button,
+  DialogClose,
+  FloatingInput,
+  Label,
+  ReactSelect,
+} from "@/components/ui";
+
 import { Controller } from "react-hook-form";
 import { UploadProfilePhotoModal } from "../../common";
 
 const industryOptions = [
-  { value: "1", label: "IT & Technology" },
-  { value: "2", label: "Software Company" },
-  { value: "3", label: "Electrical" },
-  { value: "4", label: "Medical" },
-  { value: "5", label: "Mechanical" },
-  { value: "6", label: "Farming" },
+  { value: "IT & Technology", label: "IT & Technology" },
+  { value: "Software Company", label: "Software Company" },
+  { value: "Electrical", label: "Electrical" },
+  { value: "Medical", label: "Medical" },
+  { value: "Mechanical", label: "Mechanical" },
+  { value: "Farming", label: "Farming" },
 ];
 
-export const ProjectAddForm = ({
-  register,
-  errors,
-  reset,
-  control,
-  id,
-}: any) => {
+export const StartupForm = ({ register, errors, reset, control, id }: any) => {
   const getProjectById = async () => {
     try {
       const response = await get(`/projects/${id}`);
       reset({
         name: response?.data.data.name || "",
         tagline: response?.data.data.industry || "",
-        logoImage: response?.data.data.logoImage || "",
+        logoImage: response?.data.data.logo || "",
         bio: response?.data.data.bio || "",
       });
     } catch (error) {
@@ -65,7 +59,7 @@ export const ProjectAddForm = ({
           errors={errors}
           image={null}
           register={register}
-          name="logoImage"
+          name="logo"
           text="Upload Photo"
         />
       </div>
@@ -80,21 +74,16 @@ export const ProjectAddForm = ({
         </div>
         <div>
           <Controller
-            control={control}
             name="industry"
-            render={({ field }) => (
-              <Select {...field}>
-                <SelectTrigger id="industry">
-                  <SelectValue placeholder="Industry" />
-                </SelectTrigger>
-                <SelectContent>
-                  {industryOptions.map((item) => (
-                    <SelectItem key={item.value} value={item.value}>
-                      {item.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+            control={control}
+            render={({ field }: any) => (
+              <ReactSelect
+                {...field}
+                value={field.value}
+                label="Industry"
+                placeholder=""
+                options={industryOptions}
+              />
             )}
           />
           <InputError error={errors?.industry} />
@@ -109,6 +98,18 @@ export const ProjectAddForm = ({
           />
           <span>120 letter max</span>
           <InputError error={errors?.bio} />
+        </div>
+      </div>
+      <div className="flex justify-end">
+        <div className="md:w-1/2 w-full flex items-center justify-between gap-4">
+          <DialogClose onClick={(e) => e.stopPropagation()}>
+            <Button type="button" variant="outline" className="w-full">
+              Cancel
+            </Button>
+          </DialogClose>
+          <Button type="submit" className="w-full">
+            Save
+          </Button>
         </div>
       </div>
     </>

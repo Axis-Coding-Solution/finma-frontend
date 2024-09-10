@@ -1,36 +1,24 @@
-import {
-  DialogTrigger,
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogClose,
-} from "@/components/_ui/dialog";
+import { DialogTrigger, Dialog, DialogContent } from "@/components/_ui/dialog";
 
-import {  SquarePen } from "lucide-react";
+import { SquarePen } from "lucide-react";
 
-
-import { ProjectForm } from "./project-form";
 import { useForm } from "react-hook-form";
 import { dashboardProjectsInitialValues } from "@/utils/initial-values/dashboard/Projects";
-import { useState } from "react";
 import { createFormData, errorToast, successToast } from "@/utils";
 import { useEditProjectMutation } from "@/api/hooks/dashboard/myProject";
 import { useQueryClient } from "@tanstack/react-query";
 import { useModal } from "@/utils/hooks";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { dashboardProjectsSchema } from "@/utils/validation-schemas/dashoard/projects";
-import { Button } from "@/components/ui";
+import { StartupForm } from "./startup-form";
 export const ProjectEditModal = ({ projectId }: { projectId: string }) => {
-  const [project] = useState<any>({});
   const modal = useModal();
 
   const {
     control,
     register,
     handleSubmit,
-    reset,
-    watch,
+
     formState: { errors },
   } = useForm({
     defaultValues: dashboardProjectsInitialValues,
@@ -42,7 +30,7 @@ export const ProjectEditModal = ({ projectId }: { projectId: string }) => {
     control,
     register,
     errors,
-    watch,
+    // watch,
   };
 
   const onsubmitHandler = async (
@@ -61,7 +49,7 @@ export const ProjectEditModal = ({ projectId }: { projectId: string }) => {
   return (
     <div>
       <Dialog>
-        <DialogTrigger asChild>
+        <DialogTrigger onClick={(e) => e.stopPropagation()}>
           <span role="button">
             <div className="flex gap-1 text-foreground">
               <SquarePen size={16} className="mt-1" />
@@ -69,35 +57,15 @@ export const ProjectEditModal = ({ projectId }: { projectId: string }) => {
             </div>
           </span>
         </DialogTrigger>
-        <DialogContent className="2xl:min-w-[885px] min-w-[685px] 2xl:p-[52px] p-8">
-          <DialogHeader>
-            <DialogTitle className="text-left ">
-            <h4 className="text-foreground 2xl:text-[32px] text-2xl font-semibold">
-              Project Card
-              </h4>
-            </DialogTitle>
-          </DialogHeader>
-          <form
-            onSubmit={handleSubmit(onsubmitHandler)}
-            className="flex flex-col gap-4"
-          >
-            <ProjectForm
-              {...commonProps}
-              data={project}
-              reset={reset}
-              id={projectId}
-            />
-            <div className="flex items-center justify-between gap-4 2xl:mt-5 mt-2">
-              <DialogClose asChild>
-                <Button type="button" variant="outline" className="w-full">
-                  Cancel
-                </Button>
-              </DialogClose>
-              <Button type="submit" className="w-full">
-                Update
-              </Button>
-            </div>
-          </form>
+        <DialogContent className="bg-secondary 2xl:p-8 p-6 border-none 2xl:max-w-[1154px] md:max-w-[786px] max-w-auto">
+          <div className="bg-background 2xl:p-16 p-8  rounded  flex flex-col 2xl:gap-[52px] gap-8">
+            <form
+              className="flex flex-col gap-4"
+              onSubmit={handleSubmit(onsubmitHandler)}
+            >
+              <StartupForm {...commonProps} errors={errors} />
+            </form>
+          </div>
         </DialogContent>
       </Dialog>
     </div>
