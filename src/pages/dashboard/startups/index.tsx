@@ -1,7 +1,7 @@
+import { useGetProjects } from "@/api/hooks/dashboard";
 import { HeadingButton } from "@/pages/components/common";
 import ProjectCard from "@/pages/components/dashboard/my-projects/card";
 import ProjectAddModal from "@/pages/components/dashboard/my-projects/project-add-modal";
-// import ProjectAddModal from "@/pages/components/dashboard/my-projects/project-add-modal";
 import { Link } from "react-router-dom";
 
 const startupOptions = [
@@ -38,6 +38,9 @@ const startupOptions = [
 ];
 
 const MyStartupPage = () => {
+
+const {data} = useGetProjects();
+console.log("data of startup", data)
   return (
     <>
       <div>

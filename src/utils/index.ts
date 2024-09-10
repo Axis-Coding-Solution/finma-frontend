@@ -83,18 +83,18 @@ export const classNamesReactSelect: ClassNamesConfig<
 > = {
   control: ({ isFocused }) =>
     cn(
-      "rounded-sm border transition-all bg-input text-foreground",
-      isFocused ? "border-ring" : "border-border"
+      "group border-b transition-all bg-input text-foreground overflow-visible",
+      isFocused ? "border-muted-foreground" : "border-muted-foreground"
     ),
   dropdownIndicator: ({ selectProps }) =>
     cn(
       "px-5 !transition-all",
       selectProps.menuIsOpen ? "rotate-180" : "rotate-0"
     ),
-  placeholder: () => "text-muted-foreground text-sm",
+  placeholder: ({isFocused}) => cn("relative text-muted-foreground transition ", isFocused ? '-translate-y-5': 'translate-y-0'),
   multiValueRemove: () => "hover:text-red-400",
   valueContainer: () =>
-    "w-full h-full py-3 px-3 flex gap-1 items-center !overflow-auto text-sm",
+    "w-full h-full py-3 px-1 flex gap-1 items-center !overflow-visible text-sm",
   multiValue: () =>
     "bg-success text-success-foreground px-1.5 py-0.5 rounded text-sm",
   menuPortal: () => "!z-50",

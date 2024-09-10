@@ -1,5 +1,13 @@
 import { IdeaValidationStartup, StartupLoader } from "@/assets/svgs";
-import { Button, FloatingInput } from "@/components/ui";
+import {
+  Button,
+  FloatingInput,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui";
 import { MainHeading } from "@/pages/components/common";
 import { Check, ChevronLeft, X } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -13,6 +21,15 @@ const IdeaClarityStartupPage = () => {
 
     return () => clearTimeout(timer);
   }, []);
+
+  const industryOptions = [
+    { value: "1", label: "IT & Technology" },
+    { value: "2", label: "Software Company" },
+    { value: "3", label: "Electrical" },
+    { value: "4", label: "Medical" },
+    { value: "5", label: "Mechanical" },
+    { value: "6", label: "Farming" },
+  ];
   return (
     <div className="bg-secondary rounded-lg 2xl:p-8 p-6 flex  gap-12 items-stretch  relative">
       {/* Left Section  */}
@@ -109,7 +126,18 @@ const IdeaClarityStartupPage = () => {
               name="startupName"
               label="Name of your startup"
             />
-            <FloatingInput type="text" name="industry" label="Industry" />
+            <Select>
+              <SelectTrigger id="industry">
+                <SelectValue placeholder="Industry" />
+              </SelectTrigger>
+              <SelectContent>
+                {industryOptions.map((item) => (
+                  <SelectItem key={item.value} value={item.value}>
+                    {item.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
           <div className="flex justify-center -mt-5">
             <img src={IdeaValidationStartup} />
@@ -119,9 +147,7 @@ const IdeaClarityStartupPage = () => {
               Need time
             </Button>
             <Link to="/auth/sign-up" className="w-full">
-            <Button className="w-full">
-              Built it!
-            </Button>
+              <Button className="w-full">Built it!</Button>
             </Link>
           </div>
         </div>
