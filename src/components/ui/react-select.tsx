@@ -1,6 +1,6 @@
-import { classNamesReactSelect } from "@/utils";
+import { classNamesReactSelect, cn } from "@/utils";
 import { ChevronDown } from "lucide-react";
-import { forwardRef } from "react";
+import { forwardRef, useId, useState } from "react";
 import Select, {
   DropdownIndicatorProps,
   Props,
@@ -13,21 +13,52 @@ const DropdownIndicator = (props: DropdownIndicatorProps) => (
   </components.DropdownIndicator>
 );
 
-export const ReactSelect = forwardRef<any, Props>((props, ref) => {
-  const { components = {}, ...otherProps } = props;
+interface IProps extends Props {
+  label: string;
+  labelProps?: React.LabelHTMLAttributes<HTMLLabelElement>;
+}
+
+export const ReactSelect = forwardRef<any, IProps>((props, ref) => {
+  const { components = {}, label, labelProps, ...otherProps } = props;
+  const [inputValue, setInputValue] = useState("");
+  const id = useId();
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const toggleMenuOpen = () => setIsMenuOpen(!isMenuOpen);
+
+  console.log(props.value, isMenuOpen);
 
   return (
-    <Select
-      ref={ref}
-      isClearable={false}
-      components={{
-        DropdownIndicator,
-        ...components,
-      }}
-      // menuIsOpen
-      unstyled
-      classNames={classNamesReactSelect}
-      {...otherProps}
-    />
+    <div className="flex items-center relative w-full">
+      <Select
+        ref={ref}
+        isClearable={false}
+        inputId={id}
+        components={{
+          DropdownIndicator,
+          ...components,
+        }}
+        onInputChange={(value) => setInputValue(value)}
+        menuIsOpen={isMenuOpen}
+        onMenuOpen={toggleMenuOpen}
+        onMenuClose={toggleMenuOpen}
+        inputValue={inputValue}
+        unstyled
+        classNames={classNamesReactSelect}
+        {...otherProps}
+      />
+      <label
+        htmlFor={id}
+        className={cn(
+          "absolute px-1 origin-[0] text-muted-text bg-background transition duration-150 pointer-events-none z-10",
+          (props.value as any) || inputValue.length > 0 || isMenuOpen
+            ? "scale-90 -translate-y-7 text-muted-text bg-transparent"
+            : "translate-y-0 scale-100"
+        )}
+        {...labelProps}
+      >
+        {label}
+      </label>
+    </div>
   );
 });

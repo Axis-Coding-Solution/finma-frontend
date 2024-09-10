@@ -81,9 +81,10 @@ export const classNamesReactSelect: ClassNamesConfig<
   boolean,
   GroupBase<unknown>
 > = {
+  container: () => "w-full",
   control: ({ isFocused }) =>
     cn(
-      "group border-b transition-all bg-input text-foreground overflow-visible",
+      "border-b transition-all bg-input text-foreground overflow-visible w-full",
       isFocused ? "border-muted-foreground" : "border-muted-foreground"
     ),
   dropdownIndicator: ({ selectProps }) =>
@@ -91,7 +92,7 @@ export const classNamesReactSelect: ClassNamesConfig<
       "px-5 !transition-all",
       selectProps.menuIsOpen ? "rotate-180" : "rotate-0"
     ),
-  placeholder: ({isFocused}) => cn("relative text-muted-foreground transition ", isFocused ? '-translate-y-5': 'translate-y-0'),
+  placeholder: () => "text-muted-foreground",
   multiValueRemove: () => "hover:text-red-400",
   valueContainer: () =>
     "w-full h-full py-3 px-1 flex gap-1 items-center !overflow-visible text-sm",
@@ -177,5 +178,5 @@ export const getHomeRoute = () => {
   if (!isAuthenticated) return "/auth/login";
   if (!user.role)
     return "/onboarding/select-role?infoMessage=Continue by selecting your role!";
-  return "dashboard/community";
+  return "/dashboard/community";
 };

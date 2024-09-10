@@ -92,7 +92,8 @@ export const OnboardingProfilePersonalInfoStep = ({
                 resetField("personalInfo.city");
                 field.onChange(e);
               }}
-              placeholder="Select Country"
+              label="Country"
+              placeholder=""
               options={countries}
               isLoading={countriesLoading}
             />
