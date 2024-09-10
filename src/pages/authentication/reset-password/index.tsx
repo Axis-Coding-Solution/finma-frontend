@@ -117,11 +117,11 @@ const ResetPasswordPage = () => {
               Log in
             </Button>
             <div className="absolute -top-5 right-5">
-              <Lottie width={50} options={lottieOptions} />
+              <Lottie width={40} options={lottieOptions} />
             </div>
             <img
               src={SuccessThumb}
-              className="absolute top-4 right-0 w-[92px]"
+              className="absolute top-4 right-0 2xl:w-[92px] w-[70px]"
             />
           </div>
         )}

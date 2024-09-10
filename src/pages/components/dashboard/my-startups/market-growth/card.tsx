@@ -31,7 +31,7 @@ export const MarketGrowthCard: React.FC<MarketGrowthProps> = ({
           <h4 className="2xl:text-[32px] text-2xl font-semibold text-foreground capitalize">
             Market {heading}
           </h4>
-          <p className="2xl:text-[28px] text-lg 2xl:leading-8 leading-6 text-foreground">
+          <p className="2xl:text-[28px] text-lg 2xl:leading-8 leading-6 text-foreground border-b border-muted-foreground pb-2">
             <span>{subHeading}</span>
             <span className="text-muted-text">{detail}</span>
           </p>

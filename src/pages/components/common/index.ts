@@ -6,3 +6,4 @@ export { UploadProfilePhoto } from "./upload-profile-photo";
 export { StepsIndicator } from "./steps-indicator";
 export {ProgressBar} from "./progress-bar";
 export {UploadProfilePhotoModal} from "./upload-profile-photo-modal"
+export {SearchBar} from "./search-bar"

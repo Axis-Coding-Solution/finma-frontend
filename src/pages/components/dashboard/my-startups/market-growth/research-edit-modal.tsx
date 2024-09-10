@@ -68,7 +68,7 @@ export const MarketResearchCardEditModal = () => {
                   </span>
                 </div>
                 <div>
-                  <p className="2xl:text-[28px] text-lg 2xl:leading-8 leading-6 text-foreground">
+                  <p className="2xl:text-[28px] text-lg 2xl:leading-8 leading-6 text-foreground border-b border-muted-foreground pb-2">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     Suspendisse ultrices interdum orci, at sagittis elit
                     porttitor. Suspendisse ultrices interdum orci, at sagittis
