@@ -24,7 +24,7 @@ function CommunityPage() {
       />
       <div className="flex md:flex-row flex-col md:items-center items-start justify-between gap-4">
         <CommunityFilter />
-        <SearchInput/>
+        <SearchInput />
       </div>
       {isLoading && (
         <div className="w-full h-96 flex flex-col gap-5 justify-center items-center">
