@@ -1,11 +1,8 @@
 import { Button } from "@/components/ui";
 import { CloudUploadIcon } from "lucide-react";
+import { PropsType } from "./types";
 
-type PropsType = {
-  preview: undefined | string;
-  onUpload: () => void;
-  placeholderImg: string;
-};
+
 export const UploadImageOnboarding = ({
   placeholderImg,
   onUpload,

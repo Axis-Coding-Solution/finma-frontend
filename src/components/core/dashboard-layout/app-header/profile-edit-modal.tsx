@@ -5,12 +5,12 @@ import {
   DialogContent,
   DialogClose,
 } from "@/components/_ui/dialog";
-import { Avatar, Button, FloatingInput, Label } from "@/components/ui";
+import { Button, FloatingInput, Label } from "@/components/ui";
 import { errorToast, successToast } from "@/utils";
 import { useModal } from "@/utils/hooks";
 import { useQueryClient } from "@tanstack/react-query";
-import { Camera, Pencil } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { Pencil } from "lucide-react";
+import { useEffect, useState } from "react";
 import {
   Select,
   SelectContent,
@@ -18,7 +18,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { LogoAvatar } from "@/assets/svgs";
 
 const statusOptions = [
   { value: "building1", label: "Building a new Feature" },
@@ -42,7 +41,6 @@ const ProfileEditModal = ({
 }) => {
   const [status, setStatus] = useState<OptionType | null>(null);
   const queryClient = useQueryClient();
-  const inputRef = useRef<HTMLInputElement>(null);
 
   const modal = useModal();
 
@@ -63,10 +61,6 @@ const ProfileEditModal = ({
     }
   };
 
-  const handleOpenInputBox = () => {
-    inputRef.current?.click();
-  };
-
   return (
     <Dialog modal={modal.show} onOpenChange={modal.setShow}>
       <DialogTrigger asChild>
@@ -79,20 +73,7 @@ const ProfileEditModal = ({
       </DialogTrigger>
       <DialogContent className=" 2xl:p-[52px] p-8 flex flex-col 2xl:gap-10 gap-6">
         <div className="flex items-center gap-6">
-          <input type="file" ref={inputRef} className="hidden" />
-          <div
-            role="button"
-            onClick={handleOpenInputBox}
-            className="2xl:min-w-24 min-w-20  2xl:h-24 h-20 relative"
-          >
-            <Avatar
-              image={LogoAvatar}
-              className="2xl:min-w-24 min-w-20  2xl:h-24 h-20"
-            />
-            <div className="2xl:w-10 2xl:h-10 w-8 h-8 flex justify-center items-center  rounded-full bg-background absolute bottom-0 right-0">
-              <Camera className="text-success-dark" />
-            </div>
-          </div>
+          {/* <UploadImage variant="profile" control={control}/> */}
           <div className="w-full">
             <Label htmlFor="selectStatus">Status</Label>
             <Select>

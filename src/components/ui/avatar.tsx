@@ -22,7 +22,7 @@ const badgeVariants = cva("rounded-full border-transparent", {
 export interface BadgeProps
   extends React.HTMLAttributes<HTMLImageElement>,
     VariantProps<typeof badgeVariants> {
-  image: string;
+  image?: string;
   active?: boolean;
 }
 

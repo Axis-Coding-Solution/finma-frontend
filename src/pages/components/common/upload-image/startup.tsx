@@ -3,7 +3,7 @@ import { PropsType } from "./types";
 
 export const UploadImageStartup = ({ onUpload, preview }: PropsType) => {
   return (
-    <>
+    <div className="flex flex-col gap-2">
       <div
         onClick={onUpload}
         role="button"
@@ -35,6 +35,6 @@ export const UploadImageStartup = ({ onUpload, preview }: PropsType) => {
           Upload logo
         </button>
       </div>
-    </>
+    </div>
   );
 };

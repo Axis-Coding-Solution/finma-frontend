@@ -10,7 +10,7 @@ import {
 } from "@/components/ui";
 
 import { Controller } from "react-hook-form";
-import { UploadProfilePhotoModal } from "../../common";
+import { UploadImage } from "../../common";
 
 const industryOptions = [
   { value: "IT & Technology", label: "IT & Technology" },
@@ -54,13 +54,14 @@ export const StartupForm = ({ register, errors, reset, control, id }: any) => {
             Add or update this card anytime for your startup
           </p>
         </div>
-        <UploadProfilePhotoModal
+        <UploadImage
           control={control}
           errors={errors}
           image={null}
           register={register}
           name="logo"
           text="Upload Photo"
+          variant="startup"
         />
       </div>
       <div className="grid grid-cols-2 gap-8">
