@@ -70,7 +70,7 @@ export const UploadProfilePhotoModal = ({
           {preview && preview ? (
             <img
               src={preview}
-              className="w-full rounded-full"
+              className="w-full h-full rounded-full"
               onLoad={(e) => URL.revokeObjectURL(e.currentTarget.src)}
               alt="Profile Photo"
             />

@@ -94,7 +94,7 @@ export const StartupForm = ({ register, errors, reset, control, id }: any) => {
           </Label>
           <textarea
             {...register("bio")}
-            className="outline-none border-b border-muted px-2 text-secondary-foreground 2xl:text-xl text-lg w-full"
+            className="outline-none border-b border-muted  text-secondary-foreground 2xl:text-xl text-lg w-full"
           />
           <span>120 letter max</span>
           <InputError error={errors?.bio} />

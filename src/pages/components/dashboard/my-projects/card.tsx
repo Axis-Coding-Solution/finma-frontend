@@ -50,11 +50,11 @@ const ProjectCard = (props: any) => {
           {props.status && (
             <Badge variant={statusVariant[props.status]}>{props.status}</Badge>
           )}
-          <div className="flex items-center relative">
-            <div className="bg-[#FEA946] 2xl:min-w-10 2xl:h-10 w-8 h-8 2xl:text-base text-sm font-normal flex justify-center items-center rounded-full text-background uppercase">
+          <div className="flex items-center relative -space-x-2">
+            <div className="bg-[#FEA946] border border-border 2xl:min-w-10 2xl:h-10 w-8 h-8 2xl:text-base text-sm font-normal flex justify-center items-center rounded-full text-background uppercase">
               AG
             </div>
-            <div className="bg-[#00569E] 2xl:min-w-10 2xl:h-10 w-8 h-8 2xl:text-base text-sm font-normal flex justify-center items-center rounded-full text-background uppercase">
+            <div className="bg-[#00569E] border border-border 2xl:min-w-10 2xl:h-10 w-8 h-8 2xl:text-base text-sm font-normal flex justify-center items-center rounded-full text-background uppercase">
               VH
             </div>
           </div>
