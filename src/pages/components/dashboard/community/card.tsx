@@ -5,6 +5,17 @@ import { CommunityTypes } from "@/definitions/types";
 import { Link } from "react-router-dom";
 import { userAvatar1Image } from "@/assets/images";
 
+const BADGE_COLORS = [
+  "border-[#6F6FEA] text-[#6F6FEA]",
+  "border-[#D516CD] text-[#D516CD]",
+  "border-[#EE8204] text-[#EE8204]",
+];
+
+const getRandomBadgeColor = () => {
+  const randomIndex = Math.floor(Math.random() * BADGE_COLORS.length);
+  return BADGE_COLORS[randomIndex];
+};
+
 export const CommunityCard = ({
   id,
   name,
@@ -13,15 +24,14 @@ export const CommunityCard = ({
   communityGoals,
   status,
   entrepStage,
-  projectCount
+  projectCount,
 }: CommunityTypes) => {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-6 lg:grid-cols-12 bg-muted p-4 rounded-lg gap-4">
-
+    <div className="grid grid-cols-1 sm:grid-cols-6 lg:grid-cols-12  2xl:p-6 p-4 bg-background rounded gap-4">
       {/* Avatar Section  */}
-      <div className="flex items-center gap-4 col-span-12 sm:col-span-4 lg:col-span-3">
+      <div className="flex items-start mt-1 gap-4 col-span-12 sm:col-span-4 lg:col-span-3">
         <Avatar
-        className="object-cover"
+          className="object-cover"
           image={profilePicture ? profilePicture : userAvatar1Image}
           size="lg"
         />
@@ -31,7 +41,6 @@ export const CommunityCard = ({
           <p className="text-muted-foreground text-sm">{entrepStage}</p>
         </div>
       </div>
-
       {/* Status Section  */}
       <div className="flex flex-col gap-2 col-span-12 sm:col-span-2 lg:col-span-2">
         <h6 className="text-foreground font-semibold ">Status</h6>
@@ -40,12 +49,16 @@ export const CommunityCard = ({
         </span>
       </div>
       {/* Community Goals Section  */}
-      <div className="flex flex-col gap-2 col-span-12 sm:col-span-4 lg:col-span-4">
+      <div className="flex flex-col gap-2 col-span-12 sm:col-span-2 lg:col-span-4">
         <h6 className="text-foreground font-semibold">Community goal</h6>
         <div className="flex flex-wrap items-center gap-[2px]">
           {communityGoals ? (
             communityGoals.goals.map((goal, idx) => (
-              <Badge key={idx} variant="outline-info">
+              <Badge
+                key={idx}
+                className={getRandomBadgeColor()}
+                variant="outline-info"
+              >
                 {goal}
               </Badge>
             ))
@@ -53,7 +66,7 @@ export const CommunityCard = ({
             <Badge variant="outline">N/A</Badge>
           )}
           {communityGoals.more > 0 && (
-            <Badge variant="outline-info">+{communityGoals.more}</Badge>
+            <Badge variant="outline-info" className=" border-foreground text-foreground" >+{communityGoals.more}</Badge>
           )}
         </div>
       </div>
@@ -61,7 +74,9 @@ export const CommunityCard = ({
       {role === "innovator" && (
         <div className="flex flex-col items-start gap-2 col-span-12 sm:col-span-2 lg:col-span-2">
           <h6 className="text-foreground font-semibold">Open projects</h6>
-          <span className="ps-2 text-success underline text-sm">{projectCount}</span>
+          <span className="ps-2 text-success underline text-sm">
+            {projectCount}
+          </span>
         </div>
       )}
       {role === "mentor" && (
@@ -73,12 +88,17 @@ export const CommunityCard = ({
       {role === "expert" && (
         <div className="flex flex-col items-start gap-2 col-span-12 sm:col-span-2 lg:col-span-2">
           <h6 className="text-foreground font-semibold">Reviews</h6>
-          <span className="ps-2 text-success text-sm">No Reviews</span>
+          <span className=" text-foreground text-sm">No Reviews</span>
         </div>
       )}
       {/* chat Button Section  */}
-      <div className="col-span-12 sm:col-span-6 lg:col-span-1 flex justify-end items-end">
-        <Button tag={Link} to={`/dashboard/chats/${id}`} color="dark" className="w-full sm:w-1/2">
+      <div className="col-span-12 sm:col-span-2 lg:col-span-1 flex justify-end items-center">
+        <Button
+          variant="secondary"
+          tag={Link}
+          to={`/dashboard/chats/${id}`}
+          className="w-full bg-secondary-dark rounded-xl"
+        >
           Chat
         </Button>
       </div>

@@ -16,7 +16,7 @@ export const CommunityFilter = () => {
       <Button variant="outline" size="sm" rounded>
         Mentors
       </Button>
-      <Button variant="outline-secondary" size="sm" rounded>
+      <Button variant="disable" size="sm" rounded>
         <span>Add filter</span>
         <Plus />
       </Button>

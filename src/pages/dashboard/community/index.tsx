@@ -1,7 +1,7 @@
 import { useGetCommunity } from "@/api/hooks/dashboard";
 import { CgSpinner } from "@/assets/icons";
 import { Pagination } from "@/components/_ui/pagination";
-import { SearchInput } from "@/components/_ui/search-input";
+import { SearchInput } from "@/components/ui/search-input";
 import { CommunityTypes } from "@/definitions/types";
 import { MainHeading } from "@/pages/components/common";
 import {
@@ -24,7 +24,7 @@ function CommunityPage() {
       />
       <div className="flex md:flex-row flex-col md:items-center items-start justify-between gap-4">
         <CommunityFilter />
-        <SearchInput />
+        <SearchInput/>
       </div>
       {isLoading && (
         <div className="w-full h-96 flex flex-col gap-5 justify-center items-center">
