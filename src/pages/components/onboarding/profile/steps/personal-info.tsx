@@ -1,7 +1,7 @@
 import { useGetCountriesQuery, useGetCountryCitiesMutation } from "@/api/hooks";
 import { FloatingInput, InputError, ReactSelect } from "@/components/ui";
 import { ReactAsyncSelect } from "@/components/ui/react-async-select";
-import { UploadProfilePhoto } from "@/pages/components/common";
+import { UploadImage } from "@/pages/components/common";
 import { classNamesReactSelect } from "@/utils";
 import { useEffect } from "react";
 
@@ -50,7 +50,7 @@ export const OnboardingProfilePersonalInfoStep = ({
   return (
     <div className="grid grid-cols-2 gap-10">
       <div className="col-span-2">
-        <UploadProfilePhoto
+        <UploadImage
           control={control}
           errors={errors}
           image={null}

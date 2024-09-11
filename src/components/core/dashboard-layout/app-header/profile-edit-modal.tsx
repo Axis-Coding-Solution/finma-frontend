@@ -10,7 +10,7 @@ import { errorToast, successToast } from "@/utils";
 import { useModal } from "@/utils/hooks";
 import { useQueryClient } from "@tanstack/react-query";
 import { Camera, Pencil } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Select,
   SelectContent,
@@ -42,6 +42,7 @@ const ProfileEditModal = ({
 }) => {
   const [status, setStatus] = useState<OptionType | null>(null);
   const queryClient = useQueryClient();
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const modal = useModal();
 
@@ -62,6 +63,10 @@ const ProfileEditModal = ({
     }
   };
 
+  const handleOpenInputBox = () => {
+    inputRef.current?.click();
+  };
+
   return (
     <Dialog modal={modal.show} onOpenChange={modal.setShow}>
       <DialogTrigger asChild>
@@ -74,7 +79,12 @@ const ProfileEditModal = ({
       </DialogTrigger>
       <DialogContent className=" 2xl:p-[52px] p-8 flex flex-col 2xl:gap-10 gap-6">
         <div className="flex items-center gap-6">
-          <div className="2xl:min-w-24 min-w-20  2xl:h-24 h-20 relative">
+          <input type="file" ref={inputRef} className="hidden" />
+          <div
+            role="button"
+            onClick={handleOpenInputBox}
+            className="2xl:min-w-24 min-w-20  2xl:h-24 h-20 relative"
+          >
             <Avatar
               image={LogoAvatar}
               className="2xl:min-w-24 min-w-20  2xl:h-24 h-20"

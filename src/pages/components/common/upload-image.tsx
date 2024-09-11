@@ -1,8 +1,12 @@
 import { ProfileAvatar } from "@/assets/svgs";
-import { Button, InputError } from "@/components/ui";
-import { CloudUploadIcon } from "lucide-react";
+import { InputError } from "@/components/ui";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { Controller } from "react-hook-form";
+import {
+  UploadImageOnboarding,
+  UploadImageStartup,
+  UploadImageProfile,
+} from "./upload-image/index.ts";
 
 type PropTypes = {
   image: File | null;
@@ -11,13 +15,21 @@ type PropTypes = {
   errors: any;
   control: any;
   name?: string;
+  variant?: "profile" | "startup" | "onboarding";
 };
 
-export const UploadProfilePhoto = ({
+const designsForVariants = {
+  onboarding: UploadImageOnboarding,
+  startup: UploadImageStartup,
+  profile: UploadImageProfile,
+};
+
+export const UploadImage = ({
   errors,
   control,
   image,
   name = "profilePicture",
+  variant = "onboarding", // onboarding, startup, profile
 }: PropTypes) => {
   const [preview, setPreview] = useState<undefined | string>("");
   const hiddenInputRef = useRef<any>(null);
@@ -40,6 +52,15 @@ export const UploadProfilePhoto = ({
     if (image && !preview) setPreview(URL.createObjectURL(image as any));
   }, [image]);
   // md:max-w-64
+
+  const CurrentVariantDesign = designsForVariants[variant];
+
+  const propsForDesign = {
+    onUpload,
+    preview,
+    placeholderImg: ProfileAvatar,
+  };
+
   return (
     <div>
       <div className="flex gap-5 items-center">
@@ -63,29 +84,7 @@ export const UploadProfilePhoto = ({
             />
           )}
         />
-        <div
-          onClick={onUpload}
-          role="button"
-          className="border border-border rounded-full"
-        >
-            <img
-              src={ preview  ? preview : ProfileAvatar }
-              className="size-20 rounded-full border border-[#4D4D4D]"
-              onLoad={(e) => URL.revokeObjectURL(e.currentTarget.src)}
-              alt="Profile Photo"
-            />
-        </div>
-        <div className="cursor-pointer">
-          <Button
-            icon={<CloudUploadIcon />}
-            variant="secondary-dark"
-            className="font-normal"
-            type="button"
-            onClick={onUpload}
-          >
-            Choose photo
-          </Button>
-        </div>
+        {<CurrentVariantDesign {...propsForDesign} />}
       </div>
       <InputError error={errors[name]} />
     </div>
