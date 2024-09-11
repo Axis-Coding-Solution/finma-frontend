@@ -1,11 +1,7 @@
 import { Button } from "@/components/_ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/_ui/sheet";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  BellDot,
-  Menu,
-  Settings,
-} from "lucide-react";
+import { BellDot, Menu, Settings } from "lucide-react";
 
 import {
   DropdownMenu,
@@ -24,7 +20,7 @@ import { successToast } from "@/utils";
 import Navigation from "../sidebar/navigation";
 import NavLogo from "../sidebar/nav-logo";
 import NavFooter from "../sidebar/nav-footer";
-import { SearchBar } from "@/pages/components/common";
+import { SearchInput } from "@/components/ui/search-input";
 
 const AppHeader = () => {
   const auth = useAuth();
@@ -39,7 +35,7 @@ const AppHeader = () => {
     successToast("Logout successfully!");
   };
   return (
-    <header className="sticky w-full right-0  top-0 z-10 bg-background flex  items-center  justify-between gap-7 border-b px-4  lg:px-10 py-3">
+    <header className="sticky w-full right-0  top-0 z-10 bg-background flex  items-center  justify-between gap-7 border-b px-6  2xl:px-10 py-3">
       <div className="flex items-center gap-4">
         <Sheet
           onOpenChange={drawer.setShow}
@@ -65,7 +61,7 @@ const AppHeader = () => {
           </SheetContent>
         </Sheet>
         <div className="hidden md:block">
-          <SearchBar />
+          <SearchInput />
         </div>
       </div>
       <div className="flex 2xl:gap-12 gap-8 items-center">
