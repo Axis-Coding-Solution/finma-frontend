@@ -7,5 +7,5 @@ export const dashboardStartUpSchema = object({
     .required()
     .nullable("Industry is required!"),
   logo: mixed().label("Logo").required(),
-  bio: string().optional(),
+  bio: string().max(120, "Bio cannot exceed 120 characters.").optional(),
 });
