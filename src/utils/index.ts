@@ -84,7 +84,7 @@ export const classNamesReactSelect: ClassNamesConfig<
   container: () => "w-full",
   control: ({ isFocused }) =>
     cn(
-      "border-b transition-all bg-input text-foreground overflow-visible w-full",
+      "border-b transition-all bg-transparent text-foreground overflow-visible w-full",
       isFocused ? "border-muted-foreground" : "border-muted-foreground"
     ),
   dropdownIndicator: ({ selectProps }) =>

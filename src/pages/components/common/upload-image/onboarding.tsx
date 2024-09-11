@@ -2,12 +2,9 @@ import { Button } from "@/components/ui";
 import { CloudUploadIcon } from "lucide-react";
 import { PropsType } from "./types";
 
+import { ProfileAvatar } from "@/assets/svgs";
 
-export const UploadImageOnboarding = ({
-  placeholderImg,
-  onUpload,
-  preview,
-}: PropsType) => {
+export const UploadImageOnboarding = ({ onUpload, preview }: PropsType) => {
   return (
     <>
       <div
@@ -16,7 +13,7 @@ export const UploadImageOnboarding = ({
         className="border border-border rounded-full"
       >
         <img
-          src={preview ? preview : placeholderImg}
+          src={preview ? preview : ProfileAvatar}
           className="size-20 rounded-full border border-[#4D4D4D]"
           onLoad={(e) => URL.revokeObjectURL(e.currentTarget.src)}
           alt="Profile Photo"

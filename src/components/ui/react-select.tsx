@@ -19,7 +19,13 @@ interface IProps extends Props {
 }
 
 export const ReactSelect = forwardRef<any, IProps>((props, ref) => {
-  const { components = {}, label, labelProps, ...otherProps } = props;
+  const {
+    components = {},
+    placeholder = "",
+    label,
+    labelProps,
+    ...otherProps
+  } = props;
   const [inputValue, setInputValue] = useState("");
   const id = useId();
 
@@ -47,14 +53,15 @@ export const ReactSelect = forwardRef<any, IProps>((props, ref) => {
         inputValue={inputValue}
         unstyled
         classNames={classNamesReactSelect}
+        placeholder={placeholder}
         {...otherProps}
       />
       <label
         htmlFor={id}
         className={cn(
-          "absolute px-1 origin-[0] text-muted-text bg-background transition duration-150 pointer-events-none z-10",
+          "absolute px-1 origin-[0] text-muted-text bg-transparent transition duration-150 pointer-events-none z-1",
           (props.value as any) || inputValue.length > 0 || isMenuOpen
-            ? "scale-90 -translate-y-7 text-muted-text bg-transparent"
+            ? "scale-90 -translate-y-7 text-muted-text"
             : "translate-y-0 scale-100"
         )}
         {...labelProps}

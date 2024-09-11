@@ -28,7 +28,7 @@ export const FloatingInput = forwardRef<HTMLInputElement, InputProps>(
         />
         <label
           htmlFor={id}
-          className="bg-transparent absolute px-1 origin-[0] scale-90 -translate-y-7 text-muted-text bg-background peer-focus:scale-90 peer-focus:-translate-y-7 peer-focus:text-muted-text peer-focus:bg-transparent peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:text-muted-foreground transition duration-150 pointer-events-none z-10"
+          className="bg-transparent absolute px-1 origin-[0] scale-90 -translate-y-7 text-muted-text bg-background peer-focus:scale-90 peer-focus:-translate-y-7 peer-focus:text-muted-text peer-focus:bg-transparent peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:text-muted-foreground transition duration-150 pointer-events-none z-1"
           {...labelProps}
         >
           {label}

@@ -1,4 +1,3 @@
-import { ProfileAvatar } from "@/assets/svgs";
 import { InputError } from "@/components/ui";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { Controller } from "react-hook-form";
@@ -58,7 +57,6 @@ export const UploadImage = ({
   const propsForDesign = {
     onUpload,
     preview,
-    placeholderImg: ProfileAvatar,
   };
 
   return (
