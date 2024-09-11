@@ -31,8 +31,6 @@ export const ReactSelect = forwardRef<any, IProps>((props, ref) => {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  console.log(props.value, isMenuOpen);
-
   const onMenuOpen = useCallback(() => setIsMenuOpen(true), [isMenuOpen]);
   const onMenuClose = useCallback(() => setIsMenuOpen(false), [isMenuOpen]);
 

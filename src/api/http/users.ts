@@ -1,4 +1,4 @@
-import { get, post } from "@/utils/axios";
+import { get, post, put } from "@/utils/axios";
 import { apiErrorHandler } from "../helpers";
 
 const url = "/users";
@@ -16,6 +16,15 @@ export const getUsersApi = async () => {
 export const createUserProfileApi = async (body: any) => {
   try {
     const res = await post(appendUrl("profile"), body);
+    return res.data;
+  } catch (error: any) {
+    return Promise.reject(apiErrorHandler(error));
+  }
+};
+
+export const updateUserProfileApi = async (body: any) => {
+  try {
+    const res = await put(appendUrl("profile"), body);
     return res.data;
   } catch (error: any) {
     return Promise.reject(apiErrorHandler(error));

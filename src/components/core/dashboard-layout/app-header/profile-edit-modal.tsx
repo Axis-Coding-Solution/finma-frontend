@@ -10,6 +10,8 @@ import { Pencil } from "lucide-react";
 import { Controller, useForm } from "react-hook-form";
 import { FORM_MODE } from "@/utils/constants";
 import { UploadImage } from "@/pages/components/common";
+import { useUpdateProfileMutation } from "@/api/hooks";
+import { createFormData, errorToast, successToast } from "@/utils";
 
 const statusOptions = [
   { label: "💡 Brainstorming Ideas", value: "💡 Brainstorming Ideas" },
@@ -90,35 +92,73 @@ const stageOptions = [
 type OptionType = { value: string; label: string };
 
 interface UserData {
-  profilePicture: OptionType;
-  status: string;
+  profilePicture: string | null;
+  status: OptionType | null;
   firstName: string;
   lastName: string;
-  email: string;
+  email?: string;
   role: "innovator" | "mentor" | "expert";
-  entrepreneurialStage: string;
+  entrepreneurType: OptionType | null;
 }
 
 interface ProfileEditModalProps {
   userData: UserData;
+  updateUser?: (user: any) => void;
 }
 
-const ProfileEditModal = ({ userData }: ProfileEditModalProps) => {
+const makeDefaultValues = (userData: UserData) => ({
+  firstName: userData.firstName,
+  lastName: userData.lastName,
+  role: userData.role,
+  entrepreneurType: userData.entrepreneurType,
+  status: userData.status,
+  profilePicture: userData.profilePicture,
+});
+
+const ProfileEditModal = ({ userData, updateUser }: ProfileEditModalProps) => {
   const modal = useModal();
+  const { mutateAsync } = useUpdateProfileMutation();
   const {
     control,
     register,
     handleSubmit,
+    watch,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm({
     mode: FORM_MODE,
-    defaultValues: userData,
+    defaultValues: makeDefaultValues(userData),
   });
 
-  const onSubmitHandler = (values: UserData) => console.log(values);
+  const onSubmitHandler = async (values: UserData) => {
+    try {
+      values = {
+        ...values,
+        profilePicture:
+          typeof values.profilePicture === "string"
+            ? null
+            : values.profilePicture,
+      };
+      const formData = createFormData(values);
+      const res = await mutateAsync(formData);
+      if (updateUser) updateUser(res.data);
+      modal.close();
+      successToast(res.message);
+    } catch (error: any) {
+      errorToast(error.message);
+    }
+  };
 
+  const image = watch("profilePicture");
+
+  const handleOpenChange = (open: boolean) => {
+    setValue("profilePicture", userData.profilePicture, {
+      shouldValidate: true,
+    });
+    modal.setShow(open);
+  };
   return (
-    <Dialog modal={modal.show} onOpenChange={modal.setShow}>
+    <Dialog modal={modal.show} onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>
         <span
           role="button"
@@ -136,7 +176,7 @@ const ProfileEditModal = ({ userData }: ProfileEditModalProps) => {
             <UploadImage
               control={control}
               errors={errors}
-              image={null}
+              image={image}
               register={register}
               name="profilePicture"
               variant="profile"
@@ -186,21 +226,16 @@ const ProfileEditModal = ({ userData }: ProfileEditModalProps) => {
                 )}
               />
             </div>
-            <Controller
-              name="email"
-              control={control}
-              render={({ field }) => (
-                <FloatingInput
-                  className="bg-transparent"
-                  type="email"
-                  label="Email"
-                  {...field}
-                />
-              )}
+            <FloatingInput
+              className="bg-transparent"
+              type="email"
+              label="Email"
+              value={userData.email}
+              readOnly
             />
             <Controller
+              name="entrepreneurType"
               control={control}
-              name="entrepreneurialStage"
               render={({ field }) => (
                 <ReactSelect
                   options={stageOptions}

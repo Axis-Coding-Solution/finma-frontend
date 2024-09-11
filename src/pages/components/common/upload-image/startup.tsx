@@ -7,7 +7,7 @@ export const UploadImageStartup = ({ onUpload, preview }: PropsType) => {
       <div
         onClick={onUpload}
         role="button"
-        className="2xl:w-36 w-28 2xl:h-36 h-28 rounded-full border-2 border-info flex flex-col justify-center items-center"
+        className="2xl:w-36 w-28 2xl:h-36 h-28 rounded-full flex flex-col justify-center items-center border-2 border-info"
       >
         {preview && preview ? (
           <img
@@ -15,6 +15,7 @@ export const UploadImageStartup = ({ onUpload, preview }: PropsType) => {
             className="size-full rounded-full"
             onLoad={(e) => URL.revokeObjectURL(e.currentTarget.src)}
             alt="Profile Photo"
+            crossOrigin="anonymous"
           />
         ) : (
           <>

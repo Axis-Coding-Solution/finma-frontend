@@ -8,7 +8,7 @@ import {
 } from "./upload-image/index.ts";
 
 type PropTypes = {
-  image: File | null;
+  image: File | string | null;
   text?: string;
   register: any;
   errors: any;
@@ -48,7 +48,10 @@ export const UploadImage = ({
   };
 
   useEffect(() => {
-    if (image && !preview) setPreview(URL.createObjectURL(image as any));
+    if (image && !preview) {
+      if (image instanceof File) setPreview(URL.createObjectURL(image as any));
+      else setPreview(image);
+    }
   }, [image]);
   // md:max-w-64
 

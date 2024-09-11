@@ -38,6 +38,7 @@ function AuthProvider({ children }: PropsTypes) {
   };
 
   const updateUser = (user: any) => {
+    console.log("🚀 ~ updateUser ~ user:", user)
     setUser(user);
     localStorage.setItem("user", JSON.stringify(user));
   };

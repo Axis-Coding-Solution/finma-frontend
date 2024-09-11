@@ -12,6 +12,7 @@ export const UploadImageProfile = ({ preview, onUpload }: PropsType) => {
     >
       <Avatar
         image={preview ? preview : userAvatar1Image}
+        onError={(e) => (e.currentTarget.src = userAvatar1Image)}
         className="2xl:min-w-24 min-w-20 border border-light-gray 2xl:h-24 h-20"
       />
       <div className="2xl:size-9 size-7 p-1.5 flex justify-center items-center border-2 border-warning rounded-full bg-background absolute bottom-0 right-0">

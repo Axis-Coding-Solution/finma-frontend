@@ -2,7 +2,7 @@ import { useGetProjectById } from "@/api/hooks/dashboard";
 import { GoBack } from "@/pages/components/common";
 import {
   StartupTimeline,
-  StartuptitleBar,
+  StartupTitleBar,
 } from "@/pages/components/dashboard/my-startups";
 import { ChevronRight } from "lucide-react";
 import { useEffect } from "react";
@@ -13,7 +13,6 @@ function StartupDetailPage() {
   const startupId = params.id;
 
   const { data } = useGetProjectById(String(startupId));
-  console.log("get data", data)
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -29,17 +28,8 @@ function StartupDetailPage() {
         <ChevronRight size={20} className="text-muted-foreground" />
         <span>{data?.name}</span>
       </div>
-
-      {/* Title Card  */}
-      <div>
-        <StartuptitleBar  {...data} />
-      </div>
-
-      {/* Timeline Content  */}
-      <div>
-        <StartupTimeline   />
-
-      </div>
+      <StartupTitleBar data={data} />
+      <StartupTimeline />
     </div>
   );
 }

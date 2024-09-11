@@ -14,8 +14,6 @@ import {
 import { Avatar } from "@/components/_ui/avatar";
 import { useAuth, useModal } from "@/utils/hooks";
 import ProfileEditModal from "./profile-edit-modal";
-import { baseURL } from "@/utils/axios";
-import { useGetStatusForUser } from "@/api/hooks/dashboard";
 import { successToast } from "@/utils";
 import Navigation from "../sidebar/navigation";
 import NavLogo from "../sidebar/nav-logo";
@@ -23,11 +21,20 @@ import NavFooter from "../sidebar/nav-footer";
 import { SearchInput } from "@/components/ui/search-input";
 
 const AppHeader = () => {
-  const auth = useAuth();
   const navigate = useNavigate();
-  const userData = auth?.user;
-  const { data: status } = useGetStatusForUser();
   const drawer = useModal();
+  const auth = useAuth();
+
+  let userData = auth?.user;
+  userData = {
+    firstName: userData?.firstName,
+    lastName: userData?.lastName,
+    email: userData?.email,
+    entrepreneurType: userData?.entrepreneurType ?? null,
+    profilePicture: userData?.profilePicture,
+    role: userData?.role,
+    status: userData?.status ?? null,
+  };
 
   const handleLogin = () => {
     auth?.handleLogout();
@@ -37,11 +44,7 @@ const AppHeader = () => {
   return (
     <header className="sticky w-full right-0  top-0 z-10 bg-background flex  items-center  justify-between gap-7 border-b px-6  2xl:px-10 py-3">
       <div className="flex items-center gap-4">
-        <Sheet
-          onOpenChange={drawer.setShow}
-          // modal={drawer.show}
-          open={drawer.show}
-        >
+        <Sheet onOpenChange={drawer.setShow} open={drawer.show}>
           <SheetTrigger asChild>
             <Button
               variant="outline"
@@ -81,7 +84,7 @@ const AppHeader = () => {
               <div role="button" className="border border-border rounded-full">
                 <Avatar
                   className="object-cover 2xl:min-w-14 min-w-10 2xl:h-14 h-10"
-                  image={`${baseURL}/images/${userData?.profilePicture}`}
+                  image={userData?.profilePicture}
                 />
               </div>
             </DropdownMenuTrigger>
@@ -96,14 +99,20 @@ const AppHeader = () => {
           </DropdownMenu>
           <div className="flex items-start gap-1">
             <div className="flex flex-col gap-1">
-              <h2 className=" 2xl:text-[22px] text-base font-semibold text-foreground">
+              <h2
+                title={userData?.firstName + " " + userData?.lastName}
+                className="2xl:text-[22px] text-base font-semibold text-foreground overflow-hidden max-w-36 whitespace-nowrap text-ellipsis"
+              >
                 {userData?.firstName + " " + userData?.lastName}
               </h2>
               <span className="flex gap-0 items-center 2xl:text-lg text-xs font-normal text-muted-foreground">
-                😤 <span>No Provider</span>
+                {userData?.status?.value ?? "😤 Not Provided."}
               </span>
             </div>
-            <ProfileEditModal userStatus={status} userData={userData} />
+            <ProfileEditModal
+              userData={userData}
+              updateUser={auth?.updateUser}
+            />
           </div>
         </div>
       </div>

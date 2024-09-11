@@ -29,7 +29,7 @@ export const ProjectEditModal = ({ projectId }: { projectId: string }) => {
     handleSubmit,
     watch,
     reset,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm({
     defaultValues: dashboardStartUpInitialValues,
     resolver: yupResolver(dashboardStartUpSchema as any),
@@ -50,6 +50,7 @@ export const ProjectEditModal = ({ projectId }: { projectId: string }) => {
     register,
     errors,
     watch,
+    isSubmitting,
   };
 
   const onsubmitHandler = async (
@@ -58,7 +59,12 @@ export const ProjectEditModal = ({ projectId }: { projectId: string }) => {
     try {
       const formData = createFormData(values);
       await mutateAsync({ data: formData, id: projectId });
-      queryClient.invalidateQueries({ queryKey: ["/project"] });
+      queryClient.invalidateQueries({
+        queryKey: ["/projects"],
+      });
+      queryClient.invalidateQueries({
+        queryKey: ["/project-by-id", projectId],
+      });
       navigate("/dashboard/my-startups");
       successToast("Updated Successfully");
       modal.close();
@@ -67,35 +73,33 @@ export const ProjectEditModal = ({ projectId }: { projectId: string }) => {
     }
   };
   return (
-    <div>
-      <Dialog>
-        <DialogTrigger onClick={(e) => e.stopPropagation()}>
-          <span role="button">
-            <div className="flex gap-1 text-foreground">
-              <SquarePen size={16} className="mt-1" />
-              <span>Edit project</span>
-            </div>
-          </span>
-        </DialogTrigger>
-        <DialogContent
-          onClick={(e) => e.stopPropagation()}
-          className="bg-secondary 2xl:p-8 p-6 border-none 2xl:max-w-[1154px] md:max-w-[786px] max-w-auto"
-        >
-          <div className="bg-background 2xl:p-16 p-8  rounded  flex flex-col 2xl:gap-[52px] gap-8">
-            <form
-              className="flex flex-col gap-4"
-              onSubmit={handleSubmit(onsubmitHandler)}
-            >
-              <StartupForm
-                {...commonProps}
-                errors={errors}
-                title="Edit"
-                detail="Update"
-              />
-            </form>
+    <Dialog modal={modal.show} onOpenChange={modal.setShow}>
+      <DialogTrigger onClick={(e) => e.stopPropagation()} asChild>
+        <span role="button">
+          <div className="flex gap-1 text-foreground">
+            <SquarePen size={16} className="mt-1" />
+            <span>Edit project</span>
           </div>
-        </DialogContent>
-      </Dialog>
-    </div>
+        </span>
+      </DialogTrigger>
+      <DialogContent
+        onClick={(e) => e.stopPropagation()}
+        className="bg-secondary 2xl:p-8 p-6 border-none 2xl:max-w-[1154px] md:max-w-[786px] max-w-auto"
+      >
+        <div className="bg-background 2xl:p-16 p-8  rounded  flex flex-col 2xl:gap-[52px] gap-8">
+          <form
+            className="flex flex-col gap-4"
+            onSubmit={handleSubmit(onsubmitHandler)}
+          >
+            <StartupForm
+              {...commonProps}
+              errors={errors}
+              title="Edit"
+              detail="Update"
+            />
+          </form>
+        </div>
+      </DialogContent>
+    </Dialog>
   );
 };

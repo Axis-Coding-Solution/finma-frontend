@@ -28,14 +28,14 @@ export default [
   },
   {
     element: <StartupIdeaValidation />,
-    path: "/dashboard/my-startups/idea-validation",
+    path: "/dashboard/my-startups/:id/idea-validation",
     meta: {
       layout: "dashboard",
     },
   },
   {
     element: <StartupMarketGrowth />,
-    path: "/dashboard/my-startups/market-growth",
+    path: "/dashboard/my-startups/:id/market-growth",
     meta: {
       layout: "dashboard",
     },

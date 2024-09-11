@@ -25,7 +25,10 @@ export const StartupForm = ({
   control,
   title,
   detail,
+  watch,
+  isSubmitting,
 }: any) => {
+  const image = watch("logo");
   return (
     <>
       <div className="flex md:flex-row flex-col  justify-between md:items-start items-center gap-8">
@@ -40,7 +43,7 @@ export const StartupForm = ({
         <UploadImage
           control={control}
           errors={errors}
-          image={null}
+          image={image}
           register={register}
           name="logo"
           text="Upload Photo"
@@ -87,11 +90,16 @@ export const StartupForm = ({
       <div className="flex justify-end">
         <div className="md:w-1/2 w-full flex items-center justify-between gap-4">
           <DialogClose>
-            <Button type="button" variant="outline" className="w-full">
+            <Button
+              disabled={isSubmitting}
+              type="button"
+              variant="outline"
+              className="w-full"
+            >
               Cancel
             </Button>
           </DialogClose>
-          <Button type="submit" className="w-full" >
+          <Button disabled={isSubmitting} type="submit" className="w-full">
             Save
           </Button>
         </div>

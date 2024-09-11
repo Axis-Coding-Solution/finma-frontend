@@ -1,6 +1,6 @@
 import { useGetProjectById } from "@/api/hooks/dashboard";
 import { GoBack } from "@/pages/components/common";
-import { StartuptitleBar } from "@/pages/components/dashboard/my-startups";
+import { StartupTitleBar } from "@/pages/components/dashboard/my-startups";
 import { IdeaValidationCard } from "@/pages/components/dashboard/my-startups/idea-validation";
 import { ideaValidationContent } from "@/pages/components/dashboard/my-startups/idea-validation/data";
 import { ChevronRight } from "lucide-react";
@@ -27,14 +27,15 @@ const StartupIdeaValidationPage = () => {
 
       {/* Title Card  */}
       <div>
-        <StartuptitleBar {...data} />
+        <StartupTitleBar data={data} />
       </div>
 
       {/* Idea Validation Card  */}
       <div className="flex flex-col 2xl:gap-10 gap-6">
         {ideaValidationContent &&
-          ideaValidationContent.map((item: any) => (
+          ideaValidationContent.map((item: any, idx: number) => (
             <IdeaValidationCard
+              key={idx}
               heading={item.heading}
               subHeading={item.subHeading}
               detail={item.detail}

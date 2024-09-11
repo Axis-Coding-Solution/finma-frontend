@@ -1,8 +1,4 @@
-import {
-  DialogTrigger,
-  Dialog,
-  DialogContent,
-} from "@/components/_ui/dialog";
+import { DialogTrigger, Dialog, DialogContent } from "@/components/_ui/dialog";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Button } from "@/components/ui";
@@ -26,7 +22,7 @@ const ProjectAddModal = () => {
     register,
     handleSubmit,
     watch,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm({
     defaultValues: dashboardStartUpInitialValues,
     resolver: yupResolver(dashboardStartUpSchema as any),
@@ -48,34 +44,36 @@ const ProjectAddModal = () => {
     }
   };
 
-  
   const commonProps = {
     control,
     watch,
     register,
+    isSubmitting,
   };
-  
 
   return (
-    <div>
-      <Dialog>
-        <DialogTrigger asChild>
-          <span role="button">
-            <Button icon={<Plus />}>New startup</Button>
-          </span>
-        </DialogTrigger>
-        <DialogContent className="bg-secondary 2xl:p-8 p-6 border-none 2xl:max-w-[1154px] md:max-w-[786px] max-w-auto">
-          <div className="bg-background 2xl:p-16 p-8  rounded  flex flex-col 2xl:gap-[52px] gap-8">
-            <form
-              className="flex flex-col gap-4"
-              onSubmit={handleSubmit(onsubmitHandler)}
-            >
-              <StartupForm {...commonProps} errors={errors} title="Add" detail="Add new" />
-            </form>
-          </div>
-        </DialogContent>
-      </Dialog>
-    </div>
+    <Dialog modal={modal.show} onOpenChange={modal.setShow}>
+      <DialogTrigger asChild>
+        <span role="button">
+          <Button icon={<Plus />}>New startup</Button>
+        </span>
+      </DialogTrigger>
+      <DialogContent className="bg-secondary 2xl:p-8 p-6 border-none 2xl:max-w-[1154px] md:max-w-[786px] max-w-auto">
+        <div className="bg-background 2xl:p-16 p-8  rounded  flex flex-col 2xl:gap-[52px] gap-8">
+          <form
+            className="flex flex-col gap-4"
+            onSubmit={handleSubmit(onsubmitHandler)}
+          >
+            <StartupForm
+              {...commonProps}
+              errors={errors}
+              title="Add"
+              detail="Add new"
+            />
+          </form>
+        </div>
+      </DialogContent>
+    </Dialog>
   );
 };
 export default ProjectAddModal;
