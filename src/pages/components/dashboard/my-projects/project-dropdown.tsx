@@ -16,7 +16,7 @@ const ProjectDropDOwn = ({ name, id }: { name: string; id: string }) => {
         </DropdownMenuTrigger>
         <DropdownMenuContent side="bottom">
           <div className="flex flex-col p-3 pb-4 gap-2 ">
-            <ProjectEditModal projectId={id} />
+            <ProjectEditModal projectId={id}  />
             <ProjectDeleteModal projectName={name} projectId={id} />
           </div>
         </DropdownMenuContent>

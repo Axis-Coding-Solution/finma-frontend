@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-import { get } from "@/utils/axios";
 import { InputError } from "@/components/ui/input-error";
 import {
   Button,
@@ -21,37 +19,22 @@ const industryOptions = [
   { value: "Farming", label: "Farming" },
 ];
 
-export const StartupForm = ({ register, errors, reset, control, id }: any) => {
-  const getProjectById = async () => {
-    try {
-      const response = await get(`/projects/${id}`);
-      reset({
-        name: response?.data.data.name || "",
-        tagline: response?.data.data.industry || "",
-        logoImage: response?.data.data.logo || "",
-        bio: response?.data.data.bio || "",
-      });
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
-
-  useEffect(() => {
-    if (id) {
-      getProjectById();
-    }
-  }, [id]);
-  console.log("error", errors);
-  // const image = watch("logoImage");
+export const StartupForm = ({
+  register,
+  errors,
+  control,
+  title,
+  detail,
+}: any) => {
   return (
     <>
       <div className="flex md:flex-row flex-col  justify-between md:items-start items-center gap-8">
         <div className="flex flex-col 2xl:gap-3 gap-2">
           <h4 className="2xl:text-[44px] text-3xl font-semibold text-foreground">
-            Startup card
+            {title} Startup card
           </h4>
           <p className="2xl:text-2xl text-lg text-primary-disabled">
-            Add or update this card anytime for your startup
+            {detail} this card anytime for your startup
           </p>
         </div>
         <UploadImage
@@ -103,12 +86,12 @@ export const StartupForm = ({ register, errors, reset, control, id }: any) => {
       </div>
       <div className="flex justify-end">
         <div className="md:w-1/2 w-full flex items-center justify-between gap-4">
-          <DialogClose onClick={(e) => e.stopPropagation()}>
+          <DialogClose>
             <Button type="button" variant="outline" className="w-full">
               Cancel
             </Button>
           </DialogClose>
-          <Button type="submit" className="w-full">
+          <Button type="submit" className="w-full" >
             Save
           </Button>
         </div>

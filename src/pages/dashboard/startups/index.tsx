@@ -38,12 +38,15 @@ import ProjectAddModal from "@/pages/components/dashboard/my-projects/project-ad
 
 const MyStartupPage = () => {
   const { data } = useGetProjects();
+
+  const totalProjects = data ? data?.length : 0;
+
   return (
     <>
       <div>
         <HeadingButton
           title="My Startups"
-          subtitle="8 project"
+          subtitle={`${totalProjects} project${totalProjects !== 1 ? "s" : ""}`}
           renderRight={<ProjectAddModal />}
         />
       </div>

@@ -1,7 +1,6 @@
 export const dashboardStartUpInitialValues = {
-    name: "",
-    logo: null,
-    industry:null,
-    bio: "",
-  };
-  
+  name: "",
+  logo: null,
+  industry: null,
+  bio: "",
+};

@@ -4,11 +4,6 @@ import {
   DialogContent,
 } from "@/components/_ui/dialog";
 import { useForm } from "react-hook-form";
-// import { createFormData, errorToast, successToast } from "@/utils";
-// import { useModal } from "@/utils/hooks";
-// import { useAddProjectMutation } from "@/api/hooks/dashboard/myProject";
-// import { useQueryClient } from "@tanstack/react-query";
-// import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Button } from "@/components/ui";
 import { Plus } from "lucide-react";
@@ -44,7 +39,6 @@ const ProjectAddModal = () => {
       const formData = createFormData(values);
       const response = await mutateAsync(formData);
       queryClient.invalidateQueries({ queryKey: ["/projects"] });
-      // navigate(`/dashboard/my-projects/${response.data._id}`);
       navigate(`/dashboard/my-startups/${response.data._id}`);
       successToast(response.message);
       modal.close();
@@ -54,11 +48,14 @@ const ProjectAddModal = () => {
     }
   };
 
+  
   const commonProps = {
     control,
     watch,
     register,
   };
+  
+
   return (
     <div>
       <Dialog>
@@ -73,7 +70,7 @@ const ProjectAddModal = () => {
               className="flex flex-col gap-4"
               onSubmit={handleSubmit(onsubmitHandler)}
             >
-              <StartupForm {...commonProps} errors={errors} />
+              <StartupForm {...commonProps} errors={errors} title="Add" detail="Add new" />
             </form>
           </div>
         </DialogContent>

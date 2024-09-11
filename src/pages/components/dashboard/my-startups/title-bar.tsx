@@ -1,20 +1,23 @@
+import { useGetProjectById } from "@/api/hooks/dashboard";
 import { LogoAvatar } from "@/assets/svgs";
+import { Avatar } from "@/components/ui";
+import { useParams } from "react-router-dom";
 
-interface StartupData {
-  data: {
-    name: string;
-    industry: any;
-    logo: any;
-  };
-}
+export const StartuptitleBar = ( ) => {
 
-export const StartuptitleBar = ({ data }: StartupData) => {
+  const params = useParams();
+  const startupId = params.id;
+  const { data } = useGetProjectById(String(startupId));
+
   return (
     <div className="bg-background px-6 py-4 shadow rounded flex 2xl:flex-1 flex-wrap items-start  2xl:gap-10 gap-4 justify-between">
       {/* Page title  */}
       <div className="">
         <div className="flex items-center gap-3">
-          <img src={data?.logo || LogoAvatar} className="w-16" />
+        <Avatar
+            className="object-cover w-16 h-16"
+            image={data?.logo || LogoAvatar}
+          />
           <div className="flex flex-col gap-1">
             <h4 className="2xl:text-[28px] leading-0 text-lg font-semibold text-foreground capitalize">
               {data?.name}

@@ -104,7 +104,7 @@ const AppHeader = () => {
                 {userData?.firstName + " " + userData?.lastName}
               </h2>
               <span className="flex gap-0 items-center 2xl:text-lg text-xs font-normal text-muted-foreground">
-                😤 <span>Not Provided</span>
+                😤 <span>No Provider</span>
               </span>
             </div>
             <ProfileEditModal userStatus={status} userData={userData} />

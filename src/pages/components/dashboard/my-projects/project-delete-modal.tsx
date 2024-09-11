@@ -38,8 +38,8 @@ export const ProjectDeleteModal = ({
   }
 
   return (
-    <div>
-      <Dialog>
+    <div >
+      <Dialog >
         <DialogTrigger onClick={(e) => e.stopPropagation()}>
           <span role="button">
             <div className="flex gap-1 text-red-500">
@@ -48,7 +48,7 @@ export const ProjectDeleteModal = ({
             </div>
           </span>
         </DialogTrigger>
-        <DialogContent>
+        <DialogContent onClick={(e) => e.stopPropagation()}>
           <DialogHeader>
             <DialogTitle className="text-left ">
               <h4 className="text-foreground 2xl:text-[32px] text-2xl font-semibold">
@@ -66,7 +66,7 @@ export const ProjectDeleteModal = ({
             </p>
           </div>
           <div className="flex items-center justify-between gap-4">
-            <DialogClose onClick={(e) => e.stopPropagation()}>
+            <DialogClose>
               <Button variant="outline" className="w-full" >
                 Cancel
               </Button>
