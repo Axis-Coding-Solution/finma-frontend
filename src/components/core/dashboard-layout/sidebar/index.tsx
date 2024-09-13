@@ -8,7 +8,7 @@ const Sidebar = () => {
   return (
     <div className="sticky top-0 left-0 hidden w-full border-r bg-dark lg:block h-full max-h-screen overflow-auto">
       <PerfectScrollbar>
-        <nav className="flex flex-col h-full gap-8 pl-2 text-lg font-medium lg:pl-4 py-3">
+        <nav className="flex flex-col h-full 2xl:gap-8 gap-4 pl-2 text-lg font-medium lg:pl-4 2xl:py-3 py-2">
           <NavLogo />
           <Navigation />
           <NavFooter />

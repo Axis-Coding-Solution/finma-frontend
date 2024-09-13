@@ -31,7 +31,7 @@ export const IdeaValidationCardEditModal = () => {
             </div>
           </span>
         </DialogTrigger>
-        <DialogContent className="text-2xl bg-info-light min-w-[1084px] 2xl:py-[52px] py-8 2xl:px-8 px-6">
+        <DialogContent className="text-2xl bg-info-light min-w-[1084px] 2xl:py-[52px] py-6 2xl:px-8 px-4">
           <div className="flex flex-col 2xl:gap-8 gap-6">
             {/* Team member & Card Status */}
             <div className="flex items-start 2xl:gap-10 gap-6">
@@ -69,24 +69,24 @@ export const IdeaValidationCardEditModal = () => {
               </div>
             </div>
             {/* Edit Content  */}
-            <div className="bg-background rounded 2xl:p-8 p-6 flex items-stretch justify-between  2xl:gap-24 gap-20 ">
+            <div className="bg-background rounded 2xl:p-8 p-4 flex items-stretch justify-between  2xl:gap-24 gap-20 ">
               <div className="flex flex-col justify-between h-full">
                 <div>
-                  <h4 className="2xl:text-[32px] text-2xl font-semibold text-foreground capitalize">
+                  <h4 className="2xl:text-[32px] leading-tight text-2xl font-semibold text-foreground capitalize">
                     Describe the problem your startup is going to solve
                   </h4>
-                  <span className="2xl:text-2xl text-base 2xl:mt-4 mt-2">
+                  <p className="2xl:text-2xl text-sm 2xl:mt-4 mt-2">
                     120 Letter max
-                  </span>
+                  </p>
                 </div>
                 <div>
-                  <p className="2xl:text-[28px] text-lg 2xl:leading-8 leading-6 text-foreground border-b border-muted-foreground pb-2 ">
+                  <p className="2xl:text-[28px] text-base 2xl:leading-8 leading-5 text-foreground border-b border-muted-foreground pb-2 ">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     Suspendisse ultrices interdum orci, at sagittis elit
                     porttitor. Suspendisse ultrices interdum orci, at sagittis
                     elit porttitor.
                   </p>
-                  <div className="flex items-center 2xl:gap-8 gap-6 2xl:mt-8 mt-6">
+                  <div className="grid grid-cols-3 items-center 2xl:gap-8 gap-6 2xl:mt-8 mt-6">
                     <GradientButton
                       variant="gradient"
                       className="rounded w-full"

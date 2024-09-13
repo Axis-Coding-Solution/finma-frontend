@@ -8,21 +8,21 @@ export const StartupTitleBar = ({ data }: any) => {
       <div className="">
         <div className="flex items-center gap-3">
           <Avatar
-            className="object-cover w-16 h-16"
+            className="object-cover 2xl:w-16 w-14 2xl:h-16 h-14"
             image={data?.logo || LogoAvatar}
           />
           <div className="flex flex-col gap-1">
             <h4 className="2xl:text-[28px] leading-0 text-lg font-semibold text-foreground capitalize">
               {data?.name}
             </h4>
-            <p className="text-base text-muted-text">{data?.industry?.label}</p>
+            <p className="2xl:text-base text-sm text-muted-text 2xl:-mt-0 -mt-2">{data?.industry?.label}</p>
           </div>
         </div>
       </div>
       {/* Validate name  */}
       <div className="flex gap-2 max-w-[270px]">
         <div className="min-w-2 h-2 rounded-full bg-green mt-2"></div>
-        <span className="text-muted-foreground 2xl:text-base text-sm leading-6">
+        <span className="text-muted-foreground 2xl:text-base text-sm 2xl:leading-6 leading-5">
           Validated by{" "}
           <span className="text-info">
             Allan Durr, Thomas Dalle, Heather Marx

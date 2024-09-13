@@ -26,7 +26,7 @@ const ProjectCard = (props: any) => {
           : closed
       }  rounded-[14px] 2xl:p-5 p-4  duration-300 ease-in-out`}
     >
-      <div className="bg-background h-full w-full flex flex-col gap-3  p-3 rounded-[14px]">
+      <div className="bg-background h-full w-full flex flex-col gap-3  2xl:p-4 p-3 rounded-[14px]">
         <div className="flex justify-between">
           <Avatar
             className="object-cover 2xl:min-w-16 2xl:h-16 min-w-12 h-12"
@@ -35,10 +35,10 @@ const ProjectCard = (props: any) => {
           <ProjectDropdownModal name={props.name} id={props.id} />
         </div>
         <div>
-          <h1 className="2xl:text-[28px] text-xl font-semibold">
+          <h1 className="2xl:text-[28px] text-lg font-semibold">
             {props.name}
           </h1>
-          <h1 className="2xl:text-base text-sm text-muted-foreground">
+          <h1 className="2xl:text-lg text-sm text-muted-foreground 2xl:mt-1 mt-0">
             {props.industry}
           </h1>
         </div>

@@ -183,15 +183,15 @@ const ProfilePage = () => {
   );
 
   return (
-    <div className="w-[1084px] bg-secondary rounded-lg p-7">
-      <div className="min-w-[532px] bg-background rounded 2xl:p-[52px] p-10  flex flex-col 2xl:gap-[52px] gap-10 relative">
+    <div className="w-[1084px] bg-secondary rounded-lg 2xl:p-8 p-6">
+      <div className="min-w-[532px] bg-background rounded 2xl:p-[52px] p-6  flex flex-col 2xl:gap-[52px] gap-6  relative">
         <MainHeading
           title={headings[step].title}
           subtitle={headings[step].subTitle}
         />
         <form
           onSubmit={handleSubmit(onSubmitHandler)}
-          className="flex flex-col gap-10"
+          className="flex flex-col 2xl:gap-10 gap-6"
         >
           {Steps[step]}
           <div className="flex items-center justify-between">

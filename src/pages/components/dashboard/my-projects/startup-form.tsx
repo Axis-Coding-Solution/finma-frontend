@@ -31,12 +31,12 @@ export const StartupForm = ({
   const image = watch("logo");
   return (
     <>
-      <div className="flex md:flex-row flex-col  justify-between md:items-start items-center gap-8">
-        <div className="flex flex-col 2xl:gap-3 gap-2">
-          <h4 className="2xl:text-[44px] text-3xl font-semibold text-foreground">
+      <div className="flex md:flex-row flex-col  justify-between md:items-start items-center 2xl:gap-8 gap-6">
+        <div className="flex flex-col 2xl:gap-3 gap-0">
+          <h4 className="2xl:text-[44px] text-2xl font-semibold text-foreground">
             {title} Startup card
           </h4>
-          <p className="2xl:text-2xl text-lg text-primary-disabled">
+          <p className="2xl:text-2xl text-base text-primary-disabled">
             {detail} this card anytime for your startup
           </p>
         </div>
@@ -50,7 +50,7 @@ export const StartupForm = ({
           variant="startup"
         />
       </div>
-      <div className="grid grid-cols-2 gap-8">
+      <div className="grid grid-cols-2 2xl:gap-8 gap-6">
         <div>
           <FloatingInput
             label="Startup name"

@@ -28,7 +28,7 @@ const StartupMarketGrowthPage = () => {
       </button>
 
       {/* Breadcrumb  */}
-      <div className="flex items-center 2xl:gap-3 gap-2 2xl:text-2xl text-lg font-medium text-foreground">
+      <div className="flex items-center 2xl:gap-3 gap-1 2xl:text-2xl text-base font-medium text-foreground">
         <span className="text-muted-foreground">My Startups</span>
         <ChevronRight size={20} className="text-muted-foreground" />
         <span className="text-muted-foreground">{data?.name}</span>

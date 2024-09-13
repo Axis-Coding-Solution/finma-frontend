@@ -13,13 +13,13 @@ interface IdeaValidationCardProps{
 
 export const IdeaValidationCard:React.FC<IdeaValidationCardProps> = ({heading,subHeading,detail, validation,image}) => {
   return (
-    <div className="bg-info-light 2xl:p-8 md:p-6 p-4 rounded grid grid-cols-12 md:gap-10 gap-6 items-stretch">
-      <div className="md:order-1 order-2 md:col-span-9 col-span-12 bg-background 2xl:p-8 md:p-6 p-4 rounded flex sm:flex-row flex-col 2xl:gap-24 md:gap-12 gap-6 items-center justify-between">
+    <div className="bg-info-light 2xl:p-8 p-4 rounded grid grid-cols-12 md:gap-10 gap-6 items-stretch">
+      <div className="md:order-1 order-2 md:col-span-9 col-span-12 bg-background 2xl:p-8  p-4 rounded flex sm:flex-row flex-col 2xl:gap-24 md:gap-12 gap-6 items-center justify-between">
         <div className="flex flex-col justify-between h-full">
           <h4 className="2xl:text-[32px] text-2xl font-semibold text-foreground capitalize">
             The {heading}
           </h4>
-          <p className="2xl:text-[28px] text-lg 2xl:leading-8 leading-6 text-foreground border-b border-muted-foreground pb-2">
+          <p className="2xl:text-2xl text-base 2xl:leading-7 leading-5 text-foreground border-b border-muted-foreground pb-2">
            {subHeading}
             <span className="text-muted-text">
              {detail}
@@ -38,16 +38,16 @@ export const IdeaValidationCard:React.FC<IdeaValidationCardProps> = ({heading,su
               <span className="2xl:text-xl text-lg font-bold">7/10</span>
             </span>
           </div>
-          <ul className="flex flex-col 2xl:gap-7 gap-4">
-            <li className="2xl:text-xl text-base flex items-center gap-2">
+          <ul className="flex flex-col 2xl:gap-7 gap-3">
+            <li className="2xl:text-xl text-sm flex items-center gap-2">
               <Check className="2xl:w-4 w-3 2xl:h-4 h-3 text-background bg-success-dark rounded-full " />
               Urgency
             </li>
-            <li className="2xl:text-xl text-base flex items-center gap-2">
+            <li className="2xl:text-xl text-sm flex items-center gap-2">
               <Check className="2xl:w-4 w-3 2xl:h-4 h-3 text-background bg-success-dark rounded-full " />
               Relevance
             </li>
-            <li className="2xl:text-xl text-base flex items-center gap-2">
+            <li className="2xl:text-xl text-sm flex items-center gap-2">
               <X className="2xl:w-4 w-3 2xl:h-4 h-3 text-background bg-danger rounded-full " />
               Relevance
             </li>

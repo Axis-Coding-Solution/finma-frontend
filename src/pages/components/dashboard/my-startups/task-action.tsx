@@ -42,14 +42,14 @@ export const TaskActionDropdown = ()=>{
           </div>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <div className="w-[300px] h-[230px] 2xl:p-5 p-4 flex flex-col 2xl:gap-5 gap-4">
+          <div className="w-[300px] h-[230px] 2xl:p-5 p-3 flex flex-col 2xl:gap-5 gap-3">
             <h6 className="text-foreground 2xl:text-[22px] text-lg font-medium">
               Task action
             </h6>
-            <div className="custom-scrollbar-secondary h-full overflow-y-auto flex flex-col 2xl:gap-5 gap-4 p-0.5">
+            <div className="custom-scrollbar-secondary h-full overflow-y-auto flex flex-col 2xl:gap-5 gap-3 p-0.5">
               {taskAction &&
                 taskAction.map((item) => (
-                  <CheckboxGroup label={item.label} />
+                  <CheckboxGroup  label={item.label} />
                 ))}
             </div>
           </div>

@@ -48,7 +48,7 @@ export const OnboardingProfilePersonalInfoStep = ({
   );
 
   return (
-    <div className="grid grid-cols-2 gap-10">
+    <div className="grid grid-cols-2 2xl:gap-10 gap-6">
       <div className="col-span-2">
         <UploadImage
           control={control}

@@ -62,7 +62,7 @@ export const ProjectDeleteModal = ({
             <span className="font-bold"> {projectName}?</span>
           </p>
         </div>
-        <div className="flex items-center justify-between gap-4">
+        <div className="grid grid-cols-2 items-center justify-between gap-4">
           <DialogClose>
             <Button disabled={isPending} variant="outline" className="w-full">
               Cancel

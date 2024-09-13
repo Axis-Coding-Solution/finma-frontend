@@ -29,18 +29,18 @@ export const LinkItem = ({
       )}
     >
       <Link
-        to={path}
+        to={path && path}
         onClick={() =>
           mobileMode ? setTimeout(() => handleChange?.(), 250) : null
         }
         className={cn(
-          "group flex items-center gap-5 2xl:rounded-lg rounded-2xl md:px-4 px-3 md:py-3 py-2 md:text-base text-sm text-background transition hover:bg-warning hover:text-foreground",
+          "group flex items-center gap-5 2xl:rounded rounded-xl 2xl:px-4 px-3 2xl:py-3 py-[10px] 2xl:text-base text-sm text-background transition hover:bg-warning hover:text-foreground",
           pathname.startsWith(path) && "bg-warning text-foreground "
         )}
       >
         <Icon
           className={cn(
-            "md:h-6 md:w-6 h-5 w-5 text-background group-hover:text-foreground",
+            "2xl:h-6 2xl:w-6 h-5 w-5 text-background group-hover:text-foreground",
             pathname.startsWith(path) && "text-foreground"
           )}
         />

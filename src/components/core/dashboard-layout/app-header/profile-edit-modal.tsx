@@ -169,7 +169,7 @@ const ProfileEditModal = ({ userData, updateUser }: ProfileEditModalProps) => {
       </DialogTrigger>
       <DialogContent>
         <form
-          className="p-5 flex flex-col 2xl:gap-10 gap-6"
+          className="2xl:p-5  p-0 flex flex-col 2xl:gap-10 gap-4"
           onSubmit={handleSubmit(onSubmitHandler)}
         >
           <div className="flex items-center gap-6">
