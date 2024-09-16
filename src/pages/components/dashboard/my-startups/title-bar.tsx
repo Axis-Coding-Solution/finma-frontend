@@ -21,7 +21,7 @@ export const StartupTitleBar = ({ data }: any) => {
       </div>
       {/* Validate name  */}
       <div className="flex gap-2 max-w-[270px]">
-        <div className="min-w-2 h-2 rounded-full bg-green mt-2"></div>
+        <div className="min-w-2 h-2 rounded-full bg-green mt-1"></div>
         <span className="text-muted-foreground 2xl:text-base text-sm 2xl:leading-6 leading-5">
           Validated by{" "}
           <span className="text-info">

@@ -1,4 +1,5 @@
 import { useGetProjectById } from "@/api/hooks/dashboard";
+import { useGetIdeaValidationByProjectId } from "@/api/hooks/dashboard/idea-clarity";
 import { GoBack } from "@/pages/components/common";
 import { StartupTitleBar } from "@/pages/components/dashboard/my-startups";
 import { IdeaValidationCard } from "@/pages/components/dashboard/my-startups/idea-validation";
@@ -11,6 +12,11 @@ const StartupIdeaValidationPage = () => {
   const startupId = params.id;
 
   const { data } = useGetProjectById(String(startupId));
+
+  const { data: validationData } = useGetIdeaValidationByProjectId(
+    startupId as any
+  );
+
   return (
     <div className="flex flex-col 2xl:gap-10 gap-6">
       {/* back Button  */}
@@ -35,6 +41,8 @@ const StartupIdeaValidationPage = () => {
         {ideaValidationContent &&
           ideaValidationContent.map((item: any, idx: number) => (
             <IdeaValidationCard
+              data={validationData && validationData.find((el: any) => el.type === item.name)}
+              name={item.name}
               key={idx}
               heading={item.heading}
               subHeading={item.subHeading}

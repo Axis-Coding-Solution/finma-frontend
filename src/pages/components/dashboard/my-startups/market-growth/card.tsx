@@ -1,9 +1,11 @@
 import React from "react";
 import { MarketResearchCardEditModal } from "./research-edit-modal";
-import { RefreshCcw } from "lucide-react";
 import { MarketGrowthChart } from "./growth-chart";
 import { MarketResearchChart } from "./research-chart";
 import { MarketGrowthCardEditModal } from "./growth-edit-modal";
+import { ReloadButton } from "@/components/ui";
+import { useParams } from "react-router-dom";
+import { useGetMarketResearchProject } from "@/api/hooks/dashboard/idea-clarity";
 
 interface MarketGrowthProps {
   heading: string;
@@ -24,6 +26,11 @@ export const MarketGrowthCard: React.FC<MarketGrowthProps> = ({
   chart,
   modal,
 }) => {
+
+  const params = useParams();
+  const Id = params.id;
+  const data  = useGetMarketResearchProject(Id as any);
+  console.log("market-research", data)
   return (
     <div className="bg-info-light 2xl:p-8  p-4 rounded grid grid-cols-12 md:gap-10 gap-6 items-stretch">
       <div className="md:order-1 order-2 md:col-span-9 col-span-12 bg-background 2xl:p-8  p-4 rounded flex sm:flex-row flex-col 2xl:gap-24 md:gap-12 gap-6 items-center justify-between">
@@ -41,7 +48,11 @@ export const MarketGrowthCard: React.FC<MarketGrowthProps> = ({
             <h6 className="uppercase 2xl:text-base text-sm font-medium ">
               Market {market}
             </h6>
-            <RefreshCcw size={20} className="text-info" />
+            {chart === "research" ? (
+              <ReloadButton/>
+            ) : (
+              <ReloadButton/>
+            )}
           </div>
           <div className="h-full">
             {chart === "research" ? (
