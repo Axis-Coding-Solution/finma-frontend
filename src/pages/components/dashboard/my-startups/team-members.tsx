@@ -60,7 +60,7 @@ export const TeamMembersDropdown = () => {
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        <div className="w-[300px] h-[230px] 2xl:p-5 p-4 flex flex-col 2xl:gap-5 gap-4">
+        <div className="w-[300px] h-[230px] 2xl:p-5 p-3 flex flex-col 2xl:gap-5 gap-3">
           <h6 className="text-foreground 2xl:text-[22px] text-lg font-medium">
             Task action
           </h6>

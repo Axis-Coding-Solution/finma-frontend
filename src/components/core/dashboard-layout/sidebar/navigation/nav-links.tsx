@@ -48,8 +48,11 @@ const navLinks = [
     Icon: MessageSquareMore,
   },
 ];
-
-export const NavLinks = () => {
+type Props = {
+  mobileMode?: boolean;
+  handleChange?: () => void;
+};
+export const NavLinks = ({ handleChange, mobileMode }: Props) => {
   // const auth = useAuth();
 
   // if (!auth?.isAuthenticated) return null;
@@ -64,7 +67,7 @@ export const NavLinks = () => {
         Dashboard
       </h6> */}
       {userNavLinks.map((navLink, index) => (
-        <LinkItem key={index} {...navLink} />
+        <LinkItem key={index} mobileMode={mobileMode} handleChange={handleChange} {...navLink} />
       ))}
     </div>
   );

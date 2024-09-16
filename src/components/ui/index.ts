@@ -14,3 +14,4 @@ export * from "./select";
 export { ReactSelect } from "./react-select";
 export * from "./dialog";
 export * from "./dropdown-menu"
+export {} from "./search-input"

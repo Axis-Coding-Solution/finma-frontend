@@ -9,30 +9,43 @@ type PropTypes = {
   Icon: ForwardRefExoticComponent<
     Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>
   >;
+  mobileMode?: boolean;
+  handleChange?: () => void;
 };
 
-export const LinkItem = ({ path, name, Icon }: PropTypes) => {
+export const LinkItem = ({
+  path,
+  name,
+  Icon,
+  mobileMode,
+  handleChange,
+}: PropTypes) => {
   const { pathname } = useLocation();
   return (
-    <div className={cn(
-      "lg:pr-4 pr-2 border-r-transparent border-r-4 ",
-      pathname.startsWith(path) && " border-r-warning border-r-4"
-    )}>
-    <Link
-      to={path}
+    <div
       className={cn(
-        "group flex items-center gap-5 2xl:rounded-lg rounded-2xl px-4 py-3 text-base text-background transition hover:bg-warning hover:text-foreground",
-        pathname.startsWith(path) && "bg-warning text-foreground "
+        "md:pr-4 pr-2 border-r-transparent border-r-4 ",
+        pathname.startsWith(path) && " border-r-warning border-r-4"
       )}
     >
-      <Icon
+      <Link
+        to={path && path}
+        onClick={() =>
+          mobileMode ? setTimeout(() => handleChange?.(), 250) : null
+        }
         className={cn(
-          "h-6 w-6 text-background group-hover:text-foreground",
-          pathname.startsWith(path) && "text-foreground"
+          "group flex items-center gap-5 2xl:rounded rounded-xl 2xl:px-4 px-3 2xl:py-3 py-[10px] 2xl:text-base text-sm text-background transition hover:bg-warning hover:text-foreground",
+          pathname.startsWith(path) && "bg-warning text-foreground "
         )}
-      />
-      {name}
-    </Link>
+      >
+        <Icon
+          className={cn(
+            "2xl:h-6 2xl:w-6 h-5 w-5 text-background group-hover:text-foreground",
+            pathname.startsWith(path) && "text-foreground"
+          )}
+        />
+        {name}
+      </Link>
     </div>
   );
 };

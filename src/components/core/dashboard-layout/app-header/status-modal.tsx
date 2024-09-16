@@ -64,7 +64,7 @@ const StatusModal = ({ userStatus }: { userStatus: OptionType }) => {
       successToast(res.message);
       modal.close();
     } catch (error: any) {
-      errorToast(error.messsage);
+      errorToast(error.message);
     }
   };
 

@@ -1,7 +1,7 @@
 import { useGetCommunity } from "@/api/hooks/dashboard";
 import { CgSpinner } from "@/assets/icons";
 import { Pagination } from "@/components/_ui/pagination";
-import { SearchInput } from "@/components/_ui/search-input";
+import { SearchInput } from "@/components/ui/search-input";
 import { CommunityTypes } from "@/definitions/types";
 import { MainHeading } from "@/pages/components/common";
 import {

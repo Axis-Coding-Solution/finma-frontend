@@ -1,5 +1,5 @@
-import { Button, InputError } from "@/components/ui";
-import { CloudUploadIcon } from "lucide-react";
+import {  InputError } from "@/components/ui";
+import { CloudUpload, } from "lucide-react";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { Controller } from "react-hook-form";
 
@@ -12,7 +12,7 @@ type PropTypes = {
   name?: string;
 };
 
-export const UploadProfilePhoto = ({
+export const UploadProfilePhotoModal = ({
   errors,
   control,
   image,
@@ -41,7 +41,7 @@ export const UploadProfilePhoto = ({
   // md:max-w-64
   return (
     <div>
-      <div className="flex gap-5 items-center">
+      <div className="flex flex-col items-center">
         <Controller
           control={control}
           name={name}
@@ -65,25 +65,33 @@ export const UploadProfilePhoto = ({
         <div
           onClick={onUpload}
           role="button"
-          className="border border-border rounded-full"
+          className="2xl:w-36 w-28 2xl:h-36 h-28 rounded-full border-2 border-info flex flex-col justify-center items-center"
         >
-          <img
-            src={preview}
-            className="size-20 rounded-full"
-            onLoad={(e) => URL.revokeObjectURL(e.currentTarget.src)}
-            alt="Profile Photo"
-          />
+          {preview && preview ? (
+            <img
+              src={preview}
+              className="w-full h-full rounded-full"
+              onLoad={(e) => URL.revokeObjectURL(e.currentTarget.src)}
+              alt="Profile Photo"
+            />
+          ) : (
+            <>
+              <CloudUpload className="text-info" size={36} />
+              <div className="flex flex-col gap-0 leading-0 text-foreground 2xl:text-base text-center text-sm">
+                <p>Best</p>
+                <p>190 x 190</p>
+              </div>
+            </>
+          )}
         </div>
         <div className="cursor-pointer">
-          <Button
-            icon={<CloudUploadIcon />}
-            variant="secondary-dark"
-            className="font-normal"
+          <button
+            className="2xl:text-2xl text-lg font-medium"
             type="button"
             onClick={onUpload}
           >
-            Choose photo
-          </Button>
+            Upload logo
+          </button>
         </div>
       </div>
       <InputError error={errors[name]} />

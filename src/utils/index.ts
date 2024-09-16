@@ -81,20 +81,21 @@ export const classNamesReactSelect: ClassNamesConfig<
   boolean,
   GroupBase<unknown>
 > = {
+  container: () => "w-full",
   control: ({ isFocused }) =>
     cn(
-      "rounded-sm border transition-all bg-input text-foreground",
-      isFocused ? "border-ring" : "border-border"
+      "border-b transition-all bg-transparent text-foreground overflow-visible w-full",
+      isFocused ? "border-muted-foreground" : "border-muted-foreground"
     ),
   dropdownIndicator: ({ selectProps }) =>
     cn(
       "px-5 !transition-all",
       selectProps.menuIsOpen ? "rotate-180" : "rotate-0"
     ),
-  placeholder: () => "text-muted-foreground text-sm",
+  placeholder: () => "text-muted-foreground",
   multiValueRemove: () => "hover:text-red-400",
   valueContainer: () =>
-    "w-full h-full py-3 px-3 flex gap-1 items-center !overflow-auto text-sm",
+    "w-full h-full py-3 px-1 flex gap-1 items-center !overflow-visible text-sm",
   multiValue: () =>
     "bg-success text-success-foreground px-1.5 py-0.5 rounded text-sm",
   menuPortal: () => "!z-50",
@@ -177,5 +178,5 @@ export const getHomeRoute = () => {
   if (!isAuthenticated) return "/auth/login";
   if (!user.role)
     return "/onboarding/select-role?infoMessage=Continue by selecting your role!";
-  return "dashboard/community";
+  return "/dashboard/community";
 };

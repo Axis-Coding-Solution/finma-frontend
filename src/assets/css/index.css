@@ -11,7 +11,8 @@
     --background: 255 255 255;
     --dark: 29 29 29;
     --foreground: 0 0 0;
-    --card: 252 252 252;
+    /* --card: 252 252 252; */
+    --card: 248 248 248;
     --light-gray: 241 241 241;
     --card-foreground: 0 0 0;
     --yellow: 254, 169, 70;

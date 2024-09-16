@@ -11,9 +11,9 @@ function DashboardLayout() {
       <div className="w-96">
         <Sidebar />
       </div>
-      <div className="w-full flex flex-col relative overflow-y-auto">
+      <div className=" w-full flex flex-col relative overflow-y-auto bg-card">
         <AppHeader />
-        <main className=" flex flex-1 flex-col gap-4 lg:gap-6 2xl:p-10 p-6  bg-card">
+        <main className="container flex flex-1 flex-col gap-4 lg:gap-6 2xl:py-10 py-6">
           <Suspense
             fallback={
               <div className="flex justify-center items-center h-full">

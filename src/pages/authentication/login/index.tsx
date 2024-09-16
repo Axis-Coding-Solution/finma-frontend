@@ -51,7 +51,7 @@ const LoginPage = () => {
 
   return (
     <>
-      <div className="bg-secondary rounded-lg py-8 px-[52px] flex justify-between items-center gap-20">
+      <div className="bg-secondary rounded-lg 2xl:py-8 py-6 2xl:px-[52px] px-8 flex justify-between items-center gap-20">
         <div className="w-full flex flex-col gap-10 justify-between">
           <MainHeading
             title="Welcome Back!"

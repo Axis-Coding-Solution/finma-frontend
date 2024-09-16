@@ -19,7 +19,7 @@ export const MarketResearchCardEditModal = () => {
             </div>
           </span>
         </DialogTrigger>
-        <DialogContent className="bg-info-light min-w-[1084px] 2xl:py-[52px] py-8 2xl:px-8 px-6">
+        <DialogContent className="bg-info-light min-w-[1084px] 2xl:py-[52px] py-6 2xl:px-8 px-4">
           <div className="flex flex-col 2xl:gap-8 gap-6">
             {/* Team member & Card Status */}
             <div className="flex items-start 2xl:gap-10 gap-6">
@@ -28,14 +28,14 @@ export const MarketResearchCardEditModal = () => {
                 <h6 className="text-foreground 2xl:text-base text-sm font-medium">
                   Team members
                 </h6>
-                <div className="flex items-center relative">
-                  <div className="bg-[#FEA946] 2xl:min-w-10 2xl:h-10 w-8 h-8 2xl:text-base text-sm font-normal flex justify-center items-center rounded-full text-background uppercase">
+                <div className="flex items-center relative -space-x-2">
+                  <div className="border-border bg-[#FEA946] 2xl:min-w-10 2xl:h-10 w-8 h-8 2xl:text-base text-sm font-normal flex justify-center items-center rounded-full text-background uppercase">
                     AG
                   </div>
-                  <div className="bg-[#00569E] 2xl:min-w-10 2xl:h-10 w-8 h-8 2xl:text-base text-sm font-normal flex justify-center items-center rounded-full text-background uppercase">
+                  <div className="border-border bg-[#00569E] 2xl:min-w-10 2xl:h-10 w-8 h-8 2xl:text-base text-sm font-normal flex justify-center items-center rounded-full text-background uppercase">
                     VH
                   </div>
-                  <div className="bg-[#00569E] 2xl:min-w-10 2xl:h-10 w-8 h-8 2xl:text-base text-sm font-normal flex justify-center items-center rounded-full text-background uppercase">
+                  <div className="border-border bg-[#00569E] 2xl:min-w-10 2xl:h-10 w-8 h-8 2xl:text-base text-sm font-normal flex justify-center items-center rounded-full text-background uppercase">
                     VH
                   </div>
                   <TeamMembersDropdown />
@@ -44,7 +44,7 @@ export const MarketResearchCardEditModal = () => {
               {/* Card status  */}
               <div className="flex flex-col 2xl:gap-2 gap-1">
                 <h6 className="text-foreground 2xl:text-base text-sm font-medium">
-                  Team members
+                  Card status
                 </h6>
                 <div className="flex items-center gap-2">
                   <div className="min-w-max px-3 py-1 2xl:text-base text-sm rounded-full bg-secondary-dark">
@@ -57,18 +57,18 @@ export const MarketResearchCardEditModal = () => {
               </div>
             </div>
             {/* Edit Content  */}
-            <div className="bg-background rounded 2xl:p-8 p-6 flex items-stretch justify-between  2xl:gap-24 gap-20">
+            <div className="bg-background rounded 2xl:p-8 p-4 flex items-stretch justify-between  2xl:gap-24 gap-20">
               <div className="flex flex-col justify-between h-full">
                 <div>
-                  <h4 className="2xl:text-[32px] text-2xl font-semibold text-foreground capitalize">
+                  <h4 className="2xl:text-[32px] leading-tight text-2xl font-semibold text-foreground capitalize">
                     Describe market size for your startup
                   </h4>
-                  <span className="2xl:text-2xl text-base 2xl:mt-4 mt-2">
+                  <p className="2xl:text-2xl text-sm 2xl:mt-4 mt-2">
                     120 Letter max
-                  </span>
+                  </p>
                 </div>
                 <div>
-                  <p className="2xl:text-[28px] text-lg 2xl:leading-8 leading-6 text-foreground">
+                  <p className="2xl:text-[28px] text-base 2xl:leading-8 leading-5 text-foreground border-b border-muted-foreground pb-2">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     Suspendisse ultrices interdum orci, at sagittis elit
                     porttitor. Suspendisse ultrices interdum orci, at sagittis
@@ -105,17 +105,17 @@ export const MarketResearchCardEditModal = () => {
                 </h6>
                 <div className="flex items-center 2xl:gap-10 gap-6">
                   <ProgressBar icon="🏆" value="20" />
-                  <div className="flex items-center relative">
-                    <div className="bg-[#FEA946] 2xl:min-w-10 2xl:h-10 w-6 h-6 2xl:text-base text-xs font-normal flex justify-center items-center rounded-full text-background uppercase">
+                  <div className="flex items-center relative 2xl:-space-x-2 -space-x-[6px]">
+                    <div className=" border-border  bg-[#FEA946] 2xl:min-w-10 2xl:h-10 w-6 h-6 2xl:text-base text-xs font-normal flex justify-center items-center rounded-full text-background uppercase">
                       AG
                     </div>
-                    <div className="bg-[#00569E] 2xl:min-w-10 2xl:h-10 w-6 h-6 2xl:text-base text-xs font-normal flex justify-center items-center rounded-full text-background uppercase">
+                    <div className="border-border bg-[#00569E] 2xl:min-w-10 2xl:h-10 w-6 h-6 2xl:text-base text-xs font-normal flex justify-center items-center rounded-full text-background uppercase">
                       VH
                     </div>
-                    <div className="bg-[#00569E] 2xl:min-w-10 2xl:h-10 w-6 h-6 2xl:text-base text-xs font-normal flex justify-center items-center rounded-full text-background uppercase">
+                    <div className="border-border bg-[#00569E] 2xl:min-w-10 2xl:h-10 w-6 h-6 2xl:text-base text-xs font-normal flex justify-center items-center rounded-full text-background uppercase">
                       VH
                     </div>
-                    <div className="bg-background 2xl:min-w-10 2xl:h-10 w-6 h-6 2xl:text-base text-xs font-normal flex justify-center items-center rounded-full text-background uppercase">
+                    <div className="border-border bg-background 2xl:min-w-10 2xl:h-10 w-6 h-6 2xl:text-base text-xs font-normal flex justify-center items-center rounded-full text-background uppercase">
                       <Plus className="text-foreground" />
                     </div>
                   </div>

@@ -38,7 +38,7 @@ export const ConnectWithExperts = () => {
   };
 
   return (
-    <div className="text-foreground mt-4 flex flex-col gap-1">
+    <div className="text-foreground mt-4 flex flex-col gap-1  md:pr-6 pr-3">
       <h6 className="px-4 text-background text-sm tracking-wider mb-1">
         Recent Chats
       </h6>
@@ -59,13 +59,13 @@ export const ConnectWithExperts = () => {
               onClick={() => chatHandler(id)}
               key={id}
               className={cn(
-                "truncate max-w-max px-4 py-3 flex gap-3 rounded-lg tran items-center hover:bg-success/10 hover:text-success",
+                "truncate w-full md:px-3 py-2 flex gap-3 2xl:rounded-lg rounded-2xl tran items-center hover:bg-warning hover:text-foreground text-background",
                 pathname === `/dashboard/chats/${id}` &&
                   "bg-success/10 text-success"
               )}
             >
               <Avatar image={userAvatar2Image} size="md" active />
-              <div className="flex flex-col text-base">
+              <div className="flex flex-col md:text-base text-sm ">
                 <span
                   className=""
                   style={{

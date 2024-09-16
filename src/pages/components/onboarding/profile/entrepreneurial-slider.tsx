@@ -78,7 +78,7 @@ const ArrowRightBtn = ({ onClick }: any) => {
 
 export const EntrepreneurialSlider = ({ Controller, control }: any) => {
   const settings = {
-    dots: true,
+    dots: false,
     arrow: true,
     infinite: true,
     speed: 700,
@@ -97,16 +97,16 @@ export const EntrepreneurialSlider = ({ Controller, control }: any) => {
           {cards.map((card, idx) => (
             <figure
               className={cn(
-                "rounded cursor-pointer h-full p-5 shadow-card-outer !flex justify-stretch flex-col gap-5",
+                " rounded cursor-pointer h-full 2xl:p-5 p-4 shadow-card-outer !flex justify-stretch flex-col 2xl:gap-8 gap-4",
                 field.value === card.description && "bg-secondary"
               )}
               role="radiogroup"
               onClick={() => field.onChange(card.description)}
               key={idx}
             >
-              <div className="h-full flex justify-center items-center flex-grow">
+              <div className="h-full   flex justify-center items-center flex-grow">
                 <img
-                  className="aspect-square w-full object-contain"
+                  className="aspect-square  2xl:w-full w-1/2 object-contain"
                   src={card.image}
                   alt="Test"
                 />
