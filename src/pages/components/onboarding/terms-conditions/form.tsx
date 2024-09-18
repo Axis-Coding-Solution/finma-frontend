@@ -1,6 +1,6 @@
 import { useOnboardingInnovatorsMutation } from "@/api/hooks/onboarding";
 import { Button } from "@/components/_ui/button";
-import { Checkbox } from "@/components/_ui/checkbox";
+// import { Checkbox } from "@/components/_ui/checkbox";
 import { InputError } from "@/components/_ui/input-error";
 import { Label } from "@/components/_ui/label";
 import { useOnboardingForm } from "@/store/hooks";
@@ -12,6 +12,7 @@ import { termsAndConditionsSchema } from "@/utils/validation-schemas";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Controller, useForm } from "react-hook-form";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { CheckboxGroup } from "../../common";
 
 export const TermsAndConditionsForm = () => {
   const navigate = useNavigate();
@@ -65,7 +66,7 @@ export const TermsAndConditionsForm = () => {
             name="isAgreedForTerms"
             control={control}
             render={({ field }) => (
-              <Checkbox
+              <CheckboxGroup
                 id="servicesTerms"
                 checked={field.value}
                 onCheckedChange={field.onChange}
@@ -86,19 +87,17 @@ export const TermsAndConditionsForm = () => {
             name="isAgreedForPrivacyPolicy"
             control={control}
             render={({ field }) => (
-              <Checkbox
+              <CheckboxGroup
                 id="servicesPolicy"
                 checked={field.value}
                 onCheckedChange={field.onChange}
+                label={`By clicking "I Agree" and signing up for the Services, you By using
+            the Services, you acknowledge that you have read and understood this
+            Privacy Policy and agree to our collection, use, and disclosure of
+            your personal information as described herein.`}
               />
             )}
           />
-          <Label htmlFor="servicesPolicy" className="mb-0 font-bold leading-5">
-            By clicking "I Agree" and signing up for the Services, you By using
-            the Services, you acknowledge that you have read and understood this
-            Privacy Policy and agree to our collection, use, and disclosure of
-            your personal information as described herein.
-          </Label>
         </div>
         <InputError error={errors.isAgreedForPrivacyPolicy} />
       </div>
