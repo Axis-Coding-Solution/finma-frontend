@@ -148,7 +148,7 @@ const ProfilePage = () => {
         },
         auth?.updateUser
       );
-      navigate("/dashboard/community");
+      navigate("/onboarding/terms-conditions");
     } catch (error: any) {
       errorToast(error.message);
     }

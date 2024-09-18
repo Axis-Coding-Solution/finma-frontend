@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export const PrivacyPolicyTab = () => {
   return (
-    <div className=" flex flex-col 2xl:gap-5 gap-4">
+    <div className="flex flex-col 2xl:gap-4 gap-2">
       <div>
         <h1 className="font-bold">1.Introduction</h1>
         <p>
