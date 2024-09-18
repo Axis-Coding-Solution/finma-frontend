@@ -4,7 +4,7 @@ import React from "react";
 import { IdeaValidationCardEditModal } from "./edit-modal";
 import { ReloadButton } from "@/components/ui";
 import { useParams } from "react-router-dom";
-import {  useGetIdeaValidationById } from "@/api/hooks/dashboard/idea-clarity";
+import { getIdeaValidationByIdApi } from "@/api/http/dashboard/idea-clarity";
 
 interface IdeaValidationCardProps {
   name: "problem" | "solution";
@@ -27,19 +27,19 @@ export const IdeaValidationCard: React.FC<IdeaValidationCardProps> = ({
 }) => {
   const params = useParams();
   const Id = params.id;
-  console.log("qqqqqqqqqq",  Id);
 
-  // const data = useGetIdeaValidationById(Id as string);
+  const ideaData = getIdeaValidationByIdApi(Id as string);
+  console.log("ooo", ideaData)
   const ideadata = data?.data;
   const validates = data?.data?.response?.validates;
   return (
     <div className="bg-info-light 2xl:p-8 p-4 rounded grid grid-cols-12 md:gap-10 gap-6 items-stretch">
       <div className="md:order-1 order-2 md:col-span-9 col-span-12 bg-background 2xl:p-8  p-4 rounded flex sm:flex-row flex-col 2xl:gap-24 md:gap-12 gap-6 items-center justify-between">
-        <div className="flex flex-col justify-between h-full">
+        <div className="flex flex-col justify-between h-full w-full">
           <h4 className="2xl:text-[32px] text-2xl font-semibold text-foreground capitalize">
             The {heading}
           </h4>
-          <div className="2xl:text-2xl text-base 2xl:leading-7 leading-5 text-foreground border-b border-muted-foreground pb-2">
+          <div className="2xl:text-2xl text-base 2xl:leading-7 leading-5 text-foreground border-b border-muted-foreground pb-2 ">
             <span className="text-muted-text">{ideadata?.question}</span>
           </div>
         </div>

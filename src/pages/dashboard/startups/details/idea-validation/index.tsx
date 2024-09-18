@@ -10,12 +10,13 @@ import { useParams } from "react-router-dom";
 const StartupIdeaValidationPage = () => {
   const params = useParams();
   const startupId = params.id;
-
   const { data } = useGetProjectById(String(startupId));
-
+  
   const { data: validationData } = useGetIdeaValidationByProjectId(
     startupId as any
   );
+
+  console.log("qqqqqqqq", validationData)
 
   return (
     <div className="flex flex-col 2xl:gap-10 gap-6">
@@ -41,7 +42,7 @@ const StartupIdeaValidationPage = () => {
         {ideaValidationContent &&
           ideaValidationContent.map((item: any, idx: number) => (
             <IdeaValidationCard
-              data={validationData && validationData.find((el: any) => el.type === item.name)}
+              data={validationData && validationData?.find((el: any) => el.type === item.name)}
               name={item.name}
               key={idx}
               heading={item.heading}

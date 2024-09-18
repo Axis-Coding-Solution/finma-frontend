@@ -28,7 +28,6 @@ export const getIdeaClarityByProjectApi = async (id: string) => {
 export const getIdeaValidationByProjectIdApi = async (id: string) => {
     try {
         const res = await get(appendUrl(`idea-validation/${id}`));
-        console.log("pppppppp",res)
         return res.data?.data;
     } catch (error: any) {
         return Promise.reject(apiErrorHandler(error));
@@ -45,7 +44,6 @@ export const getIdeaValidationByIdApi = async (id: string) => {
 export const addIdeaValidationByIdApi = async (data: any) => {
     try {
         const res = await post(appendUrl('idea-validation'), data);
-        console.log('eeeeeeeee', res)
         return res.data;
     } catch (error: any) {
         return Promise.reject(apiErrorHandler(error));

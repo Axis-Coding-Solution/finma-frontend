@@ -20,9 +20,7 @@ import { IdeaValidationSchema } from "@/utils/validation-schemas/dashoard";
 import { createFormData, errorToast, successToast } from "@/utils";
 import { useQueryClient } from "@tanstack/react-query";
 import { useModal } from "@/utils/hooks";
-import {
-  useAddIdeaValidationById,
-} from "@/api/hooks/dashboard/idea-clarity";
+import { useAddIdeaValidationById } from "@/api/hooks/dashboard/idea-clarity";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 
@@ -34,10 +32,6 @@ export const IdeaValidationCardEditModal = ({
   const modal = useModal();
   const queryClient = useQueryClient();
   const { mutateAsync } = useAddIdeaValidationById();
-  const params = useParams();
-  const Id = params.id;
-
-  const data  = (Id as any); 
 
   const {
     control,
@@ -50,13 +44,6 @@ export const IdeaValidationCardEditModal = ({
     defaultValues: IdeaValidationInitialValues(name),
     resolver: yupResolver(IdeaValidationSchema(name) as any),
   });
-
-  // Reset form when data is fetched
-  useEffect(() => {
-    if (data) {
-      reset(data);
-    }
-  }, [data, reset]);
 
   // Handle form submission
   const onSubmitHandler = async (values: any) => {
