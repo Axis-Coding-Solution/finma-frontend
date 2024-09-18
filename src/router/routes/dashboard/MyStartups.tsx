@@ -35,7 +35,7 @@ export default [
   },
   {
     element: <StartupMarketGrowth />,
-    path: "/dashboard/my-startups/:id/market-growth",
+    path: "/dashboard/my-startups/:id/market-research",
     meta: {
       layout: "dashboard",
     },

@@ -1,8 +1,7 @@
-import { getMarketResearchByProjectIdApi } from "@/api/http";
-import { addMarketResearchByProjectApi } from "@/api/http/dashboard/idea-clarity";
+import { addMarketResearch, getMarketResearchByProjectIdApi } from "@/api/http";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
-const MARKET_RESEARCH_QUERY_KEY = "/startups/market-research";
+export const MARKET_RESEARCH_QUERY_KEY = "/startups/market-research";
 
 export const useGetMarketResearchProject = (id: string) => {
   return useQuery({
@@ -13,6 +12,6 @@ export const useGetMarketResearchProject = (id: string) => {
 
 export const useAddMarketResearchProject = () =>
   useMutation({
-    mutationFn: addMarketResearchByProjectApi,
+    mutationFn: addMarketResearch,
     mutationKey: [MARKET_RESEARCH_QUERY_KEY],
   });

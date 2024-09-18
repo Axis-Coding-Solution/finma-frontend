@@ -1,5 +1,7 @@
-import { useGetStartupById } from "@/api/hooks/dashboard";
-import { useGetIdeaValidationByProjectId } from "@/api/hooks/dashboard";
+import {
+  useGetIdeaValidationByProjectId,
+  useGetStartupById,
+} from "@/api/hooks/dashboard";
 import { GoBack } from "@/pages/components/common";
 import { StartupTitleBar } from "@/pages/components/dashboard/my-startups";
 import { IdeaValidationCard } from "@/pages/components/dashboard/my-startups/idea-validation";

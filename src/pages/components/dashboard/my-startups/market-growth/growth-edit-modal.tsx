@@ -22,7 +22,7 @@ import { useAddMarketResearchProject } from "@/api/hooks/dashboard";
 import { createFormData, errorToast, successToast } from "@/utils";
 import { CommunityInteraction } from "../community-interaction";
 
-export const MarketGrowthCardEditModal = () => {
+export const MarketGrowthCardEditModal = ({data}:{data:any}) => {
   const modal = useModal();
   const queryClient = useQueryClient();
   const { mutateAsync } = useAddMarketResearchProject();

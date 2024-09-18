@@ -1,31 +1,24 @@
-import { useGetStartupById } from "@/api/hooks/dashboard";
+import {
+  useGetMarketResearchProject,
+  useGetStartupById,
+} from "@/api/hooks/dashboard";
+import { GoBack } from "@/pages/components/common";
 import { StartupTitleBar } from "@/pages/components/dashboard/my-startups";
 import { MarketGrowthCard } from "@/pages/components/dashboard/my-startups/market-growth";
 import { MarketGrowthContent } from "@/pages/components/dashboard/my-startups/market-growth/data";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useNavigate, useParams } from "react-router-dom";
+import { ChevronRight } from "lucide-react";
+import { useParams } from "react-router-dom";
 
 const StartupMarketGrowthPage = () => {
   const params = useParams();
-  const navigate = useNavigate();
-
   const startupId = params.id;
-
   const { data } = useGetStartupById(String(startupId));
+  const { data: marketData } = useGetMarketResearchProject(String(startupId));
 
-  const handleBack = () => {
-    navigate(-1);
-  };
   return (
     <div className="flex flex-col 2xl:gap-10 gap-6">
       {/* back Button  */}
-      <button
-        onClick={handleBack}
-        className="flex items-center 2xl:text-xl text-base font-medium text-foreground gap-2"
-      >
-        <ChevronLeft size={20} />
-        Go Back
-      </button>
+      <GoBack />
 
       {/* Breadcrumb  */}
       <div className="flex items-center 2xl:gap-3 gap-1 2xl:text-2xl text-base font-medium text-foreground">
@@ -42,8 +35,13 @@ const StartupMarketGrowthPage = () => {
       {/* Idea Validation Card  */}
       <div className="flex flex-col 2xl:gap-10 gap-6">
         {MarketGrowthContent &&
-          MarketGrowthContent.map((item: any) => (
+          MarketGrowthContent.map((item: any, idx: number) => (
             <MarketGrowthCard
+              data={
+                marketData &&
+                marketData?.find((el: any) => el.type === item.name)
+              }
+              key={idx}
               heading={item.heading}
               subHeading={item.subHeading}
               detail={item.detail}

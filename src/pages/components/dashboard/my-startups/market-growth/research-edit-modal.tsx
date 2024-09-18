@@ -18,35 +18,59 @@ import { MarketResearchEditModalSchema } from "@/utils/validation-schemas/dashoa
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useModal } from "@/utils/hooks";
 import { useQueryClient } from "@tanstack/react-query";
-import { useAddMarketResearchProject } from "@/api/hooks/dashboard";
-import { createFormData, errorToast, successToast } from "@/utils";
+import { useAddMarketResearchProject, MARKET_RESEARCH_QUERY_KEY  } from "@/api/hooks/dashboard";
+import {  errorToast, successToast } from "@/utils";
 import { CommunityInteraction } from "../community-interaction";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-export const MarketResearchCardEditModal = () => {
+export const MarketResearchCardEditModal = ({ data }: { data: any }) => {
+
+
+  const { id: projectId } = useParams();
   const modal = useModal();
   const queryClient = useQueryClient();
+  const [response, setResponse] = useState<any>(null);
   const { mutateAsync } = useAddMarketResearchProject();
+
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
+    setValue,
   } = useForm({
+    mode: "onChange",
     defaultValues: MarketResearchEditModalInitialValues,
     resolver: yupResolver(MarketResearchEditModalSchema as any),
   });
 
+  useEffect(() => {
+    if (data) {
+      setValue( data?.question, { shouldValidate: true });
+      setResponse(data?.response);
+    }
+  }, [data]);
+  // Handle form submission
   const onSubmitHandler = async (values: any) => {
+    console.log("values",values)
     try {
-      const formData = createFormData(values);
-      const response = await mutateAsync(formData);
-      queryClient.invalidateQueries({ queryKey: ["/project/market-research"] });
-      successToast(response.message);
+      const res = await mutateAsync({
+        description: values,
+        type:"marketSize",
+        graphValues:"",
+        projectId,
+      });
+      queryClient.invalidateQueries({ queryKey: [MARKET_RESEARCH_QUERY_KEY] });
+      queryClient.invalidateQueries({
+        queryKey: [MARKET_RESEARCH_QUERY_KEY, projectId],
+      });
+      successToast(res.message);
       modal.close();
     } catch (error: any) {
-      console.error("Error:", error);
-      errorToast("Something went wrong while creating the project");
+      errorToast(error.message);
     }
   };
+
 
   return (
     <>
