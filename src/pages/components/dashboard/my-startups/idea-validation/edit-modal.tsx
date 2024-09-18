@@ -8,8 +8,7 @@ import {
   InputError,
   ReloadButton,
 } from "@/components/ui";
-import { ProgressBar } from "@/pages/components/common";
-import { Check, MessageCircleMore, Plus, SquarePen, X } from "lucide-react";
+import { Check, SquarePen, X } from "lucide-react";
 import { TeamMembersDropdown } from "../team-members";
 import { CardStatusDropdown } from "../card-status";
 import { TaskActionDropdown } from "../task-action";
@@ -21,8 +20,7 @@ import { createFormData, errorToast, successToast } from "@/utils";
 import { useQueryClient } from "@tanstack/react-query";
 import { useModal } from "@/utils/hooks";
 import { useAddIdeaValidationById } from "@/api/hooks/dashboard/idea-clarity";
-import { useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { CommunityInteraction } from "../community-interaction";
 
 export const IdeaValidationCardEditModal = ({
   name,
@@ -75,37 +73,9 @@ export const IdeaValidationCardEditModal = ({
             {/* Team member & Card Status */}
             <div className="flex items-start 2xl:gap-10 gap-6">
               {/* Team Members  */}
-              <div className="flex flex-col 2xl:gap-2 gap-1">
-                <h6 className="text-foreground 2xl:text-base text-sm font-medium">
-                  Team members
-                </h6>
-                <div className="flex items-center relative">
-                  <div className="bg-[#FEA946] 2xl:min-w-10 2xl:h-10 w-8 h-8 2xl:text-base text-sm font-normal flex justify-center items-center rounded-full text-background uppercase">
-                    AG
-                  </div>
-                  <div className="bg-[#00569E] 2xl:min-w-10 2xl:h-10 w-8 h-8 2xl:text-base text-sm font-normal flex justify-center items-center rounded-full text-background uppercase">
-                    VH
-                  </div>
-                  <div className="bg-[#00569E] 2xl:min-w-10 2xl:h-10 w-8 h-8 2xl:text-base text-sm font-normal flex justify-center items-center rounded-full text-background uppercase">
-                    VH
-                  </div>
-                  <TeamMembersDropdown />
-                </div>
-              </div>
+              <TeamMembersDropdown />
               {/* Card status  */}
-              <div className="flex flex-col 2xl:gap-2 gap-1">
-                <h6 className="text-foreground 2xl:text-base text-sm font-medium">
-                  Card Status
-                </h6>
-                <div className="flex items-center gap-2">
-                  <div className="min-w-max px-3 py-1 2xl:text-base text-sm rounded-full bg-secondary-dark">
-                    Delivered by Adam on Sep 20, 2024
-                  </div>
-                  <div>
-                    <CardStatusDropdown />
-                  </div>
-                </div>
-              </div>
+              <CardStatusDropdown />
             </div>
             {/* Edit Content  */}
             <div className="bg-background rounded 2xl:p-8 p-4 flex items-stretch justify-between  2xl:gap-24 gap-20 ">
@@ -175,53 +145,8 @@ export const IdeaValidationCardEditModal = ({
             </div>
             {/* Community & Tasks action  */}
             <div className="flex items-start justify-between 2xl:gap-10 gap-6">
-              <div className="flex flex-col 2xl:gap-2 gap-1">
-                <h6 className="text-foreground 2xl:text-base text-sm font-medium">
-                  Community interaction
-                </h6>
-                <div className="flex items-center 2xl:gap-10 gap-6">
-                  <ProgressBar icon="😍" value="20" />
-                  <div className="flex items-center relative">
-                    <div className="bg-[#FEA946] 2xl:min-w-10 2xl:h-10 w-6 h-6 2xl:text-base text-xs font-normal flex justify-center items-center rounded-full text-background uppercase">
-                      AG
-                    </div>
-                    <div className="bg-[#00569E] 2xl:min-w-10 2xl:h-10 w-6 h-6 2xl:text-base text-xs font-normal flex justify-center items-center rounded-full text-background uppercase">
-                      VH
-                    </div>
-                    <div className="bg-[#00569E] 2xl:min-w-10 2xl:h-10 w-6 h-6 2xl:text-base text-xs font-normal flex justify-center items-center rounded-full text-background uppercase">
-                      VH
-                    </div>
-                    <div className="bg-background 2xl:min-w-10 2xl:h-10 w-6 h-6 2xl:text-base text-xs font-normal flex justify-center items-center rounded-full text-background uppercase">
-                      <Plus className="text-foreground" />
-                    </div>
-                  </div>
-                  <MessageCircleMore className="text-info" />
-                </div>
-              </div>
-              <div className="flex flex-col 2xl:gap-2 gap-1">
-                <h6 className="text-foreground 2xl:text-base text-sm font-medium">
-                  Task action
-                </h6>
-                <div className="flex items-center gap-2">
-                  <Button
-                    variant="outline"
-                    size="xs"
-                    className="2xl:text-lg text-sm border-[#EE8204] text-[#EE8204]"
-                  >
-                    Force validation
-                  </Button>
-                  <Button
-                    variant="outline-info"
-                    size="xs"
-                    className="2xl:text-lg text-sm"
-                  >
-                    Publish this task
-                  </Button>
-                  <div>
-                    <TaskActionDropdown />
-                  </div>
-                </div>
-              </div>
+              <CommunityInteraction />
+              <TaskActionDropdown />
             </div>
           </div>
         </DialogContent>
