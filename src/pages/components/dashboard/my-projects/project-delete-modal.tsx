@@ -1,4 +1,4 @@
-import { useDeleteProject } from "@/api/hooks/dashboard/myProject";
+import { STARTUPS_QUERY_KEY, useDeleteStartup } from "@/api/hooks/dashboard";
 import {
   DialogTrigger,
   Dialog,
@@ -22,12 +22,12 @@ export const ProjectDeleteModal = ({
   projectId: string;
 }) => {
   const modal = useModal();
-  const { mutateAsync, isPending } = useDeleteProject();
+  const { mutateAsync, isPending } = useDeleteStartup();
   const queryClient = useQueryClient();
   async function deleteProject(id: string) {
     try {
       const response = await mutateAsync(id);
-      queryClient.invalidateQueries({ queryKey: ["/projects"] });
+      queryClient.invalidateQueries({ queryKey: [STARTUPS_QUERY_KEY] });
       modal.close();
       successToast(response?.message);
     } catch (error: any) {

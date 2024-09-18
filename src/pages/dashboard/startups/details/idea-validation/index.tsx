@@ -1,4 +1,4 @@
-import { useGetProjectById } from "@/api/hooks/dashboard";
+import { useGetStartupById } from "@/api/hooks/dashboard";
 import { useGetIdeaValidationByProjectId } from "@/api/hooks/dashboard/idea-clarity";
 import { GoBack } from "@/pages/components/common";
 import { StartupTitleBar } from "@/pages/components/dashboard/my-startups";
@@ -10,7 +10,7 @@ import { useParams } from "react-router-dom";
 const StartupIdeaValidationPage = () => {
   const params = useParams();
   const startupId = params.id;
-  const { data } = useGetProjectById(String(startupId));
+  const { data } = useGetStartupById(String(startupId));
   
   const { data: validationData } = useGetIdeaValidationByProjectId(
     startupId as any

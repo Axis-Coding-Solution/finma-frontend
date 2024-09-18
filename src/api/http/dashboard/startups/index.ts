@@ -1,7 +1,7 @@
 import { del, get, post, put } from "@/utils/axios";
 import { apiErrorHandler } from "@/api/helpers";
 
-const url = "/startups";
+const url = "/dashboard/startups";
 const appendUrl = (segment: string) => `${url}/${segment}`;
 
 export const getStartupsApi = async () => {

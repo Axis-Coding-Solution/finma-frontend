@@ -5,9 +5,9 @@ import { SquarePen } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { createFormData, errorToast, successToast } from "@/utils";
 import {
-  useEditProjectMutation,
-  useGetProjectById,
-} from "@/api/hooks/dashboard/myProject";
+  useEditStartupMutation,
+  useGetStartupById,
+} from "@/api/hooks/dashboard";
 import { useQueryClient } from "@tanstack/react-query";
 import { useModal } from "@/utils/hooks";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -16,14 +16,14 @@ import { dashboardStartUpInitialValues } from "@/utils/initial-values/dashboard/
 import { dashboardStartUpSchema } from "@/utils/validation-schemas/dashoard/start-up";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { STARTUPS_QUERY_KEY } from "@/api/hooks/dashboard";
 export const ProjectEditModal = ({ projectId }: { projectId: string }) => {
   const modal = useModal();
   const queryClient = useQueryClient();
   const navigate = useNavigate();
-  const { data } = useGetProjectById(projectId);
-  const { mutateAsync } = useEditProjectMutation();
+  const { data } = useGetStartupById(projectId);
+  const { mutateAsync } = useEditStartupMutation();
 
-  
   const {
     control,
     register,
@@ -61,13 +61,13 @@ export const ProjectEditModal = ({ projectId }: { projectId: string }) => {
       const formData = createFormData(values);
       await mutateAsync({ data: formData, id: projectId });
       queryClient.invalidateQueries({
-        queryKey: ["/projects"],
+        queryKey: [STARTUPS_QUERY_KEY],
       });
       queryClient.invalidateQueries({
-        queryKey: ["/project-by-id", projectId],
+        queryKey: [STARTUPS_QUERY_KEY, projectId],
       });
       navigate("/dashboard/my-startups");
-      successToast("Updated Successfully");
+      successToast("Startup updated successfully!");
       modal.close();
     } catch (error: any) {
       errorToast(error.message);

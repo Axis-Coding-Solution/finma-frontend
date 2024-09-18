@@ -1,4 +1,4 @@
-import { useGetProjectById } from "@/api/hooks/dashboard";
+import { useGetStartupById } from "@/api/hooks/dashboard";
 import { StartupTitleBar } from "@/pages/components/dashboard/my-startups";
 import { MarketGrowthCard } from "@/pages/components/dashboard/my-startups/market-growth";
 import { MarketGrowthContent } from "@/pages/components/dashboard/my-startups/market-growth/data";
@@ -11,7 +11,7 @@ const StartupMarketGrowthPage = () => {
 
   const startupId = params.id;
 
-  const { data } = useGetProjectById(String(startupId));
+  const { data } = useGetStartupById(String(startupId));
 
   const handleBack = () => {
     navigate(-1);

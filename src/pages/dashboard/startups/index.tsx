@@ -1,43 +1,10 @@
-import { useGetProjects } from "@/api/hooks/dashboard";
+import { useGetStartups } from "@/api/hooks/dashboard";
 import { HeadingButton } from "@/pages/components/common";
 import ProjectCard from "@/pages/components/dashboard/my-projects/card";
 import ProjectAddModal from "@/pages/components/dashboard/my-projects/project-add-modal";
 
-// const startupOptions = [
-//   {
-//     name: "Mad Cookies",
-//     industry: "IT & Technology",
-//     status: "launched",
-//   },
-//   {
-//     name: "Mad Cookies",
-//     industry: "IT & Technology",
-//     status: "progress",
-//   },
-//   {
-//     name: "Mad Cookies",
-//     industry: "IT & Technology",
-//     status: "closed",
-//   },
-//   {
-//     name: "Mad Cookies",
-//     industry: "IT & Technology",
-//     status: "launched",
-//   },
-//   {
-//     name: "Mad Cookies",
-//     industry: "IT & Technology",
-//     status: "progress",
-//   },
-//   {
-//     name: "Mad Cookies",
-//     industry: "IT & Technology",
-//     status: "closed",
-//   },
-// ];
-
 const MyStartupPage = () => {
-  const { data } = useGetProjects();
+  const { data } = useGetStartups();
 
   const totalProjects = data ? data?.length : 0;
 
