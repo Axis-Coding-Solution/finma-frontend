@@ -7,30 +7,25 @@ import {
   Tabs,
   TermsAndConditionsForm,
 } from "@/pages/components/onboarding/terms-conditions";
-import { X } from "lucide-react";
 
 const tabs = [<TermsConditionsTab />, <PrivacyPolicyTab />];
 
 const TermsAndConditionsPage = () => {
   const [tab, setTab] = useState(0);
   return (
-    <div className="2xl:w-[1084px] w-auto xl:mx-0 mx-5">
-      <div className=" bg-info-light rounded-lg 2xl:py-[52px] py-6 lg:px-20 md:px-10 px-4 flex flex-col justify-between items-center  relative">
-        <button
-          type="button"
-          className="absolute rounded-full size-12 inline-flex justify-center items-center top-8 right-8 self-end bg-background z-10 "
-        >
-          <X />
-        </button>
-        <div className="container bg-background rounded-xl p-5">
+    <div className="">
+      <div className=" bg-secondary rounded-lg 2xl:p-8 p-6 ">
+        <div className="container bg-background rounded-xl 2xl:p-5 p-4 flex flex-col 2xl:gap-8 gap-4">
           <MainHeading
             title="Review and accept our Terms and Privacy Policy"
             subtitle="To join FinmaAI, please review and accept our Service Terms and Privacy Policy to ensure you understand how we operate and protect your information."
           />
           <Tabs tab={tab} setTab={setTab} />
-          <ScrollArea className="border border-border rounded-lg shadow h-[350px]">
+          <div className="border border-border 2xl:px-5 px-4 2xl:py-8 py-4 rounded">
+          <ScrollArea className=" 2xl:h-[332px] h-[280px]">
             {tabs[tab]}
           </ScrollArea>
+          </div>
           <TermsAndConditionsForm />
         </div>
       </div>

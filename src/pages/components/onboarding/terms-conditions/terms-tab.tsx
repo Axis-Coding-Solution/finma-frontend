@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 
 export const TermsConditionsTab = () => {
   return (
-    <>
-      <div className="md:mx-10 my-5">
+    <div className=" flex flex-col 2xl:gap-5 gap-4">
+      <div>
         <h1 className="font-bold">1.Introduction</h1>
         <p>
           Welcome to FinmaAI! By signing up for our platform, you agree to the
@@ -13,7 +13,7 @@ export const TermsConditionsTab = () => {
           (collectively, the "Services"). Please read these terms carefully.
         </p>
       </div>
-      <div className="md:mx-10 my-5">
+      <div>
         <h1 className="font-bold">2. Acceptance of Terms</h1>
         <p>
           By accessing or using the Services, you agree to be bound by these
@@ -22,7 +22,7 @@ export const TermsConditionsTab = () => {
           continued use of the Services constitutes acceptance of those changes.
         </p>
       </div>
-      <div className="md:mx-10 my-5">
+      <div>
         <h1 className="font-bold">3. Eligibility</h1>
         <p>
           You must be at least 18 years old to use the Services. By using the
@@ -30,7 +30,7 @@ export const TermsConditionsTab = () => {
           and that you have the legal capacity to enter into this agreement.
         </p>
       </div>
-      <div className="md:mx-10 my-5">
+      <div>
         <h1 className="font-bold">4. Account Registration</h1>
         <p>
           To use certain features of the Services, you must register for an
@@ -41,7 +41,7 @@ export const TermsConditionsTab = () => {
           activities or actions under your account.
         </p>
       </div>
-      <div className="md:mx-10 my-5">
+      <div>
         <h1 className="font-bold">5. Use of Services</h1>
         <span>
           You agree to use the Services only for lawful purposes and in
@@ -66,7 +66,7 @@ export const TermsConditionsTab = () => {
           </ul>
         </span>
       </div>
-      <div className="md:mx-10 my-5">
+      <div>
         <h1 className="font-bold">6. Subscription and Payment</h1>
         <p>
           Certain features of the Services may require a subscription or
@@ -76,7 +76,7 @@ export const TermsConditionsTab = () => {
           at any time, with prior notice to you.
         </p>
       </div>
-      <div className="md:mx-10 my-5">
+      <div>
         <h1 className="font-bold">7. Content and Intellectual Property</h1>
         <p>
           All content and materials provided through the Services, including
@@ -87,7 +87,7 @@ export const TermsConditionsTab = () => {
           consent.
         </p>
       </div>
-      <div className="md:mx-10 my-5">
+      <div>
         <h1 className="font-bold">8. User-Generated Content</h1>
         <p>
           You may submit content, including comments and feedback, to the
@@ -99,7 +99,7 @@ export const TermsConditionsTab = () => {
           applicable laws.
         </p>
       </div>
-      <div className="md:mx-10 my-5">
+      <div>
         <h1 className="font-bold">9. Privacy Policy</h1>
         <p>
           Your use of the Services is also governed by our Privacy Policy, which
@@ -108,7 +108,7 @@ export const TermsConditionsTab = () => {
           information.
         </p>
       </div>
-      <div className="md:mx-10 my-5">
+      <div>
         <h1 className="font-bold">10. Disclaimer of Warranties</h1>
         <p>
           The Services are provided "as is" and "as available" without any
@@ -119,7 +119,7 @@ export const TermsConditionsTab = () => {
           particular purpose, and non-infringement.
         </p>
       </div>
-      <div className="md:mx-10 my-5">
+      <div>
         <h1 className="font-bold">11. Limitation of Liability</h1>
         <p>
           To the fullest extent permitted by law, FinmaAI shall not be liable
@@ -136,7 +136,7 @@ export const TermsConditionsTab = () => {
           via the Services.
         </p>
       </div>
-      <div className="md:mx-10 my-5">
+      <div>
         <h1 className="font-bold">12. Indemnification</h1>
         <p>
           You agree to indemnify and hold harmless FinmaAI and its affiliates,
@@ -147,7 +147,7 @@ export const TermsConditionsTab = () => {
           violation of these Service Terms.
         </p>
       </div>
-      <div className="md:mx-10 my-5">
+      <div>
         <h1 className="font-bold">13. Governing Law</h1>
         <p>
           These Service Terms shall be governed by and construed in accordance
@@ -157,7 +157,7 @@ export const TermsConditionsTab = () => {
           Paris.
         </p>
       </div>
-      <div className="md:mx-10 my-5">
+      <div>
         <h1 className="font-bold">14. Termination</h1>
         <p>
           We may terminate or suspend your access to the Services at any time,
@@ -166,7 +166,7 @@ export const TermsConditionsTab = () => {
           termination, your right to use the Services will immediately cease.
         </p>
       </div>
-      <div className="md:mx-10 my-5">
+      <div>
         <h1 className="font-bold">15. Contact Information</h1>
         <p>
           If you have any questions about these Service Terms, please contact us
@@ -179,6 +179,6 @@ export const TermsConditionsTab = () => {
           </Link>
         </p>
       </div>
-    </>
+    </div>
   );
 };

@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 
 export const PrivacyPolicyTab = () => {
   return (
-    <>
-      <div className="md:mx-10 my-5 ">
+    <div className=" flex flex-col 2xl:gap-5 gap-4">
+      <div>
         <h1 className="font-bold">1.Introduction</h1>
         <p>
           Welcome to FinmaAI! By signing up for our platform, you agree to the
@@ -13,7 +13,7 @@ export const PrivacyPolicyTab = () => {
           (collectively, the "Services"). Please read these terms carefully.
         </p>
       </div>
-      <div className="md:mx-10 my-5 ">
+      <div>
         <h1 className="font-bold">2. Information We Collect</h1>
         <p>
           We collect various types of information in connection with the
@@ -43,7 +43,7 @@ export const PrivacyPolicyTab = () => {
           </div>
         </p>
       </div>
-      <div className="md:mx-10 my-5 ">
+      <div>
         <h1 className="font-bold">3. How We Use Your Information</h1>
         <p>
           We use the information we collect for various purposes, including:
@@ -79,7 +79,7 @@ export const PrivacyPolicyTab = () => {
           </h1>
         </div>
       </div>
-      <div className="md:mx-10 my-5 ">
+      <div>
         <h1 className="font-bold">4. Sharing Your Information</h1>
         <p>
           We may share your information with third parties in the following
@@ -111,7 +111,7 @@ export const PrivacyPolicyTab = () => {
           </h1>
         </div>
       </div>
-      <div className="md:mx-10 my-5 ">
+      <div>
         <h1 className="font-bold">5. Data Security</h1>
         <span>
           We implement reasonable security measures to protect your personal
@@ -120,7 +120,7 @@ export const PrivacyPolicyTab = () => {
           secure, and we cannot guarantee absolute security.
         </span>
       </div>
-      <div className="md:mx-10 my-5 ">
+      <div>
         <h1 className="font-bold">6. Your Choices and Rights</h1>
         <p>
           You have certain rights regarding your personal information,
@@ -146,7 +146,7 @@ export const PrivacyPolicyTab = () => {
           </h1>
         </div>
       </div>
-      <div className="md:mx-10 my-5 ">
+      <div>
         <h1 className="font-bold">7. Cookies and Tracking Technologies</h1>
         <p>
           We use cookies and similar tracking technologies to collect usage data
@@ -154,7 +154,7 @@ export const PrivacyPolicyTab = () => {
           manage your cookie preferences through your browser settings.
         </p>
       </div>
-      <div className="md:mx-10 my-5 ">
+      <div>
         <h1 className="font-bold">8. Third-Party Links</h1>
         <p>
           The Services may contain links to third-party websites. We are not
@@ -163,7 +163,7 @@ export const PrivacyPolicyTab = () => {
           websites you visit.
         </p>
       </div>
-      <div className="md:mx-10 my-5 ">
+      <div>
         <h1 className="font-bold">9. Children’s Privacy</h1>
         <p>
           The Services are not intended for individuals under the age of 18. We
@@ -172,7 +172,7 @@ export const PrivacyPolicyTab = () => {
           child under 18, we will take steps to delete such information.
         </p>
       </div>
-      <div className="md:mx-10 my-5 ">
+      <div>
         <h1 className="font-bold">10. Changes to This Privacy Policy</h1>
         <p>
           The Services are provided "as is" and "as available" without any
@@ -183,7 +183,7 @@ export const PrivacyPolicyTab = () => {
           particular purpose, and non-infringement.
         </p>
       </div>
-      <div className="md:mx-10 my-5 ">
+      <div>
         <h1 className="font-bold">11. Contact Us</h1>
         <p>
           If you have any questions about this Privacy Policy or our privacy
@@ -200,6 +200,6 @@ export const PrivacyPolicyTab = () => {
           </Link>
         </p>
       </div>
-    </>
+    </div>
   );
 };
