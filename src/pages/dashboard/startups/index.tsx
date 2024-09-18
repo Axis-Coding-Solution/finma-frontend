@@ -46,7 +46,7 @@ const MyStartupPage = () => {
       <div>
         <HeadingButton
           title="My Startups"
-          subtitle={`${totalProjects} project${totalProjects !== 1 ? "s" : ""}`}
+          subtitle={`${totalProjects} project${totalProjects > 1 ? "s" : ""}`}
           renderRight={<ProjectAddModal />}
         />
       </div>

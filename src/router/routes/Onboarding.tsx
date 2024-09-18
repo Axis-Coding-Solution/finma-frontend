@@ -4,6 +4,7 @@ const OnboardingSelectRolePage = lazy(
   () => import("@/pages/onboarding/select-role")
 );
 const OnboardingProfilePage = lazy(() => import("@/pages/onboarding/profile"));
+const TermsAndConditionsPage = lazy(() => import("@/pages/onboarding/terms-conditions"));
 
 const OnboardingRoutes = [
   {
@@ -13,6 +14,10 @@ const OnboardingRoutes = [
   {
     path: "onboarding/select-role",
     element: <OnboardingSelectRolePage />,
+  },
+  {
+    path: "onboarding/terms-conditions",
+    element: <TermsAndConditionsPage />,
   },
 ];
 

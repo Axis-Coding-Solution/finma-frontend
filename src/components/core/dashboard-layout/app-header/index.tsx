@@ -1,7 +1,7 @@
 import { Button } from "@/components/_ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/_ui/sheet";
 import { Link, useNavigate } from "react-router-dom";
-import { BellDot, Menu, Settings } from "lucide-react";
+import { Bell, Menu, Settings } from "lucide-react";
 
 import {
   DropdownMenu,
@@ -73,8 +73,9 @@ const AppHeader = () => {
         </div>
         <div className="flex 2xl:gap-12 gap-8 items-center">
           <div className="text-muted-foreground flex 2xl:gap-10 gap-8 items-center">
-            <span role="button">
-              <BellDot />
+            <span role="button" className="relative">
+              <Bell />
+              <div className="p-1 rounded-full bg-warning border-2 border-background absolute top-0 right-0"></div>
             </span>
             <Link to="/dashboard/settings">
               <span role="button">
