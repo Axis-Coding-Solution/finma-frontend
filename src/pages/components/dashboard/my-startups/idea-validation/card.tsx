@@ -1,10 +1,7 @@
 import { ColorLoader } from "@/assets/svgs";
 import { Check, X } from "lucide-react";
-import React from "react";
 import { IdeaValidationCardEditModal } from "./edit-modal";
 import { ReloadButton } from "@/components/ui";
-import { useParams } from "react-router-dom";
-import { getIdeaValidationByIdApi } from "@/api/http/dashboard/idea-clarity";
 
 interface IdeaValidationCardProps {
   name: "problem" | "solution";
@@ -19,19 +16,11 @@ interface IdeaValidationCardProps {
 export const IdeaValidationCard: React.FC<IdeaValidationCardProps> = ({
   name,
   heading,
-  subHeading,
-  detail,
   validation,
   image,
-  data
+  data,
 }) => {
-  const params = useParams();
-  const Id = params.id;
-
-  const ideaData = getIdeaValidationByIdApi(Id as string);
-  console.log("ooo", ideaData)
-  const ideadata = data?.data;
-  const validates = data?.data?.response?.validates;
+  console.log(data);
   return (
     <div className="bg-info-light 2xl:p-8 p-4 rounded grid grid-cols-12 md:gap-10 gap-6 items-stretch">
       <div className="md:order-1 order-2 md:col-span-9 col-span-12 bg-background 2xl:p-8  p-4 rounded flex sm:flex-row flex-col 2xl:gap-24 md:gap-12 gap-6 items-center justify-between">
@@ -40,7 +29,7 @@ export const IdeaValidationCard: React.FC<IdeaValidationCardProps> = ({
             The {heading}
           </h4>
           <div className="2xl:text-2xl text-base 2xl:leading-7 leading-5 text-foreground border-b border-muted-foreground pb-2 ">
-            <span className="text-muted-text">{ideadata?.question}</span>
+            <span className="text-muted-text">{data?.question}</span>
           </div>
         </div>
         <div className="bg-background 2xl:min-w-[305px] sm:min-w-[255px] min-w-max rounded shadow-lg 2xl:p-6 p-4  flex flex-col 2xl:gap-8 gap-6">
@@ -54,12 +43,14 @@ export const IdeaValidationCard: React.FC<IdeaValidationCardProps> = ({
             <img src={ColorLoader} className="2xl:w-20 w-14" />
             <span className="2xl:text-base text-sm flex flex-col gap-1 font-medium leading-[18px]">
               The {validation} score{" "}
-              <span className="2xl:text-xl text-lg font-bold">7/10</span>
+              <span className="2xl:text-xl text-lg font-bold">
+                {data?.response?.score ?? 0}/10
+              </span>
             </span>
           </div>
           <ul className="flex flex-col 2xl:gap-7 gap-3">
             <li className="2xl:text-xl text-sm flex items-center gap-2">
-              {validates?.urgency ? (
+              {data?.response?.validation?.urgency ? (
                 <Check className="2xl:w-4 w-3 2xl:h-4 h-3 text-background bg-success-dark rounded-full " />
               ) : (
                 <X className="2xl:w-4 w-3 2xl:h-4 h-3 text-background bg-danger rounded-full " />
@@ -67,7 +58,7 @@ export const IdeaValidationCard: React.FC<IdeaValidationCardProps> = ({
               Urgency
             </li>
             <li className="2xl:text-xl text-sm flex items-center gap-2">
-              {validates?.relevance ? (
+              {data?.response?.validation?.relevance ? (
                 <Check className="2xl:w-4 w-3 2xl:h-4 h-3 text-background bg-success-dark rounded-full " />
               ) : (
                 <X className="2xl:w-4 w-3 2xl:h-4 h-3 text-background bg-danger rounded-full " />
@@ -75,7 +66,7 @@ export const IdeaValidationCard: React.FC<IdeaValidationCardProps> = ({
               Relevance
             </li>
             <li className="2xl:text-xl text-sm flex items-center gap-2">
-              {validates?.evidence ? (
+              {data?.response?.validation?.evidence ? (
                 <Check className="2xl:w-4 w-3 2xl:h-4 h-3 text-background bg-success-dark rounded-full " />
               ) : (
                 <X className="2xl:w-4 w-3 2xl:h-4 h-3 text-background bg-danger rounded-full " />
@@ -87,7 +78,7 @@ export const IdeaValidationCard: React.FC<IdeaValidationCardProps> = ({
       </div>
       <div className="md:order-2 order-1 md:col-span-3 col-span-12 flex md:justify-end justify-start items-center relative">
         <div className="absolute top-0 right-0">
-          <IdeaValidationCardEditModal name={name} />
+          <IdeaValidationCardEditModal name={name} data={data} />
         </div>
         <figure className="md:w-64 w-32">
           <img src={image} className="" alt="" />

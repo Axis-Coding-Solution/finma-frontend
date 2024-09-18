@@ -11,7 +11,8 @@ import { createChatsApi } from "@/api/http";
 
 export const ConnectWithExperts = () => {
   const { pathname } = useLocation();
-  const { data } = useGetUsersQuery();
+  // const { data } = useGetUsersQuery();
+  const data: any = [];
   const queryClient = useQueryClient();
 
   let users = data?.data ?? [];

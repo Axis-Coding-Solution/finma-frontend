@@ -16,50 +16,90 @@ import { useForm } from "react-hook-form";
 import { IdeaValidationInitialValues } from "@/utils/initial-values/dashboard";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { IdeaValidationSchema } from "@/utils/validation-schemas/dashoard";
-import { createFormData, errorToast, successToast } from "@/utils";
+import { errorToast, successToast } from "@/utils";
 import { useQueryClient } from "@tanstack/react-query";
 import { useModal } from "@/utils/hooks";
-import { useAddIdeaValidationById } from "@/api/hooks/dashboard/idea-clarity";
+import {
+  IDEA_VALIDATION_PROJECT_QUERY_KEY,
+  IDEA_VALIDATION_QUERY_KEY,
+  useSaveIdeaValidation,
+  useValidateIdeaValidation,
+} from "@/api/hooks/dashboard";
 import { CommunityInteraction } from "../community-interaction";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 export const IdeaValidationCardEditModal = ({
   name,
+  data,
 }: {
   name: "problem" | "solution";
+  data: any;
 }) => {
+  const { id: projectId } = useParams();
   const modal = useModal();
   const queryClient = useQueryClient();
-  const { mutateAsync } = useAddIdeaValidationById();
+  const [response, setResponse] = useState<any>(null);
+  const { mutateAsync } = useSaveIdeaValidation();
+  const { mutateAsync: validateIdeaAsync } = useValidateIdeaValidation();
 
   const {
-    control,
     register,
     handleSubmit,
-    reset,
     formState: { errors, isSubmitting },
+    setValue,
   } = useForm({
     mode: "onChange",
     defaultValues: IdeaValidationInitialValues(name),
     resolver: yupResolver(IdeaValidationSchema(name) as any),
   });
 
+  useEffect(() => {
+    if (data) {
+      setValue(name, data?.question, { shouldValidate: true });
+      setResponse(data?.response);
+    }
+  }, [data]);
   // Handle form submission
   const onSubmitHandler = async (values: any) => {
     try {
-      const formData = createFormData({ values, type: name });
-      const response = await mutateAsync(formData);
-      queryClient.invalidateQueries({ queryKey: ["/project/idea-validation"] });
-      successToast(response.message);
+      const res = await mutateAsync({
+        statement: values[name],
+        type: name,
+        response,
+        projectId,
+      });
+      queryClient.invalidateQueries({ queryKey: [IDEA_VALIDATION_QUERY_KEY] });
+      queryClient.invalidateQueries({
+        queryKey: [IDEA_VALIDATION_PROJECT_QUERY_KEY, projectId],
+      });
+      successToast(res.message);
       modal.close();
     } catch (error: any) {
-      console.error("Error:", error);
-      errorToast("Something went wrong while updating the project");
+      errorToast(error.message);
     }
   };
 
+  const validateSubmitHandler = async (values: any) => {
+    try {
+      const res = await validateIdeaAsync({
+        statement: values[name],
+        type: name,
+      });
+      setResponse(res.data);
+      successToast(res.message);
+    } catch (error: any) {
+      errorToast(error.message);
+    }
+  };
+
+  const discardChanges = () => {
+    setResponse(data?.response);
+    setValue(name, data?.question, { shouldValidate: true });
+  };
   return (
     <>
-      <Dialog>
+      <Dialog open={modal.show} onOpenChange={modal.setShow}>
         <DialogTrigger asChild>
           <span role="button">
             <div className="flex gap-2 items-center  bg-foreground 2xl:px-6 px-4 2xl:py-2 py-1 text-background 2xl:rounded rounded-md 2xl:text-2xl text-base ">
@@ -95,7 +135,7 @@ export const IdeaValidationCardEditModal = ({
                   <div>
                     <textarea
                       {...register(name)}
-                      className="resize-none max-h-16 overflow-auto 2xl:text-[28px] text-base 2xl:leading-8 leading-5 text-foreground border-b border-muted-foreground pb-2 focus:outline-none w-full"
+                      className="resize-none max-h-48 overflow-auto 2xl:text-[28px] text-base 2xl:leading-8 leading-5 text-foreground border-b border-muted-foreground pb-2 focus:outline-none w-full"
                     />
                     <InputError error={errors[name]} />
                   </div>
@@ -103,13 +143,25 @@ export const IdeaValidationCardEditModal = ({
                     <GradientButton
                       variant="gradient"
                       className="rounded w-full"
+                      disabled={isSubmitting}
+                      onClick={handleSubmit(validateSubmitHandler)}
                     >
                       Validate
                     </GradientButton>
-                    <Button variant="outline" className="rounded w-full">
+                    <Button
+                      variant="outline"
+                      className="rounded w-full"
+                      type="button"
+                      onClick={discardChanges}
+                    >
                       Discard
                     </Button>
-                    <Button className="rounded w-full">Save</Button>
+                    <Button
+                      className="rounded w-full"
+                      disabled={!response || isSubmitting}
+                    >
+                      Save
+                    </Button>
                   </div>
                 </div>
               </form>
@@ -124,21 +176,35 @@ export const IdeaValidationCardEditModal = ({
                   <img src={ColorLoader} className="2xl:w-20 w-14" />
                   <span className="2xl:text-base text-sm flex flex-col gap-1 font-medium leading-[18px]">
                     The {name} score{" "}
-                    <span className="2xl:text-xl text-lg font-bold">7/10</span>
+                    <span className="2xl:text-xl text-lg font-bold">
+                      {response?.score ?? 0}/10
+                    </span>
                   </span>
                 </div>
                 <ul className="flex flex-col 2xl:gap-7 gap-4">
                   <li className="2xl:text-xl text-base flex items-center gap-2">
-                    <Check className="2xl:w-4 w-3 2xl:h-4 h-3 text-background bg-success-dark rounded-full " />
+                    {response?.validation?.urgency ? (
+                      <Check className="2xl:w-4 w-3 2xl:h-4 h-3 text-background bg-success-dark rounded-full " />
+                    ) : (
+                      <X className="2xl:w-4 w-3 2xl:h-4 h-3 text-background bg-danger rounded-full " />
+                    )}
                     Urgency
                   </li>
                   <li className="2xl:text-xl text-base flex items-center gap-2">
-                    <Check className="2xl:w-4 w-3 2xl:h-4 h-3 text-background bg-success-dark rounded-full " />
+                    {response?.validation?.relevance ? (
+                      <Check className="2xl:w-4 w-3 2xl:h-4 h-3 text-background bg-success-dark rounded-full " />
+                    ) : (
+                      <X className="2xl:w-4 w-3 2xl:h-4 h-3 text-background bg-danger rounded-full " />
+                    )}
                     Relevance
                   </li>
                   <li className="2xl:text-xl text-base flex items-center gap-2">
-                    <X className="2xl:w-4 w-3 2xl:h-4 h-3 text-background bg-danger rounded-full " />
-                    Relevance
+                    {response?.validation?.evidence ? (
+                      <Check className="2xl:w-4 w-3 2xl:h-4 h-3 text-background bg-success-dark rounded-full " />
+                    ) : (
+                      <X className="2xl:w-4 w-3 2xl:h-4 h-3 text-background bg-danger rounded-full " />
+                    )}
+                    Evidence
                   </li>
                 </ul>
               </div>

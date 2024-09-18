@@ -6,7 +6,7 @@ import {
   InputError,
   ReloadButton,
 } from "@/components/ui";
-import {   SquarePen } from "lucide-react";
+import { SquarePen } from "lucide-react";
 import { MarketResearchChart } from "./research-chart";
 import { MarketResearchChartEditModal } from "./research-chart-edit-modal";
 import { CardStatusDropdown } from "../card-status";
@@ -18,7 +18,7 @@ import { MarketResearchEditModalSchema } from "@/utils/validation-schemas/dashoa
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useModal } from "@/utils/hooks";
 import { useQueryClient } from "@tanstack/react-query";
-import { useAddMarketResearchProject } from "@/api/hooks/dashboard/idea-clarity";
+import { useAddMarketResearchProject } from "@/api/hooks/dashboard";
 import { createFormData, errorToast, successToast } from "@/utils";
 import { CommunityInteraction } from "../community-interaction";
 
@@ -27,7 +27,6 @@ export const MarketResearchCardEditModal = () => {
   const queryClient = useQueryClient();
   const { mutateAsync } = useAddMarketResearchProject();
   const {
-    control,
     register,
     handleSubmit,
     formState: { errors },

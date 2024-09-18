@@ -37,9 +37,7 @@ const StartupMarketGrowthPage = () => {
       </div>
 
       {/* Title Card  */}
-      <div>
-        <StartupTitleBar data={data} />
-      </div>
+      <StartupTitleBar data={data} />
 
       {/* Idea Validation Card  */}
       <div className="flex flex-col 2xl:gap-10 gap-6">

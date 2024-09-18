@@ -35,7 +35,7 @@ export const StartupTitleBar = ({ data }: any) => {
         <div className="flex flex-col gap-2">
           <h6 className="text-primary-disabled text-base">Status</h6>
           <div className="max-w-max bg-secondary py-1 px-6 text-foreground 2xl:text-lg text-sm rounded">
-            0/200 Tasks Completed
+            0/2 Tasks Completed
           </div>
         </div>
       </div>

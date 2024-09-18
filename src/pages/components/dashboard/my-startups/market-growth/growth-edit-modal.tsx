@@ -18,7 +18,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useModal } from "@/utils/hooks";
 import { useQueryClient } from "@tanstack/react-query";
-import { useAddMarketResearchProject } from "@/api/hooks/dashboard/idea-clarity";
+import { useAddMarketResearchProject } from "@/api/hooks/dashboard";
 import { createFormData, errorToast, successToast } from "@/utils";
 import { CommunityInteraction } from "../community-interaction";
 

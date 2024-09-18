@@ -1,7 +1,7 @@
 import { get, post } from "@/utils/axios";
 import { apiErrorHandler } from "@/api/helpers";
 
-const url = "/startups/idea-validation";
+const url = "/dashboard/startups/idea-validation";
 const appendUrl = (segment: string) => `${url}/${segment}`;
 
 export const validateIdeaValidationApi = async (data: any) => {
