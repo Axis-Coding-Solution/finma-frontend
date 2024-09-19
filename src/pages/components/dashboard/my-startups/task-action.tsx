@@ -6,51 +6,68 @@ import {
 } from "@/components/ui";
 import { CheckboxGroup } from "../../common";
 import { Plus } from "lucide-react";
-import { useCreateTaskAction } from "@/api/hooks/dashboard";
-import { useState } from "react";
+import {
+  IDEA_VALIDATION_PROJECT_QUERY_KEY,
+  MARKET_RESEARCH_QUERY_KEY,
+  useUpdateTaskAction,
+} from "@/api/hooks/dashboard";
+import { useQueryClient } from "@tanstack/react-query";
+import { useParams } from "react-router-dom";
+import { cn, errorToast, successToast } from "@/utils";
 
-const taskAction = [
-  {
-    value: "forceValidation",
-    label: "Force Validation",
-  },
-  {
-    value: "publishThisTask",
-    label: "Publish this task",
-  },
-];
+const taskAction = ["Force Validation", "Publish this task"];
 
 export const TaskActionDropdown = ({
   id,
   type,
+  addedTasks,
 }: {
   id: string;
   type: string;
+  addedTasks: string[];
 }) => {
-  const { mutateAsync } = useCreateTaskAction();
-  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+  const { mutateAsync, isPending } = useUpdateTaskAction();
+  const queryClient = useQueryClient();
+  const { id: projectId } = useParams();
 
-  const handleCheckboxChange = async (e: any, item: any) => {
-    console.log("e: ", e, item);
+  queryClient.isFetching;
 
-    const checked = e.target.checked;
-    const value = item.value;
-    let newSelectedOptions;
-    if (checked) {
-      newSelectedOptions = [...selectedOptions, value];
-    } else {
-      newSelectedOptions = selectedOptions.filter((option) => option !== value);
-    }
-    setSelectedOptions(newSelectedOptions);
-
+  const handleCheckboxChange = async (checked: boolean, value: string) => {
+    const mode = checked ? "add" : "delete";
+    const data = {
+      action: value,
+      mode,
+      id,
+      type,
+    };
     try {
-      console.log("Making API call with payload:", newSelectedOptions);
-      await mutateAsync(newSelectedOptions);
-      console.log("Task actions updated successfully");
+      await mutateAsync(data);
+      queryClient.invalidateQueries({
+        queryKey: [
+          type === "marketResearch"
+            ? MARKET_RESEARCH_QUERY_KEY
+            : IDEA_VALIDATION_PROJECT_QUERY_KEY,
+          projectId,
+        ],
+      });
+      successToast("Task actions updated successfully!");
     } catch (error) {
-      console.error("Failed to update task actions", error);
+      errorToast("Failed to update task actions");
     }
   };
+
+  const findIfChecked = (value: string) =>
+    addedTasks.some((item) => item === value);
+
+  const isFetching =
+    queryClient.isFetching({
+      queryKey: [
+        type === "marketResearch"
+          ? MARKET_RESEARCH_QUERY_KEY
+          : IDEA_VALIDATION_PROJECT_QUERY_KEY,
+        projectId,
+      ],
+    }) > 0;
 
   return (
     <div className="flex flex-col 2xl:gap-2 gap-1">
@@ -58,20 +75,21 @@ export const TaskActionDropdown = ({
         Task action
       </h6>
       <div className="flex items-center gap-2">
-        <Button
-          variant="outline"
-          size="xs"
-          className="2xl:text-lg text-sm border-[#EE8204] text-[#EE8204] bg-transparent"
-        >
-          Force validation
-        </Button>
-        <Button
-          variant="outline-info"
-          size="xs"
-          className="2xl:text-lg text-sm"
-        >
-          Publish this task
-        </Button>
+        {addedTasks?.map((item: string, idx: number) => (
+          <Button
+            key={idx}
+            variant="outline"
+            size="xs"
+            className={cn(
+              "2xl:text-lg text-sm bg-transparent",
+              idx % 2 === 0
+                ? "border-info text-info"
+                : "border-warning text-warning"
+            )}
+          >
+            {item}
+          </Button>
+        ))}
         <div>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -89,13 +107,15 @@ export const TaskActionDropdown = ({
                 </h6>
                 <div className="custom-scrollbar-secondary h-full overflow-y-auto flex flex-col 2xl:gap-5 gap-3 p-0.5">
                   {taskAction &&
-                    taskAction.map((item) => (
+                    taskAction.map((item, idx: number) => (
                       <CheckboxGroup
-                        key={item.label}
-                        label={item.label}
-                        onCheckedChange={(e: any) =>
-                          handleCheckboxChange(e, item)
-                        }
+                        key={idx}
+                        label={item}
+                        disabled={isPending || isFetching}
+                        checked={findIfChecked(item)}
+                        onCheckedChange={(e: any) => {
+                          handleCheckboxChange(e, item);
+                        }}
                       />
                     ))}
                 </div>

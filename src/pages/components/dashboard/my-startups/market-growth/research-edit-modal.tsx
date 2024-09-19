@@ -150,7 +150,11 @@ export const MarketResearchCardEditModal = ({ data }: { data: any }) => {
             {/* Community & Tasks action  */}
             <div className="flex items-start justify-between 2xl:gap-10 gap-6">
               <CommunityInteraction />
-              <TaskActionDropdown type="marketResearch" id={data?._id} />
+              <TaskActionDropdown
+                type="marketResearch"
+                id={data?._id}
+                addedTasks={data?.taskAction}
+              />
             </div>
           </div>
         </DialogContent>

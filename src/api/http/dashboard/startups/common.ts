@@ -34,7 +34,7 @@ export const getTeamMembersApi = async (id: string, type: string) => {
 // Card Status
 export const createCardStatusApi = async (data: any) => {
   try {
-    const res = await post(appendUrl("validate"), data);
+    const res = await post(appendUrl("cardStatus"), data);
     return res.data;
   } catch (error: any) {
     return Promise.reject(apiErrorHandler(error));
@@ -51,9 +51,9 @@ export const getCardStatusApi = async (id: string) => {
 };
 
 // Task Action
-export const createTaskActionApi = async (data: any) => {
+export const updateTaskActionApi = async (data: any) => {
   try {
-    const res = await post(appendUrl("validate"), data);
+    const res = await put(appendUrl("task-actions"), data);
     return res.data;
   } catch (error: any) {
     return Promise.reject(apiErrorHandler(error));

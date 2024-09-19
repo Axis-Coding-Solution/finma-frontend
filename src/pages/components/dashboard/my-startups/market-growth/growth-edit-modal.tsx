@@ -82,7 +82,6 @@ export const MarketGrowthCardEditModal = ({ data }: { data: any }) => {
       </DialogTrigger>
       <DialogContent className="bg-info-light min-w-[1084px] 2xl:py-[52px] py-8 2xl:px-8 px-6">
         <div className="flex flex-col 2xl:gap-8 gap-6">
-          {/* Team member & Card Status */}
           <div className="flex items-start 2xl:gap-10 gap-6">
             {/* Team Members  */}
             <TeamMembersDropdown type="marketResearch" id={data?._id} />
@@ -147,7 +146,11 @@ export const MarketGrowthCardEditModal = ({ data }: { data: any }) => {
           {/* Community & Tasks action  */}
           <div className="flex items-start justify-between 2xl:gap-10 gap-6">
             <CommunityInteraction />
-            <TaskActionDropdown type="marketResearch" id={data?._id} />
+            <TaskActionDropdown
+              type="marketResearch"
+              id={data?._id}
+              addedTasks={data?.taskAction}
+            />
           </div>
         </div>
       </DialogContent>

@@ -3,9 +3,9 @@ import {
   updateTeamMembersApi,
   createCardStatusApi,
   getCardStatusApi,
-  createTaskActionApi,
   getTaskActionApi,
   removeTeamMembersApi,
+  updateTaskActionApi,
 } from "@/api/http/dashboard/startups";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
@@ -53,9 +53,9 @@ export const useGetCardStatus = (id: string) => {
 };
 
 // Task Action
-export const useCreateTaskAction = () =>
+export const useUpdateTaskAction = () =>
   useMutation({
-    mutationFn: createTaskActionApi,
+    mutationFn: updateTaskActionApi,
     mutationKey: [TASK_ACTION_MUTATION_KEY],
   });
 
