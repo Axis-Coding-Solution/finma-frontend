@@ -1,5 +1,5 @@
 import {
-  useGetMarketResearchProject,
+  useGetMarketResearchByProjectId,
   useGetStartupById,
 } from "@/api/hooks/dashboard";
 import { GoBack } from "@/pages/components/common";
@@ -13,7 +13,9 @@ const StartupMarketGrowthPage = () => {
   const params = useParams();
   const startupId = params.id;
   const { data } = useGetStartupById(String(startupId));
-  const { data: marketData } = useGetMarketResearchProject(String(startupId));
+  const { data: marketData } = useGetMarketResearchByProjectId(
+    String(startupId)
+  );
 
   return (
     <div className="flex flex-col 2xl:gap-10 gap-6">
@@ -35,20 +37,17 @@ const StartupMarketGrowthPage = () => {
       {/* Idea Validation Card  */}
       <div className="flex flex-col 2xl:gap-10 gap-6">
         {MarketGrowthContent &&
-          MarketGrowthContent.map((item: any, idx: number) => (
+          MarketGrowthContent.map((item, idx: number) => (
             <MarketGrowthCard
               data={
                 marketData &&
-                marketData?.find((el: any) => el.type === item.name)
+                marketData?.find((el: any) => el.type === item.type)
               }
+              type={item.type}
               key={idx}
               heading={item.heading}
-              subHeading={item.subHeading}
-              detail={item.detail}
-              market={item.market}
+              graphHeading={item.graphHeading}
               image={item.image}
-              chart={item.chart}
-              modal={item.modal}
             />
           ))}
       </div>

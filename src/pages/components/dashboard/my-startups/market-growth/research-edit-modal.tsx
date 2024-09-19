@@ -18,24 +18,25 @@ import { MarketResearchEditModalSchema } from "@/utils/validation-schemas/dashoa
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useModal } from "@/utils/hooks";
 import { useQueryClient } from "@tanstack/react-query";
-import { useAddMarketResearchProject, MARKET_RESEARCH_QUERY_KEY  } from "@/api/hooks/dashboard";
-import {  errorToast, successToast } from "@/utils";
+import {
+  useAddMarketResearchProject,
+  MARKET_RESEARCH_QUERY_KEY,
+} from "@/api/hooks/dashboard";
+import { errorToast, successToast } from "@/utils";
 import { CommunityInteraction } from "../community-interaction";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 export const MarketResearchCardEditModal = ({ data }: { data: any }) => {
-
   const { id: projectId } = useParams();
   const modal = useModal();
   const queryClient = useQueryClient();
-  const [response, setResponse] = useState<any>(null);
   const { mutateAsync } = useAddMarketResearchProject();
 
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors },
     setValue,
   } = useForm({
     mode: "onChange",
@@ -45,18 +46,15 @@ export const MarketResearchCardEditModal = ({ data }: { data: any }) => {
 
   useEffect(() => {
     if (data) {
-      setValue( data?.description,  data.description );
-      setResponse(data?.response);
+      setValue("description", data?.description);
     }
   }, [data]);
   // Handle form submission
   const onSubmitHandler = async (values: any) => {
-    console.log("values",values)
     try {
       const res = await mutateAsync({
-        description : values.description,
-        type:"marketSize",
-        graphValues:"",
+        description: values.description,
+        type: "marketSize",
         projectId,
       });
       queryClient.invalidateQueries({ queryKey: [MARKET_RESEARCH_QUERY_KEY] });
@@ -70,6 +68,9 @@ export const MarketResearchCardEditModal = ({ data }: { data: any }) => {
     }
   };
 
+  const handleDiscard = () => {
+    setValue("description", data?.description);
+  };
 
   return (
     <>
@@ -110,16 +111,16 @@ export const MarketResearchCardEditModal = ({ data }: { data: any }) => {
                     <textarea
                       {...register("description")}
                       className="resize-none max-h-16 overflow-auto 2xl:text-[28px] text-base 2xl:leading-8 leading-5 text-foreground border-b border-muted-foreground pb-2  focus:outline-none w-full"
-                    >
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Suspendisse ultrices interdum orci, at sagittis elit
-                      porttitor. Suspendisse ultrices interdum orci, at sagittis
-                      elit porttitor.
-                    </textarea>
+                    />
                     <InputError error={errors.description} />
                   </div>
                   <div className="flex items-center 2xl:gap-8 gap-6 2xl:mt-8 mt-6 w-1/2">
-                    <Button variant="outline" className="rounded 2xl:px-9 px-6">
+                    <Button
+                      type="button"
+                      onClick={handleDiscard}
+                      variant="outline"
+                      className="rounded 2xl:px-9 px-6"
+                    >
                       Discard
                     </Button>
                     <Button type="submit" className="rounded px-10">
@@ -134,7 +135,10 @@ export const MarketResearchCardEditModal = ({ data }: { data: any }) => {
                     Market Research
                   </h6>
                   <div className="flex items-center 2xl:gap-3 gap-2">
-                    <MarketResearchChartEditModal />
+                    <MarketResearchChartEditModal
+                      marketResearchId={data?._id}
+                      data={data?.graphValues}
+                    />
                     <ReloadButton />
                   </div>
                 </div>
