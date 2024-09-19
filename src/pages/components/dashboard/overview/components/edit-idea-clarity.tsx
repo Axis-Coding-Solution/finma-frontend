@@ -3,15 +3,15 @@ import { Button } from "@/components/_ui/button";
 import { DialogHeader } from "@/components/_ui/dialog";
 import { DialogTitle } from "@radix-ui/react-dialog";
 import { IdeaClarityField } from "../idea-clarity-field";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { updateIdeaClarity } from "@/api/http";
+// import { useMutation, useQueryClient } from "@tanstack/react-query";
+// import { updateIdeaClarity } from "@/api/http";
 import { useForm } from "react-hook-form";
 import { FORM_MODE } from "@/utils/constants";
 import { onboardingIdeaClarityInitialValues } from "@/utils/initial-values";
 import { useEffect } from "react";
-import { errorToast, successToast } from "@/utils";
+// import { errorToast, successToast } from "@/utils";
 import { ideaClarityFields } from "@/data/dashboard";
-import { useAddIdeaClarityMutation } from "@/api/hooks/dashboard/idea-clarity";
+// import { useAddIdeaClarityMutation } from "@/api/hooks/dashboard/idea-clarity";
 
 export function EditIdeaClarity({
   setSelectStep,
@@ -20,12 +20,12 @@ export function EditIdeaClarity({
   setSelectStep: any;
   data: any;
 }) {
-  const { mutateAsync } = useAddIdeaClarityMutation();
-  const queryClient = useQueryClient();
+  // const { mutateAsync } = useAddIdeaClarityMutation();
+  // const queryClient = useQueryClient();
 
-  const mutation = useMutation({
-    mutationFn: updateIdeaClarity,
-  });
+  // const mutation = useMutation({
+  //   mutationFn: updateIdeaClarity,
+  // });
   const {
     handleSubmit,
     register,
@@ -51,21 +51,21 @@ export function EditIdeaClarity({
   }, [data]);
 
   const onSubmitHandler = async (
-    values: typeof onboardingIdeaClarityInitialValues
+    // values: typeof onboardingIdeaClarityInitialValues
   ) => {
-    try {
-      let res;
-      if (!data?.ideaClarity) {
-        res = await mutateAsync({ ...values, projectId: data?._id });
-      } else {
-        res = await mutation.mutateAsync(values);
-      }
-      queryClient.invalidateQueries({ queryKey: ["/idea-clarity/project"] });
-      setSelectStep(0);
-      successToast(res.message);
-    } catch (error: any) {
-      errorToast(error.message);
-    }
+    // try {
+    //   let res;
+    //   if (!data?.ideaClarity) {
+    //     // res = await mutateAsync({ ...values, projectId: data?._id });
+    //   } else {
+    //     res = await mutation.mutateAsync(values);
+    //   }
+    //   queryClient.invalidateQueries({ queryKey: ["/idea-clarity/project"] });
+    //   setSelectStep(0);
+    //   successToast(res.message);
+    // } catch (error: any) {
+    //   errorToast(error.message);
+    // }
   };
 
   return (

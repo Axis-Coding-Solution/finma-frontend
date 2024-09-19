@@ -5,24 +5,102 @@ import {
   DialogContent,
   DialogTrigger,
   GradientButton,
+  InputError,
+  ReloadButton,
 } from "@/components/ui";
-import { ProgressBar } from "@/pages/components/common";
-import {
-  Check,
-  MessageCircleMore,
-  Plus,
-  RefreshCcw,
-  SquarePen,
-  X,
-} from "lucide-react";
+import { Check, SquarePen, X } from "lucide-react";
 import { TeamMembersDropdown } from "../team-members";
 import { CardStatusDropdown } from "../card-status";
 import { TaskActionDropdown } from "../task-action";
+import { useForm } from "react-hook-form";
+import { IdeaValidationInitialValues } from "@/utils/initial-values/dashboard";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { IdeaValidationSchema } from "@/utils/validation-schemas/dashoard";
+import { errorToast, successToast } from "@/utils";
+import { useQueryClient } from "@tanstack/react-query";
+import { useModal } from "@/utils/hooks";
+import {
+  IDEA_VALIDATION_PROJECT_QUERY_KEY,
+  IDEA_VALIDATION_QUERY_KEY,
+  useSaveIdeaValidation,
+  useValidateIdeaValidation,
+} from "@/api/hooks/dashboard";
+import { CommunityInteraction } from "../community-interaction";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-export const IdeaValidationCardEditModal = () => {
+export const IdeaValidationCardEditModal = ({
+  name,
+  data,
+}: {
+  name: "problem" | "solution";
+  data: any;
+}) => {
+  const { id: projectId } = useParams();
+  const modal = useModal();
+  const queryClient = useQueryClient();
+  const [response, setResponse] = useState<any>(null);
+  const { mutateAsync } = useSaveIdeaValidation();
+  const { mutateAsync: validateIdeaAsync } = useValidateIdeaValidation();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+    setValue,
+  } = useForm({
+    mode: "onChange",
+    defaultValues: IdeaValidationInitialValues(name),
+    resolver: yupResolver(IdeaValidationSchema(name) as any),
+  });
+
+  useEffect(() => {
+    if (data) {
+      setValue(name, data?.question, { shouldValidate: true });
+      setResponse(data?.response);
+    }
+  }, [data]);
+
+  // Handle form submission
+  const onSubmitHandler = async (values: any) => {
+    try {
+      const res = await mutateAsync({
+        statement: values[name],
+        type: name,
+        response,
+        projectId,
+      });
+      queryClient.invalidateQueries({ queryKey: [IDEA_VALIDATION_QUERY_KEY] });
+      queryClient.invalidateQueries({
+        queryKey: [IDEA_VALIDATION_PROJECT_QUERY_KEY, projectId],
+      });
+      successToast(res.message);
+      modal.close();
+    } catch (error: any) {
+      errorToast(error.message);
+    }
+  };
+
+  const validateSubmitHandler = async (values: any) => {
+    try {
+      const res = await validateIdeaAsync({
+        statement: values[name],
+        type: name,
+      });
+      setResponse(res.data);
+      successToast(res.message);
+    } catch (error: any) {
+      errorToast(error.message);
+    }
+  };
+
+  const discardChanges = () => {
+    setResponse(data?.response);
+    setValue(name, data?.question, { shouldValidate: true });
+  };
   return (
     <>
-      <Dialog>
+      <Dialog open={modal.show} onOpenChange={modal.setShow}>
         <DialogTrigger asChild>
           <span role="button">
             <div className="flex gap-2 items-center  bg-foreground 2xl:px-6 px-4 2xl:py-2 py-1 text-background 2xl:rounded rounded-md 2xl:text-2xl text-base ">
@@ -36,149 +114,114 @@ export const IdeaValidationCardEditModal = () => {
             {/* Team member & Card Status */}
             <div className="flex items-start 2xl:gap-10 gap-6">
               {/* Team Members  */}
-              <div className="flex flex-col 2xl:gap-2 gap-1">
-                <h6 className="text-foreground 2xl:text-base text-sm font-medium">
-                  Team members
-                </h6>
-                <div className="flex items-center relative">
-                  <div className="bg-[#FEA946] 2xl:min-w-10 2xl:h-10 w-8 h-8 2xl:text-base text-sm font-normal flex justify-center items-center rounded-full text-background uppercase">
-                    AG
-                  </div>
-                  <div className="bg-[#00569E] 2xl:min-w-10 2xl:h-10 w-8 h-8 2xl:text-base text-sm font-normal flex justify-center items-center rounded-full text-background uppercase">
-                    VH
-                  </div>
-                  <div className="bg-[#00569E] 2xl:min-w-10 2xl:h-10 w-8 h-8 2xl:text-base text-sm font-normal flex justify-center items-center rounded-full text-background uppercase">
-                    VH
-                  </div>
-                  <TeamMembersDropdown />
-                </div>
-              </div>
+              <TeamMembersDropdown type="ideaValidation" id={data?._id} />
               {/* Card status  */}
-              <div className="flex flex-col 2xl:gap-2 gap-1">
-                <h6 className="text-foreground 2xl:text-base text-sm font-medium">
-                  Card Status
-                </h6>
-                <div className="flex items-center gap-2">
-                  <div className="min-w-max px-3 py-1 2xl:text-base text-sm rounded-full bg-secondary-dark">
-                    Delivered by Adam on Sep 20, 2024
-                  </div>
-                  <div>
-                    <CardStatusDropdown />
-                  </div>
-                </div>
-              </div>
+              <CardStatusDropdown
+                type="ideaValidation"
+                id={data?._id}
+                addedStatus={data?.cardStatus}
+              />
             </div>
             {/* Edit Content  */}
             <div className="bg-background rounded 2xl:p-8 p-4 flex items-stretch justify-between  2xl:gap-24 gap-20 ">
-              <div className="flex flex-col justify-between h-full">
+              <form
+                onSubmit={handleSubmit(onSubmitHandler)}
+                className="flex flex-col justify-between h-full w-full"
+              >
                 <div>
                   <h4 className="2xl:text-[32px] leading-tight text-2xl font-semibold text-foreground capitalize">
-                    Describe the problem your startup is going to solve
+                    Describe the {name} your startup is going to solve
                   </h4>
                   <p className="2xl:text-2xl text-sm 2xl:mt-4 mt-2">
                     120 Letter max
                   </p>
                 </div>
                 <div>
-                  <p className="2xl:text-[28px] text-base 2xl:leading-8 leading-5 text-foreground border-b border-muted-foreground pb-2 ">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Suspendisse ultrices interdum orci, at sagittis elit
-                    porttitor. Suspendisse ultrices interdum orci, at sagittis
-                    elit porttitor.
-                  </p>
+                  <div>
+                    <textarea
+                      {...register(name)}
+                      className="resize-none max-h-48 overflow-auto 2xl:text-[28px] text-base 2xl:leading-8 leading-5 text-foreground border-b border-muted-foreground pb-2 focus:outline-none w-full"
+                    />
+                    <InputError error={errors[name]} />
+                  </div>
                   <div className="grid grid-cols-3 items-center 2xl:gap-8 gap-6 2xl:mt-8 mt-6">
                     <GradientButton
                       variant="gradient"
                       className="rounded w-full"
+                      disabled={isSubmitting}
+                      onClick={handleSubmit(validateSubmitHandler)}
                     >
                       Validate
                     </GradientButton>
-                    <Button variant="outline" className="rounded w-full">
+                    <Button
+                      variant="outline"
+                      className="rounded w-full"
+                      type="button"
+                      onClick={discardChanges}
+                    >
                       Discard
                     </Button>
-                    <Button className="rounded w-full">Save</Button>
+                    <Button
+                      className="rounded w-full"
+                      disabled={!response || isSubmitting}
+                    >
+                      Save
+                    </Button>
                   </div>
                 </div>
-              </div>
+              </form>
               <div className="bg-background 2xl:min-w-[305px] md:min-w-[255px] rounded shadow-lg 2xl:p-6 p-4  flex flex-col 2xl:gap-8 gap-6">
                 <div className="flex items-center justify-between 2xl:gap-4 gap-2">
                   <h6 className="uppercase 2xl:text-base text-sm font-medium ">
-                    The Problem Validation
+                    The {name} Validation
                   </h6>
-                  <RefreshCcw size={20} className="text-info" />
+                  {name === "problem" ? <ReloadButton /> : <ReloadButton />}
                 </div>
                 <div className="flex items-center 2xl:gap-4 gap-2">
                   <img src={ColorLoader} className="2xl:w-20 w-14" />
                   <span className="2xl:text-base text-sm flex flex-col gap-1 font-medium leading-[18px]">
-                    The Problem score{" "}
-                    <span className="2xl:text-xl text-lg font-bold">7/10</span>
+                    The {name} score{" "}
+                    <span className="2xl:text-xl text-lg font-bold">
+                      {response?.score ?? 0}/10
+                    </span>
                   </span>
                 </div>
                 <ul className="flex flex-col 2xl:gap-7 gap-4">
                   <li className="2xl:text-xl text-base flex items-center gap-2">
-                    <Check className="2xl:w-4 w-3 2xl:h-4 h-3 text-background bg-success-dark rounded-full " />
+                    {response?.validation?.urgency ? (
+                      <Check className="2xl:w-4 w-3 2xl:h-4 h-3 text-background bg-success-dark rounded-full " />
+                    ) : (
+                      <X className="2xl:w-4 w-3 2xl:h-4 h-3 text-background bg-danger rounded-full " />
+                    )}
                     Urgency
                   </li>
                   <li className="2xl:text-xl text-base flex items-center gap-2">
-                    <Check className="2xl:w-4 w-3 2xl:h-4 h-3 text-background bg-success-dark rounded-full " />
+                    {response?.validation?.relevance ? (
+                      <Check className="2xl:w-4 w-3 2xl:h-4 h-3 text-background bg-success-dark rounded-full " />
+                    ) : (
+                      <X className="2xl:w-4 w-3 2xl:h-4 h-3 text-background bg-danger rounded-full " />
+                    )}
                     Relevance
                   </li>
                   <li className="2xl:text-xl text-base flex items-center gap-2">
-                    <X className="2xl:w-4 w-3 2xl:h-4 h-3 text-background bg-danger rounded-full " />
-                    Relevance
+                    {response?.validation?.evidence ? (
+                      <Check className="2xl:w-4 w-3 2xl:h-4 h-3 text-background bg-success-dark rounded-full " />
+                    ) : (
+                      <X className="2xl:w-4 w-3 2xl:h-4 h-3 text-background bg-danger rounded-full " />
+                    )}
+                    Evidence
                   </li>
                 </ul>
               </div>
             </div>
             {/* Community & Tasks action  */}
             <div className="flex items-start justify-between 2xl:gap-10 gap-6">
-              <div className="flex flex-col 2xl:gap-2 gap-1">
-                <h6 className="text-foreground 2xl:text-base text-sm font-medium">
-                  Community interaction
-                </h6>
-                <div className="flex items-center 2xl:gap-10 gap-6">
-                  <ProgressBar icon="😍" value="20" />
-                  <div className="flex items-center relative">
-                    <div className="bg-[#FEA946] 2xl:min-w-10 2xl:h-10 w-6 h-6 2xl:text-base text-xs font-normal flex justify-center items-center rounded-full text-background uppercase">
-                      AG
-                    </div>
-                    <div className="bg-[#00569E] 2xl:min-w-10 2xl:h-10 w-6 h-6 2xl:text-base text-xs font-normal flex justify-center items-center rounded-full text-background uppercase">
-                      VH
-                    </div>
-                    <div className="bg-[#00569E] 2xl:min-w-10 2xl:h-10 w-6 h-6 2xl:text-base text-xs font-normal flex justify-center items-center rounded-full text-background uppercase">
-                      VH
-                    </div>
-                    <div className="bg-background 2xl:min-w-10 2xl:h-10 w-6 h-6 2xl:text-base text-xs font-normal flex justify-center items-center rounded-full text-background uppercase">
-                      <Plus className="text-foreground" />
-                    </div>
-                  </div>
-                  <MessageCircleMore className="text-info" />
-                </div>
-              </div>
-              <div className="flex flex-col 2xl:gap-2 gap-1">
-                <h6 className="text-foreground 2xl:text-base text-sm font-medium">
-                  Task action
-                </h6>
-                <div className="flex items-center gap-2">
-                  <Button
-                    variant="outline"
-                    size="xs"
-                    className="2xl:text-lg text-sm border-[#EE8204] text-[#EE8204]"
-                  >
-                    Force validation
-                  </Button>
-                  <Button
-                    variant="outline-info"
-                    size="xs"
-                    className="2xl:text-lg text-sm"
-                  >
-                    Publish this task
-                  </Button>
-                  <div>
-                    <TaskActionDropdown />
-                  </div>
-                </div>
-              </div>
+              <CommunityInteraction />
+              <TaskActionDropdown
+                type="ideaValidation"
+                id={data?._id}
+                addedTasks={data?.taskAction}
+              />
             </div>
           </div>
         </DialogContent>

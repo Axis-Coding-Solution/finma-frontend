@@ -1,4 +1,3 @@
-import { useGetUsersQuery } from "@/api/hooks";
 import { userAvatar2Image } from "@/assets/images";
 import { Avatar } from "@/components/_ui/avatar";
 import { truncateText } from "@/utils";
@@ -11,7 +10,8 @@ import { createChatsApi } from "@/api/http";
 
 export const ConnectWithExperts = () => {
   const { pathname } = useLocation();
-  const { data } = useGetUsersQuery();
+  // const { data } = useGetUsersQuery();
+  const data: any = [];
   const queryClient = useQueryClient();
 
   let users = data?.data ?? [];

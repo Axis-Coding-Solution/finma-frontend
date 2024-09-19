@@ -11,6 +11,7 @@ type PropTypes = {
   >;
   mobileMode?: boolean;
   handleChange?: () => void;
+  iconDirection?: "rotate-90" | "rotate-180" | "rotate-270" | "none";
 };
 
 export const LinkItem = ({
@@ -19,6 +20,7 @@ export const LinkItem = ({
   Icon,
   mobileMode,
   handleChange,
+  iconDirection = "none",
 }: PropTypes) => {
   const { pathname } = useLocation();
   return (
@@ -31,7 +33,9 @@ export const LinkItem = ({
       <Link
         to={path && path}
         onClick={() =>
-          mobileMode ? setTimeout(() => handleChange?.(), 250) : null
+          mobileMode
+            ? setTimeout(() => handleChange?.(), 250)
+            : handleChange?.()
         }
         className={cn(
           "group flex items-center gap-5 2xl:rounded rounded-xl 2xl:px-4 px-3 2xl:py-3 py-[10px] 2xl:text-base text-sm text-background transition hover:bg-warning hover:text-foreground",
@@ -40,8 +44,9 @@ export const LinkItem = ({
       >
         <Icon
           className={cn(
-            "2xl:h-6 2xl:w-6 h-5 w-5 text-background group-hover:text-foreground",
-            pathname.startsWith(path) && "text-foreground"
+            "2xl:h-6 2xl:w-6 h-5 w-5 text-background group-hover:text-foreground transform",
+            pathname.startsWith(path) && "text-foreground",
+            iconDirection !== "none" && iconDirection 
           )}
         />
         {name}

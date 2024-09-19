@@ -39,7 +39,6 @@ const LoginPage = () => {
   const onSubmitHandler = async (data: typeof loginInitialValues) => {
     try {
       const response = await mutateAsync(data);
-      console.log(response.data, response);
       const { token, user, redirectUrl } = response.data;
       auth?.handleLogin({ token, user });
       successToast(response.message);

@@ -1,13 +1,77 @@
-import { Button, Dialog, DialogContent, DialogTrigger } from "@/components/ui";
-import { MessageCircleMore, Plus, RefreshCcw, SquarePen } from "lucide-react";
+import {
+  Button,
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+  InputError,
+  ReloadButton,
+} from "@/components/ui";
+import { SquarePen } from "lucide-react";
 import { MarketResearchChart } from "./research-chart";
-import { ProgressBar } from "@/pages/components/common";
 import { MarketResearchChartEditModal } from "./research-chart-edit-modal";
 import { CardStatusDropdown } from "../card-status";
 import { TeamMembersDropdown } from "../team-members";
 import { TaskActionDropdown } from "../task-action";
+import { useForm } from "react-hook-form";
+import { MarketResearchEditModalInitialValues } from "@/utils/initial-values/dashboard";
+import { MarketResearchEditModalSchema } from "@/utils/validation-schemas/dashoard";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useModal } from "@/utils/hooks";
+import { useQueryClient } from "@tanstack/react-query";
+import {
+  useAddMarketResearchProject,
+  MARKET_RESEARCH_QUERY_KEY,
+} from "@/api/hooks/dashboard";
+import { errorToast, successToast } from "@/utils";
+import { CommunityInteraction } from "../community-interaction";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 
-export const MarketResearchCardEditModal = () => {
+export const MarketResearchCardEditModal = ({ data }: { data: any }) => {
+  const { id: projectId } = useParams();
+  const modal = useModal();
+  const queryClient = useQueryClient();
+  const { mutateAsync } = useAddMarketResearchProject();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setValue,
+  } = useForm({
+    mode: "onChange",
+    defaultValues: MarketResearchEditModalInitialValues,
+    resolver: yupResolver(MarketResearchEditModalSchema as any),
+  });
+
+  useEffect(() => {
+    if (data) {
+      setValue("description", data?.description);
+    }
+  }, [data]);
+  // Handle form submission
+  const onSubmitHandler = async (values: any) => {
+    try {
+      const res = await mutateAsync({
+        description: values.description,
+        type: "marketSize",
+        projectId,
+      });
+      queryClient.invalidateQueries({ queryKey: [MARKET_RESEARCH_QUERY_KEY] });
+      queryClient.invalidateQueries({
+        queryKey: [MARKET_RESEARCH_QUERY_KEY, projectId],
+      });
+      successToast(res.message);
+      modal.close();
+    } catch (error: any) {
+      errorToast(error.message);
+    }
+  };
+
+  const handleDiscard = () => {
+    setValue("description", data?.description);
+  };
+
   return (
     <>
       <Dialog>
@@ -24,41 +88,20 @@ export const MarketResearchCardEditModal = () => {
             {/* Team member & Card Status */}
             <div className="flex items-start 2xl:gap-10 gap-6">
               {/* Team Members  */}
-              <div className="flex flex-col 2xl:gap-2 gap-1">
-                <h6 className="text-foreground 2xl:text-base text-sm font-medium">
-                  Team members
-                </h6>
-                <div className="flex items-center relative -space-x-2">
-                  <div className="border-border bg-[#FEA946] 2xl:min-w-10 2xl:h-10 w-8 h-8 2xl:text-base text-sm font-normal flex justify-center items-center rounded-full text-background uppercase">
-                    AG
-                  </div>
-                  <div className="border-border bg-[#00569E] 2xl:min-w-10 2xl:h-10 w-8 h-8 2xl:text-base text-sm font-normal flex justify-center items-center rounded-full text-background uppercase">
-                    VH
-                  </div>
-                  <div className="border-border bg-[#00569E] 2xl:min-w-10 2xl:h-10 w-8 h-8 2xl:text-base text-sm font-normal flex justify-center items-center rounded-full text-background uppercase">
-                    VH
-                  </div>
-                  <TeamMembersDropdown />
-                </div>
-              </div>
+              <TeamMembersDropdown type="marketResearch" id={data?._id} />
               {/* Card status  */}
-              <div className="flex flex-col 2xl:gap-2 gap-1">
-                <h6 className="text-foreground 2xl:text-base text-sm font-medium">
-                  Card status
-                </h6>
-                <div className="flex items-center gap-2">
-                  <div className="min-w-max px-3 py-1 2xl:text-base text-sm rounded-full bg-secondary-dark">
-                    Delivered by Adam on Sep 20, 2024
-                  </div>
-                  <div>
-                    <CardStatusDropdown />
-                  </div>
-                </div>
-              </div>
+              <CardStatusDropdown
+                type="marketResearch"
+                id={data?._id}
+                addedStatus={data?.cardStatus}
+              />
             </div>
             {/* Edit Content  */}
             <div className="bg-background rounded 2xl:p-8 p-4 flex items-stretch justify-between  2xl:gap-24 gap-20">
-              <div className="flex flex-col justify-between h-full">
+              <form
+                onSubmit={handleSubmit(onSubmitHandler)}
+                className="flex flex-col justify-between h-full w-full"
+              >
                 <div>
                   <h4 className="2xl:text-[32px] leading-tight text-2xl font-semibold text-foreground capitalize">
                     Describe market size for your startup
@@ -68,84 +111,54 @@ export const MarketResearchCardEditModal = () => {
                   </p>
                 </div>
                 <div>
-                  <p className="2xl:text-[28px] text-base 2xl:leading-8 leading-5 text-foreground border-b border-muted-foreground pb-2">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Suspendisse ultrices interdum orci, at sagittis elit
-                    porttitor. Suspendisse ultrices interdum orci, at sagittis
-                    elit porttitor.
-                  </p>
+                  <div>
+                    <textarea
+                      {...register("description")}
+                      className="resize-none max-h-16 overflow-auto 2xl:text-[28px] text-base 2xl:leading-8 leading-5 text-foreground border-b border-muted-foreground pb-2  focus:outline-none w-full"
+                    />
+                    <InputError error={errors.description} />
+                  </div>
                   <div className="flex items-center 2xl:gap-8 gap-6 2xl:mt-8 mt-6 w-1/2">
-                    <Button variant="outline" className="rounded 2xl:px-9 px-6">
+                    <Button
+                      type="button"
+                      onClick={handleDiscard}
+                      variant="outline"
+                      className="rounded 2xl:px-9 px-6"
+                    >
                       Discard
                     </Button>
-                    <Button className="rounded px-10">Save</Button>
+                    <Button type="submit" className="rounded px-10">
+                      Save
+                    </Button>
                   </div>
                 </div>
-              </div>
+              </form>
               <div className="bg-background 2xl:min-w-[328px] min-w-[260px] 2xl:h-[378px] h-[300px] rounded shadow-lg 2xl:p-6 p-4  flex flex-col 2xl:gap-8 gap-6">
                 <div className="flex items-center justify-between 2xl:gap-4 gap-2">
                   <h6 className="uppercase 2xl:text-base text-sm font-medium ">
                     Market Research
                   </h6>
                   <div className="flex items-center 2xl:gap-3 gap-2">
-                    <MarketResearchChartEditModal />
-                    <RefreshCcw size={20} className="text-info" />
+                    <MarketResearchChartEditModal
+                      marketResearchId={data?._id}
+                      data={data?.graphValues}
+                    />
+                    <ReloadButton />
                   </div>
                 </div>
                 <div>
-                  <MarketResearchChart />
+                  <MarketResearchChart data={data?.graphValues} />
                 </div>
               </div>
             </div>
             {/* Community & Tasks action  */}
             <div className="flex items-start justify-between 2xl:gap-10 gap-6">
-              <div className="flex flex-col 2xl:gap-2 gap-1">
-                <h6 className="text-foreground 2xl:text-base text-sm font-medium">
-                  Community interaction
-                </h6>
-                <div className="flex items-center 2xl:gap-10 gap-6">
-                  <ProgressBar icon="🏆" value="20" />
-                  <div className="flex items-center relative 2xl:-space-x-2 -space-x-[6px]">
-                    <div className=" border-border  bg-[#FEA946] 2xl:min-w-10 2xl:h-10 w-6 h-6 2xl:text-base text-xs font-normal flex justify-center items-center rounded-full text-background uppercase">
-                      AG
-                    </div>
-                    <div className="border-border bg-[#00569E] 2xl:min-w-10 2xl:h-10 w-6 h-6 2xl:text-base text-xs font-normal flex justify-center items-center rounded-full text-background uppercase">
-                      VH
-                    </div>
-                    <div className="border-border bg-[#00569E] 2xl:min-w-10 2xl:h-10 w-6 h-6 2xl:text-base text-xs font-normal flex justify-center items-center rounded-full text-background uppercase">
-                      VH
-                    </div>
-                    <div className="border-border bg-background 2xl:min-w-10 2xl:h-10 w-6 h-6 2xl:text-base text-xs font-normal flex justify-center items-center rounded-full text-background uppercase">
-                      <Plus className="text-foreground" />
-                    </div>
-                  </div>
-                  <MessageCircleMore className="text-info" />
-                </div>
-              </div>
-              <div className="flex flex-col 2xl:gap-2 gap-1">
-                <h6 className="text-foreground 2xl:text-base text-sm font-medium">
-                  Task action
-                </h6>
-                <div className="flex items-center gap-2">
-                  <Button
-                    variant="outline"
-                    size="xs"
-                    className="2xl:text-lg text-sm border-[#EE8204] text-[#EE8204]"
-                  >
-                    Force validation
-                  </Button>
-                  <Button
-                    variant="outline-info"
-                    size="xs"
-                    className="2xl:text-lg text-sm"
-                  >
-                    Publish this task
-                  </Button>
-                  <div>
-                    <TaskActionDropdown />
-                  </div>
-                </div>
-              </div>
+              <CommunityInteraction />
+              <TaskActionDropdown
+                type="marketResearch"
+                id={data?._id}
+                addedTasks={data?.taskAction}
+              />
             </div>
           </div>
         </DialogContent>

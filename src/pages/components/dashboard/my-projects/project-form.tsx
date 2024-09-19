@@ -37,9 +37,7 @@ export const ProjectForm = ({
         logoImage: response?.data.data.profilePicture || "",
         bio: response?.data.data.bio || "",
       });
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
+    } catch (error) {}
   };
 
   useEffect(() => {
@@ -87,7 +85,9 @@ export const ProjectForm = ({
         </div>
       </div>
       <div>
-        <Label htmlFor="bio" className="text-muted-text font-normal">Project bio (130 character only)</Label>
+        <Label htmlFor="bio" className="text-muted-text font-normal">
+          Project bio (130 character only)
+        </Label>
         <textarea className="h-20 outline-none border-b border-muted p-2 text-secondary-foreground 2xl:text-xl text-lg w-full" />
       </div>
     </div>

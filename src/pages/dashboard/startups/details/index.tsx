@@ -1,4 +1,4 @@
-import { useGetProjectById } from "@/api/hooks/dashboard";
+import { useGetStartupById } from "@/api/hooks/dashboard";
 import { GoBack } from "@/pages/components/common";
 import {
   StartupTimeline,
@@ -12,7 +12,7 @@ function StartupDetailPage() {
 
   const startupId = params.id;
 
-  const { data } = useGetProjectById(String(startupId));
+  const { data } = useGetStartupById(String(startupId));
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });

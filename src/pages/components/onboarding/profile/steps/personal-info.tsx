@@ -12,6 +12,7 @@ export const OnboardingProfilePersonalInfoStep = ({
   control,
   errors,
   register,
+  watch,
   Controller,
 }: any) => {
   const countryCode = country?.value;
@@ -47,13 +48,15 @@ export const OnboardingProfilePersonalInfoStep = ({
     </div>
   );
 
+  const profileImage = watch("profilePhoto");
+
   return (
     <div className="grid grid-cols-2 2xl:gap-10 gap-6">
       <div className="col-span-2">
         <UploadImage
           control={control}
           errors={errors}
-          image={null}
+          image={profileImage}
           register={register}
           name="profilePhoto"
           text="Upload Phot"

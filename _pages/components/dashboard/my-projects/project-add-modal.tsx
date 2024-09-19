@@ -44,7 +44,6 @@ const ProjectAddModal = () => {
       successToast(response.message);
       modal.close()
     } catch (error: any) {
-      console.error("Error:", error);
       errorToast("Something went wrong while creating the project");
     }
   };

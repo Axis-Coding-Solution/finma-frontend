@@ -44,13 +44,11 @@ const ResetPasswordPage = () => {
   }, [id, token]);
 
   const onSubmitHandler = async (values: typeof resetPasswordInitialValues) => {
-    console.log("works");
     try {
       const response = await resetPasswordMutation.mutateAsync(values);
       successToast(response.message);
       handlePasswordChanged();
     } catch (error: any) {
-      console.log(error);
       errorToast(error.message);
     }
   };

@@ -36,7 +36,7 @@ export const timelineContent = [
     direction: "left",
     totalTask: "3",
     completedTask: "0",
-    to: "market-growth",
+    to: "market-research",
   },
   {
     heading: "Building the MVP",
@@ -58,7 +58,7 @@ export const timelineContent = [
     direction: "left",
     totalTask: "3",
     completedTask: "0",
-    to: "/dashboard/my-startups/market-growth",
+    to: "/dashboard/my-startups/market-research",
   },
   {
     heading: "Design and Branding",

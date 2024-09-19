@@ -1,4 +1,7 @@
-import { useGetProjectById } from "@/api/hooks/dashboard";
+import {
+  useGetIdeaValidationByProjectId,
+  useGetStartupById,
+} from "@/api/hooks/dashboard";
 import { GoBack } from "@/pages/components/common";
 import { StartupTitleBar } from "@/pages/components/dashboard/my-startups";
 import { IdeaValidationCard } from "@/pages/components/dashboard/my-startups/idea-validation";
@@ -9,8 +12,12 @@ import { useParams } from "react-router-dom";
 const StartupIdeaValidationPage = () => {
   const params = useParams();
   const startupId = params.id;
+  const { data } = useGetStartupById(String(startupId));
 
-  const { data } = useGetProjectById(String(startupId));
+  const { data: validationData } = useGetIdeaValidationByProjectId(
+    String(startupId)
+  );
+
   return (
     <div className="flex flex-col 2xl:gap-10 gap-6">
       {/* back Button  */}
@@ -35,6 +42,11 @@ const StartupIdeaValidationPage = () => {
         {ideaValidationContent &&
           ideaValidationContent.map((item: any, idx: number) => (
             <IdeaValidationCard
+              data={
+                validationData &&
+                validationData?.find((el: any) => el.type === item.name)
+              }
+              name={item.name}
               key={idx}
               heading={item.heading}
               subHeading={item.subHeading}

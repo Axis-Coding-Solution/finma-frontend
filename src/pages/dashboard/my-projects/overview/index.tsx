@@ -1,10 +1,10 @@
-import { useGetIdeaClarityProject } from "@/api/hooks/dashboard/idea-clarity";
+// import { useGetIdeaClarityProject } from "@/api/hooks/dashboard/idea-clarity";
 import { SeeEye } from "@/assets/svgs";
 import { Alert, AlertDescription } from "@/components/_ui/alert";
 import { Button } from "@/components/_ui/button";
 import { IdeaClarityModal } from "@/pages/components/dashboard/overview/idea-clarity-modal";
 import { X } from "lucide-react";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 
 import IdeaClarityCard from "@/pages/components/dashboard/idea-clarity";
 import LockedCard from "@/pages/components/dashboard/locked-card";
@@ -73,8 +73,9 @@ const idesClarityCardArray = [
 ];
 
 function ProjectOverviewPage() {
-  const { id = "" } = useParams();
-  const { data } = useGetIdeaClarityProject(id);
+  // const { id = "" } = useParams();
+  // const { data } = useGetIdeaClarityProject(id);
+  const data: any = {};
 
   return (
     <>
