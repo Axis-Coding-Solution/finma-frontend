@@ -85,9 +85,9 @@ export const MarketGrowthCardEditModal = ({ data }: { data: any }) => {
           {/* Team member & Card Status */}
           <div className="flex items-start 2xl:gap-10 gap-6">
             {/* Team Members  */}
-            <TeamMembersDropdown />
+            <TeamMembersDropdown type="marketResearch" id={data?._id} />
             {/* Card status  */}
-            <CardStatusDropdown />
+            <CardStatusDropdown type="marketResearch" id={data?._id} />
           </div>
           {/* Edit Content  */}
           <div className="bg-background rounded 2xl:p-8 p-6 flex items-stretch justify-between  2xl:gap-20 gap-10">
@@ -147,7 +147,7 @@ export const MarketGrowthCardEditModal = ({ data }: { data: any }) => {
           {/* Community & Tasks action  */}
           <div className="flex items-start justify-between 2xl:gap-10 gap-6">
             <CommunityInteraction />
-            <TaskActionDropdown />
+            <TaskActionDropdown type="marketResearch" id={data?._id} />
           </div>
         </div>
       </DialogContent>

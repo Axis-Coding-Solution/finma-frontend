@@ -20,7 +20,13 @@ const taskAction = [
   },
 ];
 
-export const TaskActionDropdown = () => {
+export const TaskActionDropdown = ({
+  id,
+  type,
+}: {
+  id: string;
+  type: string;
+}) => {
   const { mutateAsync } = useCreateTaskAction();
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
 

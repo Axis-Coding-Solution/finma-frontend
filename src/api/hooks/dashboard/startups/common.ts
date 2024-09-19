@@ -1,6 +1,6 @@
 import {
   getTeamMembersApi,
-  createTeamMembersApi,
+  updateTeamMembersApi,
   createCardStatusApi,
   getCardStatusApi,
   createTaskActionApi,
@@ -18,9 +18,9 @@ export const TASK_ACTION_MUTATION_KEY = "/";
 export const TASK_ACTION_QUERY_KEY = "/";
 
 // Team Members
-export const useCreateTeamMembers = () =>
+export const useUpdateTeamMembers = () =>
   useMutation({
-    mutationFn: createTeamMembersApi,
+    mutationFn: updateTeamMembersApi,
     mutationKey: [TEAM_MEMBER_ADD_MUTATION_KEY],
   });
 
@@ -30,10 +30,11 @@ export const useRemoveTeamMembers = () =>
     mutationKey: [TEAM_MEMBER_REMOVE_MUTATION_KEY],
   });
 
-export const useGetTeamMembers = (id: string) => {
+export const useGetTeamMembers = (id: string, type: string) => {
   return useQuery({
-    queryFn: () => getTeamMembersApi(id),
-    queryKey: [TEAM_MEMBER_QUERY_KEY, id],
+    queryFn: () => getTeamMembersApi(id, type),
+    queryKey: [TEAM_MEMBER_QUERY_KEY, id, type],
+    enabled: id !== undefined,
   });
 };
 
