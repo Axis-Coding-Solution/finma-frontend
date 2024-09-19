@@ -1,5 +1,5 @@
-import React from 'react';
-import { Bar } from 'react-chartjs-2';
+import React, { useMemo } from "react";
+import { Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -8,22 +8,16 @@ import {
   Title,
   Tooltip,
   Legend,
-} from 'chart.js';
+} from "chart.js";
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
-
-const data = {
-  labels: ['year1', 'year2', 'year3', 'year4', 'year5', 'year6'],
-  datasets: [
-    {
-      label: '',
-      data: [5, 10, 20, 30, 40, 50],
-      backgroundColor: '#9AE179',
-      borderColor: '#9AE179',
-      borderWidth: 1,
-    },
-  ],
-};
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const options = {
   responsive: true,
@@ -40,7 +34,7 @@ const options = {
       },
       beginAtZero: true,
       ticks: {
-        stepSize: 10,
+        maxTicksLimit: 5,
       },
     },
   },
@@ -50,7 +44,7 @@ const options = {
     },
     title: {
       display: false,
-      text: 'Market Growth over 6 Years',
+      text: "Market Growth over 6 Years",
     },
     tooltip: {
       enabled: false,
@@ -58,10 +52,31 @@ const options = {
   },
 };
 
-export const MarketGrowthChart: React.FC = () => {
+export const MarketGrowthChart: React.FC<{ data: any }> = ({ data = {} }) => {
+  const sortedData = useMemo(() => {
+    return Object.keys(data).sort(
+      (a: any, b: any) => data[a].year - data[b].year
+    );
+  }, [data]);
+
+  const chartData = useMemo(
+    () => ({
+      labels: sortedData.map((key) => data[key]?.year),
+      datasets: [
+        {
+          label: "",
+          data: sortedData.map((key) => data[key]?.amount),
+          backgroundColor: "#9AE179",
+          borderColor: "#9AE179",
+          borderWidth: 1,
+        },
+      ],
+    }),
+    [data]
+  );
   return (
-    <div style={{ width: '100%', height: '100%' }}>
-      <Bar data={data} options={options} />
+    <div style={{ width: "100%", height: "100%" }}>
+      <Bar data={chartData} options={options} />
     </div>
   );
 };
