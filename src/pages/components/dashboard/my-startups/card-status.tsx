@@ -11,7 +11,7 @@ import { useState } from "react";
 const cardStatus = [
   {
     value: "taskdelivered",
-    label: "1",
+    label: "Task Delivered",
   },
   {
     value: "deliveredByCommunity",
@@ -28,8 +28,8 @@ const cardStatus = [
 ];
 
 export const CardStatusDropdown = () => {
-  const [selectedValue, setSelectedValue] = useState<string | null>(null);
-  const [selectedLabel, setSelectedLabel] = useState<string>("");
+  const [selectedValue, setSelectedValue] = useState<string | null>("taskdelivered");
+  const [selectedLabel, setSelectedLabel] = useState<string>("Task Delivered");
   const { mutateAsync } = useCreateCardStatus();
 
   const handleRadioChange = async (value: string, label: string) => {
@@ -63,7 +63,7 @@ export const CardStatusDropdown = () => {
               </div>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              <div className="w-[300px] 2xl:p-5 p-3 flex flex-col 2xl:gap-5 gap-3">
+              <div className="w-[250px] max-h-[230px] 2xl:p-5 p-3 flex flex-col 2xl:gap-5 gap-3">
                 <h6 className="text-foreground 2xl:text-[22px] text-lg font-medium">
                   Card Status
                 </h6>

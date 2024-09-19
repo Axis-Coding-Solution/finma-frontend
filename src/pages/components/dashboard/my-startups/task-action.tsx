@@ -6,35 +6,46 @@ import {
 } from "@/components/ui";
 import { CheckboxGroup } from "../../common";
 import { Plus } from "lucide-react";
+import { useCreateTaskAction } from "@/api/hooks/dashboard";
+import { useState } from "react";
 
 const taskAction = [
   {
+    value: "forceValidation",
     label: "Force Validation",
   },
   {
-    label: "Publish this task",
-  },
-  {
-    label: "Force Validation",
-  },
-  {
-    label: "Publish this task",
-  },
-  {
-    label: "Force Validation",
-  },
-  {
-    label: "Publish this task",
-  },
-  {
-    label: "Force Validation",
-  },
-  {
+    value: "publishThisTask",
     label: "Publish this task",
   },
 ];
 
 export const TaskActionDropdown = () => {
+  const { mutateAsync } = useCreateTaskAction();
+  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+
+  const handleCheckboxChange = async (e: any, item: any) => {
+    console.log("e: ", e, item);
+
+    const checked = e.target.checked;
+    const value = item.value;
+    let newSelectedOptions;
+    if (checked) {
+      newSelectedOptions = [...selectedOptions, value];
+    } else {
+      newSelectedOptions = selectedOptions.filter((option) => option !== value);
+    }
+    setSelectedOptions(newSelectedOptions);
+
+    try {
+      console.log("Making API call with payload:", newSelectedOptions);
+      await mutateAsync(newSelectedOptions);
+      console.log("Task actions updated successfully");
+    } catch (error) {
+      console.error("Failed to update task actions", error);
+    }
+  };
+
   return (
     <div className="flex flex-col 2xl:gap-2 gap-1">
       <h6 className="text-foreground 2xl:text-base text-sm font-medium">
@@ -66,14 +77,20 @@ export const TaskActionDropdown = () => {
               </div>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              <div className="w-[300px] h-[230px] 2xl:p-5 p-3 flex flex-col 2xl:gap-5 gap-3">
+              <div className="w-[200px] max-h-[230px] 2xl:p-5 p-3 flex flex-col 2xl:gap-5 gap-3">
                 <h6 className="text-foreground 2xl:text-[22px] text-lg font-medium">
                   Task action
                 </h6>
                 <div className="custom-scrollbar-secondary h-full overflow-y-auto flex flex-col 2xl:gap-5 gap-3 p-0.5">
                   {taskAction &&
                     taskAction.map((item) => (
-                      <CheckboxGroup label={item.label} />
+                      <CheckboxGroup
+                        key={item.label}
+                        label={item.label}
+                        onCheckedChange={(e: any) =>
+                          handleCheckboxChange(e, item)
+                        }
+                      />
                     ))}
                 </div>
               </div>
