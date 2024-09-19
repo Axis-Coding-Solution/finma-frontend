@@ -54,7 +54,7 @@ const options = {
 
 export const MarketGrowthChart: React.FC<{ data: any }> = ({ data = {} }) => {
   const sortedData = useMemo(() => {
-    return Object.keys(data).sort(
+    return Object?.keys(data ?? {})?.sort(
       (a: any, b: any) => data[a].year - data[b].year
     );
   }, [data]);

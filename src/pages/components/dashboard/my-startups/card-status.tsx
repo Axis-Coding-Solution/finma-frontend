@@ -68,9 +68,13 @@ export const CardStatusDropdown = ({
         Card Status
       </h6>
       <div className="flex items-center gap-2">
-        {addedStatus && (
-          <div className="min-w-max px-3 py-1 2xl:text-base text-sm rounded-full bg-secondary-dark">
+        {addedStatus ? (
+          <div className="min-w-max px-3 py-1 text-sm rounded-full bg-secondary-dark">
             {addedStatus}
+          </div>
+        ) : (
+          <div className="min-w-max px-3 py-1 text-sm rounded-full bg-secondary-dark">
+          Select Status
           </div>
         )}
         <div>

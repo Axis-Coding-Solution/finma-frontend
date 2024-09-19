@@ -140,7 +140,7 @@ export const IdeaValidationCardEditModal = ({
                   <div>
                     <textarea
                       {...register(name)}
-                      className="resize-none max-h-48 overflow-auto 2xl:text-[28px] text-base 2xl:leading-8 leading-5 text-foreground border-b border-muted-foreground pb-2 focus:outline-none w-full"
+                      className="resize-none max-h-48 overflow-auto 2xl:text-[24px] text-base 2xl:leading-7 leading-5 text-foreground border-b border-muted-foreground pb-2 focus:outline-none w-full"
                     />
                     <InputError error={errors[name]} />
                   </div>

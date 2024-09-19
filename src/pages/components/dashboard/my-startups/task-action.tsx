@@ -57,7 +57,7 @@ export const TaskActionDropdown = ({
   };
 
   const findIfChecked = (value: string) =>
-    addedTasks.some((item) => item === value);
+    addedTasks?.some((item) => item === value);
 
   const isFetching =
     queryClient.isFetching({
@@ -75,21 +75,25 @@ export const TaskActionDropdown = ({
         Task action
       </h6>
       <div className="flex items-center gap-2">
-        {addedTasks?.map((item: string, idx: number) => (
-          <Button
-            key={idx}
-            variant="outline"
-            size="xs"
-            className={cn(
-              "2xl:text-lg text-sm bg-transparent",
-              idx % 2 === 0
-                ? "border-info text-info"
-                : "border-warning text-warning"
-            )}
-          >
-            {item}
-          </Button>
-        ))}
+        {addedTasks && addedTasks.length > 0 ? (
+          addedTasks.map((item: string, idx: number) => (
+            <Button
+              key={idx}
+              variant="outline"
+              size="xs"
+              className={cn(
+                "2xl:text-lg text-sm bg-transparent",
+                idx % 2 === 0
+                  ? "border-info text-info"
+                  : "border-warning text-warning"
+              )}
+            >
+              {item}
+            </Button>
+          ))
+        ) : (
+          <p className="2xl:text-base text-sm text-center text-muted">No tasks </p>
+        )}
         <div>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>

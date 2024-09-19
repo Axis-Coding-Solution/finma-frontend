@@ -41,8 +41,7 @@ export const TeamMembersDropdown = ({
       queryClient.invalidateQueries({
         queryKey: [TEAM_MEMBER_QUERY_KEY, id, type],
       });
-    } catch (error) {
-    }
+    } catch (error) {}
   };
   const handleRemoveMember = async (member: any) => {
     const data = {
@@ -57,8 +56,7 @@ export const TeamMembersDropdown = ({
         queryKey: [TEAM_MEMBER_QUERY_KEY, id, type],
       });
       successToast("Team member removed successfully");
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   return (
@@ -68,18 +66,18 @@ export const TeamMembersDropdown = ({
       </h6>
       <div
         className={`flex items-center relative ${
-          teamsData?.members?.length > 0 ? "-space-x-2" : ""
+          teamsData?.members?.length > 0 ? "-space-x-2" : "space-x-2"
         }`}
       >
         {teamsData?.members?.length === 0 ? (
-          <span className="text-sm"></span>
+          <p className="2xl:text-base text-sm text-center text-muted">No team member</p>
         ) : (
           teamsData?.members?.slice(0, 5)?.map((item: any, index: number) => (
             <div
               key={index}
               className={`border ${
                 index % 2 === 0 ? "bg-[#FEA946]" : "bg-[#00569E]"
-              } 2xl:min-w-10 2xl:h-10 w-8 h-8 2xl:text-base text-sm font-normal flex justify-center items-center rounded-full text-background uppercase`}
+              } 2xl:min-w-10 2xl:h-10 min-w-8 h-8 2xl:text-base text-sm font-normal flex justify-center items-center rounded-full text-background uppercase`}
             >
               {item.label[0]}
               {item.label[1]}
@@ -96,14 +94,14 @@ export const TeamMembersDropdown = ({
             </div>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
-            <div className="w-[300px] max-h-[400px] 2xl:p-5 p-3 flex flex-col 2xl:gap-5 gap-3">
+            <div className="2xl:w-[300px] w-[250px] 2xl:max-h-[400px] max-h-[300px] 2xl:p-5 p-3 flex flex-col 2xl:gap-5 gap-2">
               <h6 className="text-foreground 2xl:text-[22px] text-lg font-medium">
                 Card team{" "}
                 <span className="text-muted-text text-base font-normal">
                   ({teamsData?.members?.length ?? 0})
                 </span>
               </h6>
-              <div className="custom-scrollbar-warning h-full overflow-y-auto flex flex-col 2xl:gap-5 gap-4 pr-2">
+              <div className="custom-scrollbar-warning h-full overflow-y-auto flex flex-col 2xl:gap-5 gap-2 pr-2">
                 {teamsData?.members?.length === 0 ? (
                   <span className="text-sm text-center">Team not added</span>
                 ) : (
@@ -112,9 +110,9 @@ export const TeamMembersDropdown = ({
                       key={item.value}
                       className="flex items-center gap-4 justify-between"
                     >
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-start gap-2">
                         <div
-                          className={`2xl:min-w-8 w-6 2xl:h-8 h-6 2xl:text-sm text-xs font-normal flex justify-center items-center rounded-full text-background uppercase ${
+                          className={`mt-1 2xl:min-w-8 min-w-6 2xl:h-8 h-6 2xl:text-sm text-xs font-normal flex justify-center items-center rounded-full text-background uppercase ${
                             index % 2 === 0 ? "bg-[#FEA946]" : "bg-[#00569E]"
                           }`}
                         >
@@ -141,7 +139,7 @@ export const TeamMembersDropdown = ({
                     </div>
                   ))
                 )}
-                <h6 className="text-muted-text text-base">Proposal to add:</h6>
+                <h6 className="text-muted-text 2xl:text-base text-sm">Proposal to add:</h6>
                 {teamsData?.availableMembers?.length === 0 ? (
                   <span className="text-sm text-center">No proposals</span>
                 ) : (
@@ -151,9 +149,9 @@ export const TeamMembersDropdown = ({
                         key={item.value}
                         className="flex items-center gap-4 justify-between"
                       >
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-start gap-2">
                           <div
-                            className={`2xl:min-w-8 w-6 2xl:h-8 h-6 2xl:text-sm text-xs font-normal flex justify-center items-center rounded-full text-background uppercase ${
+                            className={`mt-1 2xl:min-w-8 min-w-6 2xl:h-8 h-6 2xl:text-sm text-xs font-normal flex justify-center items-center rounded-full text-background uppercase ${
                               index % 2 === 0 ? "bg-[#FEA946]" : "bg-[#00569E]"
                             }`}
                           >
