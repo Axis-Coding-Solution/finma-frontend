@@ -1,7 +1,7 @@
 import { number, object, string } from "yup";
 
 export const MarketResearchEditModalSchema = object({
-  marketSize: string().label("Market size").required().max(120),
+  description: string().label("Market size").required().max(120),
 });
 
 export const MarketResearchEditChartModalSchema = object({

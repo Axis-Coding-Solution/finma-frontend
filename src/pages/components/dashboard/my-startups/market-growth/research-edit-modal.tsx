@@ -26,7 +26,6 @@ import { useParams } from "react-router-dom";
 
 export const MarketResearchCardEditModal = ({ data }: { data: any }) => {
 
-
   const { id: projectId } = useParams();
   const modal = useModal();
   const queryClient = useQueryClient();
@@ -46,7 +45,7 @@ export const MarketResearchCardEditModal = ({ data }: { data: any }) => {
 
   useEffect(() => {
     if (data) {
-      setValue( data?.question, { shouldValidate: true });
+      setValue( data?.description,  data.description );
       setResponse(data?.response);
     }
   }, [data]);
@@ -55,7 +54,7 @@ export const MarketResearchCardEditModal = ({ data }: { data: any }) => {
     console.log("values",values)
     try {
       const res = await mutateAsync({
-        description: values,
+        description : values.description,
         type:"marketSize",
         graphValues:"",
         projectId,
@@ -109,7 +108,7 @@ export const MarketResearchCardEditModal = ({ data }: { data: any }) => {
                 <div>
                   <div>
                     <textarea
-                      {...register("marketSize")}
+                      {...register("description")}
                       className="resize-none max-h-16 overflow-auto 2xl:text-[28px] text-base 2xl:leading-8 leading-5 text-foreground border-b border-muted-foreground pb-2  focus:outline-none w-full"
                     >
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -117,7 +116,7 @@ export const MarketResearchCardEditModal = ({ data }: { data: any }) => {
                       porttitor. Suspendisse ultrices interdum orci, at sagittis
                       elit porttitor.
                     </textarea>
-                    <InputError error={errors.marketSize} />
+                    <InputError error={errors.description} />
                   </div>
                   <div className="flex items-center 2xl:gap-8 gap-6 2xl:mt-8 mt-6 w-1/2">
                     <Button variant="outline" className="rounded 2xl:px-9 px-6">

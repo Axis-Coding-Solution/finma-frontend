@@ -1,5 +1,5 @@
 export const MarketResearchEditModalInitialValues = {
-  marketSize: "",
+  description: "",
 };
 
 export const MarketResearchEditChartModalInitialValues = {

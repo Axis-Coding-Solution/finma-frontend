@@ -54,7 +54,7 @@ export const MarketGrowthCard: React.FC<MarketGrowthProps> = ({
       <div className="md:order-2 order-1 md:col-span-3 col-span-12 flex md:justify-end justify-start items-center relative">
         <div className="absolute top-0 right-0">
           {modal === "research" ? (
-            <MarketResearchCardEditModal  data={data} />
+            <MarketResearchCardEditModal  data={data}  />
           ) : (
             <MarketGrowthCardEditModal  data={data} />
           )}
