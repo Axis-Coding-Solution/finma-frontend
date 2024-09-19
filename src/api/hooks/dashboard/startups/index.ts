@@ -42,3 +42,4 @@ export const useDeleteStartup = () => {
 
 export * from "./idea-validation";
 export * from "./market-research";
+export * from "./common"
