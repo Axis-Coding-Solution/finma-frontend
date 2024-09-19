@@ -13,7 +13,7 @@ export const MarketResearchChart = ({ data = {} }: { data: any }) => {
         <div className="absolute 2xl:top-8 top-4 left-1/2 -translate-x-1/2 flex flex-col text-center text-foreground">
           <span className="2xl:text-[10px] text-[8px]">TAM</span>
           <span className="2xl:text-2xl text-base font-medium -mt-1">
-            ${formatNumber(data.tam)}
+            {data?.tam ? formatNumber(data.tam) : 0}
           </span>
         </div>
       </div>
@@ -21,7 +21,7 @@ export const MarketResearchChart = ({ data = {} }: { data: any }) => {
         <div className="absolute 2xl:top-8 top-4 left-1/2 -translate-x-1/2 flex flex-col text-center text-foreground">
           <span className="2xl:text-[10px] text-[8px]">SAM</span>
           <span className="2xl:text-xl text-base font-medium -mt-1">
-            ${formatNumber(data.sam)}
+            {data?.sam ? formatNumber(data.sam) : 0}
           </span>
         </div>
       </div>
@@ -29,7 +29,7 @@ export const MarketResearchChart = ({ data = {} }: { data: any }) => {
         <div className="absolute 2xl:top-8 top-4 left-1/2 -translate-x-1/2 flex flex-col text-center text-foreground">
           <span className="2xl:text-[10px] text-[8px]">SOM</span>
           <span className="2xl:text-lg text-base font-medium -mt-1">
-            ${formatNumber(data.som)}
+            {data?.som ? formatNumber(data.som) : 0}
           </span>
         </div>
       </div>
