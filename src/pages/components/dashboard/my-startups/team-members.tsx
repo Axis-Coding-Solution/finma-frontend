@@ -1,4 +1,8 @@
 import {
+  useCreateTeamMembers,
+  useRemoveTeamMembers,
+} from "@/api/hooks/dashboard";
+import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
@@ -35,35 +39,54 @@ const cardTeam = [
 ];
 
 export const TeamMembersDropdown = () => {
-  const [addTeam, setAddTeam] = useState<any>([]);
+  const [addTeam, setAddTeam] = useState<TeamMember[]>([]);
   const [proposedTeam, setProposedTeam] = useState<TeamMember[]>(cardTeam);
 
-  const handleToggleMember = (member: any) => {
-    if (addTeam.includes(member)) {
-      setProposedTeam([...proposedTeam, member]);
-      setAddTeam(addTeam.filter((item: any) => item.label !== member.label));
-    } else {
-      setAddTeam([...addTeam, member]);
-      setProposedTeam(
-        proposedTeam.filter((item) => item.label !== member.label)
-      );
+  const { mutateAsync: addTeamMember } = useCreateTeamMembers();
+  const { mutateAsync: removeTeamMember } = useRemoveTeamMembers();
+
+  const handleAddMember = async (member: any) => {
+    setAddTeam([...addTeam, member]);
+    setProposedTeam(proposedTeam.filter((item) => item.label !== member.label));
+    try {
+      await addTeamMember(member);
+      console.log("Team member added successfully");
+    } catch (error) {
+      console.error("Failed to add team member", error);
     }
   };
+  const handleRemoveMember = async (member: any) => {
+    setProposedTeam([...proposedTeam, member]);
+    setAddTeam(addTeam.filter((item: any) => item.label !== member.label));
+    try {
+      await removeTeamMember(member);
+      console.log("Team member removed successfully");
+    } catch (error) {
+      console.error("Failed to remove team member", error);
+    }
+  };
+
   return (
     <div className="flex flex-col 2xl:gap-2 gap-1">
       <h6 className="text-foreground 2xl:text-base text-sm font-medium">
         Team members
       </h6>
-      <div className="flex items-center relative -space-x-2">
-        <div className="border bg-[#FEA946] 2xl:min-w-10 2xl:h-10 w-8 h-8 2xl:text-base text-sm font-normal flex justify-center items-center rounded-full text-background uppercase">
-          AG
-        </div>
-        <div className="border bg-[#00569E] 2xl:min-w-10 2xl:h-10 w-8 h-8 2xl:text-base text-sm font-normal flex justify-center items-center rounded-full text-background uppercase">
-          VH
-        </div>
-        <div className="border bg-[#00569E] 2xl:min-w-10 2xl:h-10 w-8 h-8 2xl:text-base text-sm font-normal flex justify-center items-center rounded-full text-background uppercase">
-          VH
-        </div>
+      <div className={`flex items-center relative ${addTeam.length > 0 ? "-space-x-2" : ""}`}>
+        {addTeam.length === 0 ? (
+          <span className="text-sm"></span>
+        ) : (
+          addTeam.map((item: any, index: number) => (
+            <div
+              key={index}
+              className={`border ${
+                index % 2 === 0 ? "bg-[#FEA946]" : "bg-[#00569E]"
+              } 2xl:min-w-10 2xl:h-10 w-8 h-8 2xl:text-base text-sm font-normal flex justify-center items-center rounded-full text-background uppercase`}
+            >
+              {item.label[0]}
+              {item.label[1]}
+            </div>
+          ))
+        )}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <div
@@ -76,7 +99,10 @@ export const TeamMembersDropdown = () => {
           <DropdownMenuContent>
             <div className="w-[300px] h-[230px] 2xl:p-5 p-3 flex flex-col 2xl:gap-5 gap-3">
               <h6 className="text-foreground 2xl:text-[22px] text-lg font-medium">
-                Task action
+                Card team{" "}
+                <span className="text-muted-text text-base font-normal">
+                  ({addTeam.length})
+                </span>
               </h6>
               <div className="custom-scrollbar-warning h-full overflow-y-auto flex flex-col 2xl:gap-5 gap-4 pr-2">
                 {addTeam.length === 0 ? (
@@ -104,7 +130,7 @@ export const TeamMembersDropdown = () => {
                       <X
                         size={22}
                         className="bg-danger/20 hover:bg-danger p-1 rounded-full text-background"
-                        onClick={() => handleToggleMember(item)}
+                        onClick={() => handleRemoveMember(item)}
                       />
                     </div>
                   ))
@@ -135,7 +161,7 @@ export const TeamMembersDropdown = () => {
                       <Plus
                         size={22}
                         className="bg-secondary-dark/40 hover:bg-secondary-dark p-1 rounded-full text-background"
-                        onClick={() => handleToggleMember(item)}
+                        onClick={() => handleAddMember(item)}
                       />
                     </div>
                   ))

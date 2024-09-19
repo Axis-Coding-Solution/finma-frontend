@@ -57,3 +57,4 @@ export const delStartupApi = async (id: string) => {
 // export sub routes;
 export * from "./idea-validation";
 export * from "./market-research";
+export * from "./common";
