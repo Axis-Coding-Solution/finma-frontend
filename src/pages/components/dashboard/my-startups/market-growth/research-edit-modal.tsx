@@ -74,7 +74,7 @@ export const MarketResearchCardEditModal = ({ data }: { data: any }) => {
 
   return (
     <>
-      <Dialog>
+      <Dialog  open={modal.show} onOpenChange={modal.setShow}>
         <DialogTrigger asChild>
           <span role="button">
             <div className="flex gap-2 items-center  bg-foreground 2xl:px-6 px-4 2xl:py-2 py-1 text-background 2xl:rounded rounded-md 2xl:text-2xl text-base ">
@@ -114,7 +114,7 @@ export const MarketResearchCardEditModal = ({ data }: { data: any }) => {
                   <div>
                     <textarea
                       {...register("description")}
-                      className="resize-none max-h-16 overflow-auto 2xl:text-[28px] text-base 2xl:leading-8 leading-5 text-foreground border-b border-muted-foreground pb-2  focus:outline-none w-full"
+                      className="resize-none 2xl:max-h-20 max-h-16 overflow-auto 2xl:text-[24px] text-base 2xl:leading-7 leading-5 text-foreground border-b border-muted-foreground pb-2  focus:outline-none w-full"
                     />
                     <InputError error={errors.description} />
                   </div>

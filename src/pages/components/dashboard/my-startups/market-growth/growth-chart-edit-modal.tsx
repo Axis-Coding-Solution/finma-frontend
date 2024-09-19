@@ -64,7 +64,7 @@ export const MarketGrowthChartEditModal = ({
 
   return (
     <>
-      <Dialog>
+      <Dialog  open={dialog.show} onOpenChange={dialog.setShow}>
         <DialogTrigger asChild>
           <span role="button">
             <Edit size={20} className="text-info" />

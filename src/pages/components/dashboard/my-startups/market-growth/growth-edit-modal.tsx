@@ -71,7 +71,7 @@ export const MarketGrowthCardEditModal = ({ data }: { data: any }) => {
   };
 
   return (
-    <Dialog>
+    <Dialog open={modal.show} onOpenChange={modal.setShow}>
       <DialogTrigger asChild>
         <span role="button">
           <div className="flex gap-2 items-center  bg-foreground 2xl:px-6 px-4 2xl:py-2 py-1 text-background 2xl:rounded rounded-md 2xl:text-2xl text-base ">
@@ -110,7 +110,7 @@ export const MarketGrowthCardEditModal = ({ data }: { data: any }) => {
                 <div>
                   <textarea
                     {...register("marketGrowth")}
-                    className="resize-none max-h-16 overflow-auto 2xl:text-[28px] text-base 2xl:leading-8 leading-5 text-foreground border-b border-muted-foreground pb-2  focus:outline-none w-full"
+                    className="resize-none 2xl:max-h-20 max-h-16 overflow-auto 2xl:text-[24px] text-base 2xl:leading-7 leading-5 text-foreground border-b border-muted-foreground pb-2  focus:outline-none w-full"
                   />
                   <InputError error={errors.marketGrowth} />
                 </div>
@@ -129,7 +129,7 @@ export const MarketGrowthCardEditModal = ({ data }: { data: any }) => {
                 </div>
               </div>
             </form>
-            <div className="bg-background 2xl:min-w-[528px] min-w-[400px] 2xl:h-[378px] h-[300px] rounded shadow-lg 2xl:p-6 p-4  flex flex-col 2xl:gap-8 gap-6">
+            <div className="bg-background 2xl:min-w-[428px] min-w-[350px] 2xl:h-[378px] h-[300px] rounded shadow-lg 2xl:p-6 p-4  flex flex-col 2xl:gap-8 gap-6">
               <div className="flex items-center justify-between 2xl:gap-4 gap-2">
                 <h6 className="uppercase 2xl:text-base text-sm font-medium ">
                   Market Growth
