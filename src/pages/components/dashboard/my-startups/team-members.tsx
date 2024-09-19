@@ -42,7 +42,6 @@ export const TeamMembersDropdown = ({
         queryKey: [TEAM_MEMBER_QUERY_KEY, id, type],
       });
     } catch (error) {
-      console.error("Failed to add team member", error);
     }
   };
   const handleRemoveMember = async (member: any) => {
@@ -59,7 +58,6 @@ export const TeamMembersDropdown = ({
       });
       successToast("Team member removed successfully");
     } catch (error) {
-      console.error("Failed to remove team member", error);
     }
   };
 

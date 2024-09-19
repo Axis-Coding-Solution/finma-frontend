@@ -32,9 +32,9 @@ export const getTeamMembersApi = async (id: string, type: string) => {
 };
 
 // Card Status
-export const createCardStatusApi = async (data: any) => {
+export const updateCardStatusApi = async (data: any) => {
   try {
-    const res = await post(appendUrl("cardStatus"), data);
+    const res = await put(appendUrl("card-status"), data);
     return res.data;
   } catch (error: any) {
     return Promise.reject(apiErrorHandler(error));

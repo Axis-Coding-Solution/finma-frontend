@@ -58,7 +58,6 @@ export const MarketResearchChartEditModal = ({
       dialog.close();
     } catch (error: any) {
       errorToast(error.message);
-      console.log(error);
     }
   };
 

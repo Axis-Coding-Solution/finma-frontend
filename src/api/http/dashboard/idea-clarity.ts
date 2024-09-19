@@ -64,7 +64,6 @@ export const getMarketResearchByProjectApi = async (id: string) => {
 export const addMarketResearchByProjectApi = async (data: any) => {
     try {
         const res = await post(appendUrl('market-research'), data);
-        console.log('eeeeeeeee', res)
         return res.data;
     } catch (error: any) {
         return Promise.reject(apiErrorHandler(error));

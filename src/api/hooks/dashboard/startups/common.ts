@@ -1,7 +1,7 @@
 import {
   getTeamMembersApi,
   updateTeamMembersApi,
-  createCardStatusApi,
+  updateCardStatusApi,
   getCardStatusApi,
   getTaskActionApi,
   removeTeamMembersApi,
@@ -39,9 +39,9 @@ export const useGetTeamMembers = (id: string, type: string) => {
 };
 
 // Card Status
-export const useCreateCardStatus = () =>
+export const useUpdateCardStatus = () =>
   useMutation({
-    mutationFn: createCardStatusApi,
+    mutationFn: updateCardStatusApi,
     mutationKey: [CARD_STATUS_MUTATION_KEY],
   });
 

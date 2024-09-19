@@ -23,7 +23,6 @@ export const ProjectForm = ({
         bio: response?.data.data.bio || "",
       });
     } catch (error) {
-      console.error("Error fetching data:", error);
     }
   };
 

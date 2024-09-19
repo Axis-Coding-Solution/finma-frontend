@@ -59,7 +59,6 @@ export const MarketGrowthChartEditModal = ({
       dialog.close();
     } catch (error: any) {
       errorToast(error.message);
-      console.log(error);
     }
   };
 
