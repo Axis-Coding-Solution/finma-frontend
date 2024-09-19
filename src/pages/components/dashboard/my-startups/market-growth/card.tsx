@@ -39,9 +39,9 @@ export const MarketGrowthCard: React.FC<MarketGrowthProps> = ({
           </div>
           <div className="h-full">
             {type === "marketSize" ? (
-              <MarketResearchChart />
+              <MarketResearchChart data={data?.graphValues} />
             ) : (
-              <MarketGrowthChart />
+              <MarketGrowthChart data={data?.graphValues} />
             )}
           </div>
         </div>

@@ -140,7 +140,7 @@ export const MarketGrowthCardEditModal = ({ data }: { data: any }) => {
                 </div>
               </div>
               <div className="h-full">
-                <MarketGrowthChart />
+                <MarketGrowthChart data={data?.graphValues} />
               </div>
             </div>
           </div>

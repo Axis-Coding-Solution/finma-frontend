@@ -143,7 +143,7 @@ export const MarketResearchCardEditModal = ({ data }: { data: any }) => {
                   </div>
                 </div>
                 <div>
-                  <MarketResearchChart />
+                  <MarketResearchChart data={data?.graphValues} />
                 </div>
               </div>
             </div>
