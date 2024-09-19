@@ -27,8 +27,16 @@ const cardStatus = [
   },
 ];
 
-export const CardStatusDropdown = () => {
-  const [selectedValue, setSelectedValue] = useState<string | null>("taskdelivered");
+export const CardStatusDropdown = ({
+  id,
+  type,
+}: {
+  id: string;
+  type: string;
+}) => {
+  const [selectedValue, setSelectedValue] = useState<string | null>(
+    "taskdelivered"
+  );
   const [selectedLabel, setSelectedLabel] = useState<string>("Task Delivered");
   const { mutateAsync } = useCreateCardStatus();
 
@@ -78,7 +86,9 @@ export const CardStatusDropdown = () => {
                           color="warning"
                           value={item.value}
                           checked={selectedValue === item.value}
-                          onChange={() => handleRadioChange(item.value, item.label)}
+                          onChange={() =>
+                            handleRadioChange(item.value, item.label)
+                          }
                         />
                         <label
                           className="leading-0 text-foreground 2xl:text-xl text-base font-normal -mt-1 cursor-pointer"

@@ -1,66 +1,63 @@
 import {
-  useCreateTeamMembers,
-  useRemoveTeamMembers,
+  TEAM_MEMBER_QUERY_KEY,
+  useGetTeamMembers,
+  useUpdateTeamMembers,
 } from "@/api/hooks/dashboard";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui";
+import { successToast } from "@/utils";
+import { useQueryClient } from "@tanstack/react-query";
 import { Plus, X } from "lucide-react";
-import { useState } from "react";
 
-interface TeamMember {
-  label: string;
-  subLabel: string;
-}
+export const TeamMembersDropdown = ({
+  id,
+  type,
+}: {
+  id: string;
+  type: string;
+}) => {
+  const {
+    data: teamsData,
+    isLoading,
+    isFetching,
+  } = useGetTeamMembers(id, type);
+  const queryClient = useQueryClient();
 
-const cardTeam = [
-  {
-    label: "Abdul Gorid",
-    subLabel: "card owner",
-  },
-  {
-    label: "Kilian Loud",
-    subLabel: "Serial Entrepreneur",
-  },
-  {
-    label: "John Doe",
-    subLabel: "Serial Entrepreneur",
-  },
-  {
-    label: "martha hammer",
-    subLabel: "Serial Entrepreneur",
-  },
-  {
-    label: "julia doe",
-    subLabel: "Serial Entrepreneur",
-  },
-];
-
-export const TeamMembersDropdown = () => {
-  const [addTeam, setAddTeam] = useState<TeamMember[]>([]);
-  const [proposedTeam, setProposedTeam] = useState<TeamMember[]>(cardTeam);
-
-  const { mutateAsync: addTeamMember } = useCreateTeamMembers();
-  const { mutateAsync: removeTeamMember } = useRemoveTeamMembers();
+  const { mutateAsync, isPending } = useUpdateTeamMembers();
 
   const handleAddMember = async (member: any) => {
-    setAddTeam([...addTeam, member]);
-    setProposedTeam(proposedTeam.filter((item) => item.label !== member.label));
     try {
-      await addTeamMember(member);
-      console.log("Team member added successfully");
+      const data = {
+        userId: member.value,
+        mode: "add",
+        type,
+        id: id,
+      };
+      await mutateAsync(data);
+      successToast("Team member added successfully");
+      queryClient.invalidateQueries({
+        queryKey: [TEAM_MEMBER_QUERY_KEY, id, type],
+      });
     } catch (error) {
       console.error("Failed to add team member", error);
     }
   };
   const handleRemoveMember = async (member: any) => {
-    setProposedTeam([...proposedTeam, member]);
-    setAddTeam(addTeam.filter((item: any) => item.label !== member.label));
+    const data = {
+      userId: member.value,
+      mode: "delete",
+      type,
+      id: id,
+    };
     try {
-      await removeTeamMember(member);
-      console.log("Team member removed successfully");
+      await mutateAsync(data);
+      queryClient.invalidateQueries({
+        queryKey: [TEAM_MEMBER_QUERY_KEY, id, type],
+      });
+      successToast("Team member removed successfully");
     } catch (error) {
       console.error("Failed to remove team member", error);
     }
@@ -71,11 +68,15 @@ export const TeamMembersDropdown = () => {
       <h6 className="text-foreground 2xl:text-base text-sm font-medium">
         Team members
       </h6>
-      <div className={`flex items-center relative ${addTeam.length > 0 ? "-space-x-2" : ""}`}>
-        {addTeam.length === 0 ? (
+      <div
+        className={`flex items-center relative ${
+          teamsData?.members?.length > 0 ? "-space-x-2" : ""
+        }`}
+      >
+        {teamsData?.members?.length === 0 ? (
           <span className="text-sm"></span>
         ) : (
-          addTeam.map((item: any, index: number) => (
+          teamsData?.members?.slice(0, 5)?.map((item: any, index: number) => (
             <div
               key={index}
               className={`border ${
@@ -97,24 +98,28 @@ export const TeamMembersDropdown = () => {
             </div>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
-            <div className="w-[250px] max-h-[230px] 2xl:p-5 p-3 flex flex-col 2xl:gap-5 gap-3">
+            <div className="w-[300px] max-h-[400px] 2xl:p-5 p-3 flex flex-col 2xl:gap-5 gap-3">
               <h6 className="text-foreground 2xl:text-[22px] text-lg font-medium">
                 Card team{" "}
                 <span className="text-muted-text text-base font-normal">
-                  ({addTeam.length})
+                  ({teamsData?.members?.length ?? 0})
                 </span>
               </h6>
               <div className="custom-scrollbar-warning h-full overflow-y-auto flex flex-col 2xl:gap-5 gap-4 pr-2">
-                {addTeam.length === 0 ? (
+                {teamsData?.members?.length === 0 ? (
                   <span className="text-sm text-center">Team not added</span>
                 ) : (
-                  addTeam.map((item: any) => (
+                  teamsData?.members?.map((item: any, index: number) => (
                     <div
-                      key={item.label}
+                      key={item.value}
                       className="flex items-center gap-4 justify-between"
                     >
                       <div className="flex items-center gap-2">
-                        <div className="bg-[#FEA946] 2xl:w-8 w-6 2xl:h-8 h-6 2xl:text-sm text-xs font-normal flex justify-center items-center rounded-full text-background uppercase">
+                        <div
+                          className={`2xl:min-w-8 w-6 2xl:h-8 h-6 2xl:text-sm text-xs font-normal flex justify-center items-center rounded-full text-background uppercase ${
+                            index % 2 === 0 ? "bg-[#FEA946]" : "bg-[#00569E]"
+                          }`}
+                        >
                           {item.label[0]}
                           {item.label[1]}
                         </div>
@@ -123,48 +128,60 @@ export const TeamMembersDropdown = () => {
                             {item.label}
                           </h6>
                           <h6 className="text-xs font-normal text-muted-text -mt-1 capitalize">
-                            {item.subLabel}
+                            {item.entrepreneurType}
                           </h6>
                         </div>
                       </div>
-                      <X
-                        size={22}
-                        className="bg-danger/20 hover:bg-danger p-1 rounded-full text-background"
+                      <button
+                        type="button"
+                        className="inline-flex justify-center items-center min-h-6 min-w-6 bg-danger/20 hover:bg-danger rounded-full text-background disabled:bg-danger/50 disabled:cursor-not-allowed"
+                        disabled={isPending || isLoading || isFetching}
                         onClick={() => handleRemoveMember(item)}
-                      />
+                      >
+                        <X size={16} />
+                      </button>
                     </div>
                   ))
                 )}
                 <h6 className="text-muted-text text-base">Proposal to add:</h6>
-                {proposedTeam.length === 0 ? (
+                {teamsData?.availableMembers?.length === 0 ? (
                   <span className="text-sm text-center">No proposals</span>
                 ) : (
-                  proposedTeam.map((item) => (
-                    <div
-                      key={item.label}
-                      className="flex items-center gap-4 justify-between"
-                    >
-                      <div className="flex items-center gap-2">
-                        <div className="bg-[#FEA946] 2xl:w-8 w-6 2xl:h-8 h-6 2xl:text-sm text-xs font-normal flex justify-center items-center rounded-full text-background uppercase">
-                          {item.label[0]}
-                          {item.label[1]}
+                  teamsData?.availableMembers?.map(
+                    (item: any, index: number) => (
+                      <div
+                        key={item.value}
+                        className="flex items-center gap-4 justify-between"
+                      >
+                        <div className="flex items-center gap-2">
+                          <div
+                            className={`2xl:min-w-8 w-6 2xl:h-8 h-6 2xl:text-sm text-xs font-normal flex justify-center items-center rounded-full text-background uppercase ${
+                              index % 2 === 0 ? "bg-[#FEA946]" : "bg-[#00569E]"
+                            }`}
+                          >
+                            {item.label[0]}
+                            {item.label[1]}
+                          </div>
+                          <div className="text-foreground">
+                            <h6 className="text-sm font-medium leading-0 capitalize">
+                              {item.label}
+                            </h6>
+                            <h6 className="text-xs font-normal text-muted-text -mt-1 capitalize">
+                              {item?.entrepreneurType}
+                            </h6>
+                          </div>
                         </div>
-                        <div className="text-foreground">
-                          <h6 className="text-sm font-medium leading-0 capitalize">
-                            {item.label}
-                          </h6>
-                          <h6 className="text-xs font-normal text-muted-text -mt-1 capitalize">
-                            {item.subLabel}
-                          </h6>
-                        </div>
+                        <button
+                          type="button"
+                          disabled={isPending || isLoading || isFetching}
+                          className="inline-flex justify-center items-center min-h-6 min-w-6 bg-secondary-dark hover:bg-secondary rounded-full text-foreground disabled:bg-secondary-dark/50 disabled:cursor-not-allowed"
+                          onClick={() => handleAddMember(item)}
+                        >
+                          <Plus size={16} />
+                        </button>
                       </div>
-                      <Plus
-                        size={22}
-                        className="bg-secondary-dark/40 hover:bg-secondary-dark p-1 rounded-full text-background"
-                        onClick={() => handleAddMember(item)}
-                      />
-                    </div>
-                  ))
+                    )
+                  )
                 )}
               </div>
             </div>

@@ -91,10 +91,10 @@ export const TermsAndConditionsForm = () => {
         },
         auth?.updateUser
       );
-      clearFormData();
       navigate("/dashboard/community", {
         replace: true,
       });
+      setTimeout(clearFormData, 200);
     } catch (error: any) {
       errorToast(error?.message);
     }
