@@ -22,9 +22,9 @@ const TermsAndConditionsPage = () => {
           />
           <Tabs tab={tab} setTab={setTab} />
           <div className="border border-border 2xl:px-5 px-4 2xl:py-8 py-4 rounded">
-          <ScrollArea className=" 2xl:h-[250px] h-[200px]">
-            {tabs[tab]}
-          </ScrollArea>
+            <ScrollArea className=" 2xl:h-[250px] h-[200px]">
+              {tabs[tab]}
+            </ScrollArea>
           </div>
           <TermsAndConditionsForm />
         </div>

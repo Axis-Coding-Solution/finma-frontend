@@ -1,4 +1,3 @@
-import { useCreateProfileMutation } from "@/api/hooks";
 import { MainHeading, StepsIndicator } from "@/pages/components/common";
 import {
   OnboardingCommunityGoalsStep,
@@ -6,13 +5,8 @@ import {
   OnboardingProfileNavigationButtons,
   OnboardingProfilePersonalInfoStep,
 } from "@/pages/components/onboarding";
-import {
-  createFormData,
-  errorToast,
-  removeUserFromLocalStorage,
-  saveUserToLocalStorage,
-  successToast,
-} from "@/utils";
+import { useOnboardingForm } from "@/store/hooks";
+import { errorToast } from "@/utils";
 import {
   array,
   FORM_MODE,
@@ -20,7 +14,6 @@ import {
   string,
   yupResolver,
 } from "@/utils/constants";
-import { useAuth } from "@/utils/hooks";
 import { useEffect, useMemo, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useNavigate, useSearchParams } from "react-router-dom";
@@ -68,41 +61,13 @@ const defaultValues = {
 };
 
 type DefaultValuesTypes = typeof defaultValues;
-type VALUES_TYPE = {
-  firstName: string;
-  lastName: string;
-  profilePicture: string;
-  role: string;
-};
-
-const updateStorage = (
-  values: VALUES_TYPE,
-  updateUser?: (user: any) => void
-) => {
-  let user: any = sessionStorage.getItem("user");
-  let token: any = sessionStorage.getItem("token");
-  if (user && token) {
-    user = JSON.parse(user);
-    user.firstName = values.firstName;
-    user.lastName = values.lastName;
-    user.profilePicture = values.profilePicture;
-    user.role = values.role;
-    // remove from any storage
-    removeUserFromLocalStorage();
-    // add to local storage
-    saveUserToLocalStorage({ user, token });
-    // update into application
-    if (updateUser) updateUser(user);
-  }
-};
 
 const ProfilePage = () => {
   const [step, setStep] = useState(0);
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const auth = useAuth();
-
-  const { mutateAsync } = useCreateProfileMutation();
+  const onboardingForm = useOnboardingForm();
+  const formValues = onboardingForm.getFormData();
 
   const validationSchema = validationSchemas[step];
   const {
@@ -133,21 +98,15 @@ const ProfilePage = () => {
     else reset(() => ({ ...defaultValues, role }));
   }, [role]);
 
+  useEffect(() => {
+    if (formValues) {
+      reset(formValues);
+    }
+  }, []);
+
   const onSubmitHandler = async (values: DefaultValuesTypes) => {
     try {
-      const formData = createFormData(values);
-      const res = await mutateAsync(formData);
-      successToast(res.message);
-      // updated to storage, move from session to local storage.
-      updateStorage(
-        {
-          firstName: values.firstName,
-          lastName: values.lastName,
-          role: values.role,
-          profilePicture: res.data?.profilePicture,
-        },
-        auth?.updateUser
-      );
+      onboardingForm.setFormData(values);
       navigate("/onboarding/terms-conditions");
     } catch (error: any) {
       errorToast(error.message);
@@ -166,6 +125,7 @@ const ProfilePage = () => {
         Controller={Controller}
         country={country}
         setValue={setValue}
+        watch={watch}
         resetField={resetField}
       />,
       <OnboardingProfileEntrepreneurialTypeStep
