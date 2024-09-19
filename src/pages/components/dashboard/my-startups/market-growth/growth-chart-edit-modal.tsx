@@ -100,7 +100,9 @@ export const MarketGrowthChartEditModal = ({
                         type="number"
                         placeholder="Year"
                       />
-                      <InputError error={errors[`year${item}`]?.year} />
+                      <InputError
+                        error={(errors as any)?.[`year${item}`]?.year}
+                      />
                     </div>
                     <div className=" col-span-2 w-3/5">
                       <input
@@ -109,7 +111,9 @@ export const MarketGrowthChartEditModal = ({
                         type="number"
                         placeholder="Amount in US Dollar"
                       />
-                      <InputError error={errors[`year${item}`]?.amount} />
+                      <InputError
+                        error={(errors as any)?.[`year${item}`]?.amount}
+                      />
                     </div>
                   </div>
                 ))}

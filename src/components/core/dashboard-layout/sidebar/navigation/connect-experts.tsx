@@ -1,4 +1,3 @@
-import { useGetUsersQuery } from "@/api/hooks";
 import { userAvatar2Image } from "@/assets/images";
 import { Avatar } from "@/components/_ui/avatar";
 import { truncateText } from "@/utils";
