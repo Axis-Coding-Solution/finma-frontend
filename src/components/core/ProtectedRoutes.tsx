@@ -1,6 +1,6 @@
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { useAuth } from "@/utils/hooks";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const options = {
   replace: true,
@@ -11,6 +11,7 @@ export const ProtectedRoutes = ({
 }: {
   children: React.ReactNode;
 }) => {
+  const [isMounted, setIsMounted] = useState(false);
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const [searchParams] = useSearchParams();
@@ -32,7 +33,9 @@ export const ProtectedRoutes = ({
     }
     if (!token && !user && !auth?.isAuthenticated && !auth?.user)
       navigate("/auth/login", options);
+    setIsMounted(true);
+    return () => setIsMounted(false);
   }, [token, user]);
 
-  return children;
+  return isMounted ? children : null;
 };

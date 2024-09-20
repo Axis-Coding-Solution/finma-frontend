@@ -5,6 +5,7 @@ import {
   AxiosInstance,
   InternalAxiosRequestConfig,
   default as axios,
+  AxiosResponse,
 } from "axios";
 import { getAuthFromStorage } from ".";
 
@@ -37,6 +38,18 @@ axiosInstance.interceptors.request.use(
     return config as any;
   },
   (error: AxiosError): Promise<AxiosError> => Promise.reject(error)
+);
+
+axiosInstance.interceptors.response.use(
+  async (config: AxiosResponse) => Promise.resolve(config),
+  (error: AxiosError) => {
+    if (error.response?.status !== 401) return Promise.reject(error);
+    // clear localStorage
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    window.location.replace("/auth/login");
+    // window.location.reload();
+  }
 );
 
 const get = (url: string, config?: RequestConfig) =>
