@@ -8,3 +8,4 @@ export {ProgressBar} from "./progress-bar";
 export {UploadProfilePhotoModal} from "./upload-profile-photo-modal"
 export {SearchBar} from "./search-bar"
 export {GoBack} from "./go-back"
+export {FetchLoader} from "./fetch-loader"

@@ -23,8 +23,8 @@ export const CommunityCard = ({
   role,
   communityGoals,
   status,
-  entrepStage,
-  projectCount,
+  entrepreneurType,
+  startupsCount,
 }: CommunityTypes) => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-6 lg:grid-cols-12  2xl:p-6 p-4 bg-background rounded gap-4">
@@ -38,7 +38,7 @@ export const CommunityCard = ({
         <div className="flex flex-col">
           <span className="text-foreground text-xs capitalize">{role}</span>
           <h4 className="text-foreground font-medium text-base">{name}</h4>
-          <p className="text-muted-foreground text-sm">{entrepStage}</p>
+          <p className="text-muted-foreground text-sm">{entrepreneurType}</p>
         </div>
       </div>
       {/* Status Section  */}
@@ -66,7 +66,12 @@ export const CommunityCard = ({
             <Badge variant="outline">N/A</Badge>
           )}
           {communityGoals.more > 0 && (
-            <Badge variant="outline-info" className=" border-foreground text-foreground" >+{communityGoals.more}</Badge>
+            <Badge
+              variant="outline-info"
+              className=" border-foreground text-foreground"
+            >
+              +{communityGoals.more}
+            </Badge>
           )}
         </div>
       </div>
@@ -75,7 +80,7 @@ export const CommunityCard = ({
         <div className="flex flex-col items-start gap-2 col-span-12 sm:col-span-2 lg:col-span-2">
           <h6 className="text-foreground font-semibold">Open projects</h6>
           <span className="ps-2 text-success underline text-sm">
-            {projectCount}
+            {startupsCount}
           </span>
         </div>
       )}

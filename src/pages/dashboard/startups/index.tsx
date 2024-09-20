@@ -1,10 +1,10 @@
 import { useGetStartups } from "@/api/hooks/dashboard";
-import { HeadingButton } from "@/pages/components/common";
+import { FetchLoader, HeadingButton } from "@/pages/components/common";
 import ProjectCard from "@/pages/components/dashboard/my-projects/card";
 import ProjectAddModal from "@/pages/components/dashboard/my-projects/project-add-modal";
 
 const MyStartupPage = () => {
-  const { data } = useGetStartups();
+  const { data, isLoading } = useGetStartups();
 
   const totalProjects = data ? data?.length : 0;
 
@@ -17,17 +17,21 @@ const MyStartupPage = () => {
           renderRight={<ProjectAddModal />}
         />
       </div>
-      <div className="grid xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-3 sm:grid-cols-2 grid-cols-1  lg:flex-row gap-5">
-        {data && data.length > 0 ? (
-          data.map((item: any, index: number) => (
-            <ProjectCard key={index} {...item} />
-          ))
-        ) : (
-          <div className="col-span-3 text-center py-20">
-            No Startup Available!
-          </div>
-        )}
-      </div>
+      {isLoading && isLoading ? (
+        <FetchLoader />
+      ) : (
+        <div className="grid xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-3 sm:grid-cols-2 grid-cols-1  lg:flex-row gap-5">
+          {data && data.length > 0 ? (
+            data.map((item: any, index: number) => (
+              <ProjectCard key={index} {...item} />
+            ))
+          ) : (
+            <div className="col-span-3 text-center py-20">
+              No Startup Available!
+            </div>
+          )}
+        </div>
+      )}
     </>
   );
 };

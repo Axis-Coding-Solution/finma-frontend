@@ -42,50 +42,44 @@ const statusOptions = [
 
 const stageOptions = [
   {
-    value: "I have a great idea and am looking to explore its potential",
-    label: "I have a great idea and am looking to explore its potential",
+    label: "Early Stage Dreamer",
+    value: "Early Stage Dreamer",
   },
   {
-    value: "I'm eager to start a business but need guidance to get started",
-    label: "I'm eager to start a business but need guidance to get started",
+    label: "Aspiring Entrepreneurs",
+    value: "Aspiring Entrepreneurs",
   },
   {
-    value: "I'm developing a startup and working on its launch",
-    label: "I'm developing a startup and working on its launch",
+    label: "Startup Builder",
+    value: "Startup Builder",
   },
   {
-    value:
-      "My startup is up and running, and I'm focused on scaling and growing it",
-    label:
-      "My startup is up and running, and I'm focused on scaling and growing it",
+    label: "Growth Seeker",
+    value: "Growth Seeker",
   },
   {
-    value: "I've started multiple businesses and aim to keep innovating",
-    label: "I've started multiple businesses and aim to keep innovating",
+    label: "Serial Entrepreneur",
+    value: "Serial Entrepreneur",
   },
   {
-    value: "I'm focused on developing cutting-edge technology solutions",
-    label: "I'm focused on developing cutting-edge technology solutions",
+    label: "Tech Innovator",
+    value: "Tech Innovator",
   },
   {
-    value:
-      "I excel at spotting market opportunities and crafting success strategies",
-    label:
-      "I excel at spotting market opportunities and crafting success strategies",
+    label: "Market Strategists",
+    value: "Market Strategists",
   },
   {
-    value:
-      "I'm driven by creating social or environmental impact through my ventures",
-    label:
-      "I'm driven by creating social or environmental impact through my ventures",
+    label: "Impact Creator",
+    value: "Impact Creator",
   },
   {
-    value: "I excel at turning creative ideas into innovative business models",
-    label: "I excel at turning creative ideas into innovative business models",
+    label: "Creative Visionary",
+    value: "Creative Visionary",
   },
   {
-    value: "I'm committed to pioneering startup success in my community",
-    label: "I'm committed to pioneering startup success in my community",
+    label: "Regional Pioneer",
+    value: "Regional Pioneer",
   },
 ];
 

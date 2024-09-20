@@ -109,7 +109,7 @@ export const IdeaValidationCardEditModal = ({
             </div>
           </span>
         </DialogTrigger>
-        <DialogContent className="text-2xl bg-info-light min-w-[1084px] 2xl:py-[52px] py-6 2xl:px-8 px-4">
+        <DialogContent className="text-2xl bg-info-light xl:min-w-[1084px] min-w-[90%] 2xl:py-[52px] py-6 2xl:px-8 px-4">
           <div className="flex flex-col 2xl:gap-8 gap-6">
             {/* Team member & Card Status */}
             <div className="flex items-start 2xl:gap-10 gap-6">

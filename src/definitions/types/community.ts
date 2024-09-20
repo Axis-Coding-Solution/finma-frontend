@@ -8,6 +8,6 @@ export type CommunityTypes = {
     goals: string[];
     more: number;
   };
-  entrepStage: string;
-  projectCount: number;
+  entrepreneurType: string;
+  startupsCount: number;
 };
