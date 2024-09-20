@@ -81,7 +81,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         {...props}
       >
-        {icon && <span className="w-6">{icon}</span>}{" "}
+        {icon && <span className="min-w-6">{icon}</span>}{" "}
         {/* Render the icon if provided */}
         {children}
       </Comp>

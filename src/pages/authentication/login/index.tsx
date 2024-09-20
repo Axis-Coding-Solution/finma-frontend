@@ -50,7 +50,7 @@ const LoginPage = () => {
 
   return (
     <>
-      <div className="bg-secondary rounded-lg 2xl:py-8 py-6 2xl:px-[52px] px-8 flex justify-between items-center gap-20">
+      <div className=" bg-secondary rounded-lg 2xl:py-8 md:py-6 py-4 2xl:px-[52px] md:px-8 px-4 flex md:flex-row flex-col justify-between items-center xl:gap-20 md:gap-10 gap-5">
         <div className="w-full flex flex-col gap-10 justify-between">
           <MainHeading
             title="Welcome Back!"
@@ -60,12 +60,12 @@ const LoginPage = () => {
           <figure>
             <img
               src="/assets/images/login-main.png"
-              className="w-full"
+              className="xl:w-full w-60"
               alt="Main Login Image"
             />
           </figure>
         </div>
-        <div className="min-w-[532px] bg-background rounded 2xl:p-[52px] p-10 flex flex-col 2xl:gap-[52px] gap-10 relative overflow-hidden">
+        <div className="xl:min-w-[532px] lg:min-w-[400px] md:min-w-[350px] min-w-full  bg-background rounded 2xl:p-[52px] md:p-10 p-4 flex flex-col 2xl:gap-[52px] gap-6 relative overflow-hidden">
           <button
             type="button"
             onClick={handleCloseForm}
@@ -85,36 +85,39 @@ const LoginPage = () => {
               </>
             ) : (
               <form
-                className="flex flex-col 2xl:gap-8 gap-6"
+                className="flex flex-col gap-6"
                 onSubmit={handleSubmit(onSubmitHandler)}
               >
-                <div>
-                  <FloatingInput
-                    type="email"
-                    label="Enter Email"
-                    {...register("email")}
-                  />
-                  <InputError error={errors.email} />
+                <div className="flex flex-col 2xl:gap-14 gap-10">
+                  <div className="relative">
+                    <FloatingInput
+                      type="email"
+                      label="Enter Email"
+                      {...register("email")}
+                    />
+                    <InputError error={errors.email} />
+                  </div>
+                  <div className="relative">
+                    <FloatingInputPassword
+                      type="password"
+                      label="Enter existing password"
+                      {...register("password")}
+                    />
+                    <InputError error={errors.password} />
+                  </div>
                 </div>
-                <div>
-                  <FloatingInputPassword
-                    type="password"
-                    label="Enter existing password"
-                    {...register("password")}
-                  />
-                  <InputError error={errors.password} />
+                <div className="flex flex-col 2xl:gap-12 md:gap-6 gap-4">
+                  <h6 className="text-end">
+                    <Link to="/auth/forget-password">Forgot password?</Link>
+                  </h6>
+                  <Button type="submit" className="w-full">
+                    Log in
+                  </Button>
                 </div>
-                <h6 className="-mt-6 text-end">
-                  <Link to="/auth/forget-password">Forgot password?</Link>
-                </h6>
-
-                <Button type="submit" className="w-full">
-                  Log in
-                </Button>
               </form>
             )}
           </div>
-          <h6 className="flex items-center gap-1 justify-center">
+          <h6 className="flex items-center gap-1 justify-center 2xl:text-base text-sm">
             Don`t have an account?
             <Link to="/auth/sign-up">
               <span className="font-semibold"> Sign up</span>

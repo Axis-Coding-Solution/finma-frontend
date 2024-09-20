@@ -80,9 +80,9 @@ export const MarketGrowthCardEditModal = ({ data }: { data: any }) => {
           </div>
         </span>
       </DialogTrigger>
-      <DialogContent className="bg-info-light min-w-[1084px] 2xl:py-[52px] py-8 2xl:px-8 px-6">
+      <DialogContent className="bg-info-light xl:min-w-[1084px] min-w-[90%] 2xl:py-[52px] py-6 2xl:px-8 px-4">
         <div className="flex flex-col 2xl:gap-8 gap-6">
-          <div className="flex items-start 2xl:gap-10 gap-6">
+          <div className="flex sm:flex-row flex-col items-start 2xl:gap-10 sm:gap-6 gap-4">
             {/* Team Members  */}
             <TeamMembersDropdown type="marketResearch" id={data?._id} />
             {/* Card status  */}
@@ -93,16 +93,16 @@ export const MarketGrowthCardEditModal = ({ data }: { data: any }) => {
             />
           </div>
           {/* Edit Content  */}
-          <div className="bg-background rounded 2xl:p-8 p-6 flex items-stretch justify-between  2xl:gap-20 gap-10">
+          <div className="bg-background rounded 2xl:p-8 p-4 flex md:flex-row flex-col md:items-stretch items-start justify-between  2xl:gap-24  lg:gap-20 sm:gap-10 gap-6">
             <form
               onSubmit={handleSubmit(onSubmitHandler)}
-              className="flex flex-col justify-between h-full w-full"
+              className="flex flex-col gap-4 justify-between w-full"
             >
               <div>
-                <h4 className="2xl:text-[32px] text-2xl font-semibold text-foreground capitalize">
+                <h4 className="2xl:text-[32px] md:text-2xl text-lg font-semibold text-foreground capitalize">
                   Describe market growth for your startup
                 </h4>
-                <span className="2xl:text-2xl text-base 2xl:mt-4 mt-2">
+                <span className="2xl:text-2xl md:text-base text-xs 2xl:mt-4 mt-2">
                   120 Letter max
                 </span>
               </div>
@@ -114,22 +114,22 @@ export const MarketGrowthCardEditModal = ({ data }: { data: any }) => {
                   />
                   <InputError error={errors.marketGrowth} />
                 </div>
-                <div className="flex items-center 2xl:gap-8 gap-6 2xl:mt-8 mt-6 w-1/2">
+                <div className="grid md:grid-cols-3 grid-cols-1  items-center 2xl:gap-8 sm:gap-6 gap-2 2xl:mt-8 mt-6">
                   <Button
                     type="button"
                     onClick={handleDiscard}
                     variant="outline"
-                    className="rounded 2xl:px-9 px-6"
+                    className="rounded w-full"
                   >
                     Discard
                   </Button>
-                  <Button type="submit" className="rounded px-10">
+                  <Button type="submit" className="rounded w-full">
                     Save
                   </Button>
                 </div>
               </div>
             </form>
-            <div className="bg-background 2xl:min-w-[428px] min-w-[350px] 2xl:h-[378px] h-[300px] rounded shadow-lg 2xl:p-6 p-4  flex flex-col 2xl:gap-8 gap-6">
+            <div className="bg-background 2xl:min-w-[428px] md:min-w-[350px] min-w-full 2xl:h-[378px] h-[300px] rounded shadow-lg 2xl:p-6 p-4  flex flex-col 2xl:gap-8 gap-6">
               <div className="flex items-center justify-between 2xl:gap-4 gap-2">
                 <h6 className="uppercase 2xl:text-base text-sm font-medium ">
                   Market Growth
@@ -148,7 +148,7 @@ export const MarketGrowthCardEditModal = ({ data }: { data: any }) => {
             </div>
           </div>
           {/* Community & Tasks action  */}
-          <div className="flex items-start justify-between 2xl:gap-10 gap-6">
+          <div className="flex sm:flex-row flex-col items-start justify-between 2xl:gap-10 sm:gap-6 gap-4">
             <CommunityInteraction />
             <TaskActionDropdown
               type="marketResearch"

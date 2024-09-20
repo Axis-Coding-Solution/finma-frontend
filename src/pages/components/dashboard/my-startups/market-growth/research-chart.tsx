@@ -8,7 +8,7 @@ function formatNumber(num: number) {
 
 export const MarketResearchChart = ({ data = {} }: { data: any }) => {
   return (
-    <div className="relative">
+    <div className="relative flex justify-center items-center">
       <div className="2xl:w-[280px] 2xl:h-[280px] w-[230px] h-[230px]  rounded-full bg-[#9AE179] relative">
         <div className="absolute 2xl:top-8 top-4 left-1/2 -translate-x-1/2 flex flex-col text-center text-foreground">
           <span className="2xl:text-[10px] text-[8px]">TAM</span>

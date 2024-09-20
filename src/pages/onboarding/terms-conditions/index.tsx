@@ -14,7 +14,7 @@ const TermsAndConditionsPage = () => {
   const [tab, setTab] = useState(0);
   return (
     <div className="">
-      <div className=" bg-secondary rounded-lg 2xl:p-8 p-6 ">
+      <div className=" bg-secondary rounded-lg 2xl:p-8 md:p-6 p-4">
         <div className="container bg-background rounded-xl 2xl:p-5 p-4 flex flex-col 2xl:gap-8 gap-4">
           <MainHeading
             title="Review and accept our Terms and Privacy Policy"

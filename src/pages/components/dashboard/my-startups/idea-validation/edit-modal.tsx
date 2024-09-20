@@ -112,7 +112,7 @@ export const IdeaValidationCardEditModal = ({
         <DialogContent className="text-2xl bg-info-light xl:min-w-[1084px] min-w-[90%] 2xl:py-[52px] py-6 2xl:px-8 px-4">
           <div className="flex flex-col 2xl:gap-8 gap-6">
             {/* Team member & Card Status */}
-            <div className="flex items-start 2xl:gap-10 gap-6">
+            <div className="flex sm:flex-row flex-col items-start 2xl:gap-10 sm:gap-6 gap-4">
               {/* Team Members  */}
               <TeamMembersDropdown type="ideaValidation" id={data?._id} />
               {/* Card status  */}
@@ -123,16 +123,16 @@ export const IdeaValidationCardEditModal = ({
               />
             </div>
             {/* Edit Content  */}
-            <div className="bg-background rounded 2xl:p-8 p-4 flex items-stretch justify-between  2xl:gap-24 gap-20 ">
+            <div className="bg-background rounded 2xl:p-8 p-4 flex md:flex-row flex-col items-stretch justify-between  2xl:gap-24 lg:gap-20 sm:gap-10 gap-6">
               <form
                 onSubmit={handleSubmit(onSubmitHandler)}
-                className="flex flex-col justify-between h-full w-full"
+                className="flex flex-col gap-4 justify-between h-full w-full"
               >
                 <div>
-                  <h4 className="2xl:text-[32px] leading-tight text-2xl font-semibold text-foreground capitalize">
+                  <h4 className="2xl:text-[32px] leading-tight md:text-2xl text-lg font-semibold text-foreground capitalize">
                     Describe the {name} your startup is going to solve
                   </h4>
-                  <p className="2xl:text-2xl text-sm 2xl:mt-4 mt-2">
+                  <p className="2xl:text-2xl md:text-sm text-xs 2xl:mt-4 mt-2">
                     120 Letter max
                   </p>
                 </div>
@@ -144,10 +144,10 @@ export const IdeaValidationCardEditModal = ({
                     />
                     <InputError error={errors[name]} />
                   </div>
-                  <div className="grid grid-cols-3 items-center 2xl:gap-8 gap-6 2xl:mt-8 mt-6">
+                  <div className="grid sm:grid-cols-3 grid-cols-2  items-center 2xl:gap-8 sm:gap-6 gap-4 2xl:mt-8 mt-6">
                     <GradientButton
                       variant="gradient"
-                      className="rounded w-full"
+                      className="rounded w-full sm:col-span-1 col-span-2"
                       disabled={isSubmitting}
                       onClick={handleSubmit(validateSubmitHandler)}
                     >
@@ -170,7 +170,7 @@ export const IdeaValidationCardEditModal = ({
                   </div>
                 </div>
               </form>
-              <div className="bg-background 2xl:min-w-[305px] md:min-w-[255px] rounded shadow-lg 2xl:p-6 p-4  flex flex-col 2xl:gap-8 gap-6">
+              <div className="bg-background 2xl:min-w-[305px] md:min-w-[255px] min-w-full rounded shadow-lg 2xl:p-6 p-4  flex flex-col 2xl:gap-8 gap-6">
                 <div className="flex items-center justify-between 2xl:gap-4 gap-2">
                   <h6 className="uppercase 2xl:text-base text-sm font-medium ">
                     The {name} Validation
@@ -215,7 +215,7 @@ export const IdeaValidationCardEditModal = ({
               </div>
             </div>
             {/* Community & Tasks action  */}
-            <div className="flex items-start justify-between 2xl:gap-10 gap-6">
+            <div className="flex sm:flex-row flex-col items-start justify-between 2xl:gap-10 sm:gap-6 gap-4">
               <CommunityInteraction />
               <TaskActionDropdown
                 type="ideaValidation"

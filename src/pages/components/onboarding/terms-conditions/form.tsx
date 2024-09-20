@@ -117,7 +117,7 @@ export const TermsAndConditionsForm = () => {
               />
             )}
           />
-          <Label htmlFor="servicesTerms" className="2xl:text-base text-sm">
+          <Label htmlFor="servicesTerms" className="2xl:text-base md:text-sm text-xs">
             By clicking "I Agree" and signing up for the Services, you
             acknowledge that you have read, understood, and agree to be bound by
             these Service Terms.
@@ -138,7 +138,7 @@ export const TermsAndConditionsForm = () => {
               />
             )}
           />
-          <Label className="2xl:text-base text-sm" htmlFor="servicesPolicy">
+          <Label className="2xl:text-base md:text-sm text-xs" htmlFor="servicesPolicy">
             By clicking "I Agree" and signing up for the Services, you By using
             the Services, you acknowledge that you have read and understood this
             Privacy Policy and agree to our collection, use, and disclosure of

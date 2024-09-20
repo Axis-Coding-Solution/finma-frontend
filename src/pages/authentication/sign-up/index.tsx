@@ -57,7 +57,7 @@ const SignUpPage = () => {
   //   },
   // };
   return (
-    <div className="bg-secondary-dark rounded-lg p-7">
+    <div className="bg-secondary-dark rounded-lg md:p-7 p-4">
       {/* <div className="w-full flex flex-col gap-4 justify-between">
         <div className="flex flex-col gap-8">
           <Link to="/auth/select-role">
@@ -76,7 +76,7 @@ const SignUpPage = () => {
           <Lottie options={lottieOptions} />
         </figure>
       </div> */}
-      <div className="min-w-[532px] bg-background rounded 2xl:p-[52px] p-10  flex flex-col 2xl:gap-[52px] gap-10 relative overflow-hidden">
+      <div className="sm:min-w-[532px] min-w-full  bg-background rounded 2xl:p-[52px] md:p-10 p-4  flex flex-col 2xl:gap-[52px] sm:gap-10 gap-6 relative overflow-hidden">
         <button
           type="button"
           onClick={handleCloseForm}
@@ -121,7 +121,7 @@ const SignUpPage = () => {
             </form>
           )}
         </div>
-        <h6 className="flex items-center gap-1 justify-center">
+        <h6 className="flex items-center gap-1 justify-center 2xl:text-base text-sm">
           Have an account?
           <Link to="/auth/login">
             <span className="font-semibold">Log in</span>

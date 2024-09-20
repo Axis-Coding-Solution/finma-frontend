@@ -10,7 +10,7 @@ export function InputError({ error }: PropTypes) {
   return (
     <div
       className={cn(
-        "first-letter:capitalize transition-[width] duration-1000 overflow-hidden whitespace-nowrap text-destructive text-sm tracking-wide mt-0.5 text-start ms-1",
+        "first-letter:capitalize absolute  transition-[width] duration-1000 overflow-hidden whitespace-nowrap text-destructive text-sm tracking-wide mt-0.5 text-start ms-1",
         error ? "w-full" : "w-0"
       )}
     >

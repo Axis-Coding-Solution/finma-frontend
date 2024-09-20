@@ -69,9 +69,7 @@ export const TeamMembersDropdown = ({
           teamsData?.members?.length > 0 ? "-space-x-2" : "space-x-2"
         }`}
       >
-        {teamsData?.members?.length === 0 ? (
-          <p className="2xl:text-base text-sm text-center text-muted">No team member</p>
-        ) : (
+        {teamsData?.members?.length > 0 ? (
           teamsData?.members?.slice(0, 5)?.map((item: any, index: number) => (
             <div
               key={index}
@@ -83,6 +81,10 @@ export const TeamMembersDropdown = ({
               {item.label[1]}
             </div>
           ))
+        ) : (
+          <p className="2xl:text-base text-sm text-center text-muted">
+            No team
+          </p>
         )}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -139,7 +141,9 @@ export const TeamMembersDropdown = ({
                     </div>
                   ))
                 )}
-                <h6 className="text-muted-text 2xl:text-base text-sm">Proposal to add:</h6>
+                <h6 className="text-muted-text 2xl:text-base text-sm">
+                  Proposal to add:
+                </h6>
                 {teamsData?.availableMembers?.length === 0 ? (
                   <span className="text-sm text-center">No proposals</span>
                 ) : (
