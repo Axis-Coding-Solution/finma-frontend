@@ -64,11 +64,13 @@ export const MarketGrowthChartEditModal = ({
 
   return (
     <>
-      <Dialog  open={dialog.show} onOpenChange={dialog.setShow}>
+      <Dialog open={dialog.show} onOpenChange={dialog.setShow}>
         <DialogTrigger asChild>
-          <span role="button">
-            <Edit size={20} className="text-info" />
-          </span>
+          {marketResearchId && (
+            <span role="button">
+              <Edit size={20} className="text-info" />
+            </span>
+          )}
         </DialogTrigger>
         <DialogContent className=" 2xl:py-10 py-6 2xl:px-7 px-4 rounded">
           <form onSubmit={handleSubmit(onSubmitHandler)}>

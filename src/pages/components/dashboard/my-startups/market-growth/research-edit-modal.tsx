@@ -74,7 +74,7 @@ export const MarketResearchCardEditModal = ({ data }: { data: any }) => {
 
   return (
     <>
-      <Dialog  open={modal.show} onOpenChange={modal.setShow}>
+      <Dialog open={modal.show} onOpenChange={modal.setShow}>
         <DialogTrigger asChild>
           <span role="button">
             <div className="flex gap-2 items-center  bg-foreground 2xl:px-6 px-4 2xl:py-2 py-1 text-background 2xl:rounded rounded-md 2xl:text-2xl text-base ">
