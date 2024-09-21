@@ -18,7 +18,7 @@ const MyStartupPage = () => {
         />
       </div>
       {isLoading && isLoading ? (
-        <FetchLoader />
+        <FetchLoader noMessage={false} />
       ) : (
         <div className="grid xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-3 sm:grid-cols-2 grid-cols-1  lg:flex-row gap-5">
           {data && data.length > 0 ? (

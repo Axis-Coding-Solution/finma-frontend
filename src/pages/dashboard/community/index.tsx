@@ -25,7 +25,7 @@ function CommunityPage() {
         <CommunityFilter />
         <SearchInput />
       </div>
-      {isLoading && <FetchLoader />}
+      {isLoading && <FetchLoader noMessage={false} />}
       {!isLoading && (
         <div className="flex flex-col gap-4">
           {data?.map((item: CommunityTypes) => (
