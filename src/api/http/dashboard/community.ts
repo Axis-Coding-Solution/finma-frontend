@@ -5,7 +5,7 @@ const url = "/dashboard/community";
 export const getCommunityApi = async () => {
   try {
     const res = await get(url);
-    return res.data?.data;
+    return res.data;
   } catch (error: any) {
     return Promise.reject(apiErrorHandler(error));
   }
