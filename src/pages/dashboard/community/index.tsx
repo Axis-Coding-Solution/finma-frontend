@@ -7,14 +7,21 @@ import {
   CommunityCard,
   CommunityFilter,
 } from "@/pages/components/dashboard/community";
+import { useState } from "react";
 
 // const RenderRight = ({ members }: { members: number }) => (
 //   <span>{members} Members</span>
 // );
 
 function CommunityPage() {
-  const { data, isLoading } = useGetCommunity();
-  const total = data?.length ?? 0;
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const { data, isLoading } = useGetCommunity(currentPage);
+  console.log(data)
+
+  const total = data?.pagination?.total ?? 0;
+  const totalPages = data?.pagination?.totalPages;
+
   return (
     <div className="flex flex-col gap-8">
       <MainHeading
@@ -28,7 +35,7 @@ function CommunityPage() {
       {isLoading && <FetchLoader noMessage={false} />}
       {!isLoading && (
         <div className="flex flex-col gap-4">
-          {data?.map((item: CommunityTypes) => (
+          {data?.community?.map((item: CommunityTypes) => (
             <CommunityCard key={item.id} {...item} />
           ))}
         </div>
@@ -39,7 +46,12 @@ function CommunityPage() {
         ))}
       </div> */}
       <div>
-        <Pagination total={total} />
+        <Pagination
+          total={total}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          totalPages={totalPages}
+        />
       </div>
     </div>
   );

@@ -68,7 +68,7 @@ const ProjectAddModal = () => {
           </Button>
         </span>
       </DialogTrigger>
-      <DialogContent className="bg-secondary 2xl:p-8 p-6 border-none 2xl:max-w-[1154px] md:max-w-[786px] max-w-auto">
+      <DialogContent showCloseButton={false} className="bg-secondary 2xl:p-8 p-6 border-none 2xl:max-w-[1154px] md:max-w-[786px] max-w-auto">
         <div className="bg-background 2xl:p-16 p-6  rounded  flex flex-col 2xl:gap-[52px] gap-8">
           <form
             className="flex flex-col gap-4"

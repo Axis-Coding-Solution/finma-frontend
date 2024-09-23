@@ -1,8 +1,8 @@
 import { getCommunityApi } from "@/api/http";
 import { useQuery } from "@tanstack/react-query";
 
-export const useGetCommunity = () =>
+export const useGetCommunity = (currentPage: number) =>
   useQuery({
-    queryFn: getCommunityApi,
-    queryKey: ["dashboard/community"],
+    queryFn: () => getCommunityApi(currentPage),
+    queryKey: ["dashboard/community", currentPage],
   });

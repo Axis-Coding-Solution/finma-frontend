@@ -27,9 +27,9 @@ export const CommunityCard = ({
   startupsCount,
 }: CommunityTypes) => {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-6 lg:grid-cols-12  2xl:p-6 p-4 bg-background rounded gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-6 lg:grid-cols-12  2xl:p-6 ms:p-4 p-2 bg-background rounded gap-4">
       {/* Avatar Section  */}
-      <div className="flex items-start mt-1 gap-4 col-span-12 sm:col-span-4 lg:col-span-3">
+      <div className="flex items-start mt-1 gap-4 col-span-6 sm:col-span-4 lg:col-span-3">
         <Avatar
           className="object-cover"
           image={profilePicture ? profilePicture : userAvatar1Image}
@@ -42,16 +42,16 @@ export const CommunityCard = ({
         </div>
       </div>
       {/* Status Section  */}
-      <div className="flex flex-col gap-2 col-span-12 sm:col-span-2 lg:col-span-2">
+      <div className="flex flex-col gap-2 col-span-6 sm:col-span-2 lg:col-span-2">
         <h6 className="text-foreground font-semibold ">Status</h6>
         <span className="flex items-center text-muted-foreground gap-1 text-sm">
           {status}
         </span>
       </div>
       {/* Community Goals Section  */}
-      <div className="flex flex-col gap-2 col-span-12 sm:col-span-2 lg:col-span-4">
+      <div className="flex flex-col gap-2 col-span-6 sm:col-span-2 lg:col-span-4">
         <h6 className="text-foreground font-semibold">Community goal</h6>
-        <div className="flex flex-wrap items-center gap-[2px]">
+        <div className="flex flex-wrap items-center sm:gap-[2px] gap-2">
           {communityGoals ? (
             communityGoals.goals.map((goal, idx) => (
               <Badge
@@ -77,7 +77,7 @@ export const CommunityCard = ({
       </div>
       {/* Open Projects Section  */}
       {role === "innovator" && (
-        <div className="flex flex-col items-start gap-2 col-span-12 sm:col-span-2 lg:col-span-2">
+        <div className="flex flex-col items-start gap-2 col-span-6 sm:col-span-2 lg:col-span-2">
           <h6 className="text-foreground font-semibold">Open projects</h6>
           <span className="ps-2 text-success underline text-sm">
             {startupsCount}
@@ -85,13 +85,13 @@ export const CommunityCard = ({
         </div>
       )}
       {role === "mentor" && (
-        <div className="flex flex-col items-start gap-2 col-span-12 sm:col-span-2 lg:col-span-2">
+        <div className="flex flex-col items-start gap-2 col-span-6 sm:col-span-2 lg:col-span-2">
           <h6 className="text-foreground font-semibold">Active Mentorship</h6>
           <span className="ps-2 text-muted-foreground text-sm">0</span>
         </div>
       )}
       {role === "expert" && (
-        <div className="flex flex-col items-start gap-2 col-span-12 sm:col-span-2 lg:col-span-2">
+        <div className="flex flex-col items-start gap-2 col-span-6 sm:col-span-2 lg:col-span-2">
           <h6 className="text-foreground font-semibold">Reviews</h6>
           <span className=" text-foreground text-sm">No Reviews</span>
         </div>

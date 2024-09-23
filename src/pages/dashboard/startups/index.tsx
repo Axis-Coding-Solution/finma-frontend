@@ -1,4 +1,5 @@
 import { useGetStartups } from "@/api/hooks/dashboard";
+import { IdeaValidationStart } from "@/assets/svgs";
 import { FetchLoader, HeadingButton } from "@/pages/components/common";
 import ProjectCard from "@/pages/components/dashboard/my-projects/card";
 import ProjectAddModal from "@/pages/components/dashboard/my-projects/project-add-modal";
@@ -26,8 +27,9 @@ const MyStartupPage = () => {
               <ProjectCard key={index} {...item} />
             ))
           ) : (
-            <div className="col-span-3 text-center py-20">
-              No Startup Available!
+            <div className="col-span-3 flex flex-col justify-center items-center">
+              <img src={IdeaValidationStart} className="opacity-40" />
+              <span className="font-medium">No Startup Available</span>
             </div>
           )}
         </div>

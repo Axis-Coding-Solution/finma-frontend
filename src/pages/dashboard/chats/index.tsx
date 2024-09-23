@@ -6,6 +6,8 @@
 // } from "@/pages/components/chats";
 // import { NoMessages } from "@/_pages/components/chats/content/no-messages";
 
+import UnderConstruction from "@/pages/components/under-construction";
+
 // import { MainHeading } from "@/_pages/components/common";
 // import { useAppParams, useAuth } from "@/utils/hooks";
 // import socket from "@/lib/socket.io";
@@ -50,5 +52,9 @@
 // export default ChatBoxPage;
 
 export default () => {
-  return (<div>Chat</div>)
-}
+  return (
+    <div>
+      <UnderConstruction />
+    </div>
+  );
+};
