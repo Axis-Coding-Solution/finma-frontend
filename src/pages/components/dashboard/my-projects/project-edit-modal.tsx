@@ -84,10 +84,11 @@ export const ProjectEditModal = ({ projectId }: { projectId: string }) => {
         </span>
       </DialogTrigger>
       <DialogContent
+      showCloseButton={false}
         onClick={(e) => e.stopPropagation()}
-        className="bg-secondary 2xl:p-8 p-6 border-none 2xl:max-w-[1154px] md:max-w-[786px] max-w-auto"
+        className="bg-secondary 2xl:p-8 sm:p-6 p-4 border-none 2xl:max-w-[1154px] md:max-w-[786px] max-w-auto"
       >
-        <div className="bg-background 2xl:p-16 p-8  rounded  flex flex-col 2xl:gap-[52px] gap-8">
+        <div className="bg-background 2xl:p-16 sm:p-6 p-4  rounded  flex flex-col 2xl:gap-[52px] gap-8">
           <form
             className="flex flex-col gap-4"
             onSubmit={handleSubmit(onsubmitHandler)}

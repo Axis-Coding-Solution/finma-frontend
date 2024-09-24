@@ -13,8 +13,9 @@ import { useModal } from "@/utils/hooks";
 import { MarketGrowthEditChartModalInitialValues } from "@/utils/initial-values/dashboard";
 import { MarketGrowthEditChartModalSchema } from "@/utils/validation-schemas/dashoard";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { DialogClose } from "@radix-ui/react-dialog";
 import { useQueryClient } from "@tanstack/react-query";
-import { Check, Edit } from "lucide-react";
+import { Check, Edit, X } from "lucide-react";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
@@ -72,15 +73,20 @@ export const MarketGrowthChartEditModal = ({
             </span>
           )}
         </DialogTrigger>
-        <DialogContent className=" 2xl:py-10 py-6 2xl:px-7 px-4 rounded">
+        <DialogContent showCloseButton={false} className=" 2xl:py-10 py-6 2xl:px-7 px-4 rounded">
           <form onSubmit={handleSubmit(onSubmitHandler)}>
-            <div className="flex items-center justify-between mt-4">
+            <div className="flex items-center justify-between mt-4 relative">
               <h6 className="2xl:text-[28px] text-xl font-medium">
                 Data table
               </h6>
-              <div className="flex items-center gap-3 absolute top-[34px] right-12">
-                {/* <DialogClose asChild><X size={20} className="text-background bg-foreground rounded-full"/></DialogClose> */}
-                <button>
+              <div className="flex flex-row-reverse items-center gap-3 absolute -top-4 right-0">
+                <DialogClose asChild>
+                  <X
+                    size={20}
+                    className="text-background bg-foreground rounded-full cursor-pointer"
+                  />
+                </DialogClose>
+                <button type="submit">
                   <Check
                     size={20}
                     className="text-background bg-[#FFB500] rounded-full"

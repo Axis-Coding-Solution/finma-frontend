@@ -161,7 +161,7 @@ const ProfileEditModal = ({ userData, updateUser }: ProfileEditModalProps) => {
           <Pencil size={18} className="text-success-dark" />
         </span>
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent showCloseButton={false}>
         <form
           className="2xl:p-5  p-0 flex flex-col 2xl:gap-10 gap-4"
           onSubmit={handleSubmit(onSubmitHandler)}

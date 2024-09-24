@@ -32,7 +32,7 @@ export const StartupForm = ({
   return (
     <>
       <div className="flex md:flex-row flex-col  justify-between md:items-start items-center 2xl:gap-8 gap-6">
-        <div className="flex flex-col 2xl:gap-3 gap-0">
+        <div className="flex flex-col w-full 2xl:gap-3 gap-0">
           <h4 className="2xl:text-[44px] text-2xl font-semibold text-foreground">
             {title} Startup card
           </h4>
@@ -50,7 +50,7 @@ export const StartupForm = ({
           variant="startup"
         />
       </div>
-      <div className="grid grid-cols-2 2xl:gap-8 gap-6">
+      <div className="grid sm:grid-cols-2 grid-cols-1 2xl:gap-8 gap-6">
         <div>
           <FloatingInput
             label="Startup name"
@@ -75,7 +75,7 @@ export const StartupForm = ({
           />
           <InputError error={errors?.industry} />
         </div>
-        <div className="col-span-2">
+        <div className="sm:col-span-2 col-span-1">
           <Label htmlFor="bio" className="text-muted-text font-normal">
             Bio
           </Label>
@@ -87,9 +87,9 @@ export const StartupForm = ({
           <InputError error={errors?.bio} />
         </div>
       </div>
-      <div className="flex justify-end">
-        <div className="md:w-1/2 w-full flex items-center justify-between gap-4">
-          <DialogClose>
+      <div className="flex  justify-end">
+        <div className="md:w-1/2 w-full flex sm:flex-row flex-col items-center justify-between gap-4">
+          <DialogClose className="w-full">
             <Button
               disabled={isSubmitting}
               type="button"

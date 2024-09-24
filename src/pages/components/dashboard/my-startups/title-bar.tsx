@@ -1,7 +1,9 @@
 import { LogoAvatar } from "@/assets/svgs";
 import { Avatar } from "@/components/ui";
+import { TeamMembersDropdown } from "./team-members";
 
 export const StartupTitleBar = ({ data }: any) => {
+  console.log
   return (
     <div className="bg-background px-6 py-4 shadow rounded flex 2xl:flex-1 flex-wrap items-start  2xl:gap-10 gap-4 justify-between">
       {/* Page title  */}
@@ -41,7 +43,7 @@ export const StartupTitleBar = ({ data }: any) => {
       </div>
       {/* Team  */}
       <div className="">
-        <div className="flex flex-col gap-2">
+        {/* <div className="flex flex-col gap-2">
           <h6 className="text-primary-disabled text-base">Team</h6>
           <div className="flex items-center -space-x-2 overflow-visible">
             <div className="border border-border bg-[#FEA946] 2xl:min-w-10 2xl:h-10 w-8 h-8 2xl:text-base text-sm font-normal flex justify-center items-center rounded-full text-background uppercase">
@@ -57,7 +59,8 @@ export const StartupTitleBar = ({ data }: any) => {
               VH
             </div>
           </div>
-        </div>
+        </div> */}
+        <TeamMembersDropdown type="startup" id={data?.id}/>
       </div>
     </div>
   );

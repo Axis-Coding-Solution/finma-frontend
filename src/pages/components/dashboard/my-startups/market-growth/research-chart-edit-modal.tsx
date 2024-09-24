@@ -4,6 +4,7 @@ import {
 } from "@/api/hooks/dashboard";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogTrigger,
   FloatingInput,
@@ -15,7 +16,7 @@ import { MarketResearchEditChartModalInitialValues } from "@/utils/initial-value
 import { MarketResearchEditChartModalSchema } from "@/utils/validation-schemas/dashoard";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useQueryClient } from "@tanstack/react-query";
-import { Check, Edit } from "lucide-react";
+import { Check, Edit, X } from "lucide-react";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
@@ -70,19 +71,19 @@ export const MarketResearchChartEditModal = ({
           </span>
         )}
       </DialogTrigger>
-      <DialogContent className="2xl:w-[478px] w-[350px] 2xl:py-10 py-6 2xl:px-7 px-4 rounded">
+      <DialogContent showCloseButton={false} className="2xl:w-[478px] w-[350px] 2xl:py-10 py-6 2xl:px-7 px-4 rounded">
         <form
           onSubmit={handleSubmit(onSubmitHandler)}
-          className="flex items-center justify-between mt-4"
+          className="flex items-center justify-between mt-4 relative"
         >
           <h6 className="2xl:text-[28px] text-lg font-medium">Data table</h6>
-          <div className="flex items-center gap-3 absolute top-[34px] right-12">
-            {/* <DialogClose asChild>
+          <div className="flex flex-row-reverse items-center gap-3 absolute -top-4 right-0">
+            <DialogClose asChild>
                 <X
                   size={20}
-                  className="text-background bg-foreground rounded-full"
+                  className="text-background bg-foreground rounded-full cursor-pointer"
                 />
-              </DialogClose> */}
+              </DialogClose>
             <button type="submit">
               <Check
                 size={20}

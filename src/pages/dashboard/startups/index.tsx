@@ -6,6 +6,8 @@ import ProjectAddModal from "@/pages/components/dashboard/my-projects/project-ad
 
 const MyStartupPage = () => {
   const { data, isLoading } = useGetStartups();
+  console.log("qqqq",  data);
+
 
   const totalProjects = data ? data?.length : 0;
 

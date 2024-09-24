@@ -1,4 +1,5 @@
 import {
+  STARTUPS_QUERY_KEY,
   TEAM_MEMBER_QUERY_KEY,
   useGetTeamMembers,
   useUpdateTeamMembers,
@@ -41,6 +42,12 @@ export const TeamMembersDropdown = ({
       queryClient.invalidateQueries({
         queryKey: [TEAM_MEMBER_QUERY_KEY, id, type],
       });
+      if (type === "startup") {
+        queryClient.refetchQueries({
+          queryKey: [STARTUPS_QUERY_KEY],
+          exact: true,
+        });
+      }
     } catch (error) {}
   };
   const handleRemoveMember = async (member: any) => {
@@ -55,6 +62,12 @@ export const TeamMembersDropdown = ({
       queryClient.invalidateQueries({
         queryKey: [TEAM_MEMBER_QUERY_KEY, id, type],
       });
+      if (type === "startup") {
+        queryClient.refetchQueries({
+          queryKey: [STARTUPS_QUERY_KEY],
+          exact: true,
+        });
+      }
       successToast("Team member removed successfully");
     } catch (error) {}
   };
