@@ -16,3 +16,4 @@ export * from "./dialog";
 export * from "./dropdown-menu"
 export {} from "./search-input"
 export {ReloadButton} from './reload-button';
+export {Ratings} from "./ratings"
