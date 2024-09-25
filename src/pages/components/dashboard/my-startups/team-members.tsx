@@ -12,6 +12,7 @@ import {
 import { successToast } from "@/utils";
 import { useQueryClient } from "@tanstack/react-query";
 import { Plus, X } from "lucide-react";
+import { AvatarGroup } from "../../common";
 
 export const TeamMembersDropdown = ({
   id,
@@ -82,23 +83,7 @@ export const TeamMembersDropdown = ({
           teamsData?.members?.length > 0 ? "-space-x-2" : "space-x-2"
         }`}
       >
-        {teamsData?.members?.length > 0 ? (
-          teamsData?.members?.slice(0, 5)?.map((item: any, index: number) => (
-            <div
-              key={index}
-              className={`border ${
-                index % 2 === 0 ? "bg-[#FEA946]" : "bg-[#00569E]"
-              } 2xl:min-w-10 2xl:h-10 min-w-8 h-8 2xl:text-base text-sm font-normal flex justify-center items-center rounded-full text-background uppercase`}
-            >
-              {item.label[0]}
-              {item.label[1]}
-            </div>
-          ))
-        ) : (
-          <p className="2xl:text-base text-sm text-center text-muted">
-            No team
-          </p>
-        )}
+        <AvatarGroup team={teamsData?.members} />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <div

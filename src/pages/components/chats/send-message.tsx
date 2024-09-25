@@ -56,10 +56,10 @@ export const SendMessageBox = () => {
         render={({ field }) => <div className="w-full bg-card outline-none  max-h-48 overflow-auto custom-scrollbar-warning resize-none" contentEditable {...field} />}
       />
       </div>
-      <button className="border-none bg-none cursor-pointer">
+      <button className="border-none bg-none cursor-pointer" >
         <SmilePlus size={20} />
       </button>
-      <button className="border py-2  px-3 border-border flex justify-center items-center rounded-sm bg-secondary-dark">
+      <button className="border py-2  px-3 border-border flex justify-center items-center rounded-sm bg-secondary-dark" type="submit" onClick={()=>console.log("first")}>
         <Send size={24} />
       </button>
     </form>

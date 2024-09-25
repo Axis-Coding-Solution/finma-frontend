@@ -8,13 +8,14 @@ import {
 // import UnderConstruction from "@/pages/components/under-construction";
 
 import { MainHeading } from "@/pages/components/common";
-import {  useAuth } from "@/utils/hooks";
+import {  useAppParams, useAuth } from "@/utils/hooks";
 import socket from "@/lib/socket.io";
 import { useEffect } from "react";
 import { SOCKET_ENUMS } from "@/utils/constants/socket-enums";
 
 function ChatBoxPage() {
-  // const { id } = useAppParams();
+  const { id } = useAppParams();
+  console.log("id,,",id)
   const auth = useAuth();
 
   let RenderContent = null;

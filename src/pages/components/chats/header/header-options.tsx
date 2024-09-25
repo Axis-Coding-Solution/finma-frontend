@@ -13,7 +13,7 @@ const HeaderOptions = () => {
       <div className="content-center">
         <DropdownMenu>
           <DropdownMenuTrigger className="focus-visible:outline-none">
-            <Ellipsis />
+            <Ellipsis className="mt-2"  />
           </DropdownMenuTrigger>
           <DropdownMenuContent className="flex flex-col">
             <DropdownMenuItem>

@@ -7,6 +7,7 @@ import { SearchBar } from "../../common";
 
 export const ChatsSidebar = () => {
   const { data = {}, isPending } = useGetChats();
+  console.log("chats Data",data)
   const { data: chats } = data;
 
   return (
@@ -26,8 +27,8 @@ export const ChatsSidebar = () => {
         <SearchBar />
       </div>
       {/* <Input type="text" /> */}
-      <div className="h-full overflow-y-auto rounded-lg bg-accent">
-        <ScrollArea className="overflow-y-auto h-full px-3">
+      <div className="overflow-y-auto  bg-accent custom-scrollbar-secondary">
+        <ScrollArea className="overflow-y-auto  px-1 ">
           {!isPending &&
             chats?.map((item: any, index: number) => (
               <ChatContactItem item={item} key={index} />

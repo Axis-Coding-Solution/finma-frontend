@@ -19,8 +19,11 @@ export const ChatsContent = () => {
   const { id = "" } = useAppParams();
   const { data } = useGetMessagesByChatId(id);
   const { getChat, setChat, pushMessage } = useMessagesStore();
+  console.log("ddddddddddddddd", data)
+  console.log("", getChat)
 
-  const chat = getChat();
+
+  // const chat = getChat();
 
   const contentRef = useRef<HTMLDivElement | null>(null);
 
@@ -81,14 +84,14 @@ export const ChatsContent = () => {
         ref={contentRef}
         className="flex-1 flex flex-col px-5 py-2 overflow-y-auto h-auto"
       >
-        {chat?.length === 0 && <NoMessages />}
-        {chat?.map((message: any, index: number) => (
-          <TextMessage
+        {/* {chat?.length === 0 && <NoMessages />} */}
+        {/* {chat?.map((message: any, index: number) => ( */}
+          {/* <TextMessage
             message={message}
             index={index}
             position={message.position == "right" ? "right" : "left"}
-          />
-        ))}
+          /> */}
+        {/* ))} */}
       </div>
     </ScrollArea>
   );

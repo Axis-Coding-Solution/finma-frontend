@@ -2,8 +2,10 @@ import { Avatar } from "@/components/_ui/avatar";
 import { Button } from "@/components/_ui/button";
 import { Badge } from "@/components/_ui/badge";
 import { CommunityTypes } from "@/definitions/types";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { userAvatar1Image } from "@/assets/images";
+import { useCreateChatMutation } from "@/api/hooks/dashboard";
+import { useQueryClient } from "@tanstack/react-query";
 
 const BADGE_COLORS = [
   "border-[#6F6FEA] text-[#6F6FEA]",
@@ -26,6 +28,21 @@ export const CommunityCard = ({
   entrepreneurType,
   startupsCount,
 }: CommunityTypes) => {
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
+
+  const { mutateAsync } = useCreateChatMutation();
+
+  const getChats = async (id: string) => {
+    try {
+      const response = await mutateAsync(id);
+      console.log("response", response);
+      queryClient.invalidateQueries({ queryKey: ["dashboard/chat"] });
+      navigate(`/dashboard/chats/${response.data._id}`);
+    } catch (error) {
+      console.error("Error creating chat:", error);
+    }
+  };
   return (
     <div className="grid grid-cols-1 sm:grid-cols-6 lg:grid-cols-12  2xl:p-6 ms:p-4 p-2 bg-background rounded gap-4">
       {/* Avatar Section  */}
@@ -99,9 +116,10 @@ export const CommunityCard = ({
       {/* chat Button Section  */}
       <div className="col-span-12 sm:col-span-2 lg:col-span-1 flex justify-end items-center">
         <Button
+          onClick={() => getChats(id)}
           variant="secondary"
           tag={Link}
-          to={`/dashboard/chats/${id}`}
+          // to={`/dashboard/chats/${id}`}
           className="w-full bg-secondary-dark rounded-xl"
         >
           Chat

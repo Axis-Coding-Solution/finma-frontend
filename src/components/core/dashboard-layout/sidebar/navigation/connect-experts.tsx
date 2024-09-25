@@ -21,7 +21,7 @@ export const ConnectWithExperts = () => {
   const setExpertInfo = expertInfo.set;
 
   const mutation = useMutation({
-    mutationFn: createChatsApi,
+    mutationFn: (id: string) => createChatsApi(id),
     mutationKey: ["dashboard/chats"],
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["dashboard/chats"] });

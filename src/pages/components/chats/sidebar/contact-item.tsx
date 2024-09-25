@@ -11,7 +11,7 @@ type PropsTypes = {
 };
 export const ChatContactItem = ({ item }: PropsTypes) => {
   let userName = item.user.email.split("@")[0].replace(/\b\w/g, (l: any) => l.toUpperCase())
-
+console.log("itemmmmmmmmmmm", item)
   const chatUser = useHookstate(chatUserDataHook);
   const setChatUser = chatUser.set;
 
