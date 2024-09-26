@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { TextMessage } from "./text-message";
 import { useAppParams } from "@/utils/hooks";
 import { useGetMessagesByChatId } from "@/api/hooks/messages/messages";
@@ -7,6 +7,8 @@ import { NoMessages } from "./no-messages";
 import { useMessagesStore } from "@/store/hooks";
 import socket from "@/lib/socket.io";
 import { SOCKET_ENUMS } from "@/utils/constants/socket-enums";
+import { getMessageBYChatIdApi } from "@/api/http";
+import { useParams } from "react-router-dom";
 
 function checkElementOverflow(element: HTMLDivElement) {
   return (
@@ -16,14 +18,17 @@ function checkElementOverflow(element: HTMLDivElement) {
 }
 
 export const ChatsContent = () => {
+  const [data, setData] = useState();
   const { id = "" } = useAppParams();
-  const { data } = useGetMessagesByChatId(id);
+  console.log("id",id)
+  const { data:massageData } = useGetMessagesByChatId(id);
   const { getChat, setChat, pushMessage } = useMessagesStore();
-  console.log("ddddddddddddddd", data)
-  console.log("", getChat)
 
+  
+  
+  const chat = getChat();
+  console.log("cccccchat",chat)
 
-  // const chat = getChat();
 
   const contentRef = useRef<HTMLDivElement | null>(null);
 
@@ -59,7 +64,7 @@ export const ChatsContent = () => {
   // useEffect(() => {
   //   const fetchData = async () => {
   //     try {
-  //       const result = await getMessageApi(id);
+  //       const result = await getMessageBYChatIdApi(id);
   //       setData(result.data);
   //     } catch (err) {
   //       setError(err);
@@ -84,14 +89,14 @@ export const ChatsContent = () => {
         ref={contentRef}
         className="flex-1 flex flex-col px-5 py-2 overflow-y-auto h-auto"
       >
-        {/* {chat?.length === 0 && <NoMessages />} */}
-        {/* {chat?.map((message: any, index: number) => ( */}
-          {/* <TextMessage
+     {/* {chat?.length === 0 && <NoMessages />}
+        {chat?.map((message: any, index: number) => (
+           <TextMessage
             message={message}
             index={index}
             position={message.position == "right" ? "right" : "left"}
-          /> */}
-        {/* ))} */}
+          /> 
+         )) } */}
       </div>
     </ScrollArea>
   );

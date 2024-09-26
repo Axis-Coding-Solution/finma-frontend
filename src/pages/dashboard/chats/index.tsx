@@ -14,8 +14,7 @@ import { useEffect } from "react";
 import { SOCKET_ENUMS } from "@/utils/constants/socket-enums";
 
 function ChatBoxPage() {
-  const { id } = useAppParams();
-  console.log("id,,",id)
+  // const { id } = useAppParams();
   const auth = useAuth();
 
   let RenderContent = null;

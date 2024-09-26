@@ -6,7 +6,6 @@ const wrapState = (state: State<any[], {}>) => ({
   pushMessage: (msg: any) => state.set((prev: any[]) => [...prev, msg]),
   setChat: (chat: any[]) => state.set(chat),
 });
-
 const wrapOnboardingStates = (state: State<any, {}>) => ({
   getFormData: () => state.value,
   setFormData: (data: any) => state.set(data),

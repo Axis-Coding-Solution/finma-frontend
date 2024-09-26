@@ -1,4 +1,4 @@
-import { useGetChatByReceiverId, useGetCommunity } from "@/api/hooks/dashboard";
+import { useGetCommunity } from "@/api/hooks/dashboard";
 import { Pagination } from "@/components/_ui/pagination";
 import { SearchInput } from "@/components/ui/search-input";
 import { CommunityTypes } from "@/definitions/types";
@@ -17,8 +17,6 @@ function CommunityPage() {
   const [currentPage, setCurrentPage] = useState(1);
 
   const { data, isLoading } = useGetCommunity(currentPage);
-  const { data: chatReceiverData } = useGetChatByReceiverId();
-  console.log("chatByReceiverData", chatReceiverData);
 
   const total = data?.pagination?.total ?? 0;
   const totalPages = data?.pagination?.totalPages;

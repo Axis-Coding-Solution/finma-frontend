@@ -59,7 +59,7 @@ export const SendMessageBox = () => {
       <button className="border-none bg-none cursor-pointer" >
         <SmilePlus size={20} />
       </button>
-      <button className="border py-2  px-3 border-border flex justify-center items-center rounded-sm bg-secondary-dark" type="submit" onClick={()=>console.log("first")}>
+      <button className="border py-2  px-3 border-border flex justify-center items-center rounded-sm bg-secondary-dark" type="submit" >
         <Send size={24} />
       </button>
     </form>

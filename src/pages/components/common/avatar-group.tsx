@@ -7,7 +7,6 @@ import {
 } from "@/components/ui";
 
 export const AvatarGroup = (props: any) => {
-  console.log("first", props.team);
   return props?.team?.length > 0 ? (
     props?.team?.map((item: any, index: number) => (
       <TooltipProvider>

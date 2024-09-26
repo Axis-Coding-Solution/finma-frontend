@@ -7,11 +7,11 @@ import { SearchBar } from "../../common";
 
 export const ChatsSidebar = () => {
   const { data = {}, isPending } = useGetChats();
-  console.log("chats Data",data)
   const { data: chats } = data;
 
   return (
-    <div className="max-w-72 w-full flex flex-col gap-5 bg-white 2xl:p-6 p-4 rounded">
+  <div className="2xl:max-w-96 max-w-72 2xl:p-4 p-2 rounded bg-secondary">
+    <div className=" w-full flex flex-col gap-5 bg-white 2xl:p-4 p-2 rounded h-full">
       <div className="flex items-center gap-2">
         <Button variant="dark" size="sm" rounded>
           All
@@ -28,7 +28,7 @@ export const ChatsSidebar = () => {
       </div>
       {/* <Input type="text" /> */}
       <div className="overflow-y-auto  bg-accent custom-scrollbar-secondary">
-        <ScrollArea className="overflow-y-auto  px-1 ">
+        <ScrollArea className="overflow-y-auto  ">
           {!isPending &&
             chats?.map((item: any, index: number) => (
               <ChatContactItem item={item} key={index} />
@@ -46,5 +46,6 @@ export const ChatsSidebar = () => {
         </ScrollArea>
       </div>
     </div>
+  </div>
   );
 };

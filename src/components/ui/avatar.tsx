@@ -7,11 +7,11 @@ import { userAvatar1Image } from "@/assets/images";
 const badgeVariants = cva("rounded-full border-transparent", {
   variants: {
     size: {
-      sm: "w-8 h-8",
-      md: "w-10 h-10",
-      lg: "w-12 h-12",
-      xl: "w-16 h-16",
-      xxl: "w-20 h-20",
+      sm: "min-w-8 h-8",
+      md: "min-w-10 h-10",
+      lg: "min-w-12 h-12",
+      xl: "min-w-16 h-16",
+      xxl: "min-w-20 h-20",
     },
   },
   defaultVariants: {
@@ -49,7 +49,7 @@ function Avatar({
       {active && (
         <span
           role="status"
-          className="w-3 h-3 rounded-full bg-primary border-2 border-background z-10 absolute right-0 bottom-0"
+          className="min-w-3 h-3 rounded-full bg-primary border-2 border-background z-10 absolute right-0 bottom-0"
         />
       )}
     </ImgWrapper>

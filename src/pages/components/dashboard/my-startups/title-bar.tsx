@@ -3,7 +3,6 @@ import { Avatar } from "@/components/ui";
 import { TeamMembersDropdown } from "./team-members";
 
 export const StartupTitleBar = ({ data }: any) => {
-  console.log
   return (
     <div className="bg-background px-6 py-4 shadow rounded flex 2xl:flex-1 flex-wrap items-start  2xl:gap-10 gap-4 justify-between">
       {/* Page title  */}

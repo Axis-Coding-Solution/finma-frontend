@@ -4,7 +4,10 @@ import { Badge } from "@/components/_ui/badge";
 import { CommunityTypes } from "@/definitions/types";
 import { Link, useNavigate } from "react-router-dom";
 import { userAvatar1Image } from "@/assets/images";
-import { useCreateChatMutation } from "@/api/hooks/dashboard";
+import {
+  GET_CHATS_QUERY_KEY,
+  useCreateChatMutation,
+} from "@/api/hooks/dashboard";
 import { useQueryClient } from "@tanstack/react-query";
 
 const BADGE_COLORS = [
@@ -36,12 +39,9 @@ export const CommunityCard = ({
   const getChats = async (id: string) => {
     try {
       const response = await mutateAsync(id);
-      console.log("response", response);
-      queryClient.invalidateQueries({ queryKey: ["dashboard/chat"] });
+      queryClient.refetchQueries({ queryKey: [GET_CHATS_QUERY_KEY] });
       navigate(`/dashboard/chats/${response.data._id}`);
-    } catch (error) {
-      console.error("Error creating chat:", error);
-    }
+    } catch (error) {}
   };
   return (
     <div className="grid grid-cols-1 sm:grid-cols-6 lg:grid-cols-12  2xl:p-6 ms:p-4 p-2 bg-background rounded gap-4">

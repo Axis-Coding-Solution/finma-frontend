@@ -1,22 +1,22 @@
 import { createChatsApi, getChatByReceiverId, getChatsApi } from "@/api/http";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
+export const GET_CHATS_QUERY_KEY = "dashboard/chats";
+
 export const useCreateChatMutation = () =>
   useMutation({
     mutationFn: createChatsApi,
-    mutationKey: ["dashboard/chats"],
+    mutationKey: [GET_CHATS_QUERY_KEY],
   });
-
-
 
 export const useGetChats = () =>
   useQuery({
     queryFn: getChatsApi,
-    queryKey: ["dashboard/chats"],
+    queryKey: [GET_CHATS_QUERY_KEY],
   });
 
-export const useGetChatByReceiverId = () =>
+export const useGetChatByReceiverId = (id: string) =>
   useQuery({
-    queryFn: getChatByReceiverId,
-    queryKey: ["dashboard/chats"],
+    queryFn: () => getChatByReceiverId(id),
+    queryKey: [GET_CHATS_QUERY_KEY, id],
   });
