@@ -13,12 +13,13 @@ export const ChatContactItem = ({ item }: PropsTypes) => {
   const chatUser = useHookstate(chatUserDataHook);
   const setChatUser = chatUser.set;
   const isActive = id === item.id;
-  console.log("item", item)
   return (
     <div className="pt-1">
       <Link to={`/dashboard/chats/${item.id}`}>
         <div
-          className={`flex p-2 gap-2 rounded ${isActive?"bg-secondary-dark":"border-white"}`}
+          className={`flex p-2 gap-2 rounded ${
+            isActive ? "bg-secondary-dark" : "border-white"
+          }`}
           onClick={() => setChatUser(item.user)}
         >
           <Avatar image={item?.user?.profilePicture} size="lg" />

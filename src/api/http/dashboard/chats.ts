@@ -20,14 +20,6 @@ export const getChatsApi = async () => {
     return Promise.reject(apiErrorHandler(error));
   }
 };
-export const getMessageBYChatIdApi = async (id: string) => {
-  try {
-    const res = await get(id);
-    return res.data.data;
-  } catch (error: any) {
-    return Promise.reject(apiErrorHandler(error));
-  }
-};
 
 export const getChatByReceiverId = async (id: string) => {
   try {

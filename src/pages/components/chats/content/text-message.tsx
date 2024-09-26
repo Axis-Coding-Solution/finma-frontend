@@ -3,9 +3,9 @@ import { Avatar } from "@/components/_ui/avatar";
 import { CheckCheck, Check } from "lucide-react";
 
 export const TextMessage = ({ message, index, position }: any) => {
-  const container = position === "right" ? "justify-start" : "justify-end";
-  const background = position === "right" ? "bg-muted" : "bg-primary";
-  const check = position === "right" ? "hidden" : "d-flex";
+  const container = position === "right" ? "justify-end" : "justify-start";
+  const background = position === "right" ? "bg-secondary-dark" : "bg-muted";
+  const check = position === "right" ? "flex" : "hidden";
   const checkColor =
     message.readAt && message.receivedAt
       ? "text-info"
