@@ -1,4 +1,4 @@
-import { errorToast } from "@/utils";
+import { cn, errorToast } from "@/utils";
 import { FORM_MODE } from "@/utils/constants";
 import { useAppParams, useAuth } from "@/utils/hooks";
 import { postMessagesInitialValues } from "@/utils/initial-values";
@@ -14,6 +14,7 @@ import {
   usePostMessages,
 } from "@/api/hooks/dashboard/messages";
 import { useQueryClient } from "@tanstack/react-query";
+import { useRef } from "react";
 
 export const SendMessageBox = () => {
   const postMessage = usePostMessages();
@@ -21,17 +22,22 @@ export const SendMessageBox = () => {
   const { id: chatId } = useAppParams();
   const receiverUser = chatUser.get();
   const queryClient = useQueryClient();
+
+  const textAreaRef = useRef<HTMLDivElement>(null);
   // const auth = useAuth();
   // const { pushMessage } = useMessagesStore();
 
   const {
     control,
     handleSubmit,
+    getFieldState,
     reset: resetForm,
   } = useForm({
     mode: FORM_MODE,
     defaultValues: postMessagesInitialValues,
   });
+
+  console.log(getFieldState("content"));
 
   const onSubmitMessage = async (values: typeof postMessagesInitialValues) => {
     // if (!values.content) return;
@@ -55,11 +61,17 @@ export const SendMessageBox = () => {
         content: values.content,
       };
 
-      const res = await postMessage.mutateAsync(postData);
+      await postMessage.mutateAsync(postData);
 
-      console.log(res);
-      queryClient.invalidateQueries({ queryKey: [CHAT_MESSAGES_QUERY_KEY] });
-      resetForm();
+      resetForm({
+        content: "",
+        receiverId: "",
+      });
+
+      if (textAreaRef.current) textAreaRef.current.textContent = "";
+      queryClient.invalidateQueries({
+        queryKey: [CHAT_MESSAGES_QUERY_KEY],
+      });
     } catch (error: any) {
       errorToast(error.message);
     }
@@ -73,22 +85,32 @@ export const SendMessageBox = () => {
       <button className="border-none bg-none cursor-pointer">
         <Paperclip size={20} />
       </button>
-      <div className="border border-muted-foreground pl-4 p-1 py-2 rounded w-full ">
+      <div className="w-full relative flex items-top p-1 border border-muted-foreground rounded py-2">
         <Controller
           name="content"
           control={control}
           render={({ field }) => (
-            <div
-              ref={field.ref}
-              className="w-full bg-card outline-none  max-h-48 overflow-auto custom-scrollbar-warning resize-none"
-              onInput={(e) => field.onChange(e.currentTarget.innerText)}
-              onBlur={field.onBlur}
-              contentEditable
-            />
+            <>
+              <div
+                ref={textAreaRef}
+                className="peer pl-4 w-full bg-card outline-none max-h-48 overflow-auto custom-scrollbar-warning resize-none"
+                onInput={(e) => field.onChange(e.currentTarget.innerText)}
+                onBlur={field.onBlur}
+                contentEditable
+              />
+              <span
+                className={cn(
+                  "absolute top-2 ms-4 pointer-events-none text-muted-foreground",
+                  field.value && "hidden"
+                )}
+              >
+                Type your message...
+              </span>
+            </>
           )}
         />
       </div>
-      <button className="border-none bg-none cursor-pointer">
+      <button type="button" className="border-none bg-none cursor-pointer">
         <SmilePlus size={20} />
       </button>
       <button

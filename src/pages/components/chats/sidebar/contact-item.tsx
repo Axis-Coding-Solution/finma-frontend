@@ -4,15 +4,23 @@ import { useHookstate } from "@hookstate/core";
 import { Link, useParams } from "react-router-dom";
 import { DoubleCheck, SingleCheck } from "@/assets/svgs";
 import { convertDate } from "@/utils";
+import { useEffect } from "react";
 
 type PropsTypes = {
   item: any;
+  chatId: string | undefined;
 };
-export const ChatContactItem = ({ item }: PropsTypes) => {
+export const ChatContactItem = ({ item, chatId }: PropsTypes) => {
   const { id } = useParams();
   const chatUser = useHookstate(chatUserDataHook);
   const setChatUser = chatUser.set;
   const isActive = id === item.id;
+
+  useEffect(() => {
+    if (item && chatId) {
+      item.id === chatId && setChatUser(item.user);
+    }
+  }, [item, chatId]);
   return (
     <div className="pt-1">
       <Link to={`/dashboard/chats/${item.id}`}>
@@ -20,7 +28,6 @@ export const ChatContactItem = ({ item }: PropsTypes) => {
           className={`flex p-2 gap-2 rounded ${
             isActive ? "bg-secondary-dark" : "border-white"
           }`}
-          onClick={() => setChatUser(item.user)}
         >
           <Avatar image={item?.user?.profilePicture} size="lg" />
           <div className="w-full">

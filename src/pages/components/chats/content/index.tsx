@@ -20,11 +20,8 @@ function checkElementOverflow(element: HTMLDivElement) {
 export const ChatsContent = () => {
   // const [data, setData] = useState();
   const { id = "" } = useAppParams();
-  console.log("id", id);
   const { data: chatMessages } = useGetMessagesByChatId(id);
   // const { getChat, setChat, pushMessage } = useMessagesStore();
-
-  console.log(chatMessages);
 
   const contentRef = useRef<HTMLDivElement | null>(null);
 
@@ -44,7 +41,7 @@ export const ChatsContent = () => {
     //   });
     const container = contentRef.current;
 
-    if (container) {
+    if (container && chatMessages?.length > 0) {
       const isOverflown = checkElementOverflow(container);
       if (!isOverflown) container.classList.add("justify-end");
       else if (container.scrollTop == 0) {
@@ -54,23 +51,25 @@ export const ChatsContent = () => {
         });
       }
     }
-  }, []);
+  }, [contentRef.current, chatMessages?.length > 0]);
 
+  // <ScrollArea className="px-3 h-full">
   return (
-    <ScrollArea className="px-3 h-full">
-      <div
-        ref={contentRef}
-        className="flex-1 flex flex-col px-5 py-2 overflow-y-auto h-auto"
-      >
-        {chatMessages?.length === 0 && <NoMessages />}
-        {chatMessages?.map((message: any, index: number) => (
-          <TextMessage
-            message={message}
-            index={index}
-            position={message.position}
-          />
-        ))}
-      </div>
-    </ScrollArea>
+    <div
+      ref={contentRef}
+      className="flex-1 flex flex-col px-5 py-5 overflow-y-auto custom-scrollbar-warning"
+    >
+      {chatMessages?.length === 0 && <NoMessages />}
+      {chatMessages?.map((message: any, index: number) => (
+        <TextMessage
+          message={message}
+          index={index}
+          position={message.position}
+        />
+      ))}
+    </div>
   );
 };
+{
+  /* </ScrollArea> */
+}

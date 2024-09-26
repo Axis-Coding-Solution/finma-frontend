@@ -8,27 +8,28 @@ import {
 // import UnderConstruction from "@/pages/components/under-construction";
 
 import { MainHeading } from "@/pages/components/common";
-import {  useAppParams, useAuth } from "@/utils/hooks";
+import { useAppParams, useAuth } from "@/utils/hooks";
 import socket from "@/lib/socket.io";
 import { useEffect } from "react";
 import { SOCKET_ENUMS } from "@/utils/constants/socket-enums";
+import { NoMessages } from "@/pages/components/chats/content/no-messages";
 
 function ChatBoxPage() {
-  // const { id } = useAppParams();
+  const { id } = useAppParams();
   const auth = useAuth();
 
   let RenderContent = null;
 
   useEffect(() => {
     socket.emit(SOCKET_ENUMS.JOIN, auth?.user._id);
-    // return () => {
-    //   socket.off(SOCKET_ENUMS.RECEIVE_MESSAGE);
-    //   socket.disconnect();
-    // };
+    return () => {
+      socket.off(SOCKET_ENUMS.RECEIVE_MESSAGE);
+      socket.disconnect();
+    };
   }, [auth?.user]);
 
-  // if (!id) RenderContent = NoMessages;
-  // else {
+  if (!id) RenderContent = NoMessages;
+  else {
     RenderContent = () => (
       <div className="h-full w-full flex flex-col gap-2">
         <ChatsHeader />
@@ -36,7 +37,7 @@ function ChatBoxPage() {
         <SendMessageBox />
       </div>
     );
-  // }
+  }
 
   return (
     <>
