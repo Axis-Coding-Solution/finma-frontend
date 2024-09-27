@@ -22,11 +22,13 @@ export const ChatsContent = () => {
 
   const contentRef = useRef<HTMLDivElement | null>(null);
 
-  // useEffect(() => {
-  //   if (data) {
-  //     setChat(data);
-  //   }
-  // }, [data]);
+  const chatData = getChat();
+
+  useEffect(() => {
+    if (chatMessages) {
+      setChat(chatMessages);
+    }
+  }, [chatMessages]);
 
   useEffect(() => {
     socket.on(SOCKET_ENUMS.RECEIVE_MESSAGE, (data) => {
@@ -36,9 +38,12 @@ export const ChatsContent = () => {
       };
       pushMessage(obj);
     });
+  }, []);
+
+  useEffect(() => {
     const container = contentRef.current;
 
-    if (container && chatMessages?.length > 0) {
+    if (container && chatData?.length > 0) {
       const isOverflown = checkElementOverflow(container);
       if (!isOverflown) container.classList.add("justify-end");
       else if (container.scrollTop == 0) {
@@ -48,17 +53,17 @@ export const ChatsContent = () => {
         });
       }
     }
-  }, [contentRef.current, chatMessages?.length > 0]);
+  }, [contentRef.current, chatData?.length]);
 
   return (
     <div
       ref={contentRef}
       className="flex-1 flex flex-col px-5 py-5 overflow-y-auto custom-scrollbar-warning"
     >
-      {chatMessages?.length === 0 && <NoMessages />}
-      {chatMessages?.map((message: any, index: number) => (
+      {chatData?.length === 0 && <NoMessages />}
+      {chatData?.map((message: any, index: number) => (
         <TextMessage
-        key={index}
+          key={index}
           message={message}
           index={index}
           position={message.position}
