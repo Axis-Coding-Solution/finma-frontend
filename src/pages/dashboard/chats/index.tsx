@@ -5,8 +5,6 @@ import {
   SendMessageBox,
 } from "@/pages/components/chats";
 
-// import UnderConstruction from "@/pages/components/under-construction";
-
 import { MainHeading } from "@/pages/components/common";
 import { useAppParams, useAuth } from "@/utils/hooks";
 import socket from "@/lib/socket.io";
@@ -38,7 +36,6 @@ function ChatBoxPage() {
       </div>
     );
   }
-
   return (
     <>
       <MainHeading title="Chats" />
@@ -50,11 +47,3 @@ function ChatBoxPage() {
   );
 }
 export default ChatBoxPage;
-
-// export default () => {
-//   return (
-//     <div>
-//       <UnderConstruction />
-//     </div>
-//   );
-// };

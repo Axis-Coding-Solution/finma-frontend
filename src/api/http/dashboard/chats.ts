@@ -1,4 +1,4 @@
-import { get, post } from "@/utils/axios";
+import { del, get, post } from "@/utils/axios";
 import { apiErrorHandler } from "../../helpers";
 
 const url = "/dashboard/chats";
@@ -25,6 +25,24 @@ export const getChatByReceiverId = async (id: string) => {
   try {
     const res = await get(appendUrl(id));
     return res.data.data;
+  } catch (error: any) {
+    return Promise.reject(apiErrorHandler(error));
+  }
+};
+
+export const getRecentChatApi = async () => {
+  try {
+    const res = await get(appendUrl('user/recent-chats'));
+    return res.data?.data;
+  } catch (error: any) {
+    return Promise.reject(apiErrorHandler(error));
+  }
+};
+
+export const delChatApi = async (id: string) => {
+  try {
+    const res = await del(appendUrl(id));
+    return res.data;
   } catch (error: any) {
     return Promise.reject(apiErrorHandler(error));
   }

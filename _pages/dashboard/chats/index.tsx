@@ -20,10 +20,10 @@ function ChatBoxPage() {
 
   useEffect(() => {
     socket.emit(SOCKET_ENUMS.JOIN, auth?.user._id);
-    // return () => {
-    //   socket.off(SOCKET_ENUMS.RECEIVE_MESSAGE);
-    //   socket.disconnect();
-    // };
+    return () => {
+      socket.off(SOCKET_ENUMS.RECEIVE_MESSAGE);
+      socket.disconnect();
+    };
   }, [auth?.user]);
 
   if (!id) RenderContent = NoMessages;
@@ -36,7 +36,6 @@ function ChatBoxPage() {
       </div>
     );
   }
-
   return (
     <>
       <MainHeading heading="Chats" />

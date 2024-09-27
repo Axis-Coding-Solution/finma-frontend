@@ -3,7 +3,7 @@ import { chatUserDataHook } from "@/store";
 import { useHookstate } from "@hookstate/core";
 import { Link, useParams } from "react-router-dom";
 import { DoubleCheck, SingleCheck } from "@/assets/svgs";
-import { convertDate } from "@/utils";
+import { convertDate, truncateText } from "@/utils";
 import { useEffect } from "react";
 
 type PropsTypes = {
@@ -15,7 +15,6 @@ export const ChatContactItem = ({ item, chatId }: PropsTypes) => {
   const chatUser = useHookstate(chatUserDataHook);
   const setChatUser = chatUser.set;
   const isActive = id === item.id;
-
   useEffect(() => {
     if (item && chatId) {
       item.id === chatId && setChatUser(item.user);
@@ -37,11 +36,13 @@ export const ChatContactItem = ({ item, chatId }: PropsTypes) => {
                   title={item?.user?.fullName}
                   className="text-foreground overflow-x-clip  text-sm 0 w-[10rem] font-semibold"
                 >
-                  {/* {truncateText(userName, 13)} */}
-                  {item?.user?.fullName}
+                  {truncateText(item?.user?.fullName, 16)}
                 </h6>
                 <span className="text-muted-text text-sm">
-                  {item?.user?.entrepreneurType}
+                  {truncateText(
+                    item?.lastMessage ?? item?.user?.entrepreneurType,
+                    14
+                  )}
                 </span>
               </div>
               <div className="flex justify-center items-center gap-1">

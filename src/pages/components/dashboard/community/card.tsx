@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { userAvatar1Image } from "@/assets/images";
 import {
   GET_CHATS_QUERY_KEY,
+  GET_RECENT_CHATS_QUERY_KEY,
   useCreateChatMutation,
 } from "@/api/hooks/dashboard";
 import { useQueryClient } from "@tanstack/react-query";
@@ -39,7 +40,12 @@ export const CommunityCard = ({
   const getChats = async (id: string) => {
     try {
       const response = await mutateAsync(id);
-      queryClient.refetchQueries({ queryKey: [GET_CHATS_QUERY_KEY] });
+      queryClient.refetchQueries({
+        queryKey: [GET_CHATS_QUERY_KEY],
+      });
+      queryClient.refetchQueries({
+        queryKey: [GET_RECENT_CHATS_QUERY_KEY],
+      });
       navigate(`/dashboard/chats/${response.data._id}`);
     } catch (error) {}
   };

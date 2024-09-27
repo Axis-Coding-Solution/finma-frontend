@@ -2,12 +2,7 @@ import { userAvatar2Image } from "@/assets/images";
 import { Avatar } from "@/components/_ui/avatar";
 import { CheckCheck, Check } from "lucide-react";
 
-export const TextMessage = ({
-  message,
-  index,
-  position,
-  scrollContainerToEnd,
-}: any) => {
+export const TextMessage = ({ message, index, position }: any) => {
   const container = position === "right" ? "justify-end" : "justify-start";
   const background =
     position === "right" ? "bg-secondary-dark" : "bg-secondary/40";

@@ -1,14 +1,11 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { TextMessage } from "./text-message";
 import { useAppParams } from "@/utils/hooks";
 import { useGetMessagesByChatId } from "@/api/hooks/dashboard/messages";
-import { ScrollArea } from "@/components/_ui/scroll-area";
 import { NoMessages } from "./no-messages";
-import { useMessagesStore } from "@/store/hooks";
 import socket from "@/lib/socket.io";
 import { SOCKET_ENUMS } from "@/utils/constants/socket-enums";
-import { getMessageBYChatIdApi } from "@/api/http";
-import { useParams } from "react-router-dom";
+import { useMessagesStore } from "@/store/hooks";
 
 function checkElementOverflow(element: HTMLDivElement) {
   return (
@@ -21,7 +18,7 @@ export const ChatsContent = () => {
   // const [data, setData] = useState();
   const { id = "" } = useAppParams();
   const { data: chatMessages } = useGetMessagesByChatId(id);
-  // const { getChat, setChat, pushMessage } = useMessagesStore();
+  const { getChat, setChat, pushMessage } = useMessagesStore();
 
   const contentRef = useRef<HTMLDivElement | null>(null);
 
@@ -32,13 +29,13 @@ export const ChatsContent = () => {
   // }, [data]);
 
   useEffect(() => {
-    //   socket.on(SOCKET_ENUMS.RECEIVE_MESSAGE, (data) => {
-    //     const obj = {
-    //       ...data,
-    //       position: "right",
-    //     };
-    //     pushMessage(obj);
-    //   });
+    socket.on(SOCKET_ENUMS.RECEIVE_MESSAGE, (data) => {
+      const obj = {
+        ...data,
+        position: "left",
+      };
+      pushMessage(obj);
+    });
     const container = contentRef.current;
 
     if (container && chatMessages?.length > 0) {
@@ -53,7 +50,6 @@ export const ChatsContent = () => {
     }
   }, [contentRef.current, chatMessages?.length > 0]);
 
-  // <ScrollArea className="px-3 h-full">
   return (
     <div
       ref={contentRef}
@@ -70,6 +66,3 @@ export const ChatsContent = () => {
     </div>
   );
 };
-{
-  /* </ScrollArea> */
-}

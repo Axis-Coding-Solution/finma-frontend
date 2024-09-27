@@ -7,11 +7,11 @@ import { userAvatar1Image } from "@/assets/images";
 const badgeVariants = cva("rounded-full border-transparent", {
   variants: {
     size: {
-      sm: "min-w-8 h-8",
-      md: "min-w-10 h-10",
-      lg: "min-w-12 h-12",
-      xl: "min-w-16 h-16",
-      xxl: "min-w-20 h-20",
+      sm: "w-8 min-w-8 h-8",
+      md: "w-10 min-w-10 h-10",
+      lg: "w-12 min-w-12 h-12",
+      xl: "w-16 min-w-16 h-16",
+      xxl: "w-20 min-w-20 h-20",
     },
   },
   defaultVariants: {

@@ -1,7 +1,8 @@
 import { io } from "socket.io-client";
 
 const baseURL = import.meta.env.VITE_BACKEND_URL;
-
-export default (() => {
+const socket = (() => {
   return io(baseURL).connect();
 })();
+
+export default socket;
