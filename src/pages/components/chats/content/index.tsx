@@ -58,6 +58,7 @@ export const ChatsContent = () => {
       {chatMessages?.length === 0 && <NoMessages />}
       {chatMessages?.map((message: any, index: number) => (
         <TextMessage
+        key={index}
           message={message}
           index={index}
           position={message.position}

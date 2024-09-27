@@ -15,8 +15,9 @@ export const ConnectWithExperts = () => {
         Recent Chats
       </h6>
       {Array.isArray(chats) &&
-        chats?.map((chat: any) => (
+        chats?.map((chat: any, index:number) => (
           <Link
+          key={index}
             to={`/dashboard/chats/${chat?.id}`}
             className={cn(
               "truncate w-full md:px-3 py-2 flex gap-3 2xl:rounded-lg rounded-2xl tran items-center hover:bg-warning hover:text-foreground text-background",

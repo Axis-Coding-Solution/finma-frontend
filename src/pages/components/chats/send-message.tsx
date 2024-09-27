@@ -187,12 +187,11 @@ export const SendMessageBox = () => {
       if (textAreaRef.current) {
         textAreaRef.current.textContent = "";
       }
-
       // Post message to the server
       await postMessage.mutateAsync(postData);
-
-      // Invalidate messages query to refetch updated messages
-      // queryClient.invalidateQueries([CHAT_MESSAGES_QUERY_KEY]);
+      queryClient.invalidateQueries({
+        queryKey: [CHAT_MESSAGES_QUERY_KEY],
+      });
     } catch (error: any) {
       errorToast(error.message);
     }
