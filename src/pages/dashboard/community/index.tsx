@@ -14,9 +14,10 @@ import { useState } from "react";
 // );
 
 function CommunityPage() {
+  const [filter, setFilter] = useState("")
   const [currentPage, setCurrentPage] = useState(1);
 
-  const { data, isLoading } = useGetCommunity(currentPage);
+  const { data, isLoading } = useGetCommunity(currentPage ,filter);
 
   const total = data?.pagination?.total ?? 0;
   const totalPages = data?.pagination?.totalPages;
@@ -28,7 +29,7 @@ function CommunityPage() {
         // renderRight={<RenderRight members={total} />}
       />
       <div className="flex md:flex-row flex-col md:items-center items-start justify-between gap-4">
-        <CommunityFilter />
+        <CommunityFilter filter={filter} setFilter={setFilter}/>
         <SearchInput />
       </div>
       {isLoading && <FetchLoader noMessage={false} />}

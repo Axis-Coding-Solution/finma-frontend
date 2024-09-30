@@ -10,6 +10,7 @@ import { errorToast } from "@/utils";
 import {
   array,
   FORM_MODE,
+  mixed,
   object,
   string,
   yupResolver,
@@ -41,6 +42,7 @@ const validationSchemas = [
     lastName: string().label("Last Name").trim().required(),
     country: object().label("Country").required(),
     city: object().label("City").required(),
+    profilePhoto: mixed().label("Profile Photo").required(),
   }),
   object({
     entrepreneurType: string().label("Entrepreneurial Type").trim().required(),

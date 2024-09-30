@@ -2,11 +2,17 @@ import { get } from "@/utils/axios";
 import { apiErrorHandler } from "../../helpers";
 const url = "/dashboard/community";
 
-export const getCommunityApi = async (currentPage : number) => {
+export const getCommunityApi = async (currentPage: number, filter: string) => {
   try {
-    const res = await get(currentPage ?  `${url}?page=${currentPage}` : url);
-
-    return res.data?.data
+    let apiUrl = url;
+    if (currentPage) {
+      apiUrl += `?page=${currentPage}`;
+    }
+    if (filter) {
+      apiUrl += currentPage ? `&filter=${filter}` : `?filter=${filter}`;
+    }
+    const res = await get(apiUrl);
+    return res.data?.data;
   } catch (error: any) {
     return Promise.reject(apiErrorHandler(error));
   }

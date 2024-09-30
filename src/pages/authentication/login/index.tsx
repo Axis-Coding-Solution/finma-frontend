@@ -40,6 +40,7 @@ const LoginPage = () => {
     try {
       const response = await mutateAsync(data);
       const { token, user, redirectUrl } = response.data;
+      console.log(redirectUrl);
       auth?.handleLogin({ token, user });
       successToast(response.message);
       navigate(redirectUrl, { replace: true });

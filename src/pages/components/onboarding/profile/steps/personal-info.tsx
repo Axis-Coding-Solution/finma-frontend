@@ -2,7 +2,6 @@ import { useGetCountriesQuery, useGetCountryCitiesMutation } from "@/api/hooks";
 import { FloatingInput, InputError, ReactSelect } from "@/components/ui";
 import { ReactAsyncSelect } from "@/components/ui/react-async-select";
 import { UploadImage } from "@/pages/components/common";
-import { classNamesReactSelect } from "@/utils";
 import { useEffect } from "react";
 
 export const OnboardingProfilePersonalInfoStep = ({
@@ -51,8 +50,8 @@ export const OnboardingProfilePersonalInfoStep = ({
   const profileImage = watch("profilePhoto");
 
   return (
-    <div className="grid grid-cols-2 2xl:gap-10 gap-6">
-      <div className="col-span-2">
+    <div className="grid md:grid-cols-2 grid-cols-1 2xl:gap-14 gap-12">
+      <div className="md:col-span-2 col-span-1">
         <UploadImage
           control={control}
           errors={errors}
@@ -111,11 +110,11 @@ export const OnboardingProfilePersonalInfoStep = ({
           render={({ field }: any) => (
             <ReactAsyncSelect
               {...field}
-              unstyled
+              label="City"
+              placeholder=""
               cacheOptions
               defaultOptions
               noOptionsMessage={noOptionMessage}
-              classNames={classNamesReactSelect}
               loadOptions={fetchCitiesOptions}
             />
           )}

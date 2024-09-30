@@ -20,10 +20,10 @@ export const useEditStartupMutation = () =>
     mutationKey: [STARTUPS_QUERY_KEY],
   });
 
-export const useGetStartups = () => {
+export const useGetStartups = (filter: string) => {
   return useQuery({
-    queryKey: [STARTUPS_QUERY_KEY],
-    queryFn: getStartupsApi,
+    queryKey: [STARTUPS_QUERY_KEY, filter ?? "all"],
+    queryFn: () => getStartupsApi(filter),
   });
 };
 export const useGetStartupById = (id: string) => {

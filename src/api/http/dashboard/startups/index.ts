@@ -4,9 +4,9 @@ import { apiErrorHandler } from "@/api/helpers";
 const url = "/dashboard/startups";
 const appendUrl = (segment: string) => `${url}/${segment}`;
 
-export const getStartupsApi = async () => {
+export const getStartupsApi = async (filter: string) => {
   try {
-    const res = await get(url);
+    const res = await get(filter ? `${url}?filter=${filter}` : url);
     return res.data?.data;
   } catch (error: any) {
     return Promise.reject(apiErrorHandler(error));

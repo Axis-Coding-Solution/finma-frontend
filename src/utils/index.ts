@@ -178,5 +178,5 @@ export const getHomeRoute = () => {
   if (!isAuthenticated) return "/auth/login";
   if (!user.role)
     return "/onboarding/select-role?infoMessage=Continue by selecting your role!";
-  return "/dashboard/community";
+  return "/dashboard/my-startups";
 };

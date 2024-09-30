@@ -1,11 +1,14 @@
 import { useGetStartups } from "@/api/hooks/dashboard";
 import { IdeaValidationStart } from "@/assets/svgs";
+import { Button } from "@/components/ui";
 import { FetchLoader, HeadingButton } from "@/pages/components/common";
 import ProjectCard from "@/pages/components/dashboard/my-projects/card";
 import ProjectAddModal from "@/pages/components/dashboard/my-projects/project-add-modal";
+import { useState } from "react";
 
 const MyStartupPage = () => {
-  const { data, isLoading } = useGetStartups();
+  const [filter, setFilter] = useState("");
+  const { data, isLoading } = useGetStartups(filter);
 
   const totalProjects = data ? data?.length : 0;
 
@@ -17,6 +20,32 @@ const MyStartupPage = () => {
           subtitle={`${totalProjects} project${totalProjects > 1 ? "s" : ""}`}
           renderRight={<ProjectAddModal />}
         />
+      </div>
+      <div className="flex flex-wrap gap-2 items-center">
+        <Button
+          onClick={() => setFilter("all")}
+          variant={filter === "all" || !filter ? "dark" : "outline"}
+          size="sm"
+          rounded
+        >
+          All
+        </Button>
+        <Button
+          onClick={() => setFilter("my-startup")}
+          variant={filter === "my-startup" ? "dark" : "outline"}
+          size="sm"
+          rounded
+        >
+          My Startup
+        </Button>
+        <Button
+          onClick={() => setFilter("community")}
+          variant={filter === "community" ? "dark" : "outline"}
+          size="sm"
+          rounded
+        >
+          Community Startup
+        </Button>
       </div>
       {isLoading && isLoading ? (
         <FetchLoader noMessage={false} />
