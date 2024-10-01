@@ -63,7 +63,7 @@ export const UploadImage = ({
   };
 
   return (
-    <div>
+    <div className="relative">
       <div className="flex gap-5 items-center">
         <Controller
           control={control}

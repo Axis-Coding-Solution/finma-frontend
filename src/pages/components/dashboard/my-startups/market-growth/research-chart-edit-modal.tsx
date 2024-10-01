@@ -99,7 +99,7 @@ export const MarketResearchChartEditModal = ({
               label="Total Addressable Market (TAM)"
               {...register("tam")}
             />
-            <InputError error={errors.tam} />
+            <InputError noPopOut error={errors.tam} />
           </div>
           <div>
             <FloatingInput
@@ -107,7 +107,7 @@ export const MarketResearchChartEditModal = ({
               label="Serviceable Available Market (SAM)"
               {...register("sam")}
             />
-            <InputError error={errors.sam} />
+            <InputError noPopOut error={errors.sam} />
           </div>
           <div>
             <FloatingInput
@@ -115,7 +115,7 @@ export const MarketResearchChartEditModal = ({
               label="Serviceable Obtainable Market (SOM)"
               {...register("som")}
             />
-            <InputError error={errors.som} />
+            <InputError noPopOut error={errors.som} />
           </div>
         </div>
       </DialogContent>

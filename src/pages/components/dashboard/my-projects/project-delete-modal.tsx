@@ -45,7 +45,7 @@ export const ProjectDeleteModal = ({
           </div>
         </span>
       </DialogTrigger>
-      <DialogContent showCloseButton={false} onClick={(e) => e.stopPropagation()}>
+      <DialogContent  onClick={(e) => e.stopPropagation()}>
         <DialogHeader>
           <DialogTitle className="text-left ">
             <h4 className="text-foreground 2xl:text-[32px] text-2xl font-semibold">

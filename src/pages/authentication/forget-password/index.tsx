@@ -35,8 +35,8 @@ const ForgetPasswordPage = () => {
     }
   };
   return (
-    <div className="2xl:w-[596px] w-[500px] bg-secondary rounded-lg 2xl:p-8 p-5">
-      <div className="bg-background rounded 2xl:p-[52px] p-5 flex flex-col 2xl:gap-[52px] gap-8 relative overflow-hidden">
+    <div className="bg-secondary rounded-lg 2xl:p-7 md:p-5 p-4">
+      <div className="2xl:w-[532px] sm:w-[432px]  w-full bg-background rounded 2xl:p-[52px] md:p-6 p-4 flex flex-col 2xl:gap-[52px] gap-8 relative overflow-hidden">
         <button
           type="button"
           className="absolute rounded-full size-12 inline-flex justify-center items-center top-0 right-0 self-end bg-background z-10"

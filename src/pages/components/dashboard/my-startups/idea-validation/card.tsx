@@ -2,6 +2,7 @@ import { ColorLoader } from "@/assets/svgs";
 import { Check, X } from "lucide-react";
 import { IdeaValidationCardEditModal } from "./edit-modal";
 import { ReloadButton } from "@/components/ui";
+import { useState } from "react";
 
 interface IdeaValidationCardProps {
   name: "problem" | "solution";
@@ -20,6 +21,9 @@ export const IdeaValidationCard: React.FC<IdeaValidationCardProps> = ({
   image,
   data,
 }) => {
+
+const [reloadScore,setReloadScore] = useState(false)
+
   return (
     <div className="bg-info-light 2xl:p-8 p-4 rounded grid grid-cols-12 md:gap-10 gap-6 items-stretch">
       <div className="md:order-1 order-2 md:col-span-9 col-span-12 bg-background 2xl:p-8  p-4 rounded flex sm:flex-row flex-col 2xl:gap-24 md:gap-12 gap-6 items-center justify-between">
@@ -36,10 +40,10 @@ export const IdeaValidationCard: React.FC<IdeaValidationCardProps> = ({
             <h6 className="uppercase 2xl:text-base text-sm font-medium ">
               The {validation} Validation
             </h6>
-            {name === "problem" ? <ReloadButton /> : <ReloadButton />}
+            {name === "problem" ? <ReloadButton setReloadScore={setReloadScore} /> : <ReloadButton  setReloadScore={setReloadScore} />}
           </div>
           <div className="flex items-center 2xl:gap-4 gap-2">
-            <img src={ColorLoader} className="2xl:w-20 w-14" />
+            <img src={ColorLoader} className={`2xl:w-20 w-14 ${reloadScore ?"animate-spin":"animate-none"}`} />
             <span className="2xl:text-base text-sm flex flex-col gap-1 font-medium leading-[18px]">
               The {validation} score{" "}
               <span className="2xl:text-xl text-lg font-bold">

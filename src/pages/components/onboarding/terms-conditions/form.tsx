@@ -102,10 +102,10 @@ export const TermsAndConditionsForm = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmitHandler)}
-      className="flex flex-col 2xl:gap-4 gap-0"
+      className="flex flex-col 2xl:gap-4 gap-2"
     >
       <div>
-        <div className="flex gap-4 items-start ">
+        <div className="flex gap-4 items-start">
           <Controller
             name="isAgreedForTerms"
             control={control}
@@ -117,16 +117,19 @@ export const TermsAndConditionsForm = () => {
               />
             )}
           />
-          <Label htmlFor="servicesTerms" className="2xl:text-base md:text-sm text-xs">
+          <Label
+            htmlFor="servicesTerms"
+            className="2xl:text-base md:text-sm text-xs !mb-0"
+          >
             By clicking "I Agree" and signing up for the Services, you
             acknowledge that you have read, understood, and agree to be bound by
             these Service Terms.
           </Label>
         </div>
-        <InputError error={errors.isAgreedForTerms} />
+        <InputError error={errors.isAgreedForTerms} noPopOut />
       </div>
       <div>
-        <div className="flex gap-4 items-start mb-1">
+        <div className="flex gap-4 items-start">
           <Controller
             name="isAgreedForPrivacyPolicy"
             control={control}
@@ -138,16 +141,19 @@ export const TermsAndConditionsForm = () => {
               />
             )}
           />
-          <Label className="2xl:text-base md:text-sm text-xs" htmlFor="servicesPolicy">
+          <Label
+            className="2xl:text-base md:text-sm text-xs !mb-0"
+            htmlFor="servicesPolicy"
+          >
             By clicking "I Agree" and signing up for the Services, you By using
             the Services, you acknowledge that you have read and understood this
             Privacy Policy and agree to our collection, use, and disclosure of
             your personal information as described herein.
           </Label>
         </div>
-        <InputError error={errors.isAgreedForPrivacyPolicy} />
+        <InputError error={errors.isAgreedForPrivacyPolicy} noPopOut />
       </div>
-      <div className=" flex flex-col md:flex-row gap-2 justify-between">
+      <div className="mt-2 flex flex-col md:flex-row gap-2 justify-between">
         <Button
           variant="outline"
           className="rounded-[8px] 2xl:text-2xl text-base 2xl:h-12 h-10 2xl:px-10 px-6"

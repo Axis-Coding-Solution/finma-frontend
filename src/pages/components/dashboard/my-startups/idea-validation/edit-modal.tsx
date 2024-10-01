@@ -41,7 +41,9 @@ export const IdeaValidationCardEditModal = ({
   const queryClient = useQueryClient();
   const [response, setResponse] = useState<any>(null);
   const { mutateAsync } = useSaveIdeaValidation();
-  const { mutateAsync: validateIdeaAsync } = useValidateIdeaValidation();
+  const { mutateAsync: validateIdeaAsync, isPending: validateIdeaPending } =
+    useValidateIdeaValidation();
+  const [reloadScore, setReloadScore] = useState(false);
 
   const {
     register,
@@ -60,7 +62,7 @@ export const IdeaValidationCardEditModal = ({
       setResponse(data?.response);
     }
   }, [data]);
-
+  console.log("data", data);
   // Handle form submission
   const onSubmitHandler = async (values: any) => {
     try {
@@ -175,10 +177,21 @@ export const IdeaValidationCardEditModal = ({
                   <h6 className="uppercase 2xl:text-base text-sm font-medium ">
                     The {name} Validation
                   </h6>
-                  {name === "problem" ? <ReloadButton /> : <ReloadButton />}
+                  {name === "problem" ? (
+                    <ReloadButton setReloadScore={setReloadScore} />
+                  ) : (
+                    <ReloadButton setReloadScore={setReloadScore} />
+                  )}
                 </div>
                 <div className="flex items-center 2xl:gap-4 gap-2">
-                  <img src={ColorLoader} className="2xl:w-20 w-14" />
+                  <img
+                    src={ColorLoader}
+                    className={`2xl:w-20 w-14 ${
+                      reloadScore || validateIdeaPending
+                        ? "animate-spin"
+                        : "animate-none"
+                    }`}
+                  />
                   <span className="2xl:text-base text-sm flex flex-col gap-1 font-medium leading-[18px]">
                     The {name} score{" "}
                     <span className="2xl:text-xl text-lg font-bold">

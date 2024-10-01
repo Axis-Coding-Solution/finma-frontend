@@ -3,8 +3,9 @@ import { Avatar } from "@/components/ui";
 import { TeamMembersDropdown } from "./team-members";
 
 export const StartupTitleBar = ({ data }: any) => {
+
   return (
-    <div className="bg-background px-6 py-4 shadow rounded flex 2xl:flex-1 flex-wrap items-start  2xl:gap-10 gap-4 justify-between">
+    <div className="bg-background px-6 py-4 shadow rounded flex 2xl:flex-1 flex-wrap items-center  2xl:gap-10 gap-4 justify-between">
       {/* Page title  */}
       <div className="">
         <div className="flex items-center gap-3">
@@ -21,14 +22,14 @@ export const StartupTitleBar = ({ data }: any) => {
         </div>
       </div>
       {/* Validate name  */}
-      <div className="flex gap-2 max-w-[270px]">
-        <div className="min-w-2 h-2 rounded-full bg-green mt-1"></div>
+      <div className="flex gap-2 max-w-[270px] ">
+        <div className="min-w-2 h-2 rounded-full bg-green mt-[6px]"></div>
         <span className="text-muted-foreground 2xl:text-base text-sm 2xl:leading-6 leading-5">
-          Validated by{" "}
+          Created by{" "}
           <span className="text-info">
-            Allan Durr, Thomas Dalle, Heather Marx
+            {data?.user?.fullName}
           </span>{" "}
-          on 20 Aug 2023
+          on {data?.createdAt}
         </span>
       </div>
       {/* Status  */}

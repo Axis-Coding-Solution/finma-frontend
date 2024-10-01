@@ -51,8 +51,8 @@ const LoginPage = () => {
 
   return (
     <>
-      <div className=" bg-secondary rounded-lg 2xl:py-8 md:py-6 py-4 2xl:px-[52px] md:px-8 px-4 flex md:flex-row flex-col justify-between items-center xl:gap-20 md:gap-10 gap-5">
-        <div className="w-full flex flex-col gap-10 justify-between">
+      <div className="bg-secondary rounded-lg 2xl:p-7 md:p-5 p-4">
+        {/* <div className="w-full flex flex-col gap-10 justify-between">
           <MainHeading
             title="Welcome Back!"
             subtitle="Join our community of entrepreneurs, and let's make your startup
@@ -65,8 +65,8 @@ const LoginPage = () => {
               alt="Main Login Image"
             />
           </figure>
-        </div>
-        <div className="xl:min-w-[532px] lg:min-w-[400px] md:min-w-[350px] min-w-full  bg-background rounded 2xl:p-[52px] md:p-10 p-4 flex flex-col 2xl:gap-[52px] gap-6 relative overflow-hidden">
+        </div> */}
+        <div className="2xl:w-[532px] sm:w-[432px]  w-full bg-background rounded 2xl:p-[52px] md:p-6  p-4  flex flex-col 2xl:gap-[52px] sm:gap-10 gap-6 relative overflow-hidden">
           <button
             type="button"
             onClick={handleCloseForm}

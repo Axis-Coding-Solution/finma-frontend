@@ -3,17 +3,20 @@ import { useState } from "react";
 
 interface ReloadButtonProps {
   refresh?: () => Promise<void>;
+  setReloadScore:(value:boolean)=>void;
 }
 
-export const ReloadButton = ({ refresh }: ReloadButtonProps) => {
+export const ReloadButton = ({ refresh, setReloadScore }: ReloadButtonProps) => {
   const [reload, setReload] = useState(false);
   const handleReload = async () => {
     setReload(true);
+    setReloadScore(true);
     try {
       await refresh?.();
     } finally {
       setTimeout(() => {
         setReload(false);
+        setReloadScore(false);
       }, 2000);
     }
   };

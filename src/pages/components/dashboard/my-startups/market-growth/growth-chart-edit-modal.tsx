@@ -6,7 +6,7 @@ import {
   Dialog,
   DialogContent,
   DialogTrigger,
-  InputError,
+  InputError ,
 } from "@/components/ui";
 import { errorToast, successToast } from "@/utils";
 import { useModal } from "@/utils/hooks";
@@ -99,7 +99,7 @@ export const MarketGrowthChartEditModal = ({
                 inputsArr.map((item: number, index: number) => (
                   <div
                     key={index}
-                    className="flex items-center 2xl:gap-4 gap-2 w-full"
+                    className="flex items-start 2xl:gap-4 gap-2 w-full"
                   >
                     <div className="col-span-1 w-2/5">
                       <input
@@ -108,7 +108,7 @@ export const MarketGrowthChartEditModal = ({
                         type="number"
                         placeholder="Year"
                       />
-                      <InputError
+                      <InputError noPopOut
                         error={(errors as any)?.[`year${item}`]?.year}
                       />
                     </div>
@@ -119,7 +119,7 @@ export const MarketGrowthChartEditModal = ({
                         type="number"
                         placeholder="Amount in US Dollar"
                       />
-                      <InputError
+                      <InputError noPopOut
                         error={(errors as any)?.[`year${item}`]?.amount}
                       />
                     </div>

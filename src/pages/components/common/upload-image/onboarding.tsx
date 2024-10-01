@@ -10,11 +10,11 @@ export const UploadImageOnboarding = ({ onUpload, preview }: PropsType) => {
       <div
         onClick={onUpload}
         role="button"
-        className="border border-border rounded-full"
+        className="border border-black rounded-full"
       >
         <img
           src={preview ? preview : ProfileAvatar}
-          className="size-20 rounded-full border border-[#4D4D4D]"
+          className="size-20 rounded-full border border-black"
           onLoad={(e) => URL.revokeObjectURL(e.currentTarget.src)}
           alt="Profile Photo"
         />

@@ -60,7 +60,7 @@ export const EntrepreneurialSlider = ({ Controller, control }: any) => {
       control={control}
       name="entrepreneurType"
       render={({ field }: any) => (
-        <div className="flex gap-2 items-center flex-wrap">
+        <div className="mt-8 flex gap-2 items-center flex-wrap">
           {cards &&
             cards.map((card, idx) => (
               <>

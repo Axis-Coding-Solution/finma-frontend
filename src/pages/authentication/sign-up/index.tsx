@@ -57,7 +57,7 @@ const SignUpPage = () => {
   //   },
   // };
   return (
-    <div className="bg-secondary-dark rounded-lg md:p-7 p-4">
+    <div className="bg-secondary rounded-lg 2xl:p-7 md:p-5 p-4">
       {/* <div className="w-full flex flex-col gap-4 justify-between">
         <div className="flex flex-col gap-8">
           <Link to="/auth/select-role">
@@ -76,7 +76,7 @@ const SignUpPage = () => {
           <Lottie options={lottieOptions} />
         </figure>
       </div> */}
-      <div className="sm:min-w-[532px] min-w-full  bg-background rounded 2xl:p-[52px] md:p-10 p-4  flex flex-col 2xl:gap-[52px] sm:gap-10 gap-6 relative overflow-hidden">
+      <div className="2xl:w-[532px] sm:w-[432px]  w-full  bg-background rounded 2xl:p-[52px] md:p-6 p-4  flex flex-col 2xl:gap-[52px] sm:gap-10 gap-6 relative overflow-hidden">
         <button
           type="button"
           onClick={handleCloseForm}
@@ -84,7 +84,7 @@ const SignUpPage = () => {
         >
           <X />
         </button>
-        <div className="rounded bg-secondary-dark h-40 w-40 absolute -top-[100px] -right-[100px]"></div>
+        <div className="rounded bg-secondary h-40 w-40 absolute -top-[100px] -right-[100px]"></div>
         <MainHeading title="Sign up" subtitle="Please sign up in the system." />
         <div className="flex flex-col 2xl:gap-8 gap-6">
           {!showLoginForm ? (
@@ -97,25 +97,31 @@ const SignUpPage = () => {
           ) : (
             <form
               onSubmit={handleSubmit(onsubmitHandler)}
-              className="flex flex-col 2xl:gap-8 gap-6"
+              className="flex flex-col gap-6"
             >
-              <div>
-                <FloatingInput
-                  type="email"
-                  label="Enter email"
-                  {...register("email")}
-                />
-                <InputError error={errors.email} />
+              <div className="flex flex-col 2xl:gap-14 gap-10">
+                <div className="relative">
+                  <FloatingInput
+                    type="email"
+                    label="Enter email"
+                    {...register("email")}
+                  />
+                  <InputError error={errors.email} />
+                </div>
+                <div className="relative">
+                  <FloatingInputPassword
+                    type="password"
+                    label="Create a password"
+                    {...register("password")}
+                  />
+                  <InputError error={errors.password} />
+                </div>
               </div>
-              <div>
-                <FloatingInputPassword
-                  type="password"
-                  label="Create a password"
-                  {...register("password")}
-                />
-                <InputError error={errors.password} />
-              </div>
-              <Button disabled={isSubmitting} type="submit" className="w-full">
+              <Button
+                disabled={isSubmitting}
+                type="submit"
+                className="w-full mt-4"
+              >
                 Sign up
               </Button>
             </form>

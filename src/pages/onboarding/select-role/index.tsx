@@ -45,7 +45,7 @@ const SelectRolePage = () => {
           {selectRoleOptions &&
             selectRoleOptions.map((item, index) => (
               <Link key={index} to={`/onboarding/profile?role=${item.role}`}>
-                <div className="rounded bg-background 2xl:p-4 p-3 flex flex-col items-center text-center shadow-card-outer">
+                <div className="border border-transparent rounded bg-background 2xl:p-4 p-3 flex flex-col items-center text-center shadow-card-outer hover:border-info ">
                   <h4 className="2xl:text-2xl text-lg font-medium">
                     {item.title}
                   </h4>

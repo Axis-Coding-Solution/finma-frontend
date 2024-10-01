@@ -1,4 +1,4 @@
-import { mixed, object, string } from "yup";
+import {  object, string } from "yup";
 
 export const dashboardStartUpSchema = object({
   name: string().trim().label("Name").required(),
@@ -6,6 +6,6 @@ export const dashboardStartUpSchema = object({
     .label("Industry")
     .required()
     .nullable("Industry is required!"),
-  logo: mixed().label("Logo").required(),
+  // logo: mixed().label("Logo"),
   bio: string().max(120, "Bio cannot exceed 120 characters.").optional(),
 });
