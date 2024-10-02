@@ -24,7 +24,7 @@ import {
 } from "@/api/hooks/dashboard";
 import { errorToast, successToast } from "@/utils";
 import { CommunityInteraction } from "../community-interaction";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 export const MarketResearchCardEditModal = ({ data }: { data: any }) => {
@@ -32,6 +32,7 @@ export const MarketResearchCardEditModal = ({ data }: { data: any }) => {
   const modal = useModal();
   const queryClient = useQueryClient();
   const { mutateAsync } = useAddMarketResearchProject();
+  const [reloadChart, setReloadChart] = useState(false);
 
   const {
     register,
@@ -143,11 +144,11 @@ export const MarketResearchCardEditModal = ({ data }: { data: any }) => {
                       marketResearchId={data?._id}
                       data={data?.graphValues}
                     />
-                    <ReloadButton />
+                    <ReloadButton setReloadScore={setReloadChart}  />
                   </div>
                 </div>
                 <div className="flex justify-center items-center">
-                  <MarketResearchChart data={data?.graphValues} />
+                  <MarketResearchChart reloadChart={reloadChart}  data={data?.graphValues} />
                 </div>
               </div>
             </div>

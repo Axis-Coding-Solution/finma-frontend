@@ -3,6 +3,7 @@ import { MarketGrowthChart } from "./growth-chart";
 import { MarketResearchChart } from "./research-chart";
 import { MarketGrowthCardEditModal } from "./growth-edit-modal";
 import { ReloadButton } from "@/components/ui";
+import { useState } from "react";
 
 interface MarketGrowthProps {
   heading: string;
@@ -19,6 +20,7 @@ export const MarketGrowthCard: React.FC<MarketGrowthProps> = ({
   type,
   data,
 }) => {
+  const [reloadChart,setReloadChart] = useState(false)
   return (
     <div className="bg-info-light 2xl:p-8  p-4 rounded grid grid-cols-12 md:gap-10 gap-6 items-stretch">
       <div className="md:order-1 order-2 md:col-span-9 col-span-12 bg-background 2xl:p-8  p-4 rounded flex sm:flex-row flex-col 2xl:gap-24 md:gap-12 gap-6 items-center justify-between">
@@ -35,13 +37,13 @@ export const MarketGrowthCard: React.FC<MarketGrowthProps> = ({
             <h6 className="uppercase 2xl:text-base text-sm font-medium ">
               Market {graphHeading}
             </h6>
-            <ReloadButton />
+            <ReloadButton  setReloadScore={setReloadChart} />
           </div>
           <div className="h-full">
             {type === "marketSize" ? (
-              <MarketResearchChart data={data?.graphValues} />
+              <MarketResearchChart reloadChart={reloadChart} data={data?.graphValues} />
             ) : (
-              <MarketGrowthChart data={data?.graphValues} />
+              <MarketGrowthChart reloadChart={reloadChart} data={data?.graphValues} />
             )}
           </div>
         </div>

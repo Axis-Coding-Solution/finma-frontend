@@ -25,13 +25,15 @@ import {
 import { errorToast, successToast } from "@/utils";
 import { CommunityInteraction } from "../community-interaction";
 import { useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export const MarketGrowthCardEditModal = ({ data }: { data: any }) => {
   const { id: projectId } = useParams();
   const modal = useModal();
   const queryClient = useQueryClient();
   const { mutateAsync } = useAddMarketResearchProject();
+  const [reloadChart,setReloadChart] = useState(false)
+
   const {
     register,
     handleSubmit,
@@ -139,11 +141,11 @@ export const MarketGrowthCardEditModal = ({ data }: { data: any }) => {
                     marketResearchId={data?._id}
                     data={data?.graphValues}
                   />
-                  <ReloadButton />
+                  <ReloadButton setReloadScore={setReloadChart} />
                 </div>
               </div>
               <div className="h-full">
-                <MarketGrowthChart data={data?.graphValues} />
+                <MarketGrowthChart reloadChart={reloadChart} data={data?.graphValues} />
               </div>
             </div>
           </div>

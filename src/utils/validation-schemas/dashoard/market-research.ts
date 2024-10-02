@@ -6,8 +6,28 @@ export const MarketResearchEditModalSchema = object({
 
 export const MarketResearchEditChartModalSchema = object({
   tam: string().label("TAM").required(),
-  sam: string().label("SAM").required(),
-  som: string().label("SOM").required(),
+  sam: string()
+    .label("SAM")
+    .required()
+    .test(
+      "SAM less than TAM Value",
+      "SAM must be less than to TAM",
+      function(value){
+        const {tam} = this.parent;
+        return parseFloat(value)<parseFloat(tam);
+      }
+    ),
+  som: string()
+  .label("SOM")
+  .required()
+  .test(
+    "SOM less than SAM Value",
+    "SOM must be less than to SAM",
+    function(value){
+      const {sam} = this.parent;
+      return parseFloat(value)<parseFloat(sam);
+    }
+  ),
 });
 
 export const MarketGrowthEditModalSchema = object({

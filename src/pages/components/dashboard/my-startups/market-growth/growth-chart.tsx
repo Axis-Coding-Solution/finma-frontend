@@ -52,7 +52,7 @@ const options = {
   },
 };
 
-export const MarketGrowthChart: React.FC<{ data: any }> = ({ data = {} }) => {
+export const MarketGrowthChart: React.FC<{ data: any, reloadChart:any }> = ({ data = {}, reloadChart }) => {
   const sortedData = useMemo(() => {
     return Object?.keys(data ?? {})?.sort(
       (a: any, b: any) => data[a].year - data[b].year
@@ -76,7 +76,7 @@ export const MarketGrowthChart: React.FC<{ data: any }> = ({ data = {} }) => {
   );
   return (
     <div style={{ width: "100%", height: "100%" }}>
-      <Bar data={chartData} options={options} />
+      <Bar className={`${reloadChart?"":""}`} data={chartData} options={options} />
     </div>
   );
 };
