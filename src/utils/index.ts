@@ -121,24 +121,24 @@ export const classNamesReactSelect: ClassNamesConfig<
 
 export function convertDate(date: any) {
   const startDate = new Date(date);
-  const endDate = new Date(); // Current date and time
+  const endDate = new Date();
 
   let formattedDuration = "";
   const years = differenceInYears(endDate, startDate);
   if (years > 0) {
-    formattedDuration = `${years} y`;
+    formattedDuration = `${years} year`;
   } else {
     const months = differenceInMonths(endDate, startDate);
     if (months > 0) {
-      formattedDuration = `${months} m`;
+      formattedDuration = `${months} month`;
     } else {
       const days = differenceInDays(endDate, startDate);
       if (days > 0) {
-        formattedDuration = `${days} d`;
+        formattedDuration = `${days} day`;
       } else {
         const hours = differenceInHours(endDate, startDate);
         if (hours > 0) {
-          formattedDuration = `${hours} h`;
+          formattedDuration = `${hours} hour`;
         } else {
           const minutes = differenceInMinutes(endDate, startDate);
           if (minutes > 0) {

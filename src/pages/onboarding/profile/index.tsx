@@ -19,13 +19,19 @@ import { useEffect, useMemo, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
-const headings = [
+const titleOnRole = {
+  innovator: "What type of entrepreneur are you",
+  expert: "What type of service offer are you",
+  mentor: "What type of investment profile are you",
+};
+
+const headings = (role: "innovator" | "expert" | "mentor") => [
   {
     title: "Lets create your profile",
     subTitle: "Enter your personal information.",
   },
   {
-    title: "What type of entrepreneur are you",
+    title: titleOnRole[role],
     subTitle:
       "This will help other members interact with you according to your entrepreneurial stage.",
   },
@@ -134,6 +140,7 @@ const ProfilePage = () => {
         errors={errors.entrepreneurType}
         control={control}
         Controller={Controller}
+        role={role}
       />,
       <OnboardingCommunityGoalsStep
         errors={errors.communityGoals}
@@ -148,8 +155,12 @@ const ProfilePage = () => {
     <div className="w-[1084px] bg-secondary rounded-lg 2xl:p-8 p-6">
       <div className="min-w-[532px] bg-background rounded 2xl:p-[52px] p-6  flex flex-col 2xl:gap-[52px] gap-6  relative">
         <MainHeading
-          title={headings[step].title}
-          subtitle={headings[step].subTitle}
+          title={
+            headings(role as "innovator" | "expert" | "mentor")[step].title
+          }
+          subtitle={
+            headings(role as "innovator" | "expert" | "mentor")[step].subTitle
+          }
         />
         <form
           onSubmit={handleSubmit(onSubmitHandler)}

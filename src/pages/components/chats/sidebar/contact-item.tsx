@@ -30,11 +30,11 @@ export const ChatContactItem = ({ item, chatId }: PropsTypes) => {
         >
           <Avatar image={item?.user?.profilePicture} size="lg" />
           <div className="w-full">
-            <div className="flex justify-between gap-1 ">
-              <div>
+            <div className="flex justify-between gap-2">
+              <div className="">
                 <h6
                   title={item?.user?.fullName}
-                  className="text-foreground overflow-x-clip  text-sm 0 w-[10rem] font-semibold"
+                  className="text-foreground overflow-x-clip  text-sm  font-semibold"
                 >
                   {truncateText(item?.user?.fullName, 16)}
                 </h6>
@@ -51,7 +51,7 @@ export const ChatContactItem = ({ item, chatId }: PropsTypes) => {
                 ) : (
                   item?.lastMessage?.readAt && <img src={DoubleCheck} alt="" />
                 )}
-                <p className=" inline-flex text-muted-foreground font-semibold text-[10px]">
+                <p className=" text-muted-foreground font-semibold text-[10px] text-wrap">
                   {item?.lastMessage?.createdAt &&
                     convertDate(item.lastMessage.createdAt)}
                 </p>
