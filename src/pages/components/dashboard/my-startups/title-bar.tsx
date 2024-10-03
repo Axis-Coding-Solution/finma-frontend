@@ -1,8 +1,11 @@
 import { LogoAvatar } from "@/assets/svgs";
 import { Avatar } from "@/components/ui";
 import { TeamMembersDropdown } from "./team-members";
+import { cn } from "@/utils";
 
 export const StartupTitleBar = ({ data }: any) => {
+
+  console.log("test", data)
   return (
     <div className="bg-background px-6 py-4 shadow rounded flex 2xl:flex-1 flex-wrap items-center  2xl:gap-10 gap-4 justify-between">
       {/* Page title  */}
@@ -34,8 +37,8 @@ export const StartupTitleBar = ({ data }: any) => {
       <div className="">
         <div className="flex flex-col gap-2">
           <h6 className="text-primary-disabled text-base">Status</h6>
-          <div className="max-w-max bg-secondary py-1 px-6 text-foreground 2xl:text-lg text-sm rounded">
-            0/2 Tasks Completed
+          <div className={cn("max-w-max py-1 px-6 text-foreground 2xl:text-lg text-sm rounded", data?.taskCount === 2 ?"bg-secondary-dark" :"bg-secondary")}>
+            {data?.taskCount === 2 ? "Tasks Completed":`${data?.taskCount ?? 0} / 2 Tasks Completed`}
           </div>
         </div>
       </div>
