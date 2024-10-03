@@ -3,7 +3,6 @@ import { Avatar } from "@/components/ui";
 import { TeamMembersDropdown } from "./team-members";
 
 export const StartupTitleBar = ({ data }: any) => {
-
   return (
     <div className="bg-background px-6 py-4 shadow rounded flex 2xl:flex-1 flex-wrap items-center  2xl:gap-10 gap-4 justify-between">
       {/* Page title  */}
@@ -17,7 +16,9 @@ export const StartupTitleBar = ({ data }: any) => {
             <h4 className="2xl:text-[28px] leading-0 text-lg font-semibold text-foreground capitalize">
               {data?.name}
             </h4>
-            <p className="2xl:text-base text-sm text-muted-text 2xl:-mt-0 -mt-2">{data?.industry?.label}</p>
+            <p className="2xl:text-base text-sm text-muted-text 2xl:-mt-0 -mt-2">
+              {data?.industry?.label}
+            </p>
           </div>
         </div>
       </div>
@@ -25,10 +26,7 @@ export const StartupTitleBar = ({ data }: any) => {
       <div className="flex gap-2 max-w-[270px] ">
         <div className="min-w-2 h-2 rounded-full bg-green mt-[6px]"></div>
         <span className="text-muted-foreground 2xl:text-base text-sm 2xl:leading-6 leading-5">
-          Created by{" "}
-          <span className="text-info">
-            {data?.user?.fullName}
-          </span>{" "}
+          Created by <span className="text-info">{data?.user?.fullName}</span>{" "}
           on {data?.createdAt}
         </span>
       </div>
@@ -43,24 +41,7 @@ export const StartupTitleBar = ({ data }: any) => {
       </div>
       {/* Team  */}
       <div className="">
-        {/* <div className="flex flex-col gap-2">
-          <h6 className="text-primary-disabled text-base">Team</h6>
-          <div className="flex items-center -space-x-2 overflow-visible">
-            <div className="border border-border bg-[#FEA946] 2xl:min-w-10 2xl:h-10 w-8 h-8 2xl:text-base text-sm font-normal flex justify-center items-center rounded-full text-background uppercase">
-              AG
-            </div>
-            <div className="border border-border bg-[#00569E] 2xl:min-w-10 2xl:h-10 w-8 h-8 2xl:text-base text-sm font-normal flex justify-center items-center rounded-full text-background uppercase">
-              VH
-            </div>
-            <div className="border border-border bg-[#00569E] 2xl:min-w-10 2xl:h-10 w-8 h-8 2xl:text-base text-sm font-normal flex justify-center items-center rounded-full text-background uppercase">
-              VH
-            </div>
-            <div className="border border-border bg-[#00569E] 2xl:min-w-10 2xl:h-10 w-8 h-8 2xl:text-base text-sm font-normal flex justify-center items-center rounded-full text-background uppercase">
-              VH
-            </div>
-          </div>
-        </div> */}
-        <TeamMembersDropdown type="startup" id={data?.id}/>
+        <TeamMembersDropdown type="startup" id={data?.id} />
       </div>
     </div>
   );

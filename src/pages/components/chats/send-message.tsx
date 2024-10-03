@@ -37,7 +37,6 @@
 //     mode: FORM_MODE,
 //     defaultValues: postMessagesInitialValues,
 //   });
-//   console.log(getFieldState("content"));
 //   const onSubmitMessage = async (values: typeof postMessagesInitialValues) => {
 //     if (!values.content) return;
 //     const postData = {

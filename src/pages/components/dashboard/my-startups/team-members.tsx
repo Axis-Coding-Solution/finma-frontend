@@ -83,7 +83,7 @@ export const TeamMembersDropdown = ({
           teamsData?.members?.length > 0 ? "-space-x-2" : "space-x-2"
         }`}
       >
-        <AvatarGroup team={teamsData?.members} />
+        <AvatarGroup  team={teamsData?.members} />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <div
@@ -107,7 +107,7 @@ export const TeamMembersDropdown = ({
                 ) : (
                   teamsData?.members?.map((item: any, index: number) => (
                     <div
-                      key={item.value}
+                      key={index}
                       className="flex items-center gap-4 justify-between"
                     >
                       <div className="flex items-start gap-2">
@@ -148,7 +148,7 @@ export const TeamMembersDropdown = ({
                   teamsData?.availableMembers?.map(
                     (item: any, index: number) => (
                       <div
-                        key={item.value}
+                        key={index}
                         className="flex items-center gap-4 justify-between"
                       >
                         <div className="flex items-start gap-2">

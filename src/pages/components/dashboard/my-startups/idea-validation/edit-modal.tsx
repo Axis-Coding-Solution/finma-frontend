@@ -62,7 +62,6 @@ export const IdeaValidationCardEditModal = ({
       setResponse(data?.response);
     }
   }, [data]);
-  console.log("data", data);
   // Handle form submission
   const onSubmitHandler = async (values: any) => {
     try {
