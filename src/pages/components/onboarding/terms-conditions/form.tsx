@@ -3,6 +3,7 @@ import { useOnboardingForm } from "@/store/hooks";
 import {
   createFormData,
   errorToast,
+  getAuthFromStorage,
   removeUserFromLocalStorage,
   saveUserToLocalStorage,
   successToast,
@@ -29,10 +30,10 @@ const updateStorage = (
   values: VALUES_TYPE,
   updateUser?: (user: any) => void
 ) => {
-  let user: any = sessionStorage.getItem("user");
-  let token: any = sessionStorage.getItem("token");
-  if (user && token) {
-    user = JSON.parse(user);
+  let authStatus = getAuthFromStorage();
+
+  if (authStatus?.user && authStatus?.token) {
+    const user = JSON.parse(JSON.stringify(authStatus.user));
     user.firstName = values.firstName;
     user.lastName = values.lastName;
     user.profilePicture = values.profilePicture;
@@ -40,7 +41,7 @@ const updateStorage = (
     // remove from any storage
     removeUserFromLocalStorage();
     // add to local storage
-    saveUserToLocalStorage({ user, token });
+    saveUserToLocalStorage({ user, token: authStatus.token });
     // update into application
     if (updateUser) updateUser(user);
   }
@@ -81,17 +82,19 @@ export const TermsAndConditionsForm = () => {
       const res = await mutateAsync(formData);
       successToast(res.message);
 
+      console.log(res.data);
+
       // updated to storage, move from session to local storage.
       updateStorage(
         {
-          firstName: form.firstName,
-          lastName: form.lastName,
-          role: form.role,
+          firstName: res.data?.firstName,
+          lastName: res.data?.lastName,
+          role: res.data?.role,
           profilePicture: res.data?.profilePicture,
         },
         auth?.updateUser
       );
-      navigate("/dashboard/community", {
+      navigate("/dashboard/my-startups", {
         replace: true,
       });
       setTimeout(clearFormData, 200);

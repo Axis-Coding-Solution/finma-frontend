@@ -5,7 +5,6 @@ import { cn } from "@/utils";
 
 export const StartupTitleBar = ({ data }: any) => {
 
-  console.log("test", data)
   return (
     <div className="bg-background px-6 py-4 shadow rounded flex 2xl:flex-1 flex-wrap items-center  2xl:gap-10 gap-4 justify-between">
       {/* Page title  */}
