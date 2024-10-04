@@ -17,7 +17,7 @@ const StartupIdeaValidationPage = () => {
   const { data: validationData } = useGetIdeaValidationByProjectId(
     String(startupId)
   );
-
+console.log("qwerty", validationData)
   return (
     <div className="flex flex-col 2xl:gap-10 gap-6">
       {/* back Button  */}

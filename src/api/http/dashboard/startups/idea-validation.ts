@@ -39,3 +39,12 @@ export const getIdeaValidationByProjectIdApi = async (id: string) => {
     return Promise.reject(apiErrorHandler(error));
   }
 };
+
+export const getIdeaValidationCardStatusByProjectId = async (id: string) => {
+  try {
+    const res = await get(appendUrl(`card-status/${id}`));
+    return res.data?.data?.status;
+  } catch (error: any) {
+    return Promise.reject(apiErrorHandler(error));
+  }
+};

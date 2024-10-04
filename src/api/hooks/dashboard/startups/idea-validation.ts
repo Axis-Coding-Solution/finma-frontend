@@ -1,6 +1,7 @@
 import {
   getIdeaValidationByIdApi,
   getIdeaValidationByProjectIdApi,
+  getIdeaValidationCardStatusByProjectId,
   saveIdeaValidationApi,
   validateIdeaValidationApi,
 } from "@/api/http";
@@ -11,6 +12,8 @@ export const VALIDATE_IDEA_VALIDATION_MUTATION_KEY =
 export const IDEA_VALIDATION_QUERY_KEY = "/dashboard/startups/idea-validation";
 export const IDEA_VALIDATION_PROJECT_QUERY_KEY =
   "/dashboard/startups/idea-validation/project";
+export const IDEA_VALIDATION_STATUS_QUERY_KEY =
+  "/dashboard/startups/idea-validation/card-status";
 
 export const useValidateIdeaValidation = () =>
   useMutation({
@@ -35,5 +38,12 @@ export const useGetIdeaValidationById = (id: string) => {
   return useQuery({
     queryFn: () => getIdeaValidationByIdApi(id),
     queryKey: [IDEA_VALIDATION_QUERY_KEY, id],
+  });
+};
+
+export const useGetIdeaValidationCardStatus = (projectId: string) => {
+  return useQuery({
+    queryFn: () => getIdeaValidationCardStatusByProjectId(projectId),
+    queryKey: [IDEA_VALIDATION_STATUS_QUERY_KEY, projectId],
   });
 };

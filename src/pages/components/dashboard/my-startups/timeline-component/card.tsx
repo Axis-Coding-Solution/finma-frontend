@@ -1,5 +1,6 @@
+import { useGetIdeaValidationCardStatus } from "@/api/hooks/dashboard";
 import { cn } from "@/utils";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 interface StartupTimelineCardProps {
   idx: number;
@@ -7,8 +8,8 @@ interface StartupTimelineCardProps {
   subHeading: string;
   detail: string;
   image: string;
-  completedTask: string;
-  totalTask: string;
+  totalTask: number;
+  completedTask: number;
   direction: string;
   to: string;
 }
@@ -19,11 +20,13 @@ export const StartupTimelineCard: React.FC<StartupTimelineCardProps> = ({
   subHeading,
   detail,
   image,
-  completedTask,
   totalTask,
+  completedTask,
   direction,
   to,
 }) => {
+  const { id: projectId } = useParams();
+  const { data: status } = useGetIdeaValidationCardStatus(projectId as string);
   return (
     <div className={cn("relative", idx === 0 && "!mt-0")}>
       <Link to={to}>
@@ -47,20 +50,18 @@ export const StartupTimelineCard: React.FC<StartupTimelineCardProps> = ({
               <div
                 className={cn(
                   "py-1 2xl:px-6 px-4 text-foreground rounded-full max-w-max 2xl:text-lg text-sm bg-secondary",
-                  totalTask === completedTask
-                    ? "bg-secondary-dark"
-                    : "bg-secondary"
+                   totalTask ===  status  ? "bg-secondary-dark" : "bg-secondary"
                 )}
               >
-                {totalTask === completedTask
+                { totalTask === status
                   ? "Tasks Completed"
-                  : `${completedTask} / ${totalTask} Tasks Completed`}
+                  : `${status ?? 0} / ${totalTask} Tasks Completed`}
               </div>
             </div>
           </div>
         </div>
         <div className="md:hidden flex justify-center">
-        <div className=" 2xl:w-[30px] w-6  h-10 bg-secondary mx-auto"></div>
+          <div className=" 2xl:w-[30px] w-6  h-10 bg-secondary mx-auto"></div>
         </div>
         <div
           className={`bg-secondary w-10 h-6 absolute md:block hidden  top-1/2 ${
