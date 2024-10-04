@@ -47,7 +47,7 @@ export const timelineContent = [
     direction: "right",
     totalTask: "3",
     completedTask: "0",
-    to: "/dashboard/my-startups/idea-validation",
+    to: "building-the-mvp",
   },
   {
     heading: "Growth and User Acquisition",
@@ -58,7 +58,7 @@ export const timelineContent = [
     direction: "left",
     totalTask: "3",
     completedTask: "0",
-    to: "/dashboard/my-startups/market-research",
+    to: "growth-the-use-acquisition",
   },
   {
     heading: "Design and Branding",
@@ -69,7 +69,7 @@ export const timelineContent = [
     direction: "right",
     totalTask: "3",
     completedTask: "0",
-    to: "/dashboard/my-startups/idea-validation",
+    to: "design-and-branding",
   },
   {
     heading: "Product development",
@@ -80,7 +80,7 @@ export const timelineContent = [
     direction: "left",
     totalTask: "3",
     completedTask: "0",
-    to: "/dashboard/my-startups/idea-validation",
+    to: "product-development",
   },
   {
     heading: "Business model and Revenue",
@@ -91,7 +91,7 @@ export const timelineContent = [
     direction: "right",
     totalTask: "3",
     completedTask: "0",
-    to: "/dashboard/my-startups/idea-validation",
+    to: "business-model-and-revenue",
   },
   {
     heading: "Fundraising and Pitching",
@@ -102,7 +102,7 @@ export const timelineContent = [
     direction: "left",
     totalTask: "3",
     completedTask: "0",
-    to: "/dashboard/my-startups/idea-validation",
+    to: "fundraising-and-pitching",
   },
   {
     heading: "Team building and management",
@@ -113,7 +113,7 @@ export const timelineContent = [
     direction: "right",
     totalTask: "3",
     completedTask: "0",
-    to: "/dashboard/my-startups/idea-validation",
+    to: "team-building-and-management",
   },
   {
     heading: "Legal and operation setup",
@@ -124,7 +124,7 @@ export const timelineContent = [
     direction: "left",
     totalTask: "3",
     completedTask: "0",
-    to: "/dashboard/my-startups/idea-validation",
+    to: "legal-and-operation-setup",
   },
   {
     heading: "Customer retention and engagement",
@@ -135,7 +135,7 @@ export const timelineContent = [
     direction: "right",
     totalTask: "3",
     completedTask: "0",
-    to: "/dashboard/my-startups/idea-validation",
+    to: "customer-retention-and-engagement",
   },
   {
     heading: "Networking and community building",
@@ -146,6 +146,6 @@ export const timelineContent = [
     direction: "left",
     totalTask: "3",
     completedTask: "0",
-    to: "/dashboard/my-startups/idea-validation",
+    to: "networking-and-community-building",
   },
 ];

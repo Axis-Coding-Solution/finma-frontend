@@ -9,7 +9,7 @@ import { MarketGrowthContent } from "@/pages/components/dashboard/my-startups/ma
 import { ChevronRight } from "lucide-react";
 import { useParams } from "react-router-dom";
 
-const StartupMarketGrowthPage = () => {
+const StartupMarketResearchPage = () => {
   const params = useParams();
   const startupId = params.id;
   const { data } = useGetStartupById(String(startupId));
@@ -28,7 +28,7 @@ const StartupMarketGrowthPage = () => {
         <ChevronRight size={20} className="text-muted-foreground" />
         <span className="text-muted-foreground">{data?.name}</span>
         <ChevronRight size={20} className="text-muted-foreground" />
-        <span>Market Growth</span>
+        <span>Market Research</span>
       </div>
 
       {/* Title Card  */}
@@ -55,4 +55,4 @@ const StartupMarketGrowthPage = () => {
   );
 };
 
-export default StartupMarketGrowthPage;
+export default StartupMarketResearchPage;
