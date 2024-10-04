@@ -82,7 +82,6 @@ export const TermsAndConditionsForm = () => {
       const res = await mutateAsync(formData);
       successToast(res.message);
 
-      console.log(res.data);
 
       // updated to storage, move from session to local storage.
       updateStorage(

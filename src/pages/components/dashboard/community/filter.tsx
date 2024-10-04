@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 
-
 export const CommunityFilter = ({ filter, setFilter }: any) => {
   return (
     <div className="flex flex-wrap gap-2 items-center">
@@ -14,24 +13,24 @@ export const CommunityFilter = ({ filter, setFilter }: any) => {
         All
       </Button>
       <Button
-        onClick={() => setFilter("innovators")}
-        variant={filter === "innovators" ? "dark" : "outline"}
+        onClick={() => setFilter("innovator")}
+        variant={filter === "innovator" ? "dark" : "outline"}
         size="sm"
         rounded
       >
         Innovators
       </Button>
       <Button
-        onClick={() => setFilter("experts")}
-        variant={filter === "experts" ? "dark" : "outline"}
+        onClick={() => setFilter("expert")}
+        variant={filter === "expert" ? "dark" : "outline"}
         size="sm"
         rounded
       >
         Experts
       </Button>
       <Button
-        onClick={() => setFilter("mentors")}
-        variant={filter === "mentors" ? "dark" : "outline"}
+        onClick={() => setFilter("mentor")}
+        variant={filter === "mentor" ? "dark" : "outline"}
         size="sm"
         rounded
       >
