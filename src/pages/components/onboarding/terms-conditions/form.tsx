@@ -94,7 +94,7 @@ export const TermsAndConditionsForm = () => {
         },
         auth?.updateUser
       );
-      navigate("/dashboard/my-startups", {
+      navigate("/dashboard/my-startups?showWizard=true", {
         replace: true,
       });
       setTimeout(clearFormData, 200);
