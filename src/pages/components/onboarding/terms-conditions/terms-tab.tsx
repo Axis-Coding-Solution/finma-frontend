@@ -2,7 +2,8 @@ import { Link } from "react-router-dom";
 
 export const TermsConditionsTab = () => {
   return (
-    <div className=" flex flex-col 2xl:gap-4 gap-2">
+  <div className="overflow-y-auto custom-scrollbar-warning  h-full ">
+    <div className=" flex flex-col 2xl:gap-4 gap-2 2xl:px-5 px-4 2xl:py-8 py-4">
       <div>
         <h1 className="font-bold">1.Introduction</h1>
         <p>
@@ -180,5 +181,6 @@ export const TermsConditionsTab = () => {
         </p>
       </div>
     </div>
+  </div>
   );
 };
