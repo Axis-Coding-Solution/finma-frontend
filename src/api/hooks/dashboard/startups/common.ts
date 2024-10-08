@@ -68,7 +68,6 @@ export const useGetTaskAction = (id: string) => {
     queryKey: [TASK_ACTION_QUERY_KEY, id],
   });
 };
-
 export const useGetStartupCardStatus = ({
   type,
   id,
