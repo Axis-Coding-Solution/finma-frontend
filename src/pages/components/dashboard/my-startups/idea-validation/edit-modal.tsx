@@ -80,6 +80,9 @@ export const IdeaValidationCardEditModal = ({
       queryClient.refetchQueries({
         queryKey: [STARTUP_CARD_STATUS_MUTATION_KEY],
       });
+      queryClient.refetchQueries({
+        queryKey: [STARTUP_STATUS_QUERY_KEY, projectId],
+      });
       queryClient.invalidateQueries({
         queryKey: [STARTUP_STATUS_QUERY_KEY, projectId],
       });
