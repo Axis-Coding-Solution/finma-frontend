@@ -6,6 +6,7 @@ import {
   getTaskActionApi,
   removeTeamMembersApi,
   updateTaskActionApi,
+  getStartupCardStatusApi,
 } from "@/api/http/dashboard/startups";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
@@ -16,6 +17,8 @@ export const CARD_STATUS_MUTATION_KEY = "/";
 export const CARD_STATUS_QUERY_KEY = "/";
 export const TASK_ACTION_MUTATION_KEY = "/";
 export const TASK_ACTION_QUERY_KEY = "/";
+export const  STARTUP_CARD_STATUS_MUTATION_KEY = "/dashboard/startups/common/card-status";
+
 
 // Team Members
 export const useUpdateTeamMembers = () =>
@@ -65,3 +68,16 @@ export const useGetTaskAction = (id: string) => {
     queryKey: [TASK_ACTION_QUERY_KEY, id],
   });
 };
+
+export const useGetStartupCardStatus = ({
+  type,
+  id,
+}: {
+  type: string;
+  id: string;
+}) =>
+  useQuery({
+    queryFn: () => getStartupCardStatusApi({ type, id }),
+    queryKey: [STARTUP_CARD_STATUS_MUTATION_KEY, type, id],
+    enabled: type && id ? true : false,
+  });

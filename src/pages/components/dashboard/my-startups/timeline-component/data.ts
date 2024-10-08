@@ -25,6 +25,7 @@ export const timelineContent = [
     totalTask: "2",
     completedTask: "0",
     to: "idea-validation",
+    type: "ideaValidation",
   },
   {
     heading: "Market research",
@@ -37,6 +38,7 @@ export const timelineContent = [
     totalTask: "2",
     completedTask: "0",
     to: "market-research",
+    type: "marketResearch",
   },
   {
     heading: "Building the MVP",
@@ -48,6 +50,7 @@ export const timelineContent = [
     totalTask: "2",
     completedTask: "0",
     to: "building-the-mvp",
+    type: "",
   },
   {
     heading: "Growth and User Acquisition",
@@ -59,6 +62,7 @@ export const timelineContent = [
     totalTask: "2",
     completedTask: "0",
     to: "growth-the-use-acquisition",
+    type: "",
   },
   {
     heading: "Design and Branding",
@@ -70,6 +74,7 @@ export const timelineContent = [
     totalTask: "2",
     completedTask: "0",
     to: "design-and-branding",
+    type: "",
   },
   {
     heading: "Product development",
@@ -81,6 +86,7 @@ export const timelineContent = [
     totalTask: "2",
     completedTask: "0",
     to: "product-development",
+    type: "",
   },
   {
     heading: "Business model and Revenue",
@@ -92,6 +98,7 @@ export const timelineContent = [
     totalTask: "2",
     completedTask: "0",
     to: "business-model-and-revenue",
+    type: "",
   },
   {
     heading: "Fundraising and Pitching",
@@ -103,6 +110,7 @@ export const timelineContent = [
     totalTask: "2",
     completedTask: "0",
     to: "fundraising-and-pitching",
+    type: "",
   },
   {
     heading: "Team building and management",
@@ -114,6 +122,7 @@ export const timelineContent = [
     totalTask: "2",
     completedTask: "0",
     to: "team-building-and-management",
+    type: "",
   },
   {
     heading: "Legal and operation setup",
@@ -125,6 +134,7 @@ export const timelineContent = [
     totalTask: "2",
     completedTask: "0",
     to: "legal-and-operation-setup",
+    type: "",
   },
   {
     heading: "Customer retention and engagement",
@@ -136,6 +146,7 @@ export const timelineContent = [
     totalTask: "2",
     completedTask: "0",
     to: "customer-retention-and-engagement",
+    type: "",
   },
   {
     heading: "Networking and community building",
@@ -147,5 +158,6 @@ export const timelineContent = [
     totalTask: "2",
     completedTask: "0",
     to: "networking-and-community-building",
+    type: "",
   },
 ];

@@ -1,4 +1,4 @@
-import { useGetIdeaValidationCardStatus } from "@/api/hooks/dashboard";
+import { useGetStartupCardStatus } from "@/api/hooks/dashboard";
 import { cn } from "@/utils";
 import { Link, useParams } from "react-router-dom";
 
@@ -10,6 +10,7 @@ interface StartupTimelineCardProps {
   image: string;
   totalTask: number;
   completedTask: number;
+  type: string;
   direction: string;
   to: string;
 }
@@ -20,13 +21,17 @@ export const StartupTimelineCard: React.FC<StartupTimelineCardProps> = ({
   subHeading,
   detail,
   image,
-  totalTask,
-  completedTask,
   direction,
+  type,
   to,
 }) => {
   const { id: projectId } = useParams();
-  const { data: status } = useGetIdeaValidationCardStatus(projectId as string);
+
+  const { data: status } = useGetStartupCardStatus({
+    id: projectId as string,
+    type: type,
+  });
+
   return (
     <div className={cn("relative", idx === 0 && "!mt-0")}>
       <Link to={to}>
@@ -49,13 +54,13 @@ export const StartupTimelineCard: React.FC<StartupTimelineCardProps> = ({
             <div>
               <div
                 className={cn(
-                  "py-1 2xl:px-6 px-4 text-foreground rounded-full max-w-max 2xl:text-lg text-sm bg-secondary",
-                   totalTask ===  status  ? "bg-secondary-dark" : "bg-secondary"
+                  "py-1 2xl:px-6 px-4 text-foreground rounded-full max-w-max 2xl:text-lg text-sm",
+                  status?.count === 2 ? "bg-secondary-dark" : "bg-secondary"
                 )}
               >
-                { totalTask === status
+                {status?.count === 2
                   ? "Tasks Completed"
-                  : `${status ?? 0} / ${totalTask} Tasks Completed`}
+                  : `${status?.count ?? 0} / 2 Tasks Completed`}
               </div>
             </div>
           </div>

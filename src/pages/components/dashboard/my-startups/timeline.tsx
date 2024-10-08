@@ -16,6 +16,7 @@ export const StartupTimeline = () => {
                 <StartupTimelineCard
                   idx={key}
                   to={item.to}
+                  type={item.type}
                   heading={item.heading}
                   subHeading={item.subHeading}
                   detail={item.detail}
@@ -35,6 +36,7 @@ export const StartupTimeline = () => {
                   heading={item.heading}
                   subHeading={item.subHeading}
                   detail={item.detail}
+                  type={item.type}
                   image={item.image}
                   direction={item.direction}
                   totalTask={item.totalTask}

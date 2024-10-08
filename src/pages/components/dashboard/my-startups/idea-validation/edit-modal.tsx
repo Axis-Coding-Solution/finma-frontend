@@ -22,6 +22,7 @@ import { useModal } from "@/utils/hooks";
 import {
   IDEA_VALIDATION_PROJECT_QUERY_KEY,
   IDEA_VALIDATION_QUERY_KEY,
+  STARTUP_CARD_STATUS_MUTATION_KEY,
   useSaveIdeaValidation,
   useValidateIdeaValidation,
 } from "@/api/hooks/dashboard";
@@ -74,6 +75,9 @@ export const IdeaValidationCardEditModal = ({
       queryClient.invalidateQueries({ queryKey: [IDEA_VALIDATION_QUERY_KEY] });
       queryClient.invalidateQueries({
         queryKey: [IDEA_VALIDATION_PROJECT_QUERY_KEY, projectId],
+      });
+      queryClient.refetchQueries({
+        queryKey: [STARTUP_CARD_STATUS_MUTATION_KEY],
       });
       successToast(res.message);
       modal.close();

@@ -68,3 +68,18 @@ export const getTaskActionApi = async (id: string) => {
     return Promise.reject(apiErrorHandler(error));
   }
 };
+
+export const getStartupCardStatusApi = async ({
+  type,
+  id,
+}: {
+  type: string;
+  id: string;
+}) => {
+  try {
+    const res = await get(appendUrl(`card-status/${id}/${type}`));
+    return res.data?.data;
+  } catch (error: any) {
+    return Promise.reject(apiErrorHandler(error));
+  }
+};

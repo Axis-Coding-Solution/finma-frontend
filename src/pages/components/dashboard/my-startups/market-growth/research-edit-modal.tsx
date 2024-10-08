@@ -21,6 +21,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import {
   useAddMarketResearchProject,
   MARKET_RESEARCH_QUERY_KEY,
+  STARTUP_CARD_STATUS_MUTATION_KEY,
 } from "@/api/hooks/dashboard";
 import { errorToast, successToast } from "@/utils";
 import { CommunityInteraction } from "../community-interaction";
@@ -61,6 +62,9 @@ export const MarketResearchCardEditModal = ({ data }: { data: any }) => {
       queryClient.invalidateQueries({ queryKey: [MARKET_RESEARCH_QUERY_KEY] });
       queryClient.invalidateQueries({
         queryKey: [MARKET_RESEARCH_QUERY_KEY, projectId],
+      });
+      queryClient.refetchQueries({
+        queryKey: [STARTUP_CARD_STATUS_MUTATION_KEY],
       });
       successToast(res.message);
       modal.close();
@@ -144,11 +148,14 @@ export const MarketResearchCardEditModal = ({ data }: { data: any }) => {
                       marketResearchId={data?._id}
                       data={data?.graphValues}
                     />
-                    <ReloadButton setReloadScore={setReloadChart}  />
+                    <ReloadButton setReloadScore={setReloadChart} />
                   </div>
                 </div>
                 <div className="flex justify-center items-center">
-                  <MarketResearchChart reloadChart={reloadChart}  data={data?.graphValues} />
+                  <MarketResearchChart
+                    reloadChart={reloadChart}
+                    data={data?.graphValues}
+                  />
                 </div>
               </div>
             </div>

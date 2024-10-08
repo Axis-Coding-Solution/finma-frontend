@@ -20,6 +20,7 @@ import { useModal } from "@/utils/hooks";
 import { useQueryClient } from "@tanstack/react-query";
 import {
   MARKET_RESEARCH_QUERY_KEY,
+  STARTUP_CARD_STATUS_MUTATION_KEY,
   useAddMarketResearchProject,
 } from "@/api/hooks/dashboard";
 import { errorToast, successToast } from "@/utils";
@@ -32,7 +33,7 @@ export const MarketGrowthCardEditModal = ({ data }: { data: any }) => {
   const modal = useModal();
   const queryClient = useQueryClient();
   const { mutateAsync } = useAddMarketResearchProject();
-  const [reloadChart,setReloadChart] = useState(false)
+  const [reloadChart, setReloadChart] = useState(false);
 
   const {
     register,
@@ -60,6 +61,9 @@ export const MarketGrowthCardEditModal = ({ data }: { data: any }) => {
       queryClient.invalidateQueries({ queryKey: [MARKET_RESEARCH_QUERY_KEY] });
       queryClient.invalidateQueries({
         queryKey: [MARKET_RESEARCH_QUERY_KEY, projectId],
+      });
+      queryClient.refetchQueries({
+        queryKey: [STARTUP_CARD_STATUS_MUTATION_KEY],
       });
       successToast(res.message);
       modal.close();
@@ -145,7 +149,10 @@ export const MarketGrowthCardEditModal = ({ data }: { data: any }) => {
                 </div>
               </div>
               <div className="h-full">
-                <MarketGrowthChart reloadChart={reloadChart} data={data?.graphValues} />
+                <MarketGrowthChart
+                  reloadChart={reloadChart}
+                  data={data?.graphValues}
+                />
               </div>
             </div>
           </div>

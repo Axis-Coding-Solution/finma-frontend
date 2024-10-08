@@ -72,7 +72,7 @@ export const IdeaValidationCard: React.FC<IdeaValidationCardProps> = ({
               ) : (
                 <X className="2xl:w-4 w-3 2xl:h-4 h-3 text-background bg-danger rounded-full " />
               )}
-              Urgency
+              {name === "problem" ? "Urgency" : "Effectiveness"}{" "}
             </li>
             <li className="2xl:text-xl text-sm flex items-center gap-2">
               {data?.response?.validation?.relevance ? (
@@ -80,7 +80,7 @@ export const IdeaValidationCard: React.FC<IdeaValidationCardProps> = ({
               ) : (
                 <X className="2xl:w-4 w-3 2xl:h-4 h-3 text-background bg-danger rounded-full " />
               )}
-              Relevance
+              {name === "problem" ? "Relevance" : "Innovation"}
             </li>
             <li className="2xl:text-xl text-sm flex items-center gap-2">
               {data?.response?.validation?.evidence ? (
@@ -88,7 +88,7 @@ export const IdeaValidationCard: React.FC<IdeaValidationCardProps> = ({
               ) : (
                 <X className="2xl:w-4 w-3 2xl:h-4 h-3 text-background bg-danger rounded-full " />
               )}
-              Evidence
+              {name === "problem" ? "Evidence" : "Feasibility"}
             </li>
           </ul>
         </div>
