@@ -1,13 +1,23 @@
-const ReloadSvg = ({ validationData }: any) => {
-  const totalPaths = 12;
+interface ReloadSvgProps {
+  trueCount: number | undefined;
+}
+const ReloadSvg = ({ trueCount }: ReloadSvgProps) => {
+  const totalPaths = 10;
   const greenColor = "#5EB650";
   const redColor = "#F66A6A";
+  const greyColor = "#E0E0E0";
 
-  const trueCount = validationData.filter(Boolean).length;
-  const falseCount = totalPaths - trueCount;
+  const colorArray = [];
 
-  let colorArray = Array(totalPaths).fill(greenColor);
-  for (let i = 0; i < falseCount; i++) {
+  for (let i = 0; i < totalPaths; i++) {
+    if (trueCount === undefined) {
+      colorArray[i] = greyColor;
+      continue;
+    }
+    if (i < trueCount) {
+      colorArray[i] = greenColor;
+      continue;
+    }
     colorArray[i] = redColor;
   }
 
@@ -22,7 +32,7 @@ const ReloadSvg = ({ validationData }: any) => {
     "M27.6138 54.4149C25.4988 54.4149 23.7842 52.7003 23.7842 50.5853C23.7842 48.4703 25.4988 46.7557 27.6138 46.7557C29.7288 46.7557 31.4434 48.4703 31.4434 50.5853C31.4434 52.7003 29.7288 54.4149 27.6138 54.4149Z",
     "M16.1656 51.4022C14.0505 51.4022 12.336 49.6876 12.336 47.5726C12.336 45.4576 14.0505 43.743 16.1656 43.743C18.2806 43.743 19.9951 45.4576 19.9951 47.5726C19.9951 49.6876 18.2806 51.4022 16.1656 51.4022Z",
     "M7.73 42.9664C5.61499 42.9664 3.90043 41.2518 3.90043 39.1368C3.90043 37.0218 5.61499 35.3073 7.73 35.3073C9.84502 35.3073 11.5596 37.0218 11.5596 39.1368C11.5596 41.2518 9.84502 42.9664 7.73 42.9664Z",
-    "M4.11477 30.9155C1.99976 30.9155 0.2852 29.2009 0.2852 27.0859C0.2852 24.9709 1.99976 23.2563 4.11477 23.2563C6.22978 23.2563 7.94434 24.9709 7.94434 27.0859C7.94434 29.2009 6.22978 30.9155 4.11477 30.9155Z"
+    "M4.11477 30.9155C1.99976 30.9155 0.2852 29.2009 0.2852 27.0859C0.2852 24.9709 1.99976 23.2563 4.11477 23.2563C6.22978 23.2563 7.94434 24.9709 7.94434 27.0859C7.94434 29.2009 6.22978 30.9155 4.11477 30.9155Z",
   ];
 
   return (
@@ -35,11 +45,7 @@ const ReloadSvg = ({ validationData }: any) => {
     >
       <g clipPath="url(#clip0_813_21745)">
         {colorArray.map((color, index) => (
-          <path
-            key={index}
-            d={paths[index % paths.length]} 
-            fill={color}
-          />
+          <path key={index} d={paths[index]} fill={color} />
         ))}
       </g>
       <defs>

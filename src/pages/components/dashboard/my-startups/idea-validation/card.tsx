@@ -1,8 +1,8 @@
-import { Check, X } from "lucide-react";
 import { IdeaValidationCardEditModal } from "./edit-modal";
 import { ReloadButton } from "@/components/ui";
 import { useState } from "react";
 import ReloadSvg from "./reloadSvg";
+import { CheckValidate } from "./check-validate";
 
 interface IdeaValidationCardProps {
   name: "problem" | "solution";
@@ -22,14 +22,6 @@ export const IdeaValidationCard: React.FC<IdeaValidationCardProps> = ({
   data,
 }) => {
   const [reloadScore, setReloadScore] = useState(false);
-  const validationResponses = data?.response?.validation || {};
-
-  const validationData = [
-    validationResponses.urgency,
-    validationResponses.relevance,
-    validationResponses.evidence,
-    validationResponses.evidence,
-  ];
   return (
     <div className="bg-info-light 2xl:p-8 p-4 rounded grid grid-cols-12 md:gap-10 gap-6 items-stretch">
       <div className="md:order-1 order-2 md:col-span-9 col-span-12 bg-background 2xl:p-8  p-4 rounded flex sm:flex-row flex-col 2xl:gap-24 md:gap-12 gap-6 items-center justify-between">
@@ -56,41 +48,30 @@ export const IdeaValidationCard: React.FC<IdeaValidationCardProps> = ({
           </div>
           <div className="flex items-center 2xl:gap-4 gap-2">
             <div className={`${reloadScore ? "animate-spin" : "animate-none"}`}>
-              <ReloadSvg validationData={validationData} />
+              <ReloadSvg trueCount={data?.response?.score} />
             </div>
             <span className="2xl:text-base text-sm flex flex-col gap-1 font-medium leading-[18px]">
               The {validation} score{" "}
               <span className="2xl:text-xl text-lg font-bold">
-                {data?.response?.score ?? 0}/10
+                {data?.response?.score ?? "--"}/
+                {data?.response?.score !== undefined ? "10" : "--"}
               </span>
             </span>
           </div>
-          <ul className="flex flex-col 2xl:gap-7 gap-3">
-            <li className="2xl:text-xl text-sm flex items-center gap-2">
-              {data?.response?.validation?.urgency ? (
-                <Check className="2xl:w-4 w-3 2xl:h-4 h-3 text-background bg-success-dark rounded-full " />
-              ) : (
-                <X className="2xl:w-4 w-3 2xl:h-4 h-3 text-background bg-danger rounded-full " />
-              )}
-              {name === "problem" ? "Urgency" : "Effectiveness"}{" "}
-            </li>
-            <li className="2xl:text-xl text-sm flex items-center gap-2">
-              {data?.response?.validation?.relevance ? (
-                <Check className="2xl:w-4 w-3 2xl:h-4 h-3 text-background bg-success-dark rounded-full " />
-              ) : (
-                <X className="2xl:w-4 w-3 2xl:h-4 h-3 text-background bg-danger rounded-full " />
-              )}
-              {name === "problem" ? "Relevance" : "Innovation"}
-            </li>
-            <li className="2xl:text-xl text-sm flex items-center gap-2">
-              {data?.response?.validation?.evidence ? (
-                <Check className="2xl:w-4 w-3 2xl:h-4 h-3 text-background bg-success-dark rounded-full " />
-              ) : (
-                <X className="2xl:w-4 w-3 2xl:h-4 h-3 text-background bg-danger rounded-full " />
-              )}
-              {name === "problem" ? "Evidence" : "Feasibility"}
-            </li>
-          </ul>
+          <div className="flex flex-col 2xl:gap-7 gap-3">
+            <CheckValidate
+              title={name === "problem" ? "Urgency" : "Effectiveness"}
+              isValid={data?.response?.validation?.urgency}
+            />
+            <CheckValidate
+              title={name === "problem" ? "Relevance" : "Innovation"}
+              isValid={data?.response?.validation?.relevance}
+            />
+            <CheckValidate
+              title={name === "problem" ? "Evidence" : "Feasibility"}
+              isValid={data?.response?.validation?.evidence}
+            />
+          </div>
         </div>
       </div>
       <div className="md:order-2 order-1 md:col-span-3 col-span-12 flex md:justify-end justify-start items-center relative">

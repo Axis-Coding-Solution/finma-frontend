@@ -2,8 +2,16 @@ import { LogoAvatar } from "@/assets/svgs";
 import { Avatar } from "@/components/ui";
 import { TeamMembersDropdown } from "./team-members";
 import { cn } from "@/utils";
+import { useParams } from "react-router-dom";
+import { useGetStartupStatus } from "@/api/hooks/dashboard";
 
-export const StartupTitleBar = ({ data }: any) => {
+export const StartupTitleBar = ({ data, type }: any) => {
+  const { id: projectId } = useParams();
+  const { data: status } = useGetStartupStatus({
+    id: projectId as string,
+    type: type,
+  });
+  console.log("qwerty", status);
   return (
     <div className="bg-background px-6 py-4 shadow rounded flex 2xl:flex-1 flex-wrap items-center  2xl:gap-10 gap-4 justify-between">
       {/* Page title  */}
@@ -38,12 +46,12 @@ export const StartupTitleBar = ({ data }: any) => {
           <div
             className={cn(
               "max-w-max py-1 px-6 text-foreground 2xl:text-lg text-sm rounded",
-              data?.taskCount === 2 ? "bg-secondary-dark" : "bg-secondary"
+              status?.count === 2 ? "bg-secondary-dark" : "bg-secondary"
             )}
           >
-            {data?.taskCount === 2
+            {status?.count === 2
               ? "Tasks Completed"
-              : `${data?.taskCount ?? 0} / 2 Tasks Completed`}
+              : `${status?.count ?? 0} / 2 Tasks Completed`}
           </div>
         </div>
       </div>

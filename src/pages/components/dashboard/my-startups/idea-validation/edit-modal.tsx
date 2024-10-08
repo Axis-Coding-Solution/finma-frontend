@@ -1,4 +1,3 @@
-import { ColorLoader } from "@/assets/svgs";
 import {
   Button,
   Dialog,
@@ -8,7 +7,7 @@ import {
   InputError,
   ReloadButton,
 } from "@/components/ui";
-import { Check, SquarePen, X } from "lucide-react";
+import { SquarePen } from "lucide-react";
 import { TeamMembersDropdown } from "../team-members";
 import { CardStatusDropdown } from "../card-status";
 import { TaskActionDropdown } from "../task-action";
@@ -23,12 +22,15 @@ import {
   IDEA_VALIDATION_PROJECT_QUERY_KEY,
   IDEA_VALIDATION_QUERY_KEY,
   STARTUP_CARD_STATUS_MUTATION_KEY,
+  STARTUP_STATUS_QUERY_KEY,
   useSaveIdeaValidation,
   useValidateIdeaValidation,
 } from "@/api/hooks/dashboard";
 import { CommunityInteraction } from "../community-interaction";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { CheckValidate } from "./check-validate";
+import ReloadSvg from "./reloadSvg";
 
 export const IdeaValidationCardEditModal = ({
   name,
@@ -42,8 +44,7 @@ export const IdeaValidationCardEditModal = ({
   const queryClient = useQueryClient();
   const [response, setResponse] = useState<any>(null);
   const { mutateAsync } = useSaveIdeaValidation();
-  const { mutateAsync: validateIdeaAsync, isPending: validateIdeaPending } =
-    useValidateIdeaValidation();
+  const { mutateAsync: validateIdeaAsync } = useValidateIdeaValidation();
   const [reloadScore, setReloadScore] = useState(false);
 
   const {
@@ -78,6 +79,9 @@ export const IdeaValidationCardEditModal = ({
       });
       queryClient.refetchQueries({
         queryKey: [STARTUP_CARD_STATUS_MUTATION_KEY],
+      });
+      queryClient.invalidateQueries({
+        queryKey: [STARTUP_STATUS_QUERY_KEY, projectId],
       });
       successToast(res.message);
       modal.close();
@@ -187,14 +191,13 @@ export const IdeaValidationCardEditModal = ({
                   )}
                 </div>
                 <div className="flex items-center 2xl:gap-4 gap-2">
-                  <img
-                    src={ColorLoader}
-                    className={`2xl:w-20 w-14 ${
-                      reloadScore || validateIdeaPending
-                        ? "animate-spin"
-                        : "animate-none"
+                  <div
+                    className={`${
+                      reloadScore ? "animate-spin" : "animate-none"
                     }`}
-                  />
+                  >
+                    <ReloadSvg trueCount={data?.response?.score} />
+                  </div>
                   <span className="2xl:text-base text-sm flex flex-col gap-1 font-medium leading-[18px]">
                     The {name} score{" "}
                     <span className="2xl:text-xl text-lg font-bold">
@@ -203,30 +206,18 @@ export const IdeaValidationCardEditModal = ({
                   </span>
                 </div>
                 <ul className="flex flex-col 2xl:gap-7 gap-4">
-                  <li className="2xl:text-xl text-base flex items-center gap-2">
-                    {response?.validation?.urgency ? (
-                      <Check className="2xl:w-4 w-3 2xl:h-4 h-3 text-background bg-success-dark rounded-full " />
-                    ) : (
-                      <X className="2xl:w-4 w-3 2xl:h-4 h-3 text-background bg-danger rounded-full " />
-                    )}
-                    Urgency
-                  </li>
-                  <li className="2xl:text-xl text-base flex items-center gap-2">
-                    {response?.validation?.relevance ? (
-                      <Check className="2xl:w-4 w-3 2xl:h-4 h-3 text-background bg-success-dark rounded-full " />
-                    ) : (
-                      <X className="2xl:w-4 w-3 2xl:h-4 h-3 text-background bg-danger rounded-full " />
-                    )}
-                    Relevance
-                  </li>
-                  <li className="2xl:text-xl text-base flex items-center gap-2">
-                    {response?.validation?.evidence ? (
-                      <Check className="2xl:w-4 w-3 2xl:h-4 h-3 text-background bg-success-dark rounded-full " />
-                    ) : (
-                      <X className="2xl:w-4 w-3 2xl:h-4 h-3 text-background bg-danger rounded-full " />
-                    )}
-                    Evidence
-                  </li>
+                  <CheckValidate
+                    title={name === "problem" ? "Urgency" : "Effectiveness"}
+                    isValid={response?.validation?.urgency}
+                  />
+                  <CheckValidate
+                    title={name === "problem" ? "Relevance" : "Innovation"}
+                    isValid={response?.validation?.relevance}
+                  />
+                  <CheckValidate
+                    title={name === "problem" ? "Evidence" : "Feasibility"}
+                    isValid={response?.validation?.evidence}
+                  />
                 </ul>
               </div>
             </div>

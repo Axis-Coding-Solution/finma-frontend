@@ -21,6 +21,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import {
   MARKET_RESEARCH_QUERY_KEY,
   STARTUP_CARD_STATUS_MUTATION_KEY,
+  STARTUP_STATUS_QUERY_KEY,
   useAddMarketResearchProject,
 } from "@/api/hooks/dashboard";
 import { errorToast, successToast } from "@/utils";
@@ -64,6 +65,9 @@ export const MarketGrowthCardEditModal = ({ data }: { data: any }) => {
       });
       queryClient.refetchQueries({
         queryKey: [STARTUP_CARD_STATUS_MUTATION_KEY],
+      });
+      queryClient.invalidateQueries({
+        queryKey: [STARTUP_STATUS_QUERY_KEY, projectId],
       });
       successToast(res.message);
       modal.close();

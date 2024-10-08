@@ -17,7 +17,6 @@ const StartupIdeaValidationPage = () => {
   const { data: validationData } = useGetIdeaValidationByProjectId(
     String(startupId)
   );
-console.log("qwerty", validationData)
   return (
     <div className="flex flex-col 2xl:gap-10 gap-6">
       {/* back Button  */}
@@ -34,7 +33,7 @@ console.log("qwerty", validationData)
 
       {/* Title Card  */}
       <div>
-        <StartupTitleBar data={data} />
+        <StartupTitleBar data={data} type="ideaValidation" />
       </div>
 
       {/* Idea Validation Card  */}

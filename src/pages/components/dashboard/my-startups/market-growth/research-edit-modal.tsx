@@ -22,6 +22,7 @@ import {
   useAddMarketResearchProject,
   MARKET_RESEARCH_QUERY_KEY,
   STARTUP_CARD_STATUS_MUTATION_KEY,
+  STARTUP_STATUS_QUERY_KEY,
 } from "@/api/hooks/dashboard";
 import { errorToast, successToast } from "@/utils";
 import { CommunityInteraction } from "../community-interaction";
@@ -65,6 +66,9 @@ export const MarketResearchCardEditModal = ({ data }: { data: any }) => {
       });
       queryClient.refetchQueries({
         queryKey: [STARTUP_CARD_STATUS_MUTATION_KEY],
+      });
+      queryClient.invalidateQueries({
+        queryKey: [STARTUP_STATUS_QUERY_KEY, projectId],
       });
       successToast(res.message);
       modal.close();

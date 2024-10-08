@@ -17,6 +17,7 @@ const StartupMarketResearchPage = () => {
     String(startupId)
   );
 
+
   return (
     <div className="flex flex-col 2xl:gap-10 gap-6">
       {/* back Button  */}
@@ -32,7 +33,7 @@ const StartupMarketResearchPage = () => {
       </div>
 
       {/* Title Card  */}
-      <StartupTitleBar data={data} />
+      <StartupTitleBar data={data} type="marketResearch" />
 
       {/* Idea Validation Card  */}
       <div className="flex flex-col 2xl:gap-10 gap-6">

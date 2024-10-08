@@ -17,8 +17,8 @@ export const CARD_STATUS_MUTATION_KEY = "/";
 export const CARD_STATUS_QUERY_KEY = "/";
 export const TASK_ACTION_MUTATION_KEY = "/";
 export const TASK_ACTION_QUERY_KEY = "/";
-export const  STARTUP_CARD_STATUS_MUTATION_KEY = "/dashboard/startups/common/card-status";
-
+export const STARTUP_CARD_STATUS_MUTATION_KEY =
+  "/dashboard/startups/common/card-status";
 
 // Team Members
 export const useUpdateTeamMembers = () =>

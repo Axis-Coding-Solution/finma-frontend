@@ -15,6 +15,7 @@ export const getStartupsApi = async (filter: string) => {
 export const getStartupApiById = async (id: string) => {
   try {
     const res = await get(appendUrl(id));
+    console.log("res", res)
     return res.data?.data;
   } catch (error: any) {
     return Promise.reject(apiErrorHandler(error));
@@ -49,6 +50,21 @@ export const delStartupApi = async (id: string) => {
   try {
     const res = await del(appendUrl(id));
     return res.data;
+  } catch (error: any) {
+    return Promise.reject(apiErrorHandler(error));
+  }
+};
+
+export const getStartupStatusApi = async ({
+  id,
+  type,
+}: {
+  id: string;
+  type: string | undefined;
+}) => {
+  try {
+    const res = await get(appendUrl(type && id ? `status/${id}/${type}` : `status/${id}`));
+    return res.data?.data;
   } catch (error: any) {
     return Promise.reject(apiErrorHandler(error));
   }
