@@ -7,11 +7,10 @@ import { CheckValidate } from "./check-validate";
 interface IdeaValidationCardProps {
   name: "problem" | "solution";
   heading: string;
-  subHeading: string;
-  detail: string;
   validation: string;
   image: string;
   data: any;
+  notes: any[];
 }
 
 export const IdeaValidationCard: React.FC<IdeaValidationCardProps> = ({
@@ -20,6 +19,7 @@ export const IdeaValidationCard: React.FC<IdeaValidationCardProps> = ({
   validation,
   image,
   data,
+  notes,
 }) => {
   const [reloadScore, setReloadScore] = useState(false);
   return (
@@ -59,24 +59,19 @@ export const IdeaValidationCard: React.FC<IdeaValidationCardProps> = ({
             </span>
           </div>
           <div className="flex flex-col 2xl:gap-7 gap-3">
-            <CheckValidate
-              title={name === "problem" ? "Urgency" : "Effectiveness"}
-              isValid={data?.response?.validation?.urgency}
-            />
-            <CheckValidate
-              title={name === "problem" ? "Relevance" : "Innovation"}
-              isValid={data?.response?.validation?.relevance}
-            />
-            <CheckValidate
-              title={name === "problem" ? "Evidence" : "Feasibility"}
-              isValid={data?.response?.validation?.evidence}
-            />
+            {notes.map((note) => (
+              <CheckValidate
+                title={note.title}
+                isValid={data?.response?.validation?.[note.validationKey]}
+                note={note.note}
+              />
+            ))}
           </div>
         </div>
       </div>
       <div className="md:order-2 order-1 md:col-span-3 col-span-12 flex md:justify-end justify-start items-center relative">
         <div className="absolute top-0 right-0">
-          <IdeaValidationCardEditModal name={name} data={data} />
+          <IdeaValidationCardEditModal name={name} data={data} notes={notes}/>
         </div>
         <figure className="md:w-64 w-32">
           <img src={image} className="" alt="" />

@@ -48,10 +48,9 @@ const StartupIdeaValidationPage = () => {
               name={item.name}
               key={idx}
               heading={item.heading}
-              subHeading={item.subHeading}
-              detail={item.detail}
               validation={item.validation}
               image={item.image}
+              notes={item.notes}
             />
           ))}
       </div>

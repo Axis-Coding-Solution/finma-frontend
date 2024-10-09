@@ -31,13 +31,16 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { CheckValidate } from "./check-validate";
 import ReloadSvg from "./reloadSvg";
-
+import { ideaValidationContent } from "./data";
+console.log("ideaValidation Data", ideaValidationContent)
 export const IdeaValidationCardEditModal = ({
   name,
   data,
+  notes,
 }: {
   name: "problem" | "solution";
   data: any;
+  notes:any
 }) => {
   const { id: projectId } = useParams();
   const modal = useModal();
@@ -209,18 +212,14 @@ export const IdeaValidationCardEditModal = ({
                   </span>
                 </div>
                 <ul className="flex flex-col 2xl:gap-7 gap-4">
-                  <CheckValidate
-                    title={name === "problem" ? "Urgency" : "Effectiveness"}
-                    isValid={response?.validation?.urgency}
-                  />
-                  <CheckValidate
-                    title={name === "problem" ? "Relevance" : "Innovation"}
-                    isValid={response?.validation?.relevance}
-                  />
-                  <CheckValidate
-                    title={name === "problem" ? "Evidence" : "Feasibility"}
-                    isValid={response?.validation?.evidence}
-                  />
+                  {notes.map((note : any, idx: number) => (
+                    <CheckValidate
+                    key={idx}
+                      title={note.title}
+                      isValid={response?.validation?.[note?.validationKey]}
+                      note={note?.note}
+                    />
+                  ))}
                 </ul>
               </div>
             </div>
