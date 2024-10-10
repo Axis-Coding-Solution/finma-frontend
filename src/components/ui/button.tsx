@@ -39,6 +39,8 @@ const buttonVariants = cva(
         sm: "h-9 rounded-md px-3 text-sm rounded-sm",
         lg: "h-11 rounded-md px-8",
         icon: "h-10 min-w-10 rounded",
+        middle:"h-12 px-2 rounded-[1rem]",
+        expertbtn:"h-12 px-2 rounded-[1rem] "
       },
     },
     defaultVariants: {

@@ -17,7 +17,7 @@ import {
 } from "@/utils/constants";
 import { useEffect, useMemo, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 
 const titleOnRole = {
   innovator: "What type of entrepreneur are you",
@@ -76,6 +76,7 @@ const ProfilePage = () => {
   const navigate = useNavigate();
   const onboardingForm = useOnboardingForm();
   const formValues = onboardingForm.getFormData();
+
 
   const validationSchema = validationSchemas[step];
   const {
@@ -150,7 +151,6 @@ const ProfilePage = () => {
     ],
     [step, Object.keys(errors).length, country]
   );
-
   return (
     <div className="w-[1084px] bg-secondary rounded-lg 2xl:p-8 p-6">
       <div className="min-w-[532px] bg-background rounded 2xl:p-[52px] p-6  flex flex-col 2xl:gap-[52px] gap-6  relative">
