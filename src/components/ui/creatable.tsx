@@ -1,32 +1,41 @@
 import { cn } from "@/utils";
 import { Plus, X } from "lucide-react";
-import { forwardRef, useId, useState } from "react";
+import { forwardRef, useEffect, useId, useState } from "react";
+import { useFieldArray } from "react-hook-form";
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
   labelProps?: React.LabelHTMLAttributes<HTMLLabelElement>;
+  control?: any;
+  name: string;
 }
 
 export const CreateAbleInput = forwardRef<HTMLInputElement, InputProps>(
   (props, ref) => {
-    const { type, className, label, labelProps, ...rest } = props;
+    const { type, name, className, label, labelProps, control, ...rest } =
+      props;
 
     const id = useId();
-    const [values, setValues] = useState<string[]>([]);
+    const { append, fields, remove } = useFieldArray({
+      name: name,
+      control: control,
+      keyName: "uid",
+    });
+    const [value, setValue] = useState<string>("");
 
-    const handleAddText = () => {
+    useEffect(() => {
       if (rest.value) {
-        setValues([...values, String(rest.value)]);
-        if (rest.onChange) {
-          rest.onChange({ ...rest, target: { ...rest, value: "" } } as any);
-        }
+        window.addEventListener("keyup", (e: KeyboardEvent) => {
+          e.preventDefault()
+          if (e.shiftKey || e.ctrlKey || e.altKey) return null;
+          if (e.key === "Enter") {
+            value.trim().length > 0 ? append({ name: value }) : null;
+            setValue("");
+          }
+        });
       }
-    };
-
-    const handleRemoveText = (indexToRemove: number) => {
-      setValues(values.filter((_, index) => index !== indexToRemove));
-    };
+    }, []);
 
     return (
       <>
@@ -36,11 +45,12 @@ export const CreateAbleInput = forwardRef<HTMLInputElement, InputProps>(
             type={type}
             id={id}
             placeholder=""
+            value={value}
             className={cn(
               "outline-none bg-transparent w-full peer py-2.5 px-1 placeholder:text-muted-foreground bg-background text-foreground border-b border-muted-foreground focus:border-foreground disabled:opacity-50 disabled:cursor-not-allowed read-only:opacity-70 read-only:cursor-not-allowed transition",
               className
             )}
-            {...rest}
+            onChange={(e) => setValue(e.target.value)}
           />
           <label
             htmlFor={id}
@@ -51,7 +61,10 @@ export const CreateAbleInput = forwardRef<HTMLInputElement, InputProps>(
           </label>
           <button
             type="button"
-            onClick={handleAddText}
+            onClick={() => {
+              value.trim().length > 0 ? append({ name: value }) : null;
+              setValue("");
+            }}
             className="absolute transition top-2 right-0"
           >
             <Plus className="text-foreground" />
@@ -59,13 +72,13 @@ export const CreateAbleInput = forwardRef<HTMLInputElement, InputProps>(
           {/* Display added text items */}
         </div>
         <div className="flex flex-wrap gap-1 mt-2">
-          {values.map((value, index) => (
+          {fields.map((field: any, index) => (
             <div
-              key={index}
+              key={field.uid}
               className="flex items-center gap-2 px-2 py-0 border border-info text-info  rounded-full"
             >
-              {value}
-              <button type="button" onClick={() => handleRemoveText(index)}>
+              {field.name}
+              <button type="button" onClick={() => remove(index)}>
                 <X size={16} />
               </button>
             </div>

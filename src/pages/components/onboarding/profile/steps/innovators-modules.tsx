@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui";
+import { Button, InputError } from "@/components/ui";
 
 const buttonsData = [
   {
@@ -61,40 +61,55 @@ export const OnboardingInnovatorsModulesStep = ({
   Controller,
   control,
   name,
+  errors,
 }: any) => {
+  const handleClickOnButton = (goal: string, field: any) => {
+    if (field.value?.includes(goal)) {
+      field.onChange(field.value.filter((item: string) => item !== goal));
+    } else {
+      field.onChange([...field.value, goal]);
+    }
+  };
   return (
-    <Controller
-      control={control}
-      name={name}
-      render={({ field }: any) => (
-        <div className="mt-8 flex gap-2 items-center flex-wrap">
-          {buttonsData &&
-            buttonsData.map((item, idx) => (
-              <div className="flex gap-2" key={idx}>
-                <Button
-                  onClick={() => field.onChange(item.title)}
-                  variant={
-                    field.value === item.title ? "outline-info" : "outline"
-                  }
-                  type="button"
-                  size="middle"
-                >
-                  {`M${idx + 1}`}
-                </Button>
-                <Button
-                  onClick={() => field.onChange(item.title)}
-                  variant={
-                    field.value === item.title ? "outline-info" : "outline"
-                  }
-                  type="button"
-                  size="middle"
-                >
-                  {item.title}
-                </Button>
-              </div>
-            ))}
-        </div>
-      )}
-    />
+    <div>
+      <InputError error={errors[name]} />
+      <Controller
+        control={control}
+        name={name}
+        render={({ field }: any) => (
+          <div className="mt-8 flex gap-2 items-center flex-wrap">
+            {buttonsData &&
+              buttonsData.map((item, idx) => (
+                <div className="flex gap-2" key={idx}>
+                  <Button
+                    onClick={() => handleClickOnButton(item.title, field)}
+                    variant={
+                      field.value.includes(item.title)
+                        ? "outline-info"
+                        : "outline"
+                    }
+                    type="button"
+                    size="middle"
+                  >
+                    {`M${idx + 1}`}
+                  </Button>
+                  <Button
+                    onClick={() => handleClickOnButton(item.title, field)}
+                    variant={
+                      field.value.includes(item.title)
+                        ? "outline-info"
+                        : "outline"
+                    }
+                    type="button"
+                    size="middle"
+                  >
+                    {item.title}
+                  </Button>
+                </div>
+              ))}
+          </div>
+        )}
+      />
+    </div>
   );
 };

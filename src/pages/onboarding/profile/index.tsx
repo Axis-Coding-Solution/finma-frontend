@@ -44,7 +44,46 @@ const headings = (role: RoleTypes) => [
   },
 ];
 
-const validationSchemas = [
+const schemasForRole = {
+  innovator: [
+    object({
+      entrepreneurType: string()
+        .label("Entrepreneurial Type")
+        .trim()
+        .required(),
+    }),
+    object({
+      communityGoals: array().label("Community Goals").required().min(1),
+    }),
+  ],
+  expert: [
+    object({
+      modulesReadyToHelp: array()
+        .label("Modules Ready To Help")
+        .required()
+        .min(1),
+    }),
+    object({
+      deliverableTasks: array().label("Deliverable Tasks").required().min(1),
+    }),
+  ],
+  mentor: [
+    object({
+      modulesPlanToHelp: array()
+        .label("Modules Plan To Help")
+        .required()
+        .min(1),
+    }),
+    object({
+      investmentInterests: array()
+        .label("Investment Interests")
+        .required()
+        .min(1),
+    }),
+  ],
+};
+
+const validationSchemas = (role: RoleTypes) => [
   object({
     firstName: string().label("First Name").trim().required(),
     lastName: string().label("Last Name").trim().required(),
@@ -52,12 +91,7 @@ const validationSchemas = [
     city: object().label("City").required(),
     profilePhoto: mixed().label("Profile Photo").required(),
   }),
-  object({
-    entrepreneurType: string().label("Entrepreneurial Type").trim().required(),
-  }),
-  object({
-    communityGoals: array().label("Community Goals").required().min(1),
-  }),
+  ...schemasForRole[role],
 ];
 
 const defaultValues = {
@@ -107,9 +141,12 @@ const ProfilePage = () => {
   const formValues = onboardingForm.getFormData();
   const [steps, setSteps] = useState([OnboardingProfilePersonalInfoStep]);
 
-  const role = searchParams.get("role");
+  const role = searchParams.get("role") as RoleTypes;
 
-  const validationSchema = validationSchemas[step];
+  const validationSchema = validationSchemas(role)[step];
+
+  console.log(validationSchema);
+
   const {
     handleSubmit,
     register,
@@ -193,6 +230,8 @@ const ProfilePage = () => {
     },
   ];
 
+  const CurrentStep = steps[step];
+
   return (
     <div className="w-[1084px] bg-secondary rounded-lg 2xl:p-8 p-6">
       <div className="min-w-[532px] bg-background rounded 2xl:p-[52px] p-6  flex flex-col 2xl:gap-[52px] gap-6  relative">
@@ -204,7 +243,7 @@ const ProfilePage = () => {
           onSubmit={handleSubmit(onSubmitHandler)}
           className="flex flex-col 2xl:gap-10 gap-6"
         >
-          {steps[step](propsOnStep[step])}
+          <CurrentStep {...propsOnStep[step]} />
           <div className="flex items-center justify-between">
             <StepsIndicator totalSteps={steps.length} activeStep={step} />
             <OnboardingProfileNavigationButtons

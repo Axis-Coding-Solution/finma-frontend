@@ -1,25 +1,10 @@
-import { CreateAbleInput } from "@/components/ui";
+import { CreateAbleInput, InputError } from "@/components/ui";
 
-export const OnboardingTaskServiceStep = ({
-  Controller,
-  control,
-  name,
-}: any) => {
+export const OnboardingTaskServiceStep = ({ errors, control, name }: any) => {
   return (
-    <Controller
-      control={control}
-      name={name}
-      render={({ field }: any) => (
-        <div className="w-1/2">
-          <CreateAbleInput
-            {...field}
-            onChange={(e) => {
-              field.onChange(e);
-            }}
-            label="Add a service"
-          />
-        </div>
-      )}
-    />
+    <div className="w-1/2">
+      <CreateAbleInput label="Add a service" control={control} name={name} />
+      <InputError error={errors[name]} />
+    </div>
   );
 };

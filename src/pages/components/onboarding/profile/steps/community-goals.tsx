@@ -24,7 +24,7 @@ export const OnboardingCommunityGoalsStep = ({
 
   return (
     <div>
-      <InputError error={errors} />
+      <InputError error={errors.communityGoals} />
       <Controller
         name="communityGoals"
         control={control}

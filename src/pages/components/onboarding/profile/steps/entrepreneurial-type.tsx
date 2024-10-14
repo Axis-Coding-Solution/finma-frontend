@@ -11,7 +11,7 @@ export const OnboardingProfileEntrepreneurialTypeStep = ({
 
   return (
     <div>
-      <InputError error={errors} />
+      <InputError error={errors.entrepreneurType} />
       <EntrepreneurialSlider {...rest} role={role} />
     </div>
   );
