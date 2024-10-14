@@ -31,7 +31,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { CheckValidate } from "./check-validate";
 import ReloadSvg from "./reloadSvg";
-import { ideaValidationContent } from "./data";
 export const IdeaValidationCardEditModal = ({
   name,
   data,
