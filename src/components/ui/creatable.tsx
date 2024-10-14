@@ -71,7 +71,7 @@ export const CreateAbleInput = forwardRef<HTMLInputElement, InputProps>(
           </button>
           {/* Display added text items */}
         </div>
-        <div className="flex flex-wrap gap-1 mt-2">
+        <div className="flex flex-wrap gap-1 mt-6">
           {fields.map((field: any, index) => (
             <div
               key={field.uid}
