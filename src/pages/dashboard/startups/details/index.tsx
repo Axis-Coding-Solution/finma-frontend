@@ -14,7 +14,6 @@ function StartupDetailPage() {
 
   const { data } = useGetStartupById(String(startupId));
 
-  console.log("qwertrtret", data)
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });

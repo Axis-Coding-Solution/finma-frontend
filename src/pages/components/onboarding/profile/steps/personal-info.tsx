@@ -15,7 +15,6 @@ export const OnboardingProfilePersonalInfoStep = ({
   Controller,
 }: any) => {
   const countryCode = country?.value;
-  console.log(countryCode);
   const { data: countries, isLoading: countriesLoading } =
     useGetCountriesQuery();
 

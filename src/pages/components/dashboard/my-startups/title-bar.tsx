@@ -11,7 +11,6 @@ export const StartupTitleBar = ({ data, type }: any) => {
     id: projectId as string,
     type: type,
   });
-  console.log("qwerty", status);
   return (
     <div className="bg-background px-6 py-4 shadow rounded flex 2xl:flex-1 flex-wrap items-center  2xl:gap-10 gap-4 justify-between">
       {/* Page title  */}

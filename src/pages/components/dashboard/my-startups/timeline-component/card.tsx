@@ -31,7 +31,6 @@ export const StartupTimelineCard: React.FC<StartupTimelineCardProps> = ({
     id: projectId as string,
     type: type,
   }); 
-console.log("abc", status)
   return (
     <div className={cn("relative", idx === 0 && "!mt-0")}>
       <Link to={to}>

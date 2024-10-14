@@ -151,7 +151,6 @@ const ProfilePage = () => {
 
   const validationSchema = validationSchemas(role)[step];
 
-  console.log(validationSchema);
 
   const {
     handleSubmit,

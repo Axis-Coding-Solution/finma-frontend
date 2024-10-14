@@ -15,7 +15,6 @@ export const getStartupsApi = async (filter: string) => {
 export const getStartupApiById = async (id: string) => {
   try {
     const res = await get(appendUrl(id));
-    console.log("res", res)
     return res.data?.data;
   } catch (error: any) {
     return Promise.reject(apiErrorHandler(error));
