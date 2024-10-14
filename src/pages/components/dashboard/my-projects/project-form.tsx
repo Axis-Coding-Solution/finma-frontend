@@ -62,7 +62,7 @@ export const ProjectForm = ({
           <div>
             <Select>
               <SelectTrigger id="selectCity">
-                <SelectValue placeholder="Select city" />
+                <SelectValue placeholder="Select Industry" />
               </SelectTrigger>
               <SelectContent>
                 {industryOptions.map((item) => (

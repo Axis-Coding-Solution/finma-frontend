@@ -60,7 +60,7 @@ export interface ButtonProps
   icon?: React.ReactNode;
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+const   Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       className,
@@ -69,7 +69,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       asChild = false,
       tag = "button",
       rounded = false,
-      icon, // Destructure the icon prop
+      icon, 
       children,
       ...props
     },

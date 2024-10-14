@@ -3,15 +3,7 @@ import { UseFormTrigger } from "react-hook-form";
 
 type PropsTypes = {
   step: number;
-  triggerValidation: UseFormTrigger<{
-    firstName: string;
-    lastName: string;
-    country: null;
-    city: null;
-    entrepreneurType: string;
-    communityGoals: never[];
-    role: string;
-  }>;
+  triggerValidation: UseFormTrigger<any>;
   nextStep: () => void;
   prevStep: () => void;
   isSubmitting: boolean;

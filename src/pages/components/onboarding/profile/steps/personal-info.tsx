@@ -15,6 +15,7 @@ export const OnboardingProfilePersonalInfoStep = ({
   Controller,
 }: any) => {
   const countryCode = country?.value;
+  console.log(countryCode);
   const { data: countries, isLoading: countriesLoading } =
     useGetCountriesQuery();
 
@@ -106,11 +107,13 @@ export const OnboardingProfilePersonalInfoStep = ({
       <div className="col-span-1">
         <Controller
           name="city"
+          key={country?.value ?? null}
           control={control}
           render={({ field }: any) => (
             <ReactAsyncSelect
               {...field}
               label="City"
+              key={country?.value ?? null}
               placeholder=""
               cacheOptions
               defaultOptions

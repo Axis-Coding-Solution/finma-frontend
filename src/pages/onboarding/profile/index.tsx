@@ -1,9 +1,11 @@
 import { MainHeading, StepsIndicator } from "@/pages/components/common";
 import {
-  OnboardingCommunityGoalsStep,
-  OnboardingProfileEntrepreneurialTypeStep,
-  OnboardingProfileNavigationButtons,
   OnboardingProfilePersonalInfoStep,
+  OnboardingProfileEntrepreneurialTypeStep,
+  OnboardingInnovatorsModulesStep,
+  OnboardingTaskServiceStep,
+  OnboardingCommunityGoalsStep,
+  OnboardingProfileNavigationButtons,
 } from "@/pages/components/onboarding";
 import { useOnboardingForm } from "@/store/hooks";
 import { errorToast } from "@/utils";
@@ -15,9 +17,9 @@ import {
   string,
   yupResolver,
 } from "@/utils/constants";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const titleOnRole = {
   innovator: "What type of entrepreneur are you",
@@ -25,7 +27,7 @@ const titleOnRole = {
   mentor: "What type of investment profile are you",
 };
 
-const headings = (role: "innovator" | "expert" | "mentor") => [
+const headings = (role: RoleTypes) => [
   {
     title: "Lets create your profile",
     subTitle: "Enter your personal information.",
@@ -63,12 +65,39 @@ const defaultValues = {
   lastName: "",
   country: null,
   city: null,
-  entrepreneurType: "",
-  communityGoals: [],
   role: "",
 };
 
-type DefaultValuesTypes = typeof defaultValues;
+const roleBasedDefaultValues = {
+  innovator: {
+    entrepreneurType: "",
+    communityGoals: [] as string[],
+  },
+  expert: {
+    modulesReadyToHelp: [] as string[],
+    deliverableTasks: [] as string[],
+  },
+  mentor: {
+    modulesPlanToHelp: [] as string[],
+    investmentInterests: [] as string[],
+  },
+};
+
+type DefaultValuesTypes = typeof defaultValues &
+  typeof roleBasedDefaultValues.innovator &
+  typeof roleBasedDefaultValues.expert &
+  typeof roleBasedDefaultValues.mentor;
+
+type RoleTypes = "innovator" | "expert" | "mentor";
+
+const RoleBasedSteps = {
+  innovator: [
+    OnboardingProfileEntrepreneurialTypeStep,
+    OnboardingCommunityGoalsStep,
+  ],
+  expert: [OnboardingInnovatorsModulesStep, OnboardingTaskServiceStep],
+  mentor: [OnboardingInnovatorsModulesStep, OnboardingTaskServiceStep],
+};
 
 const ProfilePage = () => {
   const [step, setStep] = useState(0);
@@ -76,7 +105,9 @@ const ProfilePage = () => {
   const navigate = useNavigate();
   const onboardingForm = useOnboardingForm();
   const formValues = onboardingForm.getFormData();
+  const [steps, setSteps] = useState([OnboardingProfilePersonalInfoStep]);
 
+  const role = searchParams.get("role");
 
   const validationSchema = validationSchemas[step];
   const {
@@ -96,7 +127,6 @@ const ProfilePage = () => {
   });
 
   const country = watch("country");
-  const role = searchParams.get("role");
 
   useEffect(() => {
     if (!role)
@@ -104,7 +134,19 @@ const ProfilePage = () => {
         "/onboarding/select-role?infoMessage=Continue by selecting role!",
         { replace: true }
       );
-    else reset(() => ({ ...defaultValues, role }));
+    else
+      reset(
+        () =>
+          ({
+            ...defaultValues,
+            ...roleBasedDefaultValues[role as RoleTypes],
+            role,
+          } as any)
+      );
+    setSteps([
+      OnboardingProfilePersonalInfoStep,
+      ...RoleBasedSteps[role as RoleTypes],
+    ]);
   }, [role]);
 
   useEffect(() => {
@@ -125,50 +167,46 @@ const ProfilePage = () => {
   const nextStep = () => setStep((prev) => prev + 1);
   const prevStep = () => setStep((prev) => prev - 1);
 
-  const Steps = useMemo(
-    () => [
-      <OnboardingProfilePersonalInfoStep
-        register={register}
-        errors={errors}
-        control={control}
-        Controller={Controller}
-        country={country}
-        setValue={setValue}
-        watch={watch}
-        resetField={resetField}
-      />,
-      <OnboardingProfileEntrepreneurialTypeStep
-        errors={errors.entrepreneurType}
-        control={control}
-        Controller={Controller}
-        role={role}
-      />,
-      <OnboardingCommunityGoalsStep
-        errors={errors.communityGoals}
-        control={control}
-        Controller={Controller}
-      />,
-    ],
-    [step, Object.keys(errors).length, country]
-  );
+  const propsOnStep = [
+    {
+      register: register,
+      errors: errors,
+      control: control,
+      Controller: Controller,
+      country: country,
+      setValue: setValue,
+      watch: watch,
+      resetField: resetField,
+    },
+    {
+      control: control,
+      Controller: Controller,
+      role: role,
+      errors: errors,
+      name: role === "expert" ? "modulesReadyToHelp" : "modulesPlanToHelp",
+    },
+    {
+      control: control,
+      Controller: Controller,
+      errors: errors,
+      name: role === "expert" ? "deliverableTasks" : "investmentInterests",
+    },
+  ];
+
   return (
     <div className="w-[1084px] bg-secondary rounded-lg 2xl:p-8 p-6">
       <div className="min-w-[532px] bg-background rounded 2xl:p-[52px] p-6  flex flex-col 2xl:gap-[52px] gap-6  relative">
         <MainHeading
-          title={
-            headings(role as "innovator" | "expert" | "mentor")[step].title
-          }
-          subtitle={
-            headings(role as "innovator" | "expert" | "mentor")[step].subTitle
-          }
+          title={headings(role as RoleTypes)[step].title}
+          subtitle={headings(role as RoleTypes)[step].subTitle}
         />
         <form
           onSubmit={handleSubmit(onSubmitHandler)}
           className="flex flex-col 2xl:gap-10 gap-6"
         >
-          {Steps[step]}
+          {steps[step](propsOnStep[step])}
           <div className="flex items-center justify-between">
-            <StepsIndicator totalSteps={Steps.length} activeStep={step} />
+            <StepsIndicator totalSteps={steps.length} activeStep={step} />
             <OnboardingProfileNavigationButtons
               step={step}
               triggerValidation={triggerValidation}
