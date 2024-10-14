@@ -33,6 +33,18 @@ const titleOnRole2 = {
   mentor: "List your investment interests",
 };
 
+const subTitleOnRole = {
+  innovator: "This will help other members interact with you according to your entrepreneurial stage.",
+  expert: "This will help other members interact with you based on your skills. ",
+  mentor: "This will help other members interact with you based on your areas of expertise.",
+};
+
+const subTitleOnRole2 = {
+  innovator: "This will help other members to know what you are looking for in your community.",
+  expert: "This will allow other members to interact with you based on the tasks you help them complete. Be specific and focus on results.",
+  mentor: "This will help other members interact with you based on your interests, such as growth stage, team skills, or industry.",
+};
+
 const headings = (role: RoleTypes) => [
   {
     title: "Lets create your profile",
@@ -40,13 +52,11 @@ const headings = (role: RoleTypes) => [
   },
   {
     title: titleOnRole[role],
-    subTitle:
-      "This will help other members interact with you according to your entrepreneurial stage.",
+    subTitle:subTitleOnRole[role],
   },
   {
     title: titleOnRole2[role],
-    subTitle:
-      "This will help other members to know what you are looking for in your community.",
+    subTitle:subTitleOnRole2[role],
   },
 ];
 
@@ -240,10 +250,12 @@ const ProfilePage = () => {
   return (
     <div className="w-[1084px] bg-secondary rounded-lg 2xl:p-8 p-6">
       <div className="min-w-[532px] bg-background rounded 2xl:p-[52px] p-6  flex flex-col 2xl:gap-[52px] gap-6  relative">
+        <div className="lg:w-1/2 w-full">
         <MainHeading
           title={headings(role as RoleTypes)[step].title}
           subtitle={headings(role as RoleTypes)[step].subTitle}
         />
+        </div>
         <form
           onSubmit={handleSubmit(onSubmitHandler)}
           className="flex flex-col 2xl:gap-10 gap-6"
