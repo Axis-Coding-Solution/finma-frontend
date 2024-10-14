@@ -22,9 +22,15 @@ import { Controller, useForm } from "react-hook-form";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 const titleOnRole = {
-  innovator: "What type of entrepreneur are you",
-  expert: "What type of service offer are you",
-  mentor: "What type of investment profile are you",
+  innovator: "What type of entrepreneur are you ?",
+  expert: "Which Modules are you ready to help innovators with ?",
+  mentor: "Which Modules do you plan to help innovators with ?",
+};
+
+const titleOnRole2 = {
+  innovator: "What are your community goals ?",
+  expert: "List the tasks you'll deliver",
+  mentor: "List your investment interests",
 };
 
 const headings = (role: RoleTypes) => [
@@ -38,7 +44,7 @@ const headings = (role: RoleTypes) => [
       "This will help other members interact with you according to your entrepreneurial stage.",
   },
   {
-    title: "What are your community goals",
+    title: titleOnRole2[role],
     subTitle:
       "This will help other members to know what you are looking for in your community.",
   },
