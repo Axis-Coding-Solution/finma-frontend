@@ -49,19 +49,22 @@ export const CommunityCard = ({
       navigate(`/dashboard/chats/${response.data._id}`);
     } catch (error) {}
   };
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-6 lg:grid-cols-12  2xl:p-6 ms:p-4 p-2 bg-background rounded gap-4">
       {/* Avatar Section  */}
-      <div className="flex items-start mt-1 gap-4 col-span-6 sm:col-span-4 lg:col-span-3">
+      <div className="flex items-center  gap-4 col-span-6 sm:col-span-4 lg:col-span-3">
         <Avatar
-          className="object-cover"
+          className="object-cover min-w-12"
           image={profilePicture ? profilePicture : userAvatar1Image}
           size="lg"
         />
-        <div className="flex flex-col">
+        <div className="flex flex-col h-full">
           <span className="text-foreground text-xs capitalize">{role}</span>
           <h4 className="text-foreground font-medium text-base">{name}</h4>
-          <p className="text-muted-foreground text-sm">{entrepreneurType}</p>
+          <p className="text-muted-foreground text-sm">
+            {entrepreneurType}
+          </p>
         </div>
       </div>
       {/* Status Section  */}
@@ -73,7 +76,12 @@ export const CommunityCard = ({
       </div>
       {/* Community Goals Section  */}
       <div className="flex flex-col gap-2 col-span-6 sm:col-span-2 lg:col-span-4">
-        <h6 className="text-foreground font-semibold">Community goal</h6>
+        <h6 className="text-foreground font-semibold flex items-center gap-1">
+          <span>Community</span>
+          {role === "innovator" && "goal"}
+          {role === "expert" && "services"}
+          {role === "mentor" && "interests"}
+        </h6>
         <div className="flex flex-wrap items-center sm:gap-[2px] gap-2">
           {communityGoals ? (
             communityGoals.goals.map((goal, idx) => (
@@ -109,14 +117,18 @@ export const CommunityCard = ({
       )}
       {role === "mentor" && (
         <div className="flex flex-col items-start gap-2 col-span-6 sm:col-span-2 lg:col-span-2">
-          <h6 className="text-foreground font-semibold">Active Mentorship</h6>
-          <span className="ps-2 text-muted-foreground text-sm">0</span>
+          <h6 className="text-foreground font-semibold">Completed Projects</h6>
+          <span className="ps-2 text-success underline text-sm">
+            {startupsCount}
+          </span>
         </div>
       )}
       {role === "expert" && (
         <div className="flex flex-col items-start gap-2 col-span-6 sm:col-span-2 lg:col-span-2">
-          <h6 className="text-foreground font-semibold">Reviews</h6>
-          <span className=" text-foreground text-sm">No Reviews</span>
+          <h6 className="text-foreground font-semibold">Completed projects</h6>
+          <span className="ps-2 text-success underline text-sm">
+            {startupsCount}
+          </span>
         </div>
       )}
       {/* chat Button Section  */}
