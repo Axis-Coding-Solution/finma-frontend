@@ -6,7 +6,7 @@ const buttonsData = [
     description: "I have a great idea and am looking to explore its potential",
   },
   {
-    title: "Market Validation",
+    title: "Market Research",
     description:
       "I'm eager to start a business but need guidance to get started",
   },
