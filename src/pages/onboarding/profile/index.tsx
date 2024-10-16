@@ -248,8 +248,8 @@ const ProfilePage = () => {
   const CurrentStep = steps[step];
 
   return (
-    <div className="w-[1084px] bg-secondary rounded-lg 2xl:p-8 p-6">
-      <div className="min-w-[532px] bg-background rounded 2xl:p-[52px] p-6  flex flex-col 2xl:gap-[52px] gap-6  relative">
+    <div className="w-[1084px] bg-secondary rounded-lg 2xl:p-8 md:p-6 p-4">
+      <div className="md:min-w-[532px] w-full bg-background rounded 2xl:p-[52px] md:p-6 p-4  flex flex-col 2xl:gap-[52px] gap-6  relative">
         <div className="lg:w-1/2 w-full">
         <MainHeading
           title={headings(role as RoleTypes)[step].title}

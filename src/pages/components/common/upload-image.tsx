@@ -64,7 +64,7 @@ export const UploadImage = ({
 
   return (
     <div className="relative">
-      <div className="flex gap-5 items-center">
+      <div className="flex gap-5 items-center sm:justify-start justify-center">
         <Controller
           control={control}
           name={name}

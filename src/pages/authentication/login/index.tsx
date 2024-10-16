@@ -65,7 +65,7 @@ const LoginPage = () => {
             />
           </figure>
         </div> */}
-        <div className="2xl:w-[532px] sm:w-[432px]  w-full bg-background rounded 2xl:p-[52px] md:p-6  p-4  flex flex-col 2xl:gap-[52px] sm:gap-10 gap-6 relative overflow-hidden">
+        <div className="2xl:w-[532px] sm:w-[432px] bg-background rounded 2xl:p-[52px] md:p-6  p-4  flex flex-col 2xl:gap-[52px] sm:gap-10 gap-6 relative overflow-hidden">
           <button
             type="button"
             onClick={handleCloseForm}

@@ -51,7 +51,7 @@ export const OnboardingProfilePersonalInfoStep = ({
 
   return (
     <div className="grid md:grid-cols-2 grid-cols-1 2xl:gap-14 gap-12">
-      <div className="md:col-span-2 col-span-1">
+      <div className="md:col-span-2 col-span-1 ">
         <UploadImage
           control={control}
           errors={errors}

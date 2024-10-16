@@ -34,7 +34,7 @@ const buttonVariants = cva(
           "border border-border bg-transparent text-foreground hover:bg-secondary/5",
       },
       size: {
-        default: "2xl:h-[3.25rem] rounded-[1rem] h-12 px-14 text-lg",
+        default: "2xl:h-[3.25rem] rounded-[1rem] sm:h-12 sm:px-14 sm:text-lg text-sm h-10 px-5",
         xs: "h-8 rounded-full px-3 text-lg",
         sm: "h-9 rounded-md px-3 text-sm rounded-sm",
         lg: "h-11 rounded-md px-8",

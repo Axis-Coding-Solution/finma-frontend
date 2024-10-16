@@ -6,7 +6,7 @@ import { ProfileAvatar } from "@/assets/svgs";
 
 export const UploadImageOnboarding = ({ onUpload, preview }: PropsType) => {
   return (
-    <>
+    <div className="flex sm:flex-row flex-col items-center gap-6">
       <div
         onClick={onUpload}
         role="button"
@@ -30,6 +30,6 @@ export const UploadImageOnboarding = ({ onUpload, preview }: PropsType) => {
           Choose photo
         </Button>
       </div>
-    </>
+    </div>
   );
 };
