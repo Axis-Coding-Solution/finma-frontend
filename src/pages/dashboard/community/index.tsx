@@ -2,7 +2,7 @@ import { useGetCommunity } from "@/api/hooks/dashboard";
 import { Pagination } from "@/components/_ui/pagination";
 import { SearchInput } from "@/components/ui/search-input";
 import { CommunityTypes } from "@/definitions/types";
-import { FetchLoader, MainHeading } from "@/pages/components/common";
+import { FetchLoader, MainHeading, roleName } from "@/pages/components/common";
 import {
   CommunityCard,
   CommunityFilter,
@@ -12,11 +12,7 @@ import { useState } from "react";
 // const RenderRight = ({ members }: { members: number }) => (
 //   <span>{members} Members</span>
 // );
-const roleName: any = {
-  innovator: "innovator",
-  expert: "builder",
-  mentor: "mentor",
-};
+
 function CommunityPage() {
   const [filter, setFilter] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
@@ -49,7 +45,7 @@ function CommunityPage() {
             ))
           ) : (
             <p className="py-20 flex justify-center items-center capitalize">
-              Data not found for {roleName[filter]}.
+              Data not found for {roleName[filter]|| filter}.
             </p>
           )}
         </div>

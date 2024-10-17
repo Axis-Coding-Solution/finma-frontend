@@ -77,7 +77,7 @@ export const OnboardingInnovatorsModulesStep = ({
         control={control}
         name={name}
         render={({ field }: any) => (
-          <div className="mt-8 flex gap-2 items-center flex-wrap">
+          <div className="sm:mt-8 mt-2 flex sm:gap-2 gap-1 items-center flex-wrap">
             {buttonsData &&
               buttonsData.map((item, idx) => (
                 <div className="flex gap-2" key={idx}>
@@ -89,7 +89,6 @@ export const OnboardingInnovatorsModulesStep = ({
                         : "outline"
                     }
                     type="button"
-                    size="middle"
                   >
                     {`M${idx + 1}`}
                   </Button>
@@ -101,7 +100,6 @@ export const OnboardingInnovatorsModulesStep = ({
                         : "outline"
                     }
                     type="button"
-                    size="middle"
                   >
                     {item.title}
                   </Button>

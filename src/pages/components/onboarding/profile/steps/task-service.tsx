@@ -4,7 +4,7 @@ export const OnboardingTaskServiceStep = ({ errors, control, name }: any) => {
   console.log("qqqqqqqqqqq", name);
 
   return (
-    <div className="w-1/2">
+    <div className="md:w-1/2 w-full">
       <CreateAbleInput
         label={`Add ${
           name === "investmentInterests" ? "an interest" : "a service"

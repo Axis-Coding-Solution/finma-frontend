@@ -29,7 +29,7 @@ export const OnboardingCommunityGoalsStep = ({
         name="communityGoals"
         control={control}
         render={({ field }: any) => (
-          <div className="mt-8 flex gap-2 items-center flex-wrap">
+          <div className="sm:mt-8 mt-2 flex gap-2 items-center flex-wrap">
             {goals.map((goal, idx) => (
               <Button
                 onClick={() => handleClickOnButton(goal, field)}

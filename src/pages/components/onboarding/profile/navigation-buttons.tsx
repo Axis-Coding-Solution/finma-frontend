@@ -17,7 +17,7 @@ export const OnboardingProfileNavigationButtons = (props: PropsTypes) => {
     if (isValid) nextStep();
   };
   return (
-    <div className="flex items-center gap-5">
+    <div className="flex items-center sm:gap-5 gap-2">
       {step > 0 && (
         <Button
           type="button"

@@ -11,7 +11,7 @@ const buttonVariants = cva(
         gradient: "gradient-button  font-medium border",
       },
       size: {
-        default: "2xl:h-16 h-12 px-6",
+        default: "2xl:h-14   sm:h-12  sm:text-lg text-sm sm:h-10 h-8  ",
         sm: "h-9 rounded-md px-3",
         lg: "h-11 rounded-md px-8",
         icon: "h-10 w-10 rounded",

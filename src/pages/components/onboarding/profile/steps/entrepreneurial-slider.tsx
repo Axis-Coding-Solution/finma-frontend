@@ -130,7 +130,7 @@ export const EntrepreneurialSlider = ({ Controller, control, role }: any) => {
       control={control}
       name="entrepreneurType"
       render={({ field }: any) => (
-        <div className="mt-8 flex gap-2 items-center flex-wrap">
+        <div className="sm:mt-8 mt-2 flex gap-2 items-center flex-wrap">
           {role == "innovator" &&
             cards &&
             cards.map((card, idx) => (
@@ -151,7 +151,7 @@ export const EntrepreneurialSlider = ({ Controller, control, role }: any) => {
                         {card.title}
                       </Button>
                     </TooltipTrigger>
-                    <TooltipContent className="rounded-sm min-w-[200px] p-4 relative">
+                    <TooltipContent className="rounded-sm max-w-[300px] p-4 relative">
                       <div className="text-foreground text-base">
                         {card.description}
                       </div>

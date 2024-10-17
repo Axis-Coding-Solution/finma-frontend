@@ -23,7 +23,7 @@ const StartupIdeaValidationPage = () => {
       <GoBack />
 
       {/* Breadcrumb  */}
-      <div className="flex items-center 2xl:gap-3 gap-1 2xl:text-2xl text-base font-medium text-foreground">
+      <div className="flex flex-wrap items-center 2xl:gap-3 gap-1 2xl:text-2xl text-base font-medium text-foreground">
         <span className="text-muted-foreground">My Startups</span>
         <ChevronRight size={20} className="text-muted-foreground" />
         <span className="text-muted-foreground">{data?.name}</span>

@@ -36,10 +36,10 @@ export const StartupTimelineCard: React.FC<StartupTimelineCardProps> = ({
       <Link to={to}>
         <div className="bg-info-light 2xl:p-5 p-4 rounded w-full">
           <div className="bg-background rounded 2xl:py-5 py-4 2xl:px-3 px-2">
-            <h4 className="text-foreground 2xl:text-[32px] text-2xl font-semibold mb-2">
+            <h4 className="text-foreground 2xl:text-[32px] sm:text-2xl text-xl font-semibold mb-2">
               {heading}
             </h4>
-            <span className="text-muted-text 2xl:text-lg text-sm 2xl:leading-6 leading-5">
+            <span className="text-muted-text 2xl:text-lg text-sm  2xl:leading-6 leading-5">
               {subHeading}
             </span>
             <div className="flex items-start gap-4">

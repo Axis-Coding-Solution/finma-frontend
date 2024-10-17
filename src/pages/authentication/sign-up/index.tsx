@@ -85,8 +85,10 @@ const SignUpPage = () => {
           <X />
         </button>
         <div className="rounded bg-secondary h-40 w-40 absolute -top-[100px] -right-[100px]"></div>
+        <div className="sm:mt-0 mt-4">
         <MainHeading title="Sign up" subtitle="Please sign up in the system." />
-        <div className="flex flex-col 2xl:gap-8 gap-6">
+        </div>
+        <div className="flex flex-col 2xl:gap-8 sm:gap-6 gap-4">
           {!showLoginForm ? (
             <>
               <Button icon={<Mail />} onClick={handleLoginForm}>
@@ -99,7 +101,7 @@ const SignUpPage = () => {
               onSubmit={handleSubmit(onsubmitHandler)}
               className="flex flex-col gap-6"
             >
-              <div className="flex flex-col 2xl:gap-14 gap-10">
+              <div className="flex flex-col 2xl:gap-14 sm:gap-10 gap-4">
                 <div className="relative">
                   <FloatingInput
                     type="email"

@@ -1,7 +1,7 @@
 import { SignUpBuilder, SignUpInnovator, SignUpLauncher } from "@/assets/svgs";
 import { useToastQuery } from "@/utils/hooks";
 import { X } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const selectRoleOptions = [
   {
@@ -25,23 +25,28 @@ const selectRoleOptions = [
 ];
 
 const SelectRolePage = () => {
+  const navigate = useNavigate();
+  const handleBack= ()=>{
+    navigate(-1);
+  }
   useToastQuery({});
   return (
-    <div className="2xl:w-[1084px] w-auto xl:mx-0 mx-5">
+    <div className="2xl:w-[1084px] ">
       <div className=" bg-info-light rounded-lg 2xl:py-[52px] py-6 lg:px-20 md:px-10 px-4 flex flex-col justify-between items-center  relative">
         <button
           type="button"
-          className="absolute rounded-full size-12 inline-flex justify-center items-center top-8 right-8 self-end bg-background z-10 "
+          onClick={handleBack}
+          className="absolute rounded-full sm:size-12 size-10 inline-flex justify-center items-center sm:top-8 top-4 sm:right-8 right-4 self-end bg-background z-10 "
         >
           <X />
         </button>
-        <div className="text-center">
+        <div className="text-center sm:mt-0 mt-4">
           <h2 className="2xl:text-[44px] text-3xl font-semibold">Sign up</h2>
           <p className="2xl:mt-5 mt-2 2xl:text-2xl text-base">
             Choose the community role you want to continue with
           </p>
         </div>
-        <div className="w-full grid md:grid-cols-3 grid-cols-1 2xl:gap-10 gap-4 2xl:mt-20 mt-8">
+        <div className="w-full grid md:grid-cols-3 grid-cols-1 2xl:gap-10 gap-4 2xl:mt-20 sm:mt-8 mt-4">
           {selectRoleOptions &&
             selectRoleOptions.map((item, index) => (
               <Link key={index} to={`/onboarding/profile?role=${item.role}`}>

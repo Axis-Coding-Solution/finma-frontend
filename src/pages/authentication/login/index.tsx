@@ -50,7 +50,7 @@ const LoginPage = () => {
 
   return (
     <>
-      <div className="bg-secondary rounded-lg 2xl:p-7 md:p-5 p-4">
+      <div className="bg-secondary  rounded-lg 2xl:p-7 md:p-5 p-4">
         {/* <div className="w-full flex flex-col gap-10 justify-between">
           <MainHeading
             title="Welcome Back!"
@@ -65,7 +65,7 @@ const LoginPage = () => {
             />
           </figure>
         </div> */}
-        <div className="2xl:w-[532px] sm:w-[432px] bg-background rounded 2xl:p-[52px] md:p-6  p-4  flex flex-col 2xl:gap-[52px] sm:gap-10 gap-6 relative overflow-hidden">
+        <div className="2xl:w-[532px] sm:w-[432px] bg-background rounded 2xl:p-[52px] md:p-6  p-4  flex flex-col  2xl:gap-[52px] sm:gap-10 gap-6 relative overflow-hidden">
           <button
             type="button"
             onClick={handleCloseForm}
@@ -74,8 +74,10 @@ const LoginPage = () => {
             <X />
           </button>
           <div className="rounded bg-secondary h-40 w-40 absolute -top-[100px] -right-[100px]"></div>
+          <div className="sm:mt-0 mt-4">
           <MainHeading title="Log in" subtitle="Please log in in the system." />
-          <div className="flex flex-col 2xl:gap-8 gap-6">
+          </div>
+          <div className="flex flex-col 2xl:gap-8 sm:gap-6 gap-4">
             {!showLoginForm ? (
               <>
                 <Button icon={<Mail />} onClick={handleLoginForm}>
@@ -88,7 +90,7 @@ const LoginPage = () => {
                 className="flex flex-col gap-6"
                 onSubmit={handleSubmit(onSubmitHandler)}
               >
-                <div className="flex flex-col 2xl:gap-14 gap-10">
+                <div className="flex flex-col 2xl:gap-14 sm:gap-10 gap-4">
                   <div className="relative">
                     <FloatingInput
                       type="email"

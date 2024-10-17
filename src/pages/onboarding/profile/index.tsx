@@ -258,7 +258,7 @@ const ProfilePage = () => {
         </div>
         <form
           onSubmit={handleSubmit(onSubmitHandler)}
-          className="flex flex-col 2xl:gap-10 gap-6"
+          className="flex flex-col 2xl:gap-10 sm:gap-6 gap-4"
         >
           <CurrentStep {...propsOnStep[step]} />
           <div className="flex items-center justify-between">

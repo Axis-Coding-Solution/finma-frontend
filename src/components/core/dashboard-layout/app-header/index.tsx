@@ -71,8 +71,8 @@ const AppHeader = () => {
             <SearchInput />
           </div>
         </div>
-        <div className="flex 2xl:gap-12 gap-8 items-center">
-          <div className="text-muted-foreground flex 2xl:gap-10 gap-8 items-center">
+        <div className="flex 2xl:gap-12 sm:gap-8 gap-4 items-center">
+          <div className="text-muted-foreground flex 2xl:gap-10 sm:gap-8 gap-2 items-center">
             <span role="button" className="relative">
               <Bell />
               <div className="p-1 rounded-full bg-warning border-2 border-background absolute top-0 right-0"></div>

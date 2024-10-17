@@ -50,7 +50,7 @@ export const OnboardingProfilePersonalInfoStep = ({
   const profileImage = watch("profilePhoto");
 
   return (
-    <div className="grid md:grid-cols-2 grid-cols-1 2xl:gap-14 gap-12">
+    <div className="grid md:grid-cols-2 grid-cols-1 2xl:gap-14 sm:gap-12 gap-4">
       <div className="md:col-span-2 col-span-1 ">
         <UploadImage
           control={control}
