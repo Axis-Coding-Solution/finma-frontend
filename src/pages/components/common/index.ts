@@ -10,3 +10,4 @@ export {SearchBar} from "./search-bar"
 export {GoBack} from "./go-back"
 export {FetchLoader} from "./fetch-loader"
 export {AvatarGroup} from "./avatar-group"
+export * from "./data";

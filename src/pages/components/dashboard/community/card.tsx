@@ -10,6 +10,7 @@ import {
   useCreateChatMutation,
 } from "@/api/hooks/dashboard";
 import { useQueryClient } from "@tanstack/react-query";
+import { CommunityTitle, roleName } from "../../common";
 
 const BADGE_COLORS = [
   "border-[#6F6FEA] text-[#6F6FEA]",
@@ -21,6 +22,10 @@ const getRandomBadgeColor = () => {
   const randomIndex = Math.floor(Math.random() * BADGE_COLORS.length);
   return BADGE_COLORS[randomIndex];
 };
+
+
+
+
 
 export const CommunityCard = ({
   id,
@@ -51,7 +56,7 @@ export const CommunityCard = ({
   };
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-6 lg:grid-cols-12  2xl:p-6 ms:p-4 p-2 bg-background rounded gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-6 lg:grid-cols-12  2xl:p-6 ms:p-4 p-2 bg-background rounded gap-4 hover:shadow-sm   duration-500 transition-all">
       {/* Avatar Section  */}
       <div className="flex items-center  gap-4 col-span-6 sm:col-span-4 lg:col-span-3">
         <Avatar
@@ -60,11 +65,11 @@ export const CommunityCard = ({
           size="lg"
         />
         <div className="flex flex-col h-full">
-          <span className="text-foreground text-xs capitalize">{role}</span>
+          <span className="text-foreground text-xs capitalize">
+            {roleName[role] || role}
+          </span>
           <h4 className="text-foreground font-medium text-base">{name}</h4>
-          <p className="text-muted-foreground text-sm">
-            {entrepreneurType}
-          </p>
+          <p className="text-muted-foreground text-sm">{entrepreneurType}</p>
         </div>
       </div>
       {/* Status Section  */}
@@ -78,9 +83,7 @@ export const CommunityCard = ({
       <div className="flex flex-col gap-2 col-span-6 sm:col-span-2 lg:col-span-4">
         <h6 className="text-foreground font-semibold flex items-center gap-1">
           <span>Community</span>
-          {role === "innovator" && "goal"}
-          {role === "expert" && "services"}
-          {role === "mentor" && "interests"}
+          {CommunityTitle[role] || "Community Goals"}
         </h6>
         <div className="flex flex-wrap items-center sm:gap-[2px] gap-2">
           {communityGoals ? (

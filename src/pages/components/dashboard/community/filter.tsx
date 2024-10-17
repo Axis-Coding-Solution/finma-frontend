@@ -26,7 +26,7 @@ export const CommunityFilter = ({ filter, setFilter }: any) => {
         size="sm"
         rounded
       >
-        Experts
+        Builders
       </Button>
       <Button
         onClick={() => setFilter("mentor")}

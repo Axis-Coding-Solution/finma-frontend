@@ -12,15 +12,24 @@ import { useState } from "react";
 // const RenderRight = ({ members }: { members: number }) => (
 //   <span>{members} Members</span>
 // );
-
+const roleName: any = {
+  innovator: "innovator",
+  expert: "builder",
+  mentor: "mentor",
+};
 function CommunityPage() {
-  const [filter, setFilter] = useState("");
+  const [filter, setFilter] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
 
   const { data, isLoading } = useGetCommunity(currentPage, filter);
 
   const total = data?.pagination?.total ?? 0;
   const totalPages = data?.pagination?.totalPages;
+
+  const handleFilterChange = (newFilter : any) => {
+    setFilter(newFilter);
+    setCurrentPage(1);
+  };
   return (
     <div className="flex flex-col gap-8">
       <MainHeading
@@ -28,7 +37,7 @@ function CommunityPage() {
         // renderRight={<RenderRight members={total} />}
       />
       <div className="flex md:flex-row flex-col md:items-center items-start justify-between gap-4">
-        <CommunityFilter filter={filter} setFilter={setFilter} />
+        <CommunityFilter filter={filter} setFilter={handleFilterChange} />
         <SearchInput />
       </div>
       {isLoading && <FetchLoader noMessage={false} />}
@@ -40,7 +49,7 @@ function CommunityPage() {
             ))
           ) : (
             <p className="py-20 flex justify-center items-center capitalize">
-              Data not found for {filter}.
+              Data not found for {roleName[filter]}.
             </p>
           )}
         </div>
