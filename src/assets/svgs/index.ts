@@ -58,7 +58,6 @@ import IdeaValidationSolutionInfo from "./idea-validation-solution-info.svg";
 import MarketSizeInfo from "./market-size-info.svg";
 import MarketGrowthInfo from "./market-growth-info.svg";
 
-
 export {
   ReactSVG,
   ViteSVG,

@@ -12,6 +12,9 @@ import { useNavigate } from "react-router-dom";
 const ForgetPasswordPage = () => {
   const navigate = useNavigate();
 
+  const handleBack = ()=>{
+    navigate(-1)
+  }
   const { mutateAsync } = useForgetPasswordMutation();
   const {
     register,
@@ -38,6 +41,7 @@ const ForgetPasswordPage = () => {
     <div className="bg-secondary rounded-lg 2xl:p-7 md:p-5 p-4">
       <div className="2xl:w-[532px] sm:w-[432px]  w-full bg-background rounded 2xl:p-[52px] md:p-6 p-4 flex flex-col 2xl:gap-[52px] gap-8 relative overflow-hidden">
         <button
+        onClick={handleBack}
           type="button"
           className="absolute rounded-full size-12 inline-flex justify-center items-center top-0 right-0 self-end bg-background z-10"
         >

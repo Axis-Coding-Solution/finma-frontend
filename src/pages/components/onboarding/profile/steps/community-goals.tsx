@@ -2,8 +2,8 @@ import { Button, InputError } from "@/components/ui";
 
 const goals = [
   "Networking with other founders",
-  "Seeking Membership",
-  "Gaming market insights",
+  "Seeking mentorship",
+  "Gaining market insights",
   "Finding co-founders or team members",
   "Learning new skills",
   "Other",

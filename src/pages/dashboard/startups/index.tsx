@@ -11,7 +11,7 @@ const MyStartupPage = () => {
   const [filter, setFilter] = useState("");
   const [searchParams] = useSearchParams();
   const { data, isLoading } = useGetStartups(filter);
-
+console.log("qwerty", data)
   const showWizard = Boolean(searchParams.get("showWizard"));
 
   const totalProjects = data ? data?.length : 0;
@@ -21,7 +21,7 @@ const MyStartupPage = () => {
       <div className="relative">
         <HeadingButton
           title="My Startups"
-          subtitle={`${totalProjects} project${totalProjects > 1 ? "s" : ""}`}
+          subtitle={`${totalProjects} Startup${totalProjects > 1 ? "s" : ""}`}
           renderRight={<ProjectAddModal showWizard={showWizard} />}
         />
         {showWizard && (

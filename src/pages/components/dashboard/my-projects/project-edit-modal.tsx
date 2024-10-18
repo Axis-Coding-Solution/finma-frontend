@@ -79,7 +79,7 @@ export const ProjectEditModal = ({ projectId }: { projectId: string }) => {
         <span role="button">
           <div className="flex gap-1 text-foreground">
             <SquarePen size={16} className="mt-1" />
-            <span>Edit project</span>
+            <span>Edit startup</span>
           </div>
         </span>
       </DialogTrigger>

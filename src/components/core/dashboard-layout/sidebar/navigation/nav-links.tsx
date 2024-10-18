@@ -1,12 +1,14 @@
 import {
   CircleHelp,
   LayoutGrid,
-  MessageSquareMore,
+  // MessageSquareMore,
   Sparkles,
-  UsersRound,
-  Zap,
+  // UsersRound,
+  // Zap,
 } from "lucide-react";
+
 import { LinkItem } from "./link-item";
+import { myTeamIcon, ProductIcon, chatIcon } from "@/components/icons";
 
 const navLinks = [
   {
@@ -25,14 +27,14 @@ const navLinks = [
     name: "Product Launch",
     path: "/dashboard/product-launch",
     roles: ["innovator", "mentor", "expert"],
-    Icon: Zap,
+    Icon: ProductIcon,
   },
 
   {
     name: "My Team",
     path: "/dashboard/my-team",
     roles: ["innovator"],
-    Icon: UsersRound,
+    Icon: myTeamIcon,
   },
 
   {
@@ -45,7 +47,7 @@ const navLinks = [
     name: "Chats",
     path: "/dashboard/chats",
     roles: ["innovator", "mentor", "expert"],
-    Icon: MessageSquareMore,
+    Icon: chatIcon,
   },
 ];
 type Props = {
@@ -67,7 +69,12 @@ export const NavLinks = ({ handleChange, mobileMode }: Props) => {
         Dashboard
       </h6> */}
       {userNavLinks.map((navLink, index) => (
-        <LinkItem key={index} mobileMode={mobileMode} handleChange={handleChange} {...navLink} />
+        <LinkItem
+          key={index}
+          mobileMode={mobileMode}
+          handleChange={handleChange}
+          {...navLink}
+        />
       ))}
     </div>
   );

@@ -31,7 +31,7 @@ export const MarketResearchEditChartModalSchema = object({
 });
 
 export const MarketGrowthEditModalSchema = object({
-  marketGrowth: string().label("Market growth").required().max(120),
+  marketGrowth: string().label("Market size").required().max(120),
 });
 
 export const MarketGrowthEditChartModalSchema = object({

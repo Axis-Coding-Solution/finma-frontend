@@ -34,7 +34,7 @@ export const StartupForm = ({
       <div className="flex md:flex-row flex-col  justify-between md:items-start items-center 2xl:gap-8 gap-6">
         <div className="flex flex-col w-full 2xl:gap-3 gap-0">
           <h4 className="2xl:text-[44px] text-2xl font-semibold text-foreground">
-            {title} Startup card
+            {title} Startup Card
           </h4>
           <p className="2xl:text-2xl text-base text-primary-disabled">
             {detail} this card anytime for your startup

@@ -1,14 +1,12 @@
 import { cn } from "@/utils";
-import { LucideProps } from "lucide-react";
-import { ForwardRefExoticComponent, RefAttributes } from "react";
+// import { LucideProps } from "lucide-react";
+// import { ForwardRefExoticComponent, RefAttributes } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 type PropTypes = {
   name: string;
   path: string;
-  Icon: ForwardRefExoticComponent<
-    Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>
-  >;
+  Icon?: any;
   mobileMode?: boolean;
   handleChange?: () => void;
   iconDirection?: "rotate-90" | "rotate-180" | "rotate-270" | "none";
@@ -38,15 +36,15 @@ export const LinkItem = ({
             : handleChange?.()
         }
         className={cn(
-          "group flex items-center gap-5 2xl:rounded rounded-xl 2xl:px-4 px-3 2xl:py-3 py-[10px] 2xl:text-base text-sm text-background transition hover:bg-warning hover:text-foreground",
+          "group flex items-center gap-5 2xl:rounded rounded-xl 2xl:px-4 px-3 2xl:py-3 py-[10px] 2xl:text-base text-sm text-background transition hover:bg-warning hover:text-foreground ",
           pathname.startsWith(path) && "bg-warning text-foreground "
         )}
       >
         <Icon
           className={cn(
-            "2xl:h-6 2xl:w-6 h-5 w-5 text-background group-hover:text-foreground transform",
+            "text-background group-hover:text-foreground transform",
             pathname.startsWith(path) && "text-foreground",
-            iconDirection !== "none" && iconDirection 
+            iconDirection !== "none" && iconDirection
           )}
         />
         {name}

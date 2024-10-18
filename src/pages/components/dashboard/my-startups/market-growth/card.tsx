@@ -29,7 +29,7 @@ export const MarketGrowthCard: React.FC<MarketGrowthProps> = ({
             Market {heading}
           </h4>
           <div className="2xl:text-2xl text-base 2xl:leading-7 leading-5 text-foreground border-b border-muted-foreground pb-2 ">
-            <span className="text-muted-text">{data?.description}</span>
+            <span className="text-muted-text">{data?.description ?? "Edit to start"}</span>
           </div>
         </div>
         <div className="bg-background 2xl:min-w-[328px] sm:min-w-[260px] min-w-full 2xl:h-[378px] h-[300px] rounded shadow-lg 2xl:p-6 p-4  flex flex-col 2xl:gap-8 gap-6">

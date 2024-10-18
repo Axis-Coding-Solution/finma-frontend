@@ -49,7 +49,7 @@ export const ProjectDeleteModal = ({
         <DialogHeader>
           <DialogTitle className="text-left ">
             <h4 className="text-foreground 2xl:text-[32px] text-2xl font-semibold">
-              Delete Project
+              Delete startup
             </h4>
           </DialogTitle>
         </DialogHeader>

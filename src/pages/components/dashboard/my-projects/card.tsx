@@ -49,7 +49,7 @@ const ProjectCard = (props: any) => {
           } justify-end items-center gap-2 2xl:mt-5 mt-2`}
         >
           {props.status && (
-            <Badge variant={statusVariant[props.status]}>{props.status}</Badge>
+            <Badge className="first-letter:uppercase" variant={statusVariant[props.status]}>{props.status}</Badge>
           )}
           <div className="flex items-center relative -space-x-2">
             <AvatarGroup team={props?.team} />
