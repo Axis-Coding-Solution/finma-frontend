@@ -70,10 +70,10 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 export function truncateText(text: string, length: number) {
-  if (text.length <= length) {
+  if (text && text?.length <= length) {
     return text;
   }
-  // return text.substring(0, length) + "...";
+  return text && text?.substring(0, length) + "...";
 }
 
 export const classNamesReactSelect: ClassNamesConfig<
