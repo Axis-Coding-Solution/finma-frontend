@@ -1,7 +1,7 @@
 import { Avatar } from "@/components/ui/avatar";
 import { chatUserDataHook } from "@/store";
 import { useHookstate } from "@hookstate/core";
-import { Link, useParams } from "react-router-dom";
+import {  useNavigate, useParams } from "react-router-dom";
 import { DoubleCheck, SingleCheck } from "@/assets/svgs";
 import { convertDate, truncateText } from "@/utils";
 import { useEffect } from "react";
@@ -9,9 +9,11 @@ import { useEffect } from "react";
 type PropsTypes = {
   item: any;
   chatId: string | undefined;
+  onLinkClick: any;
 };
-export const ChatContactItem = ({ item, chatId }: PropsTypes) => {
+export const ChatContactItem = ({ item, chatId, onLinkClick }: PropsTypes) => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const chatUser = useHookstate(chatUserDataHook);
   const setChatUser = chatUser.set;
   const isActive = id === item.id;
@@ -20,53 +22,57 @@ export const ChatContactItem = ({ item, chatId }: PropsTypes) => {
       item.id === chatId && setChatUser(item.user);
     }
   }, [item, chatId]);
-  return (
-    <div className="pt-1">
-      <Link to={`/dashboard/chats/${item.id}`}>
-        <div
-          className={`flex p-2 gap-2 rounded ${
-            isActive ? "bg-secondary-dark" : "border-white"
-          }`}
-        >
-          <Avatar image={item?.user?.profilePicture} size="lg" />
-          <div className="w-full">
-            <div className="flex justify-between gap-2">
-              <div className="">
-                <h6
-                  title={item?.user?.fullName}
-                  className="text-foreground overflow-x-clip  text-sm  font-semibold"
-                >
-                  {truncateText(item?.user?.fullName, 16)}
-                </h6>
-                <span className="text-muted-text text-sm">
-                  {truncateText(
-                    item?.lastMessage ?? item?.user?.entrepreneurType,
-                    14
-                  )}
-                </span>
-              </div>
-              <div className="flex justify-center items-center gap-1">
-                {item?.lastMessage?.receivedAt ? (
-                  <img src={SingleCheck} alt="" />
-                ) : (
-                  item?.lastMessage?.readAt && <img src={DoubleCheck} alt="" />
-                )}
-                <p className=" text-muted-foreground font-semibold text-[10px] text-wrap">
-                  {item?.lastMessage?.createdAt &&
-                    convertDate(item.lastMessage.createdAt)}
-                </p>
-              </div>
-            </div>
-            <div className="flex items-center">
-              <p className="text-muted-foreground text-xs w-full ">
-                {item?.lastMessage?.content || ""}
-              </p>
 
-              {/* <Check className="text-muted-foreground" size={17} /> */}
+  const handleClick = (e: any) => {
+    e.preventDefault();
+    onLinkClick(true);
+    navigate(`/dashboard/chats/${item.id}`);
+  };
+  return (
+    <div className="pt-1 cursor-pointer" onClick={handleClick}>
+      <div
+        className={`flex p-2 gap-2 rounded ${
+          isActive ? "bg-secondary-dark" : "border-white"
+        }`}
+      >
+        <Avatar image={item?.user?.profilePicture} size="lg" />
+        <div className="w-full">
+          <div className="flex justify-between gap-2">
+            <div className="">
+              <h6
+                title={item?.user?.fullName}
+                className="text-foreground overflow-x-clip  text-sm  font-semibold"
+              >
+                {truncateText(item?.user?.fullName, 16)}
+              </h6>
+              <span className="text-muted-text text-sm">
+                {truncateText(
+                  item?.lastMessage ?? item?.user?.entrepreneurType,
+                  14
+                )}
+              </span>
+            </div>
+            <div className="flex justify-center items-center gap-1">
+              {item?.lastMessage?.receivedAt ? (
+                <img src={SingleCheck} alt="" />
+              ) : (
+                item?.lastMessage?.readAt && <img src={DoubleCheck} alt="" />
+              )}
+              <p className=" text-muted-foreground font-semibold text-[10px] text-wrap">
+                {item?.lastMessage?.createdAt &&
+                  convertDate(item.lastMessage.createdAt)}
+              </p>
             </div>
           </div>
+          <div className="flex items-center">
+            <p className="text-muted-foreground text-xs w-full ">
+              {item?.lastMessage?.content || ""}
+            </p>
+
+            {/* <Check className="text-muted-foreground" size={17} /> */}
+          </div>
         </div>
-      </Link>
+      </div>
     </div>
 
     // <Link

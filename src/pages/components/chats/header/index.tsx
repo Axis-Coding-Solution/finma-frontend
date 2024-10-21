@@ -17,7 +17,7 @@ export function ChatsHeader() {
           name="John Doe"
           description="Analyst"
         />
-        <div>
+        <div className="sm:block hidden">
           <Ratings />
         </div>
       </div>
