@@ -15,7 +15,11 @@ export const WizardDialog = ({
   nextWizard?: string;
 }) => {
   const ref = useRef<HTMLDivElement | null>(null);
-  const [parentPosition, setParentPosition] = useState({ x: 0, y: 0 });
+  const [parentPosition, setParentPosition] = useState({
+    x: 0,
+    y: 0,
+    width: 0,
+  });
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
@@ -24,11 +28,14 @@ export const WizardDialog = ({
       const container = ref.current;
       const boundingRects = container.getBoundingClientRect();
       setParentPosition({
-        x: boundingRects.x,
-        y: boundingRects.y,
+        x: boundingRects.left,
+        y: boundingRects.top,
+        width: boundingRects.width,
       });
     }
   }, [show]);
+
+  console.log(parentPosition);
 
   if (!show) return children;
   return (
@@ -41,8 +48,9 @@ export const WizardDialog = ({
             <div
               className="bg-secondary z-20 sm:w-[400px] w-full flex justify-between items-center absolute rounded-sm px-3 py-2 before:size-6 before:bg-secondary before:absolute before:-top-2 sm:before:right-20 before:right-1/2 before:translate-x-1/2 before:rotate-45 before:-z-10"
               style={{
-                left: parentPosition.x - 230,
+                left: parentPosition.x - 300,
                 top: parentPosition.y + 60,
+                marginRight: parentPosition.width,
               }}
             >
               <span>{text}</span>

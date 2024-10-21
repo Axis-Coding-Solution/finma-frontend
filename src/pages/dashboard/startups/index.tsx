@@ -27,25 +27,37 @@ const MyStartupPage = () => {
         />
       </div>
       <div className="flex flex-wrap gap-2 items-center">
-        <Button
-          onClick={() => setFilter("all")}
-          variant={filter === "all" || !filter ? "dark" : "outline"}
-          size="sm"
-          rounded
+        <WizardDialog
+          show={wizardType === WIZARD_TYPES.STARTUPS.ALL_STARTUPS}
+          text="Here you can see all startups"
         >
-          All
-        </Button>
-        <Button
-          onClick={() => setFilter("my-startup")}
-          variant={filter === "my-startup" ? "dark" : "outline"}
-          size="sm"
-          rounded
+          <Button
+            onClick={() => setFilter("all")}
+            variant={filter === "all" || !filter ? "dark" : "outline"}
+            size="sm"
+            rounded
+          >
+            All
+          </Button>
+        </WizardDialog>
+        <WizardDialog
+          show={wizardType === WIZARD_TYPES.STARTUPS.MY_STARTUPS}
+          text="Here you can see your startups"
+          nextWizard={WIZARD_TYPES.STARTUPS.ALL_STARTUPS}
         >
-          My Startup
-        </Button>
+          <Button
+            onClick={() => setFilter("my-startup")}
+            variant={filter === "my-startup" ? "dark" : "outline"}
+            size="sm"
+            rounded
+          >
+            My Startup
+          </Button>
+        </WizardDialog>
         <WizardDialog
           show={wizardType === WIZARD_TYPES.STARTUPS.COMMUNITY_STARTUPS}
           text="Here you can see the community startups"
+          nextWizard={WIZARD_TYPES.STARTUPS.MY_STARTUPS}
         >
           <Button
             onClick={() => setFilter("community")}
