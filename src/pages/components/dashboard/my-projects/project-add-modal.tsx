@@ -61,19 +61,20 @@ const ProjectAddModal = () => {
 
   return (
     <Dialog modal={modal.show} onOpenChange={modal.setShow}>
-      <DialogTrigger asChild>
-        <div className="relative sm:w-auto w-full">
-          <WizardDialog show={showWizard}>
-            <Button
-              variant={showWizard ? "secondary-dark" : "primary"}
-              className="z-20 relative px-10 sm:w-auto w-full"
-              size="sm"
-              icon={<Plus className="2xl:w-6 w-5" />}
-            >
-              New Startup
-            </Button>
-          </WizardDialog>
-        </div>
+      <DialogTrigger asChild={showWizard}>
+        <WizardDialog
+          show={showWizard}
+          text="Click here to create a new startup 🚀"
+        >
+          <Button
+            variant={showWizard ? "secondary-dark" : "primary"}
+            className="z-20 relative px-10 sm:w-auto w-full"
+            size="sm"
+            icon={<Plus className="2xl:w-6 w-5" />}
+          >
+            New Startup
+          </Button>
+        </WizardDialog>
       </DialogTrigger>
       <DialogContent
         showCloseButton={false}
