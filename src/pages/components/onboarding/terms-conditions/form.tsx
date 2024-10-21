@@ -93,7 +93,7 @@ export const TermsAndConditionsForm = () => {
         },
         auth?.updateUser
       );
-      navigate("/dashboard/my-startups?showWizard=true", {
+      navigate("/dashboard/my-startups?wizardType=startups-new", {
         replace: true,
       });
       setTimeout(clearFormData, 200);

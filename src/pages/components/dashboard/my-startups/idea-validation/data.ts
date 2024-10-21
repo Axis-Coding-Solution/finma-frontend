@@ -2,10 +2,12 @@ import {
   IdeaValidationProblemInfo,
   IdeaValidationSolutionInfo,
 } from "@/assets/svgs";
+import { WIZARD_TYPES } from "@/utils/constants";
 
 export const ideaValidationContent = [
   {
     name: "problem",
+    wizardValue: WIZARD_TYPES.STARTUPS.IDEA_VALIDATION.EDIT_PROBLEM,
     heading: "problem",
     validation: "problem",
     image: IdeaValidationProblemInfo,
@@ -29,6 +31,7 @@ export const ideaValidationContent = [
   },
   {
     name: "solution",
+    wizardValue: WIZARD_TYPES.STARTUPS.IDEA_VALIDATION.EDIT_SOLUTION,
     heading: "solution",
     image: IdeaValidationSolutionInfo,
     notes: [

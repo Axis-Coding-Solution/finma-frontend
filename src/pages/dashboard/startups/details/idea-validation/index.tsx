@@ -45,6 +45,7 @@ const StartupIdeaValidationPage = () => {
                 validationData &&
                 validationData?.find((el: any) => el.type === item.name)
               }
+              wizardValue={item.wizardValue}
               name={item.name}
               key={idx}
               heading={item.heading}

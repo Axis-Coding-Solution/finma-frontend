@@ -6,6 +6,8 @@ export const WIZARD_TYPES = {
     ALL_STARTUPS: "startups-all",
     IDEA_VALIDATION: {
       MAIN_CARD: "startups-idea-validation-main-card",
+      EDIT_PROBLEM:"startups-idea-validation-edit-problem",
+      EDIT_SOLUTION:"startups-idea-validation-edit-solution"
     },
   },
 };

@@ -16,7 +16,7 @@ export const WizardDialog = ({
 }: {
   children: React.ReactNode;
   show?: boolean;
-  text?: string;
+  text?: any;
   nextWizard?: string;
 }) => {
   const navigate = useNavigate();

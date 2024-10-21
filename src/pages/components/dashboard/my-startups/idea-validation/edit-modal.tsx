@@ -28,17 +28,21 @@ import {
 } from "@/api/hooks/dashboard";
 import { CommunityInteraction } from "../community-interaction";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { CheckValidate } from "./check-validate";
 import ReloadSvg from "./reloadSvg";
+import { WizardDialog } from "@/components/ui/wizard-dialog";
+import { WIZARD_TYPES } from "@/utils/constants";
 export const IdeaValidationCardEditModal = ({
   name,
   data,
   notes,
+  wizardValue,
 }: {
   name: "problem" | "solution";
   data: any;
-  notes:any
+  notes: any;
+  wizardValue: any;
 }) => {
   const { id: projectId } = useParams();
   const modal = useModal();
@@ -47,7 +51,9 @@ export const IdeaValidationCardEditModal = ({
   const { mutateAsync } = useSaveIdeaValidation();
   const { mutateAsync: validateIdeaAsync } = useValidateIdeaValidation();
   const [reloadScore, setReloadScore] = useState(false);
-
+  const [searchParams] = useSearchParams();
+  const wizardType = String(searchParams.get("wizardType"));
+  const showWizard = wizardType === wizardValue;
   const {
     register,
     handleSubmit,
@@ -111,16 +117,31 @@ export const IdeaValidationCardEditModal = ({
     setResponse(data?.response);
     setValue(name, data?.question, { shouldValidate: true });
   };
+
+  const nextWizard =
+    wizardType === WIZARD_TYPES.STARTUPS.IDEA_VALIDATION.EDIT_PROBLEM
+      ? WIZARD_TYPES.STARTUPS.IDEA_VALIDATION.EDIT_SOLUTION
+      : "";
+  const wizardText =
+    wizardType === WIZARD_TYPES.STARTUPS.IDEA_VALIDATION.EDIT_PROBLEM
+      ? "Click here to edit idea validation problem"
+      : "Click here to edit idea validation solution";
   return (
     <>
       <Dialog open={modal.show} onOpenChange={modal.setShow}>
         <DialogTrigger asChild>
-          <span role="button">
-            <div className="flex gap-2 items-center  bg-foreground 2xl:px-6 px-4 2xl:py-2 py-1 text-background 2xl:rounded rounded-md 2xl:text-2xl text-base ">
-              <SquarePen size={20} className="2xl:text-2xl text-base" />
-              <span className="">Edit</span>
-            </div>
-          </span>
+          <WizardDialog
+            show={showWizard}
+            text={wizardText}
+            nextWizard={nextWizard}
+          >
+            <span role="button">
+              <div className="flex gap-2 items-center  bg-foreground 2xl:px-6 px-4 2xl:py-2 py-1 text-background 2xl:rounded rounded-md 2xl:text-2xl text-base ">
+                <SquarePen size={20} className="2xl:text-2xl text-base" />
+                <span className="">Edit</span>
+              </div>
+            </span>
+          </WizardDialog>
         </DialogTrigger>
         <DialogContent className="text-2xl bg-info-light xl:min-w-[1084px] min-w-[90%] 2xl:py-[52px] py-6 2xl:px-8 px-4">
           <div className="flex flex-col 2xl:gap-8 gap-6">
@@ -210,9 +231,9 @@ export const IdeaValidationCardEditModal = ({
                   </span>
                 </div>
                 <ul className="flex flex-col 2xl:gap-7 gap-4">
-                  {notes.map((note : any, idx: number) => (
+                  {notes.map((note: any, idx: number) => (
                     <CheckValidate
-                    key={idx}
+                      key={idx}
                       title={note.title}
                       isValid={response?.validation?.[note?.validationKey]}
                       note={note?.note}

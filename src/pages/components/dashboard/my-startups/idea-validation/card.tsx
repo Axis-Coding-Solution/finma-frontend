@@ -11,6 +11,7 @@ interface IdeaValidationCardProps {
   image: string;
   data: any;
   notes: any[];
+  wizardValue:any;
 }
 
 export const IdeaValidationCard: React.FC<IdeaValidationCardProps> = ({
@@ -20,6 +21,7 @@ export const IdeaValidationCard: React.FC<IdeaValidationCardProps> = ({
   image,
   data,
   notes,
+  wizardValue,
 }) => {
   const [reloadScore, setReloadScore] = useState(false);
   return (
@@ -71,7 +73,12 @@ export const IdeaValidationCard: React.FC<IdeaValidationCardProps> = ({
       </div>
       <div className="md:order-2 order-1 md:col-span-3 col-span-12 flex md:justify-end justify-start items-center relative">
         <div className="absolute top-0 right-0">
-          <IdeaValidationCardEditModal name={name} data={data} notes={notes}/>
+          <IdeaValidationCardEditModal
+            wizardValue={wizardValue}
+            name={name}
+            data={data}
+            notes={notes}
+          />
         </div>
         <figure className="md:w-64 w-32">
           <img src={image} className="" alt="" />
