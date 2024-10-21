@@ -9,11 +9,6 @@ const MainLayout = () => {
 
   const checkOverflow = () => {
     const container = containerRef.current;
-    console.log(
-      container?.scrollHeight,
-      container?.clientHeight,
-      container?.offsetHeight
-    );
     if (container && container.scrollHeight > container.offsetHeight) {
       setOverFlowing(true);
     } else {
@@ -35,7 +30,9 @@ const MainLayout = () => {
       <div
         ref={containerRef}
         className={`xl:max-w-[1084px] xl:px-0 md:px-10 px-4 max-w-full flex justify-center ${
-          overFlowing ? "items-start h-full overflow-y-auto" : "items-center h-screen overflow-hidden"
+          overFlowing
+            ? "items-start h-full overflow-y-auto"
+            : "items-center h-screen overflow-hidden"
         } md:py-10 py-4`}
         role="dialog"
         style={{
