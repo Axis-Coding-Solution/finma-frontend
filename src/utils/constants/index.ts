@@ -11,3 +11,4 @@ const countriesOptions = countriesList.map((country) => ({
 }));
 
 export { countriesList, countriesOptions };
+export { WIZARD_TYPES } from "./wizard-type";

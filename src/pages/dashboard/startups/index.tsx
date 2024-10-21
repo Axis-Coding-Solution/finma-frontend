@@ -1,15 +1,19 @@
 import { useGetStartups } from "@/api/hooks/dashboard";
 import { IdeaValidationStart } from "@/assets/svgs";
 import { Button } from "@/components/ui";
+import { WizardDialog } from "@/components/ui/wizard-dialog";
 import { FetchLoader, HeadingButton } from "@/pages/components/common";
 import ProjectCard from "@/pages/components/dashboard/my-projects/card";
 import ProjectAddModal from "@/pages/components/dashboard/my-projects/project-add-modal";
+import { WIZARD_TYPES } from "@/utils/constants";
 import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 const MyStartupPage = () => {
   const [filter, setFilter] = useState("");
   const { data, isLoading } = useGetStartups(filter);
- 
+  const [searchParams] = useSearchParams();
+  const wizardType = String(searchParams.get("wizardType"));
 
   const totalProjects = data ? data?.length : 0;
 
@@ -19,7 +23,7 @@ const MyStartupPage = () => {
         <HeadingButton
           title="My Startups"
           subtitle={`${totalProjects} Startup${totalProjects > 1 ? "s" : ""}`}
-          renderRight={<ProjectAddModal />}
+          renderRight={<ProjectAddModal wizardType={wizardType} />}
         />
       </div>
       <div className="flex flex-wrap gap-2 items-center">
@@ -39,14 +43,31 @@ const MyStartupPage = () => {
         >
           My Startup
         </Button>
-        <Button
-          onClick={() => setFilter("community")}
-          variant={filter === "community" ? "dark" : "outline"}
-          size="sm"
-          rounded
+        <WizardDialog
+          show={wizardType === WIZARD_TYPES.STARTUPS.COMMUNITY_STARTUPS}
+          text="Here you can see the community startups"
         >
-          Community Startup
-        </Button>
+          <Button
+            onClick={() => setFilter("community")}
+            className={
+              wizardType === WIZARD_TYPES.STARTUPS.COMMUNITY_STARTUPS
+                ? "z-20 relative"
+                : ""
+            }
+            variant={
+              filter === "community" &&
+              wizardType !== WIZARD_TYPES.STARTUPS.COMMUNITY_STARTUPS
+                ? "dark"
+                : wizardType !== WIZARD_TYPES.STARTUPS.COMMUNITY_STARTUPS
+                ? "outline"
+                : "secondary-dark"
+            }
+            size="sm"
+            rounded
+          >
+            Community Startup
+          </Button>
+        </WizardDialog>
       </div>
       {isLoading && isLoading ? (
         <FetchLoader noMessage={false} />

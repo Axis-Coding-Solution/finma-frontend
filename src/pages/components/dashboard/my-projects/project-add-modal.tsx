@@ -9,20 +9,18 @@ import {
   useAddStartupMutation,
 } from "@/api/hooks/dashboard";
 import { useQueryClient } from "@tanstack/react-query";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { createFormData, errorToast, successToast } from "@/utils";
 import { useModal } from "@/utils/hooks";
 import { dashboardStartUpInitialValues } from "@/utils/initial-values/dashboard/start-up";
 import { dashboardStartUpSchema } from "@/utils/validation-schemas/dashoard/start-up";
 import { WizardDialog } from "@/components/ui/wizard-dialog";
+import { WIZARD_TYPES } from "@/utils/constants";
 
-const ProjectAddModal = () => {
+const ProjectAddModal = ({ wizardType }: { wizardType: string }) => {
   const modal = useModal();
-  const [searchParams] = useSearchParams();
   const queryClient = useQueryClient();
   const navigate = useNavigate();
-
-  const showWizard = Boolean(searchParams.get("showWizard"));
 
   const { mutateAsync } = useAddStartupMutation();
 
@@ -59,11 +57,14 @@ const ProjectAddModal = () => {
     isSubmitting,
   };
 
+  const showWizard = wizardType === WIZARD_TYPES.STARTUPS.NEW_STARTUPS;
+
   return (
     <Dialog modal={modal.show} onOpenChange={modal.setShow}>
       <DialogTrigger asChild={showWizard}>
         <WizardDialog
           show={showWizard}
+          nextWizard={WIZARD_TYPES.STARTUPS.COMMUNITY_STARTUPS}
           text="Click here to create a new startup 🚀"
         >
           <Button
