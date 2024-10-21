@@ -5,4 +5,7 @@ export const WIZARD_TYPES = {
     MY_STARTUPS: "startups-my",
     ALL_STARTUPS: "startups-all",
   },
+  IDEAVALIDATION:{
+    IDEAVALIDATION: "idea-validation",
+  }
 };

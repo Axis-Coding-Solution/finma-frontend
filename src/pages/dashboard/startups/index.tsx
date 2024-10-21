@@ -32,8 +32,20 @@ const MyStartupPage = () => {
           text="Here you can see all startups"
         >
           <Button
+            className={
+              wizardType === WIZARD_TYPES.STARTUPS.ALL_STARTUPS
+                ? "z-20 relative"
+                : ""
+            }
             onClick={() => setFilter("all")}
-            variant={filter === "all" || !filter ? "dark" : "outline"}
+            variant={
+              filter === "all" ||
+              (!filter && wizardType !== WIZARD_TYPES.STARTUPS.ALL_STARTUPS)
+                ? "dark"
+                : wizardType !== WIZARD_TYPES.STARTUPS.ALL_STARTUPS
+                ? "outline"
+                : "secondary-dark"
+            }
             size="sm"
             rounded
           >
@@ -46,8 +58,20 @@ const MyStartupPage = () => {
           nextWizard={WIZARD_TYPES.STARTUPS.ALL_STARTUPS}
         >
           <Button
+            className={
+              wizardType === WIZARD_TYPES.STARTUPS.MY_STARTUPS
+                ? "z-20 relative"
+                : ""
+            }
             onClick={() => setFilter("my-startup")}
-            variant={filter === "my-startup" ? "dark" : "outline"}
+            variant={
+              filter === "my-startup" &&
+              wizardType !== WIZARD_TYPES.STARTUPS.MY_STARTUPS
+                ? "dark"
+                : wizardType !== WIZARD_TYPES.STARTUPS.MY_STARTUPS
+                ? "outline"
+                : "secondary-dark"
+            }
             size="sm"
             rounded
           >

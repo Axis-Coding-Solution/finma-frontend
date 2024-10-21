@@ -7,13 +7,12 @@ import {
 import { ChevronRight } from "lucide-react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+
 function StartupDetailPage() {
   const params = useParams();
-
   const startupId = params.id;
 
   const { data } = useGetStartupById(String(startupId));
-
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
