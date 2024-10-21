@@ -5,14 +5,11 @@ import { FetchLoader, HeadingButton } from "@/pages/components/common";
 import ProjectCard from "@/pages/components/dashboard/my-projects/card";
 import ProjectAddModal from "@/pages/components/dashboard/my-projects/project-add-modal";
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
 
 const MyStartupPage = () => {
   const [filter, setFilter] = useState("");
-  const [searchParams] = useSearchParams();
   const { data, isLoading } = useGetStartups(filter);
-console.log("qwerty", data)
-  const showWizard = Boolean(searchParams.get("showWizard"));
+ 
 
   const totalProjects = data ? data?.length : 0;
 
@@ -22,11 +19,8 @@ console.log("qwerty", data)
         <HeadingButton
           title="My Startups"
           subtitle={`${totalProjects} Startup${totalProjects > 1 ? "s" : ""}`}
-          renderRight={<ProjectAddModal showWizard={showWizard} />}
+          renderRight={<ProjectAddModal />}
         />
-        {showWizard && (
-          <div className="z-10 w-full h-screen bg-black/60 fixed top-0 left-0"></div>
-        )}
       </div>
       <div className="flex flex-wrap gap-2 items-center">
         <Button
