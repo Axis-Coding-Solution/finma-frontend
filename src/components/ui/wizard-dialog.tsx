@@ -30,10 +30,11 @@ export const WizardDialog = ({
           <Tooltip defaultOpen={true} open={show}>
             <TooltipTrigger asChild>{children}</TooltipTrigger>
             <TooltipContent
-              className="mt-1 border-0 bg-secondary text-secondary-foreground rounded-sm px-3 py-2"
+              asChild
+              className="before:size-6 before:bg-secondary before:absolute data-[side=top]:before:-bottom-1 data-[side=bottom]:before:top-0 sm:before:right-1/2 before:right-1/2 before:translate-x-1/2 before:rotate-45 before:-z-10 mt-1 border-0 bg-secondary text-secondary-foreground rounded-sm px-3 py-2"
               side="bottom"
             >
-              <div className="sm:w-[400px] w-full flex justify-between items-center before:size-6 before:bg-secondary before:absolute before:top-0 sm:before:right-1/2 before:right-1/2 before:translate-x-1/2 before:rotate-45 before:-z-10">
+              <div className="sm:w-[400px] w-full flex justify-between items-center">
                 <span>{text}</span>
                 <Button
                   onClick={(e) => {
