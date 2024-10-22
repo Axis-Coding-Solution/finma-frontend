@@ -1,5 +1,6 @@
 import { axiosAuthInstance } from "@/utils/axios";
 import {
+  emailVerificationInitialValues,
   forgetPasswordInitialValues,
   loginInitialValues,
   resetPasswordInitialValues,
@@ -66,6 +67,21 @@ export const resetPasswordApi = async (
   try {
     const res = await axiosAuthInstance.patch(
       appendUrl("reset-password"),
+      body
+    );
+    return res.data;
+  } catch (error: any) {
+    return Promise.reject(apiErrorHandler(error));
+  }
+};
+
+
+export const emailVerificationApi = async (
+  body: typeof emailVerificationInitialValues
+) => {
+  try {
+    const res = await axiosAuthInstance.post(
+      appendUrl("verify-email"),
       body
     );
     return res.data;

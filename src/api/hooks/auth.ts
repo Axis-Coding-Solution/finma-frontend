@@ -1,5 +1,6 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import {
+  emailVerificationApi,
   forgetPasswordApi,
   getGoogleAuthUrl,
   loginApi,
@@ -12,6 +13,7 @@ export const SIGN_UP_QUERY_KEY = "auth/sign-up";
 export const CONTINUE_WITH_GOOGLE_QUERY_KEY = "auth/google";
 export const FORGET_PASSWORD_QUERY_KEY = "auth/forget-password";
 export const RESET_PASSWORD_QUERY_KEY = "auth/reset-password";
+export const VERIFY_EMAIL_QUERY_KEY = "auth/verify-email";
 
 export const useLoginMutation = () =>
   useMutation({
@@ -41,4 +43,10 @@ export const useResetPasswordMutation = () =>
   useMutation({
     mutationFn: resetPasswordApi,
     mutationKey: [RESET_PASSWORD_QUERY_KEY],
+  });
+
+export const useEmailVerificationMutation = () =>
+  useMutation({
+    mutationFn: emailVerificationApi,
+    mutationKey: [VERIFY_EMAIL_QUERY_KEY],
   });

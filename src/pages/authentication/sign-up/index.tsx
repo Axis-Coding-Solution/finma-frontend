@@ -41,7 +41,7 @@ const SignUpPage = () => {
       const response = await mutateAsync(data);
       const { token, user } = response.data;
       auth?.handleLoginToSession({ token, user });
-      navigate("/onboarding/select-role", { replace: true });
+      navigate(`/auth/sign-up/completed?email=${data.email}`, { replace: true });
       successToast(response.message);
     } catch (error: any) {
       errorToast(error.message);

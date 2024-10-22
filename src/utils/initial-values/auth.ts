@@ -18,3 +18,8 @@ export const resetPasswordInitialValues = {
   password: "",
   confirmPassword: "",
 };
+
+export const emailVerificationInitialValues = {
+  token: "",
+  id: "",
+};
