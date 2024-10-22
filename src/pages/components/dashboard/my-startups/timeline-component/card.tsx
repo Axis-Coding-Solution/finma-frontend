@@ -44,7 +44,7 @@ export const StartupTimelineCard: React.FC<StartupTimelineCardProps> = ({
         show={showWizard && type === "ideaValidation"}
         text="Click here to create a idea validation"
       >
-        <Link to={to}>
+        <Link to={status?.count > 0 ?  to : `${to}?wizardType=startups-idea-validation-edit-problem` }>
           <div
             className={cn(
               "2xl:p-5 p-4 rounded w-full relative",

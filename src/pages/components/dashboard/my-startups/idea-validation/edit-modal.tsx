@@ -129,7 +129,7 @@ export const IdeaValidationCardEditModal = ({
   return (
     <>
       <Dialog open={modal.show} onOpenChange={modal.setShow}>
-        <DialogTrigger asChild>
+        <DialogTrigger asChild={showWizard}>
           <WizardDialog
             show={showWizard}
             text={wizardText}

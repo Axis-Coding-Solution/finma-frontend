@@ -42,7 +42,8 @@ export const WizardDialog = ({
                     navigate(
                       nextWizard
                         ? `${pathname}?wizardType=${nextWizard}`
-                        : pathname
+                        : pathname,
+                      { replace: true }
                     );
                   }}
                   type="button"
