@@ -1,14 +1,17 @@
 import { useEmailVerificationMutation } from "@/api/hooks";
 import { MainHeading } from "@/pages/components/common";
 import { errorToast, successToast } from "@/utils";
+import { useAuth } from "@/utils/hooks";
 import { X } from "lucide-react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 const emailVerificationPage = () => {
+  const auth = useAuth();
   const [searchParams] = useSearchParams();
   const token = String(searchParams.get("token"));
   const id = String(searchParams.get("id"));
+  const [status, setStatus] = useState("Verifying your email!");
 
   const { mutateAsync } = useEmailVerificationMutation();
   const navigate = useNavigate();
@@ -19,9 +22,15 @@ const emailVerificationPage = () => {
         try {
           const values = { token, id };
           const response = await mutateAsync(values);
+          const { token: userToken, user, redirectUrl } = response.data;
           successToast(response.message);
-          navigate("/onboarding/select-role", { replace: true });
+          setStatus("Email Verified successfully! Redirecting to next step.");
+          auth?.handleLoginToSession({ token: userToken, user });
+          navigate(redirectUrl, { replace: true });
         } catch (error: any) {
+          setStatus(
+            "Unable to verify your email. Please login again to verify your email!"
+          );
           errorToast(error.message);
         }
       }
@@ -44,9 +53,7 @@ const emailVerificationPage = () => {
             title="Email Verification"
             subtitle="Email has been verification Successfully"
           />
-          <h5 className="font-semibold text-lg text-center mt-4">
-            {token} {id}
-          </h5>
+          <h5 className="font-semibold text-lg text-center mt-4">{status}</h5>
         </div>
       </div>
     </div>

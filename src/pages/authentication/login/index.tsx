@@ -30,7 +30,7 @@ const LoginPage = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm({
     defaultValues: loginInitialValues,
     resolver: yupResolver(loginSchema),
@@ -44,6 +44,8 @@ const LoginPage = () => {
       successToast(response.message);
       navigate(redirectUrl, { replace: true });
     } catch (error: any) {
+      if (error.data?.redirectUrl)
+        navigate(error.data.redirectUrl, { replace: true });
       errorToast(error.message);
     }
   };
@@ -75,7 +77,10 @@ const LoginPage = () => {
           </button>
           <div className="rounded bg-secondary h-40 w-40 absolute -top-[100px] -right-[100px]"></div>
           <div className="sm:mt-0 mt-4">
-          <MainHeading title="Log in" subtitle="Please log in in the system." />
+            <MainHeading
+              title="Log in"
+              subtitle="Please log in in the system."
+            />
           </div>
           <div className="flex flex-col 2xl:gap-8 sm:gap-6 gap-4">
             {!showLoginForm ? (
@@ -112,7 +117,11 @@ const LoginPage = () => {
                   <h6 className="text-end">
                     <Link to="/auth/forget-password">Forgot password?</Link>
                   </h6>
-                  <Button type="submit" className="w-full">
+                  <Button
+                    disabled={isSubmitting}
+                    type="submit"
+                    className="w-full"
+                  >
                     Log in
                   </Button>
                 </div>

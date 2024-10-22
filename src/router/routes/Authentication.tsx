@@ -47,10 +47,16 @@ const AuthenticationRoutes = [
   {
     element: <SignUpCompletedPage />,
     path: "/auth/sign-up/completed",
+    meta: {
+      isRestrictedRoute: true,
+    },
   },
   {
     element: <EmailVerificationPage />,
-    path: "/auth/email-verification",
+    path: "/auth/verify-email",
+    meta: {
+      isRestrictedRoute: true,
+    },
   },
 ];
 

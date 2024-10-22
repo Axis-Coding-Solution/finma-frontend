@@ -3,9 +3,8 @@ import { X } from "lucide-react";
 import { useSearchParams } from "react-router-dom";
 
 const SignUpCompletedPage = () => {
-  const [searchParams] = useSearchParams()
+  const [searchParams] = useSearchParams();
   const emailAddress = String(searchParams.get("email"));
-
 
   return (
     <div className="bg-secondary rounded-lg 2xl:p-7 md:p-5 p-4">
@@ -22,7 +21,9 @@ const SignUpCompletedPage = () => {
             title="Sign up Completed"
             subtitle={`Email has been send for verification. Check your mail box:`}
           />
-          <h5 className="font-semibold text-lg text-center mt-4">{emailAddress}</h5>
+          <h5 className="font-semibold text-lg text-center mt-4">
+            {emailAddress}
+          </h5>
         </div>
       </div>
     </div>

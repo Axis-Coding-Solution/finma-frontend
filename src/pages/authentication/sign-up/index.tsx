@@ -4,7 +4,6 @@ import { MainHeading } from "@/pages/components/common";
 import { Mail, X } from "lucide-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "@/utils/hooks";
 import { useForm } from "react-hook-form";
 import { signUpInitialValues } from "@/utils/initial-values";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -16,7 +15,6 @@ import { ContinueWithGoogle } from "@/pages/components/auth";
 const SignUpPage = () => {
   const [showLoginForm, setShowLoginForm] = useState(false);
   const navigate = useNavigate();
-  const auth = useAuth();
 
   const handleLoginForm = () => {
     setShowLoginForm(true);
@@ -39,9 +37,9 @@ const SignUpPage = () => {
   const onsubmitHandler = async (data: typeof signUpInitialValues) => {
     try {
       const response = await mutateAsync(data);
-      const { token, user } = response.data;
-      auth?.handleLoginToSession({ token, user });
-      navigate(`/auth/sign-up/completed?email=${data.email}`, { replace: true });
+      navigate(`/auth/sign-up/completed?email=${data.email}`, {
+        replace: true,
+      });
       successToast(response.message);
     } catch (error: any) {
       errorToast(error.message);
@@ -86,7 +84,10 @@ const SignUpPage = () => {
         </button>
         <div className="rounded bg-secondary h-40 w-40 absolute -top-[100px] -right-[100px]"></div>
         <div className="sm:mt-0 mt-4">
-        <MainHeading title="Sign up" subtitle="Please sign up in the system." />
+          <MainHeading
+            title="Sign up"
+            subtitle="Please sign up in the system."
+          />
         </div>
         <div className="flex flex-col 2xl:gap-8 sm:gap-6 gap-4">
           {!showLoginForm ? (
