@@ -7,6 +7,7 @@ import { StartupTitleBar } from "@/pages/components/dashboard/my-startups";
 import { IdeaValidationCard } from "@/pages/components/dashboard/my-startups/idea-validation";
 import { ideaValidationContent } from "@/pages/components/dashboard/my-startups/idea-validation/data";
 import { ChevronRight } from "lucide-react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 const StartupIdeaValidationPage = () => {
@@ -17,6 +18,11 @@ const StartupIdeaValidationPage = () => {
   const { data: validationData } = useGetIdeaValidationByProjectId(
     String(startupId)
   );
+
+  useEffect(() => {
+    const hasVisited = localStorage.getItem("hasVisited");
+    if (!hasVisited) localStorage.setItem("hasVisited", "true");
+  }, []);
   return (
     <div className="flex flex-col 2xl:gap-10 gap-6">
       {/* back Button  */}
