@@ -1,0 +1,10 @@
+version: "3.3"
+services:
+  react_app:
+    container_name: client
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    restart: always
