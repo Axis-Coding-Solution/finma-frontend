@@ -3,7 +3,7 @@ os: linux
 
 files:
   - source: /
-    destination: /home/ubuntu/client
+    destination: /var/www/finma/client
 
 permissions:
   - object: scripts/
