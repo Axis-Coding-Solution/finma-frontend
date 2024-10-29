@@ -22,8 +22,16 @@ hooks:
       timeout: 300
       runas: root
 
+    - location: scripts/stop-nginx.sh  # Stop running containers
+      timeout: 300
+      runas: root
+
   ApplicationStart:
     - location: scripts/start-containers.sh  # Start containers after installation
+      timeout: 300
+      runas: ubuntu
+
+    - location: scripts/start-nginx.sh  # Start containers after installation
       timeout: 300
       runas: ubuntu
 
