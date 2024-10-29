@@ -24,12 +24,15 @@ COPY ./nginx.conf /etc/nginx/conf.d
 # Copy build output from Stage 1
 COPY --from=builder /app/dist /usr/share/nginx/html
 
-# Expose port 80 for the application
-EXPOSE 80
+# Install curl for healthcheck  
+RUN apk add --no-cache curl  
 
 # Add health check  
-HEALTHCHECK --interval=30s --timeout=3s \
-    CMD wget --quiet --tries=1 --spider http://localhost:80 || exit 1  
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+CMD curl -f http://localhost/ || exit 1  
+
+# Expose port 80 for the application
+EXPOSE 80
 
 # Start Nginx in the foreground
 ENTRYPOINT ["nginx", "-g", "daemon off;"]

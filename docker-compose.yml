@@ -12,6 +12,13 @@ services:
       - NODE_ENV=production  # Set the environment variable for production mode
     networks:  
       - app_network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/"]  
+      interval: 30s  
+      timeout: 3s  
+      retries: 3  
+      start_period: 5s 
+
 networks:  
   app_network:
     driver: bridge
