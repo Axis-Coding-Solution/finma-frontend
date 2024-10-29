@@ -61,7 +61,7 @@ if [ -z "$CONTAINER_STATUS" ]; then
 fi  
 
 # Get container ID  
-CONTAINER_ID=$(docker-compose ps -q client)  
+CONTAINER_ID=$(docker-compose ps -q react_app)  
 if [ -z "$CONTAINER_ID" ]; then  
     echo "Error: Could not find container ID for react_app"  
     docker-compose ps  
