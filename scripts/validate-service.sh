@@ -9,3 +9,4 @@ else
     echo "Service validation failed"
     exit 1
 fi
+
