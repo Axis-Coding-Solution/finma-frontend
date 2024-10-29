@@ -15,21 +15,23 @@ RUN npm run build
 # Stage 2: Serve with Nginx
 FROM nginx:stable-alpine
 
-# Remove default Nginx configuration
-RUN rm /etc/nginx/conf.d/default.conf
+WORKDIR /usr/share/nginx/html  
 
-# Copy custom Nginx configuration
-COPY ./nginx.conf /etc/nginx/conf.d
+# Install necessary tools for debugging  
+RUN apk add --no-cache \
+    curl \
+    wget \
+    netstat-nat \
+    procps \
+    net-tools  
 
-# Copy build output from Stage 1
-COPY --from=builder /app/dist /usr/share/nginx/html
-
-# Install curl for healthcheck  
-RUN apk add --no-cache curl  
+RUN rm /etc/nginx/conf.d/default.conf  
+COPY nginx.conf /etc/nginx/conf.d/  
+COPY --from=builder /app/dist .  
 
 # Add health check  
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-CMD curl -f http://localhost/ || exit 1  
+    CMD wget -q --spider http://localhost/health || exit 1 
 
 # Expose port 80 for the application
 EXPOSE 80
