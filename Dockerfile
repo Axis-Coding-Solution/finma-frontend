@@ -19,7 +19,7 @@ FROM nginx:stable-alpine
 RUN rm /etc/nginx/conf.d/default.conf
 
 # Copy custom Nginx configuration
-COPY ../nginx/nginx.conf /etc/nginx/conf.d
+COPY ./nginx.conf /etc/nginx/conf.d
 
 # Copy build output from Stage 1
 COPY --from=builder /app/build /usr/share/nginx/html
