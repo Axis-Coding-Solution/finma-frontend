@@ -25,9 +25,21 @@ RUN apk update && apk add --no-cache \
     procps \
     busybox-extras  
 
-RUN rm /etc/nginx/conf.d/default.conf  
-COPY nginx.conf /etc/nginx/conf.d/  
+RUN rm -rf /etc/nginx/conf.d/*
+
+COPY nginx.conf /etc/nginx/conf.d/default.conf  
+
 COPY --from=builder /app/dist .  
+
+# Create required directories and set permissions  
+RUN mkdir -p /var/log/nginx \
+    && touch /var/log/nginx/access.log \
+    && touch /var/log/nginx/error.log \
+    && chown -R nginx:nginx /var/log/nginx \
+    && chown -R nginx:nginx /usr/share/nginx/html 
+
+# Verify nginx configuration during build  
+RUN nginx -t
 
 # Add health check  
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
@@ -36,5 +48,7 @@ HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
 # Expose port 80 for the application
 EXPOSE 80
 
-# Start Nginx in the foreground
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
+# Use a custom entrypoint script  
+COPY docker-entrypoint.sh /  
+
+ENTRYPOINT ["/scripts/docker-entrypoint.sh"] 
