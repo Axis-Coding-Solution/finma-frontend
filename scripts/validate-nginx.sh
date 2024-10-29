@@ -34,7 +34,7 @@ check_nginx_config() {
 }  
 
 # Container name (adjust this to match your container name)  
-CONTAINER_NAME="react_app"  
+CONTAINER_NAME="client"  
 
 echo "Looking for container: $CONTAINER_NAME"  
 
