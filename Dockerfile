@@ -27,5 +27,9 @@ COPY --from=builder /app/dist /usr/share/nginx/html
 # Expose port 80 for the application
 EXPOSE 80
 
+# Add health check  
+HEALTHCHECK --interval=30s --timeout=3s \
+    CMD wget --quiet --tries=1 --spider http://localhost:80 || exit 1  
+
 # Start Nginx in the foreground
 ENTRYPOINT ["nginx", "-g", "daemon off;"]

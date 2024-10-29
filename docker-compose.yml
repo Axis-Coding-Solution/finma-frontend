@@ -10,3 +10,8 @@ services:
     restart: unless-stopped
     environment:  
       - NODE_ENV=production  # Set the environment variable for production mode
+    networks:  
+      - app_network
+networks:  
+  app_network:
+    driver: bridge
