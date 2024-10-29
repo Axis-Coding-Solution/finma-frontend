@@ -23,20 +23,30 @@ jobs:
           npm install
           npm run build
           tar -czvf react-app.tar.gz dist/  # Compress build for CodeDeploy
+      
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1  # Replace with your AWS region
 
-      - name: Upload to S3
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        run: |
-          aws s3 cp react-app.tar.gz s3://${{ secrets.S3_BUCKET_NAME }}/react-app.tar.gz
+      - name: Deploy to AWS CodeDeploy
+        uses: aws-actions/aws-codedeploy-deploy@v1
+        with:
+          application-name: ${{ secrets.CODEDEPLOY_APPLICATION_NAME }}  # Replace with your CodeDeploy application name
+          deployment-group: ${{ secrets.CODEDEPLOY_DEPLOYMENT_GROUP }}  # Replace with your CodeDeploy deployment group
+          bundle-type: zip
+          file-path: "."  # Path to the root of the repository
+          wait-for-deployment: true  # Wait until the deployment finishes before marking the job as done
 
-      - name: Deploy to CodeDeploy
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        run: |
-          aws deploy create-deployment \
-            --application-name ${{ secrets.CODEDEPLOY_APPLICATION_NAME }} \
-            --deployment-group-name ${{ secrets.CODEDEPLOY_DEPLOYMENT_GROUP }} \
-            --s3-location bucket=${{ secrets.S3_BUCKET_NAME }},key=react-app.tar.gz,bundleType=tgz
+
+      # - name: Deploy to CodeDeploy
+      #   env:
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #   run: |
+      #     aws deploy create-deployment \
+      #       --application-name ${{ secrets.CODEDEPLOY_APPLICATION_NAME }} \
+      #       --deployment-group-name ${{ secrets.CODEDEPLOY_DEPLOYMENT_GROUP }} \
+      #       --s3-location bucket=${{ secrets.S3_BUCKET_NAME }},key=react-app.tar.gz,bundleType=tgz
