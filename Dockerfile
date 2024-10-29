@@ -18,12 +18,12 @@ FROM nginx:stable-alpine
 WORKDIR /usr/share/nginx/html  
 
 # Install necessary tools for debugging  
-RUN apk add --no-cache \
+RUN apk update && apk add --no-cache \
     curl \
     wget \
-    netstat-nat \
+    net-tools \
     procps \
-    net-tools  
+    busybox-extras  
 
 RUN rm /etc/nginx/conf.d/default.conf  
 COPY nginx.conf /etc/nginx/conf.d/  
