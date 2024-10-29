@@ -16,8 +16,8 @@ phases:
   post_build:
     commands:
       - echo "Copying files to deployment location"
-      - mkdir -p /home/ubuntu/client
-      - cp -R build /home/ubuntu/client
+      - mkdir -p /var/www/finma/client
+      - cp -R build /var/www/finma/client
 artifacts:
   files:
     - appspec.yml
