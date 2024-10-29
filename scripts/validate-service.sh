@@ -18,7 +18,6 @@ check_url() {
     while [ $attempt -le $max_attempts ]; do  
         echo "Attempt $attempt of $max_attempts: Checking $url..."  
         
-        # Use wget instead of curl (more commonly available)  
         if wget -q --spider --timeout=10 "$url"; then  
             echo "Successfully connected to $url"  
             return 0  
@@ -32,7 +31,6 @@ check_url() {
     return 1  
 }  
 
-# Print system information  
 echo "System Information:"  
 echo "==================="  
 uname -a  
@@ -53,7 +51,7 @@ fi
 echo "Current running containers:"  
 docker ps -a  
 
-# Get container status  
+# Check if the container is running  
 CONTAINER_STATUS=$(docker-compose ps --services --filter "status=running")  
 if [ -z "$CONTAINER_STATUS" ]; then  
     echo "Error: No running containers found"  
@@ -63,7 +61,7 @@ if [ -z "$CONTAINER_STATUS" ]; then
 fi  
 
 # Get container ID  
-CONTAINER_ID=$(docker-compose ps -q react_app)  
+CONTAINER_ID=$(docker-compose ps -q client)  
 if [ -z "$CONTAINER_ID" ]; then  
     echo "Error: Could not find container ID for react_app"  
     docker-compose ps  
@@ -72,64 +70,61 @@ fi
 
 echo "Container ID: $CONTAINER_ID"  
 
-# Check container details  
-echo "Container Details:"  
-docker inspect $CONTAINER_ID  
+# Check container port mapping  
+echo "Checking container port mapping..."  
+PORT_MAPPING=$(docker port $CONTAINER_ID 80)  
+if [ -z "$PORT_MAPPING" ]; then  
+    echo "Error: Port 80 is not mapped"  
+    docker inspect $CONTAINER_ID  
+    exit 1  
+fi  
+echo "Port mapping: $PORT_MAPPING"  
 
-# Check if nginx is running in container  
-echo "Checking nginx process..."  
-if ! docker exec $CONTAINER_ID ps aux | grep nginx; then  
-    echo "Error: nginx process not found in container"  
-    docker exec $CONTAINER_ID ps aux  
+# Check if container is actually running  
+if [ "$(docker inspect -f '{{.State.Running}}' $CONTAINER_ID)" != "true" ]; then  
+    echo "Error: Container is not in running state"  
+    docker inspect $CONTAINER_ID  
     exit 1  
 fi  
 
-# Check nginx configuration  
-echo "Validating nginx configuration..."  
-if ! docker exec $CONTAINER_ID nginx -t; then  
-    echo "Error: nginx configuration test failed"  
-    docker exec $CONTAINER_ID cat /etc/nginx/conf.d/nginx.conf  
+# Check container logs for any obvious errors  
+echo "Recent container logs:"  
+docker logs --tail 50 $CONTAINER_ID  
+
+# Try to connect to the service using multiple methods  
+echo "Attempting to connect to service..."  
+
+# Method 1: Using wget inside container  
+echo "Testing connection inside container..."  
+if ! docker exec $CONTAINER_ID wget -q --spider --timeout=10 http://localhost/; then  
+    echo "Error: Service not accessible inside container"  
+    echo "Container nginx status:"  
+    docker exec $CONTAINER_ID nginx -t  
+    echo "Container nginx logs:"  
+    docker exec $CONTAINER_ID cat /var/log/nginx/error.log  
     exit 1  
 fi  
 
-# Check port binding  
-echo "Checking port 80 binding..."  
-if ! docker exec $CONTAINER_ID netstat -tulpn | grep :80; then  
-    echo "Error: Port 80 not bound in container"  
-    docker exec $CONTAINER_ID netstat -tulpn  
-    exit 1  
-fi  
-
-# Check host port 80  
-echo "Checking host port 80..."  
-if ! netstat -tulpn 2>/dev/null | grep :80; then  
-    echo "Error: Port 80 not listening on host"  
-    sudo netstat -tulpn  
-    exit 1  
-fi  
-
-# Check service response  
-echo "Checking service response..."  
+# Method 2: Using curl from host  
+echo "Testing connection from host..."  
 for i in {1..3}; do  
-    echo "Attempt $i to access service..."  
-    
-    # Try accessing the service  
-    if wget -q --spider --timeout=10 http://localhost/; then  
-        echo "Service is responding successfully"  
-        
-        # Final validation successful  
-        echo "All validation checks passed successfully"  
+    echo "Attempt $i..."  
+    if curl -s -f -m 5 http://localhost/ > /dev/null; then  
+        echo "Successfully connected to service"  
+        echo "All validation checks passed"  
         exit 0  
     fi  
-    
-    echo "Waiting 5 seconds before next attempt..."  
     sleep 5  
 done  
 
-# If we get here, the service check failed  
-echo "Error: Service is not responding after 3 attempts"  
+# If we get here, all connection attempts failed  
+echo "Error: Failed to connect to service after multiple attempts"  
 echo "Container logs:"  
 docker logs $CONTAINER_ID  
 echo "Nginx error logs:"  
 docker exec $CONTAINER_ID cat /var/log/nginx/error.log  
+echo "Container port bindings:"  
+docker inspect -f '{{range $p, $conf := .NetworkSettings.Ports}}{{$p}} -> {{(index $conf 0).HostPort}}{{"\n"}}{{end}}' $CONTAINER_ID  
+echo "Container network settings:"  
+docker inspect -f '{{json .NetworkSettings.Networks}}' $CONTAINER_ID  
 exit 1
