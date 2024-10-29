@@ -37,6 +37,9 @@ jobs:
       #     file-path: "."  # Path to the root of the repository
       #     wait-for-deployment: true  # Wait until the deployment finishes before marking the job as done
 
+      -  name: Upload to S3
+         run: |
+          aws s3 cp react-app.zip s3://${{ secrets.S3_BUCKET_NAME }}/react-app.zip
 
       - name: Deploy to CodeDeploy
         env:
