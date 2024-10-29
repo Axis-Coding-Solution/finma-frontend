@@ -52,6 +52,6 @@ HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
 EXPOSE 80
 
 # Use a custom entrypoint script  
-COPY docker-entrypoint.sh /  
+COPY scripts/docker-entrypoint.sh /docker-entrypoint.sh 
 
-ENTRYPOINT ["/scripts/docker-entrypoint.sh"] 
+ENTRYPOINT ["/docker-entrypoint.sh"] 
