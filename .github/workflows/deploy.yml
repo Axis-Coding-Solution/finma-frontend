@@ -19,7 +19,7 @@ jobs:
           node-version: '20'  # Use the version compatible with your React app
 
       - name: Zip code
-        run: tar -czvf react-app.tar.gz . -x "*.git*" "*.github*" "*.DS_Store" "*.env" "node_modules/*" "build/*" # Compress code for CodeDeploy
+        run: zip -r react-app.zip . -x "*.git*" "*.github*" "*.DS_Store" "*.env" "node_modules/*" "build/*" # Compress code for CodeDeploy
       
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -46,4 +46,4 @@ jobs:
           aws deploy create-deployment \
             --application-name ${{ secrets.CODEDEPLOY_APPLICATION_NAME }} \
             --deployment-group-name ${{ secrets.CODEDEPLOY_DEPLOYMENT_GROUP }} \
-            --s3-location bucket=${{ secrets.S3_BUCKET_NAME }},key=react-app.tar.gz,bundleType=tgz
+            --s3-location bucket=${{ secrets.S3_BUCKET_NAME }},key=react-app.zip,bundleType=zip
