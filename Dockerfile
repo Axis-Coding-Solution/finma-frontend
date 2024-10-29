@@ -25,9 +25,12 @@ RUN apk update && apk add --no-cache \
     procps \
     busybox-extras  
 
-RUN rm -rf /etc/nginx/conf.d/*
+# Remove default nginx configuration  
+RUN rm /etc/nginx/conf.d/default.conf  
 
-COPY nginx.conf /etc/nginx/conf.d/default.conf  
+# Copy nginx configurations  
+COPY nginx/nginx.conf /etc/nginx/nginx.conf  
+COPY nginx/default.conf /etc/nginx/conf.d/default.conf   
 
 COPY --from=builder /app/dist .  
 
