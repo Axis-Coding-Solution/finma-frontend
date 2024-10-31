@@ -14,10 +14,10 @@ services:
       - app_network
     healthcheck:  
       test: ["CMD", "wget", "-q", "--spider", "http://localhost/" ]  
-      interval: 30s  
+      interval: 30s  # Time between running the check (30 seconds)
       timeout: 3s  
       retries: 3  
-      start_period: 5s  
+      start_period: 5s    
     logging:  
       driver: "json-file"  
       options:  
