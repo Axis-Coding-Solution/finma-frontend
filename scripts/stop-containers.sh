@@ -17,13 +17,19 @@ fi
 echo "Stopping nginx service if running..."  
 sudo systemctl stop nginx || true  
 
-# Stop and remove all containers  
-echo "Stopping all Docker containers..."  
-docker-compose down --remove-orphans || true  
-docker rm -f $(docker ps -aq) || true  
+# # Stop and remove all containers  
+# echo "Stopping all Docker containers..."  
+# docker-compose down --remove-orphans || true  
+# docker rm -f $(docker ps -aq) || true  
 
 # Remove all Docker networks  
 echo "Cleaning up Docker networks..."  
 docker network prune -f  
 
-echo "Containers stopped successfully"
+# Remove the old container  
+echo "Removing the old container: finma-client"  
+docker rm -f client  
+
+# Build and run the new container  
+echo "Building and running the new container: finma-client"  
+docker-compose up -d  
