@@ -13,10 +13,10 @@ if [ ! -f "docker-compose.yml" ]; then
     exit 1  
 fi  
 
-# Stop any existing containers and clean up  
-echo "Stopping existing containers..."  
-docker-compose down --remove-orphans || true  
-docker rm -f $(docker ps -aq) || true  
+# # Stop any existing containers and clean up  
+# echo "Stopping existing containers..."  
+# docker-compose down --remove-orphans || true  
+# docker rm -f $(docker ps -aq) || true  
 
 # Stop nginx if it's running  
 echo "Stopping nginx service if running..."  
