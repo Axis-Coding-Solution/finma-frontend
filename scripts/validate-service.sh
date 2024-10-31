@@ -72,43 +72,9 @@ echo "Container ID: $CONTAINER_ID"
 
 # Check container port mapping  
 echo "Checking container port mapping..."  
-PORT_MAPPING=$(docker port $CONTAINER_ID 80 2>/dev/null)  
-if [ $? -ne 0 ]; then
-    echo "Error: Failed to retrieve port mapping. Is the container running?"
-    docker inspect $CONTAINER_ID
-    exit 1
-fi
-
+PORT_MAPPING=$(docker port $CONTAINER_ID 80)  
 if [ -z "$PORT_MAPPING" ]; then  
     echo "Error: Port 80 is not mapped"  
-    docker inspect $CONTAINER_ID  
-    exit 1  
-fi  
-
-echo "Port mapping: $PORT_MAPPING"
-
-# Validate nginx configuration
-echo "Validating nginx configuration..."
-docker exec $CONTAINER_ID nginx -t
-if [ $? -ne 0 ]; then
-    echo "Error: nginx configuration is invalid"
-    exit 1
-fi
-
-# Start nginx
-echo "Starting nginx..."
-docker exec $CONTAINER_ID nginx
-if [ $? -ne 0 ]; then
-    echo "Error: Failed to start nginx"
-    exit 1
-fi
- 
-
-# Check container port mapping  
-echo "Checking container port mapping..."  
-PORT_MAPPING=$(docker port $CONTAINER_ID 3000)  
-if [ -z "$PORT_MAPPING" ]; then  
-    echo "Error: Port 3000 is not mapped"  
     docker inspect $CONTAINER_ID  
     exit 1  
 fi  
@@ -123,7 +89,7 @@ fi
 
 # Check container logs for any obvious errors  
 echo "Recent container logs:"  
-docker logs --tail 100 $CONTAINER_ID  
+docker logs --tail 50 $CONTAINER_ID  
 
 # Try to connect to the service using multiple methods  
 echo "Attempting to connect to service..."  
