@@ -4,7 +4,7 @@ import { FloatingInputPassword } from "@/components/ui/floating-input-password";
 import { ContinueWithGoogle } from "@/pages/components/auth";
 import { MainHeading } from "@/pages/components/common";
 import { errorToast, successToast } from "@/utils";
-import { useAuth } from "@/utils/hooks";
+import { useAuth, useToastQuery } from "@/utils/hooks";
 import { loginInitialValues } from "@/utils/initial-values";
 import { loginSchema } from "@/utils/validation-schemas";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -17,6 +17,7 @@ const LoginPage = () => {
   const [showLoginForm, setShowLoginForm] = useState(false);
   const navigate = useNavigate();
   const auth = useAuth();
+  useToastQuery({ queryName: "errorMessage", type: "error" });
 
   const handleLoginForm = () => {
     setShowLoginForm(true);
@@ -53,20 +54,6 @@ const LoginPage = () => {
   return (
     <>
       <div className="bg-secondary  rounded-lg 2xl:p-7 md:p-5 p-4">
-        {/* <div className="w-full flex flex-col gap-10 justify-between">
-          <MainHeading
-            title="Welcome Back!"
-            subtitle="Join our community of entrepreneurs, and let's make your startup
-                dreams a reality!"
-          />
-          <figure>
-            <img
-              src="/assets/images/login-main.png"
-              className="xl:w-full w-60"
-              alt="Main Login Image"
-            />
-          </figure>
-        </div> */}
         <div className="2xl:w-[532px] sm:w-[432px] bg-background rounded 2xl:p-[52px] md:p-6  p-4  flex flex-col  2xl:gap-[52px] sm:gap-10 gap-6 relative overflow-hidden">
           <button
             type="button"

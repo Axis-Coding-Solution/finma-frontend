@@ -23,6 +23,7 @@ export const ProtectedRoutes = ({
 
   useEffect(() => {
     if (token && user) {
+      console.log("🚀 ~ useEffect ~ token && user:", user)
       const parsedUser = JSON.parse(user);
       if (
         parsedUser.role &&
