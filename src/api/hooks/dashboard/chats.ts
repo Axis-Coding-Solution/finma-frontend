@@ -28,15 +28,16 @@ export const useGetChatByReceiverId = (id: string) =>
     queryKey: [GET_CHATS_QUERY_KEY, id],
   });
 
-export const useGetRecentChats = () =>
+export const useGetRecentChats = (token: string | undefined) =>
   useQuery({
     queryFn: getRecentChatApi,
     queryKey: [GET_RECENT_CHATS_QUERY_KEY],
+    enabled: !!token,
   });
 
-  export const useDeleteChat = () => {
-    return useMutation({
-      mutationFn: delChatApi,
-      mutationKey: [GET_CHATS_QUERY_KEY],
-    });
-  };
+export const useDeleteChat = () => {
+  return useMutation({
+    mutationFn: delChatApi,
+    mutationKey: [GET_CHATS_QUERY_KEY],
+  });
+};

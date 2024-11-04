@@ -2,12 +2,14 @@ import { userAvatar2Image } from "@/assets/images";
 import { Avatar } from "@/components/ui/avatar";
 import { truncateText } from "@/utils";
 import { cn } from "@/utils";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { useGetRecentChats } from "@/api/hooks/dashboard";
 
 export const ConnectWithExperts = () => {
+  const { token } = useParams();
   const { pathname } = useLocation();
-  const { data: chats } = useGetRecentChats();
+
+  const { data: chats } = useGetRecentChats(token);
 
   return (
     <div className="text-foreground mt-4 flex flex-col gap-1  md:pr-6 pr-3">
@@ -15,9 +17,9 @@ export const ConnectWithExperts = () => {
         Recent Chats
       </h6>
       {Array.isArray(chats) &&
-        chats?.map((chat: any, index:number) => (
+        chats?.map((chat: any, index: number) => (
           <Link
-          key={index}
+            key={index}
             to={`/dashboard/chats/${chat?.id}`}
             className={cn(
               "truncate w-full md:px-3 py-2 flex gap-3 2xl:rounded-lg rounded-2xl tran items-center hover:bg-warning hover:text-foreground text-background",
