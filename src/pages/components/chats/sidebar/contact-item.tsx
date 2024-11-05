@@ -1,7 +1,7 @@
 import { Avatar } from "@/components/ui/avatar";
 import { chatUserDataHook } from "@/store";
 import { useHookstate } from "@hookstate/core";
-import {  useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { DoubleCheck, SingleCheck } from "@/assets/svgs";
 import { convertDate, truncateText } from "@/utils";
 import { useEffect } from "react";
@@ -28,6 +28,8 @@ export const ChatContactItem = ({ item, chatId, onLinkClick }: PropsTypes) => {
     onLinkClick(true);
     navigate(`/dashboard/chats/${item.id}`);
   };
+
+  console.log("item: ", item);
   return (
     <div className="pt-1 cursor-pointer" onClick={handleClick}>
       <div
@@ -46,10 +48,7 @@ export const ChatContactItem = ({ item, chatId, onLinkClick }: PropsTypes) => {
                 {truncateText(item?.user?.fullName, 16)}
               </h6>
               <span className="text-muted-text text-sm">
-                {truncateText(
-                  item?.lastMessage ?? item?.user?.entrepreneurType,
-                  14
-                )}
+                {truncateText(item?.user?.entrepreneurType, 14)}
               </span>
             </div>
             <div className="flex justify-center items-center gap-1">
