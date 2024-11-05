@@ -6,7 +6,7 @@ import { ScrollArea } from "@/components/_ui/scroll-area";
 import { useAppParams } from "@/utils/hooks";
 import { SearchInput } from "@/components/ui/search-input";
 
-export const ChatsSidebar = ({onLinkClick}:{onLinkClick:any}) => {
+export const ChatsSidebar = ({ onLinkClick }: { onLinkClick: any }) => {
   const { id: chatId } = useAppParams();
   const { data = {}, isPending } = useGetChats();
   const { data: chats } = data;
@@ -29,11 +29,16 @@ export const ChatsSidebar = ({onLinkClick}:{onLinkClick:any}) => {
           <SearchInput />
         </div>
         {/* <Input type="text" /> */}
-        <div className="overflow-y-auto  bg-accent custom-scrollbar-secondary">
-          <ScrollArea className="overflow-y-auto  ">
+        <div className="overflow-y-auto bg-accent custom-scrollbar-secondary">
+          <ScrollArea className="overflow-y-auto">
             {!isPending &&
               chats?.map((item: any, index: number) => (
-                <ChatContactItem  item={item} key={index} chatId={chatId} onLinkClick={onLinkClick} />
+                <ChatContactItem
+                  item={item}
+                  key={index}
+                  chatId={chatId}
+                  onLinkClick={onLinkClick}
+                />
               ))}
             {isPending ||
               (!chats && (
