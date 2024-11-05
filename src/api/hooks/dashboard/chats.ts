@@ -32,7 +32,7 @@ export const useGetRecentChats = (token: string | undefined) =>
   useQuery({
     queryFn: getRecentChatApi,
     queryKey: [GET_RECENT_CHATS_QUERY_KEY],
-    enabled: !!token,
+    enabled: !token,
   });
 
 export const useDeleteChat = () => {
