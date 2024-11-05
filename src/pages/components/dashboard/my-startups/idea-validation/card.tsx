@@ -11,7 +11,7 @@ interface IdeaValidationCardProps {
   image: string;
   data: any;
   notes: any[];
-  wizardValue:any;
+  wizardValue: any;
 }
 
 export const IdeaValidationCard: React.FC<IdeaValidationCardProps> = ({
@@ -24,6 +24,8 @@ export const IdeaValidationCard: React.FC<IdeaValidationCardProps> = ({
   wizardValue,
 }) => {
   const [reloadScore, setReloadScore] = useState(false);
+
+  console.log(data?.response?.score);
   return (
     <div className="bg-info-light 2xl:p-8 p-4 rounded grid grid-cols-12 md:gap-10 gap-6 items-stretch">
       <div className="md:order-1 order-2 md:col-span-9 col-span-12 bg-background 2xl:p-8  p-4 rounded flex sm:flex-row flex-col 2xl:gap-24 md:gap-12 gap-6 items-center justify-between">

@@ -221,7 +221,7 @@ export const IdeaValidationCardEditModal = ({
                       reloadScore ? "animate-spin" : "animate-none"
                     }`}
                   >
-                    <ReloadSvg trueCount={data?.response?.score} />
+                    <ReloadSvg trueCount={response?.score} />
                   </div>
                   <span className="2xl:text-base text-sm flex flex-col gap-1 font-medium leading-[18px]">
                     The {name} score{" "}
