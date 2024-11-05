@@ -73,7 +73,6 @@ export function truncateText(text: string, length: number) {
   if (text && text?.length <= length) {
     return text;
   }
-  console.log("text: ", text);
   return text ? text?.substring(0, length) + "..." : "";
 }
 

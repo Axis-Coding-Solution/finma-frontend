@@ -28,8 +28,6 @@ export const ChatContactItem = ({ item, chatId, onLinkClick }: PropsTypes) => {
     onLinkClick(true);
     navigate(`/dashboard/chats/${item.id}`);
   };
-
-  console.log("item: ", item);
   return (
     <div className="pt-1 cursor-pointer" onClick={handleClick}>
       <div
