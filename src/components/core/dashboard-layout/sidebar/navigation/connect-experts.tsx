@@ -31,24 +31,14 @@ export const ConnectWithExperts = () => {
               image={chat?.user?.profilePicture ?? userAvatar2Image}
               size="md"
               active
+              isOnline={chat?.user.isOnline}
             />
             <div className="flex flex-col md:text-base text-sm ">
-              <span
-                className=""
-                style={{
-                  whiteSpace: "nowrap",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  width: "150px",
-                }}
-              >
                 {truncateText(chat?.user?.fullName, 16)}
-              </span>
-
               <span className="text-muted-foreground text-xs">
                 {truncateText(
                   chat?.lastMessage ?? chat?.user?.entrepreneurType,
-                  14
+                  24
                 )}
               </span>
             </div>

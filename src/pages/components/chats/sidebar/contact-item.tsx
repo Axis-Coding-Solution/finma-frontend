@@ -35,7 +35,7 @@ export const ChatContactItem = ({ item, chatId, onLinkClick }: PropsTypes) => {
           isActive ? "bg-secondary-dark" : "border-white"
         }`}
       >
-        <Avatar image={item?.user?.profilePicture} size="lg" />
+        <Avatar image={item?.user?.profilePicture} size="lg" active isOnline={item?.user?.isOnline} />
         <div className="w-full">
           <div className="flex justify-between gap-2">
             <div className="">
@@ -45,8 +45,8 @@ export const ChatContactItem = ({ item, chatId, onLinkClick }: PropsTypes) => {
               >
                 {truncateText(item?.user?.fullName, 16)}
               </h6>
-              <span className="text-muted-text text-sm">
-                {truncateText(item?.user?.entrepreneurType, 14)}
+              <span className="text-muted-text text-xs">
+                {truncateText(item?.user?.entrepreneurType, 20)}
               </span>
             </div>
             <div className="flex justify-center items-center gap-1">
@@ -63,7 +63,8 @@ export const ChatContactItem = ({ item, chatId, onLinkClick }: PropsTypes) => {
           </div>
           <div className="flex items-center">
             <p className="text-muted-foreground text-xs w-full ">
-              {item?.lastMessage?.content || ""}
+              {/* {item?.lastMessage?.content || ""} */}
+              {truncateText(item?.lastMessage?.content || "",25)}
             </p>
 
             {/* <Check className="text-muted-foreground" size={17} /> */}

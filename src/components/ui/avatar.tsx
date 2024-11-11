@@ -24,11 +24,13 @@ export interface BadgeProps
     VariantProps<typeof badgeVariants> {
   image?: string;
   active?: boolean;
+  isOnline?: boolean;
 }
 
 function Avatar({
   image,
   active = false,
+  isOnline = false,
   className,
   size,
   ...props
@@ -49,7 +51,15 @@ function Avatar({
       {active && (
         <span
           role="status"
-          className="min-w-3 h-3 rounded-full bg-primary border-2 border-background z-10 absolute right-0 bottom-0"
+          className=
+          {
+            cn(
+              "min-w-3 h-3 rounded-full bg-muted-foreground border-2 border-background z-10 absolute right-0 bottom-0",
+              isOnline &&
+                "bg-success"
+            )
+          }
+          
         />
       )}
     </ImgWrapper>

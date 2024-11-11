@@ -22,7 +22,7 @@ function ChatBoxPage() {
     socket.emit(SOCKET_ENUMS.JOIN, auth?.user._id);
     return () => {
       socket.off(SOCKET_ENUMS.RECEIVE_MESSAGE);
-      socket.disconnect();
+      socket.disconnect(auth?.user._id);
     };
   }, [auth?.user]);
 

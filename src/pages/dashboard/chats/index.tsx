@@ -43,8 +43,12 @@ function ChatBoxPage() {
 
   let RenderContent = null;
   useEffect(() => {
+    socket.emit(SOCKET_ENUMS.IS_ONLINE, {userId:auth?.user.id, isOnline: true});
     socket.emit(SOCKET_ENUMS.JOIN, auth?.user.id);
-  }, [auth?.user]);
+    return () => {
+      socket.emit(SOCKET_ENUMS.IS_ONLINE, {userId:auth?.user.id, isOnline: false});
+    }
+  }, []);
 
   if (!id) RenderContent = NoMessages;
   else {

@@ -12,9 +12,9 @@ export const createChatsApi = async (id: string) => {
     return Promise.reject(apiErrorHandler(error));
   }
 };
-export const getChatsApi = async () => {
+export const getChatsApi = async (filter: string) => {
   try {
-    const res = await get(url);
+    const res = await get(filter ? `${url}?filter=${filter}` : url);
     return res.data;
   } catch (error: any) {
     return Promise.reject(apiErrorHandler(error));
