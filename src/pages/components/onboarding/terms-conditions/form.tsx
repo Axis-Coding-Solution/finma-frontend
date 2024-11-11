@@ -17,7 +17,7 @@ import { Controller, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { Button, Checkbox, Label } from "@/components/ui";
 import { useCreateProfileMutation } from "@/api/hooks";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 type VALUES_TYPE = {
   firstName: string;
@@ -52,6 +52,8 @@ export const TermsAndConditionsForm = () => {
   const auth = useAuth();
   const { getFormData, clearFormData } = useOnboardingForm();
   const form: any = getFormData();
+  const [isLoading, setIsLoading] = useState(false);
+
 
   const { mutateAsync } = useCreateProfileMutation();
 
@@ -77,6 +79,7 @@ export const TermsAndConditionsForm = () => {
   ) => {
     if (!data.isAgreedForTerms || !data.isAgreedForPrivacyPolicy) return null;
     if (!form) return navigate("/onboarding/select-role");
+    setIsLoading(true);
     try {
       const formData = createFormData(form);
       const res = await mutateAsync(formData);
@@ -100,6 +103,8 @@ export const TermsAndConditionsForm = () => {
     } catch (error: any) {
       errorToast(error?.message);
     }
+    finally
+    {setIsLoading(false);}
   };
   return (
     <form
@@ -166,9 +171,12 @@ export const TermsAndConditionsForm = () => {
         <Button
           className="rounded-[8px] 2xl:text-2xl text-base 2xl:h-12 h-10 2xl:px-10 px-6"
           type="submit"
+          // onClick={() => setIsLoading(true)}
+          disabled={isLoading}
         >
-          Done
-        </Button>
+        {/* {isLoading ? "Processing..." : "Done"}        */}
+        Done
+         </Button>
       </div>
     </form>
   );

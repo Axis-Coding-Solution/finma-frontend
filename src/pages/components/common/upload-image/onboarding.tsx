@@ -17,8 +17,10 @@ export const UploadImageOnboarding = ({ onUpload, preview }: PropsType) => {
           className="size-20 rounded-full border border-black"
           onLoad={(e) => URL.revokeObjectURL(e.currentTarget.src)}
           alt="Profile Photo"
+          // accept="image/png, image/jpeg, image/jpg"
         />
       </div>
+      
       <div className="cursor-pointer">
         <Button
           icon={<CloudUploadIcon />}

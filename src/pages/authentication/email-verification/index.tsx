@@ -45,7 +45,7 @@ const emailVerificationPage = () => {
           type="button"
           className="absolute rounded-full size-12 inline-flex justify-center items-center top-0 right-0 self-end bg-background z-10"
         >
-          <X />
+          <X  onClick={() => window.history.back()}/>
         </button>
         <div className="rounded bg-secondary h-40 w-40 absolute -top-[100px] -right-[100px]"></div>
         <div className="sm:mt-0 mt-4 2xl:py-8 py-5">

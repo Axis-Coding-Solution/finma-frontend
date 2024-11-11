@@ -82,6 +82,7 @@ export const UploadImage = ({
                 handleUploadedFile(e, onChange)
               }
               {...others}
+              accept="image/png, image/jpeg, image/jpg"
             />
           )}
         />
