@@ -16,10 +16,10 @@ export const useCreateChatMutation = () =>
     mutationKey: [GET_CHATS_QUERY_KEY],
   });
 
-export const useGetChats = (filter:string) =>
+export const useGetChats = (filter:any) =>
   useQuery({
     queryFn: () => getChatsApi(filter),
-    queryKey: [GET_CHATS_QUERY_KEY, filter ?? "all"],
+    queryKey: [GET_CHATS_QUERY_KEY, filter],
   });
 
 export const useGetChatByReceiverId = (id: string) =>

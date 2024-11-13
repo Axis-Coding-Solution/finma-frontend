@@ -3,10 +3,38 @@ import { Search } from "lucide-react";
 import { cn } from "@/utils";
 
 export interface SearchInputProps
-  extends React.HTMLAttributes<HTMLInputElement> {}
+  extends React.HTMLAttributes<HTMLInputElement> {
+
+    chats: any;
+    displayKey: string;
+  }
 
 const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
-  ({ className, ...props }, ref) => {
+
+  ({ className,chats, ...props }, ref) => {
+  // console.log("chats",chats.map((item) => item.user.fullName));
+
+  
+
+  
+    // chats.map((item) =>(
+    
+    //   console.log("item",item))
+    // );
+
+
+
+  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const value = e.target.value;
+  //   setSearchTerm(value);
+
+  //   // Filter the data based on the input
+  //   const filtered = chats.filter((item) =>
+  //     item[displayKey].toLowerCase().includes(value.toLowerCase())
+  //   );
+  //   setFilteredData(filtered);
+  // };
+
     return (
       <div className="relative flex items-center">
         <input

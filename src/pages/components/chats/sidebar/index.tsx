@@ -4,18 +4,19 @@ import { useGetChats } from "@/api/hooks/dashboard";
 import { EmptyMessage } from "@/assets/icons/empty-message";
 import { ScrollArea } from "@/components/_ui/scroll-area";
 import { useAppParams } from "@/utils/hooks";
-import { SearchInput } from "@/components/ui/search-input";
+import { Search } from "lucide-react";
+import { cn } from "@/utils";
 import { useState } from "react";
 
 const types = [
   { label: "All", value: "" },
-  { label: "Innovators", value: "innovators" },
+  { label: "Innovators", value: "innovator" },
   { label: "Experts", value: "expert" },
 ];
 export const ChatsSidebar = ({ onLinkClick }: { onLinkClick: any }) => {
-  const [selectedType, setSelectedType] = useState("");
+  const [filter, setFilter] = useState({type: "", search: ""});
   const { id: chatId } = useAppParams();
-  const { data = {}, isPending } = useGetChats(selectedType);
+  const { data = {}, isPending } = useGetChats(filter);
   const { data: chats } = data;
 
   return (
@@ -24,17 +25,31 @@ export const ChatsSidebar = ({ onLinkClick }: { onLinkClick: any }) => {
         <div className="flex items-center gap-2">
           {types.map((item) => (
             <Button
-              variant={item.value == selectedType ? "dark" : "outline"}
+              variant={item.value == filter.type ? "dark" : "outline"}
               size="sm"
               rounded
-              onClick={() => setSelectedType(item.value)}
+              onClick={() => setFilter((prev)=> ({...prev, type: item.value }))}
             >
               {item.label}
             </Button>
           ))}
         </div>
         <div>
-          <SearchInput />
+          <div className="relative flex items-center">
+            <input
+              type="search"
+              placeholder="Search"
+              value={filter.search}
+              onChange={(e) => setFilter((prev) => ({ ...prev, search: e.target.value }))}
+              className={cn(
+                "transition peer flex w-auto rounded-md ring-1 ring-[#4D4D4D] bg-transparent text-[#6a6a6a] pl-10 md:pr-5 py-2  pr-3 file:bg-transparent md:text-sm text-xs file:text-sm file:font-medium placeholder:text-[#6a6a6a] focus-visible:outline-none focus-visible:ring-ring disabled:cursor-not-allowed  "
+              )}
+            />
+            <Search
+              size={16}
+              className="transition peer-focus:text-ring text-[#6A6A6A] absolute left-2"
+            />
+          </div>
         </div>
         {/* <Input type="text" /> */}
         <div className="overflow-y-auto bg-accent custom-scrollbar-secondary">

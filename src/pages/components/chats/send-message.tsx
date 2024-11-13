@@ -129,11 +129,19 @@ import { Paperclip, Send, SmilePlus } from "lucide-react";
 import { Controller, useForm } from "react-hook-form";
 import { useHookstate } from "@hookstate/core";
 import { chatUserDataHook } from "@/store";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useAuth } from "@/utils/hooks";
 import { SOCKET_ENUMS } from "@/utils/constants/socket-enums";
 import socket from "@/lib/socket.io";
 import { useMessagesStore } from "@/store/hooks";
+import EmojiMessage from "./content/emoji-message";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui";
+import FileMessage from "./content/file-message";
 
 export const SendMessageBox = () => {
   const chatUser = useHookstate(chatUserDataHook);
@@ -147,6 +155,8 @@ export const SendMessageBox = () => {
     control,
     handleSubmit,
     reset: resetForm,
+    setValue,
+    getValues,
   } = useForm({
     mode: FORM_MODE,
     defaultValues: postMessagesInitialValues,
@@ -186,15 +196,33 @@ export const SendMessageBox = () => {
       errorToast(error.message);
     }
   };
+  const addEmoji = (emoji: any) => {
+    const values = getValues();
+    setValue("content", values.content + emoji.native);
+    if (textAreaRef.current) {
+      textAreaRef.current.textContent = values.content + emoji.native;
+    }
+  };
 
   return (
     <form
       className="flex items-center gap-3 w-full"
       onSubmit={handleSubmit(onSubmitMessage)}
     >
-      <button type="button" className="border-none bg-none cursor-pointer">
-        <Paperclip size={20} />
-      </button>
+      {/* <button type="button" className="border-none bg-none cursor-pointer">
+      </button> */}
+      <TooltipProvider>
+        <Tooltip delayDuration={150}>
+          <TooltipTrigger asChild>
+            <div>
+              <Paperclip size={26}/>
+            </div>
+          </TooltipTrigger>
+          <TooltipContent className="rounded-sm w-auto p-4">
+            <FileMessage />
+         </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
 
       <div className="w-full relative flex items-top p-1 border border-muted-foreground rounded py-2">
         <Controller
@@ -222,9 +250,16 @@ export const SendMessageBox = () => {
         />
       </div>
 
-      <button type="button" className="border-none bg-none cursor-pointer">
-        <SmilePlus size={20} />
-      </button>
+      <TooltipProvider>
+        <Tooltip delayDuration={150}>
+          <TooltipTrigger asChild>
+            <SmilePlus size={32} />
+          </TooltipTrigger>
+          <TooltipContent className="rounded-sm min-w-[200px] p-4 relative">
+            <EmojiMessage addEmoji={addEmoji} />
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
 
       <button
         className="border py-2 px-3 border-border flex justify-center items-center rounded-sm bg-secondary-dark"
