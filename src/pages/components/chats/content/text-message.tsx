@@ -1,4 +1,7 @@
 import { CheckCheck, Check } from "lucide-react";
+import ImagePreview from "./image-preview";
+import VideoPreview from "./video-preview";
+import DocumentPreview from "./document-preview";
 
 export const TextMessage = ({ message, index, position }: any) => {
   const container = position === "right" ? "justify-end" : "justify-start";
@@ -24,7 +27,10 @@ export const TextMessage = ({ message, index, position }: any) => {
               borderBottomLeftRadius: position === "left" ? "0px" : "10px",
             }}
           >
-            <h1>{message.content}</h1>
+            {message?.content && <h1>{message.content}</h1>}
+            {message?.image && <ImagePreview url={message.image}/>}
+            {message?.document && <DocumentPreview name={''} url={message.document}/>}
+            {message?.video && <VideoPreview url={message.video}/>}
             <p className=" flex justify-end gap-2 items-center text-[11px] pt-[2px] text-muted-foreground">
               {new Date(message.createdAt)?.toLocaleTimeString(undefined, {
                 hour: "2-digit",

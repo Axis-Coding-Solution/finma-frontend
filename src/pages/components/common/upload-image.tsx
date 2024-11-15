@@ -42,26 +42,20 @@ export const UploadImage = ({
     setPreview(urlImage);
     onChange(file);
   };
-
   const onUpload = () => {
     hiddenInputRef?.current?.click();
   };
-
   useEffect(() => {
     if (image && !preview) {
       if (image instanceof File) setPreview(URL.createObjectURL(image as any));
       else setPreview(image);
     }
   }, [image]);
-  // md:max-w-64
-
   const CurrentVariantDesign = designsForVariants[variant];
-
   const propsForDesign = {
     onUpload,
     preview,
   };
-
   return (
     <div className="relative">
       <div className="flex gap-5 items-center sm:justify-start justify-center">

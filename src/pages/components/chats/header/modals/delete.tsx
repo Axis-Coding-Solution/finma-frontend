@@ -15,8 +15,8 @@ import { errorToast, successToast } from "@/utils";
 import { useNavigate, useParams } from "react-router-dom";
 
 export const DeleteChatModal = () => {
-  const {id:chatId}  = useParams();
-const navigate = useNavigate();
+  const { id: chatId } = useParams();
+  const navigate = useNavigate();
   const modal = useModal();
   const { mutateAsync, isPending } = useDeleteChat();
   const queryClient = useQueryClient();
@@ -47,8 +47,8 @@ const navigate = useNavigate();
             Delete Selected massage(s)
           </DialogTitle>
         </DialogHeader>
-        <div className="flex flex-col gap-4">
-          <div className="flex items-center space-x-2">
+        {/* <div className=""> */}
+        {/* <div className="flex items-center space-x-2">
             <Checkbox id="deleteMe" />
             <label
               htmlFor="deleteMe"
@@ -56,23 +56,26 @@ const navigate = useNavigate();
             >
               Delete for me
             </label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <Checkbox id="deleteOther" />
-            <label
-              htmlFor="deleteOther"
-              className="text-xl font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
-              {" "}
-              Delete for Salama
-            </label>
-          </div>
-        </div>
+          </div> */}
+        {/* <div className="flex items-center space-x-2"> */}
+        {/* <Checkbox id="deleteOther" /> */}
+        <label
+          htmlFor="deleteOther"
+          className="text-xl font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+        >
+          Are you sure you want to Delete?
+        </label>
+        {/* </div> */}
+        {/* </div> */}
         <div className="flex items-center justify-between gap-4">
           <Button disabled={isPending} variant="outline" className="w-full">
             Cancel
           </Button>
-          <Button variant="destructive" className="w-full" onClick={()=>deleteChat(chatId as any)} >
+          <Button
+            variant="destructive"
+            className="w-full"
+            onClick={() => deleteChat(chatId as any)}
+          >
             <Trash size="20" />
             Delete
           </Button>

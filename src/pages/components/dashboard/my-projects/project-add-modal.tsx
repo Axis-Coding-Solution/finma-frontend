@@ -40,6 +40,7 @@ const ProjectAddModal = ({ wizardType }: { wizardType: string }) => {
   ) => {
     try {
       const formData = createFormData(values);
+      console.log("formData:", formData);
       const response = await mutateAsync(formData);
       queryClient.invalidateQueries({ queryKey: [STARTUPS_QUERY_KEY] });
       navigate(`/dashboard/my-startups/${response.data._id}?wizardType=startups-idea-validation-main-card`);

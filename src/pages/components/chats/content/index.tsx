@@ -40,6 +40,8 @@ export const ChatsContent = () => {
     });
   }, []);
 
+  console.log("chatData", chatData);
+
   useEffect(() => {
     const container = contentRef.current;
 

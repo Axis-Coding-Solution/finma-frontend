@@ -150,6 +150,7 @@ export const SendMessageBox = () => {
   const auth = useAuth();
   const textAreaRef = useRef<HTMLDivElement>(null);
   const { pushMessage } = useMessagesStore();
+  const [attachedFile, setAttachedFile] = useState<File | null>(null);
 
   const {
     control,
@@ -162,6 +163,8 @@ export const SendMessageBox = () => {
     defaultValues: postMessagesInitialValues,
   });
 
+  console.log("attachedFile", attachedFile);
+
   const onSubmitMessage = async (values: typeof postMessagesInitialValues) => {
     if (!values.content) return;
 
@@ -170,31 +173,27 @@ export const SendMessageBox = () => {
       receiverId: receiverUser.id ?? "",
       content: values.content,
       chatId,
+      file: attachedFile,
     };
 
     try {
-      // Send message via socket
       socket.emit(SOCKET_ENUMS.POST_MESSAGE, JSON.stringify(postData));
-
-      // Update local state with the new message
       pushMessage({
         ...postData,
         position: "right",
         createdAt: new Date(),
       });
-      // Reset form
+
       resetForm(postMessagesInitialValues);
       if (textAreaRef.current) {
         textAreaRef.current.textContent = "";
       }
-      // // Post message to the server
-      // await postMessage.mutateAsync(postData);
-      // queryClient.invalidateQueries({
-      //   queryKey: [CHAT_MESSAGES_QUERY_KEY],
-      // });
     } catch (error: any) {
       errorToast(error.message);
     }
+  };
+  const handleFileChange = (file: File) => {
+    setAttachedFile(file);
   };
   const addEmoji = (emoji: any) => {
     const values = getValues();
@@ -209,18 +208,21 @@ export const SendMessageBox = () => {
       className="flex items-center gap-3 w-full"
       onSubmit={handleSubmit(onSubmitMessage)}
     >
-      {/* <button type="button" className="border-none bg-none cursor-pointer">
-      </button> */}
       <TooltipProvider>
         <Tooltip delayDuration={150}>
           <TooltipTrigger asChild>
             <div>
-              <Paperclip size={26}/>
+              <Paperclip size={26} />
             </div>
           </TooltipTrigger>
           <TooltipContent className="rounded-sm w-auto p-4">
-            <FileMessage />
-         </TooltipContent>
+            <FileMessage
+              onFileSelect={handleFileChange}
+              senderId={auth?.user.id}
+              receiverId={receiverUser.id ?? ""}
+              chatId={chatId}
+            />
+          </TooltipContent>
         </Tooltip>
       </TooltipProvider>
 
