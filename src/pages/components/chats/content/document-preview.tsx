@@ -12,7 +12,6 @@ const DocumentPreview = ({ url, name }: { url: string; name?: string }) => {
         title={name || "View Document"}
       >
         <Files />
-
         <span className="document-name text-sm ">{name || "Click here"}</span>
       </a>
     </div>
