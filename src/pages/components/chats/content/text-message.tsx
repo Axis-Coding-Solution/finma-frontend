@@ -4,6 +4,7 @@ import VideoPreview from "./video-preview";
 import DocumentPreview from "./document-preview";
 
 export const TextMessage = ({ message, index, position }: any) => {
+  console.log("message.....", message);
   const container = position === "right" ? "justify-end" : "justify-start";
   const background =
     position === "right" ? "bg-secondary-dark" : "bg-secondary/40";
@@ -13,6 +14,7 @@ export const TextMessage = ({ message, index, position }: any) => {
       ? "text-info"
       : " text-muted-foreground";
 
+      console.log(message.image)
   return (
     <div className={`w-full flex  ${container}`}>
       <div className="max-w-[70%]" key={index}>
@@ -27,9 +29,11 @@ export const TextMessage = ({ message, index, position }: any) => {
               borderBottomLeftRadius: position === "left" ? "0px" : "10px",
             }}
           >
+
+            
             {message?.content && <h1>{message.content}</h1>}
             {message?.image && <ImagePreview url={message.image}/>}
-            {message?.document && <DocumentPreview name={''} url={message.document}/>}
+            {message?.document && <DocumentPreview  url={message.document}/>}
             {message?.video && <VideoPreview url={message.video}/>}
             <p className=" flex justify-end gap-2 items-center text-[11px] pt-[2px] text-muted-foreground">
               {new Date(message.createdAt)?.toLocaleTimeString(undefined, {

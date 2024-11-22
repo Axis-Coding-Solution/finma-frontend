@@ -6,6 +6,7 @@ import { NoMessages } from "./no-messages";
 import socket from "@/lib/socket.io";
 import { SOCKET_ENUMS } from "@/utils/constants/socket-enums";
 import { useMessagesStore } from "@/store/hooks";
+import { FetchLoader } from "../../common";
 
 function checkElementOverflow(element: HTMLDivElement) {
   return (
@@ -17,7 +18,7 @@ function checkElementOverflow(element: HTMLDivElement) {
 export const ChatsContent = () => {
   // const [data, setData] = useState();
   const { id = "" } = useAppParams();
-  const { data: chatMessages } = useGetMessagesByChatId(id);
+  const { data: chatMessages, isPending } = useGetMessagesByChatId(id);
   const { getChat, setChat, pushMessage } = useMessagesStore();
 
   const contentRef = useRef<HTMLDivElement | null>(null);
@@ -32,6 +33,7 @@ export const ChatsContent = () => {
 
   useEffect(() => {
     socket.on(SOCKET_ENUMS.RECEIVE_MESSAGE, (data) => {
+      console.log("FFFFFFFFFFFFFFFFFFFFFFF", data);
       const obj = {
         ...data,
         position: "left",
@@ -62,7 +64,11 @@ export const ChatsContent = () => {
       ref={contentRef}
       className="flex-1 flex flex-col px-5 py-5 overflow-y-auto custom-scrollbar-warning"
     >
-      {chatData?.length === 0 && <NoMessages />}
+      {isPending ? (
+        <FetchLoader noMessage={false} />
+      ) : (
+        chatData?.length === 0 && <NoMessages />
+      )}
       {chatData?.map((message: any, index: number) => (
         <TextMessage
           key={index}
