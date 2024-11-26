@@ -17,8 +17,10 @@ export const userQuestionaryInitialValues = {
 export const postMessagesInitialValues = {
   content: "",
   receiverId: "",
+  image:"",
+  video:"",
+  document: "",
 };
-
 const commonOnboardingInitialValues = {
   personalInfo: {
     firstName: "",
@@ -116,7 +118,6 @@ export const onboardingMentorsInitialValues = {
     dedicatedHoursPerWeek: 0,
     personalBio: "",
   },
-
   ...entrepreneurialTrackRecordInitialValues,
   investmentInterest: {
     ticketSize: null,

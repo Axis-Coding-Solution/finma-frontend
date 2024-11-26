@@ -19,7 +19,6 @@ import {
   TooltipTrigger,
 } from "@/components/ui";
 import FileMessage from "./content/file-message";
-
 export const SendMessageBox = () => {
   const chatUser = useHookstate(chatUserDataHook);
   const { id: chatId } = useAppParams();
@@ -38,19 +37,20 @@ export const SendMessageBox = () => {
     mode: FORM_MODE,
     defaultValues: postMessagesInitialValues,
   });
-    const convertFileToBase64 = (attachedFile: File): Promise<string> => {
+  const convertFileToBase64 = (attachedFile: File): Promise<string> => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
-
       reader.onload = () => {
-        const base64String = reader?.result?.split(",")[1] as string;
-        resolve(base64String);
+        const base64String = reader.result?.toString().split(",")[1];
+        if (base64String) {
+          resolve(base64String);
+        } else {
+          reject(new Error("Failed to convert file to base64."));
+        }
       };
-
       reader.onerror = (error) => {
         reject(error);
       };
-
       reader.readAsDataURL(attachedFile);
     });
   };
@@ -59,7 +59,6 @@ export const SendMessageBox = () => {
     if (!values.content && !attachedFile) return;
     try {
       let base64File = null;
-
       if (attachedFile) {
         base64File = await convertFileToBase64(attachedFile);
       }
@@ -74,15 +73,12 @@ export const SendMessageBox = () => {
           mimetype: attachedFile?.type,
         },
       };
-
-      console.log("postData", postData);
-
       socket.emit(SOCKET_ENUMS.POST_MESSAGE, JSON.stringify(postData));
-      const messageData = {
-        ...postData,
-        position: "right",
-        createdAt: new Date(),
-      };
+      // const messageData = {
+      //   ...postData,
+      //   position: "right",
+      //   createdAt: new Date(),
+      // };
 
       resetForm(postMessagesInitialValues);
       if (textAreaRef.current) {
@@ -93,46 +89,122 @@ export const SendMessageBox = () => {
       errorToast(error.message);
     }
   };
+  // const handleFileChange = (file: File) => {
+  //   setAttachedFile(file);
+  //   const values = getValues();
+  //   if (file.type.startsWith("image/")) {
+  //     setValue("image", values.content + file);
+  //   } else if (file.type.startsWith("video/")) {
+  //     setValue("video", values.content + file);
+  //   } else if (file.type.startsWith("application/")) {
+  //     setValue("document", values.content + file);
+  //   } else {
+  //     console.log("Invalid file type");
+  //   }
+
+  //   if (textAreaRef.current) {
+  //     if (file.type.startsWith("image/")) {
+  //       textAreaRef.current.innerHTML = `<div id="text-area-image-preview">
+  //         <img src="${URL.createObjectURL(
+  //           file
+  //         )}"
+  //         style="width:30%; height:30%; object-fit: cover;"
+  //         onLoad="(e) => URL.revokeObjectURL(e.currentTarget.src)" alt="selected_image" />
+
+  //       </div>`;
+  //     } else if (file.type.startsWith("video/")) {
+  //       textAreaRef.current.innerHTML = `<div id="text-area-video-preview">
+  //         <video src="${URL.createObjectURL(
+  //           file
+  //         )}"
+  //          style="width:30%; height:30%; object-fit: cover;"
+  //         onLoad="(e) => URL.revokeObjectURL(e.currentTarget.src)" alt="selected_video" />
+  //         <img src="${URL.createObjectURL(
+  //           file
+  //         )}" onLoad="(e) => URL.revokeObjectURL(e.currentTarget.src)" alt="selected_document" />
+
+  //       </div>`;
+  //     } else if (file.type.startsWith("application/")) {
+  //       textAreaRef.current.innerHTML = `<div">
+  //         <div src="${URL.createObjectURL(
+  //           file
+  //         )}"
+  //         style="width:100%; height:30%; object-fit: cover;"
+  //         onLoad="(e) => URL.revokeObjectURL(e.currentTarget.src)" alt="selected_image" />
+  //         <span>📷 ${file.name}</span>
+  //       </div>`;
+  //     } else {
+  //       textAreaRef.current.innerHTML = `<span>📎 ${file.name}</span>`;
+  //     }
+  //   }
+  // };
+
   const handleFileChange = (file: File) => {
     setAttachedFile(file);
-    const values = getValues();
+    // const values = getValues();
+
+    let previewHTML = "";
+
     if (file.type.startsWith("image/")) {
-      setValue("image", values.content + file);
+      previewHTML = `
+        <div id="text-area-image-preview" style="position: relative; width: 30%; height: auto;">
+          <img 
+            src="${URL.createObjectURL(file)}" 
+            style="width: 100%; height: 100%; object-fit: cover;" 
+            alt="selected_image" 
+          />
+          <button 
+            id="remove-file-btn" 
+            style="position: absolute; top: 5px; right: 5px; background: black; color: white; border: none; border-radius: 50%; cursor: pointer; padding: 2px 6px;"
+          >
+            &times;
+          </button>
+        </div>
+      `;
     } else if (file.type.startsWith("video/")) {
-      setValue("video", values.content + file);
+      previewHTML = `
+        <div id="text-area-video-preview" style="position: relative; width: 30%; height: auto;">
+          <video 
+            src="${URL.createObjectURL(file)}" 
+            style="width:100%;height:50%" 
+          ></video>
+          <button 
+            id="remove-file-btn" 
+            style="position: absolute; top: 5px; right: 5px; background: black; color: white; border: none; border-radius: 50%; cursor: pointer; padding: 2px 6px;"
+          >
+            &times;
+          </button>
+        </div>
+      `;
     } else if (file.type.startsWith("application/")) {
-      setValue("document", values.content + file);
-    } else {
-      console.log("Invalid file type");
+      previewHTML = `
+        <div id="text-area-doc-preview" style="position: relative; width:50%; height: auto; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+          <span>${file.name}</span>
+          <button 
+            id="remove-file-btn" 
+            style="position: absolute; top: 5px; right: 5px; background:black; color: white; border: none; border-radius: 50%; cursor: pointer; padding: 2px 6px;"
+          >
+            &times;
+          </button>
+        </div>
+      `;
     }
+
     if (textAreaRef.current) {
-      if (file.type.startsWith("image/")) {
-        textAreaRef.current.innerHTML = `<div id="text-area-img-preview">
-          <img src="${URL.createObjectURL(
-            file
-          )}" onLoad="(e) => URL.revokeObjectURL(e.currentTarget.src)" alt="selected_image" />
-      
-        </div>`;
-      } else if (file.type.startsWith("video/")) {
-        textAreaRef.current.innerHTML = `<div id="text-area-video-preview">
-          <video src="${URL.createObjectURL(
-            file
-          )}" onLoad="(e) => URL.revokeObjectURL(e.currentTarget.src)" alt="selected_video" />
-          <img src="${URL.createObjectURL(
-            file
-          )}" onLoad="(e) => URL.revokeObjectURL(e.currentTarget.src)" alt="selected_document" />
-          
-        </div>`;
-      } else if (file.type.startsWith("application/")) {
-        textAreaRef.current.innerHTML = `<div">
-          <div src="${URL.createObjectURL(
-            file
-          )}" onLoad="(e) => URL.revokeObjectURL(e.currentTarget.src)" alt="selected_image" />
-          <span>📷 ${file.name}</span>
-        </div>`;
-      } else {
-        textAreaRef.current.innerHTML = `<span>📎 ${file.name}</span>`;
+      textAreaRef.current.innerHTML = previewHTML;
+      const removeButton = textAreaRef.current.querySelector("button");
+      if (removeButton) {
+        removeButton.addEventListener("click", () => {
+          removeAttachedFile();
+        });
       }
+    }
+  };
+
+  const removeAttachedFile = () => {
+    setAttachedFile(null);
+    if (textAreaRef.current) {
+      textAreaRef.current.innerHTML = "";
     }
   };
 
@@ -192,7 +264,7 @@ export const SendMessageBox = () => {
               <span
                 className={cn(
                   "absolute top-2 ms-4 pointer-events-none text-muted-foreground",
-                  field.value && "hidden"
+                  (field.value || attachedFile) && "hidden"
                 )}
               >
                 Type your message...

@@ -2,9 +2,7 @@ import { CheckCheck, Check } from "lucide-react";
 import ImagePreview from "./image-preview";
 import VideoPreview from "./video-preview";
 import DocumentPreview from "./document-preview";
-
 export const TextMessage = ({ message, index, position }: any) => {
-  console.log("message.....", message);
   const container = position === "right" ? "justify-end" : "justify-start";
   const background =
     position === "right" ? "bg-secondary-dark" : "bg-secondary/40";
@@ -19,7 +17,6 @@ export const TextMessage = ({ message, index, position }: any) => {
     <div className={`w-full flex  ${container}`}>
       <div className="max-w-[70%]" key={index}>
         <div className="flex gap-2 items-end mb-2">
-          {/* {message.sender && <Avatar image={userAvatar2Image} />} */}
           <div
             className={`px-5 py-2  border border-border ${background}`}
             style={{
@@ -29,8 +26,6 @@ export const TextMessage = ({ message, index, position }: any) => {
               borderBottomLeftRadius: position === "left" ? "0px" : "10px",
             }}
           >
-
-            
             {message?.content && <h1>{message.content}</h1>}
             {message?.image && <ImagePreview url={message.image}/>}
             {message?.document && <DocumentPreview  url={message.document}/>}

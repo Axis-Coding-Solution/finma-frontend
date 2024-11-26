@@ -1,16 +1,12 @@
-import {
-  usePostDocumentMessages,
-  usePostImageMessages,
-  usePostVideoMessages,
-} from "@/api/hooks/dashboard/messages";
+
 import { Image, Files, Video } from "lucide-react";
 import { useRef } from "react";
 
-const FileMessage = ({ onFileSelect, senderId, receiverId, chatId }: any) => {
-  const fileInputRef = useRef(null);
-  const fileVideoRef = useRef(null);
-  const fileDocumentRef = useRef(null);
-  const handleIconClick = (type) => {
+const FileMessage = ({ onFileSelect}: any) => {
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const fileVideoRef = useRef<HTMLInputElement>(null);
+  const fileDocumentRef = useRef<HTMLInputElement>(null);
+  const handleIconClick = (type : string) => {
     if (fileInputRef.current && type === "image") {
       fileInputRef.current.click();
     } else if (fileVideoRef.current && type === "video") {
@@ -20,7 +16,7 @@ const FileMessage = ({ onFileSelect, senderId, receiverId, chatId }: any) => {
     }
   };
 
-  const handleFileChange = (event) => {
+  const handleFileChange = (event : any ) => {
     const file = event?.target?.files?.[0];
     if (file) {
       onFileSelect(file);
@@ -29,9 +25,6 @@ const FileMessage = ({ onFileSelect, senderId, receiverId, chatId }: any) => {
 
   return (
     <div className="text-black flex flex-col gap-3">
-      {/* <ImagePreview url={url} />
-      <VideoPreview url={url} />
-      <DocumentPreview url={url} name={name} />  */}
       <div>
         <Image
           onClick={() => handleIconClick("image")}
