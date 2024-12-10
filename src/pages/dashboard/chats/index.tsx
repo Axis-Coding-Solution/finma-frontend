@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import { SOCKET_ENUMS } from "@/utils/constants/socket-enums";
 import { NoMessages } from "@/pages/components/chats/content/no-messages";
 import { useNavigate } from "react-router-dom";
+import FloatingScreen from "@/components/ui/floatingScreen";
 
 function ChatBoxPage() {
   const { id } = useAppParams();
@@ -49,7 +50,6 @@ function ChatBoxPage() {
       socket.emit(SOCKET_ENUMS.IS_ONLINE, {userId:auth?.user.id, isOnline: false});
     }
   }, []);
-
   if (!id) RenderContent = NoMessages;
   else {
     RenderContent = () => (
@@ -57,6 +57,8 @@ function ChatBoxPage() {
         <ChatsHeader />
         <ChatsContent />
         <SendMessageBox />
+        {/* <FloatingScreen /> */}
+        
       </div>
     );
   }

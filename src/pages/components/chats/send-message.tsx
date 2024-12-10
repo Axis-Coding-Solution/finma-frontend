@@ -26,6 +26,7 @@ export const SendMessageBox = () => {
   const auth = useAuth();
   const textAreaRef = useRef<HTMLDivElement>(null);
   const { pushMessage } = useMessagesStore();
+  const [isSending, setIsSending] = useState(false);
   const [attachedFile, setAttachedFile] = useState<File | null>(null);
   const {
     control,
@@ -55,8 +56,44 @@ export const SendMessageBox = () => {
     });
   };
 
-  const onSubmitMessage = async (values: typeof postMessagesInitialValues) => {
-    if (!values.content && !attachedFile) return;
+  // const onSubmitMessage = async (values :any) => {
+  //   if (!values.content && !attachedFile) return;
+  //   if (isSending) return;
+  //   setIsSending(true);
+
+  //   try {
+  //     let base64File = null;
+  //     if (attachedFile) {
+  //       base64File = await convertFileToBase64(attachedFile);
+  //     }
+  //     const postData = {
+  //       senderId: auth?.user.id,
+  //       receiverId: receiverUser.id ?? "",
+  //       content: values.content,
+  //       chatId,
+  //       file: {
+  //         buffer: base64File,
+  //         fileName: attachedFile?.name,
+  //         mimetype: attachedFile?.type,
+  //       },
+  //     };
+  //     socket.emit(SOCKET_ENUMS.POST_MESSAGE, JSON.stringify(postData));
+
+  //     resetForm(postMessagesInitialValues);
+  //     if (textAreaRef.current) {
+  //       textAreaRef.current.textContent = "";
+  //     }
+  //     setAttachedFile(null);
+  //   } catch (error : any) {
+  //     errorToast(error.message);
+  //   } finally {
+  //     setIsSending(false);
+  //   }
+  // };
+  const onSubmitMessage = async (values: any) => {
+    console.log("values", values);
+    if (isSending || (!values.content && !attachedFile)) return;
+    setIsSending(true);
     try {
       let base64File = null;
       if (attachedFile) {
@@ -73,13 +110,8 @@ export const SendMessageBox = () => {
           mimetype: attachedFile?.type,
         },
       };
+      console.log("Sending message:", postData);
       socket.emit(SOCKET_ENUMS.POST_MESSAGE, JSON.stringify(postData));
-      // const messageData = {
-      //   ...postData,
-      //   position: "right",
-      //   createdAt: new Date(),
-      // };
-
       resetForm(postMessagesInitialValues);
       if (textAreaRef.current) {
         textAreaRef.current.textContent = "";
@@ -87,61 +119,12 @@ export const SendMessageBox = () => {
       setAttachedFile(null);
     } catch (error: any) {
       errorToast(error.message);
+    } finally {
+      setIsSending(false);
     }
   };
-  // const handleFileChange = (file: File) => {
-  //   setAttachedFile(file);
-  //   const values = getValues();
-  //   if (file.type.startsWith("image/")) {
-  //     setValue("image", values.content + file);
-  //   } else if (file.type.startsWith("video/")) {
-  //     setValue("video", values.content + file);
-  //   } else if (file.type.startsWith("application/")) {
-  //     setValue("document", values.content + file);
-  //   } else {
-  //     console.log("Invalid file type");
-  //   }
-
-  //   if (textAreaRef.current) {
-  //     if (file.type.startsWith("image/")) {
-  //       textAreaRef.current.innerHTML = `<div id="text-area-image-preview">
-  //         <img src="${URL.createObjectURL(
-  //           file
-  //         )}"
-  //         style="width:30%; height:30%; object-fit: cover;"
-  //         onLoad="(e) => URL.revokeObjectURL(e.currentTarget.src)" alt="selected_image" />
-
-  //       </div>`;
-  //     } else if (file.type.startsWith("video/")) {
-  //       textAreaRef.current.innerHTML = `<div id="text-area-video-preview">
-  //         <video src="${URL.createObjectURL(
-  //           file
-  //         )}"
-  //          style="width:30%; height:30%; object-fit: cover;"
-  //         onLoad="(e) => URL.revokeObjectURL(e.currentTarget.src)" alt="selected_video" />
-  //         <img src="${URL.createObjectURL(
-  //           file
-  //         )}" onLoad="(e) => URL.revokeObjectURL(e.currentTarget.src)" alt="selected_document" />
-
-  //       </div>`;
-  //     } else if (file.type.startsWith("application/")) {
-  //       textAreaRef.current.innerHTML = `<div">
-  //         <div src="${URL.createObjectURL(
-  //           file
-  //         )}"
-  //         style="width:100%; height:30%; object-fit: cover;"
-  //         onLoad="(e) => URL.revokeObjectURL(e.currentTarget.src)" alt="selected_image" />
-  //         <span>📷 ${file.name}</span>
-  //       </div>`;
-  //     } else {
-  //       textAreaRef.current.innerHTML = `<span>📎 ${file.name}</span>`;
-  //     }
-  //   }
-  // };
-
   const handleFileChange = (file: File) => {
     setAttachedFile(file);
-    // const values = getValues();
 
     let previewHTML = "";
 
@@ -216,15 +199,22 @@ export const SendMessageBox = () => {
     }
   };
   useEffect(() => {
-    socket.on(SOCKET_ENUMS.CU_RECEIVE_MESSAGE, (data) => {
-      console.log("🚀 ~ socket.on ~ data:", data);
+    const handleReceiveMessage = (data: any) => {
+      console.log("Received data:", data);
       const obj = {
         ...data,
         position: "right",
       };
       pushMessage(obj);
-    });
-  }, []);
+    };
+
+    socket.on(SOCKET_ENUMS.CU_RECEIVE_MESSAGE, handleReceiveMessage);
+
+    return () => {
+      socket.off(SOCKET_ENUMS.CU_RECEIVE_MESSAGE, handleReceiveMessage);
+    };
+  }, [pushMessage]);
+
   return (
     <form
       className="flex items-center gap-3 w-full"
@@ -288,8 +278,10 @@ export const SendMessageBox = () => {
       <button
         className="border py-2 px-3 border-border flex justify-center items-center rounded-sm bg-secondary-dark"
         type="submit"
+        disabled={isSending}
       >
-        <Send size={24} />
+        {/* <Send size={24} /> */}
+        {isSending ? "Sending..." : <Send size={24} />}
       </button>
     </form>
   );

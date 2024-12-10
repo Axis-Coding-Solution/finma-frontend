@@ -12,7 +12,7 @@ export const TextMessage = ({ message, index, position }: any) => {
       ? "text-info"
       : " text-muted-foreground";
 
-      console.log(message.image)
+  console.log(message.image)
   return (
     <div className={`w-full flex  ${container}`}>
       <div className="max-w-[70%]" key={index}>

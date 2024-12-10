@@ -1,12 +1,8 @@
 import {
   CircleHelp,
   LayoutGrid,
-  // MessageSquareMore,
   Sparkles,
-  // UsersRound,
-  // Zap,
-} from "lucide-react";
-
+  } from "lucide-react";
 import { LinkItem } from "./link-item";
 import { myTeamIcon, ProductIcon, chatIcon } from "@/components/icons";
 
